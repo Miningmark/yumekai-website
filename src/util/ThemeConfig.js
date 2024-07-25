@@ -47,11 +47,10 @@ export const GlobalStyles = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: ${({ theme }) => theme.backgroundColor1};
+        background: #fff;
 
-        color: ${({ theme }) => theme.text};
-        font-family: Helvetica, Tahoma, Arial, sans-serif;
-        font-size: large;
+        color: black;
+        font-family: Helvetica;
         
 
         width: 100vw;
@@ -71,21 +70,21 @@ export const GlobalStyles = createGlobalStyle`
         text-align: center;
         margin: 0;
         padding: 20px;
-        color: ${({ theme }) => theme.primaryColor};
+        color: red;
         font-family: Tahoma;
         font-weight: 800;
         font-size: 2.5rem;
     }
 
     h2{
-        color: ${({ theme }) => theme.primaryColor};
+        color: red;
         font-family: Tahoma;
         font-weight: 600;
         font-size: 2rem;
     }
 
     h2{
-        color: ${({ theme }) => theme.primaryColor};
+        color: red;
         font-family: Tahoma;
         font-weight: 600;
         font-size: 1.75rem;
@@ -150,7 +149,7 @@ export const GlobalStyles = createGlobalStyle`
         :hover{
             transform: translateY(-3px);
             transition: 0.5s;
-            color: ${({ theme }) => theme.primaryColor};
+            color: green;
         }
     }
     .embla__button:disabled {

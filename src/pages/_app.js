@@ -95,7 +95,6 @@ export default function App({ Component, pageProps }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  /*
   //--------------------------------------------------------------------------------------------
   //CLS value consol log
 
@@ -110,9 +109,8 @@ export default function App({ Component, pageProps }) {
     }
   }).observe({ type: "layout-shift", buffered: true });
   //-----------------------------------------------------------------------------------------------------
-*/
-  return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+  /**
+ * <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <Head>
         <title>YumeKai</title>
       </Head>
@@ -132,5 +130,27 @@ export default function App({ Component, pageProps }) {
         </ScrollToTopButton>
       )}
     </ThemeProvider>
+ */
+  return (
+    <>
+      <Head>
+        <title>YumeKai</title>
+      </Head>
+      <GlobalStyles />
+      <SiteWrapper>
+        <PageHeader toggleTheme={toggleTheme} theme={theme} />
+        <PageWrapper>
+          <PageContent>
+            <Component {...pageProps} theme={theme} />
+          </PageContent>
+        </PageWrapper>
+        <PageFooter />
+      </SiteWrapper>
+      {isVisible && (
+        <ScrollToTopButton onClick={scrollToTop}>
+          <IconUp />
+        </ScrollToTopButton>
+      )}
+    </>
   );
 }

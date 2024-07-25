@@ -7,7 +7,7 @@ export const PageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  background-color: ${({ theme }) => theme.backgroundColor1};
+  background-color: #fff;
 `;
 
 export const PageContent = styled.div`
@@ -24,7 +24,7 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: ${({ theme }) => theme.primaryColor};
+  background-color: #fff;
   color: #f5f5f5;
   transition: 0.3s;
   padding: 10px 20px;
@@ -44,16 +44,16 @@ export const UnstyledLink = styled(Link)`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.primaryColor};
+  color: #fff;
 
   &:hover {
-    color: ${({ theme }) => theme.activeLinkColor};
+    color: blue;
   }
 `;
 
 export const Spacer = styled.div`
   height: 2px;
-  background-color: ${({ theme }) => theme.text};
+  background-color: #fff;
   margin: 25px 0;
 
   @media (max-width: 500px) {
