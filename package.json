@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@vercel/speed-insights": "^1.0.12",
     "embla-carousel-autoplay": "^8.1.7",
     "embla-carousel-react": "^8.1.7",
     "mysql2": "^3.10.3",
