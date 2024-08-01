@@ -79,3 +79,13 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: 10px;
 `;
+
+export const ErrorText = styled.p`
+  color: var(--danger);
+  font-weight: bold;
+`;
+
+export const SuccessText = styled.p`
+  color: var(--success);
+  font-weight: bold;
+`;

@@ -167,6 +167,14 @@ export const DropdownItem = styled.li`
 export const InputRadioWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  border: solid 2px red;
+
+  &:focus {
+    border: solid 2px red;
+  }
+  &:active {
+    border: solid 2px green;
+  }
 `;
 
 export const RadioButton = styled.input`

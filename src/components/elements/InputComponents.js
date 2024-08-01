@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import {
   InputField,
   InputArea,
@@ -37,7 +37,7 @@ export function InputOptionInput({ title, inputText, inputChange, type = "text",
   );
 }
 
-export function InputOptionTextArea({ title, inputText, inputChange }) {
+export function InputOptionTextArea({ title, inputText, inputChange, inputRef }) {
   return (
     <>
       <InputWrapper className="input">
@@ -50,6 +50,7 @@ export function InputOptionTextArea({ title, inputText, inputChange }) {
           value={inputText || ""}
           onChange={(e) => inputChange(e.target.value)}
           rows="3"
+          ref={inputRef}
         />
         <InputLabel className="inputLabel" htmlFor={title}>
           {title}
@@ -59,7 +60,7 @@ export function InputOptionTextArea({ title, inputText, inputChange }) {
   );
 }
 
-export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClick }) {
+export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClick, inputRef }) {
   return (
     <>
       <InputWrapper className="input">
@@ -83,6 +84,7 @@ export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClic
           value={inputText || ""}
           rows="3"
           disabled
+          ref={inputRef}
         />
         <InputLabel className="inputLabel" htmlFor={title}>
           {title}
@@ -92,7 +94,7 @@ export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClic
   );
 }
 
-export function InputOptionCheckbox({ title, isChecked, inputChange }) {
+export function InputOptionCheckbox({ title, isChecked, inputChange, inputRef }) {
   return (
     <>
       <InputCheckboxWrapper>
@@ -101,6 +103,7 @@ export function InputOptionCheckbox({ title, isChecked, inputChange }) {
           id={title}
           checked={isChecked}
           onChange={(e) => inputChange(e.target.checked)}
+          ref={inputRef}
         />
         <label htmlFor={title}>{title}</label>
       </InputCheckboxWrapper>
@@ -108,7 +111,7 @@ export function InputOptionCheckbox({ title, isChecked, inputChange }) {
   );
 }
 
-export function InputOptionSelect({ title, options, inputText, inputChange }) {
+export function InputOptionSelect({ title, options, inputText, inputChange, inputRef }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDropdownClick = () => {
@@ -141,12 +144,12 @@ export function InputOptionSelect({ title, options, inputText, inputChange }) {
   );
 }
 
-export function InputOptionRadio({ title, options, selectedOption, inputChange }) {
+export function InputOptionRadio({ title, options, selectedOption, inputChange, inputRef }) {
   return (
     <>
       <InputWrapper>
         <p>{title}</p>
-        <InputRadioWrapper>
+        <InputRadioWrapper ref={inputRef}>
           {options.map((option, index) => (
             <div key={index}>
               <RadioButton
@@ -156,6 +159,7 @@ export function InputOptionRadio({ title, options, selectedOption, inputChange }
                 value={option}
                 checked={selectedOption === option}
                 onChange={(e) => inputChange(e.target.value)}
+                ref={inputRef}
               />
               <RadioLabel htmlFor={`${title}-${option}`}>{option}</RadioLabel>
             </div>
