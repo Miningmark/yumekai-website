@@ -45,6 +45,7 @@ import yumekaiNightImage14 from "/public/assets/images/yumekai-night-1-2024/Yume
 //logos
 import hiruHandy from "/public/assets/logo/Hiru-Handy.webp";
 import yumekoImage from "/public/assets/logo/Yumeko.png";
+import HomeSlider from "@/components/home/HomeSlider";
 
 const yumeKaiNightImages = [
   { image: yumekaiNightImage1, name: "", link: "" },
@@ -87,6 +88,7 @@ const StyledYumekoImage = styled(Image)`
 export default function Home() {
   return (
     <>
+      <HomeSlider />
       <h1>Aktuelles</h1>
       <p>
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
