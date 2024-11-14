@@ -90,16 +90,6 @@ export default function HomeSlider() {
     Autoplay({ delay: duration * 1000 }),
   ]);
 
-  const onNavButtonClick = useCallback((emblaApi) => {
-    const autoplay = emblaApi?.plugins()?.autoplay;
-    if (!autoplay) return;
-
-    const resetOrStop =
-      autoplay.options.stopOnInteraction === false ? autoplay.reset : autoplay.stop;
-
-    resetOrStop();
-  }, []);
-
   return (
     <div>
       <HomeSliderComponentWrapper ref={wrapperRef}>
