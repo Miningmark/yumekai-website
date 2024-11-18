@@ -11,8 +11,8 @@ import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
 
 //Images
 //import yumeKaiHeaderSmall from "/public/assets/logo/YumeKai-Header-Small.png";
-import yumeKaiHeaderSmall from "/public/assets/logo/YumeKai-Header-Large.jpg";
-import yumeKaiHeaderLarge from "/public/assets/logo/YumeKai-Header-Large.jpg";
+import yumeKaiHeaderSmall from "/public/assets/logo/yumekai-Header-Large.jpg";
+import yumeKaiHeaderLarge from "/public/assets/logo/yumekai-Header-Large.jpg";
 
 //Icons
 import ScheduleIcon from "/public/assets/icons/schedule.svg";

@@ -178,7 +178,7 @@ export default function Projects() {
       <h2>Programm YumeKai - Night 2024</h2>
       <p>
         Endlich war es so weit, die erste YumeKai - Night 2024 hat stattgefunden!{" "}
-        <StyledLink href={"/review//review/yumekai-night-2024"}>Hier</StyledLink> könnt ihr euch das
+        <StyledLink href={"/review/yumekai-night-2024"}>Hier</StyledLink> könnt ihr euch das
         Programm der YumeKai - Night noch einmal ansehen.
       </p>
 
