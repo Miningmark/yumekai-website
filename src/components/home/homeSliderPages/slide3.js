@@ -66,23 +66,27 @@ export default function Slide3() {
         <Content>
           <Headline>Wer sind wir?</Headline>
           <ImageContainer>
-            <div style={{ width: "auto", height: "100%" }}>
+            <div style={{ width: "50%", height: "100%", position: "relative" }}>
               <Image
                 src={yumekoImage}
                 alt="Maskottchen Yumeko"
                 style={{
                   width: "auto",
                   height: "100%",
+                  position: "absolute",
+                  right: "0",
                 }}
               />
             </div>
-            <div style={{ width: "auto", height: "100%" }}>
+            <div style={{ width: "50%", height: "100%", position: "relative" }}>
               <Image
                 src={hiruImage}
                 alt="Maskottchen Yumeko"
                 style={{
                   width: "auto",
                   height: "100%",
+                  position: "absolute",
+                  left: "0",
                 }}
               />
             </div>
