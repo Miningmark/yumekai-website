@@ -140,7 +140,7 @@ export default function Slide1() {
               }}
             />
             <StyledBox $bgcolor="white" $textcolor="var(--tertiary-color)" $bottomvalue="10">
-              "Lebe deinen Traum"
+              {`"Lebe deinen Traum"`}
             </StyledBox>
             <StyledBox $bgcolor="var(--tertiary-color)" $textcolor="white" $bottomvalue="60">
               Unser Motto
