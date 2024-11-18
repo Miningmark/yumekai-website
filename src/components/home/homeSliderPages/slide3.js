@@ -5,7 +5,7 @@ import Image from "next/image";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
 
 //logos and Images
-import yumekoImage from "/public/assets/logo/Yumeko-ohne-Beine.png";
+import yumekoImage from "/public/assets/logo/Yumeko.png";
 import hiruImage from "/public/assets/logo/Hiru.webp";
 
 const Wrapper = styled.div`
