@@ -36,7 +36,6 @@ const YumekaiHeaderWrapper = styled.div`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #f5f5f5;
 
   img {
     width: 100%;
