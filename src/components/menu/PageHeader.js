@@ -105,6 +105,11 @@ const HamburgerIcon = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor2};
   padding: 10px;
   border-radius: 0 0 0 10px;
+  opacity: 0.8;
+
+  &hover {
+    opacity: 1;
+  }
 
   svg {
     cursor: pointer;

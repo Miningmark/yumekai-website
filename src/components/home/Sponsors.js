@@ -49,7 +49,7 @@ const SponsorsComponentWrapper = styled.section`
 
 const SponsorsComponentContent = styled.div`
   position: absolute;
-  background-color: var(--light-grey);
+  background-color: ${({ theme }) => theme.backgroundColor4};
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
@@ -69,7 +69,7 @@ const EllipseTop = styled.div`
   position: absolute;
   width: 100vw;
   height: 40px;
-  background-color: var(--light-grey);
+  background-color: ${({ theme }) => theme.backgroundColor4};
   left: 50%;
   top: 0;
   transform: translateX(-50%);

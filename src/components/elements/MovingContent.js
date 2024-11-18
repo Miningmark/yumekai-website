@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const MovingWrapper = styled.div`
   position: relative;
-  overflow: hidden;
   width: 100%;
   height: 340px;
   display: flex;
@@ -53,13 +52,16 @@ export default function MovingContentWrapper({ content }) {
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      const { clientX, clientY, view } = event;
-      const { innerWidth, innerHeight } = view;
+      const { clientX, clientY } = event;
+      const { innerWidth, innerHeight } = window;
 
-      const x = (clientX / innerWidth) * 20 - 40;
-      const y = (clientY / innerHeight) * 20 - 40;
+      const centerX = innerWidth / 2;
+      const centerY = innerHeight / 2;
 
-      setOffset({ x: -x, y: -y });
+      const x = -((clientX - centerX) / centerX) * 20;
+      const y = -((clientY - centerY) / centerY) * 20;
+
+      setOffset({ x, y });
     };
 
     window.addEventListener("mousemove", handleMouseMove);

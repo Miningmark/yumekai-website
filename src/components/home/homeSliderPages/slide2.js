@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100vw;
   height: 100%;
-  background-color: antiquewhite;
+  background-color: ${({ theme }) => theme.backgroundColor4};
   background-image: url(${sliderBackground.src}); /* Dein Bildpfad */
   background-size: cover; /* Bild skalieren, um das Element zu füllen */
   background-position: center; /* Zentriert das Bild */
