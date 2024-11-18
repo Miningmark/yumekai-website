@@ -46,6 +46,11 @@ const Embla_Slide = styled.div`
 
 const HomeSliderComponentWrapper = styled.section`
   position: relative;
+  height: 600px;
+
+  @media (max-width: 800px) {
+    height: 400px;
+  }
 `;
 
 const HomeSliderComponentContent = styled.div`

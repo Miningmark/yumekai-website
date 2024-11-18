@@ -25,6 +25,10 @@ export const GlobalStyles = createGlobalStyle`
         --border-radius-small: 5px;
         --border-radius-large: 10px;
 
+        --primary-color: #e9300b;
+        --secondary-color: #ffb01e;
+        --tertiary-color: #FF7F00FF;
+
         --dark-grey: #AAAAAA;
         --light-grey: lightgrey;
         --danger: #D32F2F;
@@ -65,7 +69,14 @@ export const GlobalStyles = createGlobalStyle`
         font-family: Helvetica, sans-serif;
         font-weight: 400;
         font-size: 1.125rem;
+
+        @media (max-width: 550px) {
+        font-size: 1rem;
+        }
+    
     }
+
+
 
     h1{
         text-align: center;
@@ -75,6 +86,10 @@ export const GlobalStyles = createGlobalStyle`
         font-family: Tahoma;
         font-weight: 800;
         font-size: 2.5rem;
+
+        @media (max-width: 500px) {
+            font-size: 2rem;
+        }
     }
 
     h2{
@@ -82,6 +97,10 @@ export const GlobalStyles = createGlobalStyle`
         font-family: Tahoma;
         font-weight: 600;
         font-size: 2rem;
+
+        @media (max-width: 500px) {
+            font-size: 1.5rem;
+        }
     }
 
     h2{
@@ -89,6 +108,10 @@ export const GlobalStyles = createGlobalStyle`
         font-family: Tahoma;
         font-weight: 600;
         font-size: 1.75rem;
+
+        @media (max-width: 500px) {
+            font-size: 1.25rem;
+        }
     }
 
     .responsive-container{

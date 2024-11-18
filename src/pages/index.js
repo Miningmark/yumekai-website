@@ -15,6 +15,7 @@ import {
 } from "@/components/styledComponents";
 import FlippingCard from "@/components/elements/FlippingCard";
 import SponsorsComponent from "@/components/home/Sponsors";
+import HomeSlider from "@/components/home/HomeSlider";
 
 //Images
 import fylyCosplayImgae from "/public/assets/images/yumekai2024/Fyly_Cosplay.jpg";
@@ -45,7 +46,6 @@ import yumekaiNightImage14 from "/public/assets/images/yumekai-night-1-2024/Yume
 //logos
 import hiruHandy from "/public/assets/logo/Hiru-Handy.webp";
 import yumekoImage from "/public/assets/logo/Yumeko.png";
-import HomeSlider from "@/components/home/HomeSlider";
 
 const yumeKaiNightImages = [
   { image: yumekaiNightImage1, name: "", link: "" },
