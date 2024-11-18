@@ -58,8 +58,7 @@ export default function App({ Component, pageProps }) {
     if (storedTheme) {
       setTheme(storedTheme);
     } else {
-      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(systemPrefersDark ? "dark" : "light");
+      setTheme("light");
     }
 
     window.addEventListener("scroll", handleScroll);
