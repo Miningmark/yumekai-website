@@ -54,7 +54,7 @@ export const StyledLink = styled(Link)`
 export const Spacer = styled.div`
   height: 2px;
   background-color: ${({ theme }) => theme.text};
-  margin: 25px 0;
+  margin: 35px 0 25px 0;
 
   @media (max-width: 500px) {
     margin: 15px 0;
@@ -63,7 +63,7 @@ export const Spacer = styled.div`
 
 export const SpacerEmpty = styled.div`
   height: 2px;
-  margin: 25px 0;
+  margin: 35px 0 25px 0;
 
   @media (max-width: 500px) {
     margin: 15px 0;
