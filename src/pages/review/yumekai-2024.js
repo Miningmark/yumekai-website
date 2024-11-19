@@ -13,7 +13,7 @@ import hoshinoMitsukiImage from "/public/assets/images/yumekai2024/Hoshino-Mitsu
 import junihuhnImage from "/public/assets/images/yumekai2024/Junihuhn.png";
 import stellariaImage from "/public/assets/images/yumekai2024/Stellaria.jpg";
 import tanukiImage from "/public/assets/images/yumekai2024/Tanuki.jpg";
-import madlightImage from "/public/assets/images/yumekai2024/MadLight.png";
+import madlightImage from "/public/assets/images/yumekai2024/Madlight.png";
 import steffShizoImage from "/public/assets/images/yumekai2024/Steffshizo.png";
 import danijelKoestlichImage from "/public/assets/images/yumekai2024/Danijel-Koestlich.png";
 
