@@ -4,6 +4,7 @@ import Link from "next/link";
 
 //Components
 import { Spacer, StyledLink } from "@/components/styledComponents";
+import Columns2 from "@/components/elements/Columns2";
 
 //Images
 //Ehrengäste
@@ -48,8 +49,59 @@ import squiggzImage from "/public/assets/images/yumekai2024/Squiggz.png";
 import steamspiritsImage from "/public/assets/images/yumekai2024/SteamSpirits.png";
 import yeOldOrcMerchandisingImage from "/public/assets/images/yumekai2024/ye_old_Orc_Merchandising.png";
 
+//Künstler
+import ananatzeImage from "/public/assets/images/yumekai2024/Ananatze.png";
+import anaraTwiceImage from "/public/assets/images/yumekai2024/Anara_Twice.png";
+import artsyAoriImage from "/public/assets/images/yumekai2024/Artsy_Aori.png";
+import bavarianWoodfoxImage from "/public/assets/images/yumekai2024/Bavarian_Woodfox.png";
+import cheekyChwingaImage from "/public/assets/images/yumekai2024/cheeky_chwinga.jpg";
+import eenteImage from "/public/assets/images/yumekai2024/eente.png";
+import emytsuuImage from "/public/assets/images/yumekai2024/Emytsuu.png";
+import fylyImage from "/public/assets/images/yumekai2024/Fyly.png";
+import ignispectusartImage from "/public/assets/images/yumekai2024/IgnisPectusArt.png";
+import kirianYumeImage from "/public/assets/images/yumekai2024/Kirian_Yume.png";
+import krixxiImage from "/public/assets/images/yumekai2024/krixxi.png";
+import manyMindArtImage from "/public/assets/images/yumekai2024/Many_Mind_Art.jpg";
+import mausalImage from "/public/assets/images/yumekai2024/mausal.jpg";
+import myuchiisuImage from "/public/assets/images/yumekai2024/Myuchiisu.png";
+import nikitasFantasiesImage from "/public/assets/images/yumekai2024/Nikitas_Fantasies.jpg";
+import prettysmartfashionImage from "/public/assets/images/yumekai2024/Prettysmartfashion.png";
+import roxinoImage from "/public/assets/images/yumekai2024/RoXino.png";
+import rumbleTheKlabautermannImage from "/public/assets/images/yumekai2024/rumble_the_klabautermann.png";
+import rumiyaImage from "/public/assets/images/yumekai2024/Rumiya.png";
+import scarlettsirene2Image from "/public/assets/images/yumekai2024/scarlettsirene2.png";
+import tactokiImage from "/public/assets/images/yumekai2024/TacToki.png";
+import whalienWorksFluffylunariiImage from "/public/assets/images/yumekai2024/Whalien_Works__fluffylunarii.png";
+
+//Vereine
+import cohekiImage from "/public/assets/images/yumekai2024/CoHeKi.png";
+import conquestLogoImage from "/public/assets/images/yumekai2024/ConQuest_Logo.png";
+import cosplayalpinLogoImage from "/public/assets/images/yumekai2024/Cosplay-Alpin_logo.jpg";
+import cosquestLogoImage from "/public/assets/images/yumekai2024/CosQuest_Logo.png";
+import govereinImage from "/public/assets/images/yumekai2024/GO-Verein.png";
+import muenchnerFursImage from "/public/assets/images/yumekai2024/Muenchner_Furs.png";
+import nihonbashiImage from "/public/assets/images/yumekai2024/Nihonbashi.png";
+import vividAriseImage from "/public/assets/images/yumekai2024/Vivid_Arise.png";
+
+//Workshops
+import berniCosWorkshopImage from "/public/assets/images/yumekai2024/berni_cos_Workshop.jpg";
+import droidbuildingImage from "/public/assets/images/yumekai2024/Droidbuilding.png";
+import eraliaWorkshopImage from "/public/assets/images/yumekai2024/Eralia_Workshop.jpg";
+import fylyWorkshopImage from "/public/assets/images/yumekai2024/Fyly_Workshop.jpg";
+import haekelnFuerAnfaengerImage from "/public/assets/images/yumekai2024/Haekeln_fuer_Anfaenger.png";
+import hanaCosplayCosplayArmorAusEvaImage from "/public/assets/images/yumekai2024/Hana_Cosplay_Cosplay_Armor_aus_EVA.png";
+import japanTravelImage from "/public/assets/images/yumekai2024/Japan_Travel.jpg";
+import karriereImEsportImage from "/public/assets/images/yumekai2024/Karriere_im_E-Sport.png";
+import lolitaPanelImage from "/public/assets/images/yumekai2024/Lolita_Panel.png";
+import rollenspielleitung101Image from "/public/assets/images/yumekai2024/Rollenspiel-Leitung_101.jpg";
+import schnittabaenderungImage from "/public/assets/images/yumekai2024/Schnittabaenderung.png";
+import stateraImage from "/public/assets/images/yumekai2024/Statera.png";
+
 //Essen
 import narutoFoodtruckImage from "/public/assets/images/yumekai2024/Naruto_FoodTruck_Sweets.png";
+import auroralogoImage from "/public/assets/images/yumekai2024/Aurora_Gruppe.jpg";
+import auroraGruppeImage from "/public/assets/images/yumekai2024/Aurora-Logo.png";
+import bildNarutoFoodtruckImage from "/public/assets/images/yumekai2024/Bild_Naruto_Foodtruck.jpg";
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -58,6 +110,38 @@ const ContentWrapper = styled.div`
   justify-content: center;
   gap: 20px;
 `;
+
+const FoodImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+`;
+
+const FoodImageContainer = styled.div`
+  margin: 0;
+  padding: 0;
+  width: calc((100% - 20px) / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 8px;
+  }
+`;
+
+export function FoodImageWrapperComponent({ src1, alt1 = "Bild", src2, alt2 = "Bild" }) {
+  return (
+    <FoodImageWrapper>
+      <FoodImageContainer>
+        <Image src={src1} alt={alt1} style={{ width: "100%", height: "auto" }} />
+      </FoodImageContainer>
+      <FoodImageContainer>
+        <Image src={src2} alt={alt2} style={{ width: "100%", height: "auto" }} />
+      </FoodImageContainer>
+    </FoodImageWrapper>
+  );
+}
 
 const FigureContainer = styled.figure`
   display: flex;
@@ -186,16 +270,19 @@ export default function YumeKai2024() {
         Unsere diesjährige Convention bot eine große Vielfalt an Programmpunkten und Ehrengästen,
         die die Herzen der Besucher höher schlagen ließen.
         <br />
+        <br />
         Wir hatten die Ehre, einige herausragende Gäste begrüßen zu dürfen. Die Band Tanuki heizte
         mit ihrem mitreißenden Auftritt die Stimmung an, während die beliebte VTuberin Hoshino
         Mitsuki das Publikum mit ihrer charmanten Art begeisterte. Junihuhn verzauberte die
         Zuschauer mit seiner Klavierdarbietung und die Idol Tanzgruppe Stellaria zeigte ihre
         beeindruckende Choreographie auf der Bühne.
         <br />
+        <br />
         Ein besonderes Highlight war das kurzfristig organisierte Synchronsprecher-Panel auf der
         großen Bühne. Daniel Schlauch, die deutsche Stimme von Luffy aus „One Piece“, und sein
         Kollege Dirk Meyer, der Usopp aus „One Piece“ spricht, teilten spannende Einblicke in ihre
         Arbeit und beantworteten zahlreiche Fragen der Fans.
+        <br />
         <br />
         Am Sonntag überraschten wir unsere Besucher mit einem weiteren spontanen Panel. Aufgrund des
         Ausfalls unserer Künstlerin Anna sprang die Tanzgruppe Stellaria ein und hielt zusammen mit
@@ -252,6 +339,7 @@ export default function YumeKai2024() {
         Paradies für Cosplay-Enthusiasten. Unsere Cosplay-Gäste und Walking Acts trugen maßgeblich
         zur magischen Atmosphäre der Convention bei und ließen die Herzen der Fans höher schlagen.
         <br />
+        <br />
         Unsere talentierten Cosplay-Gäste waren ein echter Hingucker. Sie beeindruckten nicht nur
         mit ihren atemberaubenden Kostümen, sondern standen den Besuchern auch an ihren Ständen für
         Fragen und Fotos zur Verfügung. Ihre handwerklichen Fähigkeiten und die Liebe zum Detail in
@@ -259,11 +347,13 @@ export default function YumeKai2024() {
         konnten hautnah erleben, wie viel Leidenschaft und Arbeit in den beeindruckenden
         Verkleidungen steckt.
         <br />
+        <br />
         Einige unserer Cosplayer konnte man durch eine spannende Q&A-Session auf der Bühne näher
         kennenlernen. Sie teilten ihre Erfahrungen, gaben Einblicke in ihre kreative Arbeit und
         beantworteten die Fragen der neugierigen Fans. Darüber hinaus sah man sie auch als Juroren
         bei den Cosplay-Wettbewerben, wo sie ihr Fachwissen und ihren geschulten Blick einsetzten,
         um die beeindruckendsten Kostüme zu bewerten.
+        <br />
         <br />
         Unsere Cosplay-Gäste und Walking Acts trugen maßgeblich dazu bei, die YumeKai 2024 zu einem
         unvergesslichen Erlebnis zu machen.
@@ -311,19 +401,21 @@ export default function YumeKai2024() {
         />
       </ContentWrapper>
 
-      <Spacer />
-      <h2 id="aussteller">Aussteller</h2>
+      <Spacer id="aussteller" />
+      <h2>Aussteller</h2>
       <p>
         Trotz des schlechten Wetters ließen sich die Austrian Itashas nicht davon abhalten, ihre
         beeindruckenden Itashas im Außenbereich der Convention auszustellen. Diese kunstvoll
         gestalteten Fahrzeuge, die mit Motiven aus Anime und Manga verziert sind waren ein echter
         Blickfang.
         <br />
+        <br />
         Ein besonderes Highlight auf der YumeKai 2024 war Ruby the Raptor, ein lebensgroßer
         Dinosaurier, der über die Convention gelaufen ist. Ruby begeisterte die Besucher jeden
         Alters mit ihrer realistischen Darstellung und sorgte für viele staunende Gesichter und
         unvergessliche Momente. Kinder und Erwachsene waren gleichermaßen fasziniert von Ruby, die
         mit ihrer Präsenz die Convention in ein kleines Jurassic Park-Abenteuer verwandelte.
+        <br />
         <br />
         Die talentierten Fotografen von BokehBarden fingen die magischen Momente der YumeKai 2024
         mit ihren Kameras ein.
@@ -423,31 +515,335 @@ export default function YumeKai2024() {
 
       <Spacer id="kuenstleratelier" />
       <h2>Künstleratelier</h2>
-      <p>Inhalt zum Künstleratelier...</p>
+      <p>
+        Das Künstleratelier war ein wahres Juwel für Kreative und Kunstliebhaber. In diesem
+        speziellen Bereich der Convention konnten die Besucher eine Vielzahl talentierter Künstler
+        entdecken, die ihre selbstgemachten Werke präsentierten und verkauften. Hier gab es eine
+        große Vielfalt an Produkten zu entdecken und nebenbei konnte man in persönliche Gespräche
+        mit den Künstlern eintauchen.
+      </p>
+      <ContentWrapper>
+        <ContentContainer
+          src={ananatzeImage}
+          alt="Ananatze"
+          link="https://www.instagram.com/ananatze/"
+        />
+        <ContentContainer
+          src={anaraTwiceImage}
+          alt="Anara_Twice"
+          link="https://www.instagram.com/anaratwice"
+        />
+        <ContentContainer
+          src={artsyAoriImage}
+          alt="Artsy Aori"
+          link="https://www.instagram.com/artsy_aori/"
+        />
+        <ContentContainer
+          src={bavarianWoodfoxImage}
+          alt="Bavarian Woodfox"
+          link="https://www.instagram.com/bavarianwoodfox/"
+        />
+        <ContentContainer
+          src={cheekyChwingaImage}
+          alt="Cheeky Chwinga"
+          link="https://www.instagram.com/cheekychwinga/"
+        />
+        <ContentContainer
+          src={eenteImage}
+          alt="eente"
+          link="https://www.instagram.com/eentenfarm/"
+        />
+        <ContentContainer
+          src={emytsuuImage}
+          alt="Emytsuu"
+          link="https://www.instagram.com/emytsuu"
+        />
+        <ContentContainer src={fylyImage} alt="Fyly" link="https://www.instagram.com/fyly_draws/" />
+        <ContentContainer
+          src={ignispectusartImage}
+          alt="IgnisPectusArt"
+          link="https://www.instagram.com/ignis_pectus"
+        />
+        <ContentContainer
+          src={kirianYumeImage}
+          alt="Kirian Yume"
+          link="https://www.instagram.com/kirianyume/"
+        />
+        <ContentContainer
+          src={krixxiImage}
+          alt="Krixxi"
+          link="https://www.instagram.com/k.r.i.x.x.i/"
+        />
+        <ContentContainer
+          src={manyMindArtImage}
+          alt="Many Mind Art"
+          link="https://www.instagram.com/manymindart/"
+        />
+        <ContentContainer
+          src={mausalImage}
+          alt="mausal"
+          link="https://www.instagram.com/flashmausal/"
+        />
+        <ContentContainer
+          src={myuchiisuImage}
+          alt="Myuchiisu"
+          link="https://www.instagram.com/myuchiisu"
+        />
+        <ContentContainer
+          src={nikitasFantasiesImage}
+          alt="Nikitas Fantasies"
+          link="https://www.instagram.com/nikitasfantasiesart/"
+        />
+        <ContentContainer
+          src={prettysmartfashionImage}
+          alt="Pretty smartfashion"
+          link="https://www.instagram.com/prettysmartfashion/"
+        />
+        <ContentContainer
+          src={roxinoImage}
+          alt="RoXino"
+          link="https://www.instagram.com/roxinoart/"
+        />
+        <ContentContainer
+          src={rumbleTheKlabautermannImage}
+          alt="Rumble the Klabautermann"
+          link="https://www.instagram.com/rumble.the.klabautermann/"
+        />
+        <ContentContainer
+          src={rumiyaImage}
+          alt="Rumiya"
+          link="https://www.instagram.com/rumiya.art/"
+        />
+        <ContentContainer
+          src={scarlettsirene2Image}
+          alt="Inari‘s little Yokais"
+          link="https://www.instagram.com/scarlettsirene2/"
+        />
+        <ContentContainer
+          src={tactokiImage}
+          alt="TacToki"
+          link="https://www.instagram.com/tactoki/"
+        />
+        <ContentContainer
+          src={whalienWorksFluffylunariiImage}
+          alt="Whalien Works"
+          link="https://www.instagram.com/fluffylunarii/"
+        />
+      </ContentWrapper>
 
       <Spacer id="vereine" />
       <h2>Vereine</h2>
-      <p>Inhalt zu Vereinen...</p>
+      <p>
+        Auf unserer Consvention haben sich viele Vereine bei euch vorgestellt und euch mit
+        Fotokulissen oder Spielen beigeistern können.
+      </p>
+      <ContentWrapper>
+        <ContentContainer src={cohekiImage} alt="CoHeKi e.V." link="https://coheki.de/" />
+        <ContentContainer
+          src={conquestLogoImage}
+          alt="ConQuest Augsburg"
+          link="https://discord.gg/7whnsZGSSU"
+        />
+        <ContentContainer
+          src={cosplayalpinLogoImage}
+          alt="Cosplay Alpin"
+          link="https://www.instagram.com/cosplayalpin"
+        />
+        <ContentContainer
+          src={cosquestLogoImage}
+          alt="CosQuest München"
+          link="https://www.instagram.com/cosplay_questmuc/"
+        />
+        <ContentContainer src={govereinImage} alt="Go-Verein e.V." link="http://www.bgov.de/" />
+        <ContentContainer
+          src={muenchnerFursImage}
+          alt="Münchner Furs e.V."
+          link="https://muenchner-furs.de/"
+        />
+        <ContentContainer src={nihonbashiImage} alt="Nihonbashi" link="https://nihonbashi.de/" />
+        <ContentContainer
+          src={vividAriseImage}
+          alt="Vivid Arise e.V."
+          link="https://vividarise.de/"
+        />
+      </ContentWrapper>
 
       <Spacer id="workshops" />
       <h2>Workshops</h2>
-      <p>Inhalt zu Workshops...</p>
+      <p>
+        Es gab eine Vielzahl an Workshops, die den Besuchern die Möglichkeit gaben, neue Fähigkeiten
+        zu erlernen und ihre kreativen Talente zu entfalten. Diese Workshops wurden von Experten aus
+        verschiedenen Bereichen geleitet und deckten eine breite Palette an Themen ab, sodass für
+        jeden etwas dabei war. Die Workshops waren so vielfältig wie die Interessen unserer
+        Besucher. Zu den angebotenen Workshops gehörten:
+      </p>
+      <ContentWrapper>
+        <ContentContainer
+          src={berniCosWorkshopImage}
+          alt="Basic Hautretouche in Photoshop"
+          link="https://www.instagram.com/berni.cos/"
+        />
+        <ContentContainer
+          src={droidbuildingImage}
+          alt="Droiden und Requisiten - Wo fange ich an?"
+          link="https://www.instagram.com/miningmark_photography/"
+        />
+        <ContentContainer
+          src={eraliaWorkshopImage}
+          alt="Cosplay acts! The do's and don't of cosplay performance"
+          link="https://www.instagram.com/eralia_iwahana"
+        />
+        <ContentContainer
+          src={fylyWorkshopImage}
+          alt="Basics für Mangazeichnen"
+          caption="Bild von Fyly"
+          link="https://www.instagram.com/tactoki/"
+        />
+        <ContentContainer
+          src={haekelnFuerAnfaengerImage}
+          alt="Häkeln für Anfänger"
+          link="https://www.instagram.com/otakuwonderland_de/"
+        />
+        <ContentContainer
+          src={hanaCosplayCosplayArmorAusEvaImage}
+          alt="Cosplay Armor aus EVA Foam"
+          link="https://www.instagram.com/hana_cosplay_/"
+        />
+        <ContentContainer
+          src={japanTravelImage}
+          alt="Japan Travel Basics"
+          link="https://www.instagram.com/scarlettsirene2/"
+        />
+        <ContentContainer
+          src={karriereImEsportImage}
+          alt="Karriere im E-Sport: Traum oder Wirklichkeit?"
+          link="https://linktr.ee/vividarise"
+        />
+        <ContentContainer
+          src={lolitaPanelImage}
+          alt="Lolita Panel"
+          link="https://www.instagram.com/lolitatreffen_muenchen/"
+        />
+        <ContentContainer
+          src={rollenspielleitung101Image}
+          alt="Rollenspiel-Leitung 101: Wie fange ich an? Ein Schritt ins Reich des Wahnsinns"
+          link="https://x.com/TheMarvler?t=sXI6sU0-vOCqJiaKbXWrrQ&s=33"
+        />
+        <ContentContainer
+          src={schnittabaenderungImage}
+          alt="Schnittabänderung für Anfänger"
+          link="https://www.instagram.com/ninoku_/"
+        />
+        <ContentContainer
+          src={stateraImage}
+          alt="Lichtschwertkampf - Die Waffe eines Jedis"
+          link="https://www.instagram.com/statera_allgaeu/"
+        />
+      </ContentWrapper>
 
       <Spacer id="essen" />
       <h2>Essen</h2>
-      <p>Inhalt zu Essen...</p>
+      <Columns2
+        left={
+          <>
+            <h3>Naruto Foodtruck</h3>
+            <FoodImageWrapperComponent
+              src1={narutoFoodtruckImage}
+              alt1="Naruto Foodtruck Logo"
+              src2={bildNarutoFoodtruckImage}
+              alt2="Bild Naruto Foodtruck"
+            />
+            <p>
+              An alle Hungrigen Fans konnten sich hier mit Nudelsuppe, gebratenen Nudeln und
+              weiteren japanischen Spezialitäten im Anime-Stil stärken!
+              <br />
+              <br /> Direkt vor der Stadthallebefand sich der Foodtruck, der euch die perfekte
+              Möglichkeit bot, euch auf der YumeKai zu stärken.
+              <br />
+              <br /> Aber nicht nur das: Neben den besten Ramen in ganz Memmingen konntet ihr auch
+              eine Vielzahl von Bubble Teas in allen erdenklichen Varianten und Geschmacksrichtungen
+              genießen!
+            </p>
+          </>
+        }
+        right={
+          <>
+            <h3>Maidcafe Aurora</h3>
+            <FoodImageWrapperComponent
+              src1={auroraGruppeImage}
+              alt1="Bild Aurora Gruppe"
+              src2={auroralogoImage}
+              alt2="Logo Aurora"
+            />
+            <p>
+              Wir sind ein Maid & Butler Café und ein Projekt des Animexx e.V. Unser Ziel ist es,
+              euch die Welt der japanischen Maids & Butler auf unsere eigene Art und Weise
+              näherzubringen.
+              <br />
+              <br /> Bei lustigen Spielen, leckeren Speisen und Getränken könnt ihr für einen kurzen
+              Moment dem Alltag entfliehen.
+              <br />
+              <br /> Wir vereinen deutsche & japanische Cafékultur und präsentieren euch dieses
+              einzigartige Gefühlserlebnis! Unsere Maids und Butler haben sich über euren Besuch
+              gefreut.
+            </p>
+          </>
+        }
+      />
 
       <Spacer id="spiele-gaming" />
       <h2>Spiele & Gaming</h2>
-      <p>Inhalt zu Spiele & Gaming...</p>
+      <p>
+        Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der
+        Heldenschmiede und dem Squiggz ein hervorangendes Angebot. Hier konnten nicht nur
+        verschiedenste Spiele gekauft werden, sonder auch Demospiele getestet werden! Für alle Fans
+        von TCG hatten wir Tuniere mit tollen Preisen vorbereitet!
+        <br />
+        <br />
+        Wer mit Brettspielen, Kartenspielen oder Tabletop nichts anfangen konnte war bei unserem
+        Gamingraum, der von dem Skyforgern geleitet wurde gut aufgehoben. Hier gab es nicht nur
+        verschiedenste Konsolen und Spiele zum testen sondern auch interessante Turniere wie ein
+        virtuelles Golf Tunier!
+      </p>
 
       <Spacer id="cosplay-wettbewerbe" />
       <h2>Cosplay Wettbewerbe</h2>
-      <p>Inhalt zu Cosplay Wettbewerben...</p>
+      <h3>Catwalk:</h3>
+      <p>
+        Bein unserem Catwalk Wettbewerb hatten die Teilnehmer nur ca. 20 Sekunden Zeit um einmal
+        über die Bühne zu laufen und vor dem Tisch der Jurry zu posen. Hier ein paar Schnappschüsse
+        all unserer Teilnehmer. Die Bilder sind von unserem lieben Freund{" "}
+        <StyledLink href={"https://www.mf-photographing.com/"} target="_blank">
+          matze_photographing
+        </StyledLink>
+        .
+      </p>
 
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
-      <p>Inhalt zur Danksagung...</p>
+      <p>
+        Ein riesiges Dankeschön an alle, die die YumeKai 2024 zu einem unvergesslichen Erlebnis
+        gemacht haben! Unser besonderer Dank gilt den Helfern, deren unermüdlicher Einsatz und
+        Leidenschaft die Basis unseres Erfolgs waren. Ein großes Dankeschön geht auch an die
+        Händler, deren vielfältige und einzigartige Produkte die YumeKai bereichert haben.
+        <br />
+        <br />
+        Ein herzliches Dankeschön an alle Besucher – eure Begeisterung und Kreativität haben die
+        Atmosphäre der Convention geprägt. Wir danken auch den Showacts und Ehrengästen, deren
+        Auftritte und Panels die YumeKai 2024 unvergesslich gemacht haben. Ein besonderer Dank gilt
+        den Cosplayern und Walking Acts, deren fantastische Kostüme und Präsenz die Convention
+        lebendig und bunt gestaltet haben.
+        <br />
+        <br />
+        Ein großes Dankeschön an die verschiedenen Vereine und Künstler, deren Präsentationen und
+        Kunstwerke die Vielfalt und Kreativität der YumeKai hervorgehoben haben. Schließlich möchten
+        wir den Workshop-Leitern danken, deren Expertise und Fähigkeit, Wissen zu vermitteln, die
+        Besucher bereichert haben.
+        <br />
+        <br />
+        Dank euch allen war die YumeKai 2024 ein voller Erfolg. Wir freuen uns schon auf das nächste
+        Jahr!
+      </p>
     </>
   );
 }
