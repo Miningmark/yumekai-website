@@ -5,6 +5,7 @@ import Link from "next/link";
 //Components
 import { Spacer, StyledLink } from "@/components/styledComponents";
 import Columns2 from "@/components/elements/Columns2";
+import ImageCarousel from "@/components/elements/ImageCarousel";
 
 //Images
 //Ehrengäste
@@ -103,6 +104,71 @@ import auroralogoImage from "/public/assets/images/yumekai2024/Aurora_Gruppe.jpg
 import auroraGruppeImage from "/public/assets/images/yumekai2024/Aurora-Logo.png";
 import bildNarutoFoodtruckImage from "/public/assets/images/yumekai2024/Bild_Naruto_Foodtruck.jpg";
 
+//Cosplay Wettbewerbe
+import catwalk01Image from "/public/assets/images/yumekai2024/catwalk_01.jpg";
+import catwalk02Image from "/public/assets/images/yumekai2024/catwalk_02.jpg";
+import catwalk03Image from "/public/assets/images/yumekai2024/catwalk_03.jpg";
+import catwalk04Image from "/public/assets/images/yumekai2024/catwalk_04.jpg";
+import catwalk05Image from "/public/assets/images/yumekai2024/catwalk_05.jpg";
+import catwalk06Image from "/public/assets/images/yumekai2024/catwalk_06.jpg";
+import catwalk07Image from "/public/assets/images/yumekai2024/catwalk_07.jpg";
+import catwalk08Image from "/public/assets/images/yumekai2024/catwalk_08.jpg";
+import catwalk09Image from "/public/assets/images/yumekai2024/catwalk_09.jpg";
+import catwalk10Image from "/public/assets/images/yumekai2024/catwalk_10.jpg";
+import catwalk11Image from "/public/assets/images/yumekai2024/catwalk_11.jpg";
+import catwalk12Image from "/public/assets/images/yumekai2024/catwalk_12.jpg";
+import catwalk13Image from "/public/assets/images/yumekai2024/catwalk_13.jpg";
+import catwalk14Image from "/public/assets/images/yumekai2024/catwalk_14.jpg";
+import catwalk15Image from "/public/assets/images/yumekai2024/catwalk_15.jpg";
+import catwalk16Image from "/public/assets/images/yumekai2024/catwalk_16.jpg";
+import catwalk17Image from "/public/assets/images/yumekai2024/catwalk_17.jpg";
+import catwalk18Image from "/public/assets/images/yumekai2024/catwalk_18.jpg";
+import catwalk19Image from "/public/assets/images/yumekai2024/catwalk_19.jpg";
+import catwalk20Image from "/public/assets/images/yumekai2024/catwalk_20.jpg";
+import catwalk21Image from "/public/assets/images/yumekai2024/catwalk_21.jpg";
+import catwalk22Image from "/public/assets/images/yumekai2024/catwalk_22.jpg";
+import catwalk23Image from "/public/assets/images/yumekai2024/catwalk_23.jpg";
+import catwalk24Image from "/public/assets/images/yumekai2024/catwalk_24.jpg";
+import catwalk25Image from "/public/assets/images/yumekai2024/catwalk_25.jpg";
+import catwalkGewinnerImage from "/public/assets/images/yumekai2024/Catwalk_gewinner.jpg";
+import juryArsinoeImage from "/public/assets/images/yumekai2024/Jury_Arsinoe.png";
+import juryEraliaImage from "/public/assets/images/yumekai2024/Jury_Eralia.jpg";
+import juryEvelynImage from "/public/assets/images/yumekai2024/Jury_Evelyn.jpg";
+import juryPalelittedragonImage from "/public/assets/images/yumekai2024/Jury_PaleLitteDragon.jpg";
+import performanceDritterPlatzImage from "/public/assets/images/yumekai2024/Performance_dritter_platz.jpg";
+import performanceErsterPlatzImage from "/public/assets/images/yumekai2024/Performance_erster_platz.jpg";
+import performanceJuryFavoritImage from "/public/assets/images/yumekai2024/Performance_Jury_Favorit.jpg";
+import performanceTeilnehmerImage from "/public/assets/images/yumekai2024/Performance_Teilnehmer.jpg";
+import performanceZweiterPlatzImage from "/public/assets/images/yumekai2024/Performance_zweiter_platz.jpg";
+
+const catwalkImages = [
+  { image: catwalk01Image, alt: "Bild Catwalk 01", link: "" },
+  { image: catwalk02Image, alt: "Bild Catwalk 02", link: "" },
+  { image: catwalk03Image, alt: "Bild Catwalk 03", link: "" },
+  { image: catwalk04Image, alt: "Bild Catwalk 04", link: "" },
+  { image: catwalk05Image, alt: "Bild Catwalk 05", link: "" },
+  { image: catwalk06Image, alt: "Bild Catwalk 06", link: "" },
+  { image: catwalk07Image, alt: "Bild Catwalk 07", link: "" },
+  { image: catwalk08Image, alt: "Bild Catwalk 08", link: "" },
+  { image: catwalk09Image, alt: "Bild Catwalk 09", link: "" },
+  { image: catwalk10Image, alt: "Bild Catwalk 10", link: "" },
+  { image: catwalk11Image, alt: "Bild Catwalk 11", link: "" },
+  { image: catwalk12Image, alt: "Bild Catwalk 12", link: "" },
+  { image: catwalk13Image, alt: "Bild Catwalk 13", link: "" },
+  { image: catwalk14Image, alt: "Bild Catwalk 14", link: "" },
+  { image: catwalk15Image, alt: "Bild Catwalk 15", link: "" },
+  { image: catwalk16Image, alt: "Bild Catwalk 16", link: "" },
+  { image: catwalk17Image, alt: "Bild Catwalk 17", link: "" },
+  { image: catwalk18Image, alt: "Bild Catwalk 18", link: "" },
+  { image: catwalk19Image, alt: "Bild Catwalk 19", link: "" },
+  { image: catwalk20Image, alt: "Bild Catwalk 20", link: "" },
+  { image: catwalk21Image, alt: "Bild Catwalk 21", link: "" },
+  { image: catwalk22Image, alt: "Bild Catwalk 22", link: "" },
+  { image: catwalk23Image, alt: "Bild Catwalk 23", link: "" },
+  { image: catwalk24Image, alt: "Bild Catwalk 24", link: "" },
+  { image: catwalk25Image, alt: "Bild Catwalk 25", link: "" },
+];
+
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -149,10 +215,14 @@ const FigureContainer = styled.figure`
   align-items: center;
   margin: 0;
   padding: 0;
-  width: calc((100% - 40px) / 3);
+  width: calc((100% - 60px) / 4);
+
+  @media (max-width: 1000px) {
+    width: calc((100% - 40px) / 3);
+  }
 
   @media (max-width: 800px) {
-    width: calc((100% - 40px) / 2);
+    width: calc((100% - 20px) / 2);
   }
 
   img {
@@ -171,7 +241,7 @@ const FigureContainer = styled.figure`
   }
 
   p {
-    font-size: 1.75rem;
+    font-size: 1.3rem;
     font-weight: bold;
     margin: 20px 0;
 
@@ -181,7 +251,7 @@ const FigureContainer = styled.figure`
   }
 
   a {
-    font-size: 1.75rem;
+    font-size: 1.3rem;
     font-weight: bold;
     margin: 20px 0;
     text-decoration: none;
@@ -817,6 +887,102 @@ export default function YumeKai2024() {
           matze_photographing
         </StyledLink>
         .
+      </p>
+      <ImageCarousel visibleCount={5.5} duration={2.5} images={catwalkImages} />
+      <p>
+        Unsere Jury durfte natürlich auch auf die Bühne einlaufen und posen, bevor sie sich an die
+        Bewertungsbögen gesetzt haben.
+      </p>
+      <ContentWrapper>
+        <ContentContainer
+          src={juryEvelynImage}
+          alt="Evelyn Cosplay"
+          link="https://www.instagram.com/evelyn_cosplay/"
+        />
+        <ContentContainer
+          src={juryEraliaImage}
+          alt="Eralia"
+          link="https://www.instagram.com/eralia_iwahana/"
+        />
+        <ContentContainer
+          src={juryPalelittedragonImage}
+          alt="PaleLittleDragon"
+          link="https://www.instagram.com/palelittledragon/"
+        />
+        <ContentContainer
+          src={juryArsinoeImage}
+          alt="Arsi_Arsinoe"
+          link="https://www.instagram.com/arsi_arsinoe/"
+        />
+      </ContentWrapper>
+      <br />
+      <Columns2
+        reverse={true}
+        left={
+          <>
+            <Image
+              src={catwalkGewinnerImage}
+              alt="Gruppenbild der Cosplay Catwalk Gewinner"
+              style={{ width: "100%", height: "auto", borderRadius: "8px" }}
+            />
+          </>
+        }
+        right={
+          <>
+            <h4>
+              Unsere wunderbaren Gewinner bei der <br />
+              Preisverleihung am Sonntag:
+            </h4>
+            <p>
+              <StyledLink href="https://www.instagram.com/tiefseemonster.krake/" target="_blank">
+                Tiefseemonster.Krake
+              </StyledLink>{" "}
+              als Alastor von Hazbin Hotel
+              <br />
+              <br />
+              Eden als Yugi Muto von Yu-Gi-Oh!
+              <br />
+              <br />
+              <StyledLink href="https://www.instagram.com/makorichan_cosplay/" target="_blank">
+                Makorichan
+              </StyledLink>{" "}
+              als Columbina von Genshin Impact
+              <br />
+              <br />
+              <StyledLink href="https://www.instagram.com/scarlettsirene2/" target="_blank">
+                Scarlett Sirene
+              </StyledLink>{" "}
+              als Shadowheart von Baldur’s Gate 3
+            </p>
+          </>
+        }
+      />
+      <br />
+      <h3>Performance:</h3>
+      <p>
+        Neben unserem Cosplay Catwalk gab es auch noch einen Cosplay Performance Wettbewerb. Hier
+        hatte jeder unserer talentierten Teilnehmer bis zu 4 Minuten Zeit um einen unvergesslichen
+        Auftritt hinzulegen. Da ist es für unsere Jury, die aus{" "}
+        <StyledLink href="https://www.instagram.com/evelyn_cosplay/" target="_blank">
+          Evelyn Cosplay
+        </StyledLink>{" "}
+        ,{" "}
+        <StyledLink href="https://www.instagram.com/imoneecosplay/" target="_blank">
+          Imoneecosplay
+        </StyledLink>{" "}
+        ,
+        <StyledLink href="https://www.instagram.com/n4ru_cosplay/" target="_blank">
+          Naru Cosplay
+        </StyledLink>{" "}
+        ,{" "}
+        <StyledLink href="https://www.instagram.com/mero_cos/" target="_blank">
+          Mero
+        </StyledLink>{" "}
+        &{" "}
+        <StyledLink href="https://www.instagram.com/yunyte/" target="_blank">
+          Yunyte
+        </StyledLink>{" "}
+        bestand gar nicht so leicht gefallen die Gewinner zu küren.
       </p>
 
       <Spacer id="danksagung" />
