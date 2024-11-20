@@ -45,6 +45,7 @@ import yumekaiNightImage14 from "/public/assets/images/yumekai-night-1-2024/Yume
 
 //logos
 import hiruHandy from "/public/assets/logo/Hiru-Handy.webp";
+import hiruWorkshop from "/public/assets/logo/Hiru-Workshop.webp";
 import yumekoImage from "/public/assets/logo/Yumeko.png";
 
 const yumeKaiNightImages = [
@@ -85,6 +86,17 @@ const StyledYumekoImage = styled(Image)`
   animation: ${floatAnimation} 5s ease-in-out infinite;
 `;
 
+const DynamicContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: ${({ $widthpercent }) => `calc(${$widthpercent}% - 10px)`};
+  ${({ $maxwidth }) => $maxwidth && `max-width: ${$maxwidth}px;`}
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+`;
+
 export default function Home() {
   return (
     <>
@@ -94,8 +106,60 @@ export default function Home() {
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
-
       <SpacerEmpty />
+
+      {/*
+
+      YumeKai Ankündigung
+
+      */}
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <DynamicContent $widthpercent={65}>
+          <h2>🚀 Großartige Neuigkeiten! 🚀</h2>
+          <p>
+            Die Planungen für die <strong>YumeKai 2025</strong> sind in vollem Gange, und wir
+            arbeiten hart daran, das Event noch spektakulärer zu machen! Freut euch auf mehr
+            Showacts, mehr Aussteller, mehr spannende Workshops und natürlich hochkarätige Gäste!
+            <br />
+            <br />
+            Der Ticket-Vorverkauf startet schon bald – seid schnell und sichert euch rechtzeitig
+            eure Tickets für die zweite YumeKai in Memmingen! Dieses Mal sind wir nicht nur in der
+            Stadthalle, sondern auch im Maximilian-Kolbe-Haus vertreten.
+            <br />
+            <br /> Wir können es kaum erwarten, euch auf der YumeKai 2025 wiederzusehen!
+          </p>
+        </DynamicContent>
+        <DynamicContent
+          $widthpercent={35}
+          $maxwidth={300}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Image
+            src={hiruWorkshop}
+            alt="Bild von Hiru"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </DynamicContent>
+      </div>
+
+      {/*
+      
+      Conventions: Überblick und Tipps für Eltern
+
+      */}
+
       <ConvexBackground color={1}>
         <h2>{`Conventions: Überblick und Tipps für Eltern`}</h2>
         <p>
@@ -119,7 +183,15 @@ export default function Home() {
           </StyledLink>
         </p>
       </ConvexBackground>
+
       <SpacerEmpty />
+
+      {/*
+      
+      Gewinner unseres Cosplay Performance Wettbewerbs
+
+      */}
+
       <div>
         <h2>Gewinner unseres Cosplay Performance Wettbewerbs</h2>
         <p>
@@ -227,7 +299,15 @@ export default function Home() {
           }
         />
       </div>
+
       <Spacer />
+
+      {/*
+      
+      YumeKai Zeichenwettbewerb
+
+      */}
+
       <Columns2
         left={
           <>
@@ -338,7 +418,15 @@ export default function Home() {
           </>
         }
       />
+
       <Spacer />
+
+      {/*
+      
+      Hier könnt ihr uns treffen
+
+      */}
+
       <Columns2
         left={
           <>
@@ -348,11 +436,8 @@ export default function Home() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>09-11.08.2024 DGT in Aach am Bodensee</li>
-                    <li>10.08.2024 Natsucon in Coburg</li>
-                    <li>17-18.08.2024 Nihonbashi in Kassel</li>
-                    <li>13-15.09.2024 Gamesvention in Kempten</li>
-                    <li>05.10.2024 Manganacht in Memmingen</li>
+                    <li>30.11-01.12 ComicCon in Stuttgart</li>
+                    <li>07.12-08.12 MostiCon in Wieselsburg</li>
                   </ul>
                 </>
               }
@@ -360,11 +445,8 @@ export default function Home() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>YaYuCo in Dachau</li>
-                    <li>Comic Con Stuttgart</li>
                     <li>Comic Con Dornbirn</li>
                     <li>AniMuc Fürstenfeldbruck</li>
-                    <li>Royalcon in Enns</li>
                     <li>Minicon in Lustenau</li>
                     <li>Cosquest München</li>
                     <li>KDKasei in Regensburg</li>
@@ -373,6 +455,11 @@ export default function Home() {
                     <li>Loricon in Seefeld in Tirol</li>
                     <li>Wie.Mai.Kai in Flörsheim</li>
                     <li>Cosday² in Frankfurt</li>
+                    <li>DGT in Aach am Bodensee</li>
+                    <li>Natsucon in Coburg</li>
+                    <li>Nihonbashi in Kassel</li>
+                    <li>Gamesvention in Kempten</li>
+                    <li>Manganacht in Memmingen</li>
                   </ul>
                 </>
               }
@@ -393,14 +480,21 @@ export default function Home() {
                 />
               </div>
               <p>Kennt ihr bereits Hiru?</p>
-              <UnstyledLink href={"/"}>
+              <UnstyledLink href={"/maskottchen"}>
                 <StyledButton>Infos zu Hiru</StyledButton>
               </UnstyledLink>
             </div>
           </>
         }
       />
+
       <Spacer />
+
+      {/*
+      
+      YumeKai - Night in Bildern
+
+      */}
 
       <div>
         <h2>YumeKai - Night in Bildern</h2>
@@ -423,13 +517,20 @@ export default function Home() {
         </p>
         <ImageCarousel visibleCount={3.2} duration={2.5} images={yumeKaiNightImages} />
       </div>
+
       <Spacer />
+
+      {/*
+      
+      Archiv
+
+      */}
+
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
           <StyledButton>Archiv</StyledButton>
         </UnstyledLink>
       </div>
-
       <SponsorsComponent />
     </>
   );
