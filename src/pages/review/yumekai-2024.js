@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 //Components
-import { Spacer, StyledLink } from "@/components/styledComponents";
+import { Spacer, SpacerEmpty, StyledLink } from "@/components/styledComponents";
 import Columns2 from "@/components/elements/Columns2";
 import ImageCarousel from "@/components/elements/ImageCarousel";
 
@@ -208,6 +208,45 @@ export function FoodImageWrapperComponent({ src1, alt1 = "Bild", src2, alt2 = "B
     </FoodImageWrapper>
   );
 }
+
+const ContentContainer2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: calc((100% - 60px) / 4);
+
+  @media (max-width: 1000px) {
+    width: calc((100% - 40px) / 3);
+  }
+
+  @media (max-width: 800px) {
+    width: calc((100% - 20px) / 2);
+  }
+
+  img {
+    border-radius: 8px;
+  }
+
+  p {
+    font-size: 1.3rem;
+    margin: 20px 0;
+
+    @media (max-width: 800px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  a {
+    font-size: 1.3rem;
+    margin: 20px 0;
+
+    @media (max-width: 800px) {
+      font-size: 1.1rem;
+    }
+  }
+`;
 
 const FigureContainer = styled.figure`
   display: flex;
@@ -984,6 +1023,72 @@ export default function YumeKai2024() {
         </StyledLink>{" "}
         bestand gar nicht so leicht gefallen die Gewinner zu küren.
       </p>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Image
+          src={performanceTeilnehmerImage}
+          alt="Gruppenbild der Cosplay Performance Teilnehmer"
+          style={{ width: "100%", height: "auto", borderRadius: "8px" }}
+        />
+      </div>
+      <SpacerEmpty />
+      <ContentWrapper>
+        <ContentContainer2>
+          <p>Platz 1</p>
+          <Image
+            src={performanceErsterPlatzImage}
+            alt="Cosplay Performance 1.Platz"
+            style={{ width: "100%", height: "auto" }}
+          />
+          <p>
+            <StyledLink href="https://www.instagram.com/onyx_costumes/" target="_blank">
+              Onyx
+            </StyledLink>{" "}
+            als Toybox Hatsune Miku von Vocaloid
+          </p>
+        </ContentContainer2>
+        <ContentContainer2>
+          <p>Platz 2</p>
+          <Image
+            src={performanceZweiterPlatzImage}
+            alt="Cosplay Performance 2.Platz"
+            style={{ width: "100%", height: "auto" }}
+          />
+          <p>
+            <StyledLink href="https://www.instagram.com/fyly_cosplays/" target="_blank">
+              Fyly
+            </StyledLink>{" "}
+            als Shea Haulia von Arifureta S2
+          </p>
+        </ContentContainer2>
+        <ContentContainer2>
+          <p>Platz 3</p>
+          <Image
+            src={performanceDritterPlatzImage}
+            alt="Cosplay Performance 2.Platz"
+            style={{ width: "100%", height: "auto" }}
+          />
+          <p>
+            <StyledLink href="https://www.instagram.com/scarlettsirene2/" target="_blank">
+              Scarlett Sirene
+            </StyledLink>{" "}
+            als Soraka Koi von League of Legends
+          </p>
+        </ContentContainer2>
+        <ContentContainer2>
+          <p>Jury Favorit</p>
+          <Image
+            src={performanceJuryFavoritImage}
+            alt="Cosplay Performance 2.Platz"
+            style={{ width: "100%", height: "auto" }}
+          />
+          <p>
+            <StyledLink href="https://www.instagram.com/tinyfufu/" target="_blank">
+              Tinyfufu
+            </StyledLink>{" "}
+            als Amity Blight von The Owl House
+          </p>
+        </ContentContainer2>
+      </ContentWrapper>
 
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
