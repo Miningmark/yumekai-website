@@ -28,23 +28,35 @@ const Icon = styled.div`
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  transition: transform 0.5s ease; /* Rotationseffekt */
 
   svg {
     fill: ${({ theme }) => theme.text};
     width: 100%;
     height: 100%;
+    transform: ${({ $isopen }) => ($isopen ? "rotate(90deg)" : "rotate(0deg)")};
+    transition: transform 0.5s ease; /* Rotation von SVG */
   }
 `;
 
 const Title = styled.div`
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.3rem;
   color: ${({ $isopen, theme }) => ($isopen == 1 ? theme.primaryColor : theme.secondaryColor)};
 `;
 
 const Content = styled.div`
-  margin-top: 10px;
   margin-left: 40px;
+  max-height: ${({ $view }) => ($view ? "500px" : "0")};
+  overflow: hidden;
+  padding: ${({ $view }) => ($view ? "10px 0" : "0")};
+  transition: max-height 0.5s, padding 0.5s;
+  opacity: ${({ $view }) => ($view ? "1" : "0")};
+  transition: max-height 0.5s, padding 0.5s, opacity 0.5s;
+
+  p {
+    margin: 0;
+  }
 `;
 
 export default function TabTitle({ title, content }) {
@@ -57,10 +69,12 @@ export default function TabTitle({ title, content }) {
   return (
     <Container>
       <TitleContainer onClick={toggleContent}>
-        <Icon>{isOpen ? <IconArrowDown /> : <IconArrowRight />}</Icon>
+        <Icon $isopen={isOpen}>
+          <IconArrowRight />
+        </Icon>
         <Title $isopen={isOpen ? 1 : 0}>{title}</Title>
       </TitleContainer>
-      {isOpen && <Content>{content}</Content>}
+      <Content $view={isOpen ? 1 : 0}>{content}</Content>
     </Container>
   );
 }

@@ -84,7 +84,9 @@ export default function Maskottchen() {
             <br />
             <small>
               Yumeko wurde von{" "}
-              <StyledLink href={"https://www.instagram.com/anaratwice/"}>anaratwice</StyledLink>{" "}
+              <StyledLink href="https://www.instagram.com/anaratwice/" target="_blank">
+                anaratwice
+              </StyledLink>{" "}
               gezeichnet.
             </small>
           </>
@@ -150,7 +152,9 @@ export default function Maskottchen() {
             <br />
             <small>
               Yumeko wurde von{" "}
-              <StyledLink href={"https://www.instagram.com/wynrayzero/"}> wynrayzero</StyledLink>{" "}
+              <StyledLink href="https://www.instagram.com/wynrayzero/" target="_blank">
+                wynrayzero
+              </StyledLink>{" "}
               gezeichnet.
             </small>
           </>
