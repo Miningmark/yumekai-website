@@ -24,7 +24,7 @@ export const InputField = styled.input`
   box-sizing: border-box;
   display: block;
   width: 100%;
-  border: 2px solid ${({ theme }) => theme.text};
+  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
   padding: 12px 8px;
   background: transparent;
   border-radius: 4px;
@@ -46,12 +46,13 @@ export const InputArea = styled.textarea`
   box-sizing: border-box;
   display: block;
   width: 100%;
-  border: 2px solid ${({ theme }) => theme.text};
+  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
   padding: 12px 8px;
   background: transparent;
   border-radius: 4px;
   position: relative;
   color: ${({ theme }) => theme.text};
+  resize: vertical;
 
   &:focus + ${InputLabel}, &:not(:placeholder-shown) + ${InputLabel} {
     transform: translate(0.25rem, -100%) scale(0.8);
@@ -73,95 +74,7 @@ export const InputCheckboxWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
-`;
-
-// Stil für das Label des Dropdown-Menüs
-export const DropdownLabel = styled.label`
-  transition: transform 120ms ease-in;
-  font-weight: bold;
-  line-height: 1.1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 0 4px;
-  margin: 14px 4px;
-  white-space: nowrap;
-  transform: translate(0, 0);
-  transform-origin: 0 0;
-  background: ${({ theme }) => theme.backgroundColor2};
-`;
-/*
-// Stil für das Dropdown-Menü
-export const DropdownField = styled.select`
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  border: 2px solid var(--dark);
-  padding: 12px 8px;
-  background: transparent;
-  border-radius: 4px;
-  position: relative;
-  color: var(--dark);
-
-  &:focus + ${DropdownLabel}, &:not([value=""]) + ${DropdownLabel} {
-    transform: translate(0.25rem, -100%) scale(0.8);
-    color: var(--secondary-color);
-  }
-
-  &:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-  }
-`;
-*/
-export const DropdownContainer = styled.div`
-  position: relative;
-`;
-
-export const DropdownButton = styled.div`
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  border: 2px solid
-    ${({ $dropdownopen, theme }) => ($dropdownopen == 1 ? theme.secondaryColor : theme.text)};
-  padding: 12px 8px;
-  background: transparent;
-  border-radius: 4px;
-  position: relative;
-  color: ${({ theme }) => theme.text};
-  cursor: pointer;
-
-  &:focus + ${DropdownLabel}, &:not([value=""]) + ${DropdownLabel} {
-    transform: translate(0.25rem, -100%) scale(0.8);
-    color: ${({ theme }) => theme.secondaryColor};
-  }
-
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.secondaryColor};
-  }
-`;
-
-export const DropdownMenu = styled.ul`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: ${({ theme }) => theme.backgroundColor2};
-  border-radius: 10px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  z-index: 1000;
-`;
-
-export const DropdownItem = styled.li`
-  padding: 12px 8px;
-  cursor: pointer;
-  color: ${({ theme }) => theme.text};
-  &:hover {
-    background-color: ${({ theme }) => theme.backgroundColor2};
-  }
+  ${({ $iserror }) => $iserror && `border: solid 2px red;`}
 `;
 
 export const InputRadioWrapper = styled.div`
@@ -207,4 +120,46 @@ export const RadioButton = styled.input`
 export const RadioLabel = styled.label`
   font-size: 1rem;
   color: ${({ theme }) => theme.text};
+`;
+
+export const StyledSelect = styled.select`
+  width: 100%;
+  padding: 12px 4px;
+  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.backgroundColor2};
+  color: ${({ theme }) => theme.text};
+  font-size: 16px;
+  font-weight: bold;
+  appearance: auto;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.secondaryColor};
+  }
+
+  option {
+    background-color: ${({ theme }) => theme.backgroundColor3};
+    color: ${({ theme }) => theme.text};
+  }
+`;
+
+export const DropdownLabel = styled.label`
+  transform: translate(0.25rem, -100%) scale(0.8);
+  color: ${({ theme }) => theme.secondaryColor};
+  font-weight: bold;
+  line-height: 1.1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 4px;
+  margin: 14px 4px;
+  white-space: nowrap;
+  background: ${({ theme }) => theme.backgroundColor2};
+`;
+
+export const RequiredNote = styled.span`
+  color: red;
+  font-weight: bold;
 `;

@@ -1,24 +1,90 @@
-import { useState } from "react";
+import styled from "styled-components";
+
+import { useState, useRef } from "react";
 import {
   InputOptionTextArea,
   InputOptionInput,
   InputOptionSelect,
   InputOptionCheckbox,
-  InputOptionRadio,
 } from "@/components/elements/InputComponents";
 import { StyledButton, StyledForm } from "@/components/styledComponents";
+import { RequiredNote } from "@/components/styledInputComponents";
 
 export default function Kontaktformular() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [area, setArea] = useState(null);
+  const [area, setArea] = useState("");
   const [subject, setSubject] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
 
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState("");
+
+  // Refs for form fields
+  const refs = {
+    name: useRef(null),
+    lastName: useRef(null),
+    email: useRef(null),
+    area: useRef(null),
+    subject: useRef(null),
+    message: useRef(null),
+    privacyPolicy: useRef(null),
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
+
+    const newErrors = [];
+    setErrors([]);
+
+    if (!name.trim()) newErrors.push({ field: "name", message: "Vorname ist ein Pflichtfeld" });
+    if (name.length < 3) newErrors.push({ field: "name", message: "Vorname  ist zu kurz" });
+    if (name.length > 50) newErrors.push({ field: "name", message: "Vorname ist zu lang" });
+    if (lastName.length < 3)
+      newErrors.push({ field: "lastName", message: "Nachname  ist zu kurz" });
+    if (lastName.length > 50)
+      newErrors.push({ field: "lastName", message: "Nachname ist zu lang" });
+    if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
+    if (!email.includes("@"))
+      newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
+    if (email.length > 100)
+      newErrors.push({
+        field: "email",
+        message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
+      });
+    if (!area) newErrors.push({ field: "area", message: "Bereich ist ein Pflichtfeld" });
+    if (!subject.trim())
+      newErrors.push({ field: "subject", message: "Betreff ist ein Pflichtfeld" });
+    if (subject.length < 5) newErrors.push({ field: "subject", message: "Betreff ist zu kurz" });
+    if (subject.length > 100) newErrors.push({ field: "subject", message: "Betreff ist zu lang" });
+    if (!message.trim())
+      newErrors.push({ field: "message", message: "Nachricht ist ein Pflichtfeld" });
+    if (message.length < 10)
+      newErrors.push({
+        field: "message",
+        message: "Nachricht muss mindestens 10 Zeichen lang sein",
+      });
+    if (message.length > 500)
+      newErrors.push({
+        field: "message",
+        message: "Nachricht darf maximal 500 Zeichen lang sein",
+      });
+    if (!privacyPolicy)
+      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung nicht akzeptiert" });
+
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+
+      // Scroll to the first error
+      const firstError = newErrors[0];
+      if (refs[firstError.field]?.current) {
+        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstError.field].current.focus();
+      }
+      return;
+    }
 
     try {
       const response = await fetch("/api/contactRequest", {
@@ -28,7 +94,7 @@ export default function Kontaktformular() {
         },
         body: JSON.stringify({
           name,
-          lastName,
+          lastName: lastName || null,
           email,
           area,
           subject,
@@ -41,11 +107,24 @@ export default function Kontaktformular() {
 
       if (response.ok) {
         console.log("Daten erfolgreich eingefügt:"); //TODO: Löschen result.insertID
+        setSuccess("Kontaktanfrage erfolgreich abgeschickt");
       } else {
         console.error("Fehler beim Einfügen der Daten:", result.error); //TODO: allternative bestätigunsseite wegen bereits eingegebener E-Mail
+        setErrors([
+          {
+            field: "general",
+            message: "Fehler beim Absenden der Anfrage, Bitte versuche es später nochmal.",
+          },
+        ]);
       }
     } catch (error) {
       console.error("Fehler beim Einfügen der Daten:", error);
+      setErrors([
+        {
+          field: "general",
+          message: "Fehler beim Absenden der Anfrage, Bitte versuche es später nochmal.",
+        },
+      ]);
     }
 
     // Reset form error
@@ -59,22 +138,33 @@ export default function Kontaktformular() {
         oder Händleranfrage hast oder Helfer werden magst oder einfach nur etwas anderes wissen
         möchtest, hier bist Du richtig!
       </p>
-      <p>Felder mit * sind Pflichtfelder.</p>
+      <p>
+        Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
+      </p>
       <StyledForm onSubmit={handleSubmit}>
         <InputOptionInput
           title="Vorname"
           inputText={name}
           inputChange={(value) => setName(value)}
+          require
+          inputRef={refs.name}
+          isError={errors.some((error) => error.field === "name")}
         />
         <InputOptionInput
           title="Nachname"
           inputText={lastName}
           inputChange={(value) => setLastName(value)}
+          inputRef={refs.lastName}
+          isError={errors.some((error) => error.field === "lastName")}
         />
         <InputOptionInput
           title="E-Mail"
+          type="email"
           inputText={email}
           inputChange={(value) => setEmail(value)}
+          require
+          inputRef={refs.email}
+          isError={errors.some((error) => error.field === "email")}
         />
         <InputOptionSelect
           title="Bereich"
@@ -90,16 +180,26 @@ export default function Kontaktformular() {
           ]}
           inputText={area}
           inputChange={(value) => setArea(value)}
+          require
+          inputRef={refs.area}
+          isError={errors.some((error) => error.field === "area")}
         />
+
         <InputOptionInput
           title="Betreff"
           inputText={subject}
           inputChange={(value) => setSubject(value)}
+          require
+          inputRef={refs.subject}
+          isError={errors.some((error) => error.field === "subject")}
         />
         <InputOptionTextArea
           title="Nachricht"
           inputText={message}
           inputChange={(value) => setMessage(value)}
+          require
+          inputRef={refs.message}
+          isError={errors.some((error) => error.field === "message")}
         />
         <InputOptionCheckbox
           title={
@@ -107,7 +207,20 @@ export default function Kontaktformular() {
           }
           isChecked={privacyPolicy}
           inputChange={(value) => setPrivacyPolicy(value)}
+          require
+          inputRef={refs.privacyPolicy}
+          isError={errors.some((error) => error.field === "privacyPolicy")}
         />
+        {errors && (
+          <ul>
+            {errors.map((error, index) => (
+              <li key={index} style={{ color: "red" }}>
+                {error.message}
+              </li>
+            ))}
+          </ul>
+        )}
+        {success && <p style={{ color: "green" }}>{success}</p>}
         <StyledButton type="submit">Anmelden</StyledButton>
       </StyledForm>
     </>

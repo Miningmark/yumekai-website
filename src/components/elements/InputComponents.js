@@ -6,16 +6,22 @@ import {
   InputWrapper,
   InputCheckboxWrapper,
   DropdownLabel,
-  DropdownContainer,
-  DropdownButton,
-  DropdownMenu,
-  DropdownItem,
   InputRadioWrapper,
   RadioButton,
   RadioLabel,
+  StyledSelect,
+  RequiredNote,
 } from "@/components/styledInputComponents";
 
-export function InputOptionInput({ title, inputText, inputChange, type = "text", inputRef }) {
+export function InputOptionInput({
+  title,
+  inputText,
+  inputChange,
+  type = "text",
+  inputRef,
+  require = false,
+  isError,
+}) {
   return (
     <>
       <InputWrapper className="input">
@@ -28,16 +34,25 @@ export function InputOptionInput({ title, inputText, inputChange, type = "text",
           value={inputText || ""}
           onChange={(e) => inputChange(type === "number" ? +e.target.value : e.target.value)}
           ref={inputRef}
+          $iserror={isError && "1"}
         />
         <InputLabel className="inputLabel" htmlFor={title}>
           {title}
+          {require && <RequiredNote>*</RequiredNote>}
         </InputLabel>
       </InputWrapper>
     </>
   );
 }
 
-export function InputOptionTextArea({ title, inputText, inputChange, inputRef }) {
+export function InputOptionTextArea({
+  title,
+  inputText,
+  inputChange,
+  inputRef,
+  require = false,
+  isError,
+}) {
   return (
     <>
       <InputWrapper className="input">
@@ -49,18 +64,19 @@ export function InputOptionTextArea({ title, inputText, inputChange, inputRef })
           id={title}
           value={inputText || ""}
           onChange={(e) => inputChange(e.target.value)}
-          rows="3"
+          rows="5"
           ref={inputRef}
+          $iserror={isError && "1"}
         />
         <InputLabel className="inputLabel" htmlFor={title}>
-          {title}
+          {title} {require && <RequiredNote>*</RequiredNote>}
         </InputLabel>
       </InputWrapper>
     </>
   );
 }
 
-export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClick, inputRef }) {
+export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClick }) {
   return (
     <>
       <InputWrapper className="input">
@@ -84,20 +100,26 @@ export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClic
           value={inputText || ""}
           rows="3"
           disabled
-          ref={inputRef}
         />
         <InputLabel className="inputLabel" htmlFor={title}>
-          {title}
+          {title} {require && <RequiredNote>*</RequiredNote>}
         </InputLabel>
       </InputWrapper>
     </>
   );
 }
 
-export function InputOptionCheckbox({ title, isChecked, inputChange, inputRef }) {
+export function InputOptionCheckbox({
+  title,
+  isChecked,
+  inputChange,
+  inputRef,
+  require = false,
+  isError,
+}) {
   return (
     <>
-      <InputCheckboxWrapper>
+      <InputCheckboxWrapper $iserror={isError && "1"}>
         <input
           type="checkbox"
           id={title}
@@ -105,50 +127,63 @@ export function InputOptionCheckbox({ title, isChecked, inputChange, inputRef })
           onChange={(e) => inputChange(e.target.checked)}
           ref={inputRef}
         />
-        <label htmlFor={title}>{title}</label>
+        <label htmlFor={title}>
+          {title} {require && <RequiredNote>*</RequiredNote>}
+        </label>
       </InputCheckboxWrapper>
     </>
   );
 }
 
-export function InputOptionSelect({ title, options, inputText, inputChange, inputRef }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleDropdownClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleOptionClick = (option) => {
-    inputChange(option);
-    setIsOpen(false);
-  };
-
+export function InputOptionSelect({
+  title,
+  options,
+  inputText,
+  inputChange,
+  inputRef,
+  require = false,
+  isError,
+}) {
   return (
     <>
       <InputWrapper>
-        <DropdownButton onClick={handleDropdownClick} $dropdownopen={isOpen ? 1 : 0}>
-          {inputText ? inputText : "-- Auswahl --"}
-        </DropdownButton>
-        {isOpen && (
-          <DropdownMenu>
-            {options.map((option, index) => (
-              <DropdownItem key={index} onClick={() => handleOptionClick(option)}>
-                {option}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        )}
-        <DropdownLabel>{title}</DropdownLabel>
+        <StyledSelect
+          value={inputText}
+          onChange={(e) => inputChange(e.target.value)}
+          ref={inputRef}
+          $iserror={isError && "1"}
+        >
+          <option value="" disabled>
+            Bitte wählen
+          </option>
+          {options.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </StyledSelect>
+        <DropdownLabel>
+          {title} {require && <RequiredNote>*</RequiredNote>}
+        </DropdownLabel>
       </InputWrapper>
     </>
   );
 }
 
-export function InputOptionRadio({ title, options, selectedOption, inputChange, inputRef }) {
+export function InputOptionRadio({
+  title,
+  options,
+  selectedOption,
+  inputChange,
+  inputRef,
+  require = false,
+}) {
   return (
     <>
       <InputWrapper>
-        <p>{title}</p>
+        <p>
+          {title} {require && <RequiredNote>*</RequiredNote>}
+        </p>
         <InputRadioWrapper ref={inputRef}>
           {options.map((option, index) => (
             <div key={index}>
