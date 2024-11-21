@@ -140,7 +140,7 @@ export const GlobalStyles = createGlobalStyle`
         flex-direction: row;
         justify-content: center;
         gap: 1.2rem;
-        margin-top: 1.8rem;
+        margin-top: 0.4rem;
     }
     .embla__buttons {
         display: grid;
