@@ -1,6 +1,7 @@
 import TabCard from "@/components/elements/TabCard";
-import { SpacerEmpty, BoldText } from "@/components/styledComponents";
-import YumekaiRules from "@/components/waffenkostuemregeln/yumekai-rules";
+import { SpacerEmpty, BoldText, StyledLink } from "@/components/styledComponents";
+import YumekaiNightRules from "@/components/waffenkostuemregeln/Yumekai-night-rules";
+import YumekaiRules from "@/components/waffenkostuemregeln/Yumekai-rules";
 
 export default function Waffenkostuemregeln() {
   return (
@@ -24,6 +25,19 @@ export default function Waffenkostuemregeln() {
         etwas übersehen wurde, und daher können Entscheidungen des Waffen-Checks rückgängig gemacht
         werden.
       </BoldText>
+      <p>
+        Um Diskussionen am Waffencheck vorzubeugen, halten sich unsere Helfer*innen genau an die
+        Vorgaben bezüglich der Waffenlänge. Unabhängig davon, ob es sich um 1 cm oder 10 cm
+        Überlänge handelt – Ausnahmen werden keine gemacht. Außerdem kann es vorkommen, dass
+        ähnliche Waffen, wie z. B. Lichtschwerter, im Einzelfall unterschiedlich beurteilt werden
+        (Nicht was die Länge angeht). Diese Entscheidungen erfolgen hauptsächlich aus
+        Sicherheitsgründen wegen z. B. scharfen Kanten oder ähnlichem.
+      </p>
+      <p>
+        Solltet du dir nicht sicher sein ob deine Waffe erlaubt ist oder verboten, schreib und bitte
+        eine E-Mail an <StyledLink href="mailto:Info@Yumekai.de">Info@Yumekai.de</StyledLink> oder
+        verwende das Kontaktformular auf unserer Website.
+      </p>
       <SpacerEmpty />
       <TabCard
         tabs={[
@@ -39,8 +53,7 @@ export default function Waffenkostuemregeln() {
             title: "YumeKai - Night",
             content: (
               <>
-                <h2>Tab 2 Inhalt</h2>
-                <p>Lorem Impsum Dolor für Tab 2</p>
+                <YumekaiNightRules />
               </>
             ),
           },

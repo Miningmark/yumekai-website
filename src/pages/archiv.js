@@ -1,7 +1,7 @@
 //Imports
 
 //Components
-import { Spacer } from "@/components/styledComponents";
+import { Spacer, SpacerEmpty } from "@/components/styledComponents";
 
 //Articles
 import YumeKaiNightInBildern from "@/components/articles/2024/YumeKai-Night-in-Bildern";

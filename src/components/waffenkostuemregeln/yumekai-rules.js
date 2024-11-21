@@ -3,7 +3,6 @@ import { SpacerEmpty, StyledLink } from "../styledComponents";
 export default function YumekaiRules() {
   return (
     <>
-      <SpacerEmpty />
       <h2>Erlaubte Waffen</h2>
       <p>
         Erlaubte Waffen sind Gegenstände, die auf der gesamten Veranstaltung getragen werden dürfen.
@@ -33,7 +32,7 @@ export default function YumekaiRules() {
       </p>
       <p>Zu den beanstandeten Waffen gehören beispielsweise:</p>
       <ul>
-        <li>Replika und Imitationen von Schusswaffen nach dem WaffG aus Holz oder Metall</li>
+        <li>Replika und Imitationen von Schusswaffen nach dem WaffG</li>
         <li>Bögen über 1,5 Meter und Pfeile (ohne Metallanteil)</li>
         <li>Reitgerten, Peitschen über 1,5 Meter, Stabpeitschen</li>
         <li>
