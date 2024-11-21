@@ -132,29 +132,6 @@ export default function Datenschutz() {
         Auftragsverarbeitung mit unserem Hoster geschlossen.
       </p>
 
-      <h2>Registrierung auf dieser Website</h2>
-      <p>
-        Zur Nutzung bestimmter Funktionen können Sie sich auf unserer Website registrieren. Die
-        übermittelten Daten dienen ausschließlich zum Zwecke der Nutzung des jeweiligen Angebotes
-        oder Dienstes. Bei der Registrierung abgefragte Pflichtangaben sind vollständig anzugeben.
-        Andernfalls werden wir die Registrierung ablehnen.
-      </p>
-      <p>
-        Im Falle wichtiger Änderungen, etwa aus technischen Gründen, informieren wir Sie per E-Mail.
-        Die E-Mail wird an die Adresse versendet, die bei der Registrierung angegeben wurde.
-      </p>
-      <p>
-        Die Verarbeitung der bei der Registrierung eingegebenen Daten erfolgt auf Grundlage Ihrer
-        Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ein Widerruf Ihrer bereits erteilten Einwilligung
-        ist jederzeit möglich. Für den Widerruf genügt eine formlose Mitteilung per E-Mail. Die
-        Rechtmäßigkeit der bereits erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
-      </p>
-      <p>
-        Wir speichern die bei der Registrierung erfassten Daten während des Zeitraums, den Sie auf
-        unserer Website registriert sind. Ihre Daten werden gelöscht, sollten Sie Ihre Registrierung
-        aufheben. Gesetzliche Aufbewahrungsfristen bleiben unberührt.
-      </p>
-
       <h2>Kontaktformular</h2>
       <p>
         Per Kontaktformular übermittelte Daten werden einschließlich Ihrer Kontaktdaten gespeichert,
@@ -222,55 +199,14 @@ export default function Datenschutz() {
         Analyse-Funktionen) erfolgt, werden diese in dieser Datenschutzerklärung separat behandelt.
       </p>
 
-      <h2>Google reCAPTCHA</h2>
+      <h2>Local Storage</h2>
       <p>
-        Wir haben auf unserer Website Komponenten von Google reCAPTCHA integriert. Google reCAPTCHA
-        ist ein Dienst der Google Ireland Limited und ermöglicht uns zu unterscheiden, ob eine
-        Kontaktanfrage von einer natürlichen Person stammt oder automatisiert mittels eines
-        Programmes geschieht. Wenn Sie auf diese Inhalte zugreifen, stellen Sie eine Verbindung zu
-        Servern der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland her, wobei
-        Ihre IP-Adresse und ggf. Browserdaten wie Ihr User-Agent übermittelt werden. Desweiteren
-        zeichnet Google reCAPTCHA die Verweildauer und Mausbewegungen des Nutzers auf, um
-        automatisierte Anfragen von menschlichen zu unterscheiden. Diese Daten werden ausschließlich
-        zu den oben genannten Zwecken und zur Aufrechterhaltung der Sicherheit und Funktionalität
-        von Google reCAPTCHA verarbeitet.
-        <br />
-        Zweck und Rechtsgrundlage
-      </p>
-      <p>
-        Der Einsatz von Google reCAPTCHA erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs.
-        1 lit. a. DSGVO und § 25 Abs. 1 TTDSG Wir beabsichtigen personenbezogenen Daten an
-        Drittländer außerhalb des Europäischen Wirtschaftsraums, insbesondere die USA, zu
-        übermitteln. In Fällen, in denen kein Angemessenheitsbeschluss der Europäischen Kommission
-        existiert (z.B. in den USA) haben wir mit den Empfängern der Daten anderweitige geeignete
-        Garantien im Sinne der Art. 44 ff. DSGVO vereinbart. Dies sind – sofern nicht anders
-        angegeben – Standardvertragsklauseln der EU-Kommission gemäß Durchführungsbeschluss (EU)
-        2021/914 vom 4. Juni 2021. Eine Kopie dieser Standardvertragsklauseln können Sie unter{" "}
-        <Link
-          href={"https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE"}
-          target="_blank"
-        >
-          https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32021D0914&from=DE
-        </Link>{" "}
-        einsehen.
-      </p>
-      <p>
-        Zudem holen wir vor einem solchen Drittlandtransfer Ihre Einwilligung nach Art. 49 Abs. 1
-        Satz 1 lit. a. DSGVO ein, die Sie über die Einwilligung im Consent Manager (oder sonstigen
-        Formularen, Registrierungen etc.) erteilen. Wir weisen Sie darauf hin, dass bei
-        Drittlandübermittlungen im Detail unbekannte Risiken (z.B. die Datenverarbeitung durch
-        Sicherheitsbehörden des Drittlandes, deren genauer Umfang und deren Folgen für Sie wir nicht
-        kennen, auf die wir keinen Einfluss haben und von denen Sie unter Umständen keine Kenntnis
-        erlangen) bestehen können.
-      </p>
-      <p>
-        Die konkrete Speicherdauer der verarbeiteten Daten ist nicht durch uns beeinflussbar,
-        sondern wird von Google Ireland Limited bestimmt. Weitere Hinweise finden Sie in der
-        Datenschutzerklärung für Google reCAPTCHA:{" "}
-        <Link href={"https://policies.google.com/privacy?hl=en-US"} target="_blank">
-          https://policies.google.com/privacy?hl=en-US
-        </Link>
-        .
+        Wir verwenden LocalStorage, um Ihre Einstellungen, wie z. B. Ihre bevorzugte Sprache oder
+        das Design der Webseite, zu speichern. Diese Daten werden nur auf Ihrem Gerät gespeichert
+        und nicht an unseren Server gesendet. Die Daten bleiben so lange gespeichert, bis Sie sie
+        selbst löschen oder der Browser die Daten entfernt. Sie können diese Informationen jederzeit
+        über die Browsereinstellungen löschen oder in den lokalen Speicher-Einstellungen Ihres
+        Browsers verwalten.
       </p>
     </DatenschutzWrapper>
   );
