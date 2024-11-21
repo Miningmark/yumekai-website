@@ -16,6 +16,7 @@ export default function Home() {
   return (
     <>
       <HomeSlider />
+      <SpacerEmpty />
       <h1>Aktuelles</h1>
       <p>
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier

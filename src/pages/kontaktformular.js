@@ -7,7 +7,7 @@ import {
   InputOptionSelect,
   InputOptionCheckbox,
 } from "@/components/elements/InputComponents";
-import { StyledButton, StyledForm } from "@/components/styledComponents";
+import { StyledButton, StyledForm, StyledLink } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 
 export default function Kontaktformular() {
@@ -106,10 +106,8 @@ export default function Kontaktformular() {
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Daten erfolgreich eingefügt:"); //TODO: Löschen result.insertID
         setSuccess("Kontaktanfrage erfolgreich abgeschickt");
       } else {
-        console.error("Fehler beim Einfügen der Daten:", result.error); //TODO: allternative bestätigunsseite wegen bereits eingegebener E-Mail
         setErrors([
           {
             field: "general",
@@ -118,7 +116,6 @@ export default function Kontaktformular() {
         ]);
       }
     } catch (error) {
-      console.error("Fehler beim Einfügen der Daten:", error);
       setErrors([
         {
           field: "general",
@@ -203,7 +200,16 @@ export default function Kontaktformular() {
         />
         <InputOptionCheckbox
           title={
-            "Ich habe die Datenschutzerklärung gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die Passage in der Datenschutzerklärung gelesen und verstanden."
+            <p>
+              Ich habe die{" "}
+              <StyledLink href="/datenschutz" target="_blank">
+                Datenschutzerklärung
+              </StyledLink>{" "}
+              gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung
+              zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die
+              Passage in der Datenschutzerklärung gelesen und verstanden.
+              <RequiredNote>*</RequiredNote>
+            </p>
           }
           isChecked={privacyPolicy}
           inputChange={(value) => setPrivacyPolicy(value)}

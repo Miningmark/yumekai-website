@@ -127,9 +127,7 @@ export function InputOptionCheckbox({
           onChange={(e) => inputChange(e.target.checked)}
           ref={inputRef}
         />
-        <label htmlFor={title}>
-          {title} {require && <RequiredNote>*</RequiredNote>}
-        </label>
+        <label htmlFor={title}>{title}</label>
       </InputCheckboxWrapper>
     </>
   );

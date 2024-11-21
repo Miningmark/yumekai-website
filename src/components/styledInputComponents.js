@@ -127,7 +127,7 @@ export const StyledSelect = styled.select`
   padding: 12px 4px;
   border: 2px solid ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.backgroundColor2};
+  background-color: ${({ theme }) => theme.backgroundColor1};
   color: ${({ theme }) => theme.text};
   font-size: 16px;
   font-weight: bold;
@@ -156,7 +156,7 @@ export const DropdownLabel = styled.label`
   padding: 0 4px;
   margin: 14px 4px;
   white-space: nowrap;
-  background: ${({ theme }) => theme.backgroundColor2};
+  background: ${({ theme }) => theme.backgroundColor1};
 `;
 
 export const RequiredNote = styled.span`
