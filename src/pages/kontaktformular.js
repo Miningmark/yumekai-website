@@ -38,6 +38,7 @@ export default function Kontaktformular() {
 
     const newErrors = [];
     setErrors([]);
+    setSuccess("");
 
     if (!name.trim()) newErrors.push({ field: "name", message: "Vorname ist ein Pflichtfeld" });
     if (name.length < 3) newErrors.push({ field: "name", message: "Vorname  ist zu kurz" });
@@ -107,6 +108,14 @@ export default function Kontaktformular() {
 
       if (response.ok) {
         setSuccess("Kontaktanfrage erfolgreich abgeschickt");
+        setName("");
+        setLastName("");
+        setEmail("");
+        setArea("");
+        setSubject("");
+        setMessage("");
+        setPrivacyPolicy(false);
+        setErrors([]);
       } else {
         setErrors([
           {

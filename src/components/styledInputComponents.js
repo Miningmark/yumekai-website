@@ -75,6 +75,7 @@ export const InputCheckboxWrapper = styled.div`
   flex-direction: row;
   gap: 10px;
   ${({ $iserror }) => $iserror && `border: solid 2px red;`}
+  border-radius: 4px;
 `;
 
 export const InputRadioWrapper = styled.div`
