@@ -1,7 +1,5 @@
 import TabCard from "@/components/elements/TabCard";
 import { SpacerEmpty, BoldText, StyledLink } from "@/components/styledComponents";
-import YumekaiNightRules from "@/components/waffenkostuemregeln/Yumekai-night-rules";
-import YumekaiRules from "@/components/waffenkostuemregeln/Yumekai-rules";
 
 export default function Waffenkostuemregeln() {
   return (
