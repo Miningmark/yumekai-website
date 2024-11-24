@@ -21,39 +21,36 @@ const ImageContainer = styled.div`
 export default function Confirm() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-
   const [token, setToken] = useState(null);
-
-  const urlParams = new URLSearchParams(window.location.search);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setToken(urlParams.get("token"));
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tokenFromUrl = urlParams.get("token");
+      setToken(tokenFromUrl);
+    }
+  }, []);
 
+  useEffect(() => {
+    if (token) {
+      confirmNewsletter().finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, [token]);
+
+  async function confirmNewsletter() {
     try {
-      confirmNewsletter();
+      const response = await fetch(`/api/newsletter/confirm?token=${token}`);
+      if (response.status === 200) {
+        setSuccess("Du hast nun den YumeKai Newsletter abonniert");
+      } else {
+        throw new Error("Fehler beim Bestätigen");
+      }
     } catch (error) {
       setError("Fehler beim Bestätigen des Newsletters");
     }
-  }, [urlParams, token]);
-
-  async function confirmNewsletter() {
-    const response = await fetch(`/api/newsletter/confirm?token=${token}`);
-    if (response.status == 200) {
-      setSuccess("Du hast nun den YumeKai Newsletter abonniert");
-    }
-  }
-
-  if (urlParams.get("token") === null) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ width: "100%", maxWidth: "600px" }}>
-          <h1>Es ist ein Fehler aufgetreten</h1>
-          <StyledLinkAsButton href={"/"}>Startseite</StyledLinkAsButton>
-          <StyledLinkAsButton href={"/projects"}>Projekte</StyledLinkAsButton>
-          <StyledLinkAsButton href={"/kontaktformular"}>Kontakt</StyledLinkAsButton>
-        </div>
-      </div>
-    );
   }
 
   return (
@@ -82,6 +79,10 @@ export default function Confirm() {
             <p style={{ color: "red" }}>{error}</p>
           </>
         )}
+
+        {!token && !loading && <h1>Es ist ein Fehler aufgetreten</h1>}
+
+        {loading && <h1>Lade...</h1>}
 
         <div>
           <StyledLinkAsButton href={"/"}>Startseite</StyledLinkAsButton>
