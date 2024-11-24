@@ -7,7 +7,6 @@ import HomeSlider from "@/components/home/HomeSlider";
 
 //Articles
 import AnkundigungYumeKai2025 from "@/components/articles/2024/Ankundigung-YumeKai2025";
-
 import GewinnerPerformanceWettbewerb from "@/components/articles/2024/Gewinner-Performance-Wettbewerb";
 import YumeKaiZeichenwettbewerb from "@/components/articles/2024/YumeKai-Zeichenwettbewerb";
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";

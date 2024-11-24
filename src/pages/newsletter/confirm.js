@@ -84,7 +84,7 @@ export default function Confirm() {
 
         {loading && <h1>Lade...</h1>}
 
-        <div>
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
           <StyledLinkAsButton href={"/"}>Startseite</StyledLinkAsButton>
           <StyledLinkAsButton href={"/projects"}>Projekte</StyledLinkAsButton>
           <StyledLinkAsButton href={"/kontaktformular"}>Kontakt</StyledLinkAsButton>

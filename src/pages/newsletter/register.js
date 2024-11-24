@@ -69,7 +69,7 @@ export default function Register() {
     }
 
     try {
-      const response = await fetch("/api/newsletterRegister", {
+      const response = await fetch("/api/newsletterRegistration", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
