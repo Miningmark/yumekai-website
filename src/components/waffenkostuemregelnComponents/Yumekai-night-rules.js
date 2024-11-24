@@ -3,7 +3,7 @@
 //Components
 import { StyledLink } from "../styledComponents";
 
-export default function YumekaiNightRules() {
+export default function YumeKaiNightRules() {
   return (
     <>
       <h2>Erlaubte Waffen</h2>

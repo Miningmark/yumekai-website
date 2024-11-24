@@ -1,6 +1,6 @@
 import { SpacerEmpty, StyledLink } from "../styledComponents";
 
-export default function YumekaiRules() {
+export default function YumeKaiRules() {
   return (
     <>
       <h2>Erlaubte Waffen</h2>

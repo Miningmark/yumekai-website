@@ -52,13 +52,13 @@ const TabHeader = styled.div`
 const TabButton = styled.button`
   flex: 1;
   padding: 10px;
-  background: ${({ active }) => (active ? "#ddd" : "transparent")};
+  background: ${({ $active }) => ($active ? "#ddd" : "transparent")};
   color: ${({ theme }) => theme.primaryColor};
   border: none;
   border-bottom: 2px solid #ddd;
   cursor: pointer;
   font-size: 1.2rem;
-  transition: background 0.3s, border-bottom 0.3s;
+  transition: 0.3s;
 
   &:hover {
     background: #ddd;
@@ -81,7 +81,7 @@ export default function TabCard({ tabs }) {
     <TabContainer>
       <TabHeader>
         {tabs.map((tab, index) => (
-          <TabButton key={index} active={activeTab === index} onClick={() => setActiveTab(index)}>
+          <TabButton key={index} $active={activeTab === index} onClick={() => setActiveTab(index)}>
             {tab.title}
           </TabButton>
         ))}
