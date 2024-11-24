@@ -126,7 +126,9 @@ export default function PageFooter() {
         </FooterContainer>
         <FooterContainer>
           <h3>Newsletter</h3>
-          <StyledLinkAsButton href={"/newsletter/anmelden"}>Anmelden</StyledLinkAsButton>
+          <StyledLinkAsButton href={"/newsletter/register"} style={{ textAlign: "center" }}>
+            Anmelden
+          </StyledLinkAsButton>
         </FooterContainer>
       </FooterContainerWrapper>
       <FooterLine>

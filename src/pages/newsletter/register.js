@@ -19,7 +19,7 @@ const ImageContainer = styled.div`
   }
 `;
 
-export default function Anmelden() {
+export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
