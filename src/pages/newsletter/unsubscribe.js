@@ -17,7 +17,7 @@ const ImageContainer = styled.div`
   }
 `;
 
-export default function Confirm() {
+export default function Unsubscribe() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [token, setToken] = useState(null);
@@ -33,30 +33,30 @@ export default function Confirm() {
 
   useEffect(() => {
     if (token) {
-      confirmNewsletter().finally(() => setLoading(false));
+      unsubscribeNewsletter().finally(() => setLoading(false));
     } else {
       setLoading(false);
     }
   }, [token]);
 
-  async function confirmNewsletter() {
+  async function unsubscribeNewsletter() {
     try {
       const response = await fetch(`/api/newsletterRegistration?token=${token}`, {
-        method: "PATCH",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({}),
       });
       if (response.status === 200) {
-        setSuccess("Du hast nun den YumeKai Newsletter abonniert");
+        setSuccess("Du hast dich erfolgreich vom YumeKai Newsletter abgemeldet");
       } else if (response.status === 400) {
-        setSuccess("Du hast diesen Newsletter bereits abonniert");
+        setSuccess("Du hast diesen Newsletter bereits abgemeldet.");
       } else {
-        throw new Error("Fehler beim Bestätigen");
+        throw new Error("Fehler beim Abmelden");
       }
     } catch (error) {
-      setError("Fehler beim Bestätigen des Newsletters");
+      setError("Fehler beim Abmelden des Newsletters");
     }
   }
 
@@ -65,7 +65,7 @@ export default function Confirm() {
       <div style={{ width: "100%", maxWidth: "600px" }}>
         {success && (
           <>
-            <h1>Du hast nun den YumeKai Newsletter abonniert</h1>
+            <h1>Du hast dich erfolgreich vom YumeKai Newsletter abgemeldet</h1>
             <ImageContainer>
               <Image
                 src={yumekoImage}
@@ -76,7 +76,10 @@ export default function Confirm() {
                 }}
               />
             </ImageContainer>
-            <p style={{ textAlign: "center" }}>Ab jetzt erhältst du Neuigkeiten von uns.</p>
+            <p style={{ textAlign: "center" }}>
+              Wir würden uns freuen, dich bald wieder begrüßen zu dürfen – du kannst dich jederzeit
+              erneut anmelden!
+            </p>
           </>
         )}
 

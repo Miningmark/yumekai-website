@@ -14,6 +14,7 @@
     "embla-carousel-react": "^8.1.7",
     "mysql2": "^3.11.0",
     "next": "15.0.3",
+    "nodemailer": "^6.9.16",
     "react": "^18",
     "react-dom": "^18",
     "styled-components": "^6.1.11"

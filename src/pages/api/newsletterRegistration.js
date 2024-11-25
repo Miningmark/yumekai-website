@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import crypto from "crypto";
+import { sendMail } from "@/util/sendEmail";
 
 /*
 
@@ -9,7 +10,7 @@ CREATE TABLE newsletter_registrations (
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     privacy_policy BOOLEAN,
-    token VARCHAR(32) NOT NULL,
+    token VARCHAR(64) NOT NULL,
     verified BOOLEAN DEFAULT FALSE,
     verified_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -88,6 +89,11 @@ export default async function handler(req, res) {
       );
 
       if (result.affectedRows === 1) {
+        sendMail({
+          to: email,
+          subject: "Bitte bestätige deine Anmeldung zum YumeKai Newsletter",
+          text: `Hallo ${name},\n\nbitte bestätige deine Anmeldung zum YumeKai Newsletter mit dem folgenden Link: ${process.env.BASE_URL}/newsletter/confirm?token=${token}`,
+        });
         return res.status(201).json({ message: "Erfolgreich registriert" });
       } else {
         throw new Error("Fehler beim Eintragen in die Datenbank");
@@ -116,6 +122,31 @@ export default async function handler(req, res) {
         return res.status(200).json({ message: "Newsletter erfolgreich bestätigt" });
       } else {
         return res.status(400).json({ message: "Ungültiger oder bereits bestätigter Token" });
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Interner Serverfehler" });
+    }
+  }
+
+  if (req.method === "DELETE") {
+    const { token } = req.query;
+
+    if (!token) {
+      return res.status(400).json({ message: "Token ist erforderlich" });
+    }
+
+    try {
+      // Update-Befehl zur Bestätigung des Tokens
+      const [result] = await connection.query(
+        "DELETE FROM newsletter_registrations WHERE token = ?",
+        [token]
+      );
+
+      if (result.affectedRows === 1) {
+        return res.status(200).json({ message: "Newsletter erfolgreich gelöscht" });
+      } else {
+        return res.status(400).json({ message: "Ungültiger Token" });
       }
     } catch (error) {
       console.error(error);

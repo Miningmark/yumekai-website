@@ -27,6 +27,9 @@ export default function Register() {
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
 
+  const text = "6f023eba1fc5e1fcc8cc328826dcbd2a479db3b6c7a6087bed629c395a277b34";
+  console.log("TEST", text.length);
+
   // Refs for form fields
   const refs = {
     name: useRef(null),
