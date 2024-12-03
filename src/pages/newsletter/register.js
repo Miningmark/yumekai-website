@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useRef } from "react";
+import Image from "next/image";
 
 //Components
 import { InputOptionInput, InputOptionCheckbox } from "@/components/elements/InputComponents";
@@ -8,7 +9,6 @@ import { RequiredNote } from "@/components/styledInputComponents";
 
 //Images
 import yumekoImage from "/public/assets/logo/Yumeko.png";
-import Image from "next/image";
 
 const ImageContainer = styled.div`
   display: flex;
@@ -26,9 +26,6 @@ export default function Register() {
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
-
-  const text = "6f023eba1fc5e1fcc8cc328826dcbd2a479db3b6c7a6087bed629c395a277b34";
-  console.log("TEST", text.length);
 
   // Refs for form fields
   const refs = {
