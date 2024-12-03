@@ -6,7 +6,15 @@ import {
   InputOptionCheckbox,
   InputOptionRadio,
 } from "@/components/elements/InputComponents";
-import { StyledButton, StyledForm, ErrorText, SuccessText } from "../styledComponents";
+import {
+  StyledButton,
+  StyledForm,
+  ErrorText,
+  SuccessText,
+  UnstyledLink,
+  Spacer,
+  SpacerEmpty,
+} from "../styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 
 const EU_COUNTRIES = [
@@ -59,6 +67,15 @@ export default function HelferForm() {
   const [allergies, setAllergies] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [contactForwarding, setContactForwarding] = useState(false);
+
+  const [departmentAdmission, setDepartmentAdmission] = useState(false);
+  const [departmentWeaponsCheck, setDepartmentWeaponsCheck] = useState(false);
+  const [departmentStage, setDepartmentStage] = useState(false);
+  const [departmentSpringer, setDepartmentSpringer] = useState(false);
+  const [departmentKaraoke, setDepartmentKaraoke] = useState(false);
+  const [departmentBringAndBay, setDepartmentBringAndBay] = useState(false);
+  const [departmentWorkshop, setDepartmentWorkshop] = useState(false);
+  const [departmentSpecialGuest, setDepartmentSpecialGuest] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -153,6 +170,44 @@ export default function HelferForm() {
 
     //Geschlecht
     if (!gender) newErrors.push({ field: "gender", message: "Geschlecht ist ein Pflichtfeld" });
+
+    //T-Shirt Größe
+    if (!tshirtSize.trim())
+      newErrors.push({ field: "tshirtSize", message: "T-Shirt Größe ist ein Pflichtfeld" });
+
+    //Anreise
+    if (!arrival) newErrors.push({ field: "arrival", message: "Anreise ist ein Pflichtfeld" });
+
+    //Essen
+    if (!foodPreference.trim())
+      newErrors.push({ field: "foodPreference", message: "Essen ist ein Pflichtfeld" });
+
+    //Allergien
+    if (allergies.length > 500)
+      newErrors.push({ field: "allergies", message: "Allergien ist zu lang" });
+
+    //Beruf/Ausbildung
+    if (occupation.trim() && occupation.length < 3)
+      newErrors.push({ field: "occupation", message: "Beruf/Ausbildung zu kurz" });
+    if (occupation.length > 100)
+      newErrors.push({ field: "occupation", message: "Beruf/Ausbildung ist zu lang" });
+
+    //Wunsch Team/Tätigkeit
+    if (desiredTeam.trim() && desiredTeam.length < 3)
+      newErrors.push({ field: "desiredTeam", message: "Wunsch Team/Tätigkeit ist zu kurz" });
+    if (desiredTeam.length > 100)
+      newErrors.push({ field: "desiredTeam", message: "Wunsch Team/Tätigkeit ist zu lang" });
+
+    //Stärken
+    if (strengths.trim() && strengths.length < 3)
+      newErrors.push({ field: "strengths", message: "Stärken ist zu kurz" });
+    if (strengths.length > 500)
+      newErrors.push({ field: "strengths", message: "Stärken ist zu lang" });
+
+    //Sonstiges
+    if (other.trim() && other.length < 3)
+      newErrors.push({ field: "other", message: "Sonstiges ist zu kurz" });
+    if (other.length > 500) newErrors.push({ field: "other", message: "Sonstiges ist zu lang" });
 
     //Check if there are any errors
     if (newErrors.length > 0) {
@@ -253,8 +308,6 @@ export default function HelferForm() {
       ]);
       console.error("Fehler beim Einfügen der Daten:", error);
     }
-
-    // Reset form error
   }
 
   return (
@@ -262,6 +315,7 @@ export default function HelferForm() {
       <p>
         Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
       </p>
+      <h2>Persönliche Angaben</h2>
       <InputOptionInput
         title="Name"
         inputText={name}
@@ -284,6 +338,22 @@ export default function HelferForm() {
         inputChange={(value) => setNickname(value)}
         inputRef={refs.nickname}
         isError={errors.some((error) => error.field === "nickname")}
+      />
+      <InputOptionInput
+        title="E-Mail"
+        inputText={email}
+        inputChange={(value) => setEmail(value)}
+        inputRef={refs.email}
+        isError={errors.some((error) => error.field === "email")}
+        require
+      />
+      <InputOptionInput
+        title="E-Mail Bestätigen"
+        inputText={confirmEmail}
+        inputChange={setConfirmEmail}
+        inputRef={refs.emailConfirm}
+        isError={errors.some((error) => error.field === "confirmEmail")}
+        require
       />
       <InputOptionRadio
         title="Geschlecht"
@@ -312,6 +382,18 @@ export default function HelferForm() {
         isError={errors.some((error) => error.field === "phone")}
         require
       />
+      <InputOptionInput
+        title="Discord Name"
+        inputText={discordName}
+        inputChange={(value) => setDiscordName(value)}
+        inputRef={refs.discordName}
+        isError={errors.some((error) => error.field === "discordName")}
+        require
+      />
+
+      <Spacer />
+      <h2>Adresse</h2>
+
       <InputOptionInput
         title="Straße"
         inputText={street}
@@ -345,19 +427,10 @@ export default function HelferForm() {
         isError={errors.some((error) => error.field === "country")}
         require
       />
-      <InputOptionInput
-        title="Discord Name"
-        inputText={discordName}
-        inputChange={(value) => setDiscordName(value)}
-        inputRef={refs.discordName}
-        isError={errors.some((error) => error.field === "discordName")}
-        require
-      />
-      <InputOptionInput
-        title="Beruf/Ausbildung"
-        inputText={occupation}
-        inputChange={setOccupation}
-      />
+
+      <Spacer />
+      <h2>Allgemeines</h2>
+
       <InputOptionSelect
         title="T-Shirt Größe"
         options={["S", "M", "L", "XL", "XXL"]}
@@ -383,16 +456,6 @@ export default function HelferForm() {
           inputChange={setRequiresParkingTicket}
         />
       )}
-      <InputOptionRadio
-        title="Essen"
-        options={["Normal", "Vegetarisch", "Vegan"]}
-        selectedOption={foodPreference}
-        inputChange={setFoodPreference}
-        inputRef={refs.foodPreference}
-        isError={errors.some((error) => error.field === "foodPreference")}
-        require
-      />
-      <InputOptionTextArea title="Allergien" inputText={allergies} inputChange={setAllergies} />
       <InputOptionCheckbox
         title={"Aufbauhelfer"}
         isChecked={assembly}
@@ -403,54 +466,125 @@ export default function HelferForm() {
         isChecked={deconstruction}
         inputChange={(value) => setDeconstruction(value)}
       />
-      <InputOptionInput
-        title="E-Mail"
-        inputText={email}
-        inputChange={(value) => setEmail(value)}
-        inputRef={refs.email}
-        isError={errors.some((error) => error.field === "email")}
+
+      <Spacer />
+      <h2>Verpflegung</h2>
+
+      <InputOptionRadio
+        title="Essen"
+        options={["Normal", "Vegetarisch", "Vegan"]}
+        selectedOption={foodPreference}
+        inputChange={setFoodPreference}
+        inputRef={refs.foodPreference}
+        isError={errors.some((error) => error.field === "foodPreference")}
         require
       />
-      <InputOptionInput
-        title="E-Mail Bestätigen"
-        inputText={confirmEmail}
-        inputChange={setConfirmEmail}
-        inputRef={refs.emailConfirm}
-        isError={errors.some((error) => error.field === "confirmEmail")}
-        require
+      <InputOptionTextArea
+        title="Allergien"
+        inputText={allergies}
+        inputChange={setAllergies}
+        inputRef={refs.allergies}
+        isError={errors.some((error) => error.field === "allergies")}
       />
+
+      <Spacer />
+      <h2>Interessen/Aufgaben/Erfahrungen</h2>
+
       <InputOptionInput
-        title="Wunsch Team/Tätigkeit"
-        inputText={desiredTeam}
-        inputChange={(value) => setDesiredTeam(value)}
+        title="Beruf/Ausbildung"
+        inputText={occupation}
+        inputChange={setOccupation}
+        inputRef={refs.occupation}
+        isError={errors.some((error) => error.field === "occupation")}
+      />
+      <h3>Wunschteam (kann nicht gewährleistet werden)</h3>
+      <InputOptionCheckbox
+        title={"Einlasskontrolle"}
+        isChecked={departmentAdmission}
+        inputChange={(value) => setDepartmentAdmission(value)}
+      />
+      <InputOptionCheckbox
+        title={"Waffencheck"}
+        isChecked={departmentWeaponsCheck}
+        inputChange={(value) => setDepartmentWeaponsCheck(value)}
+      />
+      <InputOptionCheckbox
+        title={"Bühne"}
+        isChecked={departmentStage}
+        inputChange={(value) => setDepartmentStage(value)}
+      />
+      <InputOptionCheckbox
+        title={"Springer"}
+        isChecked={departmentSpringer}
+        inputChange={(value) => setDepartmentSpringer(value)}
+      />
+      <InputOptionCheckbox
+        title={"Karaoke"}
+        isChecked={departmentKaraoke}
+        inputChange={(value) => setDepartmentKaraoke(value)}
+      />
+      <InputOptionCheckbox
+        title={"Bring & Buy"}
+        isChecked={departmentBringAndBay}
+        inputChange={(value) => setDepartmentBringAndBay(value)}
+      />
+      <InputOptionCheckbox
+        title={"Workshop"}
+        isChecked={departmentWorkshop}
+        inputChange={(value) => setDepartmentWorkshop(value)}
+      />
+      <InputOptionCheckbox
+        title={"Ehrengast betreuung"}
+        isChecked={departmentSpecialGuest}
+        inputChange={(value) => setDepartmentSpecialGuest(value)}
       />
       <InputOptionTextArea
         title="Stärken"
         inputText={strengths}
         inputChange={(value) => setStrengths(value)}
+        inputRef={refs.strengths}
+        isError={errors.some((error) => error.field === "strengths")}
       />
       <InputOptionTextArea
         title="Sonstiges"
         inputText={other}
         inputChange={(value) => setOther(value)}
+        inputRef={refs.other}
+        isError={errors.some((error) => error.field === "other")}
       />
+
+      <Spacer />
+      <h2>Richtlinien</h2>
 
       <InputOptionCheckbox
         title={
-          "Ich habe die Datenschutzerklärung gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die Passage in der Datenschutzerklärung gelesen und verstanden."
+          <p>
+            Ich habe die Datenschutzerklärung gelesen, verstanden und akzeptiere diese. Ich habe
+            verstanden, dass ich die Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann.
+            Über den Widerruf habe ich die Passage in der Datenschutzerklärung gelesen und
+            verstanden.<RequiredNote>*</RequiredNote>
+          </p>
         }
         isChecked={privacyPolicy}
         inputChange={(value) => setPrivacyPolicy(value)}
         inputRef={refs.privacyPolicy}
+        isError={errors.some((error) => error.field === "privacyPolicy")}
         require
       />
       <InputOptionCheckbox
-        title={"Dürfen wir, der zuständigen Orga deine Kontaktdaten weiter geben."}
+        title={
+          <p>
+            Dürfen wir, der zuständigen Orga deine Kontaktdaten weiter geben.
+            <RequiredNote>*</RequiredNote>
+          </p>
+        }
         isChecked={contactForwarding}
         inputChange={(value) => setContactForwarding(value)}
         inputRef={refs.contactForwarding}
+        isError={errors.some((error) => error.field === "contactForwarding")}
         require
       />
+
       {errors && (
         <ul>
           {errors.map((error, index) => (

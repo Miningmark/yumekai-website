@@ -68,6 +68,14 @@ export const InputArea = styled.textarea`
 export const InputWrapper = styled.label`
   position: relative;
   width: 100%;
+  ${({ $iserror }) => $iserror && `border: solid 2px red;`}
+  border-radius: 4px;
+  margin-top: 10px;
+
+  p {
+    margin: 0;
+    padding: 10px 0 10px 0;
+  }
 `;
 
 export const InputCheckboxWrapper = styled.div`
@@ -81,13 +89,10 @@ export const InputCheckboxWrapper = styled.div`
 export const InputRadioWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border: solid 2px red;
+  padding-bottom: 10px;
 
   &:focus {
     border: solid 2px red;
-  }
-  &:active {
-    border: solid 2px green;
   }
 `;
 

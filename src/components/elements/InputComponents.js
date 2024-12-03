@@ -175,10 +175,11 @@ export function InputOptionRadio({
   inputChange,
   inputRef,
   require = false,
+  isError,
 }) {
   return (
     <>
-      <InputWrapper>
+      <InputWrapper $iserror={isError && "1"}>
         <p>
           {title} {require && <RequiredNote>*</RequiredNote>}
         </p>
