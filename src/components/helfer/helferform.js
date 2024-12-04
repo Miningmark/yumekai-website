@@ -1,3 +1,5 @@
+import styled from "styled-components";
+import Image from "next/image";
 import { useState, useRef } from "react";
 import {
   InputOptionTextArea,
@@ -11,12 +13,31 @@ import {
   StyledForm,
   ErrorText,
   SuccessText,
-  UnstyledLink,
   StyledLink,
   Spacer,
-  SpacerEmpty,
 } from "../styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
+
+const UploadInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: ${({ theme }) => theme.color3};
+  color: ${({ theme }) => theme.textColor};
+  border-radius: 15px;
+  border: 1px solid ${({ theme }) => theme.textColor};
+  margin: 10px 0 10px 0;
+
+  img {
+    margin: 10px;
+  }
+  p {
+    margin: 10px 0 0 0;
+    padding: 0;
+  }
+`;
 
 const EU_COUNTRIES = [
   "Deutschland",
@@ -41,6 +62,12 @@ const EU_COUNTRIES = [
   "Bulgarien",
 ];
 
+const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+
+const isImageFile = (fileName) => {
+  return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
+};
+
 export default function HelferForm() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -50,13 +77,15 @@ export default function HelferForm() {
   const [birthdate, setBirthdate] = useState("");
   const [discordName, setDiscordName] = useState("");
   const [phone, setPhone] = useState("");
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const [street, setStreet] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const [gender, setGender] = useState(null);
+  const [gender, setGender] = useState("");
   const [clothesSize, setClothesSize] = useState("");
   const [arrival, setArrival] = useState("");
   const [requiresParkingTicket, setRequiresParkingTicket] = useState(false);
@@ -87,6 +116,7 @@ export default function HelferForm() {
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
+  const [fileError, setFileError] = useState("");
 
   const refs = {
     name: useRef(null),
@@ -98,7 +128,8 @@ export default function HelferForm() {
     city: useRef(null),
     country: useRef(null),
     email: useRef(null),
-    emailConfirm: useRef(null),
+    confirmEmail: useRef(null),
+    gender: useRef(null),
     birthdate: useRef(null),
     discordName: useRef(null),
     phone: useRef(null),
@@ -113,65 +144,8 @@ export default function HelferForm() {
     other: useRef(null),
     workTimeSaturday: useRef(null),
     workTimeSunday: useRef(null),
+    image: useRef(null),
   };
-
-  /*
-  async function handleSendMessage() {
-    if (isSending || (!getStartedMessage(selectedChat.id) && !file) || !selectedChat) return;
-
-    if (getStartedMessage(selectedChat.id).length > 32000) {
-      setErrorChatMessage("Nachricht darf maximal 32000 Zeichen lang sein");
-      return;
-    }
-
-    setErrorChatMessage("");
-    setIsSending(true);
-    const formData = new FormData();
-    formData.append("content", getStartedMessage(selectedChat.id));
-    formData.append("senderId", session.user.id);
-    if (file) formData.append("file", file);
-    const LastMessageTime = new Date(new Date().setHours(new Date().getHours() + 2))
-      .toISOString()
-      .slice(0, 19);
-
-    try {
-      const response = await fetch(`/api/teamChat/${selectedChat.id}/messages`, {
-        method: "POST",
-        body: formData,
-      });
-
-      const response2 = await fetch(`/api/teamChat/chatUpdate/${selectedChat.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          last_message_time: LastMessageTime.replace("T", " "),
-        }),
-      });
-
-      if (response.ok && response2.ok) {
-        const messagesResponse = await fetch(`/api/teamChat/${selectedChat.id}/lastMessage`);
-        const { messages: messagesData } = await messagesResponse.json();
-        setChats(
-          chats.map((chat) =>
-            chat.id === selectedChat.id ? { ...chat, last_message_time: LastMessageTime } : chat
-          )
-        );
-        setMessages((prevMessages) => [...prevMessages, ...messagesData]);
-        setTotalMessages((prev) => prev + 1);
-        socket.emit("sendMessage", ...messagesData);
-        newOnlineTime();
-        removeStartedMessage(selectedChat.id);
-        setFile(null);
-      }
-    } catch (error) {
-      setErrorChatMessage("Fehler beim Senden der Nachricht");
-    } finally {
-      setIsSending(false);
-    }
-  }
-    */
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -180,19 +154,20 @@ export default function HelferForm() {
     setErrors([]);
     setSuccess("");
 
-    console.log(email, confirmEmail);
-
     const validateField = (value, fieldName, title, min, max, required = false) => {
       if (required && !value.trim())
         newErrors.push({ field: fieldName, message: `${title} ist ein Pflichtfeld` });
-      if (value.length < min) newErrors.push({ field: fieldName, message: `${title} ist zu kurz` });
+      if (value && value.length < min)
+        newErrors.push({ field: fieldName, message: `${title} ist zu kurz` });
       if (value.length > max) newErrors.push({ field: fieldName, message: `${title} ist zu lang` });
       return null;
     };
 
     validateField(name, "name", "Vorname", 3, 50, true);
     validateField(lastName, "lastName", "Nachname", 3, 50, true);
-    validateField(nickname, "nickname", "Rufname", 3, 50);
+    if (nickname && nickname.length < 3)
+      newErrors.push({ field: "nickname", message: "Rufname ist zu kurz" });
+    if (nickname.length > 50) newErrors.push({ field: "nickname", message: "Rufname ist zu lang" });
     if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
     if (!email.includes("@"))
       newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
@@ -203,21 +178,22 @@ export default function HelferForm() {
       });
     if (confirmEmail.trim() !== email.trim())
       newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
-    validateField(discordName, "discordName", "Discord Name", 0, 100, true);
-    validateField(phone, "phone", "Telefonnummer", 0, 25, true);
+    validateField(gender, "gender", "Geschlecht", 3, 50, true);
+    validateField(discordName, "discordName", "Discord Name", 3, 100, true);
+    validateField(phone, "phone", "Telefonnummer", 7, 25, true);
     validateField(street, "street", "Straße", 3, 50, true);
     validateField(postalCode, "postalCode", "PLZ", 4, 6, true);
     validateField(city, "city", "Ort", 3, 50, true);
-    validateField(country, "country", "Land", 0, 50, true);
+    validateField(country, "country", "Land", 3, 50, true);
     validateField(occupation, "occupation", "Beruf/Ausbildung", 3, 100);
     validateField(strengths, "strengths", "Stärken", 3, 255);
     validateField(other, "other", "Sonstiges", 3, 500);
-    validateField(workTimeSaturday, "workTimeSaturday", "Samstag", 5, 255);
-    validateField(workTimeSunday, "workTimeSunday", "Sonntag", 5, 255);
+    validateField(workTimeSaturday, "workTimeSaturday", "Samstag", 0, 255);
+    validateField(workTimeSunday, "workTimeSunday", "Sonntag", 0, 255);
     validateField(foodPreference, "foodPreference", "Essen", 0, 32, true);
-    validateField(foodDetails, "foodDetails", "Allergien/Unverträglichkeiten", 0, 500);
+    validateField(foodDetails, "foodDetails", "Allergien/Unverträglichkeiten", 3, 500);
     validateField(clothesSize, "clothesSize", "T-Shirt Größe", 1, 5, true);
-    validateField(arrival, "arrival", "Anreise", 2, 50, true);
+    validateField(arrival, "arrival", "Anreise", 3, 50, true);
 
     //Geburtsdatum
     if (!birthdate.trim()) {
@@ -237,6 +213,9 @@ export default function HelferForm() {
         newErrors.push({ field: "birthdate", message: "Du musst mindestens 18 Jahre alt sein" });
       }
     }
+
+    //Bild
+    if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
 
     //Datenschutzerklärung
     if (!privacyPolicy)
@@ -274,50 +253,49 @@ export default function HelferForm() {
         .join(", ")
         .trim() || "Kein Wunschteam";
 
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("lastName", lastName);
+    formData.append("nickname", nickname);
+    formData.append("gender", gender);
+    formData.append("discordName", discordName);
+    formData.append("birthdate", birthdate);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("street", street);
+    formData.append("postalCode", postalCode);
+    formData.append("city", city);
+    formData.append("country", country);
+    formData.append("occupation", occupation);
+    formData.append("clothesSize", clothesSize);
+    formData.append("arrival", arrival);
+    formData.append("requiresParkingTicket", requiresParkingTicket);
+    formData.append("foodPreference", foodPreference);
+    formData.append("foodDetails", foodDetails);
+    formData.append("strengths", strengths);
+    formData.append("desiredTeam", desiredTeam);
+    formData.append("other", other);
+    formData.append("assemblyFriday", assemblyFriday);
+    formData.append("assembly", assembly);
+    formData.append("deconstruction", deconstruction);
+    formData.append("privacyPolicy", privacyPolicy);
+    formData.append("contactForwarding", contactForwarding);
+    formData.append("workTimeSaturday", workTimeSaturday);
+    formData.append("workTimeSunday", workTimeSunday);
+    formData.append("file", file);
+
     try {
       const response = await fetch("/api/helferRegistration", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          lastName,
-          nickname,
-          gender,
-          discordName,
-          birthdate,
-          email,
-          phone,
-          street,
-          postalCode,
-          city,
-          country,
-          occupation,
-          clothesSize,
-          arrival,
-          requiresParkingTicket,
-          foodPreference,
-          foodDetails,
-          strengths,
-          desiredTeam,
-          other,
-          assemblyFriday,
-          assembly,
-          deconstruction,
-          privacyPolicy,
-          contactForwarding,
-          workTimeSaturday,
-          workTimeSunday,
-        }),
+        body: formData,
       });
 
       if (response.ok) {
-        console.log("Daten erfolgreich eingefügt:"); //TODO: Löschen result.insertID
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
         );
-        setErrors("");
+
+        setErrors([]);
         setName("");
         setLastName("");
         setNickname("");
@@ -354,6 +332,8 @@ export default function HelferForm() {
         setWorkTimeSunday("");
         setPrivacyPolicy(false);
         setContactForwarding(false);
+        setFile(null);
+        setPreviewUrl(null);
       } else {
         const result = await response.json();
         setErrors([
@@ -362,7 +342,7 @@ export default function HelferForm() {
             message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
           },
         ]);
-        console.error("Fehler beim Einfügen der Daten:", result.error); //TODO: allternative bestätigunsseite wegen bereits eingegebener E-Mail
+        console.error("Fehler beim Einfügen der Daten:", result.error);
       }
     } catch (error) {
       setErrors([
@@ -372,6 +352,30 @@ export default function HelferForm() {
         },
       ]);
       console.error("Fehler beim Einfügen der Daten:", error);
+    }
+  }
+
+  function handleFileChange(e) {
+    const file = e.target.files[0];
+    const maxFileSize = 10 * 1024 * 1024; // 10MB in Bytes
+
+    if (file && file.size > maxFileSize) {
+      setFileError("Die Datei darf maximal 10MB groß sein.");
+      return;
+    }
+    setFileError("");
+    setFile(file);
+
+    if (isImageFile(file.name)) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreviewUrl(null);
+      setFile(null);
+      setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
     }
   }
 
@@ -456,8 +460,32 @@ export default function HelferForm() {
         require
       />
 
-      <StyledButton type="button">Foto hochladen</StyledButton>
-      <p></p>
+      <StyledButton type="button" as="label" htmlFor="fileUpload" ref={refs.image}>
+        Foto hochladen
+        <input
+          type="file"
+          id="fileUpload"
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+        />
+      </StyledButton>
+      {fileError && <ErrorText>{fileError}</ErrorText>}
+      {previewUrl && (
+        <UploadInfo>
+          <p>{file.name}</p>
+          <Image
+            src={previewUrl}
+            alt="Hochgeladenes Bild"
+            width={200}
+            height={200}
+            style={{
+              width: "auto",
+              maxHeight: "150px",
+              borderRadius: "5px",
+            }}
+          />
+        </UploadInfo>
+      )}
 
       <Spacer />
       <h2>Adresse</h2>
@@ -505,7 +533,7 @@ export default function HelferForm() {
         inputText={clothesSize}
         inputChange={setClothesSize}
         inputRef={refs.clothesSize}
-        isError={errors.some((error) => error.field === "tshirtSize")}
+        isError={errors.some((error) => error.field === "clothesSize")}
         require
       />
       <InputOptionRadio
@@ -557,7 +585,7 @@ export default function HelferForm() {
         inputText={foodDetails}
         inputChange={setFoodDetails}
         inputRef={refs.foodDetails}
-        isError={errors.some((error) => error.field === "allergies")}
+        isError={errors.some((error) => error.field === "foodDetails")}
       />
 
       <Spacer />
@@ -577,7 +605,7 @@ export default function HelferForm() {
         inputRef={refs.strengths}
         isError={errors.some((error) => error.field === "strengths")}
       />
-      <h3>Wunschteam (kann nicht gewährleistet werden)</h3>
+      <h3>Wunschteam (kann nicht garantiert werden)</h3>
       <InputOptionCheckbox
         title={"Einlasskontrolle"}
         isChecked={departmentAdmission}
@@ -652,7 +680,8 @@ export default function HelferForm() {
       <h2>Richtlinien</h2>
 
       <InputOptionCheckbox
-        title={
+        title="privacyPolicy"
+        content={
           <p>
             Ich habe die{" "}
             <StyledLink href="/datenschutz" target="_blank">
@@ -671,7 +700,8 @@ export default function HelferForm() {
         require
       />
       <InputOptionCheckbox
-        title={
+        title="contactForwarding"
+        content={
           <p>
             Dürfen wir, der zuständigen Orga deine Kontaktdaten weiter geben.
             <RequiredNote>*</RequiredNote>

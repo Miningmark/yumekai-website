@@ -1,6 +1,15 @@
 import mysql from "mysql2/promise";
+import path from "path";
+import fs from "fs/promises";
+import formidable from "formidable";
 
-/**
+export const config = {
+  api: {
+    bodyParser: false, // Disable Next.js default body parsing
+  },
+};
+
+/*
  
 CREATE TABLE helfer (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -37,65 +46,7 @@ CREATE TABLE helfer (
     image_url VARCHAR(255)
 );
 
-
  */
-/*
-export async function POST(req) {
-  const url = new URL(req.url);
-  const chatId = url.pathname.split("/")[3]; // Extrahiere die Chat-ID aus der URL
-
-  if (!chatId) {
-    return NextResponse.json({ message: "Chat ID is required" }, { status: 400 });
-  }
-
-  try {
-    const formData = await req.formData();
-    const content = formData.get("content");
-    const senderId = formData.get("senderId");
-    const file = formData.get("file");
-
-    if ((!content && !file) || !senderId) {
-      return NextResponse.json({ message: "Content and senderId are required" }, { status: 400 });
-    }
-
-    //console.log("file", file);
-    //console.log("type", file?.type);
-
-    let filePath = null;
-
-    if (file) {
-      const buffer = Buffer.from(await file.arrayBuffer());
-      const filename = Date.now() + "_" + file.name.replaceAll(" ", "_");
-
-      const uploadDir = path.join(process.cwd(), `/private/chatuploads`);
-      filePath = path.join(uploadDir, filename);
-
-      await writeFile(filePath, buffer);
-
-      filePath = `/chatuploads/${filename}`;
-    }
-
-    const [result] = await pool.execute(
-      "INSERT INTO chat_messages (chat_id, sender_id, content, file_url, file_type) VALUES (?, ?, ?, ?, ?)",
-      [chatId, senderId, content, filePath ? filePath : null, filePath ? file.type : null]
-    );
-
-    const newMessage = {
-      id: result.insertId,
-      chat_id: chatId,
-      sender_id: senderId,
-      content,
-      filePath: filePath ? filePath : null,
-      timestamp: new Date(),
-    };
-
-    return NextResponse.json(newMessage, { status: 201 });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
-  }
-}
-  */
 
 const connection = mysql.createPool({
   host: process.env.DB_HOST,
@@ -104,41 +55,65 @@ const connection = mysql.createPool({
   database: process.env.DB_DATABASE,
 });
 
+const parseForm = (req) => {
+  return new Promise((resolve, reject) => {
+    const form = formidable({
+      multiples: true,
+      uploadDir: path.join(process.cwd(), "/private/helperImage"),
+      keepExtensions: true,
+    });
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ fields, files });
+      }
+    });
+  });
+};
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
     console.log(clientIp);
 
-    const {
-      name,
-      lastName,
-      nickname,
-      gender,
-      discordName,
-      birthdate,
-      email,
-      phone,
-      street,
-      postalCode,
-      city,
-      country,
-      occupation,
-      clothesSize,
-      arrival,
-      requiresParkingTicket,
-      foodPreference,
-      foodDetails,
-      strengths,
-      desiredTeam,
-      other,
-      assemblyFriday,
-      assembly,
-      deconstruction,
-      privacyPolicy,
-      contactForwarding,
-      workTimeSaturday,
-      workTimeSunday,
-    } = req.body;
+    const { fields, files } = await parseForm(req);
+
+    const name = fields.name[0];
+    const lastName = fields.lastName[0];
+    const nickname = fields.nickname[0];
+    const gender = fields.gender[0];
+    const discordName = fields.discordName[0];
+    const birthdate = fields.birthdate[0];
+    const email = fields.email[0];
+    const phone = fields.phone[0];
+    const street = fields.street[0];
+    const postalCode = fields.postalCode[0];
+    const city = fields.city[0];
+    const country = fields.country[0];
+    const occupation = fields.occupation[0];
+    const clothesSize = fields.clothesSize[0];
+    const arrival = fields.arrival[0];
+    const requiresParkingTicket = ["true", "yes", "1"].includes(
+      fields.requiresParkingTicket[0].toLowerCase()
+    );
+    const foodPreference = fields.foodPreference[0];
+    const foodDetails = fields.foodDetails[0];
+    const strengths = fields.strengths[0];
+    const desiredTeam = fields.desiredTeam[0];
+    const other = fields.other[0];
+    const assemblyFriday = ["true", "yes", "1"].includes(fields.assemblyFriday[0].toLowerCase());
+    const assembly = ["true", "yes", "1"].includes(fields.assembly[0].toLowerCase());
+    const deconstruction = ["true", "yes", "1"].includes(fields.deconstruction[0].toLowerCase());
+    const privacyPolicy = ["true", "yes", "1"].includes(fields.privacyPolicy[0].toLowerCase());
+    const contactForwarding = ["true", "yes", "1"].includes(
+      fields.contactForwarding[0].toLowerCase()
+    );
+    const workTimeSaturday = fields.workTimeSaturday[0];
+    const workTimeSunday = fields.workTimeSunday[0];
+
+    console.log("NAME: ", name);
+    console.log("Privacy Policy: ", privacyPolicy);
 
     console.log(
       clientIp,
@@ -218,8 +193,8 @@ export default async function handler(req, res) {
     if (strengths) validateString(strengths, "strengths", 2, 255);
     if (desiredTeam) validateString(desiredTeam, "desiredTeam", 2, 255);
     if (other) validateString(other, "other", 2, 500);
-    if (workTimeSaturday) validateString(workTimeSaturday, "workTimeSaturday", 2, 255);
-    if (workTimeSunday) validateString(workTimeSunday, "workTimeSunday", 2, 255);
+    if (workTimeSaturday) validateString(workTimeSaturday, "workTimeSaturday", 0, 255);
+    if (workTimeSunday) validateString(workTimeSunday, "workTimeSunday", 0, 255);
 
     // Boolean validation
     if (typeof privacyPolicy !== "boolean") {
@@ -282,6 +257,19 @@ export default async function handler(req, res) {
     }
 
     try {
+      const file = files.file[0];
+      let filePath = null;
+
+      const filename = Date.now() + "_" + file.originalFilename.replaceAll(" ", "_");
+
+      const uploadDir = path.join(process.cwd(), `/private/helperImage`);
+
+      filePath = path.join(uploadDir, filename);
+
+      await fs.rename(file.filepath, filePath);
+
+      filePath = `/helperImage/${filename}`;
+
       // Inserting the new data record
       const query = `
       INSERT INTO helfer (
@@ -313,9 +301,9 @@ export default async function handler(req, res) {
         privacy_policy,
         contact_forwarding,
         workTime_saturday,
-        workTime_sunday
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
+        workTime_sunday,
+        image_url
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
       const values = [
         clientIp,
@@ -347,6 +335,7 @@ export default async function handler(req, res) {
         contactForwarding,
         workTimeSaturday || null,
         workTimeSunday || null,
+        filePath || null,
       ];
 
       const [result] = await connection.query(query, values);

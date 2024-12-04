@@ -145,7 +145,7 @@ export default function ImageSlider({
 
             const imageElement = (
               <div className="embla__slide__number">
-                <ImageTest src={imageUrl} alt={isObject ? imageObj.name : "Bild"} />
+                <ImageTest src={imageUrl} alt={isObject ? imageObj.alt : "Bild"} />
               </div>
             );
 

@@ -111,6 +111,7 @@ export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClic
 
 export function InputOptionCheckbox({
   title,
+  content = title,
   isChecked,
   inputChange,
   inputRef,
@@ -127,7 +128,7 @@ export function InputOptionCheckbox({
           onChange={(e) => inputChange(e.target.checked)}
           ref={inputRef}
         />
-        <label htmlFor={title}>{title}</label>
+        <label htmlFor={title}>{content}</label>
       </InputCheckboxWrapper>
     </>
   );

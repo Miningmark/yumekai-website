@@ -21,20 +21,20 @@ import yumekaiNightImage13 from "/public/assets/images/yumekai-night-1-2024/Yume
 import yumekaiNightImage14 from "/public/assets/images/yumekai-night-1-2024/YumeKai-Night-14.jpg";
 
 const yumeKaiNightImages = [
-  { image: yumekaiNightImage1, name: "", link: "" },
-  { image: yumekaiNightImage2, name: "", link: "" },
-  { image: yumekaiNightImage3, name: "", link: "" },
-  { image: yumekaiNightImage4, name: "", link: "" },
-  { image: yumekaiNightImage5, name: "", link: "" },
-  { image: yumekaiNightImage6, name: "", link: "" },
-  { image: yumekaiNightImage7, name: "", link: "" },
-  { image: yumekaiNightImage8, name: "", link: "" },
-  { image: yumekaiNightImage9, name: "", link: "" },
-  { image: yumekaiNightImage10, name: "", link: "" },
-  { image: yumekaiNightImage11, name: "", link: "" },
-  { image: yumekaiNightImage12, name: "", link: "" },
-  { image: yumekaiNightImage13, name: "", link: "" },
-  { image: yumekaiNightImage14, name: "", link: "" },
+  { image: yumekaiNightImage1, alt: "YumeKai - Night Bild 1", link: "" },
+  { image: yumekaiNightImage2, alt: "YumeKai - Night Bild 2", link: "" },
+  { image: yumekaiNightImage3, alt: "YumeKai - Night Bild 3", link: "" },
+  { image: yumekaiNightImage4, alt: "YumeKai - Night Bild 4", link: "" },
+  { image: yumekaiNightImage5, alt: "YumeKai - Night Bild 5", link: "" },
+  { image: yumekaiNightImage6, alt: "YumeKai - Night Bild 6", link: "" },
+  { image: yumekaiNightImage7, alt: "YumeKai - Night Bild 7", link: "" },
+  { image: yumekaiNightImage8, alt: "YumeKai - Night Bild 8", link: "" },
+  { image: yumekaiNightImage9, alt: "YumeKai - Night Bild 9", link: "" },
+  { image: yumekaiNightImage10, alt: "YumeKai - Night Bild 10", link: "" },
+  { image: yumekaiNightImage11, alt: "YumeKai - Night Bild 11", link: "" },
+  { image: yumekaiNightImage12, alt: "YumeKai - Night Bild 12", link: "" },
+  { image: yumekaiNightImage13, alt: "YumeKai - Night Bild 13", link: "" },
+  { image: yumekaiNightImage14, alt: "YumeKai - Night Bild 14", link: "" },
 ];
 
 export default function YumeKaiNightInBildern() {
