@@ -1,0 +1,57 @@
+# Update to match your values: branch_name, app_name, SSH key name on GitHub from previous step if changed, server ip, username, port, and server Node pathname (using 'which pm2' on server to get path)
+
+name: Deploy YumeKai-Website
+
+on:
+  push:
+    branches:
+      - main # Change to your specific branch
+      # - deployprod  # Additional branch for deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check Node.js version
+        run: node -v
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to DigitalOcean
+        env:
+          HOST: ${{ secrets.HOST_IP }}
+          USERNAME: ${{ secrets.USERNAME }}
+          TARGET_DIR: ${{ secrets.TARGET_DIR }}
+          APP_NAME: yumekai-website #should match the name of the server block
+          PORT: ${{ secrets.PORT }}
+          #if multiple deploys are needed from different branches
+          #TARGET_DIR: ${{ github.ref == 'refs/heads/deploytest' && '/var/www/folder_name' || github.ref == 'refs/heads/deployprod' && '/var/www/another-location' }}
+          #APP_NAME: ${{ github.ref == 'refs/heads/deploytest' && 'folder_name' || github.ref == 'refs/heads/deployprod' && 'folder_name_2' }}
+          #PORT: ${{ github.ref == 'refs/heads/deploytest' && '3000' || github.ref == 'refs/heads/deployprod' && '3001' }}
+        run: |
+          ssh -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
+            export PATH=/root/.nvm/versions/node/v20.12.0/bin:$PATH #'which pm2' command on terminal will give the right path
+            cd $TARGET_DIR
+            git pull origin ${GITHUB_REF#refs/heads/}
+            npm install
+            npm run build
+            if pm2 list | grep -q $APP_NAME; then
+              echo "Restarting application: $APP_NAME"
+              pm2 restart $APP_NAME
+            else
+              echo "Starting application: $APP_NAME"
+              pm2 start npm --name $APP_NAME -- start -- --port=$PORT
+            fi            
+            pm2 save
+          EOF
