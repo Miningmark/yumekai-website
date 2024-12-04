@@ -12,6 +12,7 @@ import {
   ErrorText,
   SuccessText,
   UnstyledLink,
+  StyledLink,
   Spacer,
   SpacerEmpty,
 } from "../styledComponents";
@@ -44,30 +45,30 @@ export default function HelferForm() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
+  const [discordName, setDiscordName] = useState("");
+  const [phone, setPhone] = useState("");
+
   const [street, setStreet] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
-  const [discordName, setDiscordName] = useState("");
-  const [strengths, setStrengths] = useState("");
-  const [desiredTeam, setDesiredTeam] = useState("");
-  const [other, setOther] = useState("");
-  const [phone, setPhone] = useState("");
-  const [assembly, setAssembly] = useState(false);
-  const [deconstruction, setDeconstruction] = useState(false);
+
   const [gender, setGender] = useState(null);
-  const [occupation, setOccupation] = useState("");
-  const [tshirtSize, setTshirtSize] = useState("");
+  const [clothesSize, setClothesSize] = useState("");
   const [arrival, setArrival] = useState("");
   const [requiresParkingTicket, setRequiresParkingTicket] = useState(false);
-  const [foodPreference, setFoodPreference] = useState("");
-  const [allergies, setAllergies] = useState("");
-  const [privacyPolicy, setPrivacyPolicy] = useState(false);
-  const [contactForwarding, setContactForwarding] = useState(false);
+  const [assemblyFriday, setAssemblyFriday] = useState(false);
+  const [assembly, setAssembly] = useState(false);
+  const [deconstruction, setDeconstruction] = useState(false);
 
+  const [foodPreference, setFoodPreference] = useState("");
+  const [foodDetails, setFoodDetails] = useState("");
+
+  const [occupation, setOccupation] = useState("");
+  const [strengths, setStrengths] = useState("");
   const [departmentAdmission, setDepartmentAdmission] = useState(false);
   const [departmentWeaponsCheck, setDepartmentWeaponsCheck] = useState(false);
   const [departmentStage, setDepartmentStage] = useState(false);
@@ -76,6 +77,13 @@ export default function HelferForm() {
   const [departmentBringAndBay, setDepartmentBringAndBay] = useState(false);
   const [departmentWorkshop, setDepartmentWorkshop] = useState(false);
   const [departmentSpecialGuest, setDepartmentSpecialGuest] = useState(false);
+  const [other, setOther] = useState("");
+
+  const [workTimeSaturday, setWorkTimeSaturday] = useState("");
+  const [workTimeSunday, setWorkTimeSunday] = useState("");
+
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [contactForwarding, setContactForwarding] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -96,7 +104,74 @@ export default function HelferForm() {
     phone: useRef(null),
     privacyPolicy: useRef(null),
     contactForwarding: useRef(null),
+    clothesSize: useRef(null),
+    arrival: useRef(null),
+    foodPreference: useRef(null),
+    foodDetails: useRef(null),
+    occupation: useRef(null),
+    strengths: useRef(null),
+    other: useRef(null),
+    workTimeSaturday: useRef(null),
+    workTimeSunday: useRef(null),
   };
+
+  /*
+  async function handleSendMessage() {
+    if (isSending || (!getStartedMessage(selectedChat.id) && !file) || !selectedChat) return;
+
+    if (getStartedMessage(selectedChat.id).length > 32000) {
+      setErrorChatMessage("Nachricht darf maximal 32000 Zeichen lang sein");
+      return;
+    }
+
+    setErrorChatMessage("");
+    setIsSending(true);
+    const formData = new FormData();
+    formData.append("content", getStartedMessage(selectedChat.id));
+    formData.append("senderId", session.user.id);
+    if (file) formData.append("file", file);
+    const LastMessageTime = new Date(new Date().setHours(new Date().getHours() + 2))
+      .toISOString()
+      .slice(0, 19);
+
+    try {
+      const response = await fetch(`/api/teamChat/${selectedChat.id}/messages`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const response2 = await fetch(`/api/teamChat/chatUpdate/${selectedChat.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          last_message_time: LastMessageTime.replace("T", " "),
+        }),
+      });
+
+      if (response.ok && response2.ok) {
+        const messagesResponse = await fetch(`/api/teamChat/${selectedChat.id}/lastMessage`);
+        const { messages: messagesData } = await messagesResponse.json();
+        setChats(
+          chats.map((chat) =>
+            chat.id === selectedChat.id ? { ...chat, last_message_time: LastMessageTime } : chat
+          )
+        );
+        setMessages((prevMessages) => [...prevMessages, ...messagesData]);
+        setTotalMessages((prev) => prev + 1);
+        socket.emit("sendMessage", ...messagesData);
+        newOnlineTime();
+        removeStartedMessage(selectedChat.id);
+        setFile(null);
+      }
+    } catch (error) {
+      setErrorChatMessage("Fehler beim Senden der Nachricht");
+    } finally {
+      setIsSending(false);
+    }
+  }
+    */
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -105,25 +180,21 @@ export default function HelferForm() {
     setErrors([]);
     setSuccess("");
 
-    //Name
-    if (!name.trim()) newErrors.push({ field: "name", message: "Vorname ist ein Pflichtfeld" });
-    if (name.length < 3) newErrors.push({ field: "name", message: "Vorname  ist zu kurz" });
-    if (name.length > 50) newErrors.push({ field: "name", message: "Vorname ist zu lang" });
+    console.log(email, confirmEmail);
 
-    //Nachname
-    if (!lastName.trim())
-      newErrors.push({ field: "lastName", message: "Nachname ist ein Pflichtfeld" });
-    if (lastName.length < 3)
-      newErrors.push({ field: "lastName", message: "Nachname  ist zu kurz" });
-    if (lastName.length > 50)
-      newErrors.push({ field: "lastName", message: "Nachname ist zu lang" });
+    const validateField = (value, fieldName, min, max, required = false) => {
+      if (required && !value.trim())
+        newErrors.push({ field: fieldName, message: `${fieldName} ist ein Pflichtfeld` });
+      if (value.length < min)
+        newErrors.push({ field: fieldName, message: `${fieldName} ist zu kurz` });
+      if (value.length > max)
+        newErrors.push({ field: fieldName, message: `${fieldName} ist zu lang` });
+      return null;
+    };
 
-    //Rufname
-    if (nickname.trim() && nickname.length < 3)
-      newErrors.push({ field: "nickname", message: "Rufname ist zu kurz" });
-    if (nickname.length > 50) newErrors.push({ field: "nickname", message: "Rufname ist zu lang" });
-
-    //E-Mail
+    validateField(name, "Vorname", 3, 50, true);
+    validateField(lastName, "Nachname", 3, 50, true);
+    validateField(nickname, "Rufname", 3, 50);
     if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
     if (!email.includes("@"))
       newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
@@ -132,82 +203,49 @@ export default function HelferForm() {
         field: "email",
         message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
       });
-
-    //E-Mail Bestätigen
-    if (!confirmEmail.trim() !== email.trim())
+    if (confirmEmail.trim() !== email.trim())
       newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
+    validateField(discordName, "Discord Name", 0, 100, true);
+    validateField(phone, "Telefonnummer", 0, 25, true);
+    validateField(street, "Straße", 3, 50, true);
+    validateField(postalCode, "PLZ", 4, 6, true);
+    validateField(city, "Ort", 3, 50, true);
+    validateField(country, "Land", 0, 50, true);
+    validateField(occupation, "Beruf/Ausbildung", 3, 100);
+    validateField(strengths, "Stärken", 3, 255);
+    validateField(other, "Sonstiges", 3, 500);
+    validateField(workTimeSaturday, "Samstag", 5, 255);
+    validateField(workTimeSunday, "Sonntag", 5, 255);
+    validateField(foodPreference, "Essen", 0, 32, true);
+    validateField(foodDetails, "Allergien/Unverträglichkeiten", 0, 500);
+    validateField(clothesSize, "T-Shirt Größe", 1, 5, true);
+    validateField(arrival, "Anreise", 2, 50, true);
 
     //Geburtsdatum
-    if (!birthdate.trim())
+    if (!birthdate.trim()) {
       newErrors.push({ field: "birthdate", message: "Geburtsdatum ist ein Pflichtfeld" });
+    } else {
+      const birthDateObject = new Date(birthdate);
+      const today = new Date();
+      const age = today.getFullYear() - birthDateObject.getFullYear();
+      const isBirthdayPassedThisYear =
+        today.getMonth() > birthDateObject.getMonth() ||
+        (today.getMonth() === birthDateObject.getMonth() &&
+          today.getDate() >= birthDateObject.getDate());
 
-    //Discord Name
-    if (!discordName.trim())
-      newErrors.push({ field: "discordName", message: "Discord Name ist ein Pflichtfeld" });
+      const actualAge = isBirthdayPassedThisYear ? age : age - 1; // Alter korrigieren, falls Geburtstag dieses Jahr noch nicht war
 
-    //Telefonnummer
-    if (!phone.trim())
-      newErrors.push({ field: "phone", message: "Telefonnummer ist ein Pflichtfeld" });
+      if (actualAge < 18) {
+        newErrors.push({ field: "birthdate", message: "Du musst mindestens 18 Jahre alt sein" });
+      }
+    }
 
-    //Land
-    if (!country.trim()) newErrors.push({ field: "country", message: "Land ist ein Pflichtfeld" });
+    //Datenschutzerklärung
+    if (!privacyPolicy) newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung" });
 
-    //Straße
-    if (!street.trim()) newErrors.push({ field: "street", message: "Straße ist ein Pflichtfeld" });
-    if (street.length < 3) newErrors.push({ field: "street", message: "Straße ist zu kurz" });
-    if (street.length > 50) newErrors.push({ field: "street", message: "Straße ist zu lang" });
-
-    //PLZ
-    if (!postalCode.trim())
-      newErrors.push({ field: "postalCode", message: "PLZ ist ein Pflichtfeld" });
-    if (postalCode.length < 4) newErrors.push({ field: "postalCode", message: "PLZ ist zu kurz" });
-    if (postalCode.length > 6) newErrors.push({ field: "postalCode", message: "PLZ ist zu lang" });
-
-    //Ort
-    if (!city.trim()) newErrors.push({ field: "city", message: "Ort ist ein Pflichtfeld" });
-    if (city.length < 3) newErrors.push({ field: "city", message: "Ort ist zu kurz" });
-    if (city.length > 50) newErrors.push({ field: "city", message: "Ort ist zu lang" });
-
-    //Geschlecht
-    if (!gender) newErrors.push({ field: "gender", message: "Geschlecht ist ein Pflichtfeld" });
-
-    //T-Shirt Größe
-    if (!tshirtSize.trim())
-      newErrors.push({ field: "tshirtSize", message: "T-Shirt Größe ist ein Pflichtfeld" });
-
-    //Anreise
-    if (!arrival) newErrors.push({ field: "arrival", message: "Anreise ist ein Pflichtfeld" });
-
-    //Essen
-    if (!foodPreference.trim())
-      newErrors.push({ field: "foodPreference", message: "Essen ist ein Pflichtfeld" });
-
-    //Allergien
-    if (allergies.length > 500)
-      newErrors.push({ field: "allergies", message: "Allergien ist zu lang" });
-
-    //Beruf/Ausbildung
-    if (occupation.trim() && occupation.length < 3)
-      newErrors.push({ field: "occupation", message: "Beruf/Ausbildung zu kurz" });
-    if (occupation.length > 100)
-      newErrors.push({ field: "occupation", message: "Beruf/Ausbildung ist zu lang" });
-
-    //Wunsch Team/Tätigkeit
-    if (desiredTeam.trim() && desiredTeam.length < 3)
-      newErrors.push({ field: "desiredTeam", message: "Wunsch Team/Tätigkeit ist zu kurz" });
-    if (desiredTeam.length > 100)
-      newErrors.push({ field: "desiredTeam", message: "Wunsch Team/Tätigkeit ist zu lang" });
-
-    //Stärken
-    if (strengths.trim() && strengths.length < 3)
-      newErrors.push({ field: "strengths", message: "Stärken ist zu kurz" });
-    if (strengths.length > 500)
-      newErrors.push({ field: "strengths", message: "Stärken ist zu lang" });
-
-    //Sonstiges
-    if (other.trim() && other.length < 3)
-      newErrors.push({ field: "other", message: "Sonstiges ist zu kurz" });
-    if (other.length > 500) newErrors.push({ field: "other", message: "Sonstiges ist zu lang" });
+    //Kontaktweitergabe
+    if (!contactForwarding)
+      newErrors.push({ field: "contactForwarding", message: "Kontaktweitergabe" });
 
     //Check if there are any errors
     if (newErrors.length > 0) {
@@ -221,6 +259,21 @@ export default function HelferForm() {
       }
       return;
     }
+
+    const desiredTeam =
+      [
+        departmentAdmission && "Einlasskontrolle",
+        departmentWeaponsCheck && "Waffencheck",
+        departmentStage && "Bühne",
+        departmentSpringer && "Springer",
+        departmentKaraoke && "Karaoke",
+        departmentBringAndBay && "Bring & Buy",
+        departmentWorkshop && "Workshop",
+        departmentSpecialGuest && "Ehrengast betreuung",
+      ]
+        .filter(Boolean)
+        .join(", ")
+        .trim() || "Kein Wunschteam";
 
     try {
       const response = await fetch("/api/helferRegistration", {
@@ -242,18 +295,21 @@ export default function HelferForm() {
           city,
           country,
           occupation,
-          tshirtSize,
+          clothesSize,
           arrival,
           requiresParkingTicket,
           foodPreference,
-          allergies,
+          foodDetails,
           strengths,
           desiredTeam,
           other,
+          assemblyFriday,
           assembly,
           deconstruction,
           privacyPolicy,
           contactForwarding,
+          workTimeSaturday,
+          workTimeSunday,
         }),
       });
 
@@ -277,16 +333,26 @@ export default function HelferForm() {
         setCity("");
         setCountry("");
         setOccupation("");
-        setTshirtSize("");
+        setClothesSize("");
         setArrival("");
         setRequiresParkingTicket(false);
         setFoodPreference("");
-        setAllergies("");
+        setFoodDetails("");
         setStrengths("");
-        setDesiredTeam("");
+        setDepartmentAdmission(false);
+        setDepartmentWeaponsCheck(false);
+        setDepartmentStage(false);
+        setDepartmentSpringer(false);
+        setDepartmentKaraoke(false);
+        setDepartmentBringAndBay(false);
+        setDepartmentWorkshop(false);
+        setDepartmentSpecialGuest(false);
         setOther("");
         setAssembly(false);
         setDeconstruction(false);
+        setAssemblyFriday(false);
+        setWorkTimeSaturday("");
+        setWorkTimeSunday("");
         setPrivacyPolicy(false);
         setContactForwarding(false);
       } else {
@@ -391,6 +457,9 @@ export default function HelferForm() {
         require
       />
 
+      <StyledButton type="button">Foto hochladen</StyledButton>
+      <p></p>
+
       <Spacer />
       <h2>Adresse</h2>
 
@@ -434,9 +503,9 @@ export default function HelferForm() {
       <InputOptionSelect
         title="T-Shirt Größe"
         options={["S", "M", "L", "XL", "XXL"]}
-        inputText={tshirtSize}
-        inputChange={setTshirtSize}
-        inputRef={refs.tshirtSize}
+        inputText={clothesSize}
+        inputChange={setClothesSize}
+        inputRef={refs.clothesSize}
         isError={errors.some((error) => error.field === "tshirtSize")}
         require
       />
@@ -457,6 +526,11 @@ export default function HelferForm() {
         />
       )}
       <InputOptionCheckbox
+        title={"Aufbau Freitag"}
+        isChecked={assemblyFriday}
+        inputChange={(value) => setAssemblyFriday(value)}
+      />
+      <InputOptionCheckbox
         title={"Aufbauhelfer"}
         isChecked={assembly}
         inputChange={(value) => setAssembly(value)}
@@ -472,7 +546,7 @@ export default function HelferForm() {
 
       <InputOptionRadio
         title="Essen"
-        options={["Normal", "Vegetarisch", "Vegan"]}
+        options={["normal", "vegetarisch", "vegan"]}
         selectedOption={foodPreference}
         inputChange={setFoodPreference}
         inputRef={refs.foodPreference}
@@ -480,10 +554,10 @@ export default function HelferForm() {
         require
       />
       <InputOptionTextArea
-        title="Allergien"
-        inputText={allergies}
-        inputChange={setAllergies}
-        inputRef={refs.allergies}
+        title="Allergien/Unverträglichkeiten"
+        inputText={foodDetails}
+        inputChange={setFoodDetails}
+        inputRef={refs.foodDetails}
         isError={errors.some((error) => error.field === "allergies")}
       />
 
@@ -496,6 +570,13 @@ export default function HelferForm() {
         inputChange={setOccupation}
         inputRef={refs.occupation}
         isError={errors.some((error) => error.field === "occupation")}
+      />
+      <InputOptionTextArea
+        title="Stärken"
+        inputText={strengths}
+        inputChange={(value) => setStrengths(value)}
+        inputRef={refs.strengths}
+        isError={errors.some((error) => error.field === "strengths")}
       />
       <h3>Wunschteam (kann nicht gewährleistet werden)</h3>
       <InputOptionCheckbox
@@ -538,13 +619,7 @@ export default function HelferForm() {
         isChecked={departmentSpecialGuest}
         inputChange={(value) => setDepartmentSpecialGuest(value)}
       />
-      <InputOptionTextArea
-        title="Stärken"
-        inputText={strengths}
-        inputChange={(value) => setStrengths(value)}
-        inputRef={refs.strengths}
-        isError={errors.some((error) => error.field === "strengths")}
-      />
+
       <InputOptionTextArea
         title="Sonstiges"
         inputText={other}
@@ -554,15 +629,40 @@ export default function HelferForm() {
       />
 
       <Spacer />
+      <h2>Einsatzzeiten</h2>
+
+      <p>
+        Bitte gib hier an, wie viele Stunden du am jeweiligen Tag Arbeiten magst (min. 5 Stunden).
+      </p>
+      <InputOptionInput
+        title="Samstag"
+        inputText={workTimeSaturday}
+        inputChange={setWorkTimeSaturday}
+        inputRef={refs.workTimeSaturday}
+        isError={errors.some((error) => error.field === "workTimeSaturday")}
+      />
+      <InputOptionInput
+        title="Sonntag"
+        inputText={workTimeSunday}
+        inputChange={setWorkTimeSunday}
+        inputRef={refs.workTimeSunday}
+        isError={errors.some((error) => error.field === "workTimeSunday")}
+      />
+
+      <Spacer />
       <h2>Richtlinien</h2>
 
       <InputOptionCheckbox
         title={
           <p>
-            Ich habe die Datenschutzerklärung gelesen, verstanden und akzeptiere diese. Ich habe
-            verstanden, dass ich die Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann.
-            Über den Widerruf habe ich die Passage in der Datenschutzerklärung gelesen und
-            verstanden.<RequiredNote>*</RequiredNote>
+            Ich habe die{" "}
+            <StyledLink href="/datenschutz" target="_blank">
+              Datenschutzerklärung
+            </StyledLink>{" "}
+            gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung
+            zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die
+            Passage in der Datenschutzerklärung gelesen und verstanden.
+            <RequiredNote>*</RequiredNote>
           </p>
         }
         isChecked={privacyPolicy}
