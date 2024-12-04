@@ -182,19 +182,17 @@ export default function HelferForm() {
 
     console.log(email, confirmEmail);
 
-    const validateField = (value, fieldName, min, max, required = false) => {
+    const validateField = (value, fieldName, title, min, max, required = false) => {
       if (required && !value.trim())
-        newErrors.push({ field: fieldName, message: `${fieldName} ist ein Pflichtfeld` });
-      if (value.length < min)
-        newErrors.push({ field: fieldName, message: `${fieldName} ist zu kurz` });
-      if (value.length > max)
-        newErrors.push({ field: fieldName, message: `${fieldName} ist zu lang` });
+        newErrors.push({ field: fieldName, message: `${title} ist ein Pflichtfeld` });
+      if (value.length < min) newErrors.push({ field: fieldName, message: `${title} ist zu kurz` });
+      if (value.length > max) newErrors.push({ field: fieldName, message: `${title} ist zu lang` });
       return null;
     };
 
-    validateField(name, "Vorname", 3, 50, true);
-    validateField(lastName, "Nachname", 3, 50, true);
-    validateField(nickname, "Rufname", 3, 50);
+    validateField(name, "name", "Vorname", 3, 50, true);
+    validateField(lastName, "lastName", "Nachname", 3, 50, true);
+    validateField(nickname, "nickname", "Rufname", 3, 50);
     if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
     if (!email.includes("@"))
       newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
@@ -205,21 +203,21 @@ export default function HelferForm() {
       });
     if (confirmEmail.trim() !== email.trim())
       newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
-    validateField(discordName, "Discord Name", 0, 100, true);
-    validateField(phone, "Telefonnummer", 0, 25, true);
-    validateField(street, "Straße", 3, 50, true);
-    validateField(postalCode, "PLZ", 4, 6, true);
-    validateField(city, "Ort", 3, 50, true);
-    validateField(country, "Land", 0, 50, true);
-    validateField(occupation, "Beruf/Ausbildung", 3, 100);
-    validateField(strengths, "Stärken", 3, 255);
-    validateField(other, "Sonstiges", 3, 500);
-    validateField(workTimeSaturday, "Samstag", 5, 255);
-    validateField(workTimeSunday, "Sonntag", 5, 255);
-    validateField(foodPreference, "Essen", 0, 32, true);
-    validateField(foodDetails, "Allergien/Unverträglichkeiten", 0, 500);
-    validateField(clothesSize, "T-Shirt Größe", 1, 5, true);
-    validateField(arrival, "Anreise", 2, 50, true);
+    validateField(discordName, "discordName", "Discord Name", 0, 100, true);
+    validateField(phone, "phone", "Telefonnummer", 0, 25, true);
+    validateField(street, "street", "Straße", 3, 50, true);
+    validateField(postalCode, "postalCode", "PLZ", 4, 6, true);
+    validateField(city, "city", "Ort", 3, 50, true);
+    validateField(country, "country", "Land", 0, 50, true);
+    validateField(occupation, "occupation", "Beruf/Ausbildung", 3, 100);
+    validateField(strengths, "strengths", "Stärken", 3, 255);
+    validateField(other, "other", "Sonstiges", 3, 500);
+    validateField(workTimeSaturday, "workTimeSaturday", "Samstag", 5, 255);
+    validateField(workTimeSunday, "workTimeSunday", "Sonntag", 5, 255);
+    validateField(foodPreference, "foodPreference", "Essen", 0, 32, true);
+    validateField(foodDetails, "foodDetails", "Allergien/Unverträglichkeiten", 0, 500);
+    validateField(clothesSize, "clothesSize", "T-Shirt Größe", 1, 5, true);
+    validateField(arrival, "arrival", "Anreise", 2, 50, true);
 
     //Geburtsdatum
     if (!birthdate.trim()) {
@@ -241,11 +239,12 @@ export default function HelferForm() {
     }
 
     //Datenschutzerklärung
-    if (!privacyPolicy) newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung" });
+    if (!privacyPolicy)
+      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
 
     //Kontaktweitergabe
     if (!contactForwarding)
-      newErrors.push({ field: "contactForwarding", message: "Kontaktweitergabe" });
+      newErrors.push({ field: "contactForwarding", message: "Kontaktweitergabe zustimmen" });
 
     //Check if there are any errors
     if (newErrors.length > 0) {
