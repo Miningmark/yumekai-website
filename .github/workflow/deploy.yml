@@ -35,7 +35,7 @@ jobs:
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
           APP_NAME: yumekai-website #should match the name of the server block
           PORT: ${{ secrets.PORT }}
-          #if multiple deploys are needed from different branches
+          #if multiple deploys are needed from different  branches
           #TARGET_DIR: ${{ github.ref == 'refs/heads/deploytest' && '/var/www/folder_name' || github.ref == 'refs/heads/deployprod' && '/var/www/another-location' }}
           #APP_NAME: ${{ github.ref == 'refs/heads/deploytest' && 'folder_name' || github.ref == 'refs/heads/deployprod' && 'folder_name_2' }}
           #PORT: ${{ github.ref == 'refs/heads/deploytest' && '3000' || github.ref == 'refs/heads/deployprod' && '3001' }}
