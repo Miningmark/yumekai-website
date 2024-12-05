@@ -9,6 +9,8 @@ export const StyledLinkAsButton = styled(Link)`
   text-decoration: none;
   font-size: 1.2rem;
   transition: 0.3s;
+  height: 22px;
+  text-align: center;
   &:hover {
     transform: scale(1.1);
     transition: 0.3s;

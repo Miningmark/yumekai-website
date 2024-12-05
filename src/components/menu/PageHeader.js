@@ -23,6 +23,7 @@ const menuItems = [
   },
   { name: "Rückblick YumeKai", path: "/review/yumekai-2024" },
   { name: "Das sind Wir", path: "/das-sind-wir" },
+  { name: "Tickets", path: "/shop" },
 ];
 
 const StyledHeader = styled.header`
