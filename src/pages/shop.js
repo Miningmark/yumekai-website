@@ -12,6 +12,7 @@ export default function Shop() {
       />
 
       <h1>Ticketshop</h1>
+      <p></p>
       <div
         dangerouslySetInnerHTML={{
           __html: `
