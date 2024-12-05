@@ -659,7 +659,7 @@ export default function HelferForm() {
       <h2>Einsatzzeiten</h2>
 
       <p>
-        Bitte gib hier an, wie viele Stunden du am jeweiligen Tag Arbeiten magst (min. 5 Stunden).
+        Bitte gib hier an, wie viele Stunden du am jeweiligen Tag Helfen möchtest (min. 5 Stunden).
       </p>
       <InputOptionInput
         title="Samstag"
