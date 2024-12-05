@@ -12,7 +12,7 @@ export default function Shop() {
       />
 
       <h1>Ticketshop</h1>
-      <p></p>
+      <p>Der Ticketvorverkauf startet am 15.12.2024 um 16:00 Uhr.</p>
       <div
         dangerouslySetInnerHTML={{
           __html: `
