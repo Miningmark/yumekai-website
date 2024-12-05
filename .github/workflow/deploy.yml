@@ -41,7 +41,7 @@ jobs:
           #PORT: ${{ github.ref == 'refs/heads/deploytest' && '3000' || github.ref == 'refs/heads/deployprod' && '3001' }}
         run: |
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
-            export PATH=/root/.nvm/versions/node/v20.12.0/bin:$PATH #'which pm2' command on terminal will give the right path
+            export PATH=/root/.nvm/versions/node/v20.18.1/bin:$PATH #'which pm2' command on terminal will give the right path
             cd $TARGET_DIR
             git pull origin ${GITHUB_REF#refs/heads/}
             npm install
