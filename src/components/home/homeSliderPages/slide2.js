@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 //logos and Images
-import sliderBackground from "/public/assets/images/sonstiges/slider_hintergrund2.webp";
+import sliderBackground from "/public/assets/images/sonstiges/slider_hintergrund2.png";
 
 const Wrapper = styled.div`
   display: flex;
