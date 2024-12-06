@@ -9,21 +9,21 @@ import ImageCarousel from "@/components/elements/ImageCarousel";
 
 //Images
 //Ehrengäste
-import danielSchlauchImage from "/public/assets/images/yumekai2024/Daniel-Schlauch-by-Ruffys-Fotografie_4_3.png";
-import dirkMeyerImage from "/public/assets/images/yumekai2024/Dirk-Meyer-by-Ruffys-Fotografie_4_3.png";
-import hoshinoMitsukiImage from "/public/assets/images/yumekai2024/Hoshino-Mitsuki.png";
-import junihuhnImage from "/public/assets/images/yumekai2024/Junihuhn.png";
+import danielSchlauchImage from "/public/assets/images/yumekai2024/Daniel-Schlauch-by-Ruffys-Fotografie_4_3.jpg";
+import dirkMeyerImage from "/public/assets/images/yumekai2024/Dirk-Meyer-by-Ruffys-Fotografie_4_3.jpg";
+import hoshinoMitsukiImage from "/public/assets/images/yumekai2024/Hoshino-Mitsuki.jpg";
+import junihuhnImage from "/public/assets/images/yumekai2024/Junihuhn.jpg";
 import stellariaImage from "/public/assets/images/yumekai2024/Stellaria.jpg";
 import tanukiImage from "/public/assets/images/yumekai2024/Tanuki.jpg";
-import madlightImage from "/public/assets/images/yumekai2024/Madlight.png";
-import steffShizoImage from "/public/assets/images/yumekai2024/Steffshizo.png";
-import danijelKoestlichImage from "/public/assets/images/yumekai2024/Danijel-Koestlich.png";
+import madlightImage from "/public/assets/images/yumekai2024/Madlight.jpg";
+import steffShizoImage from "/public/assets/images/yumekai2024/Steffshizo.jpg";
+import danijelKoestlichImage from "/public/assets/images/yumekai2024/Danijel-Koestlich.jpg";
 
 //Cosplayer
 import naruCosplayImage from "/public/assets/images/yumekai2024/Naru-Cosplay.jpg";
 import paleLitteDragonAndArsinoeImage from "/public/assets/images/yumekai2024/PaleLittleDragon_und_Arsi_Arsinoe.jpg";
 import eraliaImage from "/public/assets/images/yumekai2024/Eralia.jpg";
-import willgrimImage from "/public/assets/images/yumekai2024/Willgrim.jpeg";
+import willgrimImage from "/public/assets/images/yumekai2024/Willgrim.jpg";
 import meroYunytImage from "/public/assets/images/yumekai2024/Mero-und-Yunyte.jpg";
 import evelynImage from "/public/assets/images/yumekai2024/Evelyn-Cosplay.jpg";
 import imoneeCosplayImage from "/public/assets/images/yumekai2024/Imoneecosplay.jpg";
@@ -32,76 +32,76 @@ import nuclearBastardsImage from "/public/assets/images/yumekai2024/Nuclear-Bast
 //Aussteller
 import austrianItashaImage from "/public/assets/images/yumekai2024/Itashas.jpg";
 import rubyTheRaptorImage from "/public/assets/images/yumekai2024/Ruby_the_Raptor.jpg";
-import bokehBardenImage from "/public/assets/images/yumekai2024/Bokehbarden.png";
+import bokehBardenImage from "/public/assets/images/yumekai2024/Bokehbarden.jpg";
 
 //Händler
 import druckDavidVerhoevenImage from "/public/assets/images/yumekai2024/3D-Druck_David_Verhoeven.jpg";
-import arnosRetroVideogamesImage from "/public/assets/images/yumekai2024/Arnos_Retro_Videogames.png";
+import arnosRetroVideogamesImage from "/public/assets/images/yumekai2024/Arnos_Retro_Videogames.jpg";
 import ashturiaImage from "/public/assets/images/yumekai2024/Ashturia.jpg";
-import cosmicmoonlightImage from "/public/assets/images/yumekai2024/cosmicmoonlight.png";
-import cuteParadiseImage from "/public/assets/images/yumekai2024/Cute_Paradise.png";
+import cosmicmoonlightImage from "/public/assets/images/yumekai2024/cosmicmoonlight.jpg";
+import cuteParadiseImage from "/public/assets/images/yumekai2024/Cute_Paradise.jpg";
 import deinNoerdShopImage from "/public/assets/images/yumekai2024/Dein_NoeRD_Shop.jpg";
-import heldenschmiedeLogoImage from "/public/assets/images/yumekai2024/Heldenschmiede_Logo.png";
-import narutoFoodtruckSweetsImage from "/public/assets/images/yumekai2024/Naruto_FoodTruck.png";
-import otakuwonderlandImage from "/public/assets/images/yumekai2024/Otakuwonderland.png";
+import heldenschmiedeLogoImage from "/public/assets/images/yumekai2024/Heldenschmiede_Logo.jpg";
+import narutoFoodtruckSweetsImage from "/public/assets/images/yumekai2024/Naruto_FoodTruck.jpg";
+import otakuwonderlandImage from "/public/assets/images/yumekai2024/Otakuwonderland.jpg";
 import pokevendImage from "/public/assets/images/yumekai2024/Pokevend.jpg";
-import silverdragonSabersImage from "/public/assets/images/yumekai2024/Silverdragon_Sabers.png";
-import squiggzImage from "/public/assets/images/yumekai2024/Squiggz.png";
-import steamspiritsImage from "/public/assets/images/yumekai2024/SteamSpirits.png";
-import yeOldOrcMerchandisingImage from "/public/assets/images/yumekai2024/ye_old_Orc_Merchandising.png";
+import silverdragonSabersImage from "/public/assets/images/yumekai2024/Silverdragon_Sabers.jpg";
+import squiggzImage from "/public/assets/images/yumekai2024/Squiggz.jpg";
+import steamspiritsImage from "/public/assets/images/yumekai2024/SteamSpirits.jpg";
+import yeOldOrcMerchandisingImage from "/public/assets/images/yumekai2024/ye_old_Orc_Merchandising.jpg";
 
 //Künstler
-import ananatzeImage from "/public/assets/images/yumekai2024/Ananatze.png";
-import anaraTwiceImage from "/public/assets/images/yumekai2024/Anara_Twice.png";
-import artsyAoriImage from "/public/assets/images/yumekai2024/Artsy_Aori.png";
-import bavarianWoodfoxImage from "/public/assets/images/yumekai2024/Bavarian_Woodfox.png";
+import ananatzeImage from "/public/assets/images/yumekai2024/Ananatze.jpg";
+import anaraTwiceImage from "/public/assets/images/yumekai2024/Anara_Twice.jpg";
+import artsyAoriImage from "/public/assets/images/yumekai2024/Artsy_Aori.jpg";
+import bavarianWoodfoxImage from "/public/assets/images/yumekai2024/Bavarian_Woodfox.jpg";
 import cheekyChwingaImage from "/public/assets/images/yumekai2024/cheeky_chwinga.jpg";
-import eenteImage from "/public/assets/images/yumekai2024/eente.png";
-import emytsuuImage from "/public/assets/images/yumekai2024/Emytsuu.png";
-import fylyImage from "/public/assets/images/yumekai2024/Fyly.png";
-import ignispectusartImage from "/public/assets/images/yumekai2024/IgnisPectusArt.png";
-import kirianYumeImage from "/public/assets/images/yumekai2024/Kirian_Yume.png";
-import krixxiImage from "/public/assets/images/yumekai2024/krixxi.png";
+import eenteImage from "/public/assets/images/yumekai2024/eente.jpg";
+import emytsuuImage from "/public/assets/images/yumekai2024/Emytsuu.jpg";
+import fylyImage from "/public/assets/images/yumekai2024/Fyly.jpg";
+import ignispectusartImage from "/public/assets/images/yumekai2024/IgnisPectusArt.jpg";
+import kirianYumeImage from "/public/assets/images/yumekai2024/Kirian_Yume.jpg";
+import krixxiImage from "/public/assets/images/yumekai2024/krixxi.jpg";
 import manyMindArtImage from "/public/assets/images/yumekai2024/Many_Mind_Art.jpg";
 import mausalImage from "/public/assets/images/yumekai2024/mausal.jpg";
-import myuchiisuImage from "/public/assets/images/yumekai2024/Myuchiisu.png";
+import myuchiisuImage from "/public/assets/images/yumekai2024/Myuchiisu.jpg";
 import nikitasFantasiesImage from "/public/assets/images/yumekai2024/Nikitas_Fantasies.jpg";
-import prettysmartfashionImage from "/public/assets/images/yumekai2024/Prettysmartfashion.png";
-import roxinoImage from "/public/assets/images/yumekai2024/RoXino.png";
-import rumbleTheKlabautermannImage from "/public/assets/images/yumekai2024/rumble_the_klabautermann.png";
-import rumiyaImage from "/public/assets/images/yumekai2024/Rumiya.png";
-import scarlettsirene2Image from "/public/assets/images/yumekai2024/scarlettsirene2.png";
-import tactokiImage from "/public/assets/images/yumekai2024/TacToki.png";
-import whalienWorksFluffylunariiImage from "/public/assets/images/yumekai2024/Whalien_Works__fluffylunarii.png";
+import prettysmartfashionImage from "/public/assets/images/yumekai2024/Prettysmartfashion.jpg";
+import roxinoImage from "/public/assets/images/yumekai2024/RoXino.jpg";
+import rumbleTheKlabautermannImage from "/public/assets/images/yumekai2024/rumble_the_klabautermann.jpg";
+import rumiyaImage from "/public/assets/images/yumekai2024/Rumiya.jpg";
+import scarlettsirene2Image from "/public/assets/images/yumekai2024/scarlettsirene2.jpg";
+import tactokiImage from "/public/assets/images/yumekai2024/TacToki.jpg";
+import whalienWorksFluffylunariiImage from "/public/assets/images/yumekai2024/Whalien_Works__fluffylunarii.jpg";
 
 //Vereine
-import cohekiImage from "/public/assets/images/yumekai2024/CoHeKi.png";
-import conquestLogoImage from "/public/assets/images/yumekai2024/ConQuest_Logo.png";
+import cohekiImage from "/public/assets/images/yumekai2024/CoHeKi.jpg";
+import conquestLogoImage from "/public/assets/images/yumekai2024/ConQuest_Logo.jpg";
 import cosplayalpinLogoImage from "/public/assets/images/yumekai2024/Cosplay-Alpin_logo.jpg";
-import cosquestLogoImage from "/public/assets/images/yumekai2024/CosQuest_Logo.png";
-import govereinImage from "/public/assets/images/yumekai2024/GO-Verein.png";
-import muenchnerFursImage from "/public/assets/images/yumekai2024/Muenchner_Furs.png";
-import nihonbashiImage from "/public/assets/images/yumekai2024/Nihonbashi.png";
-import vividAriseImage from "/public/assets/images/yumekai2024/Vivid_Arise.png";
+import cosquestLogoImage from "/public/assets/images/yumekai2024/CosQuest_Logo.jpg";
+import govereinImage from "/public/assets/images/yumekai2024/GO-Verein.jpg";
+import muenchnerFursImage from "/public/assets/images/yumekai2024/Muenchner_Furs.jpg";
+import nihonbashiImage from "/public/assets/images/yumekai2024/Nihonbashi.jpg";
+import vividAriseImage from "/public/assets/images/yumekai2024/Vivid_Arise.jpg";
 
 //Workshops
 import berniCosWorkshopImage from "/public/assets/images/yumekai2024/berni_cos_Workshop.jpg";
-import droidbuildingImage from "/public/assets/images/yumekai2024/Droidbuilding.png";
+import droidbuildingImage from "/public/assets/images/yumekai2024/Droidbuilding.jpg";
 import eraliaWorkshopImage from "/public/assets/images/yumekai2024/Eralia_Workshop.jpg";
 import fylyWorkshopImage from "/public/assets/images/yumekai2024/Fyly_Workshop.jpg";
-import haekelnFuerAnfaengerImage from "/public/assets/images/yumekai2024/Haekeln_fuer_Anfaenger.png";
-import hanaCosplayCosplayArmorAusEvaImage from "/public/assets/images/yumekai2024/Hana_Cosplay_Cosplay_Armor_aus_EVA.png";
+import haekelnFuerAnfaengerImage from "/public/assets/images/yumekai2024/Haekeln_fuer_Anfaenger.jpg";
+import hanaCosplayCosplayArmorAusEvaImage from "/public/assets/images/yumekai2024/Hana_Cosplay_Cosplay_Armor_aus_EVA.jpg";
 import japanTravelImage from "/public/assets/images/yumekai2024/Japan_Travel.jpg";
-import karriereImEsportImage from "/public/assets/images/yumekai2024/Karriere_im_E-Sport.png";
-import lolitaPanelImage from "/public/assets/images/yumekai2024/Lolita_Panel.png";
+import karriereImEsportImage from "/public/assets/images/yumekai2024/Karriere_im_E-Sport.jpg";
+import lolitaPanelImage from "/public/assets/images/yumekai2024/Lolita_Panel.jpg";
 import rollenspielleitung101Image from "/public/assets/images/yumekai2024/Rollenspiel-Leitung_101.jpg";
-import schnittabaenderungImage from "/public/assets/images/yumekai2024/Schnittabaenderung.png";
-import stateraImage from "/public/assets/images/yumekai2024/Statera.png";
+import schnittabaenderungImage from "/public/assets/images/yumekai2024/Schnittabaenderung.jpg";
+import stateraImage from "/public/assets/images/yumekai2024/Statera.jpg";
 
 //Essen
-import narutoFoodtruckImage from "/public/assets/images/yumekai2024/Naruto_FoodTruck_Sweets.png";
+import narutoFoodtruckImage from "/public/assets/images/yumekai2024/Naruto_FoodTruck_Sweets.jpg";
 import auroralogoImage from "/public/assets/images/yumekai2024/Aurora_Gruppe.jpg";
-import auroraGruppeImage from "/public/assets/images/yumekai2024/Aurora-Logo.png";
+import auroraGruppeImage from "/public/assets/images/yumekai2024/Aurora-Logo.jpg";
 import bildNarutoFoodtruckImage from "/public/assets/images/yumekai2024/Bild_Naruto_Foodtruck.jpg";
 
 //Cosplay Wettbewerbe
@@ -131,7 +131,7 @@ import catwalk23Image from "/public/assets/images/yumekai2024/catwalk_23.jpg";
 import catwalk24Image from "/public/assets/images/yumekai2024/catwalk_24.jpg";
 import catwalk25Image from "/public/assets/images/yumekai2024/catwalk_25.jpg";
 import catwalkGewinnerImage from "/public/assets/images/yumekai2024/Catwalk_gewinner.jpg";
-import juryArsinoeImage from "/public/assets/images/yumekai2024/Jury_Arsinoe.png";
+import juryArsinoeImage from "/public/assets/images/yumekai2024/Jury_Arsinoe.jpg";
 import juryEraliaImage from "/public/assets/images/yumekai2024/Jury_Eralia.jpg";
 import juryEvelynImage from "/public/assets/images/yumekai2024/Jury_Evelyn.jpg";
 import juryPalelittedragonImage from "/public/assets/images/yumekai2024/Jury_PaleLitteDragon.jpg";

@@ -6,7 +6,7 @@ import Columns2 from "@/components/elements/Columns2";
 import { StyledLink } from "@/components/styledComponents";
 
 //Images
-import emytsuuImage from "/public/assets/images/yumekai2024/Emytsuu.jpg";
+import emytsuuImage from "/public/assets/images/yumekai2024/Emytsuu_Zeichnung.jpg";
 import leloImage from "/public/assets/images/yumekai2024/LeLo.jpg";
 import miruImage from "/public/assets/images/yumekai2024/Miru.jpg";
 import stellaImage from "/public/assets/images/yumekai2024/Stella.jpg";
