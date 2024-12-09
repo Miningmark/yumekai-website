@@ -384,7 +384,7 @@ export default function HelferForm() {
       <p>
         Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
       </p>
-      <h2>Persönliche Angaben</h2>
+      <h3>Persönliche Angaben</h3>
       <InputOptionInput
         title="Name"
         inputText={name}
@@ -494,7 +494,7 @@ export default function HelferForm() {
       )}
 
       <Spacer />
-      <h2>Adresse</h2>
+      <h3>Adresse</h3>
 
       <InputOptionInput
         title="Straße"
@@ -531,7 +531,7 @@ export default function HelferForm() {
       />
 
       <Spacer />
-      <h2>Allgemeines</h2>
+      <h3>Allgemeines</h3>
 
       <InputOptionSelect
         title="T-Shirt Größe"
@@ -575,7 +575,7 @@ export default function HelferForm() {
       />
 
       <Spacer />
-      <h2>Verpflegung</h2>
+      <h3>Verpflegung</h3>
 
       <InputOptionRadio
         title="Essen"
@@ -595,7 +595,7 @@ export default function HelferForm() {
       />
 
       <Spacer />
-      <h2>Interessen/Aufgaben/Erfahrungen</h2>
+      <h3>Interessen/Aufgaben/Erfahrungen</h3>
 
       <InputOptionInput
         title="Beruf/Ausbildung"
@@ -611,7 +611,7 @@ export default function HelferForm() {
         inputRef={refs.strengths}
         isError={errors.some((error) => error.field === "strengths")}
       />
-      <h3>Wunschteam (kann nicht garantiert werden)</h3>
+      <h4>Wunschteam (kann nicht garantiert werden)</h4>
       <InputOptionCheckbox
         title={"Einlasskontrolle"}
         isChecked={departmentAdmission}
@@ -662,7 +662,7 @@ export default function HelferForm() {
       />
 
       <Spacer />
-      <h2>Einsatzzeiten</h2>
+      <h3>Einsatzzeiten</h3>
 
       <p>
         Bitte gib hier an, wie viele Stunden du am jeweiligen Tag Helfen möchtest (min. 5 Stunden).
@@ -683,7 +683,7 @@ export default function HelferForm() {
       />
 
       <Spacer />
-      <h2>Richtlinien</h2>
+      <h3>Richtlinien</h3>
 
       <InputOptionCheckbox
         title="privacyPolicy"
@@ -709,7 +709,7 @@ export default function HelferForm() {
         title="contactForwarding"
         content={
           <p>
-            Dürfen wir, der zuständigen Orga deine Kontaktdaten weiter geben.
+            Dürfen wir der zuständigen Orga deine Kontaktdaten weiter geben.
             <RequiredNote>*</RequiredNote>
           </p>
         }
