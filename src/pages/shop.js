@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Script from "next/script";
 import Banner from "@/components/shop/Banner";
+import { StyledLink } from "@/components/styledComponents";
 
 export default function Shop() {
   return (
@@ -12,7 +13,15 @@ export default function Shop() {
       />
 
       <h1>Ticketshop</h1>
-      <p>Der Ticketvorverkauf startet am 15.12.2024 um 16:00 Uhr.</p>
+      <p>
+        Der Ticketvorverkauf startet am 15.12.2024 um 16:00 Uhr.
+        <br />
+        Falls das Ticketshop Widget nicht läd kannst du den Ticketshop unter{" "}
+        <StyledLink href="https://pretix.eu/Dreamfly-Events/yumekai-25/" target="_blank">
+          pretix.eu/Dreamfly-Events/yumekai-25/
+        </StyledLink>{" "}
+        erreichen.
+      </p>
       <div
         dangerouslySetInnerHTML={{
           __html: `
