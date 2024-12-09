@@ -78,6 +78,30 @@ export const GlobalStyles = createGlobalStyle`
     
     }
 
+    textarea{
+        font-size: 1.125rem;
+
+        @media (max-width: 550px) {
+        font-size: 1rem;
+        }
+    }
+
+    input{
+        font-size: 1.125rem;
+
+        @media (max-width: 550px) {
+        font-size: 1rem;
+        }
+    }
+
+    select{
+        font-size: 1.125rem;
+
+        @media (max-width: 550px) {
+        font-size: 1rem;
+        }
+    }
+
 
 
     h1{

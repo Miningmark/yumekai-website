@@ -162,7 +162,8 @@ export function InputOptionSelect({
           ))}
         </StyledSelect>
         <DropdownLabel>
-          {title} {require && <RequiredNote>*</RequiredNote>}
+          {title}
+          {require && <RequiredNote>*</RequiredNote>}
         </DropdownLabel>
       </InputWrapper>
     </>
@@ -182,7 +183,10 @@ export function InputOptionRadio({
     <>
       <InputWrapper $iserror={isError && "1"}>
         <p>
-          {title} {require && <RequiredNote>*</RequiredNote>}
+          <strong>
+            {title}
+            {require && <RequiredNote>*</RequiredNote>}
+          </strong>
         </p>
         <InputRadioWrapper ref={inputRef}>
           {options.map((option, index) => (

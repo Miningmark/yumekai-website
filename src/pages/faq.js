@@ -109,7 +109,7 @@ export default function FAQ() {
         content={
           <>
             <p>
-              Tickets kannst du in unseren <StyledLink href="/tickets">Ticketshop</StyledLink>{" "}
+              Tickets kannst du in unseren <StyledLink href="/shop">Ticketshop</StyledLink>{" "}
               erwerben.
             </p>
           </>

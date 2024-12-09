@@ -6,13 +6,19 @@ export const InputLabel = styled.label`
   line-height: 1.1;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 03px; //0
   padding: 0 4px;
   margin: 12px 4px;
   white-space: nowrap;
   transform: translate(0, 0);
-  transform-origin: 0 0;
+  transform-origin: 0 -10px;
   background-color: ${({ theme }) => theme.backgroundColor1};
+
+  -webkit-padding: 0 4px;
+  -webkit-margin: 12px 4px;
+  -webkit-appearance: none; /* Safari spezifisch */
+  appearance: none; /* Standard */
+
   /*
   @-moz-document url-prefix() {
     margin: 26px 4px;
@@ -84,6 +90,8 @@ export const InputCheckboxWrapper = styled.div`
   gap: 10px;
   ${({ $iserror }) => $iserror && `border: solid 2px red;`}
   border-radius: 4px;
+
+  align-items: center;
 `;
 
 export const InputRadioWrapper = styled.div`
@@ -135,10 +143,13 @@ export const StyledSelect = styled.select`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.backgroundColor1};
   color: ${({ theme }) => theme.text};
-  font-size: 16px;
+  //font-size: 16px;
   font-weight: bold;
   appearance: auto;
   cursor: pointer;
+
+  -webkit-appearance: none; /* Safari spezifisch */
+  appearance: none; /* Standard */
 
   &:focus {
     outline: none;
@@ -158,11 +169,14 @@ export const DropdownLabel = styled.label`
   line-height: 1.1;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 02px;
   padding: 0 4px;
   margin: 14px 4px;
   white-space: nowrap;
   background: ${({ theme }) => theme.backgroundColor1};
+  -webkit-transform: translate(0px, -24px) scale(0.8);
+  -webkit-appearance: none; /* Safari spezifisch */
+  appearance: none; /* Standard */
 `;
 
 export const RequiredNote = styled.span`

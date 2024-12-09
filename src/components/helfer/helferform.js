@@ -460,8 +460,14 @@ export default function HelferForm() {
         require
       />
 
-      <StyledButton type="button" as="label" htmlFor="fileUpload" ref={refs.image}>
-        Foto hochladen
+      <StyledButton
+        type="button"
+        as="label"
+        htmlFor="fileUpload"
+        ref={refs.image}
+        style={{ backgroundColor: "var(--secondary-color)" }}
+      >
+        Foto hochladen <RequiredNote>*</RequiredNote>
         <input
           type="file"
           id="fileUpload"
