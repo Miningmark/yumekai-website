@@ -1,4 +1,5 @@
 import mysql from "mysql2/promise";
+import emailContactRequest from "@/util/email_contactRequest";
 
 /*
  
@@ -172,6 +173,8 @@ export default async function handler(req, res) {
     const values = [clientIp, name, lastName, email, area, subject, message, privacyPolicy];
 
     await connection.query(query, values);
+
+    emailContactRequest({ email, name, area, subject, message });
 
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (err) {

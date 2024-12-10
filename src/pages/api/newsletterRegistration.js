@@ -1,6 +1,7 @@
 import mysql from "mysql2/promise";
 import crypto from "crypto";
 import { sendMail } from "@/util/sendEmail";
+import emailNewsletter from "@/util/email_newsletter";
 
 /*
 
@@ -89,11 +90,8 @@ export default async function handler(req, res) {
       );
 
       if (result.affectedRows === 1) {
-        sendMail({
-          to: email,
-          subject: "Bitte bestätige deine Anmeldung zum YumeKai Newsletter",
-          text: `Hallo ${name},\n\nbitte bestätige deine Anmeldung zum YumeKai Newsletter mit dem folgenden Link: ${process.env.BASE_URL}/newsletter/confirm?token=${token}`,
-        });
+        emailNewsletter({ email, name, token });
+
         return res.status(201).json({ message: "Erfolgreich registriert" });
       } else {
         throw new Error("Fehler beim Eintragen in die Datenbank");

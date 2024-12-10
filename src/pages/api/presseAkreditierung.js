@@ -1,4 +1,5 @@
 import mysql from "mysql2/promise";
+import emailPresseAkkreditierung from "@/util/email_presseakkreditierung";
 
 /*
 
@@ -141,7 +142,7 @@ export default async function handler(req, res) {
     // Spam-Prüfung: Gibt es eine Anfrage von derselben E-Mail in den letzten 5 Minuten?
     const spamCheckQuery = `
      SELECT COUNT(*) AS count 
-     FROM contact_requests 
+     FROM presse_akkreditierungen 
      WHERE (email = ? OR client_ip = ?) AND created_at > NOW() - INTERVAL 5 MINUTE
    `;
     const [spamCheckResult] = await connection.query(spamCheckQuery, [email, clientIp]);
@@ -170,6 +171,17 @@ export default async function handler(req, res) {
     );
 
     // Erfolgsmeldung zurückgeben
+
+    emailPresseAkkreditierung({
+      contactPerson,
+      email,
+      workFunction,
+      medium,
+      address,
+      verification,
+      message,
+    });
+
     return res.status(200).json({ message: "Presse Akkreditierung erfolgreich abgeschickt" });
   } catch (error) {
     console.error("Database error:", error);

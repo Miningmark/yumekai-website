@@ -150,6 +150,8 @@ export default function Register() {
           <InputOptionCheckbox
             title={
               <p>
+                Ja, ich möchte gerne regelmäßig den personalisierten Newsletter der YumeKai
+                erhalten. <br />
                 Ich habe die{" "}
                 <StyledLink href="/datenschutz" target="_blank">
                   Datenschutzerklärung
