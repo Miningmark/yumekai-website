@@ -67,7 +67,7 @@ export default function emailPresseAkkreditierung({
             </tr>
             <tr>
                 <td>
-                <div style="font-weight:normal;front-size:10px;padding:0px 24px 16px 24px">
+                <div style="font-weight:normal;front-size:8px;padding:0px 24px 16px 24px">
                     <br />
                     <br />
                     <div class="default-style">
