@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise";
 
-/**
+/*
  
 CREATE TABLE contact_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,17 +8,17 @@ CREATE TABLE contact_requests (
     name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    area VARCHAR(50),
-    subject VARCHAR(50),
-    message TEXT,
-    privacy_policy BOOLEAN,
+    area VARCHAR(50) NOT NULL,
+    subject VARCHAR(50) NOT NULL,
+    message TEXT NOT NULL,
+    privacy_policy BOOLEAN NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE unusual_activity_logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    clientIp VARCHAR(255),
-    email VARCHAR(255),
+    client_ip VARCHAR(50),
+    email VARCHAR(100),
     reason VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -115,8 +115,8 @@ export default async function handler(req, res) {
         message: "Nachricht muss mindestens 10 Zeichen lang sein",
       });
     }
-    if (message.length > 500) {
-      errors.push({ field: "message", message: "Nachricht darf maximal 500 Zeichen lang sein" });
+    if (message.length > 2500) {
+      errors.push({ field: "message", message: "Nachricht darf maximal 2500 Zeichen lang sein" });
     }
   }
 
@@ -164,7 +164,7 @@ export default async function handler(req, res) {
           area,
           subject,
           message,
-          privacy_policy,
+          privacy_policy
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `;

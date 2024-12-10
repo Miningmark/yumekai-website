@@ -562,17 +562,23 @@ export default function HelferForm() {
         />
       )}
       <CheckBox
-        title={"Aufbau Freitag"}
+        title={
+          "Aufbau Freitag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+        }
         isChecked={assemblyFriday}
         inputChange={(value) => setAssemblyFriday(value)}
       />
       <CheckBox
-        title={"Aufbauhelfer"}
+        title={
+          "Aufbau Samstag (06:00 - 09:30) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+        }
         isChecked={assembly}
         inputChange={(value) => setAssembly(value)}
       />
       <CheckBox
-        title={"Abbauhelfer"}
+        title={
+          "Abbau Sonntag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+        }
         isChecked={deconstruction}
         inputChange={(value) => setDeconstruction(value)}
       />

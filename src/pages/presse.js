@@ -108,10 +108,16 @@ export default function Presse() {
         }),
       });
 
-      const result = await response.json();
-
       if (response.ok) {
         setSuccess("Presse Akkreditierung erfolgreich abgeschickt");
+        setContactPerson("");
+        setEmail("");
+        setWorkFunction("");
+        setMedium("");
+        setAddress("");
+        setVerification("");
+        setMessage("");
+        setPrivacyPolicy(false);
       } else {
         setErrors([
           {
@@ -287,8 +293,8 @@ export default function Presse() {
               <RequiredNote>*</RequiredNote>
             </p>
           }
-          checked={privacyPolicy}
-          onChange={(value) => setPrivacyPolicy(value)}
+          isChecked={privacyPolicy}
+          inputChange={(value) => setPrivacyPolicy(value)}
           inputRef={refs.privacyPolicy}
           isError={errors.some((error) => error.field === "privacyPolicy")}
           require

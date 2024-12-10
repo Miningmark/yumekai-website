@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 /*
 
-CREATE TABLE presse_akreditierungen (
+CREATE TABLE presse_akkreditierungen (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_ip VARCHAR(50) NOT NULL,
     contact_person VARCHAR(100) NOT NULL,
@@ -154,7 +154,7 @@ export default async function handler(req, res) {
     }
 
     // Die Eingabedaten in der Datenbank speichern
-    const [result] = await connection.execute(
+    await connection.execute(
       "INSERT INTO presse_akkreditierungen (contact_person, email, work_function, medium, address, verification, message, privacy_policy, client_ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         contactPerson,
