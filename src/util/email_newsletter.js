@@ -1,5 +1,6 @@
 `use server`;
 
+import fs from "fs";
 import path from "path";
 import { sendMail } from "@/util/sendEmail";
 

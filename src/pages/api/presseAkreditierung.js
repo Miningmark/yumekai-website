@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise";
-import emailPresseAkkreditierung from "@/util/email_presseakkreditierung";
+import emailPresseAkkreditierung from "@/util/email_presseAkkreditierung";
 
 /*
 
