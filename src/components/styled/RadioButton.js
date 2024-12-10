@@ -13,12 +13,12 @@ export default function RadioButton({
 }) {
   return (
     <StyledWrapper $iserror={isError && "1"}>
-      <p>
+      <Title>
         <strong>
           {title}
           {require && <RequiredNote>*</RequiredNote>}
         </strong>
-      </p>
+      </Title>
       <div className="container">
         {options.map((option, index) => (
           <label key={`${title}-${option}`}>
@@ -135,8 +135,8 @@ const StyledWrapper = styled.div`
       background: var(--c) content-box;
     }
   }
+`;
 
-  p {
-    margin: 0 0 10px 0;
-  }
+const Title = styled.p`
+  margin: 10px 0;
 `;

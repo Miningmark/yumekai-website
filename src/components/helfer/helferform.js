@@ -19,6 +19,7 @@ import {
 import { RequiredNote } from "@/components/styledInputComponents";
 import RadioButton from "../styled/RadioButton";
 import CheckBox from "../styled/CheckBox";
+import FileUpload from "../styled/FileUpload";
 
 const UploadInfo = styled.div`
   display: flex;
@@ -462,22 +463,21 @@ export default function HelferForm() {
         require
       />
 
-      <StyledButton
-        type="button"
-        as="label"
-        htmlFor="fileUpload"
-        ref={refs.image}
-        style={{ backgroundColor: "var(--secondary-color)" }}
-      >
-        Foto hochladen <RequiredNote>*</RequiredNote>
-        <input
-          type="file"
-          id="fileUpload"
-          style={{ display: "none" }}
-          onChange={handleFileChange}
-        />
-      </StyledButton>
-      {fileError && <ErrorText>{fileError}</ErrorText>}
+      <p>
+        Foto hochladen, dies sollte ein gut ausgeleuchtetes Farbbild vor neutralem Hintergrund sein,
+        auf dem du gut zu erkennen bist. <br />
+        (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+      </p>
+      <FileUpload
+        handleFileChange={handleFileChange}
+        inputRef={refs.image}
+        previewUrl={previewUrl}
+        file={file}
+        isError={errors.some((error) => error.field === "image")}
+      />
+
+      {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
+      {/*
       {previewUrl && (
         <UploadInfo>
           <p>{file.name}</p>
@@ -494,6 +494,7 @@ export default function HelferForm() {
           />
         </UploadInfo>
       )}
+        */}
 
       <Spacer />
       <h3>Adresse</h3>

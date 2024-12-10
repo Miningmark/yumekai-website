@@ -78,6 +78,10 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  h3 {
+    margin: 20px 0 0 0;
+  }
 `;
 
 export const ErrorText = styled.p`
