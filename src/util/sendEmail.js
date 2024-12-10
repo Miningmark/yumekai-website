@@ -29,7 +29,7 @@ const connection = mysql.createPool({
 
 export async function sendMail(mail, mailOptions) {
   const { from = "test@miningmark.de", to, subject, text } = mail;
-  //console.log("E-MAIL Send: ", from, to, subject, text);
+  console.log("E-MAIL Send: ", subject);
 
   if (!from || !to || !subject || !text) {
     return { message: "Alle Felder müssen ausgefüllt sein", status: 400 };

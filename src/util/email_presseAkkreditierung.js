@@ -1,12 +1,10 @@
 `use server`;
 
 import path from "path";
-import fs from "fs";
 import { sendMail } from "@/util/sendEmail";
 
 export default function emailPresseAkkreditierung({
   email,
-  name,
   contactPerson,
   workFunction,
   medium,

@@ -5,10 +5,8 @@ import { useRef, useEffect } from "react";
 import ImageCarousel from "@/components/elements/ImageCarousel";
 
 //Sponsor Images
-import arnosRetroVideogamesImage from "/public/assets/images/sponsors/Arnos_Retro_Videogames.png";
 import cineplexImage from "/public/assets/images/sponsors/Cineplex.png";
 import cohekiImage from "/public/assets/images/sponsors/CoHeKi.png";
-import comicTimeImage from "/public/assets/images/sponsors/comic_time.png";
 import foamlordImage from "/public/assets/images/sponsors/Foamlord.png";
 import fuyukoImage from "/public/assets/images/sponsors/fuyuko.png";
 import heldenschmiedeImage from "/public/assets/images/sponsors/Heldenschmiede.png";
@@ -22,14 +20,8 @@ import mrVeranstaltung from "/public/assets/images/sponsors/MR_Veranstaltung.png
 import { SpacerEmpty } from "../styledComponents";
 
 const sponsorList = [
-  {
-    image: arnosRetroVideogamesImage,
-    alt: "Arnos Retro Videogames",
-    link: "https://www.arnos-retro-videogames.com/",
-  },
   { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
   { image: cohekiImage, alt: "CoHeKi", link: "https://coheki.de/" },
-  { image: comicTimeImage, alt: "Comic Time", link: "https://www.comic-time.de/de/" },
   { image: foamlordImage, alt: "Foamlord", link: "https://www.foamlord.de/" },
   { image: fuyukoImage, alt: "Fuyuko", link: "https://fuyuko.de/" },
   { image: heldenschmiedeImage, alt: "Heldenschmiede", link: "https://www.heldenschmiede.eu/" },

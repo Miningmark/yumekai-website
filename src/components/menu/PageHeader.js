@@ -30,6 +30,7 @@ const menuItems = [
     ],
   },
   { name: "Das sind Wir", path: "/das-sind-wir" },
+  { name: "Anmeldung für YumeKai 25", path: "/voranmeldungen" },
   { name: "Tickets", path: "/shop" },
 ];
 
