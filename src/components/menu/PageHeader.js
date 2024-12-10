@@ -21,7 +21,14 @@ const menuItems = [
       { name: "YumeKai-Night", path: "/projects/yumekai-night" },
     ],
   },
-  { name: "Rückblick YumeKai", path: "/review/yumekai-2024" },
+  {
+    name: "Rückblicke",
+    path: "/review/yumekai-2024",
+    subItems: [
+      { name: "YumeKai 2024", path: "/review/yumekai-2024" },
+      { name: "YumeKai-Night II", path: "/review/yumekai-night-II-2024" },
+    ],
+  },
   { name: "Das sind Wir", path: "/das-sind-wir" },
   { name: "Tickets", path: "/shop" },
 ];
