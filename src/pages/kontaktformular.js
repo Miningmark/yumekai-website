@@ -1,14 +1,15 @@
 import styled from "styled-components";
-
 import { useState, useRef } from "react";
+
+//Components
 import {
   InputOptionTextArea,
   InputOptionInput,
   InputOptionSelect,
-  InputOptionCheckbox,
 } from "@/components/elements/InputComponents";
 import { StyledButton, StyledForm, StyledLink } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
+import CheckBox from "@/components/styled/CheckBox";
 
 export default function Kontaktformular() {
   const [name, setName] = useState("");
@@ -207,7 +208,7 @@ export default function Kontaktformular() {
           inputRef={refs.message}
           isError={errors.some((error) => error.field === "message")}
         />
-        <InputOptionCheckbox
+        <CheckBox
           title={
             <p>
               Ich habe die{" "}

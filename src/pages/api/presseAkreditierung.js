@@ -147,7 +147,7 @@ export default async function handler(req, res) {
     const [spamCheckResult] = await connection.query(spamCheckQuery, [email, clientIp]);
     if (spamCheckResult[0].count > 0) {
       // Ungewöhnliches Verhalten loggen
-      await logUnusualActivity(anonymizedIp, email, "Spam-Versuch");
+      await logUnusualActivity(clientIp, email, "Spam-Versuch");
       return res
         .status(429)
         .json({ message: "Zu viele Anfragen. Bitte versuchen Sie es später erneut." });
@@ -182,8 +182,8 @@ export default async function handler(req, res) {
 // Ungewöhnliches Verhalten loggen
 async function logUnusualActivity(ip, email, reason) {
   const query = `
-      INSERT INTO unusual_activity_logs (clientIp, email, reason, created_at)
-      VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+      INSERT INTO unusual_activity_logs (client_ip, email, reason)
+      VALUES (?, ?, ?)
     `;
   const values = [ip, email, reason];
   try {

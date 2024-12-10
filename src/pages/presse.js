@@ -2,14 +2,10 @@ import styled from "styled-components";
 
 //Components
 import { useState, useRef } from "react";
-import {
-  InputOptionTextArea,
-  InputOptionInput,
-  InputOptionSelect,
-  InputOptionCheckbox,
-} from "@/components/elements/InputComponents";
+import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
 import { StyledButton, StyledForm, Spacer, StyledLink } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
+import CheckBox from "@/components/styled/CheckBox";
 
 export default function Presse() {
   const [contactPerson, setContactPerson] = useState("");
@@ -280,7 +276,7 @@ export default function Presse() {
           inputRef={refs.message}
           isError={errors.some((error) => error.field === "message")}
         />
-        <InputOptionCheckbox
+        <CheckBox
           title={
             <p>
               Ich habe die{" "}

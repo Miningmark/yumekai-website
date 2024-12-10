@@ -5,8 +5,6 @@ import {
   InputOptionTextArea,
   InputOptionInput,
   InputOptionSelect,
-  InputOptionCheckbox,
-  InputOptionRadio,
 } from "@/components/elements/InputComponents";
 import {
   StyledButton,
@@ -17,30 +15,9 @@ import {
   Spacer,
 } from "../styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
-import RadioButton from "../styled/RadioButton";
-import CheckBox from "../styled/CheckBox";
-import FileUpload from "../styled/FileUpload";
-
-const UploadInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background-color: ${({ theme }) => theme.color3};
-  color: ${({ theme }) => theme.textColor};
-  border-radius: 15px;
-  border: 1px solid ${({ theme }) => theme.textColor};
-  margin: 10px 0 10px 0;
-
-  img {
-    margin: 10px;
-  }
-  p {
-    margin: 10px 0 0 0;
-    padding: 0;
-  }
-`;
+import RadioButton from "@/components/styled/RadioButton";
+import CheckBox from "@/components/styled/CheckBox";
+import FileUpload from "@/components/styled/FileUpload";
 
 const EU_COUNTRIES = [
   "Deutschland",

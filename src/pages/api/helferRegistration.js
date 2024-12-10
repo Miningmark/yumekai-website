@@ -75,7 +75,6 @@ const parseForm = (req) => {
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-    console.log(clientIp);
 
     const { fields, files } = await parseForm(req);
 
@@ -111,41 +110,6 @@ export default async function handler(req, res) {
     );
     const workTimeSaturday = fields.workTimeSaturday[0];
     const workTimeSunday = fields.workTimeSunday[0];
-
-    console.log("NAME: ", name);
-    console.log("Privacy Policy: ", privacyPolicy);
-
-    console.log(
-      clientIp,
-      name,
-      lastName,
-      nickname,
-      gender,
-      discordName,
-      birthdate,
-      email,
-      phone,
-      street,
-      postalCode,
-      city,
-      country,
-      occupation,
-      clothesSize,
-      arrival,
-      requiresParkingTicket,
-      foodPreference,
-      foodDetails,
-      strengths,
-      desiredTeam,
-      other,
-      assemblyFriday,
-      assembly,
-      deconstruction,
-      privacyPolicy,
-      contactForwarding,
-      workTimeSaturday,
-      workTimeSunday
-    );
 
     const errors = [];
 
@@ -257,6 +221,21 @@ export default async function handler(req, res) {
     }
 
     try {
+      // Spam-Prüfung: Gibt es eine Anfrage von derselben E-Mail in den letzten 5 Minuten?
+      const spamCheckQuery = `
+        SELECT COUNT(*) AS count 
+        FROM helfer 
+        WHERE (email = ? OR client_ip = ?) AND created_at > NOW() - INTERVAL 5 MINUTE
+      `;
+      const [spamCheckResult] = await connection.query(spamCheckQuery, [email, clientIp]);
+      if (spamCheckResult[0].count > 0) {
+        // Ungewöhnliches Verhalten loggen
+        await logUnusualActivity(clientIp, email, "Spam-Versuch");
+        return res
+          .status(429)
+          .json({ message: "Zu viele Anfragen. Bitte versuchen Sie es später erneut." });
+      }
+
       const file = files.file[0];
       let filePath = null;
 
@@ -347,5 +326,19 @@ export default async function handler(req, res) {
     }
   } else {
     res.status(405).json({ message: "Methode nicht erlaubt." });
+  }
+}
+
+// Ungewöhnliches Verhalten loggen
+async function logUnusualActivity(ip, email, reason) {
+  const query = `
+    INSERT INTO unusual_activity_logs (client_ip, email, reason)
+    VALUES (?, ?, ?)
+  `;
+  const values = [ip, email, reason];
+  try {
+    await connection.query(query, values);
+  } catch (err) {
+    console.error("Fehler beim Loggen ungewöhnlichen Verhaltens:", err.message);
   }
 }

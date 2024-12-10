@@ -21,7 +21,8 @@ export default function FAQ() {
         title="Was ist die YumeKai?"
         content={
           <p>
-            <Link href={"/projects/yumekai"}>Hier</Link> findest du weitere Informationen.
+            <StyledLink href={"/projects/yumekai"}>Hier</StyledLink> findest du weitere
+            Informationen.
           </p>
         }
       />
@@ -117,11 +118,11 @@ export default function FAQ() {
       />
       <TabTitle
         title="Kann ich mein Ticket für übertragen?"
-        content="Bis einen Tag vor veranstaltungsbeginn können die Ticketinhaber selbstständig geändert werden. Den Link dazu findet ihr in eurer Bestellbestätigung der bestellenden Person. Dabei wird ein neues digitales Ticket generiert, was dem neuen Inhaber des Tickets zur Verfügung gestellt werden muss. Wer danach ein Ticket umschreiben möchte, muss dies vor Ort an der Tageskasse anfragen und es ist nur möglich für Tickets, die noch gescannt wurden."
+        content="Bis einen Tag vor Veranstaltungsbeginn können die Ticketinhaber selbstständig geändert werden. Den Link dazu findet ihr in eurer Bestellbestätigung der bestellenden Person. Dabei wird ein neues digitales Ticket generiert, was dem neuen Inhaber des Tickets zur Verfügung gestellt werden muss. Wer danach ein Ticket umschreiben möchte, muss dies vor Ort an der Tageskasse anfragen und es ist nur möglich für Tickets, die noch nicht gescannt wurden."
       />
       <TabTitle
         title="Kann ich meine Bestellung erneut einsehen?"
-        content="Ja, Den Link dazu findet ihr in eurer Bestellbestätigung der bestellenden Person."
+        content="Ja, den Link dazu findet ihr in eurer Bestellbestätigung der bestellenden Person."
       />
       <TabTitle
         title="Sondertickets (Begleiter- / Vergünstigtes- / Familien- bzw. Kinder-Ticket)"
@@ -158,7 +159,7 @@ export default function FAQ() {
       />
       <TabTitle
         title="Darf ich Tickets weiterverkaufen?"
-        content="Die Tickets für sind personalisiert. Solltet ihr selbst nicht zur Veranstaltung kommen können, kannst du dein Ticket stornieren (s. oben) oder den Ticketinhaber selbstständig bis zum Tag vor Veranstaltungsbeginn ändern."
+        content="Die Tickets sind personalisiert. Solltet ihr selbst nicht zur Veranstaltung kommen können, kannst du dein Ticket stornieren (s. oben) oder den Ticketinhaber selbstständig bis zum Tag vor Veranstaltungsbeginn ändern."
       />
       <TabTitle
         title="Was sind personalisierte E-Tickets?"
