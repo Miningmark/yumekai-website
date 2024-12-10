@@ -76,39 +76,6 @@ export function InputOptionTextArea({
   );
 }
 
-export function InputOptionTextAreaWithOutInput({ title, inputText, handleOnClick }) {
-  return (
-    <>
-      <InputWrapper className="input">
-        <div
-          onClick={handleOnClick}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 1,
-          }}
-        />
-        <InputArea
-          className="inputField"
-          placeholder=""
-          type="text"
-          name={title}
-          id={title}
-          value={inputText || ""}
-          rows="3"
-          disabled
-        />
-        <InputLabel className="inputLabel" htmlFor={title}>
-          {title} {require && <RequiredNote>*</RequiredNote>}
-        </InputLabel>
-      </InputWrapper>
-    </>
-  );
-}
-
 export function InputOptionCheckbox({
   title,
   content = title,

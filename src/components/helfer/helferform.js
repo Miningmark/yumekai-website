@@ -17,6 +17,8 @@ import {
   Spacer,
 } from "../styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
+import RadioButton from "../styled/RadioButton";
+import CheckBox from "../styled/CheckBox";
 
 const UploadInfo = styled.div`
   display: flex;
@@ -424,7 +426,7 @@ export default function HelferForm() {
         isError={errors.some((error) => error.field === "confirmEmail")}
         require
       />
-      <InputOptionRadio
+      <RadioButton
         title="Geschlecht"
         options={["Männlich", "Weiblich", "Divers"]}
         selectedOption={gender}
@@ -542,7 +544,7 @@ export default function HelferForm() {
         isError={errors.some((error) => error.field === "clothesSize")}
         require
       />
-      <InputOptionRadio
+      <RadioButton
         title="Anreise"
         options={["Auto", "ÖPNV", "Sonstige"]}
         selectedOption={arrival}
@@ -552,23 +554,23 @@ export default function HelferForm() {
         require
       />
       {arrival === "Auto" && (
-        <InputOptionCheckbox
+        <CheckBox
           title="Parkticket benötigt"
           isChecked={requiresParkingTicket}
           inputChange={setRequiresParkingTicket}
         />
       )}
-      <InputOptionCheckbox
+      <CheckBox
         title={"Aufbau Freitag"}
         isChecked={assemblyFriday}
         inputChange={(value) => setAssemblyFriday(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Aufbauhelfer"}
         isChecked={assembly}
         inputChange={(value) => setAssembly(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Abbauhelfer"}
         isChecked={deconstruction}
         inputChange={(value) => setDeconstruction(value)}
@@ -577,7 +579,7 @@ export default function HelferForm() {
       <Spacer />
       <h3>Verpflegung</h3>
 
-      <InputOptionRadio
+      <RadioButton
         title="Essen"
         options={["normal", "vegetarisch", "vegan"]}
         selectedOption={foodPreference}
@@ -612,45 +614,40 @@ export default function HelferForm() {
         isError={errors.some((error) => error.field === "strengths")}
       />
       <h4>Wunschteam (kann nicht garantiert werden)</h4>
-      <InputOptionCheckbox
+      <CheckBox
         title={"Einlasskontrolle"}
         isChecked={departmentAdmission}
         inputChange={(value) => setDepartmentAdmission(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Waffencheck"}
         isChecked={departmentWeaponsCheck}
         inputChange={(value) => setDepartmentWeaponsCheck(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Bühne"}
         isChecked={departmentStage}
         inputChange={(value) => setDepartmentStage(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Springer"}
         isChecked={departmentSpringer}
         inputChange={(value) => setDepartmentSpringer(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Karaoke"}
         isChecked={departmentKaraoke}
         inputChange={(value) => setDepartmentKaraoke(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Bring & Buy"}
         isChecked={departmentBringAndBay}
         inputChange={(value) => setDepartmentBringAndBay(value)}
       />
-      <InputOptionCheckbox
+      <CheckBox
         title={"Workshop"}
         isChecked={departmentWorkshop}
         inputChange={(value) => setDepartmentWorkshop(value)}
-      />
-      <InputOptionCheckbox
-        title={"Ehrengast betreuung"}
-        isChecked={departmentSpecialGuest}
-        inputChange={(value) => setDepartmentSpecialGuest(value)}
       />
 
       <InputOptionTextArea
@@ -685,7 +682,7 @@ export default function HelferForm() {
       <Spacer />
       <h3>Richtlinien</h3>
 
-      <InputOptionCheckbox
+      <CheckBox
         title="privacyPolicy"
         content={
           <p>
@@ -705,7 +702,8 @@ export default function HelferForm() {
         isError={errors.some((error) => error.field === "privacyPolicy")}
         require
       />
-      <InputOptionCheckbox
+
+      <CheckBox
         title="contactForwarding"
         content={
           <p>
