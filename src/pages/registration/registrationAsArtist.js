@@ -142,15 +142,18 @@ export default function RegistrationAsArtist() {
     validateField(postalCode, "postalCode", "PLZ", 5, 10, true);
     validateField(city, "city", "Ort", 3, 50, true);
     validateField(country, "country", "Land", 3, 50, true);
-    validateField(typeOfArt, "typeOfArt", "Art der Kunst", 3, 50, true);
+    validateField(typeOfArt, "typeOfArt", "Art der Kunst", 3, 2500, true);
     validateField(
       descriptionOfStand,
       "descriptionOfStand",
       "Beschreibung des Standes",
       10,
-      500,
+      2500,
       true
     );
+    validateField(website, "website", "Website", 0, 100, false);
+    validateField(instagram, "instagram", "Instagram", 0, 100, false);
+    validateField(message, "message", "Nachricht", 0, 2500, false);
     if (!standSize)
       newErrors.push({ field: "standSize", message: "Standgröße ist ein Pflichtfeld" });
 
@@ -367,6 +370,7 @@ export default function RegistrationAsArtist() {
           isError={errors.some((error) => error.field === "artistName")}
           require
         />
+
         <Spacer />
         <h2>Adresse</h2>
 
@@ -406,7 +410,7 @@ export default function RegistrationAsArtist() {
 
         <Spacer />
         <h2>Stand</h2>
-        <InputOptionInput
+        <InputOptionTextArea
           title="Art der Kunst"
           inputText={typeOfArt}
           inputChange={(value) => setTypeOfArt(value)}

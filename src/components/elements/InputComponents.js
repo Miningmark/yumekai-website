@@ -21,6 +21,9 @@ export function InputOptionInput({
   inputRef,
   require = false,
   isError,
+  min = 0,
+  max = 99999,
+  step = 1,
 }) {
   return (
     <>
@@ -35,6 +38,7 @@ export function InputOptionInput({
           onChange={(e) => inputChange(type === "number" ? +e.target.value : e.target.value)}
           ref={inputRef}
           $iserror={isError && "1"}
+          {...(type === "number" && { min, max, step })}
         />
         <InputLabel className="inputLabel" htmlFor={title}>
           {title}

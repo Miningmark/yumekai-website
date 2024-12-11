@@ -198,7 +198,12 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Händler</p>
-            {renderButton(registrationStart, vendorRegistrationEnd, "#", "Anmeldung")}
+            {renderButton(
+              registrationStart,
+              vendorRegistrationEnd,
+              "/registration/registrationAsVendor",
+              "Anmeldung"
+            )}
           </Infobox>
         </DynamicContent>
       </div>

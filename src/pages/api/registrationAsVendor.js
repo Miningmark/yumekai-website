@@ -11,22 +11,21 @@ export const config = {
 
 /*
 
-CREATE TABLE registration_artist (
+CREATE TABLE registration_vendor (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_ip VARCHAR(64),
     name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     vendor_name VARCHAR(50),
-    artist_name VARCHAR(50) NOT NULL,
     street VARCHAR(100) NOT NULL,
     postal_code VARCHAR(10) NOT NULL,
     city VARCHAR(50) NOT NULL,
     country VARCHAR(50) NOT NULL,
-    type_of_art TEXT NOT NULL,
+    type_of_assortment TEXT NOT NULL,
     description_of_stand TEXT NOT NULL,
     stand_size VARCHAR(50) NOT NULL,
-    additional_exhibitor_ticket BOOLEAN DEFAULT FALSE,
+    additional_exhibitor_ticket int DEFAULT 0,
     website VARCHAR(100),
     instagram VARCHAR(100),
     message TEXT,
@@ -34,7 +33,7 @@ CREATE TABLE registration_artist (
     data_storage BOOLEAN NOT NULL,
     licensed_music BOOLEAN NOT NULL,
     picture_rights BOOLEAN NOT NULL,
-    artist_conditions BOOLEAN NOT NULL,
+    vendor_conditions BOOLEAN NOT NULL,
     image_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -78,12 +77,11 @@ export default async function handler(req, res) {
   const lastName = fields.lastName[0];
   const email = fields.email[0];
   const vendorName = fields.vendorName[0];
-  const artistName = fields.artistName[0];
   const street = fields.street[0];
   const postalCode = fields.postalCode[0];
   const city = fields.city[0];
   const country = fields.country[0];
-  const typeOfArt = fields.typeOfArt[0];
+  const typeOfAssortment = fields.typeOfAssortment[0];
   const descriptionOfStand = fields.descriptionOfStand[0];
   const standSize = fields.standSize[0];
   const additionalExhibitorTicket = ["true", "yes", "1"].includes(
@@ -96,7 +94,7 @@ export default async function handler(req, res) {
   const dataStorage = ["true", "yes", "1"].includes(fields.dataStorage[0].toLowerCase());
   const licensedMusic = ["true", "yes", "1"].includes(fields.licensedMusic[0].toLowerCase());
   const pictureRights = ["true", "yes", "1"].includes(fields.pictureRights[0].toLowerCase());
-  const artistConditions = ["true", "yes", "1"].includes(fields.artistConditions[0].toLowerCase());
+  const vendorConditions = ["true", "yes", "1"].includes(fields.vendorConditions[0].toLowerCase());
 
   const errors = [];
 
@@ -125,18 +123,16 @@ export default async function handler(req, res) {
   if (email && !emailRegex.test(email)) {
     errors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
   }
-
-  validateString(artistName, "artistName", 3, 50);
+  validateString(vendorName, "vendorName", 3, 50);
   validateString(street, "street", 5, 100);
   validateString(postalCode, "postalCode", 2, 10);
   validateString(city, "city", 2, 50);
   validateString(country, "country", 2, 50);
-  validateString(typeOfArt, "typeOfArt", 3, 2500);
+  validateString(typeOfAssortment, "typeOfAssortment", 3, 2500);
   validateString(descriptionOfStand, "descriptionOfStand", 3, 2500);
   validateString(standSize, "standSize", 3, 50);
 
   // Optional fields
-  if (vendorName) validateString(vendorName, "vendorName", 3, 50);
   if (website) validateString(website, "website", 3, 100);
   if (instagram) validateString(instagram, "instagram", 3, 100);
   if (message) validateString(message, "message", 3, 2500);
@@ -166,10 +162,10 @@ export default async function handler(req, res) {
       message: "Bildrechte müssen bestätigt werden",
     });
   }
-  if (typeof artistConditions !== "boolean") {
+  if (typeof vendorConditions !== "boolean") {
     errors.push({
-      field: "artistConditions",
-      message: "Künstlerbedingungen müssen bestätigt werden",
+      field: "vendorConditions",
+      message: "Händlerbedingungen müssen bestätigt werden",
     });
   }
 
@@ -183,7 +179,7 @@ export default async function handler(req, res) {
     // Spam-Prüfung: Gibt es eine Anfrage von derselben E-Mail in den letzten 5 Minuten?
     const spamCheckQuery = `
     SELECT COUNT(*) AS count 
-    FROM registration_artist
+    FROM registration_vendor
     WHERE (email = ? OR client_ip = ?) AND created_at > NOW() - INTERVAL 5 MINUTE
   `;
     const [spamCheckResult] = await connection.query(spamCheckQuery, [email, clientIp]);
@@ -200,28 +196,27 @@ export default async function handler(req, res) {
 
     const filename = Date.now() + "_" + file.originalFilename.replaceAll(" ", "_");
 
-    const uploadDir = path.join(process.cwd(), `/private/artistImage`);
+    const uploadDir = path.join(process.cwd(), `/private/vendorImage`);
 
     filePath = path.join(uploadDir, filename);
 
     await fs.rename(file.filepath, filePath);
 
-    filePath = `/artistImage/${filename}`;
+    filePath = `/vendorImage/${filename}`;
 
     // Inserting the new data record
     const query = `
-        INSERT INTO registration_artist (
+        INSERT INTO registration_vendor (
             client_ip,
             name,
             last_name,
             email,
             vendor_name,
-            artist_name,
             street,
             postal_code,
             city,
             country,
-            type_of_art,
+            type_of_assortment,
             description_of_stand,
             stand_size,
             additional_exhibitor_ticket,
@@ -232,25 +227,24 @@ export default async function handler(req, res) {
             data_storage,
             licensed_music,
             picture_rights,
-            artist_conditions,
+            vendor_conditions,
             image_url
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
       clientIp,
       name,
       lastName,
       email,
-      vendorName || null,
-      artistName,
+      vendorName,
       street,
       postalCode,
       city,
       country,
-      typeOfArt,
+      typeOfAssortment,
       descriptionOfStand,
       standSize,
-      additionalExhibitorTicket || false,
+      additionalExhibitorTicket || 0,
       website || null,
       instagram || null,
       message || null,
@@ -258,7 +252,7 @@ export default async function handler(req, res) {
       dataStorage,
       licensedMusic,
       pictureRights,
-      artistConditions,
+      vendorConditions,
       filePath || null,
     ];
 
