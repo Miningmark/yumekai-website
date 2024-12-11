@@ -117,7 +117,7 @@ export default function FAQ() {
         }
       />
       <TabTitle
-        title="Kann ich mein Ticket für übertragen?"
+        title="Kann ich mein Ticket übertragen?"
         content="Bis einen Tag vor Veranstaltungsbeginn können die Ticketinhaber selbstständig geändert werden. Den Link dazu findet ihr in eurer Bestellbestätigung der bestellenden Person. Dabei wird ein neues digitales Ticket generiert, was dem neuen Inhaber des Tickets zur Verfügung gestellt werden muss. Wer danach ein Ticket umschreiben möchte, muss dies vor Ort an der Tageskasse anfragen und es ist nur möglich für Tickets, die noch nicht gescannt wurden."
       />
       <TabTitle

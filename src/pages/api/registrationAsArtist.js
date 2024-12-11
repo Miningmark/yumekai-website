@@ -2,6 +2,7 @@ import mysql from "mysql2/promise";
 import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
+import emailRegistrationArtist from "@/util/email_registrationArtist";
 
 export const config = {
   api: {
@@ -279,6 +280,28 @@ export default async function handler(req, res) {
     ];
 
     const [result] = await connection.query(query, values);
+
+    // Erfolgsmeldung zurückgeben
+
+    emailRegistrationArtist({
+      name,
+      lastName,
+      email,
+      vendorName,
+      artistName,
+      street,
+      postalCode,
+      city,
+      country,
+      typeOfArt,
+      descriptionOfStand,
+      standSize,
+      additionalExhibitorTicket,
+      wlan,
+      website,
+      instagram,
+      message,
+    });
 
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {

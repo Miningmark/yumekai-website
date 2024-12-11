@@ -82,8 +82,6 @@ export default function RegistrationAsVendor() {
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
 
-  console.log(standSize);
-
   const refs = {
     name: useRef(null),
     lastName: useRef(null),

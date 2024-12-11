@@ -278,6 +278,27 @@ export default async function handler(req, res) {
 
     const [result] = await connection.query(query, values);
 
+    // Erfolgsmeldung zurückgeben
+    emailRegistrationVendor(
+      name,
+      lastName,
+      email,
+      vendorName,
+      street,
+      postalCode,
+      city,
+      country,
+      typeOfAssortment,
+      descriptionOfStand,
+      standSize,
+      additionalExhibitorTicket,
+      strom,
+      wlan,
+      website,
+      instagram,
+      message
+    );
+
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
     console.error("Fehler beim Einfügen der Daten:", err);

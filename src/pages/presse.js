@@ -155,14 +155,18 @@ export default function Presse() {
           <StyledLink href="#akkreditierung">Online-Akkreditierung</StyledLink>
         </li>
       </ul>
-      <Spacer />
+
+      <Spacer id="ansprechpartner" />
       <h2>Ansprechpartner Presse</h2>
+
       <p>
         Das YumeKai-Presseteam erreichen Sie unter{" "}
         <StyledLink href="mailto:info@yumekai.de.">info@yumekai.de.</StyledLink>
       </p>
-      <Spacer />
+
+      <Spacer id="richtlinien" />
       <h2>Akkreditierungsrichtlinien</h2>
+
       <p>
         Eine Akkreditierung erfolgt ausschließlich zum Zwecke{" "}
         <strong>der journalistischen Berichterstattung</strong>. Deshalb behält sich die YumeKai die
@@ -213,8 +217,10 @@ export default function Presse() {
         Journalisten-Akkreditierungen in der Vergangenheit, bei denen keine Berichte entstanden
         sind.
       </p>
-      <Spacer />
+
+      <Spacer id="akkreditierung" />
       <h2>Online Akkreditierung</h2>
+
       <p>
         Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
       </p>

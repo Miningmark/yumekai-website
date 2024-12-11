@@ -57,11 +57,11 @@ export default function DasSindWir() {
             <RectangleContainer center={1} color={1}>
               <h2>Yumeko</h2>
               <p>
-                Unser Maskottchen Yumeko ist ein fester Teil des YumeKai Teams und seit Anfang an
-                mit dabei.
+                Unsere Maskottchens Yumeko und Hiru sind ein fester Teil des YumeKai Teams und seit
+                Anfang an mit dabei.
               </p>
               <UnstyledLink href={"/maskottchen"}>
-                <StyledButton>mehr über mich</StyledButton>
+                <StyledButton>mehr über uns</StyledButton>
               </UnstyledLink>
             </RectangleContainer>
             <br />
