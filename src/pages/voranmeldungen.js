@@ -53,7 +53,7 @@ const hasRegistrationStarted = (startDate) => {
 };
 
 export default function Voranmeldungen() {
-  const registrationStart = new Date("2024-12-15T12:00:00");
+  const registrationStart = new Date("2024-12-05T12:00:00");
   const artistRegistrationEnd = new Date("2025-02-29T23:59:59");
   const vendorRegistrationEnd = new Date("2025-03-15T23:59:59");
   const showactRegistrationEnd = new Date("2025-03-31T23:59:59");
@@ -146,7 +146,12 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Künstler</p>
-            {renderButton(registrationStart, artistRegistrationEnd, "#", "Anmeldung")}
+            {renderButton(
+              registrationStart,
+              artistRegistrationEnd,
+              "/registration/registrationAsArtist",
+              "Anmeldung"
+            )}
           </Infobox>
         </DynamicContent>
       </div>

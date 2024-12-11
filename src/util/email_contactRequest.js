@@ -1,13 +1,12 @@
 `use server`;
 
-import fs from "fs";
 import path from "path";
 import { sendMail } from "@/util/sendEmail";
 
 export default function emailContactRequest({ email, name, area, subject, message }) {
   const imagePath = path.join(process.cwd(), "public", "assets", "logo", "yumekai_256px.png");
 
-  // HTML-Inhalt der E-Mail mit eingebettetem Bild und Button-Link
+  // HTML-Inhalt der E-Mail
   const htmlContent = `
     <!doctype html>
     <html>
