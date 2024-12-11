@@ -32,6 +32,7 @@ export async function sendMail(mail, mailOptions) {
   console.log("E-MAIL Send: ", subject);
 
   if (!from || !to || !subject || !text) {
+    console.log("ERROR: E-MAIL send to ", to);
     return { message: "Alle Felder müssen ausgefüllt sein", status: 400 };
   }
   let emailPassword = "";

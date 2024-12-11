@@ -18,6 +18,7 @@ export default function emailRegistrationArtist({
   standSize,
   additionalExhibitorTicket,
   wlan,
+  programmBooklet,
   website,
   instagram,
   message,
@@ -84,6 +85,8 @@ export default function emailRegistrationArtist({
                 Zusätzliches Aussteller-Ticket: ${(additionalExhibitorTicket && "Ja") || "Nein"}
                 <br />
                 WLAN: ${(wlan && "Ja") || "Nein"}
+                <br />
+                Programmheft: ${programmBooklet}
                 <br />
                 Webseite: ${website || "Keine Webseite angegeben"}
                 <br />

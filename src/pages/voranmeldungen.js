@@ -253,7 +253,12 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Showact</p>
-            {renderButton(registrationStart, showactRegistrationEnd, "#", "Anmeldung")}
+            {renderButton(
+              registrationStart,
+              showactRegistrationEnd,
+              "/registration/registrationAsShowact",
+              "Anmeldung"
+            )}
           </Infobox>
         </DynamicContent>
       </div>

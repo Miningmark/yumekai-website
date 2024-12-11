@@ -18,6 +18,8 @@ export default function emailRegistrationVendor({
   additionalExhibitorTicket,
   strom,
   wlan,
+  programmBooklet,
+  table,
   website,
   instagram,
   message,
@@ -79,11 +81,17 @@ export default function emailRegistrationVendor({
                 <br />
                 Standgröße: ${standSize}
                 <br />
-                Zusätzliches Aussteller-Ticket: ${additionalExhibitorTicket}
+                Zusätzliches Aussteller-Ticket: ${
+                  additionalExhibitorTicket ? additionalExhibitorTicket : "0"
+                }
                 <br/>
                 Strom: ${strom ? "Ja" : "Nein"}
                 <br/>
                 WLAN: ${wlan ? "Ja" : "Nein"}
+                <br />
+                Programmheft: ${programmBooklet}
+                <br />
+                Tisch: ${table ? "Ja" : "Nein"}
                 <br />
                 Webseite: ${website || "Keine Webseite angegeben"}
                 <br />

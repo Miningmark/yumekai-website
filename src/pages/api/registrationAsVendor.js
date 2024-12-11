@@ -2,6 +2,7 @@ import mysql from "mysql2/promise";
 import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
+import emailRegistrationVendor from "@/util/email_registrationVendor";
 
 export const config = {
   api: {
@@ -28,6 +29,8 @@ CREATE TABLE registration_vendor (
     additional_exhibitor_ticket int DEFAULT 0,
     strom BOOLEAN DEFAULT FALSE,
     wlan BOOLEAN DEFAULT FALSE,
+    programm_booklet VARCHAR(50) DEFAULT 'Nein',
+    table_required BOOLEAN DEFAULT FALSE,
     website VARCHAR(100),
     instagram VARCHAR(100),
     message TEXT,
@@ -91,6 +94,8 @@ export default async function handler(req, res) {
   );
   const strom = ["true", "yes", "1"].includes(fields.strom[0].toLowerCase());
   const wlan = ["true", "yes", "1"].includes(fields.wlan[0].toLowerCase());
+  const programmBooklet = fields.programmBooklet[0];
+  const table = ["true", "yes", "1"].includes(fields.table[0].toLowerCase());
   const website = fields.website[0];
   const instagram = fields.instagram[0];
   const message = fields.message[0];
@@ -135,6 +140,7 @@ export default async function handler(req, res) {
   validateString(typeOfAssortment, "typeOfAssortment", 3, 2500);
   validateString(descriptionOfStand, "descriptionOfStand", 3, 2500);
   validateString(standSize, "standSize", 3, 50);
+  validateString(programmBooklet, "programmBooklet", 3, 50);
 
   // Optional fields
   if (website) validateString(website, "website", 3, 100);
@@ -152,6 +158,12 @@ export default async function handler(req, res) {
     errors.push({
       field: "wlan",
       message: "Wlan muss ein wahrheitswert sein",
+    });
+  }
+  if (typeof table !== "boolean") {
+    errors.push({
+      field: "table",
+      message: "Tisch muss ein wahrheitswert sein",
     });
   }
   if (typeof privacyPolicy !== "boolean" || privacyPolicy === false) {
@@ -192,14 +204,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Spam-Prüfung: Gibt es eine Anfrage von derselben E-Mail in den letzten 5 Minuten?
+    // Spam-Prüfung: Gibt es zu viele Anfrage von derselben E-Mail in den letzten 5 Minuten?
     const spamCheckQuery = `
     SELECT COUNT(*) AS count 
     FROM registration_vendor
     WHERE (email = ? OR client_ip = ?) AND created_at > NOW() - INTERVAL 5 MINUTE
   `;
     const [spamCheckResult] = await connection.query(spamCheckQuery, [email, clientIp]);
-    if (spamCheckResult[0].count > 0) {
+    if (spamCheckResult[0].count > 2) {
       // Ungewöhnliches Verhalten loggen
       await logUnusualActivity(clientIp, email, "Spam-Versuch");
       return res
@@ -238,6 +250,8 @@ export default async function handler(req, res) {
             additional_exhibitor_ticket,
             strom,
             wlan,
+            programm_booklet,
+            table_required,
             website,
             instagram,
             message,
@@ -247,7 +261,7 @@ export default async function handler(req, res) {
             picture_rights,
             vendor_conditions,
             image_url
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
       clientIp,
@@ -265,6 +279,8 @@ export default async function handler(req, res) {
       additionalExhibitorTicket || 0,
       strom || false,
       wlan || false,
+      programmBooklet || "Nein",
+      table || false,
       website || null,
       instagram || null,
       message || null,
@@ -279,7 +295,7 @@ export default async function handler(req, res) {
     const [result] = await connection.query(query, values);
 
     // Erfolgsmeldung zurückgeben
-    emailRegistrationVendor(
+    emailRegistrationVendor({
       name,
       lastName,
       email,
@@ -294,14 +310,16 @@ export default async function handler(req, res) {
       additionalExhibitorTicket,
       strom,
       wlan,
+      programmBooklet,
+      table,
       website,
       instagram,
-      message
-    );
+      message,
+    });
 
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
-    console.error("Fehler beim Einfügen der Daten:", err);
+    console.error("Fehler beim Einfügen der Daten:", error);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }

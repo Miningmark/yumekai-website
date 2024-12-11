@@ -65,6 +65,7 @@ export default function RegistrationAsArtist() {
   const [standSize, setStandSize] = useState("");
   const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState("");
   const [wlan, setWlan] = useState(false);
+  const [programmBooklet, setProgrammBooklet] = useState("Nein");
   const [descriptionOfStand, setDescriptionOfStand] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -97,6 +98,7 @@ export default function RegistrationAsArtist() {
     standSize: useRef(null),
     additionalExhibitorTicket: useRef(null),
     wlan: useRef(null),
+    programmBooklet: useRef(null),
     descriptionOfStand: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
@@ -115,14 +117,22 @@ export default function RegistrationAsArtist() {
     "Halber Tisch": 50,
   };
 
+  const programmBookletCost = {
+    Nein: 0,
+    "Ganze Seite": 85,
+    "Halbe Seite": 45,
+    "Viertel Seite": 30,
+  };
+
   const ticketCost = 52;
   const wlanCost = 10;
 
   const selectedStandCost = standCosts[standSize] || 0;
   const totalTicketCost = additionalExhibitorTicket ? ticketCost : 0;
   const totalWlanCost = wlan ? wlanCost : 0;
+  const totalProgrammBookletCost = programmBookletCost[programmBooklet] || 0;
 
-  const totalCost = selectedStandCost + totalTicketCost + totalWlanCost;
+  const totalCost = selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalWlanCost;
 
   async function submit(event) {
     event.preventDefault();
@@ -173,6 +183,8 @@ export default function RegistrationAsArtist() {
     validateField(message, "message", "Nachricht", 0, 2500, false);
     if (!standSize)
       newErrors.push({ field: "standSize", message: "Standgröße ist ein Pflichtfeld" });
+    if (!programmBooklet)
+      newErrors.push({ field: "programmBooklet", message: "Programmheft ist ein Pflichtfeld" });
 
     //Bild
     if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
@@ -231,6 +243,7 @@ export default function RegistrationAsArtist() {
     formData.append("standSize", standSize);
     formData.append("additionalExhibitorTicket", additionalExhibitorTicket);
     formData.append("wlan", wlan);
+    formData.append("programmBooklet", programmBooklet);
     formData.append("website", website);
     formData.append("instagram", instagram);
     formData.append("message", message);
@@ -265,6 +278,7 @@ export default function RegistrationAsArtist() {
         setStandSize("");
         setAdditionalExhibitorTicket("");
         setWlan(false);
+        setProgrammBooklet("Nein");
         setDescriptionOfStand("");
         setWebsite("");
         setInstagram("");
@@ -468,7 +482,7 @@ export default function RegistrationAsArtist() {
           require
         />
         <CheckBox
-          title="Zusätzliches Ausstellerticket"
+          title="Zusätzliches Ausstellerticket (42,00€)"
           inputText={additionalExhibitorTicket}
           inputChange={(value) => setAdditionalExhibitorTicket(value)}
           inputRef={refs.additionalExhibitorTicket}
@@ -483,6 +497,16 @@ export default function RegistrationAsArtist() {
           isError={errors.some((error) => error.field === "wlan")}
         />
         <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
+        <RadioButton
+          title="Programmheft"
+          names={["Nein", "Viertel Seite (30€)", "Halbe Seite (45€)", "Ganze Seite (85€)"]}
+          options={["Nein", "Viertel Seite", "Halbe Seite", "Ganze Seite"]}
+          selectedOption={programmBooklet}
+          inputChange={(value) => setProgrammBooklet(value)}
+          inputRef={refs.programmBooklet}
+          isError={errors.some((error) => error.field === "programmBooklet")}
+          require
+        />
 
         <h3>Gesamtkosten</h3>
         <ul>
@@ -491,9 +515,14 @@ export default function RegistrationAsArtist() {
           </li>
           {additionalExhibitorTicket && <li>Zusätzliche Ausstellertickets: 52,00€</li>}
           {wlan && <li>W-Lan: 10,00€</li>}
+          {programmBooklet !== "Nein" && (
+            <li>
+              Programmheft: {programmBooklet} ({totalProgrammBookletCost.toFixed(2)}€)
+            </li>
+          )}
         </ul>
 
-        <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ ink.MWST</h4>
+        <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST</h4>
 
         <Spacer />
         <h2>Allgemeines</h2>

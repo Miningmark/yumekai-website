@@ -29,6 +29,7 @@ CREATE TABLE registration_artist (
     stand_size VARCHAR(50) NOT NULL,
     additional_exhibitor_ticket BOOLEAN DEFAULT FALSE,
     wlan BOOLEAN DEFAULT FALSE,
+    programm_booklet VARCHAR(50) NOT NULL DEFAULT 'Nein',
     website VARCHAR(100),
     instagram VARCHAR(100),
     message TEXT,
@@ -92,6 +93,7 @@ export default async function handler(req, res) {
     fields.additionalExhibitorTicket[0].toLowerCase()
   );
   const wlan = ["true", "yes", "1"].includes(fields.wlan[0].toLowerCase());
+  const programmBooklet = fields.programmBooklet[0];
   const website = fields.website[0];
   const instagram = fields.instagram[0];
   const message = fields.message[0];
@@ -137,6 +139,7 @@ export default async function handler(req, res) {
   validateString(typeOfArt, "typeOfArt", 3, 2500);
   validateString(descriptionOfStand, "descriptionOfStand", 3, 2500);
   validateString(standSize, "standSize", 3, 50);
+  validateString(programmBooklet, "programmBooklet", 3, 50);
 
   // Optional fields
   if (vendorName) validateString(vendorName, "vendorName", 3, 50);
@@ -241,6 +244,7 @@ export default async function handler(req, res) {
             stand_size,
             additional_exhibitor_ticket,
             wlan,
+            programm_booklet,
             website,
             instagram,
             message,
@@ -250,7 +254,7 @@ export default async function handler(req, res) {
             picture_rights,
             artist_conditions,
             image_url
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
       clientIp,
@@ -268,6 +272,7 @@ export default async function handler(req, res) {
       standSize,
       additionalExhibitorTicket || false,
       wlan || false,
+      programmBooklet,
       website || null,
       instagram || null,
       message || null,
@@ -298,6 +303,7 @@ export default async function handler(req, res) {
       standSize,
       additionalExhibitorTicket,
       wlan,
+      programmBooklet,
       website,
       instagram,
       message,
@@ -305,7 +311,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
-    console.error("Fehler beim Einfügen der Daten:", err);
+    console.error("Fehler beim Einfügen der Daten:", error);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }

@@ -118,6 +118,14 @@ const StyledWrapper = styled.div`
     --_i: 4;
     --_x: 0.1px;
   }
+  .container:has(label:nth-child(6) input:checked):before {
+    --_i: 5;
+    --_x: 0.12px;
+  }
+  .container:has(label:nth-child(7) input:checked):before {
+    --_i: 6;
+    --_x: 0.14px;
+  }
 
   @media print {
     input[type="radio"] {
