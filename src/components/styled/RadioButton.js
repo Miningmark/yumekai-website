@@ -5,6 +5,7 @@ import { RequiredNote } from "@/components/styledInputComponents";
 export default function RadioButton({
   title,
   options,
+  names = options,
   selectedOption,
   inputChange,
   inputRef,
@@ -30,7 +31,7 @@ export default function RadioButton({
               onChange={(e) => inputChange(e.target.value)}
               ref={inputRef}
             />
-            {option}
+            {names[index]}
           </label>
         ))}
       </div>

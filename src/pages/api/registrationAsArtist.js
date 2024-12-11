@@ -27,6 +27,7 @@ CREATE TABLE registration_artist (
     description_of_stand TEXT NOT NULL,
     stand_size VARCHAR(50) NOT NULL,
     additional_exhibitor_ticket BOOLEAN DEFAULT FALSE,
+    wlan BOOLEAN DEFAULT FALSE,
     website VARCHAR(100),
     instagram VARCHAR(100),
     message TEXT,
@@ -89,6 +90,7 @@ export default async function handler(req, res) {
   const additionalExhibitorTicket = ["true", "yes", "1"].includes(
     fields.additionalExhibitorTicket[0].toLowerCase()
   );
+  const wlan = ["true", "yes", "1"].includes(fields.wlan[0].toLowerCase());
   const website = fields.website[0];
   const instagram = fields.instagram[0];
   const message = fields.message[0];
@@ -142,31 +144,43 @@ export default async function handler(req, res) {
   if (message) validateString(message, "message", 3, 2500);
 
   // Boolean validation
-  if (typeof privacyPolicy !== "boolean") {
+  if (typeof additionalExhibitorTicket !== "boolean") {
+    errors.push({
+      field: "additionalExhibitorTicket",
+      message: "Zusätzliches Ausstellerticket muss ein Boolean sein",
+    });
+  }
+  if (typeof wlan !== "boolean") {
+    errors.push({
+      field: "wlan",
+      message: "WLAN muss ein Boolean sein",
+    });
+  }
+  if (typeof privacyPolicy !== "boolean" || privacyPolicy === false) {
     errors.push({
       field: "privacyPolicy",
       message: "Datenschutzrichtlinie muss bestätigt werden",
     });
   }
-  if (typeof dataStorage !== "boolean") {
+  if (typeof dataStorage !== "boolean" || dataStorage === false) {
     errors.push({
       field: "dataStorage",
       message: "Datenspeicherung muss bestätigt werden",
     });
   }
-  if (typeof licensedMusic !== "boolean") {
+  if (typeof licensedMusic !== "boolean" || licensedMusic === false) {
     errors.push({
       field: "licensedMusic",
       message: "Lizenzmusik muss bestätigt werden",
     });
   }
-  if (typeof pictureRights !== "boolean") {
+  if (typeof pictureRights !== "boolean" || pictureRights === false) {
     errors.push({
       field: "pictureRights",
       message: "Bildrechte müssen bestätigt werden",
     });
   }
-  if (typeof artistConditions !== "boolean") {
+  if (typeof artistConditions !== "boolean" || artistConditions === false) {
     errors.push({
       field: "artistConditions",
       message: "Künstlerbedingungen müssen bestätigt werden",
@@ -225,6 +239,7 @@ export default async function handler(req, res) {
             description_of_stand,
             stand_size,
             additional_exhibitor_ticket,
+            wlan,
             website,
             instagram,
             message,
@@ -234,7 +249,7 @@ export default async function handler(req, res) {
             picture_rights,
             artist_conditions,
             image_url
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
       clientIp,
@@ -251,6 +266,7 @@ export default async function handler(req, res) {
       descriptionOfStand,
       standSize,
       additionalExhibitorTicket || false,
+      wlan || false,
       website || null,
       instagram || null,
       message || null,

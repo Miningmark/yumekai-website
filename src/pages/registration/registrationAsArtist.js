@@ -64,6 +64,7 @@ export default function RegistrationAsArtist() {
   const [typeOfArt, setTypeOfArt] = useState("");
   const [standSize, setStandSize] = useState("");
   const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState("");
+  const [wlan, setWlan] = useState(false);
   const [descriptionOfStand, setDescriptionOfStand] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -95,6 +96,7 @@ export default function RegistrationAsArtist() {
     typeOfArt: useRef(null),
     standSize: useRef(null),
     additionalExhibitorTicket: useRef(null),
+    wlan: useRef(null),
     descriptionOfStand: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
@@ -106,6 +108,21 @@ export default function RegistrationAsArtist() {
     pictureRights: useRef(null),
     artistConditions: useRef(null),
   };
+
+  // Kostenberechnung
+  const standCosts = {
+    "Ganzer Tisch": 90,
+    "Halber Tisch": 50,
+  };
+
+  const ticketCost = 52;
+  const wlanCost = 10;
+
+  const selectedStandCost = standCosts[standSize] || 0;
+  const totalTicketCost = additionalExhibitorTicket ? ticketCost : 0;
+  const totalWlanCost = wlan ? wlanCost : 0;
+
+  const totalCost = selectedStandCost + totalTicketCost + totalWlanCost;
 
   async function submit(event) {
     event.preventDefault();
@@ -213,6 +230,7 @@ export default function RegistrationAsArtist() {
     formData.append("descriptionOfStand", descriptionOfStand);
     formData.append("standSize", standSize);
     formData.append("additionalExhibitorTicket", additionalExhibitorTicket);
+    formData.append("wlan", wlan);
     formData.append("website", website);
     formData.append("instagram", instagram);
     formData.append("message", message);
@@ -246,6 +264,7 @@ export default function RegistrationAsArtist() {
         setTypeOfArt("");
         setStandSize("");
         setAdditionalExhibitorTicket("");
+        setWlan(false);
         setDescriptionOfStand("");
         setWebsite("");
         setInstagram("");
@@ -440,6 +459,7 @@ export default function RegistrationAsArtist() {
 
         <RadioButton
           title="Standgröße"
+          names={["Ganzer Tisch (90€)", "Halber Tisch (50€)"]}
           options={["Ganzer Tisch", "Halber Tisch"]}
           selectedOption={standSize}
           inputChange={(value) => setStandSize(value)}
@@ -454,6 +474,26 @@ export default function RegistrationAsArtist() {
           inputRef={refs.additionalExhibitorTicket}
           isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
         />
+        <CheckBox
+          title="wlan"
+          content="W-lan für ein EC-Karten-/Kreditkartengerät - (10,00€)"
+          isChecked={wlan}
+          inputChange={(value) => setWlan(value)}
+          inputRef={refs.wlan}
+          isError={errors.some((error) => error.field === "wlan")}
+        />
+        <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
+
+        <h3>Gesamtkosten</h3>
+        <ul>
+          <li>
+            Standgröße: {standSize} ({selectedStandCost.toFixed(2)}€)
+          </li>
+          {additionalExhibitorTicket && <li>Zusätzliche Ausstellertickets: 52,00€</li>}
+          {wlan && <li>W-Lan: 10,00€</li>}
+        </ul>
+
+        <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ ink.MWST</h4>
 
         <Spacer />
         <h2>Allgemeines</h2>
