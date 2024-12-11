@@ -116,7 +116,7 @@ export default function Projects() {
               Die YumeKai soll ein Ort sein, an dem kleine und große Träume wahr werden können,
               unvergessliche Erlebnisse geschaffen werden und neue Verbindungen entstehen. <br />
               <br />
-              Wenn auch du teil davon Sein willst freuen wir uns wenn du uns auf dem Weg dahin
+              Wenn auch du teil davon sein willst freuen wir uns wenn du uns auf dem Weg dahin
               begleitest! Wir sehen uns auf der YumeKai!
             </p>
           </>
@@ -139,7 +139,7 @@ export default function Projects() {
       <SpacerEmpty />
       <h2>Programm YumeKai 2024</h2>
       <p>
-        Endlich war es so weit, die YumeKai 2024 hat zum ersten mal stattgefunden!{" "}
+        Endlich war es so weit, die YumeKai hat zum ersten mal stattgefunden!{" "}
         <StyledLink href={"/review/yumekai-2024"}>Hier</StyledLink> könnt ihr euch das Programm der
         YumeKai noch einmal ansehen. Es gab das ganze Wochenende über viel zu entdecken. <br />{" "}
         <StyledLink href={"/review/yumekai-2024"}>Hier</StyledLink> habt ihr einmal ein paar kleine

@@ -139,8 +139,13 @@ export default function YumeKaiNightII2024() {
       <h1>Rückblick YumeKai - Night II 2024</h1>
 
       <p>
-        Programmzusammenfassung der YumeKai - Night am 2.November in Memmingen. Die Anime-Party im
-        Maximilian-Kolbe-Haus bot eine bunte Mischung aus Unterhaltung, Shopping und Action!
+        Taucht ein in die Highlights der YumeKai-Night am 2. November in Memmingen! 🎉 Die
+        Anime-Party im Maximilian-Kolbe-Haus bot eine aufregende Mischung aus mitreißender
+        Unterhaltung, vielfältigen Shopping-Möglichkeiten mit Händlern und Künstlern und packender
+        Action. Ob Anime-Fan, Cosplayer oder Neugierige – hier war für jeden etwas dabei! 💫
+        <br />
+        <br />
+        Ein Event voller Energie, das uns und hoffentlich euch in Erinnerung bleibt! 🎶✨
       </p>
 
       <ul>
@@ -162,9 +167,11 @@ export default function YumeKaiNightII2024() {
 
       <h2>Ehrengäste</h2>
       <p>
-        Unsere Special Guests standen euch für Fotos, Gespräche und Inspiration zur Verfügung. Zudem
-        waren Evelyn, Tiefseemonster, Arsi_Arsinoe undPaleLittleDragon die Jury des
-        Cosplaywettbewerbs.
+        Unsere großartigen Special Guests standen euch für Fotos, spannende Gespräche und kreative
+        Inspiration zur Verfügung! Wir danken unserer fantastische Jury des Cosplay-Wettbewerbs:
+        Evelyn, Tiefseemonster, Arsi_Arsinoe und PaleLittleDragon. Mit ihrem geschulten Blick und
+        ihrer Leidenschaft für Cosplay sorgten sie für ein unvergessliches Highlight des Abends!
+        🎭🎉
       </p>
 
       <ContentWrapper>
@@ -180,7 +187,7 @@ export default function YumeKaiNightII2024() {
         />
         <ContentContainer
           src={arsiArsinoeImage}
-          alt="Arsi_Arsinoe"
+          alt="Arsi_Arsinoë"
           link="https://www.instagram.com/arsi_arsinoe/"
         />
         <ContentContainer
@@ -198,7 +205,21 @@ export default function YumeKaiNightII2024() {
       <Spacer id="aussteller" />
 
       <h2>Aussteller</h2>
-      <p>Shoppingmöglichkeiten für Fans und Sammler gab es bei den folgenden Händlern</p>
+      <p>
+        Für alle Fans und Sammler bot die YumeKai - Night eine gut gemischte Auswahl an
+        Shoppingmöglichkeiten! 🛍✨
+        <br />
+        <br />
+        Unsere Händler und Künstler präsentierten ein vielfältiges Angebot, das keine Wünsche offen
+        ließ. Von Merchandise und einzigartigen Accessoires bis hin zu handgefertigten Kunstwerken –
+        hier konnte jeder Besucher fündig werden. Egal, ob ihr auf der Suche nach einem neuen Manga
+        oder auf der Suche nach dem neuen Plüschi oder einfach nur stöbern wolltet, die Stände waren
+        ein wahres Paradies für alle Fans. 🎨🎁
+        <br />
+        <br />
+        Vielen Dank an unsere großartigen Händler und Künstler, die mit ihrem kreativen Engagement
+        und ihren Produkten die Veranstaltung bereichert haben!
+      </p>
 
       <ContentWrapper>
         <ContentContainer
@@ -225,8 +246,10 @@ export default function YumeKaiNightII2024() {
 
       <h2>Programm</h2>
       <p>
-        Für einen abwechslungsreichen Abend gab es ein buntes Rahmenprogramm mit verschiedenen
-        Musikacts, einem Gaming-Raum sowie Karaoke und einem Workshop.
+        Der Abend bot ein vielfältiges Programm: mitreißende Musikacts sorgten für Stimmung, während
+        der Gaming-Raum spannende Spieleerlebnisse bot. 🎮 Karaoke lud dazu ein, die Bühne zu
+        erobern, und ein kreativer Workshop rundete das Angebot ab. Ein abwechslungsreicher Abend
+        voller Unterhaltung! 🎤✨
       </p>
 
       <ContentWrapper>
@@ -246,7 +269,7 @@ export default function YumeKaiNightII2024() {
         und unvergesslichen Momenten zu füllen. <br />
         <br />
         Unser Dank gilt zunächst unseren großartigen Gästen: PaleLittleDragon, Tiefseemonster,
-        Evelyn und Asrinoe – eure inspirierenden Cosplays waren ein Highlight des Abends! Ein
+        Evelyn und Arsinoë – eure inspirierenden Cosplays waren ein Highlight des Abends! Ein
         riesiges Dankeschön auch an die Band The Late Theory und DJ SteveHang, die mit genialer
         Musik und einer tollen Stimmung die Tanzfläche zum Beben gebracht haben.
         <br />
