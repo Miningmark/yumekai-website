@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
 
 //Components
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
@@ -236,7 +235,7 @@ export default function Voranmeldungen() {
             die <StyledLink href="">Teilnahme- und Auswahlbedingungen für Showacts</StyledLink>.
             <br />
             <br />
-            <strong>Die Anmeldung für Showact's läuft bis zum 31. März 2025.</strong>
+            <strong>Die Anmeldung für Showact&apos;s läuft bis zum 31. März 2025.</strong>
             <br />
             <br />
             Wir freuen uns auf eure Bewerbung!
