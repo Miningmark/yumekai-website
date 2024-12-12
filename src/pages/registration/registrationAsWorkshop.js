@@ -80,7 +80,7 @@ export default function RegistrationAsWorkshop() {
   const [workshopTime, setWorkshopTime] = useState(0);
   const [deconstructionTime, setDeconstructionTime] = useState(0);
   const [workshopRequirements, setWorkshopRequirements] = useState("");
-  const [participants, setParticipants] = useState(null);
+  const [participants, setParticipants] = useState(0);
 
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -187,9 +187,8 @@ export default function RegistrationAsWorkshop() {
       workshopRequirements,
       "workshopRequirements",
       "Anforderungen für den Workshop",
-      10,
-      2500,
-      true
+      0,
+      2500
     );
     if (participants) {
       if (participants < 1)
@@ -265,7 +264,7 @@ export default function RegistrationAsWorkshop() {
     formData.append("workshopTime", workshopTime);
     formData.append("deconstructionTime", deconstructionTime);
     formData.append("workshopRequirements", workshopRequirements);
-    formData.append("participants", participants);
+    formData.append("participants", participants || 0);
     formData.append("website", website);
     formData.append("instagram", instagram);
     formData.append("message", message);
@@ -273,7 +272,7 @@ export default function RegistrationAsWorkshop() {
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
     formData.append("workshopConditions", workshopConditions);
-    formData.append("image", file);
+    formData.append("file", file);
 
     try {
       const response = await fetch("/api/registrationAsWorkshop", {
@@ -304,7 +303,7 @@ export default function RegistrationAsWorkshop() {
         setWorkshopTime(0);
         setDeconstructionTime(0);
         setWorkshopRequirements("");
-        setParticipants(null);
+        setParticipants(0);
         setWebsite("");
         setInstagram("");
         setMessage("");
@@ -556,7 +555,6 @@ export default function RegistrationAsWorkshop() {
           inputChange={setWorkshopRequirements}
           inputRef={refs.workshopRequirements}
           isError={errors.some((error) => error.field === "workshopRequirements")}
-          require
         />
         <InputOptionInput
           title="Teilnehmer*innen"
@@ -564,7 +562,6 @@ export default function RegistrationAsWorkshop() {
           inputChange={setParticipants}
           inputRef={refs.participants}
           isError={errors.some((error) => error.field === "participants")}
-          require
           type="number"
           min={1}
           max={40}

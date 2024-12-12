@@ -12,7 +12,7 @@ export const config = {
 
 /*
 
-CREATE TABLE registration_artist (
+CREATE TABLE registration_showact (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_ip VARCHAR(64),
     name VARCHAR(50) NOT NULL,
@@ -21,6 +21,7 @@ CREATE TABLE registration_artist (
     street VARCHAR(100) NOT NULL,
     postal_code VARCHAR(10) NOT NULL,
     city VARCHAR(50) NOT NULL,
+    country VARCHAR(50) NOT NULL,
     group_name VARCHAR(50) NOT NULL,
     group_members INT NOT NULL,
     description TEXT NOT NULL,
@@ -225,7 +226,7 @@ export default async function handler(req, res) {
 
     // Inserting the new data record
     const query = `
-    INSERT INTO registration_artist (
+    INSERT INTO registration_showact (
         client_ip,
         name,
         last_name,

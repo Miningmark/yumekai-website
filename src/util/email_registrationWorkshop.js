@@ -16,10 +16,10 @@ export default function emailRegistrationWorkshop({
   leaders,
   timeSlots,
   constructionTime,
-  performanceTime,
+  workshopTime,
   deconstructionTime,
   workshopRequirements,
-  participant,
+  participants,
   website,
   instagram,
   message,
@@ -83,13 +83,13 @@ export default function emailRegistrationWorkshop({
                 <br />
                 Aufbauzeit: ${constructionTime}
                 <br />
-                Workshop dauer: ${performanceTime}
+                Workshop dauer: ${workshopTime}
                 <br />
                 Abbauzeit: ${deconstructionTime}
                 <br />
                 Workshop Anforderungen: ${workshopRequirements}
                 <br />
-                Max. Teilnehmer: ${participant ? participant : "Keine Angabe"}
+                Max. Teilnehmer: ${participants !== 0 ? participants : "Keine Angabe"}
                 <br/>
                 Webseite: ${website || "Keine Webseite angegeben"}
                 <br />
@@ -134,7 +134,7 @@ export default function emailRegistrationWorkshop({
   const mailOptions = {
     from: "test@miningmark.de",
     to: email,
-    subject: "Anmeldung als Showact auf der YumeKai 2025",
+    subject: "Anmeldung als Workshopleiter auf der YumeKai 2025",
     html: htmlContent,
     attachments: [
       {
@@ -147,8 +147,8 @@ export default function emailRegistrationWorkshop({
 
   const mail = {
     to: email,
-    subject: "Anmeldung als Showact auf der YumeKai 2025",
-    text: `Gruppenname: ${groupName}`,
+    subject: "Anmeldung als Workshopleiter auf der YumeKai 2025",
+    text: `Workshop Titel: ${workshopTitle}`,
   };
 
   sendMail(mail, mailOptions);

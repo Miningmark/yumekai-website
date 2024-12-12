@@ -246,7 +246,7 @@ export default function RegistrationAsShowact() {
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
     formData.append("showactConditions", showactConditions);
-    formData.append("image", file);
+    formData.append("file", file);
 
     try {
       const response = await fetch("/api/registrationAsShowact", {

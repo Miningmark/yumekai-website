@@ -2,7 +2,6 @@ import mysql from "mysql2/promise";
 import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
-import emailRegistrationArtist from "@/util/email_registrationArtist";
 import emailRegistrationWorkshop from "@/util/email_registrationWorkshop";
 
 export const config = {
@@ -28,10 +27,10 @@ CREATE TABLE registration_workshop (
     leaders INT NOT NULL,
     time_slots VARCHAR(200) NOT NULL,
     construction_time INT NOT NULL,
-    performance_time INT NOT NULL,
+    workshop_time INT NOT NULL,
     deconstruction_time INT NOT NULL,
     workshop_requirements TEXT NOT NULL,
-    participant INT DEFAULT 0,
+    participants INT DEFAULT 0,
     website VARCHAR(100),
     instagram VARCHAR(100),
     message TEXT,
@@ -90,10 +89,10 @@ export default async function handler(req, res) {
   const leaders = fields.leaders[0];
   const timeSlots = fields.timeSlots[0];
   const constructionTime = fields.constructionTime[0];
-  const performanceTime = fields.performanceTime[0];
+  const workshopTime = fields.workshopTime[0];
   const deconstructionTime = fields.deconstructionTime[0];
   const workshopRequirements = fields.workshopRequirements[0];
-  const participant = fields.participant[0];
+  const participants = fields.participants[0];
   const website = fields.website[0];
   const instagram = fields.instagram[0];
   const message = fields.message[0];
@@ -148,29 +147,32 @@ export default async function handler(req, res) {
     errors.push({ field: "constructionTime", message: "Aufbauzeit muss mindestens 1 sein" });
   }
   if (constructionTime > 60) {
-    errors.push({ field: "constructionTime", message: "Aufbauzeit darf maximal 360 sein" });
+    errors.push({ field: "constructionTime", message: "Aufbauzeit darf maximal 60 sein" });
   }
-  if (performanceTime < 30) {
-    errors.push({ field: "performanceTime", message: "Aufführungszeit muss mindestens 1 sein" });
+  if (workshopTime < 30) {
+    errors.push({ field: "workshopTime", message: "Aufführungszeit muss mindestens 30 sein" });
   }
-  if (performanceTime > 180) {
-    errors.push({ field: "performanceTime", message: "Aufführungszeit darf maximal 360 sein" });
+  if (workshopTime > 360) {
+    errors.push({ field: "workshopTime", message: "Aufführungszeit darf maximal 360 sein" });
   }
   if (deconstructionTime < 1) {
     errors.push({ field: "deconstructionTime", message: "Abbauzeit muss mindestens 1 sein" });
   }
   if (deconstructionTime > 60) {
-    errors.push({ field: "deconstructionTime", message: "Abbauzeit darf maximal 360 sein" });
+    errors.push({ field: "deconstructionTime", message: "Abbauzeit darf maximal 60 sein" });
   }
   validateString(workshopRequirements, "workshopRequirements", 3, 2500);
-  if (participant < 1) {
+  if (participants < 0) {
     errors.push({
-      field: "participant",
+      field: "participants",
       message: "Mindestens ein Teilnehmer muss angegeben werden",
     });
   }
-  if (participant > 50) {
-    errors.push({ field: "participant", message: "Maximal 50 Teilnehmer können angegeben werden" });
+  if (participants > 50) {
+    errors.push({
+      field: "participants",
+      message: "Maximal 50 Teilnehmer können angegeben werden",
+    });
   }
 
   // Optional fields
@@ -218,7 +220,7 @@ export default async function handler(req, res) {
       WHERE (email = ? OR client_ip = ?) AND created_at > NOW() - INTERVAL 5 MINUTE
     `;
     const [spamCheckResult] = await connection.query(spamCheckQuery, [email, clientIp]);
-    if (spamCheckResult[0].count > 0) {
+    if (spamCheckResult[0].count > 3) {
       // Ungewöhnliches Verhalten loggen
       await logUnusualActivity(clientIp, email, "Spam-Versuch");
       return res
@@ -241,7 +243,7 @@ export default async function handler(req, res) {
 
     // Inserting the new data record
     const query = `
-    INSERT INTO registration_artist (
+    INSERT INTO registration_workshop (
         client_ip,
         name,
         last_name,
@@ -255,10 +257,10 @@ export default async function handler(req, res) {
         leaders,
         time_slots,
         construction_time,
-        performance_time,
+        workshop_time,
         deconstruction_time,
         workshop_requirements,
-        participant,
+        participants,
         website,
         instagram,
         message,
@@ -283,10 +285,10 @@ export default async function handler(req, res) {
       leaders,
       timeSlots,
       constructionTime,
-      performanceTime,
+      workshopTime,
       deconstructionTime,
       workshopRequirements,
-      participant,
+      participants,
       website || null,
       instagram || null,
       message || null,
@@ -313,10 +315,10 @@ export default async function handler(req, res) {
       leaders,
       timeSlots,
       constructionTime,
-      performanceTime,
+      workshopTime,
       deconstructionTime,
       workshopRequirements,
-      participant,
+      participants,
       website,
       instagram,
       message,
@@ -326,5 +328,19 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error("Fehler beim Einfügen der Daten:", error);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
+  }
+}
+
+// Ungewöhnliches Verhalten loggen
+async function logUnusualActivity(ip, email, reason) {
+  const query = `
+          INSERT INTO unusual_activity_logs (client_ip, email, reason)
+          VALUES (?, ?, ?)
+        `;
+  const values = [ip, email, reason];
+  try {
+    await connection.query(query, values);
+  } catch (err) {
+    console.error("Fehler beim Loggen ungewöhnlichen Verhaltens:", err.message);
   }
 }
