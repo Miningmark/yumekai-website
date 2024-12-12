@@ -2,6 +2,7 @@ import mysql from "mysql2/promise";
 import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
+import emailRegistrationHelper from "@/util/email_registrationHelper";
 
 export const config = {
   api: {
@@ -318,6 +319,35 @@ export default async function handler(req, res) {
       ];
 
       const [result] = await connection.query(query, values);
+
+      emailRegistrationHelper({
+        name,
+        lastName,
+        nickname,
+        gender,
+        discordName,
+        birthdate,
+        email,
+        phone,
+        street,
+        postalCode,
+        city,
+        country,
+        occupation,
+        clothesSize,
+        arrival,
+        requiresParkingTicket,
+        foodPreference,
+        foodDetails,
+        strengths,
+        desiredTeam,
+        other,
+        assemblyFriday,
+        assembly,
+        deconstruction,
+        workTimeSaturday,
+        workTimeSunday,
+      });
 
       res.status(200).json({ message: "Daten erfolgreich eingefügt." });
     } catch (err) {
