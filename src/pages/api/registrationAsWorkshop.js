@@ -161,7 +161,7 @@ export default async function handler(req, res) {
   if (deconstructionTime > 60) {
     errors.push({ field: "deconstructionTime", message: "Abbauzeit darf maximal 60 sein" });
   }
-  validateString(workshopRequirements, "workshopRequirements", 3, 2500);
+
   if (participants < 0) {
     errors.push({
       field: "participants",
@@ -176,6 +176,7 @@ export default async function handler(req, res) {
   }
 
   // Optional fields
+  if (workshopRequirements) validateString(workshopRequirements, "workshopRequirements", 3, 2500);
   if (website) validateString(website, "website", 3, 100);
   if (instagram) validateString(instagram, "instagram", 3, 100);
   if (message) validateString(message, "message", 3, 2500);
