@@ -20,6 +20,16 @@ import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 
+const TimeslotsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  ${({ $iserror }) => $iserror && `border: solid 2px red;`}
+  ${({ $iserror }) => $iserror && `padding: 10px;`}
+`;
+
 const EU_COUNTRIES = [
   "Deutschland",
   "Österreich",
@@ -97,10 +107,7 @@ export default function RegistrationAsShowact() {
     groupName: useRef(null),
     groupMembers: useRef(null),
     description: useRef(null),
-    timeSlot1: useRef(null),
-    timeSlot2: useRef(null),
-    timeSlot3: useRef(null),
-    timeSlot4: useRef(null),
+    timeSlots: useRef(null),
     constructionTime: useRef(null),
     performanceTime: useRef(null),
     deconstructionTime: useRef(null),
@@ -117,6 +124,184 @@ export default function RegistrationAsShowact() {
 
   async function submit(event) {
     event.preventDefault();
+
+    const newErrors = [];
+    setErrors([]);
+    setSuccess("");
+
+    const validateField = (value, fieldName, title, min, max, required = false) => {
+      if (required && !value.trim())
+        newErrors.push({ field: fieldName, message: `${title} ist ein Pflichtfeld` });
+      if (value && value.length < min)
+        newErrors.push({ field: fieldName, message: `${title} ist zu kurz` });
+      if (value.length > max) newErrors.push({ field: fieldName, message: `${title} ist zu lang` });
+      return null;
+    };
+
+    validateField(name, "name", "Vorname", 3, 50, true);
+    validateField(lastName, "lastName", "Nachname", 3, 50, true);
+    if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
+    if (!email.includes("@"))
+      newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
+    if (email.length > 100)
+      newErrors.push({
+        field: "email",
+        message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
+      });
+    if (confirmEmail.trim() !== email.trim())
+      newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
+    validateField(street, "street", "Straße", 3, 50, true);
+    validateField(postalCode, "postalCode", "PLZ", 5, 10, true);
+    validateField(city, "city", "Ort", 3, 50, true);
+    validateField(country, "country", "Land", 3, 50, true);
+    validateField(groupName, "groupName", "Gruppenname", 3, 50, true);
+    if (groupMembers < 1)
+      newErrors.push({ field: "groupMembers", message: "Mindestens 1 Gruppenmitglied" });
+    if (groupMembers > 25)
+      newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
+    validateField(description, "description", "Beschreibung", 10, 2500, true);
+    if (!timeSlot1 && !timeSlot2 && !timeSlot3 && !timeSlot4)
+      newErrors.push({ field: "timeSlots", message: "Bitte wähle mindestens einen Zeitraum" });
+
+    if (constructionTime < 1)
+      newErrors.push({ field: "constructionTime", message: "Aufbaudauer mindestens 1 Minute" });
+    if (constructionTime > 60)
+      newErrors.push({ field: "constructionTime", message: "Aufbaudauer maximal 60 Minuten" });
+    if (performanceTime < 30)
+      newErrors.push({ field: "performanceTime", message: "Auftritt mindestens 30 Minute" });
+    if (performanceTime > 180)
+      newErrors.push({ field: "performanceTime", message: "Auftritt maximal 180 Minuten" });
+    if (deconstructionTime < 1)
+      newErrors.push({ field: "deconstructionTime", message: "Abbaudauer mindestens 1 Minute" });
+    if (deconstructionTime > 60)
+      newErrors.push({ field: "deconstructionTime", message: "Abbaudauer maximal 60 Minuten" });
+    validateField(website, "website", "Website", 0, 100);
+    validateField(instagram, "instagram", "Instagram", 0, 100);
+    validateField(message, "message", "Nachricht", 0, 2500);
+
+    //Bild
+    if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
+
+    //Datenschutzerklärung
+    if (!privacyPolicy)
+      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
+
+    //Datenspeicherung
+    if (!dataStorage)
+      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
+
+    //Bildrechte
+    if (!pictureRights)
+      newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
+
+    //Teilnahmebedingungen
+    if (!showactConditions)
+      newErrors.push({
+        field: "showactConditions",
+        message: "Teilnahmebedingungen müssen akzeptiert werden",
+      });
+
+    //Check if there are any errors
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+
+      // Scroll to the first error
+      const firstError = newErrors[0];
+      if (refs[firstError.field]?.current) {
+        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstError.field].current.focus();
+      }
+      return;
+    }
+
+    const timeSlots = [
+      timeSlot1 && "Samstag 11:00-14:00 Uhr",
+      timeSlot2 && "Samstag 14:00-18:00 Uhr",
+      timeSlot3 && "Sonntag 11:00-14:00 Uhr",
+      timeSlot4 && "Sonntag 14:00-18:00 Uhr",
+    ]
+      .filter(Boolean)
+      .join(", ")
+      .trim();
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("street", street);
+    formData.append("postalCode", postalCode);
+    formData.append("city", city);
+    formData.append("country", country);
+    formData.append("groupName", groupName);
+    formData.append("groupMembers", groupMembers);
+    formData.append("description", description);
+    formData.append("timeSlots", timeSlots);
+    formData.append("constructionTime", constructionTime);
+    formData.append("performanceTime", performanceTime);
+    formData.append("deconstructionTime", deconstructionTime);
+    formData.append("website", website);
+    formData.append("instagram", instagram);
+    formData.append("message", message);
+    formData.append("privacyPolicy", privacyPolicy);
+    formData.append("dataStorage", dataStorage);
+    formData.append("pictureRights", pictureRights);
+    formData.append("showactConditions", showactConditions);
+    formData.append("image", file);
+
+    try {
+      const response = await fetch("/api/registrationAsShowact", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSuccess(
+          "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
+        );
+        setName("");
+        setLastName("");
+        setEmail("");
+        setConfirmEmail("");
+        setStreet("");
+        setPostalCode("");
+        setCity("");
+        setCountry("");
+        setGroupName("");
+        setGroupMembers(1);
+        setDescription("");
+        setTimeSlot1(false);
+        setTimeSlot2(false);
+        setTimeSlot3(false);
+        setTimeSlot4(false);
+        setConstructionTime("");
+        setPerformanceTime("");
+        setDeconstructionTime("");
+        setWebsite("");
+        setInstagram("");
+        setMessage("");
+        setPrivacyPolicy(false);
+        setDataStorage(false);
+        setPictureRights(false);
+        setShowactConditions(false);
+        setFile(null);
+        setPreviewUrl(null);
+        setErrors([]);
+      } else {
+        setErrors([
+          {
+            field: "general",
+            message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
+          },
+        ]);
+      }
+    } catch (error) {
+      setErrors([
+        {
+          field: "general",
+          message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
+        },
+      ]);
+    }
   }
 
   function handleFileChange(e) {
@@ -276,39 +461,34 @@ export default function RegistrationAsShowact() {
         />
         {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
 
-        <h3>Bevorzugter Tag/Uhrzeit</h3>
-        <CheckBox
-          title="timeSlot1"
-          content="Samstag 11:00-14:00 Uhr"
-          isChecked={timeSlot1}
-          inputChange={(value) => setTimeSlot1(value)}
-          inputRef={refs.timeSlot1}
-          isError={errors.some((error) => error.field === "timeSlot1")}
-        />
-        <CheckBox
-          title="timeSlot2"
-          content="Samstag 15:00-18:00 Uhr"
-          isChecked={timeSlot2}
-          inputChange={(value) => setTimeSlot2(value)}
-          inputRef={refs.timeSlot2}
-          isError={errors.some((error) => error.field === "timeSlot2")}
-        />
-        <CheckBox
-          title="timeSlot3"
-          content="Sonntag 11:00-14:00 Uhr"
-          isChecked={timeSlot3}
-          inputChange={(value) => setTimeSlot3(value)}
-          inputRef={refs.timeSlot3}
-          isError={errors.some((error) => error.field === "timeSlot3")}
-        />
-        <CheckBox
-          title="timeSlot4"
-          content="Sonntag 14:00-18:00 Uhr"
-          isChecked={timeSlot4}
-          inputChange={(value) => setTimeSlot4(value)}
-          inputRef={refs.timeSlot4}
-          isError={errors.some((error) => error.field === "timeSlot4")}
-        />
+        <TimeslotsContainer $iserror={errors.some((error) => error.field === "timeSlots")}>
+          <h3>Bevorzugter Tag/Uhrzeit (min. 1 Option wählen)</h3>
+          <CheckBox
+            title="timeSlot1"
+            content="Samstag 11:00-14:00 Uhr"
+            isChecked={timeSlot1}
+            inputChange={(value) => setTimeSlot1(value)}
+            inputRef={refs.timeSlots}
+          />
+          <CheckBox
+            title="timeSlot2"
+            content="Samstag 14:00-18:00 Uhr"
+            isChecked={timeSlot2}
+            inputChange={(value) => setTimeSlot2(value)}
+          />
+          <CheckBox
+            title="timeSlot3"
+            content="Sonntag 11:00-14:00 Uhr"
+            isChecked={timeSlot3}
+            inputChange={(value) => setTimeSlot3(value)}
+          />
+          <CheckBox
+            title="timeSlot4"
+            content="Sonntag 14:00-18:00 Uhr"
+            isChecked={timeSlot4}
+            inputChange={(value) => setTimeSlot4(value)}
+          />
+        </TimeslotsContainer>
         <InputOptionInput
           title="Aufbauzeit (in Minuten)"
           inputText={constructionTime}
@@ -318,7 +498,7 @@ export default function RegistrationAsShowact() {
           require
           type="number"
           min={1}
-          max={180}
+          max={60}
         />
         <InputOptionInput
           title="Aufführungszeit (in Minuten)"
@@ -328,7 +508,7 @@ export default function RegistrationAsShowact() {
           isError={errors.some((error) => error.field === "performanceTime")}
           require
           type="number"
-          min={1}
+          min={30}
           max={180}
         />
         <InputOptionInput
@@ -340,7 +520,7 @@ export default function RegistrationAsShowact() {
           require
           type="number"
           min={1}
-          max={180}
+          max={60}
         />
 
         <Spacer />

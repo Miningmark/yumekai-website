@@ -3,23 +3,23 @@
 import path from "path";
 import { sendMail } from "@/util/sendEmail";
 
-export default function emailRegistrationVendor({
+export default function emailRegistrationWorkshop({
   name,
   lastName,
   email,
-  vendorName,
   street,
   postalCode,
   city,
   country,
-  typeOfAssortment,
-  descriptionOfStand,
-  standSize,
-  additionalExhibitorTicket,
-  strom,
-  wlan,
-  programmBooklet,
-  table,
+  workshopTitle,
+  workshopDescription,
+  leaders,
+  timeSlots,
+  constructionTime,
+  performanceTime,
+  deconstructionTime,
+  workshopRequirements,
+  participant,
   website,
   instagram,
   message,
@@ -55,7 +55,7 @@ export default function emailRegistrationVendor({
             
             <div style="font-weight:normal;padding:0px 24px 16px 24px">
                 <br/>
-                Du hast dich für einen Händlerstand auf der YumeKai 2025 beworben. Wir haben deine Anmeldung erhalten und werden uns kurz nach dem ende der Anmeldefrist bei dir melden.
+                Du hast dich als Workshopleiter auf der YumeKai 2025 beworben. Wir haben deine Anmeldung erhalten und werden uns kurz nach dem ende der Anmeldefrist bei dir melden.
                 Nachfolgend findest du eine Kopie deiner Anmeldung:
                 <br />
                 <br />
@@ -65,8 +65,6 @@ export default function emailRegistrationVendor({
                 <br />
                 E-Mail: ${email}
                 <br />
-                Firmenname: ${vendorName || "Kein Firmenname angegeben"}
-                <br />
                 Straße: ${street}
                 <br />
                 Postleitzahl: ${postalCode}
@@ -75,24 +73,24 @@ export default function emailRegistrationVendor({
                 <br />
                 Land: ${country}
                 <br />
-                Produktsortiment: ${typeOfAssortment}
+                Titel des Workshops: ${workshopTitle}
                 <br />
-                Beschreibung des Standes: ${descriptionOfStand}
+                Beschreibung: ${workshopDescription}
                 <br />
-                Standgröße: ${standSize}m
+                Anzahl Workshop Leiter: ${leaders}
                 <br />
-                Zusätzliches Aussteller-Ticket: ${
-                  additionalExhibitorTicket ? additionalExhibitorTicket : "0"
-                }
+                Zeitfenster: ${timeSlots}
+                <br />
+                Aufbauzeit: ${constructionTime}
+                <br />
+                Workshop dauer: ${performanceTime}
+                <br />
+                Abbauzeit: ${deconstructionTime}
+                <br />
+                Workshop Anforderungen: ${workshopRequirements}
+                <br />
+                Max. Teilnehmer: ${participant ? participant : "Keine Angabe"}
                 <br/>
-                Strom: ${strom ? "Ja" : "Nein"}
-                <br/>
-                WLAN: ${wlan ? "Ja" : "Nein"}
-                <br />
-                Programmheft: ${programmBooklet}
-                <br />
-                Tische: ${table ? "Ja" : "Nein"}
-                <br />
                 Webseite: ${website || "Keine Webseite angegeben"}
                 <br />
                 Instagram: ${instagram || "Kein Instagram angegeben"}
@@ -136,7 +134,7 @@ export default function emailRegistrationVendor({
   const mailOptions = {
     from: "test@miningmark.de",
     to: email,
-    subject: "Anmeldung für einen Händlerstand auf der YumeKai 2025",
+    subject: "Anmeldung als Showact auf der YumeKai 2025",
     html: htmlContent,
     attachments: [
       {
@@ -149,8 +147,8 @@ export default function emailRegistrationVendor({
 
   const mail = {
     to: email,
-    subject: "Anmeldung für einen Händlerstand auf der YumeKai 2025",
-    text: `Firmenname: ${vendorName}`,
+    subject: "Anmeldung als Showact auf der YumeKai 2025",
+    text: `Gruppenname: ${groupName}`,
   };
 
   sendMail(mail, mailOptions);

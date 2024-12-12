@@ -315,14 +315,12 @@ export default function HelferForm() {
         setFile(null);
         setPreviewUrl(null);
       } else {
-        const result = await response.json();
         setErrors([
           {
             field: "general",
             message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
           },
         ]);
-        console.error("Fehler beim Einfügen der Daten:", result.error);
       }
     } catch (error) {
       setErrors([
@@ -331,7 +329,6 @@ export default function HelferForm() {
           message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
         },
       ]);
-      console.error("Fehler beim Einfügen der Daten:", error);
     }
   }
 

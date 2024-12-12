@@ -309,7 +309,12 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Workshopleiter</p>
-            {renderButton(registrationStart, workshopRegistrationEnd, "#", "Anmeldung")}
+            {renderButton(
+              registrationStart,
+              workshopRegistrationEnd,
+              "/registration/registrationAsWorkshop",
+              "Anmeldung"
+            )}
           </Infobox>
         </DynamicContent>
       </div>

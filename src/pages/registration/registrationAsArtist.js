@@ -136,7 +136,6 @@ export default function RegistrationAsArtist() {
 
   async function submit(event) {
     event.preventDefault();
-    console.log("Submit");
 
     const newErrors = [];
     setErrors([]);
