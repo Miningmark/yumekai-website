@@ -28,16 +28,6 @@ export default function EroffnungTicketShop() {
           marginBottom: "20px",
         }}
       >
-        <DynamicContent $widthpercent={60}>
-          <h2>YumeKai 2025 Tickets</h2>
-          <p>
-            Der <StyledLink href="/shop">Ticketshop</StyledLink> für die YumeKai 2025 öffnet in
-            wenigen Tagen! Freut euch darauf, eure Tickets für das nächste große Event zu sichern.
-            <br />
-            <br /> Besonders lohnenswert: Wer sich frühzeitig entscheidet, hat die Möglichkeit,
-            vergünstigte Early-Bird-Tickets zu ergattern.
-          </p>
-        </DynamicContent>
         <DynamicContent
           $widthpercent={40}
           $maxwidth={300}
@@ -51,6 +41,17 @@ export default function EroffnungTicketShop() {
               height: "auto",
             }}
           />
+        </DynamicContent>
+        <DynamicContent $widthpercent={60}>
+          <h2>YumeKai 2025 Tickets</h2>
+          <p>
+            Der <StyledLink href="/shop">Ticketshop</StyledLink> für die YumeKai 2025 öffnet in
+            wenigen Tagen am 15.12.2024 um 16:00 Uhr! Freut euch darauf, eure Tickets für die
+            nächste YumeKai zu sichern.
+            <br />
+            <br /> Besonders lohnenswert: Wer sich frühzeitig entscheidet, hat die Möglichkeit,
+            vergünstigte Early-Bird-Tickets zu ergattern.
+          </p>
         </DynamicContent>
       </div>
     </>
