@@ -10,6 +10,20 @@ import {
 import { StyledButton, StyledForm, StyledLink } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
+import LoadingAnimation from "@/components/styled/LoadingAnimation";
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+`;
 
 export default function Kontaktformular() {
   const [name, setName] = useState("");
@@ -22,6 +36,7 @@ export default function Kontaktformular() {
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Refs for form fields
   const refs = {
@@ -88,6 +103,8 @@ export default function Kontaktformular() {
       return;
     }
 
+    setLoading(true);
+
     try {
       const response = await fetch("/api/contactRequest", {
         method: "POST",
@@ -134,111 +151,123 @@ export default function Kontaktformular() {
       ]);
     }
 
-    // Reset form error
+    setLoading(false);
   }
 
   return (
     <>
       <h1>Kontaktformular</h1>
-      <p>
-        In nachfolgendem Formular kannst Du Kontakt zu uns aufnehmen. Egal, ob Du nun eine Presse-
-        oder Händleranfrage hast oder Helfer werden magst oder einfach nur etwas anderes wissen
-        möchtest, hier bist Du richtig!
-      </p>
-      <p>
-        Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
-      </p>
-      <StyledForm onSubmit={handleSubmit}>
-        <InputOptionInput
-          title="Vorname"
-          inputText={name}
-          inputChange={(value) => setName(value)}
-          require
-          inputRef={refs.name}
-          isError={errors.some((error) => error.field === "name")}
-        />
-        <InputOptionInput
-          title="Nachname"
-          inputText={lastName}
-          inputChange={(value) => setLastName(value)}
-          inputRef={refs.lastName}
-          isError={errors.some((error) => error.field === "lastName")}
-        />
-        <InputOptionInput
-          title="E-Mail"
-          type="email"
-          inputText={email}
-          inputChange={(value) => setEmail(value)}
-          require
-          inputRef={refs.email}
-          isError={errors.some((error) => error.field === "email")}
-        />
-        <InputOptionSelect
-          title="Bereich"
-          options={[
-            "Allgemeines",
-            "Helfer",
-            "Bühne",
-            "Aussteller/Händler",
-            "Tickets",
-            "Presse",
-            "Sonstiges",
-            "Workshops/Vorträge",
-          ]}
-          inputText={area}
-          inputChange={(value) => setArea(value)}
-          require
-          inputRef={refs.area}
-          isError={errors.some((error) => error.field === "area")}
-        />
+      {!success && (
+        <>
+          <p>
+            In nachfolgendem Formular kannst Du Kontakt zu uns aufnehmen. Egal, ob Du nun eine
+            Presse- oder Händleranfrage hast oder Helfer werden magst oder einfach nur etwas anderes
+            wissen möchtest, hier bist Du richtig!
+          </p>
+          <p>
+            Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
+          </p>
+          <StyledForm onSubmit={handleSubmit}>
+            <InputOptionInput
+              title="Vorname"
+              inputText={name}
+              inputChange={(value) => setName(value)}
+              require
+              inputRef={refs.name}
+              isError={errors.some((error) => error.field === "name")}
+            />
+            <InputOptionInput
+              title="Nachname"
+              inputText={lastName}
+              inputChange={(value) => setLastName(value)}
+              inputRef={refs.lastName}
+              isError={errors.some((error) => error.field === "lastName")}
+            />
+            <InputOptionInput
+              title="E-Mail"
+              type="email"
+              inputText={email}
+              inputChange={(value) => setEmail(value)}
+              require
+              inputRef={refs.email}
+              isError={errors.some((error) => error.field === "email")}
+            />
+            <InputOptionSelect
+              title="Bereich"
+              options={[
+                "Allgemeines",
+                "Helfer",
+                "Bühne",
+                "Aussteller/Händler",
+                "Tickets",
+                "Presse",
+                "Sonstiges",
+                "Workshops/Vorträge",
+              ]}
+              inputText={area}
+              inputChange={(value) => setArea(value)}
+              require
+              inputRef={refs.area}
+              isError={errors.some((error) => error.field === "area")}
+            />
 
-        <InputOptionInput
-          title="Betreff"
-          inputText={subject}
-          inputChange={(value) => setSubject(value)}
-          require
-          inputRef={refs.subject}
-          isError={errors.some((error) => error.field === "subject")}
-        />
-        <InputOptionTextArea
-          title="Nachricht"
-          inputText={message}
-          inputChange={(value) => setMessage(value)}
-          require
-          inputRef={refs.message}
-          isError={errors.some((error) => error.field === "message")}
-        />
-        <CheckBox
-          title={
-            <p>
-              Ich habe die{" "}
-              <StyledLink href="/datenschutz" target="_blank">
-                Datenschutzerklärung
-              </StyledLink>{" "}
-              gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung
-              zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die
-              Passage in der Datenschutzerklärung gelesen und verstanden.
-              <RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={privacyPolicy}
-          inputChange={(value) => setPrivacyPolicy(value)}
-          require
-          inputRef={refs.privacyPolicy}
-          isError={errors.some((error) => error.field === "privacyPolicy")}
-        />
-        {errors && (
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index} style={{ color: "red" }}>
-                {error.message}
-              </li>
-            ))}
-          </ul>
-        )}
-        {success && <p style={{ color: "green" }}>{success}</p>}
-        <StyledButton type="submit">Anmelden</StyledButton>
-      </StyledForm>
+            <InputOptionInput
+              title="Betreff"
+              inputText={subject}
+              inputChange={(value) => setSubject(value)}
+              require
+              inputRef={refs.subject}
+              isError={errors.some((error) => error.field === "subject")}
+            />
+            <InputOptionTextArea
+              title="Nachricht"
+              inputText={message}
+              inputChange={(value) => setMessage(value)}
+              require
+              inputRef={refs.message}
+              isError={errors.some((error) => error.field === "message")}
+            />
+            <CheckBox
+              title={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink href="/datenschutz" target="_blank">
+                    Datenschutzerklärung
+                  </StyledLink>{" "}
+                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
+                  Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
+                  habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                  <RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={privacyPolicy}
+              inputChange={(value) => setPrivacyPolicy(value)}
+              require
+              inputRef={refs.privacyPolicy}
+              isError={errors.some((error) => error.field === "privacyPolicy")}
+            />
+            {errors && (
+              <ul>
+                {errors.map((error, index) => (
+                  <li key={index} style={{ color: "red" }}>
+                    {error.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <StyledButton type="submit">Anmelden</StyledButton>
+          </StyledForm>
+        </>
+      )}
+      {success && <p style={{ color: "green" }}>{success}</p>}
+      {loading && (
+        <>
+          <ModalOverlay>
+            <LoadingAnimation />
+          </ModalOverlay>
+        </>
+      )}
     </>
   );
 }
