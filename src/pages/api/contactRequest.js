@@ -7,7 +7,7 @@ CREATE TABLE contact_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_ip VARCHAR(50) NOT NULL,
     name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) DEFAULT NULL,
     email VARCHAR(100) NOT NULL,
     area VARCHAR(50) NOT NULL,
     subject VARCHAR(50) NOT NULL,
@@ -60,9 +60,7 @@ export default async function handler(req, res) {
   }
 
   // Nachname Validierung
-  if (!lastName || !lastName.trim()) {
-    errors.push({ field: "lastName", message: "Nachname ist ein Pflichtfeld" });
-  } else {
+  if (lastName) {
     if (lastName.length < 3) errors.push({ field: "lastName", message: "Nachname ist zu kurz" });
     if (lastName.length > 50) errors.push({ field: "lastName", message: "Nachname ist zu lang" });
     if (invalidCharactersRegex.test(lastName)) {

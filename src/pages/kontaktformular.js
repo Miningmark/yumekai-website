@@ -59,10 +59,12 @@ export default function Kontaktformular() {
     if (!name.trim()) newErrors.push({ field: "name", message: "Vorname ist ein Pflichtfeld" });
     if (name.length < 3) newErrors.push({ field: "name", message: "Vorname  ist zu kurz" });
     if (name.length > 50) newErrors.push({ field: "name", message: "Vorname ist zu lang" });
-    if (lastName.length < 3)
-      newErrors.push({ field: "lastName", message: "Nachname  ist zu kurz" });
-    if (lastName.length > 50)
-      newErrors.push({ field: "lastName", message: "Nachname ist zu lang" });
+    if (lastName) {
+      if (lastName.length < 3)
+        newErrors.push({ field: "lastName", message: "Nachname  ist zu kurz" });
+      if (lastName.length > 50)
+        newErrors.push({ field: "lastName", message: "Nachname ist zu lang" });
+    }
     if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
     if (!email.includes("@"))
       newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
