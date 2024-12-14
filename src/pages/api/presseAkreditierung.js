@@ -86,16 +86,10 @@ export default async function handler(req, res) {
     errors.push({ field: "workFunction", message: "Berufsbezeichnung ist zu kurz" });
   if (workFunction.length > 50)
     errors.push({ field: "workFunction", message: "Berufsbezeichnung ist zu lang" });
-  if (invalidCharactersRegex.test(workFunction)) {
-    errors.push({ field: "workFunction", message: "Ungültige Zeichen in der Berufsbezeichnung" });
-  }
 
   // medium Validierung
   if (medium.length < 3) errors.push({ field: "medium", message: "Medium ist zu kurz" });
   if (medium.length > 100) errors.push({ field: "medium", message: "Medium ist zu lang" });
-  if (invalidCharactersRegex.test(medium)) {
-    errors.push({ field: "medium", message: "Ungültige Zeichen im Medium" });
-  }
 
   // address Validierung
   if (address.length < 3) errors.push({ field: "address", message: "Adresse ist zu kurz" });
@@ -112,17 +106,11 @@ export default async function handler(req, res) {
       errors.push({ field: "verification", message: "Nachweis ist zu kurz" });
     if (verification.length > 500)
       errors.push({ field: "verification", message: "Nachweis ist zu lang" });
-    if (invalidCharactersRegex.test(verification)) {
-      errors.push({ field: "verification", message: "Ungültige Zeichen im Nachweis" });
-    }
   }
 
   // message Validierung
   if (message.length < 10) errors.push({ field: "message", message: "Nachricht ist zu kurz" });
   if (message.length > 500) errors.push({ field: "message", message: "Nachricht ist zu lang" });
-  if (invalidCharactersRegex.test(message)) {
-    errors.push({ field: "message", message: "Ungültige Zeichen in der Nachricht" });
-  }
 
   // privacyPolicy Validierung
   if (typeof privacyPolicy !== "boolean") {

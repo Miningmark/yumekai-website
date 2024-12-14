@@ -109,7 +109,7 @@ export default async function handler(req, res) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // Helper function for string validation
-  const validateString = (value, fieldName, minLength, maxLength) => {
+  const validateString = (value, fieldName, minLength, maxLength, specialCheck = true) => {
     if (!value || !value.trim()) {
       errors.push({ field: fieldName, message: `${fieldName} ist ein Pflichtfeld` });
     } else {
@@ -117,8 +117,10 @@ export default async function handler(req, res) {
         errors.push({ field: fieldName, message: `${fieldName} ist zu kurz` });
       if (value.length > maxLength)
         errors.push({ field: fieldName, message: `${fieldName} ist zu lang` });
-      if (invalidCharactersRegex.test(value)) {
-        errors.push({ field: fieldName, message: `Ungültige Zeichen in ${fieldName}` });
+      if (specialCheck) {
+        if (invalidCharactersRegex.test(value)) {
+          errors.push({ field: fieldName, message: `Ungültige Zeichen in ${fieldName}` });
+        }
       }
     }
   };
@@ -164,7 +166,7 @@ export default async function handler(req, res) {
   // Optional fields
   if (website) validateString(website, "website", 3, 100);
   if (instagram) validateString(instagram, "instagram", 3, 100);
-  if (message) validateString(message, "message", 3, 2500);
+  if (message) validateString(message, "message", 3, 2500, false);
 
   // Boolean validation
   if (typeof privacyPolicy !== "boolean" || privacyPolicy === false) {

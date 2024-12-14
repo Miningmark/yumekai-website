@@ -122,7 +122,7 @@ export default async function handler(req, res) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Helper function for string validation
-    const validateString = (value, fieldName, minLength, maxLength) => {
+    const validateString = (value, fieldName, minLength, maxLength, specialCheck = true) => {
       if (!value || !value.trim()) {
         errors.push({ field: fieldName, message: `${fieldName} ist ein Pflichtfeld` });
       } else {
@@ -130,8 +130,10 @@ export default async function handler(req, res) {
           errors.push({ field: fieldName, message: `${fieldName} ist zu kurz` });
         if (value.length > maxLength)
           errors.push({ field: fieldName, message: `${fieldName} ist zu lang` });
-        if (invalidCharactersRegex.test(value)) {
-          errors.push({ field: fieldName, message: `Ungültige Zeichen in ${fieldName}` });
+        if (specialCheck) {
+          if (invalidCharactersRegex.test(value)) {
+            errors.push({ field: fieldName, message: `Ungültige Zeichen in ${fieldName}` });
+          }
         }
       }
     };
@@ -143,7 +145,7 @@ export default async function handler(req, res) {
     if (email && !emailRegex.test(email)) {
       errors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
     }
-    validateString(discordName, "discordName", 2, 50);
+    validateString(discordName, "discordName", 2, 50, false);
     validateString(phone, "phone", 5, 25);
     validateString(street, "street", 5, 100);
     validateString(postalCode, "postalCode", 2, 10);
@@ -157,12 +159,12 @@ export default async function handler(req, res) {
     if (nickname) validateString(nickname, "nickname", 2, 50);
     if (occupation) validateString(occupation, "occupation", 2, 100);
     if (arrival) validateString(arrival, "arrival", 2, 50);
-    if (foodDetails) validateString(foodDetails, "allergies", 2, 500);
+    if (foodDetails) validateString(foodDetails, "allergies", 2, 500, false);
     if (strengths) validateString(strengths, "strengths", 2, 255);
     if (desiredTeam) validateString(desiredTeam, "desiredTeam", 2, 255);
-    if (other) validateString(other, "other", 2, 500);
-    if (workTimeSaturday) validateString(workTimeSaturday, "workTimeSaturday", 0, 255);
-    if (workTimeSunday) validateString(workTimeSunday, "workTimeSunday", 0, 255);
+    if (other) validateString(other, "other", 2, 500, false);
+    if (workTimeSaturday) validateString(workTimeSaturday, "workTimeSaturday", 0, 255, false);
+    if (workTimeSunday) validateString(workTimeSunday, "workTimeSunday", 0, 255, false);
 
     // Boolean validation
     if (typeof privacyPolicy !== "boolean") {
