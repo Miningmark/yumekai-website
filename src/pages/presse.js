@@ -3,9 +3,17 @@ import styled from "styled-components";
 //Components
 import { useState, useRef } from "react";
 import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
-import { StyledButton, StyledForm, Spacer, StyledLink } from "@/components/styledComponents";
+import {
+  StyledButton,
+  StyledForm,
+  Spacer,
+  StyledLink,
+  ModalOverlay,
+  SuccessText,
+} from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
+import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
 export default function Presse() {
   const [contactPerson, setContactPerson] = useState("");
@@ -19,6 +27,7 @@ export default function Presse() {
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Refs for form fields
   const refs = {
@@ -86,6 +95,8 @@ export default function Presse() {
       return;
     }
 
+    setLoading(true);
+
     try {
       const response = await fetch("/api/presseAkreditierung", {
         method: "POST",
@@ -130,6 +141,7 @@ export default function Presse() {
         },
       ]);
     }
+    setLoading(false);
   }
 
   return (
@@ -220,99 +232,111 @@ export default function Presse() {
 
       <Spacer id="akkreditierung" />
       <h2>Online Akkreditierung</h2>
-
-      <p>
-        Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
-      </p>
-      <StyledForm onSubmit={handleSubmit}>
-        <InputOptionInput
-          title="Ansprechpartner"
-          inputText={contactPerson}
-          inputChange={(value) => setContactPerson(value)}
-          require
-          inputRef={refs.contactPerson}
-          isError={errors.some((error) => error.field === "contactPerson")}
-        />
-        <InputOptionInput
-          title="E-Mail"
-          type="email"
-          inputText={email}
-          inputChange={(value) => setEmail(value)}
-          require
-          inputRef={refs.email}
-          isError={errors.some((error) => error.field === "email")}
-        />
-        <InputOptionInput
-          title="Funktion"
-          inputText={workFunction}
-          inputChange={(value) => setWorkFunction(value)}
-          inputRef={refs.workFunction}
-          isError={errors.some((error) => error.field === "workFunction")}
-        />
-        <InputOptionInput
-          title="Medium"
-          inputText={medium}
-          inputChange={(value) => setMedium(value)}
-          inputRef={refs.medium}
-          isError={errors.some((error) => error.field === "medium")}
-        />
-        <InputOptionTextArea
-          title="Anschrift"
-          inputText={address}
-          inputChange={(value) => setAddress(value)}
-          inputRef={refs.address}
-          isError={errors.some((error) => error.field === "address")}
-        />
-        <InputOptionTextArea
-          title="Nachweis "
-          inputText={verification}
-          inputChange={(value) => setVerification(value)}
-          require
-          inputRef={refs.verification}
-          isError={errors.some((error) => error.field === "verification")}
-        />
-        <p style={{ marginTop: "-5px" }}>
-          (Pressenachweis, einen schriftlichen Auftrag deines Chefredakteurs oder einen Nachweis
-          über Fanprojekte, über welche du schreibst)
-        </p>
-        <InputOptionTextArea
-          title="Nachricht"
-          inputText={message}
-          inputChange={(value) => setMessage(value)}
-          inputRef={refs.message}
-          isError={errors.some((error) => error.field === "message")}
-        />
-        <CheckBox
-          title={
-            <p>
-              Ich habe die{" "}
-              <StyledLink href="/datenschutz" target="_blank">
-                Datenschutzerklärung
-              </StyledLink>{" "}
-              gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung
-              zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die
-              Passage in der Datenschutzerklärung gelesen und verstanden.
-              <RequiredNote>*</RequiredNote>
+      {!success && (
+        <>
+          {" "}
+          <p>
+            Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
+          </p>
+          <StyledForm onSubmit={handleSubmit}>
+            <InputOptionInput
+              title="Ansprechpartner"
+              inputText={contactPerson}
+              inputChange={(value) => setContactPerson(value)}
+              require
+              inputRef={refs.contactPerson}
+              isError={errors.some((error) => error.field === "contactPerson")}
+            />
+            <InputOptionInput
+              title="E-Mail"
+              type="email"
+              inputText={email}
+              inputChange={(value) => setEmail(value)}
+              require
+              inputRef={refs.email}
+              isError={errors.some((error) => error.field === "email")}
+            />
+            <InputOptionInput
+              title="Funktion"
+              inputText={workFunction}
+              inputChange={(value) => setWorkFunction(value)}
+              inputRef={refs.workFunction}
+              isError={errors.some((error) => error.field === "workFunction")}
+            />
+            <InputOptionInput
+              title="Medium"
+              inputText={medium}
+              inputChange={(value) => setMedium(value)}
+              inputRef={refs.medium}
+              isError={errors.some((error) => error.field === "medium")}
+            />
+            <InputOptionTextArea
+              title="Anschrift"
+              inputText={address}
+              inputChange={(value) => setAddress(value)}
+              inputRef={refs.address}
+              isError={errors.some((error) => error.field === "address")}
+            />
+            <InputOptionTextArea
+              title="Nachweis "
+              inputText={verification}
+              inputChange={(value) => setVerification(value)}
+              require
+              inputRef={refs.verification}
+              isError={errors.some((error) => error.field === "verification")}
+            />
+            <p style={{ marginTop: "-5px" }}>
+              (Pressenachweis, einen schriftlichen Auftrag deines Chefredakteurs oder einen Nachweis
+              über Fanprojekte, über welche du schreibst)
             </p>
-          }
-          isChecked={privacyPolicy}
-          inputChange={(value) => setPrivacyPolicy(value)}
-          inputRef={refs.privacyPolicy}
-          isError={errors.some((error) => error.field === "privacyPolicy")}
-          require
-        />
-        {success && <p style={{ color: "green" }}>{success}</p>}
-        {errors.length > 0 && (
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index} style={{ color: "red" }}>
-                {error.message}
-              </li>
-            ))}
-          </ul>
-        )}
-        <StyledButton type="submit">Absenden</StyledButton>
-      </StyledForm>
+            <InputOptionTextArea
+              title="Nachricht"
+              inputText={message}
+              inputChange={(value) => setMessage(value)}
+              inputRef={refs.message}
+              isError={errors.some((error) => error.field === "message")}
+            />
+            <CheckBox
+              title={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink href="/datenschutz" target="_blank">
+                    Datenschutzerklärung
+                  </StyledLink>{" "}
+                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
+                  Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
+                  habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                  <RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={privacyPolicy}
+              inputChange={(value) => setPrivacyPolicy(value)}
+              inputRef={refs.privacyPolicy}
+              isError={errors.some((error) => error.field === "privacyPolicy")}
+              require
+            />
+            {errors.length > 0 && (
+              <ul>
+                {errors.map((error, index) => (
+                  <li key={index} style={{ color: "red" }}>
+                    {error.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <StyledButton type="submit">Absenden</StyledButton>
+          </StyledForm>
+        </>
+      )}
+
+      {success && <SuccessText>{success}</SuccessText>}
+      {loading && (
+        <>
+          <ModalOverlay>
+            <LoadingAnimation />
+          </ModalOverlay>
+        </>
+      )}
     </>
   );
 }

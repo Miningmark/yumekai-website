@@ -7,23 +7,16 @@ import {
   InputOptionInput,
   InputOptionSelect,
 } from "@/components/elements/InputComponents";
-import { StyledButton, StyledForm, StyledLink } from "@/components/styledComponents";
+import {
+  StyledButton,
+  StyledForm,
+  StyledLink,
+  ModalOverlay,
+  SuccessText,
+} from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-`;
 
 export default function Kontaktformular() {
   const [name, setName] = useState("");
@@ -262,7 +255,7 @@ export default function Kontaktformular() {
           </StyledForm>
         </>
       )}
-      {success && <p style={{ color: "green" }}>{success}</p>}
+      {success && <SuccessText>{success}</SuccessText>}
       {loading && (
         <>
           <ModalOverlay>

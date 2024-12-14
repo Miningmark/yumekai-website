@@ -14,11 +14,13 @@ import {
   SuccessText,
   StyledLink,
   Spacer,
+  ModalOverlay,
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
+import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
 const EU_COUNTRIES = [
   "Deutschland",
@@ -82,6 +84,7 @@ export default function RegistrationAsArtist() {
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const refs = {
     name: useRef(null),
@@ -226,6 +229,7 @@ export default function RegistrationAsArtist() {
       }
       return;
     }
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("name", name);
@@ -308,6 +312,7 @@ export default function RegistrationAsArtist() {
       ]);
       console.error("Fehler beim Einfügen der Daten:", error);
     }
+    setLoading(false);
   }
 
   function handleFileChange(e) {
@@ -348,306 +353,318 @@ export default function RegistrationAsArtist() {
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
+      {!success && (
+        <>
+          {" "}
+          <p>
+            Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
+          </p>
+          <StyledForm onSubmit={submit}>
+            <h2>Persönliche Angaben</h2>
+            <InputOptionInput
+              title="Name"
+              inputText={name}
+              inputChange={(value) => setName(value)}
+              inputRef={refs.name}
+              isError={errors.some((error) => error.field === "name")}
+              require
+            />
+            <InputOptionInput
+              title="Nachname"
+              inputText={lastName}
+              inputChange={(value) => setLastName(value)}
+              inputRef={refs.lastName}
+              isError={errors.some((error) => error.field === "lastName")}
+              require
+            />
+            <InputOptionInput
+              title="E-Mail"
+              inputText={email}
+              inputChange={(value) => setEmail(value)}
+              inputRef={refs.email}
+              isError={errors.some((error) => error.field === "email")}
+              require
+            />
+            <InputOptionInput
+              title="E-Mail Bestätigen"
+              inputText={confirmEmail}
+              inputChange={setConfirmEmail}
+              inputRef={refs.emailConfirm}
+              isError={errors.some((error) => error.field === "confirmEmail")}
+              require
+            />
+            <InputOptionInput
+              title="Firmenname"
+              inputText={vendorName}
+              inputChange={(value) => setVendorName(value)}
+              inputRef={refs.vendorName}
+              isError={errors.some((error) => error.field === "vendorName")}
+            />
+            <InputOptionInput
+              title="Künstlername"
+              inputText={artistName}
+              inputChange={(value) => setArtistName(value)}
+              inputRef={refs.artistName}
+              isError={errors.some((error) => error.field === "artistName")}
+              require
+            />
 
-      <p>
-        Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
-      </p>
+            <Spacer />
+            <h2>Adresse</h2>
 
-      <StyledForm onSubmit={submit}>
-        <h2>Persönliche Angaben</h2>
-        <InputOptionInput
-          title="Name"
-          inputText={name}
-          inputChange={(value) => setName(value)}
-          inputRef={refs.name}
-          isError={errors.some((error) => error.field === "name")}
-          require
-        />
-        <InputOptionInput
-          title="Nachname"
-          inputText={lastName}
-          inputChange={(value) => setLastName(value)}
-          inputRef={refs.lastName}
-          isError={errors.some((error) => error.field === "lastName")}
-          require
-        />
-        <InputOptionInput
-          title="E-Mail"
-          inputText={email}
-          inputChange={(value) => setEmail(value)}
-          inputRef={refs.email}
-          isError={errors.some((error) => error.field === "email")}
-          require
-        />
-        <InputOptionInput
-          title="E-Mail Bestätigen"
-          inputText={confirmEmail}
-          inputChange={setConfirmEmail}
-          inputRef={refs.emailConfirm}
-          isError={errors.some((error) => error.field === "confirmEmail")}
-          require
-        />
-        <InputOptionInput
-          title="Firmenname"
-          inputText={vendorName}
-          inputChange={(value) => setVendorName(value)}
-          inputRef={refs.vendorName}
-          isError={errors.some((error) => error.field === "vendorName")}
-        />
-        <InputOptionInput
-          title="Künstlername"
-          inputText={artistName}
-          inputChange={(value) => setArtistName(value)}
-          inputRef={refs.artistName}
-          isError={errors.some((error) => error.field === "artistName")}
-          require
-        />
+            <InputOptionInput
+              title="Straße"
+              inputText={street}
+              inputChange={setStreet}
+              inputRef={refs.street}
+              isError={errors.some((error) => error.field === "street")}
+              require
+            />
+            <InputOptionInput
+              title="PLZ"
+              inputText={postalCode}
+              inputChange={setPostalCode}
+              inputRef={refs.postalCode}
+              isError={errors.some((error) => error.field === "postalCode")}
+              require
+            />
+            <InputOptionInput
+              title="Ort"
+              inputText={city}
+              inputChange={setCity}
+              inputRef={refs.city}
+              isError={errors.some((error) => error.field === "city")}
+              require
+            />
+            <InputOptionSelect
+              title="Land"
+              options={EU_COUNTRIES}
+              inputText={country}
+              inputChange={(value) => setCountry(value)}
+              inputRef={refs.country}
+              isError={errors.some((error) => error.field === "country")}
+              require
+            />
 
-        <Spacer />
-        <h2>Adresse</h2>
-
-        <InputOptionInput
-          title="Straße"
-          inputText={street}
-          inputChange={setStreet}
-          inputRef={refs.street}
-          isError={errors.some((error) => error.field === "street")}
-          require
-        />
-        <InputOptionInput
-          title="PLZ"
-          inputText={postalCode}
-          inputChange={setPostalCode}
-          inputRef={refs.postalCode}
-          isError={errors.some((error) => error.field === "postalCode")}
-          require
-        />
-        <InputOptionInput
-          title="Ort"
-          inputText={city}
-          inputChange={setCity}
-          inputRef={refs.city}
-          isError={errors.some((error) => error.field === "city")}
-          require
-        />
-        <InputOptionSelect
-          title="Land"
-          options={EU_COUNTRIES}
-          inputText={country}
-          inputChange={(value) => setCountry(value)}
-          inputRef={refs.country}
-          isError={errors.some((error) => error.field === "country")}
-          require
-        />
-
-        <Spacer />
-        <h2>Stand</h2>
-        <InputOptionTextArea
-          title="Art der Kunst"
-          inputText={typeOfArt}
-          inputChange={(value) => setTypeOfArt(value)}
-          inputRef={refs.typeOfArt}
-          isError={errors.some((error) => error.field === "typeOfArt")}
-          require
-        />
-        <InputOptionTextArea
-          title="Beschreibung des Standes"
-          inputText={descriptionOfStand}
-          inputChange={(value) => setDescriptionOfStand(value)}
-          inputRef={refs.descriptionOfStand}
-          isError={errors.some((error) => error.field === "descriptionOfStand")}
-          require
-        />
-        <p>
-          Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
-        </p>
-        <FileUpload
-          handleFileChange={handleFileChange}
-          inputRef={refs.image}
-          previewUrl={previewUrl}
-          file={file}
-          isError={errors.some((error) => error.field === "image")}
-        />
-        {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
-
-        <RadioButton
-          title="Standgröße"
-          names={["Ganzer Tisch (90€)", "Halber Tisch (50€)"]}
-          options={["Ganzer Tisch", "Halber Tisch"]}
-          selectedOption={standSize}
-          inputChange={(value) => setStandSize(value)}
-          inputRef={refs.gender}
-          isError={errors.some((error) => error.field === "standSize")}
-          require
-        />
-        <CheckBox
-          title="Zusätzliches Ausstellerticket (42,00€)"
-          inputText={additionalExhibitorTicket}
-          inputChange={(value) => setAdditionalExhibitorTicket(value)}
-          inputRef={refs.additionalExhibitorTicket}
-          isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
-        />
-        <CheckBox
-          title="wlan"
-          content="W-lan für ein EC-Karten-/Kreditkartengerät - (10,00€)"
-          isChecked={wlan}
-          inputChange={(value) => setWlan(value)}
-          inputRef={refs.wlan}
-          isError={errors.some((error) => error.field === "wlan")}
-        />
-        <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
-        <RadioButton
-          title="Programmheft"
-          names={["Nein", "Viertel Seite (30€)", "Halbe Seite (45€)", "Ganze Seite (85€)"]}
-          options={["Nein", "Viertel Seite", "Halbe Seite", "Ganze Seite"]}
-          selectedOption={programmBooklet}
-          inputChange={(value) => setProgrammBooklet(value)}
-          inputRef={refs.programmBooklet}
-          isError={errors.some((error) => error.field === "programmBooklet")}
-          require
-        />
-
-        <h3>Gesamtkosten</h3>
-        <ul>
-          <li>
-            Standgröße: {standSize} ({selectedStandCost.toFixed(2)}€)
-          </li>
-          {additionalExhibitorTicket && <li>Zusätzliche Ausstellertickets: 52,00€</li>}
-          {wlan && <li>W-Lan: 10,00€</li>}
-          {programmBooklet !== "Nein" && (
-            <li>
-              Programmheft: {programmBooklet} ({totalProgrammBookletCost.toFixed(2)}€)
-            </li>
-          )}
-        </ul>
-
-        <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST</h4>
-
-        <Spacer />
-        <h2>Allgemeines</h2>
-
-        <InputOptionInput
-          title="Website"
-          inputText={website}
-          inputChange={setWebsite}
-          inputRef={refs.website}
-          isError={errors.some((error) => error.field === "website")}
-        />
-        <InputOptionInput
-          title="Instagram"
-          inputText={instagram}
-          inputChange={setInstagram}
-          inputRef={refs.instagram}
-          isError={errors.some((error) => error.field === "instagram")}
-        />
-        <InputOptionTextArea
-          title="Nachricht"
-          inputText={message}
-          inputChange={setMessage}
-          inputRef={refs.message}
-          isError={errors.some((error) => error.field === "message")}
-        />
-
-        <Spacer />
-        <h2>Bedingungen</h2>
-
-        <CheckBox
-          title="privacyPolicy"
-          content={
+            <Spacer />
+            <h2>Stand</h2>
+            <InputOptionTextArea
+              title="Art der Kunst"
+              inputText={typeOfArt}
+              inputChange={(value) => setTypeOfArt(value)}
+              inputRef={refs.typeOfArt}
+              isError={errors.some((error) => error.field === "typeOfArt")}
+              require
+            />
+            <InputOptionTextArea
+              title="Beschreibung des Standes"
+              inputText={descriptionOfStand}
+              inputChange={(value) => setDescriptionOfStand(value)}
+              inputRef={refs.descriptionOfStand}
+              isError={errors.some((error) => error.field === "descriptionOfStand")}
+              require
+            />
             <p>
-              Ich habe die{" "}
-              <StyledLink href="/datenschutz" target="_blank">
-                Datenschutzerklärung
-              </StyledLink>{" "}
-              gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung
-              zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die
-              Passage in der Datenschutzerklärung gelesen und verstanden.
-              <RequiredNote>*</RequiredNote>
+              Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
-          }
-          isChecked={privacyPolicy}
-          inputChange={(value) => setPrivacyPolicy(value)}
-          inputRef={refs.privacyPolicy}
-          isError={errors.some((error) => error.field === "privacyPolicy")}
-          require
-        />
-        <CheckBox
-          title="dataStorage"
-          content={
-            <p>
-              Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
-              elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung an
-              die zuständigen Bereiche weitergeleitet werden dürfen.<RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={dataStorage}
-          inputChange={(value) => setDataStorage(value)}
-          inputRef={refs.dataStorage}
-          isError={errors.some((error) => error.field === "dataStorage")}
-          require
-        />
-        <CheckBox
-          title="licensedMusic"
-          content={
-            <p>
-              Ich habe zur Kenntnis genommen, dass GEMA-Lizenzierte Bild- oder Tonwiedergabe nicht
-              erlaubt ist.<RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={licensedMusic}
-          inputChange={(value) => setLicensedMusic(value)}
-          inputRef={refs.licensedMusic}
-          isError={errors.some((error) => error.field === "licensedMusic")}
-          require
-        />
-        <CheckBox
-          title="pictureRights"
-          content={
-            <p>
-              Hiermit bestätige ich, dass die Bildrechte der hochgeladenen Bilder bei mir liegen.
-              Ich bin damit einverstanden und genehmige der Dreamfly-Events UG das hier eingereichte
-              Bildmaterial zu ihren Zwecken sowohl digital als auch in gedruckter Form (z.B.
-              Werbung, Social Media, Programmheft, Webseite, etc.) nutzen zu dürfen. Alternativ -
-              sofern kein Bildmaterial hochgeladen worden ist - dass kein Bildmaterial eingereicht
-              wurde.<RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={pictureRights}
-          inputChange={(value) => setPictureRights(value)}
-          inputRef={refs.pictureRights}
-          isError={errors.some((error) => error.field === "pictureRights")}
-          require
-        />
-        <CheckBox
-          title="artistConditions"
-          content={
-            <p>
-              Ich habe die{" "}
-              <StyledLink href="" target="_blank">
-                Teilnahmebedingungen
-              </StyledLink>{" "}
-              gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={artistConditions}
-          inputChange={(value) => setArtistConditions(value)}
-          inputRef={refs.artistConditions}
-          isError={errors.some((error) => error.field === "artistConditions")}
-          require
-        />
+            <FileUpload
+              handleFileChange={handleFileChange}
+              inputRef={refs.image}
+              previewUrl={previewUrl}
+              file={file}
+              isError={errors.some((error) => error.field === "image")}
+            />
+            {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
 
-        {errors && (
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index} style={{ color: "red" }}>
-                {error.message}
+            <RadioButton
+              title="Standgröße"
+              names={["Ganzer Tisch (90€)", "Halber Tisch (50€)"]}
+              options={["Ganzer Tisch", "Halber Tisch"]}
+              selectedOption={standSize}
+              inputChange={(value) => setStandSize(value)}
+              inputRef={refs.gender}
+              isError={errors.some((error) => error.field === "standSize")}
+              require
+            />
+            <CheckBox
+              title="Zusätzliches Ausstellerticket (42,00€)"
+              inputText={additionalExhibitorTicket}
+              inputChange={(value) => setAdditionalExhibitorTicket(value)}
+              inputRef={refs.additionalExhibitorTicket}
+              isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
+            />
+            <CheckBox
+              title="wlan"
+              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10,00€)"
+              isChecked={wlan}
+              inputChange={(value) => setWlan(value)}
+              inputRef={refs.wlan}
+              isError={errors.some((error) => error.field === "wlan")}
+            />
+            <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
+            <RadioButton
+              title="Programmheft"
+              names={["Nein", "Viertel Seite (30€)", "Halbe Seite (45€)", "Ganze Seite (85€)"]}
+              options={["Nein", "Viertel Seite", "Halbe Seite", "Ganze Seite"]}
+              selectedOption={programmBooklet}
+              inputChange={(value) => setProgrammBooklet(value)}
+              inputRef={refs.programmBooklet}
+              isError={errors.some((error) => error.field === "programmBooklet")}
+              require
+            />
+
+            <h3>Gesamtkosten</h3>
+            <ul>
+              <li>
+                Standgröße: {standSize} ({selectedStandCost.toFixed(2)}€)
               </li>
-            ))}
-          </ul>
-        )}
-        {success && <SuccessText>{success}</SuccessText>}
-        <StyledButton type="submit">Anmelden</StyledButton>
-      </StyledForm>
+              {additionalExhibitorTicket && <li>Zusätzliche Ausstellertickets: 52,00€</li>}
+              {wlan && <li>W-Lan: 10,00€</li>}
+              {programmBooklet !== "Nein" && (
+                <li>
+                  Programmheft: {programmBooklet} ({totalProgrammBookletCost.toFixed(2)}€)
+                </li>
+              )}
+            </ul>
+
+            <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST</h4>
+
+            <Spacer />
+            <h2>Allgemeines</h2>
+
+            <InputOptionInput
+              title="Website"
+              inputText={website}
+              inputChange={setWebsite}
+              inputRef={refs.website}
+              isError={errors.some((error) => error.field === "website")}
+            />
+            <InputOptionInput
+              title="Instagram"
+              inputText={instagram}
+              inputChange={setInstagram}
+              inputRef={refs.instagram}
+              isError={errors.some((error) => error.field === "instagram")}
+            />
+            <InputOptionTextArea
+              title="Nachricht"
+              inputText={message}
+              inputChange={setMessage}
+              inputRef={refs.message}
+              isError={errors.some((error) => error.field === "message")}
+            />
+
+            <Spacer />
+            <h2>Bedingungen</h2>
+
+            <CheckBox
+              title="privacyPolicy"
+              content={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink href="/datenschutz" target="_blank">
+                    Datenschutzerklärung
+                  </StyledLink>{" "}
+                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
+                  Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
+                  habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                  <RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={privacyPolicy}
+              inputChange={(value) => setPrivacyPolicy(value)}
+              inputRef={refs.privacyPolicy}
+              isError={errors.some((error) => error.field === "privacyPolicy")}
+              require
+            />
+            <CheckBox
+              title="dataStorage"
+              content={
+                <p>
+                  Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
+                  elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung
+                  an die zuständigen Bereiche weitergeleitet werden dürfen.
+                  <RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={dataStorage}
+              inputChange={(value) => setDataStorage(value)}
+              inputRef={refs.dataStorage}
+              isError={errors.some((error) => error.field === "dataStorage")}
+              require
+            />
+            <CheckBox
+              title="licensedMusic"
+              content={
+                <p>
+                  Ich habe zur Kenntnis genommen, dass GEMA-Lizenzierte Bild- oder Tonwiedergabe
+                  nicht erlaubt ist.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={licensedMusic}
+              inputChange={(value) => setLicensedMusic(value)}
+              inputRef={refs.licensedMusic}
+              isError={errors.some((error) => error.field === "licensedMusic")}
+              require
+            />
+            <CheckBox
+              title="pictureRights"
+              content={
+                <p>
+                  Hiermit bestätige ich, dass die Bildrechte der hochgeladenen Bilder bei mir
+                  liegen. Ich bin damit einverstanden und genehmige der Dreamfly-Events UG das hier
+                  eingereichte Bildmaterial zu ihren Zwecken sowohl digital als auch in gedruckter
+                  Form (z.B. Werbung, Social Media, Programmheft, Webseite, etc.) nutzen zu dürfen.
+                  Alternativ - sofern kein Bildmaterial hochgeladen worden ist - dass kein
+                  Bildmaterial eingereicht wurde.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={pictureRights}
+              inputChange={(value) => setPictureRights(value)}
+              inputRef={refs.pictureRights}
+              isError={errors.some((error) => error.field === "pictureRights")}
+              require
+            />
+            <CheckBox
+              title="artistConditions"
+              content={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink href="" target="_blank">
+                    Teilnahmebedingungen
+                  </StyledLink>{" "}
+                  gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={artistConditions}
+              inputChange={(value) => setArtistConditions(value)}
+              inputRef={refs.artistConditions}
+              isError={errors.some((error) => error.field === "artistConditions")}
+              require
+            />
+
+            {errors && (
+              <ul>
+                {errors.map((error, index) => (
+                  <li key={index} style={{ color: "red" }}>
+                    {error.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <StyledButton type="submit">Anmelden</StyledButton>
+          </StyledForm>
+        </>
+      )}
+      {success && <SuccessText>{success}</SuccessText>}
+      {loading && (
+        <>
+          <ModalOverlay>
+            <LoadingAnimation />
+          </ModalOverlay>
+        </>
+      )}
     </>
   );
 }

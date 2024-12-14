@@ -7,7 +7,7 @@ CREATE TABLE contact_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_ip VARCHAR(50) NOT NULL,
     name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) DEFAULT NULL,
+    last_name VARCHAR(50),
     email VARCHAR(100) NOT NULL,
     area VARCHAR(50) NOT NULL,
     subject VARCHAR(50) NOT NULL,

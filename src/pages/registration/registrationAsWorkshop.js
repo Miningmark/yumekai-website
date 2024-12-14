@@ -14,11 +14,12 @@ import {
   SuccessText,
   StyledLink,
   Spacer,
+  ModalOverlay,
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
-import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
+import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
 const TimeslotsContainer = styled.div`
   display: flex;
@@ -96,6 +97,7 @@ export default function RegistrationAsWorkshop() {
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const refs = {
     name: useRef(null),
@@ -238,6 +240,8 @@ export default function RegistrationAsWorkshop() {
       return;
     }
 
+    setLoading(true);
+
     const timeSlots = [
       timeSlot1 && "Samstag 11:00-15:00 Uhr",
       timeSlot2 && "Samstag 15:00-20:00 Uhr",
@@ -330,6 +334,7 @@ export default function RegistrationAsWorkshop() {
         },
       ]);
     }
+    setLoading(false);
   }
 
   function handleFileChange(e) {
@@ -384,311 +389,324 @@ export default function RegistrationAsWorkshop() {
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
-      <p>
-        Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
-      </p>
-      <StyledForm onSubmit={submit}>
-        <h2>Persönliche Angaben</h2>
-        <InputOptionInput
-          title="Name"
-          inputText={name}
-          inputChange={(value) => setName(value)}
-          inputRef={refs.name}
-          isError={errors.some((error) => error.field === "name")}
-          require
-        />
-        <InputOptionInput
-          title="Nachname"
-          inputText={lastName}
-          inputChange={(value) => setLastName(value)}
-          inputRef={refs.lastName}
-          isError={errors.some((error) => error.field === "lastName")}
-          require
-        />
-        <InputOptionInput
-          title="E-Mail"
-          inputText={email}
-          inputChange={(value) => setEmail(value)}
-          inputRef={refs.email}
-          isError={errors.some((error) => error.field === "email")}
-          require
-        />
-        <InputOptionInput
-          title="E-Mail Bestätigen"
-          inputText={confirmEmail}
-          inputChange={setConfirmEmail}
-          inputRef={refs.emailConfirm}
-          isError={errors.some((error) => error.field === "confirmEmail")}
-          require
-        />
 
-        <Spacer />
-        <h2>Adresse</h2>
+      {!success && (
+        <>
+          <p>
+            Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
+          </p>
+          <StyledForm onSubmit={submit}>
+            <h2>Persönliche Angaben</h2>
+            <InputOptionInput
+              title="Name"
+              inputText={name}
+              inputChange={(value) => setName(value)}
+              inputRef={refs.name}
+              isError={errors.some((error) => error.field === "name")}
+              require
+            />
+            <InputOptionInput
+              title="Nachname"
+              inputText={lastName}
+              inputChange={(value) => setLastName(value)}
+              inputRef={refs.lastName}
+              isError={errors.some((error) => error.field === "lastName")}
+              require
+            />
+            <InputOptionInput
+              title="E-Mail"
+              inputText={email}
+              inputChange={(value) => setEmail(value)}
+              inputRef={refs.email}
+              isError={errors.some((error) => error.field === "email")}
+              require
+            />
+            <InputOptionInput
+              title="E-Mail Bestätigen"
+              inputText={confirmEmail}
+              inputChange={setConfirmEmail}
+              inputRef={refs.emailConfirm}
+              isError={errors.some((error) => error.field === "confirmEmail")}
+              require
+            />
 
-        <InputOptionInput
-          title="Straße"
-          inputText={street}
-          inputChange={setStreet}
-          inputRef={refs.street}
-          isError={errors.some((error) => error.field === "street")}
-          require
-        />
-        <InputOptionInput
-          title="PLZ"
-          inputText={postalCode}
-          inputChange={setPostalCode}
-          inputRef={refs.postalCode}
-          isError={errors.some((error) => error.field === "postalCode")}
-          require
-        />
-        <InputOptionInput
-          title="Ort"
-          inputText={city}
-          inputChange={setCity}
-          inputRef={refs.city}
-          isError={errors.some((error) => error.field === "city")}
-          require
-        />
-        <InputOptionSelect
-          title="Land"
-          options={EU_COUNTRIES}
-          inputText={country}
-          inputChange={(value) => setCountry(value)}
-          inputRef={refs.country}
-          isError={errors.some((error) => error.field === "country")}
-          require
-        />
+            <Spacer />
+            <h2>Adresse</h2>
 
-        <Spacer />
-        <h2>Workshop</h2>
-        <InputOptionInput
-          title="Titel des Workshops"
-          inputText={workshopTitle}
-          inputChange={setWorkshopTitle}
-          inputRef={refs.workshopTitle}
-          isError={errors.some((error) => error.field === "workshopTitle")}
-          require
-        />
-        <InputOptionTextArea
-          title="Beschreibung des Workshops"
-          inputText={workshopDescription}
-          inputChange={setWorkshopDescription}
-          inputRef={refs.workshopDescription}
-          isError={errors.some((error) => error.field === "workshopDescription")}
-          require
-        />
-        <InputOptionInput
-          title="Leiter*innen"
-          inputText={leaders}
-          inputChange={setLeaders}
-          inputRef={refs.leaders}
-          isError={errors.some((error) => error.field === "leaders")}
-          require
-          type="number"
-          min={1}
-          max={5}
-        />
-        <TimeslotsContainer $iserror={errors.some((error) => error.field === "timeSlots")}>
-          <h3>Bevorzugter Tag/Uhrzeit (min. 1 Option wählen)</h3>
-          <CheckBox
-            title="timeSlot1"
-            content="Samstag 11:00-15:00 Uhr"
-            isChecked={timeSlot1}
-            inputChange={(value) => setTimeSlot1(value)}
-            inputRef={refs.timeSlots}
-          />
-          <CheckBox
-            title="timeSlot2"
-            content="Samstag 15:00-20:00 Uhr"
-            isChecked={timeSlot2}
-            inputChange={(value) => setTimeSlot2(value)}
-          />
-          <CheckBox
-            title="timeSlot3"
-            content="Sonntag 11:00-14:00 Uhr"
-            isChecked={timeSlot3}
-            inputChange={(value) => setTimeSlot3(value)}
-          />
-          <CheckBox
-            title="timeSlot4"
-            content="Sonntag 14:00-18:00 Uhr"
-            isChecked={timeSlot4}
-            inputChange={(value) => setTimeSlot4(value)}
-          />
-        </TimeslotsContainer>
-        <InputOptionInput
-          title="Aufbauzeit (in Minuten)"
-          inputText={constructionTime}
-          inputChange={setConstructionTime}
-          inputRef={refs.constructionTime}
-          isError={errors.some((error) => error.field === "constructionTime")}
-          require
-          type="number"
-          min={1}
-          max={30}
-        />
-        <InputOptionInput
-          title="Workshopzeit (in Minuten)"
-          inputText={workshopTime}
-          inputChange={setWorkshopTime}
-          inputRef={refs.workshopTime}
-          isError={errors.some((error) => error.field === "workshopTime")}
-          require
-          type="number"
-          min={30}
-          max={360}
-        />
-        <InputOptionInput
-          title="Abbauzeit (in Minuten)"
-          inputText={deconstructionTime}
-          inputChange={setDeconstructionTime}
-          inputRef={refs.deconstructionTime}
-          isError={errors.some((error) => error.field === "deconstructionTime")}
-          require
-          type="number"
-          min={1}
-          max={30}
-        />
-        <InputOptionTextArea
-          title="Anforderungen für den Workshop (z.B. Material, Technik, etc.)"
-          inputText={workshopRequirements}
-          inputChange={setWorkshopRequirements}
-          inputRef={refs.workshopRequirements}
-          isError={errors.some((error) => error.field === "workshopRequirements")}
-        />
-        <InputOptionInput
-          title="Teilnehmer*innen"
-          inputText={participants}
-          inputChange={setParticipants}
-          inputRef={refs.participants}
-          isError={errors.some((error) => error.field === "participants")}
-          type="number"
-          min={1}
-          max={40}
-        />
-        <p>
-          Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
-        </p>
-        <FileUpload
-          handleFileChange={handleFileChange}
-          inputRef={refs.image}
-          previewUrl={previewUrl}
-          file={file}
-          isError={errors.some((error) => error.field === "image")}
-        />
-        {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
+            <InputOptionInput
+              title="Straße"
+              inputText={street}
+              inputChange={setStreet}
+              inputRef={refs.street}
+              isError={errors.some((error) => error.field === "street")}
+              require
+            />
+            <InputOptionInput
+              title="PLZ"
+              inputText={postalCode}
+              inputChange={setPostalCode}
+              inputRef={refs.postalCode}
+              isError={errors.some((error) => error.field === "postalCode")}
+              require
+            />
+            <InputOptionInput
+              title="Ort"
+              inputText={city}
+              inputChange={setCity}
+              inputRef={refs.city}
+              isError={errors.some((error) => error.field === "city")}
+              require
+            />
+            <InputOptionSelect
+              title="Land"
+              options={EU_COUNTRIES}
+              inputText={country}
+              inputChange={(value) => setCountry(value)}
+              inputRef={refs.country}
+              isError={errors.some((error) => error.field === "country")}
+              require
+            />
 
-        <Spacer />
-        <h2>Allgemeines</h2>
-
-        <InputOptionInput
-          title="Website"
-          inputText={website}
-          inputChange={setWebsite}
-          inputRef={refs.website}
-          isError={errors.some((error) => error.field === "website")}
-        />
-        <InputOptionInput
-          title="Instagram"
-          inputText={instagram}
-          inputChange={setInstagram}
-          inputRef={refs.instagram}
-          isError={errors.some((error) => error.field === "instagram")}
-        />
-        <InputOptionTextArea
-          title="Nachricht"
-          inputText={message}
-          inputChange={setMessage}
-          inputRef={refs.message}
-          isError={errors.some((error) => error.field === "message")}
-        />
-
-        <Spacer />
-        <h2>Bedingungen</h2>
-
-        <CheckBox
-          title="privacyPolicy"
-          content={
+            <Spacer />
+            <h2>Workshop</h2>
+            <InputOptionInput
+              title="Titel des Workshops"
+              inputText={workshopTitle}
+              inputChange={setWorkshopTitle}
+              inputRef={refs.workshopTitle}
+              isError={errors.some((error) => error.field === "workshopTitle")}
+              require
+            />
+            <InputOptionTextArea
+              title="Beschreibung des Workshops"
+              inputText={workshopDescription}
+              inputChange={setWorkshopDescription}
+              inputRef={refs.workshopDescription}
+              isError={errors.some((error) => error.field === "workshopDescription")}
+              require
+            />
+            <InputOptionInput
+              title="Leiter*innen"
+              inputText={leaders}
+              inputChange={setLeaders}
+              inputRef={refs.leaders}
+              isError={errors.some((error) => error.field === "leaders")}
+              require
+              type="number"
+              min={1}
+              max={5}
+            />
+            <TimeslotsContainer $iserror={errors.some((error) => error.field === "timeSlots")}>
+              <h3>Bevorzugter Tag/Uhrzeit (min. 1 Option wählen)</h3>
+              <CheckBox
+                title="timeSlot1"
+                content="Samstag 11:00-15:00 Uhr"
+                isChecked={timeSlot1}
+                inputChange={(value) => setTimeSlot1(value)}
+                inputRef={refs.timeSlots}
+              />
+              <CheckBox
+                title="timeSlot2"
+                content="Samstag 15:00-20:00 Uhr"
+                isChecked={timeSlot2}
+                inputChange={(value) => setTimeSlot2(value)}
+              />
+              <CheckBox
+                title="timeSlot3"
+                content="Sonntag 11:00-14:00 Uhr"
+                isChecked={timeSlot3}
+                inputChange={(value) => setTimeSlot3(value)}
+              />
+              <CheckBox
+                title="timeSlot4"
+                content="Sonntag 14:00-18:00 Uhr"
+                isChecked={timeSlot4}
+                inputChange={(value) => setTimeSlot4(value)}
+              />
+            </TimeslotsContainer>
+            <InputOptionInput
+              title="Aufbauzeit (in Minuten)"
+              inputText={constructionTime}
+              inputChange={setConstructionTime}
+              inputRef={refs.constructionTime}
+              isError={errors.some((error) => error.field === "constructionTime")}
+              require
+              type="number"
+              min={1}
+              max={30}
+            />
+            <InputOptionInput
+              title="Workshopzeit (in Minuten)"
+              inputText={workshopTime}
+              inputChange={setWorkshopTime}
+              inputRef={refs.workshopTime}
+              isError={errors.some((error) => error.field === "workshopTime")}
+              require
+              type="number"
+              min={30}
+              max={360}
+            />
+            <InputOptionInput
+              title="Abbauzeit (in Minuten)"
+              inputText={deconstructionTime}
+              inputChange={setDeconstructionTime}
+              inputRef={refs.deconstructionTime}
+              isError={errors.some((error) => error.field === "deconstructionTime")}
+              require
+              type="number"
+              min={1}
+              max={30}
+            />
+            <InputOptionTextArea
+              title="Anforderungen für den Workshop (z.B. Material, Technik, etc.)"
+              inputText={workshopRequirements}
+              inputChange={setWorkshopRequirements}
+              inputRef={refs.workshopRequirements}
+              isError={errors.some((error) => error.field === "workshopRequirements")}
+            />
+            <InputOptionInput
+              title="Teilnehmer*innen"
+              inputText={participants}
+              inputChange={setParticipants}
+              inputRef={refs.participants}
+              isError={errors.some((error) => error.field === "participants")}
+              type="number"
+              min={1}
+              max={40}
+            />
             <p>
-              Ich habe die{" "}
-              <StyledLink href="/datenschutz" target="_blank">
-                Datenschutzerklärung
-              </StyledLink>{" "}
-              gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung
-              zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die
-              Passage in der Datenschutzerklärung gelesen und verstanden.
-              <RequiredNote>*</RequiredNote>
+              Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
-          }
-          isChecked={privacyPolicy}
-          inputChange={(value) => setPrivacyPolicy(value)}
-          inputRef={refs.privacyPolicy}
-          isError={errors.some((error) => error.field === "privacyPolicy")}
-          require
-        />
-        <CheckBox
-          title="dataStorage"
-          content={
-            <p>
-              Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
-              elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung an
-              die zuständigen Bereiche weitergeleitet werden dürfen.<RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={dataStorage}
-          inputChange={(value) => setDataStorage(value)}
-          inputRef={refs.dataStorage}
-          isError={errors.some((error) => error.field === "dataStorage")}
-          require
-        />
-        <CheckBox
-          title="pictureRights"
-          content={
-            <p>
-              Hiermit bestätige ich, dass die Bildrechte der hochgeladenen Bilder bei mir liegen.
-              Ich bin damit einverstanden und genehmige der Dreamfly-Events UG das hier eingereichte
-              Bildmaterial zu ihren Zwecken sowohl digital als auch in gedruckter Form (z.B.
-              Werbung, Social Media, Programmheft, Webseite, etc.) nutzen zu dürfen. Alternativ -
-              sofern kein Bildmaterial hochgeladen worden ist - dass kein Bildmaterial eingereicht
-              wurde.<RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={pictureRights}
-          inputChange={(value) => setPictureRights(value)}
-          inputRef={refs.pictureRights}
-          isError={errors.some((error) => error.field === "pictureRights")}
-          require
-        />
-        <CheckBox
-          title="workshopConditions"
-          content={
-            <p>
-              Ich habe die{" "}
-              <StyledLink href="" target="_blank">
-                Teilnahmebedingungen
-              </StyledLink>{" "}
-              gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
-            </p>
-          }
-          isChecked={workshopConditions}
-          inputChange={(value) => setWorkshopConditions(value)}
-          inputRef={refs.workshopConditions}
-          isError={errors.some((error) => error.field === "workshopConditions")}
-          require
-        />
+            <FileUpload
+              handleFileChange={handleFileChange}
+              inputRef={refs.image}
+              previewUrl={previewUrl}
+              file={file}
+              isError={errors.some((error) => error.field === "image")}
+            />
+            {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
 
-        {errors && (
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index} style={{ color: "red" }}>
-                {error.message}
-              </li>
-            ))}
-          </ul>
-        )}
-        {success && <SuccessText>{success}</SuccessText>}
-        <StyledButton type="submit">Anmelden</StyledButton>
-      </StyledForm>
+            <Spacer />
+            <h2>Allgemeines</h2>
+
+            <InputOptionInput
+              title="Website"
+              inputText={website}
+              inputChange={setWebsite}
+              inputRef={refs.website}
+              isError={errors.some((error) => error.field === "website")}
+            />
+            <InputOptionInput
+              title="Instagram"
+              inputText={instagram}
+              inputChange={setInstagram}
+              inputRef={refs.instagram}
+              isError={errors.some((error) => error.field === "instagram")}
+            />
+            <InputOptionTextArea
+              title="Nachricht"
+              inputText={message}
+              inputChange={setMessage}
+              inputRef={refs.message}
+              isError={errors.some((error) => error.field === "message")}
+            />
+
+            <Spacer />
+            <h2>Bedingungen</h2>
+
+            <CheckBox
+              title="privacyPolicy"
+              content={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink href="/datenschutz" target="_blank">
+                    Datenschutzerklärung
+                  </StyledLink>{" "}
+                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
+                  Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
+                  habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                  <RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={privacyPolicy}
+              inputChange={(value) => setPrivacyPolicy(value)}
+              inputRef={refs.privacyPolicy}
+              isError={errors.some((error) => error.field === "privacyPolicy")}
+              require
+            />
+            <CheckBox
+              title="dataStorage"
+              content={
+                <p>
+                  Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
+                  elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung
+                  an die zuständigen Bereiche weitergeleitet werden dürfen.
+                  <RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={dataStorage}
+              inputChange={(value) => setDataStorage(value)}
+              inputRef={refs.dataStorage}
+              isError={errors.some((error) => error.field === "dataStorage")}
+              require
+            />
+            <CheckBox
+              title="pictureRights"
+              content={
+                <p>
+                  Hiermit bestätige ich, dass die Bildrechte der hochgeladenen Bilder bei mir
+                  liegen. Ich bin damit einverstanden und genehmige der Dreamfly-Events UG das hier
+                  eingereichte Bildmaterial zu ihren Zwecken sowohl digital als auch in gedruckter
+                  Form (z.B. Werbung, Social Media, Programmheft, Webseite, etc.) nutzen zu dürfen.
+                  Alternativ - sofern kein Bildmaterial hochgeladen worden ist - dass kein
+                  Bildmaterial eingereicht wurde.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={pictureRights}
+              inputChange={(value) => setPictureRights(value)}
+              inputRef={refs.pictureRights}
+              isError={errors.some((error) => error.field === "pictureRights")}
+              require
+            />
+            <CheckBox
+              title="workshopConditions"
+              content={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink href="" target="_blank">
+                    Teilnahmebedingungen
+                  </StyledLink>{" "}
+                  gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={workshopConditions}
+              inputChange={(value) => setWorkshopConditions(value)}
+              inputRef={refs.workshopConditions}
+              isError={errors.some((error) => error.field === "workshopConditions")}
+              require
+            />
+
+            {errors && (
+              <ul>
+                {errors.map((error, index) => (
+                  <li key={index} style={{ color: "red" }}>
+                    {error.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <StyledButton type="submit">Anmelden</StyledButton>
+          </StyledForm>
+        </>
+      )}
+      {success && <SuccessText>{success}</SuccessText>}
+      {loading && (
+        <>
+          <ModalOverlay>
+            <LoadingAnimation />
+          </ModalOverlay>
+        </>
+      )}
     </>
   );
 }

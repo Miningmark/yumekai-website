@@ -13,11 +13,13 @@ import {
   SuccessText,
   StyledLink,
   Spacer,
+  ModalOverlay,
 } from "../styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
+import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
 const EU_COUNTRIES = [
   "Deutschland",
@@ -97,6 +99,7 @@ export default function HelferForm() {
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const refs = {
     name: useRef(null),
@@ -218,6 +221,8 @@ export default function HelferForm() {
       return;
     }
 
+    setLoading(true);
+
     const desiredTeam =
       [
         departmentAdmission && "Einlasskontrolle",
@@ -330,6 +335,7 @@ export default function HelferForm() {
         },
       ]);
     }
+    setLoading(false);
   }
 
   function handleFileChange(e) {
@@ -357,101 +363,103 @@ export default function HelferForm() {
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <p>
-        Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
-      </p>
-      <h3>Persönliche Angaben</h3>
-      <InputOptionInput
-        title="Name"
-        inputText={name}
-        inputChange={(value) => setName(value)}
-        inputRef={refs.name}
-        isError={errors.some((error) => error.field === "name")}
-        require
-      />
-      <InputOptionInput
-        title="Nachname"
-        inputText={lastName}
-        inputChange={(value) => setLastName(value)}
-        inputRef={refs.lastName}
-        isError={errors.some((error) => error.field === "lastName")}
-        require
-      />
-      <InputOptionInput
-        title="Rufname"
-        inputText={nickname}
-        inputChange={(value) => setNickname(value)}
-        inputRef={refs.nickname}
-        isError={errors.some((error) => error.field === "nickname")}
-      />
-      <InputOptionInput
-        title="E-Mail"
-        inputText={email}
-        inputChange={(value) => setEmail(value)}
-        inputRef={refs.email}
-        isError={errors.some((error) => error.field === "email")}
-        require
-      />
-      <InputOptionInput
-        title="E-Mail Bestätigen"
-        inputText={confirmEmail}
-        inputChange={setConfirmEmail}
-        inputRef={refs.emailConfirm}
-        isError={errors.some((error) => error.field === "confirmEmail")}
-        require
-      />
-      <RadioButton
-        title="Geschlecht"
-        options={["Männlich", "Weiblich", "Divers"]}
-        selectedOption={gender}
-        inputChange={(value) => setGender(value)}
-        inputRef={refs.gender}
-        isError={errors.some((error) => error.field === "gender")}
-        require
-      />
-      <InputOptionInput
-        title="Geburtsdatum"
-        inputText={birthdate}
-        inputChange={(value) => setBirthdate(value)}
-        type="date"
-        inputRef={refs.birthdate}
-        isError={errors.some((error) => error.field === "birthdate")}
-        require
-      />
+    <>
+      {!success && (
+        <StyledForm onSubmit={handleSubmit}>
+          <p>
+            Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
+          </p>
+          <h3>Persönliche Angaben</h3>
+          <InputOptionInput
+            title="Name"
+            inputText={name}
+            inputChange={(value) => setName(value)}
+            inputRef={refs.name}
+            isError={errors.some((error) => error.field === "name")}
+            require
+          />
+          <InputOptionInput
+            title="Nachname"
+            inputText={lastName}
+            inputChange={(value) => setLastName(value)}
+            inputRef={refs.lastName}
+            isError={errors.some((error) => error.field === "lastName")}
+            require
+          />
+          <InputOptionInput
+            title="Rufname"
+            inputText={nickname}
+            inputChange={(value) => setNickname(value)}
+            inputRef={refs.nickname}
+            isError={errors.some((error) => error.field === "nickname")}
+          />
+          <InputOptionInput
+            title="E-Mail"
+            inputText={email}
+            inputChange={(value) => setEmail(value)}
+            inputRef={refs.email}
+            isError={errors.some((error) => error.field === "email")}
+            require
+          />
+          <InputOptionInput
+            title="E-Mail Bestätigen"
+            inputText={confirmEmail}
+            inputChange={setConfirmEmail}
+            inputRef={refs.emailConfirm}
+            isError={errors.some((error) => error.field === "confirmEmail")}
+            require
+          />
+          <RadioButton
+            title="Geschlecht"
+            options={["Männlich", "Weiblich", "Divers"]}
+            selectedOption={gender}
+            inputChange={(value) => setGender(value)}
+            inputRef={refs.gender}
+            isError={errors.some((error) => error.field === "gender")}
+            require
+          />
+          <InputOptionInput
+            title="Geburtsdatum"
+            inputText={birthdate}
+            inputChange={(value) => setBirthdate(value)}
+            type="date"
+            inputRef={refs.birthdate}
+            isError={errors.some((error) => error.field === "birthdate")}
+            require
+          />
 
-      <InputOptionInput
-        title="Telefonnummer"
-        inputText={phone}
-        inputChange={(value) => setPhone(value)}
-        inputRef={refs.phone}
-        isError={errors.some((error) => error.field === "phone")}
-        require
-      />
-      <InputOptionInput
-        title="Discord Name"
-        inputText={discordName}
-        inputChange={(value) => setDiscordName(value)}
-        inputRef={refs.discordName}
-        isError={errors.some((error) => error.field === "discordName")}
-        require
-      />
+          <InputOptionInput
+            title="Telefonnummer"
+            inputText={phone}
+            inputChange={(value) => setPhone(value)}
+            inputRef={refs.phone}
+            isError={errors.some((error) => error.field === "phone")}
+            require
+          />
+          <InputOptionInput
+            title="Discord Name"
+            inputText={discordName}
+            inputChange={(value) => setDiscordName(value)}
+            inputRef={refs.discordName}
+            isError={errors.some((error) => error.field === "discordName")}
+            require
+          />
 
-      <p>
-        Foto hochladen, dies sollte ein gut ausgeleuchtetes Farbbild vor neutralem Hintergrund sein,
-        auf dem du gut zu erkennen bist. <br />
-        (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
-      </p>
-      <FileUpload
-        handleFileChange={handleFileChange}
-        inputRef={refs.image}
-        previewUrl={previewUrl}
-        file={file}
-        isError={errors.some((error) => error.field === "image")}
-      />
+          <p>
+            Foto hochladen, dies sollte ein gut ausgeleuchtetes Farbbild vor neutralem Hintergrund
+            sein, auf dem du gut zu erkennen bist. <br />
+            (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+          </p>
+          <FileUpload
+            handleFileChange={handleFileChange}
+            inputRef={refs.image}
+            previewUrl={previewUrl}
+            file={file}
+            isError={errors.some((error) => error.field === "image")}
+          />
 
-      {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
-      {/*
+          {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
+          {/*
       {previewUrl && (
         <UploadInfo>
           <p>{file.name}</p>
@@ -470,246 +478,257 @@ export default function HelferForm() {
       )}
         */}
 
-      <Spacer />
-      <h3>Adresse</h3>
+          <Spacer />
+          <h3>Adresse</h3>
 
-      <InputOptionInput
-        title="Straße"
-        inputText={street}
-        inputChange={setStreet}
-        inputRef={refs.street}
-        isError={errors.some((error) => error.field === "street")}
-        require
-      />
-      <InputOptionInput
-        title="PLZ"
-        inputText={postalCode}
-        inputChange={setPostalCode}
-        inputRef={refs.postalCode}
-        isError={errors.some((error) => error.field === "postalCode")}
-        require
-      />
-      <InputOptionInput
-        title="Ort"
-        inputText={city}
-        inputChange={setCity}
-        inputRef={refs.city}
-        isError={errors.some((error) => error.field === "city")}
-        require
-      />
-      <InputOptionSelect
-        title="Land"
-        options={EU_COUNTRIES}
-        inputText={country}
-        inputChange={(value) => setCountry(value)}
-        inputRef={refs.country}
-        isError={errors.some((error) => error.field === "country")}
-        require
-      />
+          <InputOptionInput
+            title="Straße"
+            inputText={street}
+            inputChange={setStreet}
+            inputRef={refs.street}
+            isError={errors.some((error) => error.field === "street")}
+            require
+          />
+          <InputOptionInput
+            title="PLZ"
+            inputText={postalCode}
+            inputChange={setPostalCode}
+            inputRef={refs.postalCode}
+            isError={errors.some((error) => error.field === "postalCode")}
+            require
+          />
+          <InputOptionInput
+            title="Ort"
+            inputText={city}
+            inputChange={setCity}
+            inputRef={refs.city}
+            isError={errors.some((error) => error.field === "city")}
+            require
+          />
+          <InputOptionSelect
+            title="Land"
+            options={EU_COUNTRIES}
+            inputText={country}
+            inputChange={(value) => setCountry(value)}
+            inputRef={refs.country}
+            isError={errors.some((error) => error.field === "country")}
+            require
+          />
 
-      <Spacer />
-      <h3>Allgemeines</h3>
+          <Spacer />
+          <h3>Allgemeines</h3>
 
-      <InputOptionSelect
-        title="T-Shirt Größe"
-        options={["S", "M", "L", "XL", "XXL"]}
-        inputText={clothesSize}
-        inputChange={setClothesSize}
-        inputRef={refs.clothesSize}
-        isError={errors.some((error) => error.field === "clothesSize")}
-        require
-      />
-      <RadioButton
-        title="Anreise"
-        options={["Auto", "ÖPNV", "Sonstige"]}
-        selectedOption={arrival}
-        inputChange={setArrival}
-        inputRef={refs.arrival}
-        isError={errors.some((error) => error.field === "arrival")}
-        require
-      />
-      {arrival === "Auto" && (
-        <CheckBox
-          title="Parkticket benötigt"
-          isChecked={requiresParkingTicket}
-          inputChange={setRequiresParkingTicket}
-        />
-      )}
-      <CheckBox
-        title={
-          "Aufbau Freitag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
-        }
-        isChecked={assemblyFriday}
-        inputChange={(value) => setAssemblyFriday(value)}
-      />
-      <CheckBox
-        title={
-          "Aufbau Samstag (06:00 - 09:30) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
-        }
-        isChecked={assembly}
-        inputChange={(value) => setAssembly(value)}
-      />
-      <CheckBox
-        title={
-          "Abbau Sonntag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
-        }
-        isChecked={deconstruction}
-        inputChange={(value) => setDeconstruction(value)}
-      />
+          <InputOptionSelect
+            title="T-Shirt Größe"
+            options={["S", "M", "L", "XL", "XXL"]}
+            inputText={clothesSize}
+            inputChange={setClothesSize}
+            inputRef={refs.clothesSize}
+            isError={errors.some((error) => error.field === "clothesSize")}
+            require
+          />
+          <RadioButton
+            title="Anreise"
+            options={["Auto", "ÖPNV", "Sonstige"]}
+            selectedOption={arrival}
+            inputChange={setArrival}
+            inputRef={refs.arrival}
+            isError={errors.some((error) => error.field === "arrival")}
+            require
+          />
+          {arrival === "Auto" && (
+            <CheckBox
+              title="Parkticket benötigt"
+              isChecked={requiresParkingTicket}
+              inputChange={setRequiresParkingTicket}
+            />
+          )}
+          <CheckBox
+            title={
+              "Aufbau Freitag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+            }
+            isChecked={assemblyFriday}
+            inputChange={(value) => setAssemblyFriday(value)}
+          />
+          <CheckBox
+            title={
+              "Aufbau Samstag (06:00 - 09:30) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+            }
+            isChecked={assembly}
+            inputChange={(value) => setAssembly(value)}
+          />
+          <CheckBox
+            title={
+              "Abbau Sonntag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+            }
+            isChecked={deconstruction}
+            inputChange={(value) => setDeconstruction(value)}
+          />
 
-      <Spacer />
-      <h3>Verpflegung</h3>
+          <Spacer />
+          <h3>Verpflegung</h3>
 
-      <RadioButton
-        title="Essen"
-        options={["normal", "vegetarisch", "vegan"]}
-        selectedOption={foodPreference}
-        inputChange={setFoodPreference}
-        inputRef={refs.foodPreference}
-        isError={errors.some((error) => error.field === "foodPreference")}
-        require
-      />
-      <InputOptionTextArea
-        title="Allergien/Unverträglichkeiten"
-        inputText={foodDetails}
-        inputChange={setFoodDetails}
-        inputRef={refs.foodDetails}
-        isError={errors.some((error) => error.field === "foodDetails")}
-      />
+          <RadioButton
+            title="Essen"
+            options={["normal", "vegetarisch", "vegan"]}
+            selectedOption={foodPreference}
+            inputChange={setFoodPreference}
+            inputRef={refs.foodPreference}
+            isError={errors.some((error) => error.field === "foodPreference")}
+            require
+          />
+          <InputOptionTextArea
+            title="Allergien/Unverträglichkeiten"
+            inputText={foodDetails}
+            inputChange={setFoodDetails}
+            inputRef={refs.foodDetails}
+            isError={errors.some((error) => error.field === "foodDetails")}
+          />
 
-      <Spacer />
-      <h3>Interessen/Aufgaben/Erfahrungen</h3>
+          <Spacer />
+          <h3>Interessen/Aufgaben/Erfahrungen</h3>
 
-      <InputOptionInput
-        title="Beruf/Ausbildung"
-        inputText={occupation}
-        inputChange={setOccupation}
-        inputRef={refs.occupation}
-        isError={errors.some((error) => error.field === "occupation")}
-      />
-      <InputOptionTextArea
-        title="Stärken"
-        inputText={strengths}
-        inputChange={(value) => setStrengths(value)}
-        inputRef={refs.strengths}
-        isError={errors.some((error) => error.field === "strengths")}
-      />
-      <h4>Wunschteam (kann nicht garantiert werden)</h4>
-      <CheckBox
-        title={"Einlasskontrolle"}
-        isChecked={departmentAdmission}
-        inputChange={(value) => setDepartmentAdmission(value)}
-      />
-      <CheckBox
-        title={"Waffencheck"}
-        isChecked={departmentWeaponsCheck}
-        inputChange={(value) => setDepartmentWeaponsCheck(value)}
-      />
-      <CheckBox
-        title={"Bühne"}
-        isChecked={departmentStage}
-        inputChange={(value) => setDepartmentStage(value)}
-      />
-      <CheckBox
-        title={"Springer"}
-        isChecked={departmentSpringer}
-        inputChange={(value) => setDepartmentSpringer(value)}
-      />
-      <CheckBox
-        title={"Karaoke"}
-        isChecked={departmentKaraoke}
-        inputChange={(value) => setDepartmentKaraoke(value)}
-      />
-      <CheckBox
-        title={"Bring & Buy"}
-        isChecked={departmentBringAndBay}
-        inputChange={(value) => setDepartmentBringAndBay(value)}
-      />
-      <CheckBox
-        title={"Workshop"}
-        isChecked={departmentWorkshop}
-        inputChange={(value) => setDepartmentWorkshop(value)}
-      />
+          <InputOptionInput
+            title="Beruf/Ausbildung"
+            inputText={occupation}
+            inputChange={setOccupation}
+            inputRef={refs.occupation}
+            isError={errors.some((error) => error.field === "occupation")}
+          />
+          <InputOptionTextArea
+            title="Stärken"
+            inputText={strengths}
+            inputChange={(value) => setStrengths(value)}
+            inputRef={refs.strengths}
+            isError={errors.some((error) => error.field === "strengths")}
+          />
+          <h4>Wunschteam (kann nicht garantiert werden)</h4>
+          <CheckBox
+            title={"Einlasskontrolle"}
+            isChecked={departmentAdmission}
+            inputChange={(value) => setDepartmentAdmission(value)}
+          />
+          <CheckBox
+            title={"Waffencheck"}
+            isChecked={departmentWeaponsCheck}
+            inputChange={(value) => setDepartmentWeaponsCheck(value)}
+          />
+          <CheckBox
+            title={"Bühne"}
+            isChecked={departmentStage}
+            inputChange={(value) => setDepartmentStage(value)}
+          />
+          <CheckBox
+            title={"Springer"}
+            isChecked={departmentSpringer}
+            inputChange={(value) => setDepartmentSpringer(value)}
+          />
+          <CheckBox
+            title={"Karaoke"}
+            isChecked={departmentKaraoke}
+            inputChange={(value) => setDepartmentKaraoke(value)}
+          />
+          <CheckBox
+            title={"Bring & Buy"}
+            isChecked={departmentBringAndBay}
+            inputChange={(value) => setDepartmentBringAndBay(value)}
+          />
+          <CheckBox
+            title={"Workshop"}
+            isChecked={departmentWorkshop}
+            inputChange={(value) => setDepartmentWorkshop(value)}
+          />
 
-      <InputOptionTextArea
-        title="Sonstiges"
-        inputText={other}
-        inputChange={(value) => setOther(value)}
-        inputRef={refs.other}
-        isError={errors.some((error) => error.field === "other")}
-      />
+          <InputOptionTextArea
+            title="Sonstiges"
+            inputText={other}
+            inputChange={(value) => setOther(value)}
+            inputRef={refs.other}
+            isError={errors.some((error) => error.field === "other")}
+          />
 
-      <Spacer />
-      <h3>Einsatzzeiten</h3>
+          <Spacer />
+          <h3>Einsatzzeiten</h3>
 
-      <p>
-        Bitte gib hier an, wie viele Stunden du am jeweiligen Tag Helfen möchtest (min. 5 Stunden).
-      </p>
-      <InputOptionInput
-        title="Samstag"
-        inputText={workTimeSaturday}
-        inputChange={setWorkTimeSaturday}
-        inputRef={refs.workTimeSaturday}
-        isError={errors.some((error) => error.field === "workTimeSaturday")}
-      />
-      <InputOptionInput
-        title="Sonntag"
-        inputText={workTimeSunday}
-        inputChange={setWorkTimeSunday}
-        inputRef={refs.workTimeSunday}
-        isError={errors.some((error) => error.field === "workTimeSunday")}
-      />
-
-      <Spacer />
-      <h3>Richtlinien</h3>
-
-      <CheckBox
-        title="privacyPolicy"
-        content={
           <p>
-            Ich habe die{" "}
-            <StyledLink href="/datenschutz" target="_blank">
-              Datenschutzerklärung
-            </StyledLink>{" "}
-            gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die Zustimmung
-            zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf habe ich die
-            Passage in der Datenschutzerklärung gelesen und verstanden.
-            <RequiredNote>*</RequiredNote>
+            Bitte gib hier an, wie viele Stunden du am jeweiligen Tag Helfen möchtest (min. 5
+            Stunden).
           </p>
-        }
-        isChecked={privacyPolicy}
-        inputChange={(value) => setPrivacyPolicy(value)}
-        inputRef={refs.privacyPolicy}
-        isError={errors.some((error) => error.field === "privacyPolicy")}
-        require
-      />
+          <InputOptionInput
+            title="Samstag"
+            inputText={workTimeSaturday}
+            inputChange={setWorkTimeSaturday}
+            inputRef={refs.workTimeSaturday}
+            isError={errors.some((error) => error.field === "workTimeSaturday")}
+          />
+          <InputOptionInput
+            title="Sonntag"
+            inputText={workTimeSunday}
+            inputChange={setWorkTimeSunday}
+            inputRef={refs.workTimeSunday}
+            isError={errors.some((error) => error.field === "workTimeSunday")}
+          />
 
-      <CheckBox
-        title="contactForwarding"
-        content={
-          <p>
-            Dürfen wir der zuständigen Orga deine Kontaktdaten weiter geben.
-            <RequiredNote>*</RequiredNote>
-          </p>
-        }
-        isChecked={contactForwarding}
-        inputChange={(value) => setContactForwarding(value)}
-        inputRef={refs.contactForwarding}
-        isError={errors.some((error) => error.field === "contactForwarding")}
-        require
-      />
+          <Spacer />
+          <h3>Richtlinien</h3>
 
-      {errors && (
-        <ul>
-          {errors.map((error, index) => (
-            <li key={index} style={{ color: "red" }}>
-              {error.message}
-            </li>
-          ))}
-        </ul>
+          <CheckBox
+            title="privacyPolicy"
+            content={
+              <p>
+                Ich habe die{" "}
+                <StyledLink href="/datenschutz" target="_blank">
+                  Datenschutzerklärung
+                </StyledLink>{" "}
+                gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
+                Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
+                habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                <RequiredNote>*</RequiredNote>
+              </p>
+            }
+            isChecked={privacyPolicy}
+            inputChange={(value) => setPrivacyPolicy(value)}
+            inputRef={refs.privacyPolicy}
+            isError={errors.some((error) => error.field === "privacyPolicy")}
+            require
+          />
+
+          <CheckBox
+            title="contactForwarding"
+            content={
+              <p>
+                Dürfen wir der zuständigen Orga deine Kontaktdaten weiter geben.
+                <RequiredNote>*</RequiredNote>
+              </p>
+            }
+            isChecked={contactForwarding}
+            inputChange={(value) => setContactForwarding(value)}
+            inputRef={refs.contactForwarding}
+            isError={errors.some((error) => error.field === "contactForwarding")}
+            require
+          />
+
+          {errors && (
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index} style={{ color: "red" }}>
+                  {error.message}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <StyledButton type="submit">Anmelden</StyledButton>
+        </StyledForm>
       )}
       {success && <SuccessText>{success}</SuccessText>}
-      <StyledButton type="submit">Anmelden</StyledButton>
-    </StyledForm>
+      {loading && (
+        <>
+          <ModalOverlay>
+            <LoadingAnimation />
+          </ModalOverlay>
+        </>
+      )}
+    </>
   );
 }
