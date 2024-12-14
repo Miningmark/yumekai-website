@@ -5,7 +5,7 @@ import mysql from "mysql2/promise";
 
 /*
 
-CREATE TABLE `emails` (
+CREATE TABLE emails (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
   email_from VARCHAR(100) NOT NULL ,
   email_to VARCHAR(100) NOT NULL ,
@@ -16,7 +16,6 @@ CREATE TABLE `emails` (
 ENGINE=InnoDB 
 DEFAULT CHARSET=utf8mb4 
 COLLATE=utf8mb4_unicode_ci 
-COMMENT='Speichert gesendete E-Mails';
 
 */
 
@@ -56,10 +55,9 @@ export async function sendMail(mail, mailOptions) {
 
   try {
     await transporter.sendMail(mailOptions);
-    //console.log("EMAIL in Db speichern");
 
     const [result] = await connection.execute(
-      "INSERT INTO emails (email_from, email_to, email_subject, email_text, created_at) VALUES (?, ?, ?, ?, NOW())",
+      "INSERT INTO emails (email_from, email_to, email_subject) VALUES (?, ?, ?, ?)",
       [from, to, subject, text]
     );
 

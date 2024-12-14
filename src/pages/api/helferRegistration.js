@@ -45,7 +45,10 @@ CREATE TABLE helfer (
     workTime_saturday VARCHAR(255),
     workTime_sunday VARCHAR(255),
     image_url VARCHAR(255)
-);
+)
+ENGINE=InnoDB 
+DEFAULT CHARSET=utf8mb4 
+COLLATE=utf8mb4_unicode_ci 
 
  */
 

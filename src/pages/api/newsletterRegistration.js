@@ -15,7 +15,7 @@ CREATE TABLE newsletter_registrations (
     verified BOOLEAN DEFAULT FALSE,
     verified_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+)
 
 */
 

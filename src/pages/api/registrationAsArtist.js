@@ -40,7 +40,10 @@ CREATE TABLE registration_artist (
     artist_conditions BOOLEAN NOT NULL,
     image_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+)
+ENGINE=InnoDB 
+DEFAULT CHARSET=utf8mb4 
+COLLATE=utf8mb4_unicode_ci 
 
 */
 
