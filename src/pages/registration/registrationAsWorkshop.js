@@ -92,7 +92,6 @@ export default function RegistrationAsWorkshop() {
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [workshopConditions, setWorkshopConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -123,7 +122,6 @@ export default function RegistrationAsWorkshop() {
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
     pictureRights: useRef(null),
-    workshopConditions: useRef(null),
   };
 
   async function submit(event) {
@@ -220,13 +218,6 @@ export default function RegistrationAsWorkshop() {
     if (!pictureRights)
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
 
-    //Teilnahmebedingungen
-    if (!workshopConditions)
-      newErrors.push({
-        field: "workshopConditions",
-        message: "Teilnahmebedingungen müssen akzeptiert werden",
-      });
-
     //Check if there are any errors
     if (newErrors.length > 0) {
       setErrors(newErrors);
@@ -275,7 +266,6 @@ export default function RegistrationAsWorkshop() {
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
-    formData.append("workshopConditions", workshopConditions);
     formData.append("file", file);
 
     try {
@@ -314,7 +304,6 @@ export default function RegistrationAsWorkshop() {
         setPrivacyPolicy(false);
         setDataStorage(false);
         setPictureRights(false);
-        setWorkshopConditions(false);
         setFile(null);
         setPreviewUrl(null);
         setErrors([]);
@@ -666,23 +655,6 @@ export default function RegistrationAsWorkshop() {
               inputChange={(value) => setPictureRights(value)}
               inputRef={refs.pictureRights}
               isError={errors.some((error) => error.field === "pictureRights")}
-              require
-            />
-            <CheckBox
-              title="workshopConditions"
-              content={
-                <p>
-                  Ich habe die{" "}
-                  <StyledLink href="" target="_blank">
-                    Teilnahmebedingungen
-                  </StyledLink>{" "}
-                  gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
-                </p>
-              }
-              isChecked={workshopConditions}
-              inputChange={(value) => setWorkshopConditions(value)}
-              inputRef={refs.workshopConditions}
-              isError={errors.some((error) => error.field === "workshopConditions")}
               require
             />
 

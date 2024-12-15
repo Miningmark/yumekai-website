@@ -13,7 +13,8 @@ CREATE TABLE contact_requests (
     subject VARCHAR(50) NOT NULL,
     message TEXT NOT NULL,
     privacy_policy BOOLEAN NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processed BOOLEAN DEFAULT FALSE
 )
 ENGINE=InnoDB 
 DEFAULT CHARSET=utf8mb4 

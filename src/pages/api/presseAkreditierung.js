@@ -14,7 +14,8 @@ CREATE TABLE presse_akkreditierungen (
     verification TEXT NOT NULL,
     message TEXT NOT NULL,
     privacy_policy BOOLEAN NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processed BOOLEAN DEFAULT FALSE
 )
 ENGINE=InnoDB 
 DEFAULT CHARSET=utf8mb4 

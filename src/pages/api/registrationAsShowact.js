@@ -37,7 +37,8 @@ CREATE TABLE registration_showact (
     picture_rights BOOLEAN NOT NULL,
     showact_conditions BOOLEAN NOT NULL,
     image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processed BOOLEAN DEFAULT FALSE
 )
 ENGINE=InnoDB 
 DEFAULT CHARSET=utf8mb4 

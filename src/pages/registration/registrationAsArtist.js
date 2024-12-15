@@ -346,7 +346,11 @@ export default function RegistrationAsArtist() {
         Sichert euch euren Platz auf der YumeKai 2025!
         <br />
         <br />
-        Bitte beachtet die Teilnahme- und Auswahlbedingungen für Künstler.
+        Bitte beachtet die{" "}
+        <StyledLink href="/downloads/Teilnahmebedingungen_Kuenstler_2025.pdf" target="_blank">
+          Teilnahme- und Auswahlbedingungen für Künstler
+        </StyledLink>
+        .
         <br />
         <br />
         Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
@@ -503,7 +507,16 @@ export default function RegistrationAsArtist() {
             />
             <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
             <RadioButton
-              title="Programmheft"
+              title={
+                <>
+                  <span>
+                    Programmheft{" "}
+                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blanck">
+                      Infoblatt
+                    </StyledLink>{" "}
+                  </span>
+                </>
+              }
               names={["Nein", "Viertel Seite (30€)", "Halbe Seite (45€)", "Ganze Seite (85€)"]}
               options={["Nein", "Viertel Seite", "Halbe Seite", "Ganze Seite"]}
               selectedOption={programmBooklet}
@@ -597,8 +610,8 @@ export default function RegistrationAsArtist() {
               title="licensedMusic"
               content={
                 <p>
-                  Ich habe zur Kenntnis genommen, dass GEMA-Lizenzierte Bild- oder Tonwiedergabe
-                  nicht erlaubt ist.<RequiredNote>*</RequiredNote>
+                  Ich habe zur Kenntnis genommen, dass GEMA-Lizenzierte Tonwiedergabe nicht erlaubt
+                  ist.<RequiredNote>*</RequiredNote>
                 </p>
               }
               isChecked={licensedMusic}
@@ -630,7 +643,10 @@ export default function RegistrationAsArtist() {
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink href="" target="_blank">
+                  <StyledLink
+                    href="/downloads/Teilnahmebedingungen_Kuenstler_2025.pdf"
+                    target="_blank"
+                  >
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>

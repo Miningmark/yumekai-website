@@ -340,7 +340,11 @@ export default function RegistrationAsShowact() {
         Sichert euch euren Platz auf der YumeKai 2025!
         <br />
         <br />
-        Bitte beachtet die Teilnahme- und Auswahlbedingungen für Showacts.
+        Bitte beachtet die{" "}
+        <StyledLink href="/downloads/Infoblatt_Showacts_2025.pdf" target="_blank">
+          Teilnahme- und Auswahlbedingungen für Showacts
+        </StyledLink>
+        .
         <br />
         <br />
         Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
@@ -616,7 +620,7 @@ export default function RegistrationAsShowact() {
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink href="" target="_blank">
+                  <StyledLink href="/downloads/Infoblatt_Showacts_2025.pdf" target="_blank">
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>

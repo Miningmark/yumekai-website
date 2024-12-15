@@ -129,7 +129,11 @@ export default function Voranmeldungen() {
             Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
             <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
             unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
-            die <StyledLink href="">Teilnahme- und Auswahlbedingungen für Künstler</StyledLink>.
+            die{" "}
+            <StyledLink href="/downloads/Teilnahmebedingungen_Kuenstler_2025.pdf" target="_blank">
+              Teilnahme- und Auswahlbedingungen für Künstler
+            </StyledLink>
+            .
             <br />
             <br />
             <strong>Die Anmeldung für Künstler läuft bis zum 29. Februar 2025.</strong>
@@ -182,7 +186,10 @@ export default function Voranmeldungen() {
             <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
             unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
             die{" "}
-            <StyledLink href="">Teilnahme- und Auswahlbedingungen für Verkaufsstände</StyledLink>.
+            <StyledLink href="/downloads/Teilnahmebedingungen_Haendler_2025.pdf" target="_blank">
+              Teilnahme- und Auswahlbedingungen für Händler
+            </StyledLink>
+            .
             <br />
             <br />
             <strong>Die Anmeldung für Händler läuft bis zum 15. März 2025.</strong>
@@ -237,7 +244,11 @@ export default function Voranmeldungen() {
             Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
             <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
             unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
-            die <StyledLink href="">Teilnahme- und Auswahlbedingungen für Showacts</StyledLink>.
+            die{" "}
+            <StyledLink href="/downloads/Infoblatt_Showacts_2025.pdf" target="_blank">
+              Teilnahme- und Auswahlbedingungen für Showacts
+            </StyledLink>
+            .
             <br />
             <br />
             <strong>Die Anmeldung für Showact&apos;s läuft bis zum 31. März 2025.</strong>

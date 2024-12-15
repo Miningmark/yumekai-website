@@ -37,9 +37,9 @@ CREATE TABLE registration_workshop (
     privacy_policy BOOLEAN NOT NULL,
     data_storage BOOLEAN NOT NULL,
     picture_rights BOOLEAN NOT NULL,
-    workshop_conditions BOOLEAN NOT NULL,
     image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processed BOOLEAN DEFAULT FALSE
 )
 ENGINE=InnoDB 
 DEFAULT CHARSET=utf8mb4 
@@ -102,9 +102,6 @@ export default async function handler(req, res) {
   const privacyPolicy = ["true", "yes", "1"].includes(fields.privacyPolicy[0].toLowerCase());
   const dataStorage = ["true", "yes", "1"].includes(fields.dataStorage[0].toLowerCase());
   const pictureRights = ["true", "yes", "1"].includes(fields.pictureRights[0].toLowerCase());
-  const workshopConditions = ["true", "yes", "1"].includes(
-    fields.workshopConditions[0].toLowerCase()
-  );
 
   const errors = [];
 
@@ -206,12 +203,6 @@ export default async function handler(req, res) {
       message: "Bildrechte müssen bestätigt werden",
     });
   }
-  if (typeof workshopConditions !== "boolean" || workshopConditions === false) {
-    errors.push({
-      field: "workshopConditions",
-      message: "Workshop-Bedingungen müssen bestätigt werden",
-    });
-  }
 
   // Fehler prüfen
   if (errors.length > 0) {
@@ -274,9 +265,8 @@ export default async function handler(req, res) {
         privacy_policy,
         data_storage,
         picture_rights,
-        workshop_conditions,
         image_url
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
       clientIp,
@@ -302,7 +292,6 @@ export default async function handler(req, res) {
       privacyPolicy,
       dataStorage,
       pictureRights,
-      workshopConditions,
       filePath || null,
     ];
 

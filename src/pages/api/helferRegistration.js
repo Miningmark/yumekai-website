@@ -30,7 +30,6 @@ CREATE TABLE helfer (
     gender VARCHAR(20),
     privacy_policy BOOLEAN,
     contact_forwarding BOOLEAN,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     street VARCHAR(100),
     postal_code VARCHAR(10),
     city VARCHAR(50),
@@ -44,7 +43,9 @@ CREATE TABLE helfer (
     assembly_friday BOOLEAN,
     workTime_saturday VARCHAR(255),
     workTime_sunday VARCHAR(255),
-    image_url VARCHAR(255)
+    image_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processed BOOLEAN DEFAULT FALSE
 )
 ENGINE=InnoDB 
 DEFAULT CHARSET=utf8mb4 
