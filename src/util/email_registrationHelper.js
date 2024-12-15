@@ -153,7 +153,7 @@ export default function emailRegistrationHelper({
     `;
 
   const mailOptions = {
-    from: "test@miningmark.de",
+    from: "info@miningmark.de",
     to: email,
     subject: "Helfer Anmeldung für die YumeKai 2025",
     html: htmlContent,

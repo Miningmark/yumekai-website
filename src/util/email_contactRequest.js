@@ -79,7 +79,7 @@ export default function emailContactRequest({ email, name, area, subject, messag
   `;
 
   const mailOptions = {
-    from: "test@miningmark.de",
+    from: "info@yumekai.de",
     to: email,
     subject: "YumeKai Kontaktanfrage",
     html: htmlContent,

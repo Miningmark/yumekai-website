@@ -90,7 +90,7 @@ export default function emailNewsletter({ email, name, token }) {
   `;
 
   const mailOptions = {
-    from: "test@miningmark.de",
+    from: "info@miningmark.de",
     to: email,
     subject: "YumeKai Newsletter Anmeldung",
     html: htmlContent,

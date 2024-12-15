@@ -27,7 +27,7 @@ const connection = mysql.createPool({
 });
 
 export async function sendMail(mail, mailOptions) {
-  const { from = "test@miningmark.de", to, subject, text } = mail;
+  const { from = "info@yumekai.de", to, subject, text } = mail;
   console.log("E-MAIL Send: ", subject);
 
   if (!from || !to || !subject || !text) {
@@ -36,8 +36,8 @@ export async function sendMail(mail, mailOptions) {
   }
   let emailPassword = "";
   switch (from) {
-    case "test@miningmark.de":
-      emailPassword = process.env.EMAIL_PASS_TEST;
+    case "info@yumekai.de":
+      emailPassword = process.env.EMAIL_PASS_INFO;
       break;
     default:
       break;
@@ -57,7 +57,7 @@ export async function sendMail(mail, mailOptions) {
     await transporter.sendMail(mailOptions);
 
     const [result] = await connection.execute(
-      "INSERT INTO emails (email_from, email_to, email_subject) VALUES (?, ?, ?, ?)",
+      "INSERT INTO emails (email_from, email_to, email_subject, email_text) VALUES (?, ?, ?, ?)",
       [from, to, subject, text]
     );
 
