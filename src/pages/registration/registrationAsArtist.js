@@ -491,7 +491,7 @@ export default function RegistrationAsArtist() {
               require
             />
             <CheckBox
-              title="Zusätzliches Ausstellerticket (42,00€)"
+              title="Zusätzliches Ausstellerticket (42€)"
               inputText={additionalExhibitorTicket}
               inputChange={(value) => setAdditionalExhibitorTicket(value)}
               inputRef={refs.additionalExhibitorTicket}
@@ -499,7 +499,7 @@ export default function RegistrationAsArtist() {
             />
             <CheckBox
               title="wlan"
-              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10,00€)"
+              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10€)"
               isChecked={wlan}
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}

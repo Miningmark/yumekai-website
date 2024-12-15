@@ -115,6 +115,17 @@ export default function RegistrationAsVendor() {
     vendorConditions: useRef(null),
   };
 
+  const standSizes = {
+    "2x2": "2m x 2m",
+    "2x3": "2m x 3m",
+    "2x4": "2m x 4m",
+    "2x5": "2m x 5m",
+    "2x6": "2m x 6m",
+    "2x7": "2m x 7m",
+    individuell: 0,
+  };
+  const selectedStandSize = standSizes[standSize] || "--";
+
   // Kostenberechnung
   const standCosts = {
     "2x2": 200,
@@ -123,6 +134,7 @@ export default function RegistrationAsVendor() {
     "2x5": 500,
     "2x6": 600,
     "2x7": 700,
+    individuell: 0,
   };
 
   const programmBookletCost = {
@@ -497,8 +509,16 @@ export default function RegistrationAsVendor() {
 
             <RadioButton
               title="Standgröße (50€ je m²)"
-              names={["2m x 2m", "2m x 3m", "2m x 4m", "2m x 5m", "2m x 6m", "2m x 7m"]}
-              options={["2x2", "2x3", "2x4", "2x5", "2x6", "2x7"]}
+              names={[
+                "2m x 2m",
+                "2m x 3m",
+                "2m x 4m",
+                "2m x 5m",
+                "2m x 6m",
+                "2m x 7m",
+                "Individuell (Preis auf Anfrage)",
+              ]}
+              options={["2x2", "2x3", "2x4", "2x5", "2x6", "2x7", "individuell"]}
               selectedOption={standSize}
               inputChange={(value) => setStandSize(value)}
               inputRef={refs.gender}
@@ -507,7 +527,7 @@ export default function RegistrationAsVendor() {
             />
             <InputOptionInput
               type="number"
-              title="Zusätzliches Ausstellerticket (je 42,00€)"
+              title="Zusätzliches Ausstellerticket (je 42€)"
               inputText={additionalExhibitorTicket}
               inputChange={(value) => setAdditionalExhibitorTicket(value)}
               inputRef={refs.additionalExhibitorTicket}
@@ -517,7 +537,7 @@ export default function RegistrationAsVendor() {
             />
             <CheckBox
               title="strom"
-              content="Strom - (30,00€)"
+              content="Strom - (30€)"
               isChecked={strom}
               inputChange={(value) => setStrom(value)}
               inputRef={refs.strom}
@@ -525,7 +545,7 @@ export default function RegistrationAsVendor() {
             />
             <CheckBox
               title="wlan"
-              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10,00€)"
+              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10€)"
               isChecked={wlan}
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}
@@ -566,7 +586,11 @@ export default function RegistrationAsVendor() {
             <h3>Gesamtkosten</h3>
             <ul>
               <li>
-                Standgröße: {standSize} ({selectedStandCost.toFixed(2)}€)
+                Standgröße: {selectedStandSize} (
+                {standSize !== "individuell"
+                  ? selectedStandCost.toFixed(2) + "€"
+                  : "Preis auf Anfrage"}
+                )
               </li>
               {additionalExhibitorTicket > 0 && (
                 <li>
