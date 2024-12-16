@@ -10,6 +10,7 @@ import AnkundigungYumeKai2025 from "@/components/articles/2024/Ankundigung-YumeK
 import GewinnerPerformanceWettbewerb from "@/components/articles/2024/Gewinner-Performance-Wettbewerb";
 import YumeKaiZeichenwettbewerb from "@/components/articles/2024/YumeKai-Zeichenwettbewerb";
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";
+
 import Spendenubergabe from "@/components/articles/2024/Spendenubergabe";
 import AnkundigungJuliaMeyen from "@/components/articles/2024/AnkundigungJuliaMeyen";
 import EroffnungTicketShop from "@/components/articles/2024/EroffnungTicketShop";
