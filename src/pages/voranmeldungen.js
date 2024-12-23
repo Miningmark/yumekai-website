@@ -58,6 +58,8 @@ export default function Voranmeldungen() {
   const showactRegistrationEnd = new Date("2025-03-31T23:59:59");
   const workshopRegistrationEnd = new Date("2025-03-31T23:59:59");
 
+  const jetzt = new Date();
+
   const renderButton = (startDate, endDate, link, text) => {
     if (isRegistrationOpen(startDate, endDate)) {
       return (
@@ -331,6 +333,12 @@ export default function Voranmeldungen() {
       </div>
 
       <Spacer />
+
+      <div>
+        <p>jetzt: {`${jetzt}`}</p>
+        <p>start: {`${registrationStart}`}</p>
+        <p>Künstlerende {`${artistRegistrationEnd}`}</p>
+      </div>
     </>
   );
 }
