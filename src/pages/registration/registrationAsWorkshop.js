@@ -153,7 +153,7 @@ export default function RegistrationAsWorkshop() {
     if (confirmEmail.trim() !== email.trim())
       newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
     validateField(street, "street", "Straße", 3, 50, true);
-    validateField(postalCode, "postalCode", "PLZ", 5, 10, true);
+    validateField(postalCode, "postalCode", "PLZ", 3, 10, true);
     validateField(city, "city", "Ort", 3, 50, true);
     validateField(country, "country", "Land", 3, 50, true);
     validateField(workshopTitle, "workshopTitle", "Titel des Workshops", 3, 100, true);

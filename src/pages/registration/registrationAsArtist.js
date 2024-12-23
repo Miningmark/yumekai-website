@@ -168,7 +168,7 @@ export default function RegistrationAsArtist() {
     validateField(vendorName, "vendorName", "Firmenname", 3, 50, false);
     validateField(artistName, "artistName", "Künstlername", 3, 50, true);
     validateField(street, "street", "Straße", 3, 50, true);
-    validateField(postalCode, "postalCode", "PLZ", 5, 10, true);
+    validateField(postalCode, "postalCode", "PLZ", 3, 10, true);
     validateField(city, "city", "Ort", 3, 50, true);
     validateField(country, "country", "Land", 3, 50, true);
     validateField(typeOfArt, "typeOfArt", "Art der Kunst", 3, 2500, true);
