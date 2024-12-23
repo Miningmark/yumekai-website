@@ -94,7 +94,7 @@ export default function emailPresseAkkreditierung({
   `;
 
   const mailOptions = {
-    from: "info@miningmark.de",
+    from: "info@yumekai.de",
     to: email,
     subject: "YumeKai Presse-Akkreditierung",
     html: htmlContent,

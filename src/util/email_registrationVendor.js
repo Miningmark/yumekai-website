@@ -134,7 +134,7 @@ export default function emailRegistrationVendor({
 `;
 
   const mailOptions = {
-    from: "info@miningmark.de",
+    from: "info@yumekai.de",
     to: email,
     subject: "Anmeldung für einen Händlerstand auf der YumeKai 2025",
     html: htmlContent,

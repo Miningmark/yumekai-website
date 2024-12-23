@@ -129,7 +129,7 @@ export default function emailRegistrationArtist({
 `;
 
   const mailOptions = {
-    from: "info@miningmark.de",
+    from: "info@yumekai.de",
     to: email,
     subject: "Anmeldung für einen Künstlerstand auf der YumeKai 2025",
     html: htmlContent,

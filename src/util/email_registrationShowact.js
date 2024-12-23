@@ -126,7 +126,7 @@ export default function emailRegistrationShowact({
 `;
 
   const mailOptions = {
-    from: "info@miningmark.de",
+    from: "info@yumekai.de",
     to: email,
     subject: "Anmeldung als Showact auf der YumeKai 2025",
     html: htmlContent,

@@ -132,7 +132,7 @@ export default function emailRegistrationWorkshop({
 `;
 
   const mailOptions = {
-    from: "info@miningmark.de",
+    from: "info@yumekai.de",
     to: email,
     subject: "Anmeldung als Workshopleiter auf der YumeKai 2025",
     html: htmlContent,
