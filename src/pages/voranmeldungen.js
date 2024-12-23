@@ -333,12 +333,6 @@ export default function Voranmeldungen() {
       </div>
 
       <Spacer />
-
-      <div>
-        <p>jetzt: {`${jetzt}`}</p>
-        <p>start: {`${registrationStart}`}</p>
-        <p>Künstlerende {`${artistRegistrationEnd}`}</p>
-      </div>
     </>
   );
 }
