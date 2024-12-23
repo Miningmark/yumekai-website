@@ -138,7 +138,7 @@ export default function Voranmeldungen() {
             .
             <br />
             <br />
-            <strong>Die Anmeldung für Künstler läuft bis zum 29. Februar 2025.</strong>
+            <strong>Die Anmeldung für Künstler läuft bis zum 28.Februar.2025.</strong>
             <br />
             <br />
             Wir freuen uns auf eure Bewerbung!
