@@ -65,7 +65,7 @@ export default function RegistrationAsArtist() {
 
   const [typeOfArt, setTypeOfArt] = useState("");
   const [standSize, setStandSize] = useState("");
-  const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState("");
+  const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(false);
   const [wlan, setWlan] = useState(false);
   const [programmBooklet, setProgrammBooklet] = useState("Nein");
   const [descriptionOfStand, setDescriptionOfStand] = useState("");
@@ -279,7 +279,7 @@ export default function RegistrationAsArtist() {
         setCountry("");
         setTypeOfArt("");
         setStandSize("");
-        setAdditionalExhibitorTicket("");
+        setAdditionalExhibitorTicket(false);
         setWlan(false);
         setProgrammBooklet("Nein");
         setDescriptionOfStand("");
