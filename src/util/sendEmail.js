@@ -44,12 +44,12 @@ export async function sendMail(mail, mailOptions) {
   }
 
   const transporter = nodemailer.createTransport({
-    host: "webmail.your-server.de", // SMTP-Host von Hetzner
+    host: "mail.yumekai.de",
     port: 587, // oder 465 für SSL
     secure: false, // true für 465, false für andere Ports
     auth: {
-      user: from,
-      pass: emailPassword,
+      user: process.env.DEFAULT_EMAIL,
+      pass: process.env.DEFAULT_PASS,
     },
   });
 
