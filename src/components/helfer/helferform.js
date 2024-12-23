@@ -163,9 +163,9 @@ export default function HelferForm() {
       newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
     validateField(gender, "gender", "Geschlecht", 3, 50, true);
     validateField(discordName, "discordName", "Discord Name", 3, 100, true);
-    validateField(phone, "phone", "Telefonnummer", 7, 25, true);
+    validateField(phone, "phone", "Telefonnummer", 5, 25, true);
     validateField(street, "street", "Straße", 3, 50, true);
-    validateField(postalCode, "postalCode", "PLZ", 4, 6, true);
+    validateField(postalCode, "postalCode", "PLZ", 3, 6, true);
     validateField(city, "city", "Ort", 3, 50, true);
     validateField(country, "country", "Land", 3, 50, true);
     validateField(occupation, "occupation", "Beruf/Ausbildung", 3, 100);
