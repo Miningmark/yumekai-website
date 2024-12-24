@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
 import emailRegistrationArtist from "@/util/email_registrationArtist";
+import validateString from "@/util/inputCheck";
 
 export const config = {
   api: {
@@ -109,6 +110,96 @@ export default async function handler(req, res) {
 
   const errors = [];
 
+  // Validierungslogik mit validateString
+  // Name Validierung
+  const nameValidation = validateString(name, "Vorname", 2, 50, true);
+  if (!nameValidation.check) errors.push({ field: "name", message: nameValidation.description });
+
+  // Nachname Validierung
+  if (lastName) {
+    const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+    if (!lastNameValidation.check)
+      errors.push({ field: "lastName", message: lastNameValidation.description });
+  }
+
+  // Email Validierung
+  const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+  if (!emailValidation.check) errors.push({ field: "email", message: emailValidation.description });
+
+  //Firmenname Validierung
+  const vendorNameValidation = validateString(vendorName, "Firmenname");
+  if (!vendorNameValidation.check)
+    errors.push({ field: "vendorName", message: vendorNameValidation.description });
+
+  //Künstlername Validierung
+  const artistNameValidation = validateString(artistName, "Künstlername", 2, 50, true);
+  if (!artistNameValidation.check)
+    errors.push({ field: "artistName", message: artistNameValidation.description });
+
+  //Straße Validierung
+  const streetValidation = validateString(street, "Straße", 3, 50, true);
+  if (!streetValidation.check)
+    errors.push({ field: "street", message: streetValidation.description });
+
+  //PLZ Validierung
+  const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
+  if (!postalCodeValidation.check)
+    errors.push({ field: "postalCode", message: postalCodeValidation.description });
+
+  //Ort Validierung
+  const cityValidation = validateString(city, "Ort", 2, 50, true);
+  if (!cityValidation.check) errors.push({ field: "city", message: cityValidation.description });
+
+  //Land Validierung
+  const countryValidation = validateString(country, "Land", 2, 50, true);
+  if (!countryValidation.check)
+    errors.push({ field: "country", message: countryValidation.description });
+
+  //Art der Kunst Validierung
+  const typeOfArtValidation = validateString(typeOfArt, "Art der Kunst", 2, 2500, true);
+  if (!typeOfArtValidation.check)
+    errors.push({ field: "typeOfArt", message: typeOfArtValidation.description });
+
+  //Beschreibung des Standes Validierung
+  const descriptionOfStandValidation = validateString(
+    descriptionOfStand,
+    "Beschreibung des Standes",
+    5,
+    2500,
+    true
+  );
+  if (!descriptionOfStandValidation.check)
+    errors.push({
+      field: "descriptionOfStand",
+      message: descriptionOfStandValidation.description,
+    });
+
+  //Website Validierung
+  const websiteValidation = validateString(website, "Website", 0, 100);
+  if (!websiteValidation.check)
+    errors.push({ field: "website", message: websiteValidation.description });
+
+  //Instagram Validierung
+  const instagramValidation = validateString(instagram, "Instagram", 0, 100);
+  if (!instagramValidation.check)
+    errors.push({ field: "instagram", message: instagramValidation.description });
+
+  //Nachricht Validierung
+  const messageValidation = validateString(message, "Nachricht", 0, 2500);
+  if (!messageValidation.check)
+    errors.push({ field: "message", message: messageValidation.description });
+
+  //Programmheft Validierung
+  const programmBookletValidation = validateString(programmBooklet, "Programmheft", 2, 50, true);
+  if (!programmBookletValidation.check)
+    errors.push({ field: "programmBooklet", message: programmBookletValidation.description });
+
+  // Standgröße Validierung
+  const standSizeValidation = validateString(standSize, "Standgröße", 2, 50, true);
+  if (!standSizeValidation.check)
+    errors.push({ field: "standSize", message: standSizeValidation.description });
+
+  /*
   // Eingabevalidierung
   const invalidCharactersRegex = /[<>;'"\\]/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -152,6 +243,7 @@ export default async function handler(req, res) {
   if (website) validateString(website, "website", 3, 100);
   if (instagram) validateString(instagram, "instagram", 3, 100);
   if (message) validateString(message, "message", 3, 2500, false);
+*/
 
   // Boolean validation
   if (typeof additionalExhibitorTicket !== "boolean") {

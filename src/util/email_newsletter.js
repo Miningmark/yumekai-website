@@ -55,33 +55,13 @@ export default function emailNewsletter({ email, name, token }) {
                     </div>
                 <div style="font-weight:normal;padding:0px 24px 16px 24px">
                     Dies ist zu deinem eigenen Schutz erforderlich, und stellt sicher, dass du persönlich unseren Newsletter bestellt hast und deine E-Mail-Adresse nicht unerlaubt von anderen genutzt wurde. Wir werden deine personenbezogenen Daten, die wir für den Versand des Newsletters verarbeiten, nicht Dritten zur Verfügung stellen.
-                    <br /><br />
+                    <br />
+                    <br />
                     Nach erfolgreich abgeschlossener Anmeldung, kannst du den Erhalt des Newsletters durch Widerruf deiner Einwilligung jederzeit mit Wirkung für die Zukunft per E-Mail, postalisch oder online abbestellen. Falls du dich nicht beim YumeKai Newsletter angemeldet hast, ignoriere bitte diese E-Mail.
                 </div>
                 </td>
             </tr>
-            <tr>
-                <td>
-                <div style="font-weight:normal;front-size:8px;padding:0px 24px 16px 24px">
-                    <br />
-                    <br />
-                    <div class="default-style">
-                    <img  style="max-width: 25%;" src="cid:yumeKaiLogo" alt="YumeKai Logo" />
-                    </div>
-                    <div class="default-style">Impressum:
-                    <a href="https://yumekai.de/Impressum/"> www.Yumekai.de/Impressum</a> 
-                    <br />Kontakt: <a class="mailto-link" href="mailto:Info@yumekai.de">info@yumekai.de</a>
-                    </div>
-                    <div class="default-style">DreamFly-Events UG Haftungsbeschränkt</div>
-                    <div class="default-style">Sitz in: Trunkelsberg</div>
-                    <div class="default-style">Registergericht: Amtsgericht Memmingen</div>
-                    <div class="default-style">Registernummer: <span class="fontWeightBold"> HRB 20785</span></div>
-                    <div class="default-style"><span class="fontWeightBold">USt-id: DE366635441</span></div>
-                    <div class="default-style">Vertreten durch Geschäftsführer: Markus Sibbe </div>
-                    <div class="default-style">Änderungen und Irrtümer vorbehalten.</div>
-                </div>
-                </td>
-            </tr>
+           
             </tbody>
         </table>
         </div>

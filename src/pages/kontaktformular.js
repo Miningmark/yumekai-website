@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useRef } from "react";
+import validateString from "@/util/inputCheck";
 
 //Components
 import {
@@ -49,42 +50,45 @@ export default function Kontaktformular() {
     setErrors([]);
     setSuccess("");
 
-    if (!name.trim()) newErrors.push({ field: "name", message: "Vorname ist ein Pflichtfeld" });
-    if (name.length < 3) newErrors.push({ field: "name", message: "Vorname  ist zu kurz" });
-    if (name.length > 50) newErrors.push({ field: "name", message: "Vorname ist zu lang" });
+    // Validierungslogik mit validateString
+    // Name Validierung
+    const nameValidation = validateString(name, "Vorname", 2, 50, true);
+    if (!nameValidation.check)
+      newErrors.push({ field: "name", message: nameValidation.description });
+
+    // Nachname Validierung
     if (lastName) {
-      if (lastName.length < 3)
-        newErrors.push({ field: "lastName", message: "Nachname  ist zu kurz" });
-      if (lastName.length > 50)
-        newErrors.push({ field: "lastName", message: "Nachname ist zu lang" });
+      const lastNameValidation = validateString(lastName, "Nachname");
+      if (!lastNameValidation.check)
+        newErrors.push({ field: "lastName", message: lastNameValidation.description });
     }
-    if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
-    if (!email.includes("@"))
-      newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
-    if (email.length > 100)
-      newErrors.push({
-        field: "email",
-        message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
-      });
-    if (!area) newErrors.push({ field: "area", message: "Bereich ist ein Pflichtfeld" });
-    if (!subject.trim())
-      newErrors.push({ field: "subject", message: "Betreff ist ein Pflichtfeld" });
-    if (subject.length < 5) newErrors.push({ field: "subject", message: "Betreff ist zu kurz" });
-    if (subject.length > 100) newErrors.push({ field: "subject", message: "Betreff ist zu lang" });
-    if (!message.trim())
-      newErrors.push({ field: "message", message: "Nachricht ist ein Pflichtfeld" });
-    if (message.length < 10)
-      newErrors.push({
-        field: "message",
-        message: "Nachricht muss mindestens 10 Zeichen lang sein",
-      });
-    if (message.length > 500)
-      newErrors.push({
-        field: "message",
-        message: "Nachricht darf maximal 500 Zeichen lang sein",
-      });
+
+    // Email Validierung
+    const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+    if (!emailValidation.check)
+      newErrors.push({ field: "email", message: emailValidation.description });
+
+    // Bereich Validierung
+    const areaValidation = validateString(area, "Bereich", 2, 50, true);
+    if (!areaValidation.check)
+      newErrors.push({ field: "area", message: areaValidation.description });
+
+    // Betreff Validierung
+    const subjectValidation = validateString(subject, "Betreff", 2, 100, true);
+    if (!subjectValidation.check)
+      newErrors.push({ field: "subject", message: subjectValidation.description });
+
+    // Nachricht Validierung
+    const messageValidation = validateString(message, "Nachricht", 5, 2500, true);
+    if (!messageValidation.check)
+      newErrors.push({ field: "message", message: messageValidation.description });
+
+    // Datenschutzerklärung Validierung
     if (!privacyPolicy)
-      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung nicht akzeptiert" });
+      newErrors.push({
+        field: "privacyPolicy",
+        message: "Datenschutzerklärung nicht akzeptiert",
+      });
 
     if (newErrors.length > 0) {
       setErrors(newErrors);

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
+import validateString from "@/util/inputCheck";
 
 //Components
 import {
@@ -144,45 +145,88 @@ export default function RegistrationAsArtist() {
     setErrors([]);
     setSuccess("");
 
-    const validateField = (value, fieldName, title, min, max, required = false) => {
-      if (required && !value.trim())
-        newErrors.push({ field: fieldName, message: `${title} ist ein Pflichtfeld` });
-      if (value && value.length < min)
-        newErrors.push({ field: fieldName, message: `${title} ist zu kurz` });
-      if (value.length > max) newErrors.push({ field: fieldName, message: `${title} ist zu lang` });
-      return null;
-    };
+    // Validierungslogik mit validateString
+    // Name Validierung
+    const nameValidation = validateString(name, "Vorname", 2, 50, true);
+    if (!nameValidation.check)
+      newErrors.push({ field: "name", message: nameValidation.description });
 
-    validateField(name, "name", "Vorname", 3, 50, true);
-    validateField(lastName, "lastName", "Nachname", 3, 50, true);
-    if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
-    if (!email.includes("@"))
-      newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
-    if (email.length > 100)
-      newErrors.push({
-        field: "email",
-        message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
-      });
-    if (confirmEmail.trim() !== email.trim())
-      newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
-    validateField(vendorName, "vendorName", "Firmenname", 3, 50, false);
-    validateField(artistName, "artistName", "Künstlername", 3, 50, true);
-    validateField(street, "street", "Straße", 3, 50, true);
-    validateField(postalCode, "postalCode", "PLZ", 3, 10, true);
-    validateField(city, "city", "Ort", 3, 50, true);
-    validateField(country, "country", "Land", 3, 50, true);
-    validateField(typeOfArt, "typeOfArt", "Art der Kunst", 3, 2500, true);
-    validateField(
+    // Nachname Validierung
+    if (lastName) {
+      const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+      if (!lastNameValidation.check)
+        newErrors.push({ field: "lastName", message: lastNameValidation.description });
+    }
+
+    // Email Validierung
+    const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+    if (!emailValidation.check)
+      newErrors.push({ field: "email", message: emailValidation.description });
+
+    //Firmenname Validierung
+    const vendorNameValidation = validateString(vendorName, "Firmenname");
+    if (!vendorNameValidation.check)
+      newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
+
+    //Künstlername Validierung
+    const artistNameValidation = validateString(artistName, "Künstlername", 2, 50, true);
+    if (!artistNameValidation.check)
+      newErrors.push({ field: "artistName", message: artistNameValidation.description });
+
+    //Straße Validierung
+    const streetValidation = validateString(street, "Straße", 3, 50, true);
+    if (!streetValidation.check)
+      newErrors.push({ field: "street", message: streetValidation.description });
+
+    //PLZ Validierung
+    const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
+    if (!postalCodeValidation.check)
+      newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
+
+    //Ort Validierung
+    const cityValidation = validateString(city, "Ort", 2, 50, true);
+    if (!cityValidation.check)
+      newErrors.push({ field: "city", message: cityValidation.description });
+
+    //Land Validierung
+    const countryValidation = validateString(country, "Land", 2, 50, true);
+    if (!countryValidation.check)
+      newErrors.push({ field: "country", message: countryValidation.description });
+
+    //Art der Kunst Validierung
+    const typeOfArtValidation = validateString(typeOfArt, "Art der Kunst", 2, 2500, true);
+    if (!typeOfArtValidation.check)
+      newErrors.push({ field: "typeOfArt", message: typeOfArtValidation.description });
+
+    //Beschreibung des Standes Validierung
+    const descriptionOfStandValidation = validateString(
       descriptionOfStand,
-      "descriptionOfStand",
       "Beschreibung des Standes",
-      10,
+      5,
       2500,
       true
     );
-    validateField(website, "website", "Website", 0, 100, false);
-    validateField(instagram, "instagram", "Instagram", 0, 100, false);
-    validateField(message, "message", "Nachricht", 0, 2500, false);
+    if (!descriptionOfStandValidation.check)
+      newErrors.push({
+        field: "descriptionOfStand",
+        message: descriptionOfStandValidation.description,
+      });
+
+    //Website Validierung
+    const websiteValidation = validateString(website, "Website", 0, 100);
+    if (!websiteValidation.check)
+      newErrors.push({ field: "website", message: websiteValidation.description });
+
+    //Instagram Validierung
+    const instagramValidation = validateString(instagram, "Instagram", 0, 100);
+    if (!instagramValidation.check)
+      newErrors.push({ field: "instagram", message: instagramValidation.description });
+
+    //Nachricht Validierung
+    const messageValidation = validateString(message, "Nachricht", 0, 2500);
+    if (!messageValidation.check)
+      newErrors.push({ field: "message", message: messageValidation.description });
+
     if (!standSize)
       newErrors.push({ field: "standSize", message: "Standgröße ist ein Pflichtfeld" });
     if (!programmBooklet)

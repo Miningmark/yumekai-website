@@ -131,55 +131,96 @@ export default function RegistrationAsShowact() {
     setErrors([]);
     setSuccess("");
 
-    const validateField = (value, fieldName, title, min, max, required = false) => {
-      if (required && !value.trim())
-        newErrors.push({ field: fieldName, message: `${title} ist ein Pflichtfeld` });
-      if (value && value.length < min)
-        newErrors.push({ field: fieldName, message: `${title} ist zu kurz` });
-      if (value.length > max) newErrors.push({ field: fieldName, message: `${title} ist zu lang` });
-      return null;
-    };
+    // Validierungslogik mit validateString
+    // Name Validierung
+    const nameValidation = validateString(name, "Vorname", 2, 50, true);
+    if (!nameValidation.check)
+      newErrors.push({ field: "name", message: nameValidation.description });
 
-    validateField(name, "name", "Vorname", 3, 50, true);
-    validateField(lastName, "lastName", "Nachname", 3, 50, true);
-    if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
-    if (!email.includes("@"))
-      newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
-    if (email.length > 100)
-      newErrors.push({
-        field: "email",
-        message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
-      });
-    if (confirmEmail.trim() !== email.trim())
-      newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
-    validateField(street, "street", "Straße", 3, 50, true);
-    validateField(postalCode, "postalCode", "PLZ", 3, 10, true);
-    validateField(city, "city", "Ort", 3, 50, true);
-    validateField(country, "country", "Land", 3, 50, true);
-    validateField(groupName, "groupName", "Gruppenname", 3, 50, true);
+    // Nachname Validierung
+    if (lastName) {
+      const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+      if (!lastNameValidation.check)
+        newErrors.push({ field: "lastName", message: lastNameValidation.description });
+    }
+
+    // Email Validierung
+    const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+    if (!emailValidation.check)
+      newErrors.push({ field: "email", message: emailValidation.description });
+
+    //Straße Validierung
+    const streetValidation = validateString(street, "Straße", 2, 50, true);
+    if (!streetValidation.check)
+      newErrors.push({ field: "street", message: streetValidation.description });
+
+    //PLZ Validierung
+    const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
+    if (!postalCodeValidation.check)
+      newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
+
+    //Ort Validierung
+    const cityValidation = validateString(city, "Ort", 2, 50, true);
+    if (!cityValidation.check)
+      newErrors.push({ field: "city", message: cityValidation.description });
+
+    //Land Validierung
+    const countryValidation = validateString(country, "Land", 2, 50, true);
+    if (!countryValidation.check)
+      newErrors.push({ field: "country", message: countryValidation.description });
+
+    //Gruppenname Validierung
+    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 50, true);
+    if (!groupNameValidation.check)
+      newErrors.push({ field: "groupName", message: groupNameValidation.description });
+
+    //Gruppenmitglieder Validierung
     if (groupMembers < 1)
       newErrors.push({ field: "groupMembers", message: "Mindestens 1 Gruppenmitglied" });
     if (groupMembers > 25)
       newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
-    validateField(description, "description", "Beschreibung", 10, 2500, true);
+
+    //Beschreibung Validierung
+    const descriptionValidation = validateString(description, "Beschreibung", 5, 2500, true);
+    if (!descriptionValidation.check)
+      newErrors.push({ field: "description", message: descriptionValidation.description });
+
+    //Zeitslots Validierung
     if (!timeSlot1 && !timeSlot2 && !timeSlot3 && !timeSlot4)
       newErrors.push({ field: "timeSlots", message: "Bitte wähle mindestens einen Zeitraum" });
 
+    //Aufbauzeit Validierung
     if (constructionTime < 1)
       newErrors.push({ field: "constructionTime", message: "Aufbaudauer mindestens 1 Minute" });
     if (constructionTime > 60)
       newErrors.push({ field: "constructionTime", message: "Aufbaudauer maximal 60 Minuten" });
+
+    //Aufführungszeit Validierung
     if (performanceTime < 30)
       newErrors.push({ field: "performanceTime", message: "Auftritt mindestens 30 Minute" });
     if (performanceTime > 180)
       newErrors.push({ field: "performanceTime", message: "Auftritt maximal 180 Minuten" });
+
+    //Abbauzeit Validierung
     if (deconstructionTime < 1)
       newErrors.push({ field: "deconstructionTime", message: "Abbaudauer mindestens 1 Minute" });
     if (deconstructionTime > 60)
       newErrors.push({ field: "deconstructionTime", message: "Abbaudauer maximal 60 Minuten" });
-    validateField(website, "website", "Website", 0, 100);
-    validateField(instagram, "instagram", "Instagram", 0, 100);
-    validateField(message, "message", "Nachricht", 0, 2500);
+
+    //Website Validierung
+    const websiteValidation = validateString(website, "Website", 0, 100);
+    if (!websiteValidation.check)
+      newErrors.push({ field: "website", message: websiteValidation.description });
+
+    //Instagram Validierung
+    const instagramValidation = validateString(instagram, "Instagram", 0, 100);
+    if (!instagramValidation.check)
+      newErrors.push({ field: "instagram", message: instagramValidation.description });
+
+    //Nachricht Validierung
+    const messageValidation = validateString(message, "Nachricht", 0, 2500);
+    if (!messageValidation.check)
+      newErrors.push({ field: "message", message: messageValidation.description });
 
     //Bild
     if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });

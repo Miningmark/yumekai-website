@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import emailContactRequest from "@/util/email_contactRequest";
+import validateString from "@/util/inputCheck";
 
 /*
  
@@ -48,80 +49,34 @@ export default async function handler(req, res) {
 
   const errors = [];
 
-  // Eingabevalidierung
-  const invalidCharactersRegex = /[<>;'"\\]/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   // Name Validierung
-  if (!name || !name.trim()) {
-    errors.push({ field: "name", message: "Vorname ist ein Pflichtfeld" });
-  } else {
-    if (name.length < 3) errors.push({ field: "name", message: "Vorname ist zu kurz" });
-    if (name.length > 50) errors.push({ field: "name", message: "Vorname ist zu lang" });
-    if (invalidCharactersRegex.test(name)) {
-      errors.push({ field: "name", message: "Ungültige Zeichen im Vornamen" });
-    }
-  }
+  const nameValidation = validateString(name, "Vorname", 2, 50, true);
+  if (!nameValidation.check) errors.push({ field: "name", message: nameValidation.description });
 
   // Nachname Validierung
   if (lastName) {
-    if (lastName.length < 3) errors.push({ field: "lastName", message: "Nachname ist zu kurz" });
-    if (lastName.length > 50) errors.push({ field: "lastName", message: "Nachname ist zu lang" });
-    if (invalidCharactersRegex.test(lastName)) {
-      errors.push({ field: "lastName", message: "Ungültige Zeichen im Nachnamen" });
-    }
+    const lastNameValidation = validateString(lastName, "Nachname");
+    if (!lastNameValidation.check)
+      errors.push({ field: "lastName", message: lastNameValidation.description });
   }
 
   // Email Validierung
-  if (!email || !email.trim()) {
-    errors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
-  } else {
-    if (!emailRegex.test(email)) {
-      errors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
-    }
-    if (email.length > 100) {
-      errors.push({
-        field: "email",
-        message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
-      });
-    }
-  }
+  const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+  if (!emailValidation.check) errors.push({ field: "email", message: emailValidation.description });
 
   // Bereich Validierung
-  if (!area || !area.trim()) {
-    errors.push({ field: "area", message: "Bereich ist ein Pflichtfeld" });
-  } else {
-    if (area.length > 50) errors.push({ field: "area", message: "Bereich ist zu lang" });
-    if (invalidCharactersRegex.test(area)) {
-      errors.push({ field: "area", message: "Ungültige Zeichen im Bereich" });
-    }
-  }
+  const areaValidation = validateString(area, "Bereich", 2, 50, true);
+  if (!areaValidation.check) errors.push({ field: "area", message: areaValidation.description });
 
   // Betreff Validierung
-  if (!subject || !subject.trim()) {
-    errors.push({ field: "subject", message: "Betreff ist ein Pflichtfeld" });
-  } else {
-    if (subject.length < 5) errors.push({ field: "subject", message: "Betreff ist zu kurz" });
-    if (subject.length > 100) errors.push({ field: "subject", message: "Betreff ist zu lang" });
-    if (invalidCharactersRegex.test(subject)) {
-      errors.push({ field: "subject", message: "Ungültige Zeichen im Betreff" });
-    }
-  }
+  const subjectValidation = validateString(subject, "Betreff", 2, 100, true);
+  if (!subjectValidation.check)
+    errors.push({ field: "subject", message: subjectValidation.description });
 
   // Nachricht Validierung
-  if (!message || !message.trim()) {
-    errors.push({ field: "message", message: "Nachricht ist ein Pflichtfeld" });
-  } else {
-    if (message.length < 10) {
-      errors.push({
-        field: "message",
-        message: "Nachricht muss mindestens 10 Zeichen lang sein",
-      });
-    }
-    if (message.length > 2500) {
-      errors.push({ field: "message", message: "Nachricht darf maximal 2500 Zeichen lang sein" });
-    }
-  }
+  const messageValidation = validateString(message, "Nachricht", 5, 2500, true);
+  if (!messageValidation.check)
+    errors.push({ field: "message", message: messageValidation.description });
 
   // Datenschutzbestimmung Validierung
   if (typeof privacyPolicy !== "boolean") {
