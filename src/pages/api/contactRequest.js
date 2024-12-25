@@ -103,7 +103,7 @@ export default async function handler(req, res) {
     errors.push({ field: "subject", message: subjectValidation.description });
 
   // Nachricht Validierung
-  const messageValidation = validateString(message, "Nachricht", 50, 2500, true);
+  const messageValidation = validateString(message, "Nachricht", 5, 2500, true);
   if (!messageValidation.check)
     errors.push({ field: "message", message: messageValidation.description });
 
