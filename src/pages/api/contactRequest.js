@@ -29,6 +29,18 @@ CREATE TABLE unusual_activity_logs (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE registration_errors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_ip VARCHAR(64),
+    form VARCHAR(100),
+    email VARCHAR(100),
+    error_details JSON NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+ENGINE=InnoDB 
+DEFAULT CHARSET=utf8mb4 
+COLLATE=utf8mb4_unicode_ci;
+
  */
 
 const connection = mysql.createPool({
@@ -37,6 +49,23 @@ const connection = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
 });
+
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -74,7 +103,7 @@ export default async function handler(req, res) {
     errors.push({ field: "subject", message: subjectValidation.description });
 
   // Nachricht Validierung
-  const messageValidation = validateString(message, "Nachricht", 5, 2500, true);
+  const messageValidation = validateString(message, "Nachricht", 50, 2500, true);
   if (!messageValidation.check)
     errors.push({ field: "message", message: messageValidation.description });
 
@@ -93,6 +122,11 @@ export default async function handler(req, res) {
 
   // Fehler prüfen
   if (errors.length > 0) {
+    const errorlog = errors.map((error) => {
+      return { field: error.field, message: error.message, value: req.body[error.field] };
+    });
+
+    await logError(clientIp, "Kontaktformular", email, errorlog);
     return res.status(400).json({ errors });
   }
 
@@ -134,8 +168,11 @@ export default async function handler(req, res) {
     emailContactRequest({ email, name, area, subject, message });
 
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
-  } catch (err) {
-    console.error("Fehler beim Einfügen der Daten:", err.message);
+  } catch (error) {
+    console.error("Fehler beim Einfügen der Daten:", error.message);
+    await logError(clientIp, "Kontaktformular", email, [
+      { field: "server", message: error.message },
+    ]);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }

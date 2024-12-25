@@ -26,6 +26,23 @@ const connection = mysql.createPool({
   database: process.env.DB_DATABASE,
 });
 
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method == "POST") {
     const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
@@ -76,6 +93,11 @@ export default async function handler(req, res) {
 
     // Fehler prüfen
     if (errors.length > 0) {
+      const errorlog = errors.map((error) => {
+        return { field: error.field, message: error.message, value: req.body[error.field] };
+      });
+
+      await logError(clientIp, "Newsletter Anmeldung", email, errorlog);
       return res.status(400).json({ errors });
     }
 
@@ -98,6 +120,9 @@ export default async function handler(req, res) {
       }
     } catch (error) {
       console.error(error);
+      await logError(clientIp, "Newsletter Anmeldung", email, [
+        { field: "server", message: error.message },
+      ]);
       return res.status(500).json({ message: "Interner Serverfehler" });
     }
   }
@@ -123,6 +148,9 @@ export default async function handler(req, res) {
       }
     } catch (error) {
       console.error(error);
+      await logError(clientIp, "Newsletter Anmeldung", email, [
+        { field: "server", message: error.message },
+      ]);
       return res.status(500).json({ message: "Interner Serverfehler" });
     }
   }
@@ -148,6 +176,9 @@ export default async function handler(req, res) {
       }
     } catch (error) {
       console.error(error);
+      await logError(clientIp, "Newsletter Anmeldung", email, [
+        { field: "server", message: error.message },
+      ]);
       return res.status(500).json({ message: "Interner Serverfehler" });
     }
   }

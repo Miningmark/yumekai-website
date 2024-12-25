@@ -77,6 +77,23 @@ const parseForm = (req) => {
   });
 };
 
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
@@ -223,7 +240,11 @@ export default async function handler(req, res) {
 
     // Fehler prüfen
     if (errors.length > 0) {
-      console.log("Fehler beim Einfügen der Daten:", errors);
+      const errorlog = errors.map((error) => {
+        return { field: error.field, message: error.message, value: req.body[error.field] };
+      });
+
+      await logError(clientIp, "Helfer Anmeldung", email, errorlog);
       return res.status(400).json({ errors });
     }
 
@@ -356,8 +377,11 @@ export default async function handler(req, res) {
       });
 
       res.status(200).json({ message: "Daten erfolgreich eingefügt." });
-    } catch (err) {
-      console.error("Fehler beim Einfügen der Daten:", err);
+    } catch (error) {
+      console.error("Fehler beim Einfügen der Daten:", error);
+      await logError(clientIp, "Helfer Anmeldung", email, [
+        { field: "server", message: error.message },
+      ]);
       res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
     }
   } else {

@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
 import emailRegistrationShowact from "@/util/email_registrationShowact";
+import validateString from "@/util/inputCheck";
 
 export const config = {
   api: {
@@ -69,6 +70,23 @@ const parseForm = (req) => {
     });
   });
 };
+
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -230,7 +248,11 @@ export default async function handler(req, res) {
 
   // Fehler prüfen
   if (errors.length > 0) {
-    console.log("Fehler beim Einfügen der Daten:", errors);
+    const errorlog = errors.map((error) => {
+      return { field: error.field, message: error.message, value: req.body[error.field] };
+    });
+
+    await logError(clientIp, "Showact Anmeldung", email, errorlog);
     return res.status(400).json({ errors });
   }
 
@@ -343,6 +365,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
     console.error("Fehler beim Einfügen der Daten:", error);
+    await logError(clientIp, "Showact Anmeldung", email, [
+      { field: "server", message: error.message },
+    ]);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }

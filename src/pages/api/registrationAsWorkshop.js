@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
 import emailRegistrationWorkshop from "@/util/email_registrationWorkshop";
+import validateString from "@/util/inputCheck";
 
 export const config = {
   api: {
@@ -58,7 +59,7 @@ const parseForm = (req) => {
   return new Promise((resolve, reject) => {
     const form = formidable({
       multiples: true,
-      uploadDir: path.join(process.cwd(), "/private/helperImage"),
+      uploadDir: path.join(process.cwd(), "/private/workshopImage"),
       keepExtensions: true,
     });
     form.parse(req, (err, fields, files) => {
@@ -70,6 +71,23 @@ const parseForm = (req) => {
     });
   });
 };
+
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -105,58 +123,86 @@ export default async function handler(req, res) {
 
   const errors = [];
 
-  // Eingabevalidierung
-  const invalidCharactersRegex = /[<>;'"\\]/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Validierungslogik mit validateString
+  // Name Validierung
+  const nameValidation = validateString(name, "Vorname", 2, 50, true);
+  if (!nameValidation.check) errors.push({ field: "name", message: nameValidation.description });
 
-  // Helper function for string validation
-  const validateString = (value, fieldName, minLength, maxLength, specialCheck = true) => {
-    if (!value || !value.trim()) {
-      errors.push({ field: fieldName, message: `${fieldName} ist ein Pflichtfeld` });
-    } else {
-      if (value.length < minLength)
-        errors.push({ field: fieldName, message: `${fieldName} ist zu kurz` });
-      if (value.length > maxLength)
-        errors.push({ field: fieldName, message: `${fieldName} ist zu lang` });
-      if (specialCheck) {
-        if (invalidCharactersRegex.test(value)) {
-          errors.push({ field: fieldName, message: `Ungültige Zeichen in ${fieldName}` });
-        }
-      }
-    }
-  };
-
-  // Validate required fields
-  validateString(name, "name", 3, 50);
-  validateString(lastName, "lastName", 3, 50);
-  if (email && !emailRegex.test(email)) {
-    errors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
+  // Nachname Validierung
+  if (lastName) {
+    const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+    if (!lastNameValidation.check)
+      errors.push({ field: "lastName", message: lastNameValidation.description });
   }
-  validateString(street, "street", 5, 100);
-  validateString(postalCode, "postalCode", 2, 10);
-  validateString(city, "city", 2, 50);
-  validateString(country, "country", 2, 50);
-  validateString(workshopTitle, "workshopTitle", 3, 50);
-  validateString(workshopDescription, "workshopDescription", 3, 50, false);
+
+  // Email Validierung
+  const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+  if (!emailValidation.check) errors.push({ field: "email", message: emailValidation.description });
+
+  //Straße Validierung
+  const streetValidation = validateString(street, "Straße", 2, 50, true);
+  if (!streetValidation.check)
+    errors.push({ field: "street", message: streetValidation.description });
+
+  //PLZ Validierung
+  const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
+  if (!postalCodeValidation.check)
+    errors.push({ field: "postalCode", message: postalCodeValidation.description });
+
+  //Ort Validierung
+  const cityValidation = validateString(city, "Ort", 2, 50, true);
+  if (!cityValidation.check) errors.push({ field: "city", message: cityValidation.description });
+
+  //Land Validierung
+  const countryValidation = validateString(country, "Land", 2, 50, true);
+  if (!countryValidation.check)
+    errors.push({ field: "country", message: countryValidation.description });
+
+  //Workshop-Titel Validierung
+  const workshopTitleValidation = validateString(workshopTitle, "workshopTitle", 3, 50, true);
+  if (!workshopTitleValidation.check)
+    errors.push({ field: "workshopTitle", message: workshopTitleValidation.description });
+
+  //Workshop-Beschreibung Validierung
+  const workshopDescriptionValidation = validateString(
+    workshopDescription,
+    "workshopDescription",
+    3,
+    50,
+    true
+  );
+  if (!workshopDescriptionValidation.check)
+    errors.push({
+      field: "workshopDescription",
+      message: workshopDescriptionValidation.description,
+    });
+
+  //Leiter Validierung
   if (leaders < 1) {
     errors.push({ field: "leaders", message: "Mindestens ein Leiter muss angegeben werden" });
   }
   if (leaders > 5) {
     errors.push({ field: "leaders", message: "Maximal fünf Leiter können angegeben werden" });
   }
-  validateString(timeSlots, "timeSlots", 3, 200);
+
+  // Zeitfenster Validierung
+  validateString(timeSlots, "timeSlots", 2, 200);
+
+  // Aufbauzeit
   if (constructionTime < 1) {
     errors.push({ field: "constructionTime", message: "Aufbauzeit muss mindestens 1 sein" });
   }
   if (constructionTime > 60) {
     errors.push({ field: "constructionTime", message: "Aufbauzeit darf maximal 60 sein" });
   }
+  // Workshopzeit
   if (workshopTime < 30) {
     errors.push({ field: "workshopTime", message: "Aufführungszeit muss mindestens 30 sein" });
   }
   if (workshopTime > 360) {
     errors.push({ field: "workshopTime", message: "Aufführungszeit darf maximal 360 sein" });
   }
+  // Abbauzeit
   if (deconstructionTime < 1) {
     errors.push({ field: "deconstructionTime", message: "Abbauzeit muss mindestens 1 sein" });
   }
@@ -164,6 +210,7 @@ export default async function handler(req, res) {
     errors.push({ field: "deconstructionTime", message: "Abbauzeit darf maximal 60 sein" });
   }
 
+  // Teilnehmer Validierung
   if (participants < 0) {
     errors.push({
       field: "participants",
@@ -177,12 +224,33 @@ export default async function handler(req, res) {
     });
   }
 
-  // Optional fields
-  if (workshopRequirements)
-    validateString(workshopRequirements, "workshopRequirements", 3, 2500, false);
-  if (website) validateString(website, "website", 3, 100);
-  if (instagram) validateString(instagram, "instagram", 3, 100);
-  if (message) validateString(message, "message", 3, 2500, false);
+  // Workshop-Anforderungen
+  const workshopRequirementsValidation = validateString(
+    workshopRequirements,
+    "workshopRequirements",
+    2,
+    2500
+  );
+  if (!workshopRequirementsValidation.check)
+    errors.push({
+      field: "workshopRequirements",
+      message: workshopRequirementsValidation.description,
+    });
+
+  //Website Validierung
+  const websiteValidation = validateString(website, "Website", 0, 100);
+  if (!websiteValidation.check)
+    errors.push({ field: "website", message: websiteValidation.description });
+
+  //Instagram Validierung
+  const instagramValidation = validateString(instagram, "Instagram", 0, 100);
+  if (!instagramValidation.check)
+    errors.push({ field: "instagram", message: instagramValidation.description });
+
+  //Nachricht Validierung
+  const messageValidation = validateString(message, "Nachricht", 0, 2500);
+  if (!messageValidation.check)
+    errors.push({ field: "message", message: messageValidation.description });
 
   // Boolean validation
   if (typeof privacyPolicy !== "boolean" || privacyPolicy === false) {
@@ -206,7 +274,11 @@ export default async function handler(req, res) {
 
   // Fehler prüfen
   if (errors.length > 0) {
-    console.log("Fehler beim Einfügen der Daten:", errors);
+    const errorlog = errors.map((error) => {
+      return { field: error.field, message: error.message, value: req.body[error.field] };
+    });
+
+    await logError(clientIp, "Workshop Anmeldung", email, errorlog);
     return res.status(400).json({ errors });
   }
 
@@ -323,6 +395,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
     console.error("Fehler beim Einfügen der Daten:", error);
+    await logError(clientIp, "Workshop Anmeldung", email, [
+      { field: "server", message: error.message },
+    ]);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }

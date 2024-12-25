@@ -20,6 +20,7 @@ import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
+import validateString from "@/util/inputCheck";
 
 const TimeslotsContainer = styled.div`
   display: flex;

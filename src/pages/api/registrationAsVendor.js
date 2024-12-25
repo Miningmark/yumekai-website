@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
 import emailRegistrationVendor from "@/util/email_registrationVendor";
+import validateString from "@/util/inputCheck";
 
 export const config = {
   api: {
@@ -60,7 +61,7 @@ const parseForm = (req) => {
   return new Promise((resolve, reject) => {
     const form = formidable({
       multiples: true,
-      uploadDir: path.join(process.cwd(), "/private/helperImage"),
+      uploadDir: path.join(process.cwd(), "/private/vendorImage"),
       keepExtensions: true,
     });
     form.parse(req, (err, fields, files) => {
@@ -72,6 +73,23 @@ const parseForm = (req) => {
     });
   });
 };
+
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -111,47 +129,91 @@ export default async function handler(req, res) {
 
   const errors = [];
 
-  // Eingabevalidierung
-  const invalidCharactersRegex = /[<>;'"\\]/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Validierungslogik mit validateString
+  // Name Validierung
+  const nameValidation = validateString(name, "Vorname", 2, 50, true);
+  if (!nameValidation.check) errors.push({ field: "name", message: nameValidation.description });
 
-  // Helper function for string validation
-  const validateString = (value, fieldName, minLength, maxLength, specialCheck = true) => {
-    if (!value || !value.trim()) {
-      errors.push({ field: fieldName, message: `${fieldName} ist ein Pflichtfeld` });
-    } else {
-      if (value.length < minLength)
-        errors.push({ field: fieldName, message: `${fieldName} ist zu kurz` });
-      if (value.length > maxLength)
-        errors.push({ field: fieldName, message: `${fieldName} ist zu lang` });
-      if (specialCheck) {
-        if (invalidCharactersRegex.test(value)) {
-          errors.push({ field: fieldName, message: `Ungültige Zeichen in ${fieldName}` });
-        }
-      }
-    }
-  };
-
-  // Validate required fields
-  validateString(name, "name", 3, 50);
-  validateString(lastName, "lastName", 3, 50);
-  if (email && !emailRegex.test(email)) {
-    errors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
+  // Nachname Validierung
+  if (lastName) {
+    const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+    if (!lastNameValidation.check)
+      errors.push({ field: "lastName", message: lastNameValidation.description });
   }
-  validateString(vendorName, "vendorName", 3, 50);
-  validateString(street, "street", 5, 100);
-  validateString(postalCode, "postalCode", 2, 10);
-  validateString(city, "city", 2, 50);
-  validateString(country, "country", 2, 50);
-  validateString(typeOfAssortment, "typeOfAssortment", 3, 2500);
-  validateString(descriptionOfStand, "descriptionOfStand", 3, 2500, false);
-  validateString(standSize, "standSize", 3, 50);
-  validateString(programmBooklet, "programmBooklet", 3, 50);
 
-  // Optional fields
-  if (website) validateString(website, "website", 3, 100);
-  if (instagram) validateString(instagram, "instagram", 3, 100);
-  if (message) validateString(message, "message", 3, 2500, false);
+  // Email Validierung
+  const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+  if (!emailValidation.check) errors.push({ field: "email", message: emailValidation.description });
+
+  //Firmenname Validierung
+  const vendorNameValidation = validateString(vendorName, "Firmenname", 3, 50, true);
+  if (!vendorNameValidation.check)
+    errors.push({ field: "vendorName", message: vendorNameValidation.description });
+
+  //Straße Validierung
+  const streetValidation = validateString(street, "Straße", 2, 50, true);
+  if (!streetValidation.check)
+    errors.push({ field: "street", message: streetValidation.description });
+
+  //PLZ Validierung
+  const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
+  if (!postalCodeValidation.check)
+    errors.push({ field: "postalCode", message: postalCodeValidation.description });
+
+  //Ort Validierung
+  const cityValidation = validateString(city, "Ort", 2, 50, true);
+  if (!cityValidation.check) errors.push({ field: "city", message: cityValidation.description });
+
+  //Land Validierung
+  const countryValidation = validateString(country, "Land", 2, 50, true);
+  if (!countryValidation.check)
+    errors.push({ field: "country", message: countryValidation.description });
+
+  //Art des Sortiments Validierung
+  const typeOfAssortmentValidation = validateString(
+    typeOfAssortment,
+    "Art des Sortiments",
+    2,
+    2500
+  );
+  if (!typeOfAssortmentValidation.check)
+    errors.push({ field: "typeOfAssortment", message: typeOfAssortmentValidation.description });
+
+  //Beschreibung des Standes Validierung
+  const descriptionOfStandValidation = validateString(
+    descriptionOfStand,
+    "Beschreibung des Standes",
+    3,
+    2500,
+    false
+  );
+  if (!descriptionOfStandValidation.check)
+    errors.push({ field: "descriptionOfStand", message: descriptionOfStandValidation.description });
+
+  //Standgröße Validierung
+  const standSizeValidation = validateString(standSize, "Standgröße", 2, 50);
+  if (!standSizeValidation.check)
+    errors.push({ field: "standSize", message: standSizeValidation.description });
+
+  // Programmheft Validierung
+  const programmBookletValidation = validateString(programmBooklet, "programmBooklet", 2, 50);
+  if (!programmBookletValidation.check)
+    errors.push({ field: "programmBooklet", message: programmBookletValidation.description });
+
+  //Website Validierung
+  const websiteValidation = validateString(website, "Website", 0, 100);
+  if (!websiteValidation.check)
+    errors.push({ field: "website", message: websiteValidation.description });
+
+  //Instagram Validierung
+  const instagramValidation = validateString(instagram, "Instagram", 0, 100);
+  if (!instagramValidation.check)
+    errors.push({ field: "instagram", message: instagramValidation.description });
+
+  //Nachricht Validierung
+  const messageValidation = validateString(message, "Nachricht", 0, 2500);
+  if (!messageValidation.check)
+    errors.push({ field: "message", message: messageValidation.description });
 
   // Boolean validation
   if (typeof strom !== "boolean") {
@@ -205,7 +267,11 @@ export default async function handler(req, res) {
 
   // Fehler prüfen
   if (errors.length > 0) {
-    console.log("Fehler beim Einfügen der Daten:", errors);
+    const errorlog = errors.map((error) => {
+      return { field: error.field, message: error.message, value: req.body[error.field] };
+    });
+
+    await logError(clientIp, "Händler Anmeldung", email, errorlog);
     return res.status(400).json({ errors });
   }
 
@@ -326,6 +392,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
     console.error("Fehler beim Einfügen der Daten:", error);
+    await logError(clientIp, "Händler Anmeldung", email, [
+      { field: "server", message: error.message },
+    ]);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }

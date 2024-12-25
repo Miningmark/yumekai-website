@@ -30,6 +30,23 @@ const connection = mysql.createPool({
   database: process.env.DB_DATABASE,
 });
 
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -126,10 +143,16 @@ export default async function handler(req, res) {
     });
   }
 
-  // Fehler zurückgeben, wenn vorhanden
+  // Fehler prüfen
   if (errors.length > 0) {
+    const errorlog = errors.map((error) => {
+      return { field: error.field, message: error.message, value: req.body[error.field] };
+    });
+
+    await logError(clientIp, "Presse Akkreditierung", email, errorlog);
     return res.status(400).json({ errors });
   }
+
   try {
     // Spam-Prüfung: Gibt es eine Anfrage von derselben E-Mail in den letzten 5 Minuten?
     const spamCheckQuery = `
@@ -177,6 +200,9 @@ export default async function handler(req, res) {
     return res.status(200).json({ message: "Presse Akkreditierung erfolgreich abgeschickt" });
   } catch (error) {
     console.error("Database error:", error);
+    await logError(clientIp, "Presse Akkreditierung", email, [
+      { field: "server", message: error.message },
+    ]);
     return res
       .status(500)
       .json({ message: "Fehler beim Absenden der Anfrage, Bitte versuche es später nochmal." });

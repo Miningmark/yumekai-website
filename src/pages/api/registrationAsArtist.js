@@ -60,7 +60,7 @@ const parseForm = (req) => {
   return new Promise((resolve, reject) => {
     const form = formidable({
       multiples: true,
-      uploadDir: path.join(process.cwd(), "/private/helperImage"),
+      uploadDir: path.join(process.cwd(), "/private/artistImage"),
       keepExtensions: true,
     });
     form.parse(req, (err, fields, files) => {
@@ -72,6 +72,23 @@ const parseForm = (req) => {
     });
   });
 };
+
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
+      INSERT INTO registration_errors (client_ip, form, email, error_details) 
+      VALUES (?, ?, ?, ?)
+    `;
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -199,52 +216,6 @@ export default async function handler(req, res) {
   if (!standSizeValidation.check)
     errors.push({ field: "standSize", message: standSizeValidation.description });
 
-  /*
-  // Eingabevalidierung
-  const invalidCharactersRegex = /[<>;'"\\]/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Helper function for string validation
-  const validateString = (value, fieldName, minLength, maxLength, specialCheck = true) => {
-    if (!value || !value.trim()) {
-      errors.push({ field: fieldName, message: `${fieldName} ist ein Pflichtfeld` });
-    } else {
-      if (value.length < minLength)
-        errors.push({ field: fieldName, message: `${fieldName} ist zu kurz` });
-      if (value.length > maxLength)
-        errors.push({ field: fieldName, message: `${fieldName} ist zu lang` });
-      if (specialCheck) {
-        if (invalidCharactersRegex.test(value)) {
-          errors.push({ field: fieldName, message: `Ungültige Zeichen in ${fieldName}` });
-        }
-      }
-    }
-  };
-
-  // Validate required fields
-  validateString(name, "name", 3, 50);
-  validateString(lastName, "lastName", 3, 50);
-  if (email && !emailRegex.test(email)) {
-    errors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
-  }
-
-  validateString(artistName, "artistName", 3, 50);
-  validateString(street, "street", 5, 100);
-  validateString(postalCode, "postalCode", 2, 10);
-  validateString(city, "city", 2, 50);
-  validateString(country, "country", 2, 50);
-  validateString(typeOfArt, "typeOfArt", 3, 2500, false);
-  validateString(descriptionOfStand, "descriptionOfStand", 3, 2500, false);
-  validateString(standSize, "standSize", 3, 50);
-  validateString(programmBooklet, "programmBooklet", 3, 50);
-
-  // Optional fields
-  if (vendorName) validateString(vendorName, "vendorName", 3, 50);
-  if (website) validateString(website, "website", 3, 100);
-  if (instagram) validateString(instagram, "instagram", 3, 100);
-  if (message) validateString(message, "message", 3, 2500, false);
-*/
-
   // Boolean validation
   if (typeof additionalExhibitorTicket !== "boolean") {
     errors.push({
@@ -291,7 +262,11 @@ export default async function handler(req, res) {
 
   // Fehler prüfen
   if (errors.length > 0) {
-    console.log("Fehler beim Einfügen der Daten:", errors);
+    const errorlog = errors.map((error) => {
+      return { field: error.field, message: error.message, value: req.body[error.field] };
+    });
+
+    await logError(clientIp, "Künstler Anmeldung", email, errorlog);
     return res.status(400).json({ errors });
   }
 
@@ -410,6 +385,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
     console.error("Fehler beim Einfügen der Daten:", error);
+    await logError(clientIp, "Künstler Anmeldung", email, [
+      { field: "server", message: error.message },
+    ]);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }
