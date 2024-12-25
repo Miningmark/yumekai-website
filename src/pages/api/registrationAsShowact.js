@@ -249,7 +249,12 @@ export default async function handler(req, res) {
   // Fehler prüfen
   if (errors.length > 0) {
     const errorlog = errors.map((error) => {
-      return { field: error.field, message: error.message, value: req.body[error.field] };
+      const fieldValue = fields[error.field]?.[0] || "Field not found"; // Sichere den Zugriff ab
+      return {
+        field: error.field,
+        message: error.message,
+        value: fieldValue,
+      };
     });
 
     await logError(clientIp, "Showact Anmeldung", email, errorlog);

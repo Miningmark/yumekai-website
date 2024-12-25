@@ -23,7 +23,7 @@ CREATE TABLE registration_workshop (
     postal_code VARCHAR(10) NOT NULL,
     city VARCHAR(50) NOT NULL,
     country VARCHAR(50) NOT NULL,
-    workshop_title VARCHAR(50) NOT NULL,
+    workshop_title VARCHAR(250) NOT NULL,
     workshop_description TEXT NOT NULL,
     leaders INT NOT NULL,
     time_slots VARCHAR(200) NOT NULL,
@@ -159,7 +159,7 @@ export default async function handler(req, res) {
     errors.push({ field: "country", message: countryValidation.description });
 
   //Workshop-Titel Validierung
-  const workshopTitleValidation = validateString(workshopTitle, "workshopTitle", 3, 50, true);
+  const workshopTitleValidation = validateString(workshopTitle, "workshopTitle", 2, 250, true);
   if (!workshopTitleValidation.check)
     errors.push({ field: "workshopTitle", message: workshopTitleValidation.description });
 
@@ -168,7 +168,7 @@ export default async function handler(req, res) {
     workshopDescription,
     "workshopDescription",
     3,
-    50,
+    2500,
     true
   );
   if (!workshopDescriptionValidation.check)
@@ -275,7 +275,12 @@ export default async function handler(req, res) {
   // Fehler prüfen
   if (errors.length > 0) {
     const errorlog = errors.map((error) => {
-      return { field: error.field, message: error.message, value: req.body[error.field] };
+      const fieldValue = fields[error.field]?.[0] || "Field not found"; // Sichere den Zugriff ab
+      return {
+        field: error.field,
+        message: error.message,
+        value: fieldValue,
+      };
     });
 
     await logError(clientIp, "Workshop Anmeldung", email, errorlog);

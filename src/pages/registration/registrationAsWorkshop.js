@@ -174,8 +174,8 @@ export default function RegistrationAsWorkshop() {
     const workshopTitleValidation = validateString(
       workshopTitle,
       "Titel des Workshops",
-      3,
-      100,
+      2,
+      250,
       true
     );
     if (!workshopTitleValidation.check)
