@@ -57,7 +57,7 @@ const Label = styled.label`
   padding: 30px 30px;
   border-radius: 40px;
   border: 2px dashed ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
-  box-shadow: 0px 0px 200px -50px rgba(0, 0, 0, 0.719);
+  //box-shadow: 0px 0px 200px -50px rgba(0, 0, 0, 0.719);
 `;
 
 const StyledWrapper = styled.div`
