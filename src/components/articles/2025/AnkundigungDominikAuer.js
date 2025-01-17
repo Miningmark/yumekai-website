@@ -18,7 +18,7 @@ export default function AnkundigungDominikAuer() {
               <div style={{ width: "48%", height: "auto" }}>
                 <Image
                   src={dominikAuerImage}
-                  alt="Julia Meyen"
+                  alt="Bild Dominik Auer"
                   style={{
                     width: "100%",
                     height: "auto",
@@ -29,7 +29,7 @@ export default function AnkundigungDominikAuer() {
               <div style={{ width: "48%", height: "auto" }}>
                 <Image
                   src={dominikAuerCharImage}
-                  alt="Julia Meyen"
+                  alt="Bild Inuyasha"
                   style={{
                     width: "100%",
                     height: "auto",
