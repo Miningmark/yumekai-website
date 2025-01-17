@@ -73,16 +73,20 @@ const StyledWrapper = styled.div`
     justify-content: center;
     width: 100%;
   }
+
   .file-upload-label input {
     display: none;
   }
+
   .file-upload-label svg {
     height: 50px;
     fill: rgb(82, 82, 82);
     margin-bottom: 20px;
   }
+
   .file-upload-label {
   }
+
   .file-upload-design {
     display: flex;
     flex-direction: column;
@@ -90,6 +94,7 @@ const StyledWrapper = styled.div`
     justify-content: center;
     gap: 5px;
   }
+
   .browse-button {
     background-color: rgb(82, 82, 82);
     padding: 5px 15px;
@@ -97,6 +102,7 @@ const StyledWrapper = styled.div`
     color: white;
     transition: all 0.3s;
   }
+
   .browse-button:hover {
     background-color: rgb(14, 14, 14);
   }

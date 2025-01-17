@@ -589,7 +589,7 @@ export default function HelferForm() {
           <h3>Interessen/Aufgaben/Erfahrungen</h3>
 
           <InputOptionInput
-            title="Beruf/Ausbildung"
+            title="Beruf/Qualifikationen"
             inputText={occupation}
             inputChange={setOccupation}
             inputRef={refs.occupation}

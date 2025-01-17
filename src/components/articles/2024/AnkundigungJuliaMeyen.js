@@ -2,7 +2,6 @@ import Image from "next/image";
 
 //Components
 import Columns2 from "@/components/elements/Columns2";
-import { StyledButton, UnstyledLink } from "@/components/styledComponents";
 
 //Images
 import juliaMeyenImage from "/public/assets/images/yumekai2025/Julia_Meynen.jpg";

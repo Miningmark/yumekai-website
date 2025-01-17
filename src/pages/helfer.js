@@ -61,9 +61,11 @@ export default function Helfer() {
             <ul>
               <li>
                 Verpflegung (je nach Veranstaltung und Tag z.B. eine Mahlzeit sowie verschiedene
-                Snacks und Getränken
+                Snacks und Getränken)
               </li>
-              <li>Ein Helfer T-Shirt, das euch als Helfer ausweist</li>
+              <li>
+                Ein Helfer T-Shirt, das euch als Helfer ausweist und im anschluss behalten darfst
+              </li>
               <li>Und weiteres je nach Veranstalltung</li>
             </ul>
           </>
