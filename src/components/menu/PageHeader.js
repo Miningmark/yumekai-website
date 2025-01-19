@@ -104,6 +104,7 @@ const MenuLink = styled(Link)`
   @media (max-width: 800px) {
     font-size: 1.1rem;
     text-align: center;
+    padding: 12px;
   }
 `;
 
@@ -131,6 +132,7 @@ const MenuNoLink = styled.p`
   @media (max-width: 800px) {
     font-size: 1.1rem;
     text-align: center;
+    padding: 12px;
   }
 `;
 
@@ -160,6 +162,7 @@ const SubMenuLink = styled(Link)`
   @media (max-width: 800px) {
     font-size: 1rem;
     text-align: center;
+    padding: 12px;
   }
 `;
 
