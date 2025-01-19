@@ -71,6 +71,7 @@ export default function Projects() {
   }, []);
 
   const headerImage = isMobile ? yumeKaiNightHeaderSmall : yumeKaiNightHeaderLarge;
+  const headerImageHeight = isMobile ? 52.35 : 23.33;
 
   return (
     <>
@@ -80,8 +81,8 @@ export default function Projects() {
             src={headerImage}
             alt="YumeKai Projekt"
             style={{
-              width: "100%",
-              height: "auto",
+              width: "100vw",
+              height: `${headerImageHeight}vw`,
             }}
           />
         </YumekaiHeaderWrapper>
