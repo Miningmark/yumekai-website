@@ -8,6 +8,7 @@ import ThemeToggle from "@/components/menu/DarkLightMode";
 // Import Icons
 import IconMenu from "/public/assets/icons/menu.svg";
 import IconArrowDown from "/public/assets/icons/arrow_drop_down.svg";
+import IconClose from "/public/assets/icons/close.svg";
 
 import YumeKaiLogo from "/public/assets/logo/yumekai_color_font.svg";
 
@@ -15,8 +16,9 @@ const menuItems = [
   { name: "Startseite", path: "/" },
   {
     name: "Projekte",
-    path: "/projects",
+    //path: "/projects",
     subItems: [
+      { name: "Übersicht", path: "/projects" },
       { name: "YumeKai", path: "/projects/yumekai" },
       { name: "YumeKai-Night", path: "/projects/yumekai-night" },
     ],
@@ -25,8 +27,8 @@ const menuItems = [
     name: "Rückblicke",
     path: "/review/yumekai-2024",
     subItems: [
-      { name: "YumeKai 2024", path: "/review/yumekai-2024" },
-      { name: "YumeKai-Night II", path: "/review/yumekai-night-II-2024" },
+      { name: "2024", path: "/review/yumekai-2024" },
+      { name: "Night-II", path: "/review/yumekai-night-II-2024" },
     ],
   },
   { name: "Anmeldung für YumeKai 25", path: "/voranmeldungen" },
@@ -81,6 +83,7 @@ const StyledMenu = styled.nav`
 const MenuLink = styled(Link)`
   text-decoration: none;
   padding: 5px 15px;
+  margin: 0;
   color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
   font-weight: bold;
   font-size: 1.4rem;
@@ -97,6 +100,68 @@ const MenuLink = styled(Link)`
 
   @media (max-width: 1000px) {
     font-size: 1.2rem;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+`;
+
+const MenuNoLink = styled.p`
+  padding: 5px 15px;
+  margin: 0;
+  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  font-weight: bold;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.primaryColor};
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+`;
+
+const SubMenuLink = styled(Link)`
+  text-decoration: none;
+  padding: 5px 5px;
+  margin: 0;
+  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    color: ${({ theme }) => theme.primaryColor};
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 1rem;
+    text-align: center;
   }
 `;
 
@@ -131,16 +196,17 @@ const HamburgerIcon = styled.div`
 
 const MobileMenu = styled.div`
   position: fixed;
-  top: 55px;
+  top: 0; //55px
   right: 0;
-  width: 200px;
-  background: ${({ theme }) => theme.backgroundColor2};
+  width: 100%;
+  //background: ${({ theme }) => theme.backgroundColor2};
+  backdrop-filter: blur(10px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 600;
   display: flex;
   flex-direction: column;
   font-size: large;
-  border-radius: 10px 0 0 10px;
+  //border-radius: 10px 0 0 10px;
   padding: 5px 0 5px 0;
 
   @media (min-width: 801px) {
@@ -150,14 +216,17 @@ const MobileMenu = styled.div`
 
 const SubMenu = styled.div`
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 0;
+  width: 100%;
   margin-top: 28px;
   background: ${({ theme }) => theme.backgroundColor2};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 700;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   display: none;
   border-radius: 0 0 10px 10px;
 `;
@@ -187,21 +256,32 @@ const SubMenuWrapper = styled.div`
 const MobileSubMenu = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${({ theme }) => theme.backgroundColor2};
+  justify-content: center;
+  align-items: center;
+  //background: ${({ theme }) => theme.backgroundColor2};
   z-index: 700;
   display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
-  padding: 5px 0 5px 15px;
+  padding: 5px 0 15px 0;
+
+  @media (max-width: 800px) {
+    backdrop-filter: blur(10px);
+  }
 `;
 
 const MenuItemWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 
   svg {
     cursor: pointer;
     fill: ${({ theme }) => theme.text};
     width: 30px;
     height: 30px;
+  }
+
+  @media (max-width: 800px) {
+    justify-content: center;
   }
 `;
 
@@ -215,7 +295,7 @@ const MobileMenuOverlay = styled.div`
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
@@ -271,24 +351,32 @@ export default function PageHeader({ toggleTheme, theme }) {
             onMouseEnter={() => openSubMenu(index)}
             onMouseMove={() => openSubMenu(index)}
           >
-            <MenuLink href={item.path} $active={pathname === item.path ? 1 : 0}>
-              {item.name}
-            </MenuLink>
+            {!item.subItems ? (
+              <MenuLink
+                href={item.path}
+                $active={pathname === item.path ? 1 : 0}
+                onClick={toggleMobileMenu}
+              >
+                {item.name}
+              </MenuLink>
+            ) : (
+              <MenuNoLink>{item.name}</MenuNoLink>
+            )}
             {item.subItems && (
               <>
-                <IconArrowDown style={{ cursor: "pointer" }} />
+                {/*<IconArrowDown style={{ cursor: "pointer" }} />*/}
                 {openSubMenus[index] && (
                   <SubMenu onMouseLeave={() => closeSubMenu(index)}>
                     <br />
                     {item.subItems.map((subItem) => (
-                      <MenuLink
+                      <SubMenuLink
                         key={subItem.path}
                         href={subItem.path}
                         $active={pathname === subItem.path ? 1 : 0}
                         onClick={() => closeSubMenu(index)}
                       >
                         {subItem.name}
-                      </MenuLink>
+                      </SubMenuLink>
                     ))}
                   </SubMenu>
                 )}
@@ -312,36 +400,37 @@ export default function PageHeader({ toggleTheme, theme }) {
             {menuItems.map((item, index) => (
               <div key={`${item.path}mobile`}>
                 <MenuItemWrapper>
-                  <MenuLink
-                    href={item.path}
-                    $active={pathname === item.path ? 1 : 0}
-                    onClick={toggleMobileMenu}
-                  >
-                    {item.name}
-                  </MenuLink>
-                  {item.subItems && (
-                    <IconArrowDown
-                      style={{ marginLeft: "5px", cursor: "pointer" }}
-                      onClick={() => toggleSubMenu(index)}
-                    />
+                  {!item.subItems ? (
+                    <MenuLink
+                      href={item.path}
+                      $active={pathname === item.path ? 1 : 0}
+                      onClick={toggleMobileMenu}
+                    >
+                      {item.name}
+                    </MenuLink>
+                  ) : (
+                    <MenuNoLink onClick={() => toggleSubMenu(index)}>{item.name}</MenuNoLink>
                   )}
                 </MenuItemWrapper>
                 {item.subItems && (
                   <MobileSubMenu $isOpen={openSubMenus[index]}>
                     {item.subItems.map((subItem) => (
-                      <MenuLink
+                      <SubMenuLink
                         key={`${subItem.path}mobile`}
                         href={subItem.path}
                         $active={pathname === subItem.path ? 1 : 0}
                         onClick={toggleMobileMenu}
                       >
                         {subItem.name}
-                      </MenuLink>
+                      </SubMenuLink>
                     ))}
                   </MobileSubMenu>
                 )}
               </div>
             ))}
+            <HamburgerIcon style={{ backgroundColor: "transparent" }}>
+              <IconClose onClick={toggleMobileMenu} style={{ fill: "#f5f5f5" }} />
+            </HamburgerIcon>
           </MobileMenu>
         </MobileMenuOverlay>
       )}
