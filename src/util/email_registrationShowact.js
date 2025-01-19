@@ -18,6 +18,7 @@ export default function emailRegistrationShowact({
   constructionTime,
   performanceTime,
   deconstructionTime,
+  accomodation,
   website,
   instagram,
   message,
@@ -67,6 +68,8 @@ export default function emailRegistrationShowact({
       Aufführungszeit: ${performanceTime}
       <br />
       Abbauzeit: ${deconstructionTime}
+      <br />
+      Unterkunft: ${accomodation}
       <br />
       Webseite: ${website || "Keine Webseite angegeben"}
       <br />

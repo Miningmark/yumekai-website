@@ -19,6 +19,7 @@ import {
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
+import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString from "@/util/inputCheck";
 
@@ -55,7 +56,15 @@ const EU_COUNTRIES = [
   "Bulgarien",
 ];
 
+const ACCOMODATION_OPTIONS = [
+  "Nicht benötigt",
+  "wäre gut, aber nicht notwendig",
+  "zwingend benötigt",
+];
+
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
+const MAX_FILE_SIZE_MB = 10;
 
 const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
@@ -81,11 +90,15 @@ export default function RegistrationAsShowact() {
   const [constructionTime, setConstructionTime] = useState("");
   const [performanceTime, setPerformanceTime] = useState("");
   const [deconstructionTime, setDeconstructionTime] = useState("");
+  const [accomodation, setAccomodation] = useState("");
 
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+
+  const [file2, setFile2] = useState([]);
+  const [previewUrl2, setPreviewUrl2] = useState([]);
 
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
@@ -96,6 +109,7 @@ export default function RegistrationAsShowact() {
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
+  const [fileError2, setFileError2] = useState("");
   const [loading, setLoading] = useState(false);
 
   const refs = {
@@ -114,9 +128,11 @@ export default function RegistrationAsShowact() {
     constructionTime: useRef(null),
     performanceTime: useRef(null),
     deconstructionTime: useRef(null),
+    accomodation: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
     file: useRef(null),
+    file2: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
@@ -139,11 +155,9 @@ export default function RegistrationAsShowact() {
       newErrors.push({ field: "name", message: nameValidation.description });
 
     // Nachname Validierung
-    if (lastName) {
-      const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
-      if (!lastNameValidation.check)
-        newErrors.push({ field: "lastName", message: lastNameValidation.description });
-    }
+    const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+    if (!lastNameValidation.check)
+      newErrors.push({ field: "lastName", message: lastNameValidation.description });
 
     // Email Validierung
     const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
@@ -207,6 +221,11 @@ export default function RegistrationAsShowact() {
       newErrors.push({ field: "deconstructionTime", message: "Abbaudauer mindestens 1 Minute" });
     if (deconstructionTime > 60)
       newErrors.push({ field: "deconstructionTime", message: "Abbaudauer maximal 60 Minuten" });
+
+    //Unterkunft Validierung
+    const accomodationValidation = validateString(accomodation, "Unterkunft", 3, 100, true);
+    if (!accomodationValidation.check)
+      newErrors.push({ field: "accomodation", message: accomodationValidation.description });
 
     //Website Validierung
     const websiteValidation = validateString(website, "Website", 0, 100);
@@ -285,6 +304,7 @@ export default function RegistrationAsShowact() {
     formData.append("constructionTime", constructionTime);
     formData.append("performanceTime", performanceTime);
     formData.append("deconstructionTime", deconstructionTime);
+    formData.append("accomodation", accomodation);
     formData.append("website", website);
     formData.append("instagram", instagram);
     formData.append("message", message);
@@ -293,6 +313,11 @@ export default function RegistrationAsShowact() {
     formData.append("pictureRights", pictureRights);
     formData.append("showactConditions", showactConditions);
     formData.append("file", file);
+    if (file2 && Array.isArray(file2)) {
+      file2.forEach((singleFile, index) => {
+        formData.append(`file2[${index}]`, singleFile);
+      });
+    }
 
     try {
       const response = await fetch("/api/registrationAsShowact", {
@@ -322,6 +347,7 @@ export default function RegistrationAsShowact() {
         setConstructionTime("");
         setPerformanceTime("");
         setDeconstructionTime("");
+        setAccomodation("");
         setWebsite("");
         setInstagram("");
         setMessage("");
@@ -330,7 +356,9 @@ export default function RegistrationAsShowact() {
         setPictureRights(false);
         setShowactConditions(false);
         setFile(null);
+        setFile2(null);
         setPreviewUrl(null);
+        setPreviewUrl2(null);
         setErrors([]);
       } else {
         setErrors([
@@ -353,10 +381,10 @@ export default function RegistrationAsShowact() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const maxFileSize = 10 * 1024 * 1024; // 10MB in Bytes
+    const maxFileSize = MAX_FILE_SIZE_MB * 1024 * 1024; // 1MB in Bytes
 
     if (file && file.size > maxFileSize) {
-      setFileError("Die Datei darf maximal 10MB groß sein.");
+      setFileError(`Die Datei darf maximal ${MAX_FILE_SIZE_MB}MB groß sein.`);
       return;
     }
     setFileError("");
@@ -573,6 +601,34 @@ export default function RegistrationAsShowact() {
               type="number"
               min={1}
               max={60}
+            />
+            <p>
+              Technischer Rider / Hospitality Rider / Lichtplan (max. {MAX_FILE_SIZE_MB}MB, jpg,
+              jpeg, png, webp, pdf)
+            </p>
+            <MultiFileUpload
+              inputRef={refs.technicalRider}
+              previewUrl={previewUrl2}
+              files={file2}
+              setFiles={setFile2}
+              previewUrls={previewUrl2}
+              setPreviewUrls={setPreviewUrl2}
+              maxFileSize={MAX_FILE_SIZE_MB}
+              maxFiles={3}
+              acceptedExtensions={ACCEPTED_FILE_EXTENSIONS}
+              isError={errors.some((error) => error.field === "technicalRider") || fileError2}
+              setFileError={setFileError2}
+            />
+            {fileError2 && <ErrorText style={{ textAlign: "center" }}>{fileError2}</ErrorText>}
+
+            <InputOptionSelect
+              title="Unterkunft"
+              options={ACCOMODATION_OPTIONS}
+              inputText={accomodation}
+              inputChange={(value) => setAccomodation(value)}
+              inputRef={refs.accomodation}
+              isError={errors.some((error) => error.field === "accomodation")}
+              require
             />
 
             <Spacer />

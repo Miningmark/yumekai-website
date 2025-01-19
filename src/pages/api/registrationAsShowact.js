@@ -30,6 +30,7 @@ CREATE TABLE registration_showact (
     construction_time INT NOT NULL,
     performance_time INT NOT NULL,
     deconstruction_time INT NOT NULL,
+    accomodation VARCHAR(100),
     website VARCHAR(100),
     instagram VARCHAR(100),
     message TEXT,
@@ -38,6 +39,7 @@ CREATE TABLE registration_showact (
     picture_rights BOOLEAN NOT NULL,
     showact_conditions BOOLEAN NOT NULL,
     image_url VARCHAR(255),
+    file_url VARCHAR(512),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     processed BOOLEAN DEFAULT FALSE
 )
@@ -111,6 +113,7 @@ export default async function handler(req, res) {
   const constructionTime = fields.constructionTime[0];
   const performanceTime = fields.performanceTime[0];
   const deconstructionTime = fields.deconstructionTime[0];
+  const accomodation = fields.accomodation[0];
   const website = fields.website[0];
   const instagram = fields.instagram[0];
   const message = fields.message[0];
@@ -205,6 +208,11 @@ export default async function handler(req, res) {
     errors.push({ field: "deconstructionTime", message: "Abbauzeit darf maximal 360 sein" });
   }
 
+  //Unterkunft Validierung
+  const accomodationValidation = validateString(accomodation, "Unterkunft", 0, 100);
+  if (!accomodationValidation.check)
+    errors.push({ field: "accomodation", message: accomodationValidation.description });
+
   //Website Validierung
   const websiteValidation = validateString(website, "Website", 0, 100);
   if (!websiteValidation.check)
@@ -284,11 +292,34 @@ export default async function handler(req, res) {
 
     const uploadDir = path.join(process.cwd(), `/private/showactImage`);
 
+    // Sicherstellen, dass das Upload-Verzeichnis existiert
+    await fs.mkdir(uploadDir, { recursive: true });
+
     filePath = path.join(uploadDir, filename);
 
     await fs.rename(file.filepath, filePath);
 
     filePath = `/showactImage/${filename}`;
+
+    // Verarbeitung von file2
+
+    const file2 = Object.keys(files)
+      .filter((key) => key.startsWith("file2"))
+      .map((key) => files[key]) // Die Werte der entsprechenden Keys extrahieren
+      .flat(); // Falls die Dateien als Array gespeichert sind, flach machen
+
+    const filePath2 = [];
+
+    // `for...of` Schleife für asynchrone Verarbeitung
+    for (const file of file2) {
+      const filename = Date.now() + "_" + file.originalFilename.replaceAll(" ", "_");
+      const uploadPath = path.join(uploadDir, filename);
+
+      await fs.rename(file.filepath, uploadPath);
+
+      const publicPath = `/showactImage/${filename}`;
+      filePath2.push(publicPath);
+    }
 
     // Inserting the new data record
     const query = `
@@ -308,6 +339,7 @@ export default async function handler(req, res) {
         construction_time,
         performance_time,
         deconstruction_time,
+        accomodation,
         website,
         instagram,
         message,
@@ -315,8 +347,9 @@ export default async function handler(req, res) {
         data_storage,
         picture_rights,
         showact_conditions,
-        image_url
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+        image_url,
+        file_url
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
       clientIp,
@@ -334,6 +367,7 @@ export default async function handler(req, res) {
       constructionTime,
       performanceTime,
       deconstructionTime,
+      accomodation,
       website || null,
       instagram || null,
       message || null,
@@ -342,6 +376,7 @@ export default async function handler(req, res) {
       pictureRights,
       showactConditions,
       filePath || null,
+      JSON.stringify(filePath2) || null,
     ];
 
     const [result] = await connection.query(query, values);
@@ -362,6 +397,7 @@ export default async function handler(req, res) {
       constructionTime,
       performanceTime,
       deconstructionTime,
+      accomodation,
       website,
       instagram,
       message,
