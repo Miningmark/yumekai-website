@@ -40,7 +40,7 @@ const YumekaiHeaderWrapper = styled.div`
 
 const HeaderContainer = styled.div`
   position: relative;
-  height: ${({ height }) => height}px;
+  height: ${({ height }) => height}vw;
 `;
 
 const LinkContent = styled.div`
@@ -56,12 +56,10 @@ const LinkContent = styled.div`
 export default function Projects() {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const headerRef = useRef(null);
 
   useEffect(() => {
     function updateDimensions() {
-      setHeaderHeight(headerRef.current.clientHeight);
-      setIsMobile(window.innerWidth < 800);
+      setIsMobile(window.innerWidth < 700);
     }
 
     updateDimensions();
@@ -71,24 +69,25 @@ export default function Projects() {
   }, []);
 
   const headerImage = isMobile ? yumeKaiNightHeaderSmall : yumeKaiNightHeaderLarge;
+  const headerImageHeight = isMobile ? 52.35 : 23.33;
 
   return (
     <>
-      <HeaderContainer height={headerHeight}>
-        <YumekaiHeaderWrapper ref={headerRef}>
+      <HeaderContainer height={headerImageHeight}>
+        <YumekaiHeaderWrapper>
           <Image
             src={headerImage}
             alt="YumeKai Projekt"
             style={{
-              width: "100%",
-              height: "auto",
+              width: "100vw",
+              height: `${headerImageHeight}vw`,
             }}
           />
         </YumekaiHeaderWrapper>
       </HeaderContainer>
       <h1>YumeKai - Night</h1>
       <Columns2
-        reverse={true}
+        reverse={false}
         left={
           <>
             <p>
@@ -129,7 +128,7 @@ export default function Projects() {
             <SpacerEmpty />
             <MovingContentWrapper
               content={<Image src={YumeKaiNightLogo} alt="YumeKai Night Logo" />}
-            ></MovingContentWrapper>
+            />
           </>
         }
       />

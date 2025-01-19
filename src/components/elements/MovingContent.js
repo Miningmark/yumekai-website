@@ -9,13 +9,14 @@ const MovingWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 500px) {
-    height: 180px;
-    align-items: flex-start;
+  @media (max-width: 800px) {
+    display: none;
+    //height: 180px;
+    //align-items: flex-start;
 
     svg {
-      width: 60%;
-      height: 60%;
+      //width: 60%;
+      //height: 60%;
     }
   }
 `;
