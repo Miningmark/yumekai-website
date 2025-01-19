@@ -25,18 +25,17 @@ const menuItems = [
   },
   {
     name: "Rückblicke",
-    path: "/review/yumekai-2024",
+    //path: "/review/yumekai-2024",
     subItems: [
       { name: "2024", path: "/review/yumekai-2024" },
       { name: "Night-II", path: "/review/yumekai-night-II-2024" },
     ],
   },
-  { name: "Anmeldung für YumeKai 25", path: "/voranmeldungen" },
+  { name: "Anmeldungen für YumeKai", path: "/voranmeldungen" },
   { name: "Tickets", path: "/shop" },
 ];
 
 const StyledHeader = styled.header`
-  position: relative;
   position: sticky;
   top: -160px;
   z-index: 500;
@@ -90,12 +89,12 @@ const MenuLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
     color: ${({ theme }) => theme.primaryColor};
     transform: translateY(-3px);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out;
   }
 
   @media (max-width: 1000px) {
@@ -117,13 +116,12 @@ const MenuNoLink = styled.p`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
     color: ${({ theme }) => theme.primaryColor};
     transform: translateY(-3px);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out;
   }
 
   @media (max-width: 1000px) {
@@ -146,13 +144,13 @@ const SubMenuLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease-in-out;
   text-align: center;
 
   &:hover {
     color: ${({ theme }) => theme.primaryColor};
     transform: translateY(-3px);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out;
   }
 
   @media (max-width: 1000px) {
@@ -207,7 +205,7 @@ const MobileMenu = styled.div`
   flex-direction: column;
   font-size: large;
   //border-radius: 10px 0 0 10px;
-  padding: 5px 0 5px 0;
+  padding: 20px 0 5px 0;
 
   @media (min-width: 801px) {
     display: none;
@@ -219,7 +217,7 @@ const SubMenu = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  margin-top: 28px;
+  margin-top: 30px;
   background: ${({ theme }) => theme.backgroundColor2};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 700;
@@ -259,13 +257,10 @@ const MobileSubMenu = styled.div`
   justify-content: center;
   align-items: center;
   //background: ${({ theme }) => theme.backgroundColor2};
+  backdrop-filter: blur(10px);
   z-index: 700;
   display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
   padding: 5px 0 15px 0;
-
-  @media (max-width: 800px) {
-    backdrop-filter: blur(10px);
-  }
 `;
 
 const MenuItemWrapper = styled.div`
@@ -300,10 +295,11 @@ const MobileMenuOverlay = styled.div`
 `;
 
 export default function PageHeader({ toggleTheme, theme }) {
-  const router = useRouter();
-  const { pathname } = router;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSubMenus, setOpenSubMenus] = useState({});
+
+  const router = useRouter();
+  const { pathname } = router;
 
   function toggleMobileMenu() {
     setOpenSubMenus((prevState) => {
@@ -347,7 +343,7 @@ export default function PageHeader({ toggleTheme, theme }) {
       <StyledMenu>
         {menuItems.map((item, index) => (
           <SubMenuWrapper
-            key={item.path}
+            key={item.name}
             onMouseEnter={() => openSubMenu(index)}
             onMouseMove={() => openSubMenu(index)}
           >
@@ -355,7 +351,7 @@ export default function PageHeader({ toggleTheme, theme }) {
               <MenuLink
                 href={item.path}
                 $active={pathname === item.path ? 1 : 0}
-                onClick={toggleMobileMenu}
+                //onClick={toggleMobileMenu}
               >
                 {item.name}
               </MenuLink>
@@ -398,7 +394,7 @@ export default function PageHeader({ toggleTheme, theme }) {
         <MobileMenuOverlay onClick={toggleMobileMenu}>
           <MobileMenu onClick={(e) => e.stopPropagation()}>
             {menuItems.map((item, index) => (
-              <div key={`${item.path}mobile`}>
+              <div key={`${item.name}mobile`}>
                 <MenuItemWrapper>
                   {!item.subItems ? (
                     <MenuLink
@@ -416,7 +412,7 @@ export default function PageHeader({ toggleTheme, theme }) {
                   <MobileSubMenu $isOpen={openSubMenus[index]}>
                     {item.subItems.map((subItem) => (
                       <SubMenuLink
-                        key={`${subItem.path}mobile`}
+                        key={`${subItem.name}mobile`}
                         href={subItem.path}
                         $active={pathname === subItem.path ? 1 : 0}
                         onClick={toggleMobileMenu}

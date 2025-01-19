@@ -9,7 +9,7 @@ const MovingWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
     display: none;
     //height: 180px;
     //align-items: flex-start;
