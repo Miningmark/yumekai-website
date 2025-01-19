@@ -603,8 +603,8 @@ export default function RegistrationAsShowact() {
               max={60}
             />
             <p>
-              Technischer Rider / Hospitality Rider / Lichtplan (max. {MAX_FILE_SIZE_MB}MB, jpg,
-              jpeg, png, webp, pdf)
+              Technischer Rider / Hospitality Rider / Lichtplan (max. 3 Dateien mit je.{" "}
+              {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
               inputRef={refs.technicalRider}
