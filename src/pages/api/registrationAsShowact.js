@@ -60,7 +60,7 @@ const parseForm = (req) => {
   return new Promise((resolve, reject) => {
     const form = formidable({
       multiples: true,
-      uploadDir: path.join(process.cwd(), "/private/helperImage"),
+      uploadDir: path.join(process.cwd(), "/private/showactImage"),
       keepExtensions: true,
     });
     form.parse(req, (err, fields, files) => {
