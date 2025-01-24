@@ -91,6 +91,8 @@ export default function RegistrationAsShowact() {
   const [performanceTime, setPerformanceTime] = useState("");
   const [deconstructionTime, setDeconstructionTime] = useState("");
   const [accomodation, setAccomodation] = useState("");
+  const [requiredEquipment, setRequiredEquipment] = useState("");
+  const [broughtEquipment, setBroughtEquipment] = useState("");
 
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -129,6 +131,8 @@ export default function RegistrationAsShowact() {
     performanceTime: useRef(null),
     deconstructionTime: useRef(null),
     accomodation: useRef(null),
+    requiredEquipment: useRef(null),
+    broughtEquipment: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
     file: useRef(null),
@@ -227,6 +231,32 @@ export default function RegistrationAsShowact() {
     if (!accomodationValidation.check)
       newErrors.push({ field: "accomodation", message: accomodationValidation.description });
 
+    //Benötigte Technik Validierung
+    const requiredEquipmentValidation = validateString(
+      requiredEquipment,
+      "Benötigte Technik",
+      0,
+      2500
+    );
+    if (!requiredEquipmentValidation.check)
+      newErrors.push({
+        field: "requiredEquipment",
+        message: requiredEquipmentValidation.description,
+      });
+
+    //Mitgebrachte Technik Validierung
+    const broughtEquipmentValidation = validateString(
+      broughtEquipment,
+      "Mitgebrachte Technik",
+      0,
+      2500
+    );
+    if (!broughtEquipmentValidation.check)
+      newErrors.push({
+        field: "broughtEquipment",
+        message: broughtEquipmentValidation.description,
+      });
+
     //Website Validierung
     const websiteValidation = validateString(website, "Website", 0, 100);
     if (!websiteValidation.check)
@@ -305,6 +335,8 @@ export default function RegistrationAsShowact() {
     formData.append("performanceTime", performanceTime);
     formData.append("deconstructionTime", deconstructionTime);
     formData.append("accomodation", accomodation);
+    formData.append("requiredEquipment", requiredEquipment);
+    formData.append("broughtEquipment", broughtEquipment);
     formData.append("website", website);
     formData.append("instagram", instagram);
     formData.append("message", message);
@@ -348,6 +380,8 @@ export default function RegistrationAsShowact() {
         setPerformanceTime("");
         setDeconstructionTime("");
         setAccomodation("");
+        setRequiredEquipment("");
+        setBroughtEquipment("");
         setWebsite("");
         setInstagram("");
         setMessage("");
@@ -629,6 +663,20 @@ export default function RegistrationAsShowact() {
               inputRef={refs.accomodation}
               isError={errors.some((error) => error.field === "accomodation")}
               require
+            />
+            <InputOptionTextArea
+              title="Benötigte Technik"
+              inputText={requiredEquipment}
+              inputChange={setRequiredEquipment}
+              inputRef={refs.requiredEquipment}
+              isError={errors.some((error) => error.field === "requiredEquipment")}
+            />
+            <InputOptionTextArea
+              title="Mitgebrachte Technik"
+              inputText={broughtEquipment}
+              inputChange={setBroughtEquipment}
+              inputRef={refs.broughtEquipment}
+              isError={errors.some((error) => error.field === "broughtEquipment")}
             />
 
             <Spacer />
