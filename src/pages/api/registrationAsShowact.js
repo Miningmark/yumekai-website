@@ -31,6 +31,8 @@ CREATE TABLE registration_showact (
     performance_time INT NOT NULL,
     deconstruction_time INT NOT NULL,
     accomodation VARCHAR(100),
+    required_equipment TEXT,
+    brought_equipment TEXT,
     website VARCHAR(100),
     instagram VARCHAR(100),
     message TEXT,
@@ -114,6 +116,8 @@ export default async function handler(req, res) {
   const performanceTime = fields.performanceTime[0];
   const deconstructionTime = fields.deconstructionTime[0];
   const accomodation = fields.accomodation[0];
+  const requiredEquipment = fields.requiredEquipment[0];
+  const broughtEquipment = fields.broughtEquipment[0];
   const website = fields.website[0];
   const instagram = fields.instagram[0];
   const message = fields.message[0];
@@ -212,6 +216,26 @@ export default async function handler(req, res) {
   const accomodationValidation = validateString(accomodation, "Unterkunft", 0, 100);
   if (!accomodationValidation.check)
     errors.push({ field: "accomodation", message: accomodationValidation.description });
+
+  //Benötigte Technik Validierung
+  const requiredEquipmentValidation = validateString(
+    requiredEquipment,
+    "Benötigte Ausrüstung",
+    0,
+    2500
+  );
+  if (!requiredEquipmentValidation.check)
+    errors.push({ field: "requiredEquipment", message: requiredEquipmentValidation.description });
+
+  //Mitgebrachte Technik Validierung
+  const broughtEquipmentValidation = validateString(
+    broughtEquipment,
+    "Mitgebrachte Ausrüstung",
+    0,
+    2500
+  );
+  if (!broughtEquipmentValidation.check)
+    errors.push({ field: "broughtEquipment", message: broughtEquipmentValidation.description });
 
   //Website Validierung
   const websiteValidation = validateString(website, "Website", 0, 100);
@@ -340,6 +364,8 @@ export default async function handler(req, res) {
         performance_time,
         deconstruction_time,
         accomodation,
+        required_equipment,
+        brought_equipment,
         website,
         instagram,
         message,
@@ -349,7 +375,7 @@ export default async function handler(req, res) {
         showact_conditions,
         image_url,
         file_url
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
       clientIp,
@@ -368,6 +394,8 @@ export default async function handler(req, res) {
       performanceTime,
       deconstructionTime,
       accomodation,
+      requiredEquipment || null,
+      broughtEquipment || null,
       website || null,
       instagram || null,
       message || null,
@@ -398,6 +426,8 @@ export default async function handler(req, res) {
       performanceTime,
       deconstructionTime,
       accomodation,
+      requiredEquipment,
+      broughtEquipment,
       website,
       instagram,
       message,
