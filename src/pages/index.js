@@ -16,6 +16,7 @@ import AnkundigungJuliaMeyen from "@/components/articles/2024/AnkundigungJuliaMe
 import EroffnungTicketShop from "@/components/articles/2024/EroffnungTicketShop";
 import AnkundigungPetraScheeser from "@/components/articles/2025/AnkundigungPetraScheeser";
 import AnkundigungDominikAuer from "@/components/articles/2025/AnkundigungDominikAuer";
+import PhotoContest1 from "@/components/articles/2025/PhotoContest1";
 
 export default function Home() {
   return (
@@ -28,6 +29,10 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+
+      <PhotoContest1 />
+
+      <Spacer />
 
       <AnkundigungDominikAuer />
 
