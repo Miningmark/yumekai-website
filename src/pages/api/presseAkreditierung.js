@@ -79,9 +79,6 @@ export default async function handler(req, res) {
       errors.push({ field: "contactPerson", message: "Ansprechpartner ist zu kurz" });
     if (contactPerson.length > 50)
       errors.push({ field: "contactPerson", message: "Ansprechpartner ist zu lang" });
-    if (invalidCharactersRegex.test(contactPerson)) {
-      errors.push({ field: "contactPerson", message: "Ungültige Zeichen im Ansprechpartner" });
-    }
   }
 
   // email Validierung
@@ -112,9 +109,6 @@ export default async function handler(req, res) {
   // address Validierung
   if (address.length < 3) errors.push({ field: "address", message: "Adresse ist zu kurz" });
   if (address.length > 255) errors.push({ field: "address", message: "Adresse ist zu lang" });
-  if (invalidCharactersRegex.test(address)) {
-    errors.push({ field: "address", message: "Ungültige Zeichen in der Adresse" });
-  }
 
   // verification Validierung
   if (!verification || !verification.trim()) {
