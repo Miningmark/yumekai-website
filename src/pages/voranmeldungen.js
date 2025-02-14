@@ -89,6 +89,9 @@ export default function Voranmeldungen() {
 
       <ul>
         <li>
+          <StyledLink href="#helfer">Helfer</StyledLink>
+        </li>
+        <li>
           <StyledLink href="#kunstler">Künstler</StyledLink>
         </li>
         <li>
@@ -101,6 +104,51 @@ export default function Voranmeldungen() {
           <StyledLink href="#workshopleiter">Workshopleiter</StyledLink>
         </li>
       </ul>
+
+      <Spacer id="helfer" />
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <DynamicContent $widthpercent={65}>
+          <h2>Helfer Anmeldung</h2>
+          <p>
+            Du wolltest schon immer wissen, wie eine Convention hinter den Kulissen abläuft? Als
+            Helfer der YumeKai hast du die einzigartige Chance, spannende Einblicke zu gewinnen,
+            neue Leute kennenzulernen und unvergessliche Erlebnisse zu sammeln.
+            <br />
+            <br />
+            Ohne engagierte Helfer und ehrenamtliche Teammitglieder wäre die YumeKai nicht möglich.
+            Deshalb freuen wir uns über jeden, der uns unterstützt und die Convention mitgestaltet.
+            <br />
+            <br />
+            Hast du Lust, Teil unseres Teams zu werden und gemeinsam mit uns die YumeKai auf die
+            Beine zu stellen? Dann bewirb dich jetzt als Helfer und werde ein wichtiger Teil unseres
+            Events!
+            <br />
+            <br />
+            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+            <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
+            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
+          </p>
+        </DynamicContent>
+        <DynamicContent
+          $widthpercent={35}
+          $maxwidth={300}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Infobox>
+            <p>Anmeldung als Helfer</p>
+            <StyledLinkAsButton href={"/helfer"}>{"Anmeldung"}</StyledLinkAsButton>
+          </Infobox>
+        </DynamicContent>
+      </div>
 
       <Spacer id="kunstler" />
 
