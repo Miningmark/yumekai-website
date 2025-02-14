@@ -79,7 +79,7 @@ export default function Helfer() {
               Für Fragen, die mit dem Team zusammen hängen, wende dich bitte mit unserem{" "}
               <StyledLink href={"/kontaktformular"}>Kontaktformular</StyledLink> an uns oder
               schreibe eine E-Mail an{" "}
-              <StyledLink href={"mailto:helfer@yumekai.de"}>info@yumekai.de</StyledLink>
+              <StyledLink href={"mailto:helfer@yumekai.de"}>helfer@yumekai.de</StyledLink>
             </p>
           </>
         }
