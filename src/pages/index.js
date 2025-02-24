@@ -39,7 +39,7 @@ export default function Home() {
 
       <HierKonntIhrUnsTreffen />
 
-      <SpacerEmpty />
+      <Spacer />
 
       <AnkundigungSebastianFitzner />
 
