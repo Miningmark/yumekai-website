@@ -20,8 +20,13 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>30.11-01.12 ComicCon in Stuttgart</li>
-                    <li>07.12-08.12 MostiCon in Wieselsburg</li>
+                    <li>01.03.25 Frankenmexx in Nürnberg</li>
+                    <li>08.03-09.03 ComicCon in Dornbirn</li>
+                    <li>22.03.25 Mishiro Animex Augsburg</li>
+                    <li>29.03-30.03 GG Bavaria in München</li>
+                    <li>12.04.25 Frühlings Gamevention in Kempten</li>
+                    <li>10.05-11.05 Mini Con in Lustenau</li>
+                    <li>17.05.25 Hana und Spring in Königsbrunn</li>
                   </ul>
                 </>
               }
@@ -29,8 +34,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>Comic Con Dornbirn</li>
-                    <li>AniMuc Fürstenfeldbruck</li>
                     <li>Minicon in Lustenau</li>
                     <li>Cosquest München</li>
                     <li>KDKasei in Regensburg</li>
@@ -44,6 +47,8 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Nihonbashi in Kassel</li>
                     <li>Gamesvention in Kempten</li>
                     <li>Manganacht in Memmingen</li>
+                    <li>ComicCon in Stuttgart</li>
+                    <li>MostiCon in Wieselsburg</li>
                   </ul>
                 </>
               }

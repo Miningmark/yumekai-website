@@ -37,6 +37,10 @@ export default function Home() {
 
       <Spacer />
 
+      <HierKonntIhrUnsTreffen />
+
+      <SpacerEmpty />
+
       <AnkundigungSebastianFitzner />
 
       <Spacer />
@@ -76,11 +80,6 @@ export default function Home() {
       <AnkundigungYumeKai2025 />
 
       <Spacer />
-      {/*
-      <HierKonntIhrUnsTreffen />
-
-      <SpacerEmpty />
-*/}
 
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
