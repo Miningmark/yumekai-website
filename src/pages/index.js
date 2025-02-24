@@ -19,6 +19,7 @@ import PhotoContest1 from "@/components/articles/2025/PhotoContest1";
 import AnkundigungAndyKnote from "@/components/articles/2025/AnkundigungAndyKnote";
 import HelferPost from "@/components/articles/2025/HelferPost";
 import AnkundigungSebastianFitzner from "@/components/articles/2025/AnkundigungSebastianFitzner";
+import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
 
 export default function Home() {
   return (
@@ -31,6 +32,10 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+
+      <AnkundigungBall />
+
+      <Spacer />
 
       <AnkundigungSebastianFitzner />
 
