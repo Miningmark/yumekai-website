@@ -27,9 +27,6 @@ import {
   const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const MAX_FILE_SIZE_MB = 10;
 
-const isImageFile = (fileName) => {
-    return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
-  };
 
 
 
@@ -285,7 +282,7 @@ export default function registrationArtContest(){
               setPreviewUrls={setPreviewUrl}
               maxFileSize={MAX_FILE_SIZE_MB}
               maxFiles={1}
-              acceptedExtensions={ACCEPTED_FILE_EXTENSIONS}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
               isError={errors.some((error) => error.field === "imageUpload") || fileError}
               setFileError={setFileError}
             />
