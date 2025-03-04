@@ -159,7 +159,7 @@ export default function registrationArtContest(){
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/registrationAsShowact", {
+      const response = await fetch("/api/registrationArtContest", {
         method: "POST",
         body: formData,
       });
