@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 import path from "path";
 import fs from "fs/promises";
 import formidable from "formidable";
-import emailRegistrationShowact from "@/util/email_registrationShowact";
+import emailRegistrationCatwalk from "@/util/email_registrationCatwalk";
 import validateString from "@/util/inputCheck";
 
 export const config = {
