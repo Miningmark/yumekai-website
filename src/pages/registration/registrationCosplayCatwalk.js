@@ -23,3 +23,106 @@ Jury:
 -Eralia  
 -Mineke 
 */
+
+import styled from "styled-components";
+import { useEffect, useState, useRef } from "react";
+
+//Components
+import {
+  InputOptionTextArea,
+  InputOptionInput,
+  InputOptionSelect,
+} from "@/components/elements/InputComponents";
+import {
+  StyledButton,
+  StyledForm,
+  ErrorText,
+  SuccessText,
+  StyledLink,
+  Spacer,
+  ModalOverlay,
+} from "@/components/styledComponents";
+import { RequiredNote } from "@/components/styledInputComponents";
+import CheckBox from "@/components/styled/CheckBox";
+import FileUpload from "@/components/styled/FileUpload";
+import MultiFileUpload from "@/components/styled/MultiFileUpload";
+import LoadingAnimation from "@/components/styled/LoadingAnimation";
+import validateString from "@/util/inputCheck";
+
+const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+
+export default function registrationCosplayCatwalk(){
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [confirmEmail, setConfirmEmail] = useState("");
+
+    const [artistName, setArtistName] = useState("");
+    const [characterName, setCharacterName] = useState("");
+
+    const [file, setFile] = useState([]);
+    const [previewUrl, setPreviewUrl] = useState([]);
+
+    const [message, setMessage] = useState("");
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [dataStorage, setDataStorage] = useState(false);
+  const [pictureRights, setPictureRights] = useState(false);
+
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState("");
+  const [fileError, setFileError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+
+  const refs = {
+    name: useRef(null),
+    lastName: useRef(null),
+    email: useRef(null),
+    confirmEmail: useRef(null),
+    artistName: useRef(null),
+    characterName: useRef(null),
+    file: useRef(null),
+    message: useRef(null),
+    privacyPolicy: useRef(null),
+    dataStorage: useRef(null),
+    licensedMusic: useRef(null),
+    pictureRights: useRef(null),
+  };
+
+
+  async function submit(event) {
+    event.preventDefault();
+
+    const newErrors = [];
+    setErrors([]);
+    setSuccess("");
+
+
+  }
+
+
+
+    return (<><h1>Anmeldung für Cosplay Catwalk</h1>
+    <p>
+      Sichert euch euren Platz auf der YumeKai 2025!
+      <br />
+      <br />
+      Bitte beachtet die{" "}
+      <StyledLink href="/" target="_blank">
+        Teilnahme- und Auswahlbedingungen für den Cosplay Catwalk
+      </StyledLink>
+      .
+      <br />
+      <br />
+      Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+      <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
+      <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
+    </p>
+    {!success && (
+      <>
+
+      </>
+      )}
+      </>
+      );
+}
