@@ -96,6 +96,11 @@ export default function RegistrationCosplayCatwalk() {
     if (!characterNameValidation.check)
       newErrors.push({ field: "characterName", message: characterNameValidation.description });
 
+    //Nachricht Validierung
+    const messageValidation = validateString(message, "Nachricht", 0, 2500);
+    if (!messageValidation.check)
+      newErrors.push({ field: "message", message: messageValidation.description });
+
     //Daten
     if (file.length === 0)
       newErrors.push({ field: "dataField", message: "Crafting Tagebuch ist ein Pflichtfeld" });
