@@ -20,7 +20,7 @@ import validateString from "@/util/inputCheck";
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
 const MAX_FILE_SIZE_MB = 10;
 
-export default function registrationCosplayCatwalk() {
+export default function RegistrationCosplayCatwalk() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
