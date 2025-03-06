@@ -34,11 +34,10 @@ export default function Home() {
       </p>
       <SpacerEmpty />
 
-      {/*      
       <AnmeldungCatwalk />
 
       <Spacer />
- */}
+
       <AnkundigungBall />
 
       <Spacer />

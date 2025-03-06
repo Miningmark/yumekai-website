@@ -70,23 +70,23 @@ export default function AnmeldungCatwalk() {
 
           <ul>
             <li>
-              <StyledLink href="/" target="_blank">
+              <StyledLink href="https://www.instagram.com/korribancosplay/" target="_blank">
                 Korriban
               </StyledLink>
             </li>
             <li>
-              <StyledLink href="/" target="_blank">
+              <StyledLink href="https://www.instagram.com/dokyato/" target="_blank">
                 Dokyato
               </StyledLink>
             </li>
             <li>
-              <StyledLink href="/" target="_blank">
-                Eralia
+              <StyledLink href="https://www.instagram.com/yaraiyacosplay/" target="_blank">
+                Mineke
               </StyledLink>
             </li>
             <li>
               <StyledLink href="/" target="_blank">
-                Mineke
+                ????
               </StyledLink>
             </li>
           </ul>
