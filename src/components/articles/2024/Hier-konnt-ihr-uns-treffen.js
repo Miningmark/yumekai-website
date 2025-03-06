@@ -20,7 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>01.03.25 Frankenmexx in Nürnberg</li>
                     <li>08.03-09.03 ComicCon in Dornbirn</li>
                     <li>22.03.25 Mishiro Animex Augsburg</li>
                     <li>29.03-30.03 GG Bavaria in München</li>
@@ -34,8 +33,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>Minicon in Lustenau</li>
-                    <li>Cosquest München</li>
                     <li>KDKasei in Regensburg</li>
                     <li>Hana & Spring in Königsbrunn</li>
                     <li>Hanami in Koblenz</li>
@@ -49,6 +46,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Manganacht in Memmingen</li>
                     <li>ComicCon in Stuttgart</li>
                     <li>MostiCon in Wieselsburg</li>
+                    <li>Frankenmexx in Nürnberg</li>
                   </ul>
                 </>
               }
