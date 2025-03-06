@@ -52,20 +52,20 @@ export default function AnmeldungCatwalk() {
             <br />
             Das Craften des Cosplays an sich steht hier im Mittelpunkt. Selbstverständlich haben
             alle Teilnehmer auch hier die Möglichkeit, etwas zu gewinnen! Du möchtest beim Cosplay
-            Catwalk teilnehmen das hannst du{" "}
+            Catwalk teilnehmen das kannst du{" "}
             <StyledLink href="/registration/registrationCosplayCatwalk">Hier</StyledLink> machen.
             <br />
             <br />
             Bitte beachte die{" "}
             <StyledLink
-              href="/downloads/Cosplay_Catwalk_Wettbewerb _Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+              href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
               target="_blank"
             >
               Teilnahmebedingungen
             </StyledLink>
             <br />
             <br />
-            Bewertet werden eure Cosplays Von:
+            Bewertet werden eure Cosplays von:
           </p>
 
           <ul>

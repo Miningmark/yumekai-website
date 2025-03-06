@@ -278,8 +278,8 @@ export default function RegistrationCosplayCatwalk() {
             />
 
             <p>
-              Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) (max. 3 Dateien mit je.{" "}
-              {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
+              Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) und Bild des Cosplays (max. 3 Dateien
+              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
               inputRef={refs.dataField}
