@@ -13,7 +13,7 @@ export const config = {
 
 /*
 
-CREATE TABLE registration_showact (
+CREATE TABLE registration_catwalk (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_ip VARCHAR(64),
     name VARCHAR(50) NOT NULL,
@@ -36,73 +36,72 @@ COLLATE=utf8mb4_unicode_ci
 
 */
 
-
 const connection = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-  });
-  
-  const parseForm = (req) => {
-    return new Promise((resolve, reject) => {
-      const form = formidable({
-        multiples: true,
-        uploadDir: path.join(process.cwd(), "/private/catwalk"),
-        keepExtensions: true,
-      });
-      form.parse(req, (err, fields, files) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve({ fields, files });
-        }
-      });
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+});
+
+const parseForm = (req) => {
+  return new Promise((resolve, reject) => {
+    const form = formidable({
+      multiples: true,
+      uploadDir: path.join(process.cwd(), "/private/catwalk"),
+      keepExtensions: true,
     });
-  };
-  
-  async function logError(
-    clientIp = "000.000.000.000",
-    form = "unbekannt",
-    email = "unbekannt",
-    errorDetails = "unbekannt"
-  ) {
-    try {
-      const query = `
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ fields, files });
+      }
+    });
+  });
+};
+
+async function logError(
+  clientIp = "000.000.000.000",
+  form = "unbekannt",
+  email = "unbekannt",
+  errorDetails = "unbekannt"
+) {
+  try {
+    const query = `
         INSERT INTO registration_errors (client_ip, form, email, error_details) 
         VALUES (?, ?, ?, ?)
       `;
-      await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
-    } catch (error) {
-      console.error("Fehler beim Loggen des Fehlers:", error);
-    }
+    await connection.query(query, [clientIp, form, email, JSON.stringify(errorDetails)]);
+  } catch (error) {
+    console.error("Fehler beim Loggen des Fehlers:", error);
+  }
+}
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Methode nicht erlaubt." });
   }
 
-  export default async function handler(req, res) {
-    if (req.method !== "POST") {
-      return res.status(405).json({ message: "Methode nicht erlaubt." });
-    }
-  
-    const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-  
-    const { fields, files } = await parseForm(req);
-  
-    const name = fields.name[0];
-    const lastName = fields.lastName[0];
-    const email = fields.email[0];
-   const artistName = fields.artistName[0];
-   const characterName = fields.characterName[0];
-    const message = fields.message[0];
-    const privacyPolicy = ["true", "yes", "1"].includes(fields.privacyPolicy[0].toLowerCase());
-    const dataStorage = ["true", "yes", "1"].includes(fields.dataStorage[0].toLowerCase());
-    const pictureRights = ["true", "yes", "1"].includes(fields.pictureRights[0].toLowerCase());
-    const catwalkConditions = ["true", "yes", "1"].includes(
-      fields.catwalkConditions[0].toLowerCase()
-    );
-  
-    const errors = [];
+  const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
-    // Validierungslogik mit validateString
+  const { fields, files } = await parseForm(req);
+
+  const name = fields.name[0];
+  const lastName = fields.lastName[0];
+  const email = fields.email[0];
+  const artistName = fields.artistName[0];
+  const characterName = fields.characterName[0];
+  const message = fields.message[0];
+  const privacyPolicy = ["true", "yes", "1"].includes(fields.privacyPolicy[0].toLowerCase());
+  const dataStorage = ["true", "yes", "1"].includes(fields.dataStorage[0].toLowerCase());
+  const pictureRights = ["true", "yes", "1"].includes(fields.pictureRights[0].toLowerCase());
+  const catwalkConditions = ["true", "yes", "1"].includes(
+    fields.catwalkConditions[0].toLowerCase()
+  );
+
+  const errors = [];
+
+  // Validierungslogik mit validateString
   // Name Validierung
   const nameValidation = validateString(name, "Vorname", 2, 50, true);
   if (!nameValidation.check) errors.push({ field: "name", message: nameValidation.description });
@@ -118,46 +117,48 @@ const connection = mysql.createPool({
   const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
   if (!emailValidation.check) errors.push({ field: "email", message: emailValidation.description });
 
-   // Künstlername Validierung
-   const artistNameValidation = validateString(name, "Künstlername", 2, 50);
-   if (!artistNameValidation.check) errors.push({ field: "name", message: artistNameValidation.description });
+  // Künstlername Validierung
+  const artistNameValidation = validateString(artistName, "Künstlername", 2, 50);
+  if (!artistNameValidation.check)
+    errors.push({ field: "name", message: artistNameValidation.description });
 
-    // Charakter Validierung
-  const characterNameValidation = validateString(name, "Charakter", 2, 50, true);
-  if (!characterNameValidation.check) errors.push({ field: "name", message: characterNameValidation.description });
+  // Charakter Validierung
+  const characterNameValidation = validateString(characterName, "Charakter", 2, 50, true);
+  if (!characterNameValidation.check)
+    errors.push({ field: "name", message: characterNameValidation.description });
 
-   //Nachricht Validierung
-   const messageValidation = validateString(message, "Nachricht", 0, 2500);
-   if (!messageValidation.check)
-     errors.push({ field: "message", message: messageValidation.description });
- 
-   // Boolean validation
-   if (typeof privacyPolicy !== "boolean" || privacyPolicy === false) {
-     errors.push({
-       field: "privacyPolicy",
-       message: "Datenschutzrichtlinie muss bestätigt werden",
-     });
-   }
-   if (typeof dataStorage !== "boolean" || dataStorage === false) {
-     errors.push({
-       field: "dataStorage",
-       message: "Datenspeicherung muss bestätigt werden",
-     });
-   }
-   if (typeof pictureRights !== "boolean" || pictureRights === false) {
-     errors.push({
-       field: "pictureRights",
-       message: "Bildrechte müssen bestätigt werden",
-     });
-   }
-   if (typeof catwalkConditions !== "boolean" || catwalkConditions === false) {
-     errors.push({
-       field: "catwalkConditions",
-       message: "Catwalk-Bedingungen müssen bestätigt werden",
-     });
-   }
+  //Nachricht Validierung
+  const messageValidation = validateString(message, "Nachricht", 0, 2500);
+  if (!messageValidation.check)
+    errors.push({ field: "message", message: messageValidation.description });
 
-    // Fehler prüfen
+  // Boolean validation
+  if (typeof privacyPolicy !== "boolean" || privacyPolicy === false) {
+    errors.push({
+      field: "privacyPolicy",
+      message: "Datenschutzrichtlinie muss bestätigt werden",
+    });
+  }
+  if (typeof dataStorage !== "boolean" || dataStorage === false) {
+    errors.push({
+      field: "dataStorage",
+      message: "Datenspeicherung muss bestätigt werden",
+    });
+  }
+  if (typeof pictureRights !== "boolean" || pictureRights === false) {
+    errors.push({
+      field: "pictureRights",
+      message: "Bildrechte müssen bestätigt werden",
+    });
+  }
+  if (typeof catwalkConditions !== "boolean" || catwalkConditions === false) {
+    errors.push({
+      field: "catwalkConditions",
+      message: "Catwalk-Bedingungen müssen bestätigt werden",
+    });
+  }
+
+  // Fehler prüfen
   if (errors.length > 0) {
     const errorlog = errors.map((error) => {
       const fieldValue = fields[error.field]?.[0] || "Field not found"; // Sichere den Zugriff ab
@@ -193,7 +194,7 @@ const connection = mysql.createPool({
     // Sicherstellen, dass das Upload-Verzeichnis existiert
     await fs.mkdir(uploadDir, { recursive: true });
 
-    const file = Object.keys(files)
+    const files1 = Object.keys(files)
       .filter((key) => key.startsWith("file"))
       .map((key) => files[key]) // Die Werte der entsprechenden Keys extrahieren
       .flat(); // Falls die Dateien als Array gespeichert sind, flach machen
@@ -201,7 +202,7 @@ const connection = mysql.createPool({
     const filePath = [];
 
     // `for...of` Schleife für asynchrone Verarbeitung
-    for (const file of file) {
+    for (const file of files1) {
       const filename = Date.now() + "_" + file.originalFilename.replaceAll(" ", "_");
       const uploadPath = path.join(uploadDir, filename);
 
@@ -211,70 +212,70 @@ const connection = mysql.createPool({
       filePath.push(publicPath);
     }
 
-      // Inserting the new data record
-      const query = `
-      INSERT INTO registration_showact (
+    // Inserting the new data record
+    const query = `
+      INSERT INTO registration_catwalk (
           client_ip,
           name,
           last_name,
-         artist_name,
-         character_name,
+          email,
+          artist_name,
+          character_name,
           message,
           privacy_policy,
           data_storage,
           picture_rights,
           catwalk_conditions,
           file_url
-      ) VALUES (?,?,?,?,?,?,?,?,?,?,?)`;
+      ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`;
 
-      const values = [
-        clientIp,
-        name,
-        lastName,
-        email,
-       artistName || null,
-       characterName,
-        message || null,
-        privacyPolicy,
-        dataStorage,
-        pictureRights,
-        showactConditions,
-        JSON.stringify(filePath) || null,
-      ];
-  
-      const [result] = await connection.query(query, values);
+    const values = [
+      clientIp,
+      name,
+      lastName,
+      email,
+      artistName || null,
+      characterName,
+      message || null,
+      privacyPolicy,
+      dataStorage,
+      pictureRights,
+      catwalkConditions,
+      JSON.stringify(filePath) || null,
+    ];
 
-        // Erfolgsmeldung zurückgeben
+    const [result] = await connection.query(query, values);
+
+    // Erfolgsmeldung zurückgeben
     emailRegistrationCatwalk({
-        name,
-        lastName,
-        email,
-       artistName,
-       characterName,
-        message,
-      });
-  
-      res.status(200).json({ message: "Daten erfolgreich eingefügt." });
-    } catch (error) {
-      console.error("Fehler beim Einfügen der Daten:", error);
-      await logError(clientIp, "Catwalk Anmeldung", email, [
-        { field: "server", message: error.message },
-      ]);
-      res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
-    }
-  }
+      name,
+      lastName,
+      email,
+      artistName,
+      characterName,
+      message,
+    });
 
-  // Ungewöhnliches Verhalten loggen
+    res.status(200).json({ message: "Daten erfolgreich eingefügt." });
+  } catch (error) {
+    console.error("Fehler beim Einfügen der Daten:", error);
+    await logError(clientIp, "Catwalk Anmeldung", email, [
+      { field: "server", message: error.message },
+    ]);
+    res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
+  }
+}
+
+// Ungewöhnliches Verhalten loggen
 async function logUnusualActivity(ip, email, reason) {
-    const query = `
+  const query = `
           INSERT INTO unusual_activity_logs (client_ip, email, reason)
           VALUES (?, ?, ?)
         `;
-    const values = [ip, email, reason];
-    try {
-      await connection.query(query, values);
-    } catch (err) {
-      console.error("Fehler beim Loggen ungewöhnlichen Verhaltens:", err.message);
-    }
+  const values = [ip, email, reason];
+  try {
+    await connection.query(query, values);
+  } catch (err) {
+    console.error("Fehler beim Loggen ungewöhnlichen Verhaltens:", err.message);
   }
-  
+}

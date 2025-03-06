@@ -1,38 +1,8 @@
-/*
--Input Felder: Name, Nachname, Künstlername, Name des Charakters/Cosplays
--Upload Feld: Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) im PDF-Format
--Download der Teilnahmebedingungen
-
-______________________________________________
-Als deko gerne die Crafting Hiru
-Falls dir noch mehr Felder einfallen, die wichtig wären, gerne Ergänzen
-
-
-
-
-Bei unserem Cosplay Catwalk könnt ihr in Kürze die tollsten Cosplays bewundern! Hier hat jeder die Chance, für ein paar Sekunden die Bühne zu erobern und sein Kostüm zu präsentieren. Dabei spielt es keine Rolle, was ihr cosplayt oder woher ihr kommt. Das Craften des Cosplays an sich steht hier im Mittelpunkt. Selbstverständlich haben alle Teilnehmer auch hier die Möglichkeit, etwas zu gewinnen!
-
-
-___________________
-Gerne die Crafting Hiru (Workshop Hiru) als Bild verwenden, oder ein anderes, wenn Ihr eine coolere Idde habt
-Link zu den teilnahmebdingungen / Anmeldeformular auf der Webseite
-
-Jury:
--Korriban 
--Dokyato 
--Eralia  
--Mineke 
-*/
-
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 
 //Components
-import {
-  InputOptionTextArea,
-  InputOptionInput,
-  InputOptionSelect,
-} from "@/components/elements/InputComponents";
+import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -44,7 +14,6 @@ import {
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
-import FileUpload from "@/components/styled/FileUpload";
 import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString from "@/util/inputCheck";
@@ -52,19 +21,19 @@ import validateString from "@/util/inputCheck";
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
 const MAX_FILE_SIZE_MB = 10;
 
-export default function registrationCosplayCatwalk(){
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [confirmEmail, setConfirmEmail] = useState("");
+export default function registrationCosplayCatwalk() {
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
 
-    const [artistName, setArtistName] = useState("");
-    const [characterName, setCharacterName] = useState("");
+  const [artistName, setArtistName] = useState("");
+  const [characterName, setCharacterName] = useState("");
 
-    const [file, setFile] = useState([]);
-    const [previewUrl, setPreviewUrl] = useState([]);
+  const [file, setFile] = useState([]);
+  const [previewUrl, setPreviewUrl] = useState([]);
 
-    const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
@@ -74,7 +43,6 @@ export default function registrationCosplayCatwalk(){
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
-
 
   const refs = {
     name: useRef(null),
@@ -89,9 +57,8 @@ export default function registrationCosplayCatwalk(){
     dataStorage: useRef(null),
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    catwalkConditions: useRef(null)
+    catwalkConditions: useRef(null),
   };
-
 
   async function submit(event) {
     event.preventDefault();
@@ -100,7 +67,7 @@ export default function registrationCosplayCatwalk(){
     setErrors([]);
     setSuccess("");
 
-      // Validierungslogik mit validateString
+    // Validierungslogik mit validateString
     // Name Validierung
     const nameValidation = validateString(name, "Vorname", 2, 50, true);
     if (!nameValidation.check)
@@ -116,103 +83,100 @@ export default function registrationCosplayCatwalk(){
     if (!emailValidation.check)
       newErrors.push({ field: "email", message: emailValidation.description });
 
+    // Email Bestätigung
+    if (email !== confirmEmail)
+      newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
+
     // Künstlername Validierung
-    const artistNameValidation = validateString(name, "Künstlername", 2, 50, true);
+    const artistNameValidation = validateString(artistName, "Künstlername", 2, 50);
     if (!artistNameValidation.check)
-        newErrors.push({ field: "name", message: artistNameValidation.description });
+      newErrors.push({ field: "artistName", message: artistNameValidation.description });
 
     // Charakter Validierung
-    const characterNameValidation = validateString(name, "Charakter", 2, 50, true);
+    const characterNameValidation = validateString(characterName, "Charakter", 2, 50, true);
     if (!characterNameValidation.check)
-      newErrors.push({ field: "name", message: characterNameValidation.description });
+      newErrors.push({ field: "characterName", message: characterNameValidation.description });
 
-     //Daten
-     if (!file) newErrors.push({ field: "dataField", message: "Crafting Tagebuch ist ein Pflichtfeld" });
+    //Daten
+    if (file.length === 0)
+      newErrors.push({ field: "dataField", message: "Crafting Tagebuch ist ein Pflichtfeld" });
 
-     //Datenschutzerklärung
-     if (!privacyPolicy)
-       newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
- 
-     //Datenspeicherung
-     if (!dataStorage)
-       newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
- 
-     //Bildrechte
-     if (!pictureRights)
-       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
- 
-     //Teilnahmebedingungen
-     if (!catwalkConditions)
-       newErrors.push({
-         field: "catwalkConditions",
-         message: "Teilnahmebedingungen müssen akzeptiert werden",
-       });
- 
-     //Check if there are any errors
-     if (newErrors.length > 0) {
-       setErrors(newErrors);
- 
-       // Scroll to the first error
-       const firstError = newErrors[0];
-       if (refs[firstError.field]?.current) {
-         refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
-         refs[firstError.field].current.focus();
-       }
-       return;
-     }
+    //Datenschutzerklärung
+    if (!privacyPolicy)
+      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
 
-     setLoading(true);
+    //Datenspeicherung
+    if (!dataStorage)
+      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
 
-     const formData = new FormData();
-     formData.append("name", name);
-     formData.append("lastName", lastName);
-     formData.append("email", email);
-     formData.append("artistName", artistName);
-     formData.append("characterName", characterName);
-     formData.append("message", message);
-     formData.append("privacyPolicy", privacyPolicy);
-     formData.append("dataStorage", dataStorage);
-     formData.append("pictureRights", pictureRights);
-     formData.append("catwalkConditions", vendorConditions);
-     if (file && Array.isArray(file)) {
-        file.forEach((singleFile, index) => {
-          formData.append(`file2[${index}]`, singleFile);
-        });
+    //Bildrechte
+    if (!pictureRights)
+      newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
+
+    //Teilnahmebedingungen
+    if (!catwalkConditions)
+      newErrors.push({
+        field: "catwalkConditions",
+        message: "Teilnahmebedingungen müssen akzeptiert werden",
+      });
+
+    //Check if there are any errors
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+
+      // Scroll to the first error
+      const firstError = newErrors[0];
+      if (refs[firstError.field]?.current) {
+        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstError.field].current.focus();
       }
+      return;
+    }
 
-      try {
-        const response = await fetch("/api/registrationCosplayCatwalk", {
-          method: "POST",
-          body: formData,
-        });
-  
-        if (response.ok) {
-          setSuccess(
-            "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
-          );
-          setName("");
-          setLastName("");
-          setEmail("");
-          setConfirmEmail("");
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("artistName", artistName);
+    formData.append("characterName", characterName);
+    formData.append("message", message);
+    formData.append("privacyPolicy", privacyPolicy);
+    formData.append("dataStorage", dataStorage);
+    formData.append("pictureRights", pictureRights);
+    formData.append("catwalkConditions", catwalkConditions);
+    if (file && Array.isArray(file)) {
+      file.forEach((singleFile, index) => {
+        formData.append(`file[${index}]`, singleFile);
+      });
+    }
+
+    try {
+      const response = await fetch("/api/registrationCosplayCatwalk", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSuccess(
+          "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
+        );
+        setName("");
+        setLastName("");
+        setEmail("");
+        setConfirmEmail("");
         setArtistName("");
-        setCharacterName("");         
-          setMessage("");
-          setPrivacyPolicy(false);
-          setDataStorage(false);
-          setPictureRights(false);
-          setCatwalkConditions(false);
-          setFile([]);
-          setPreviewUrl([]);
-          setErrors([]);
-        } else {
-          setErrors([
-            {
-              field: "general",
-              message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
-            },
-          ]);
-        }
-      } catch (error) {
+        setCharacterName("");
+        setMessage("");
+        setPrivacyPolicy(false);
+        setDataStorage(false);
+        setPictureRights(false);
+        setCatwalkConditions(false);
+        setFile([]);
+        setPreviewUrl([]);
+        setErrors([]);
+      } else {
         setErrors([
           {
             field: "general",
@@ -220,31 +184,42 @@ export default function registrationCosplayCatwalk(){
           },
         ]);
       }
+    } catch (error) {
+      setErrors([
+        {
+          field: "general",
+          message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
+        },
+      ]);
+    }
 
-      setLoading(false);
+    setLoading(false);
   }
 
-
-
-    return (<><h1>Anmeldung für Cosplay Catwalk</h1>
-    <p>
-      Sichert euch euren Platz auf der YumeKai 2025!
-      <br />
-      <br />
-      Bitte beachtet die{" "}
-      <StyledLink href="/" target="_blank">
-        Teilnahmebedingungen für den Cosplay Catwalk
-      </StyledLink>
-      .
-      <br />
-      <br />
-      Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
-      <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
-      <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
-    </p>
-    {!success && (
-      <>
- <p>
+  return (
+    <>
+      <h1>Anmeldung für Cosplay Catwalk</h1>
+      <p>
+        Sichert euch euren Platz auf der YumeKai 2025!
+        <br />
+        <br />
+        Bitte beachtet die{" "}
+        <StyledLink
+          href="/downloads/Cosplay_Catwalk_Wettbewerb _Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+          target="_blank"
+        >
+          Teilnahmebedingungen für den Cosplay Catwalk
+        </StyledLink>
+        .
+        <br />
+        <br />
+        Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
+        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
+      </p>
+      {!success && (
+        <>
+          <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
 
@@ -282,7 +257,7 @@ export default function registrationCosplayCatwalk(){
               isError={errors.some((error) => error.field === "confirmEmail")}
               require
             />
-             <InputOptionInput
+            <InputOptionInput
               title="Künstlername"
               inputText={artistName}
               inputChange={(value) => setArtistName(value)}
@@ -298,8 +273,8 @@ export default function registrationCosplayCatwalk(){
               require
             />
 
-<p>
-Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) (max. 3 Dateien mit je.{" "}
+            <p>
+              Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) (max. 3 Dateien mit je.{" "}
               {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
@@ -382,12 +357,15 @@ Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) (max. 3 Dateien mit je.{" "}
               isError={errors.some((error) => error.field === "pictureRights")}
               require
             />
-             <CheckBox
+            <CheckBox
               title="catwalkConditions"
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink href="/" target="_blank">
+                  <StyledLink
+                    href="/downloads/Cosplay_Catwalk_Wettbewerb _Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+                    target="_blank"
+                  >
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
@@ -410,13 +388,11 @@ Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) (max. 3 Dateien mit je.{" "}
               </ul>
             )}
             <StyledButton type="submit">Anmelden</StyledButton>
-
-
-            </StyledForm>
-      </>
+          </StyledForm>
+        </>
       )}
 
-{success && <SuccessText>{success}</SuccessText>}
+      {success && <SuccessText>{success}</SuccessText>}
 
       {loading && (
         <>
@@ -425,7 +401,6 @@ Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) (max. 3 Dateien mit je.{" "}
           </ModalOverlay>
         </>
       )}
-
-      </>
-      );
+    </>
+  );
 }

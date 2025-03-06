@@ -20,6 +20,7 @@ import AnkundigungAndyKnote from "@/components/articles/2025/AnkundigungAndyKnot
 import HelferPost from "@/components/articles/2025/HelferPost";
 import AnkundigungSebastianFitzner from "@/components/articles/2025/AnkundigungSebastianFitzner";
 import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
+import AnmeldungCatwalk from "@/components/articles/2025/AnmeldungCatwalk";
 
 export default function Home() {
   return (
@@ -33,6 +34,11 @@ export default function Home() {
       </p>
       <SpacerEmpty />
 
+      {/*      
+      <AnmeldungCatwalk />
+
+      <Spacer />
+ */}
       <AnkundigungBall />
 
       <Spacer />

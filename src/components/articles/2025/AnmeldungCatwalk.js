@@ -19,6 +19,7 @@ const DynamicContent = styled.div`
 export default function AnmeldungCatwalk() {
   return (
     <>
+      <h2>Cosplay Catwalk</h2>
       <div
         style={{
           display: "flex",
@@ -43,44 +44,52 @@ export default function AnmeldungCatwalk() {
           />
         </DynamicContent>
         <DynamicContent $widthpercent={60}>
-          <h2>Cosplay Catwalk</h2>
           <p>
-            Bei unserem Cosplay Catwalk könnt ihr in Kürze die tollsten Cosplays bewundern! 
-            Hier hat jeder die Chance, für ein paar Sekunden die Bühne zu erobern und sein 
-            Kostüm zu präsentieren. Dabei spielt es keine Rolle, was ihr cosplayt oder woher 
-            ihr kommt. Das Craften des Cosplays an sich steht hier im Mittelpunkt. Selbstverständlich 
-            haben alle Teilnehmer auch hier die Möglichkeit, etwas zu gewinnen!
-
-            Du möchtest beim Cosplay Catwalk teilnehmen das hannst du <StyledLink href="/shop">Hier</StyledLink> machen.
-            Bitte beachte die   <StyledLink href="/" target="_blank">
-            Teilnahmebedingungen</StyledLink>
-
+            Bei unserem Cosplay Catwalk könnt ihr in Kürze die tollsten Cosplays bewundern! Hier hat
+            jeder die Chance, für ein paar Sekunden die Bühne zu erobern und sein Kostüm zu
+            präsentieren. Dabei spielt es keine Rolle, was ihr cosplayt oder woher ihr kommt.
+            <br />
+            <br />
+            Das Craften des Cosplays an sich steht hier im Mittelpunkt. Selbstverständlich haben
+            alle Teilnehmer auch hier die Möglichkeit, etwas zu gewinnen! Du möchtest beim Cosplay
+            Catwalk teilnehmen das hannst du{" "}
+            <StyledLink href="/registration/registrationCosplayCatwalk">Hier</StyledLink> machen.
+            <br />
+            <br />
+            Bitte beachte die{" "}
+            <StyledLink
+              href="/downloads/Cosplay_Catwalk_Wettbewerb _Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+              target="_blank"
+            >
+              Teilnahmebedingungen
+            </StyledLink>
+            <br />
+            <br />
             Bewertet werden eure Cosplays Von:
           </p>
-          
+
           <ul>
             <li>
-                <StyledLink href="/" target="_blank">
-                    Korriban
-                </StyledLink>
+              <StyledLink href="/" target="_blank">
+                Korriban
+              </StyledLink>
             </li>
             <li>
-                <StyledLink href="/" target="_blank">
-                    Dokyato
-                </StyledLink>
+              <StyledLink href="/" target="_blank">
+                Dokyato
+              </StyledLink>
             </li>
             <li>
-                <StyledLink href="/" target="_blank">
-                    Eralia
-                </StyledLink>
+              <StyledLink href="/" target="_blank">
+                Eralia
+              </StyledLink>
             </li>
             <li>
-                <StyledLink href="/" target="_blank">
-                    Mineke
-                </StyledLink>
+              <StyledLink href="/" target="_blank">
+                Mineke
+              </StyledLink>
             </li>
           </ul>
-
         </DynamicContent>
       </div>
     </>
