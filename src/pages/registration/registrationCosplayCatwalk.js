@@ -89,7 +89,7 @@ export default function registrationCosplayCatwalk(){
     dataStorage: useRef(null),
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    catwalkConditions: useRef(null);
+    catwalkConditions: useRef(null)
   };
 
 
@@ -233,7 +233,7 @@ export default function registrationCosplayCatwalk(){
       <br />
       Bitte beachtet die{" "}
       <StyledLink href="/" target="_blank">
-        Teilnahme- und Auswahlbedingungen für den Cosplay Catwalk
+        Teilnahmebedingungen für den Cosplay Catwalk
       </StyledLink>
       .
       <br />
