@@ -209,7 +209,7 @@ export default function RegistrationCosplayCatwalk() {
         <br />
         Bitte beachtet die{" "}
         <StyledLink
-          href="/downloads/Cosplay_Catwalk_Wettbewerb _Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+          href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
           target="_blank"
         >
           Teilnahmebedingungen für den Cosplay Catwalk
@@ -367,7 +367,7 @@ export default function RegistrationCosplayCatwalk() {
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Cosplay_Catwalk_Wettbewerb _Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+                    href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen
