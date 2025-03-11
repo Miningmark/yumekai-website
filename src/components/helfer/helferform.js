@@ -520,7 +520,7 @@ export default function HelferForm() {
 
           <InputOptionSelect
             title="T-Shirt Größe"
-            options={["S", "M", "L", "XL", "XXL"]}
+            options={["S", "M", "L", "XL", "XXL", "XXXL"]}
             inputText={clothesSize}
             inputChange={setClothesSize}
             inputRef={refs.clothesSize}
