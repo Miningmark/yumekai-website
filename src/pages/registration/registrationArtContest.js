@@ -26,7 +26,7 @@ import validateString from "@/util/inputCheck";
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const MAX_FILE_SIZE_MB = 10;
 
-export default function registrationArtContest() {
+export default function RegistrationArtContest() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
