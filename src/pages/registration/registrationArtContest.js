@@ -90,6 +90,10 @@ export default function RegistrationArtContest() {
     if (!emailValidation.check)
       newErrors.push({ field: "email", message: emailValidation.description });
 
+    // Email Bestätigung
+    if (email !== confirmEmail)
+      newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
+
     // Artistname Validierung
     const artistNameValidation = validateString(name, "Künstlername", 2, 50);
     if (!artistNameValidation.check)
