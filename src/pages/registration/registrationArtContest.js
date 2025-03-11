@@ -1,82 +1,80 @@
-
 import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 
 //Components
 import {
-    InputOptionTextArea,
-    InputOptionInput,
-    InputOptionSelect,
-  } from "@/components/elements/InputComponents";
-  import {
-    StyledButton,
-    StyledForm,
-    ErrorText,
-    SuccessText,
-    StyledLink,
-    Spacer,
-    ModalOverlay,
-  } from "@/components/styledComponents";
-  import { RequiredNote } from "@/components/styledInputComponents";
-  import CheckBox from "@/components/styled/CheckBox";
-  import FileUpload from "@/components/styled/FileUpload";
-  import MultiFileUpload from "@/components/styled/MultiFileUpload";
-  import LoadingAnimation from "@/components/styled/LoadingAnimation";
-  import validateString from "@/util/inputCheck";
+  InputOptionTextArea,
+  InputOptionInput,
+  InputOptionSelect,
+} from "@/components/elements/InputComponents";
+import {
+  StyledButton,
+  StyledForm,
+  ErrorText,
+  SuccessText,
+  StyledLink,
+  Spacer,
+  ModalOverlay,
+} from "@/components/styledComponents";
+import { RequiredNote } from "@/components/styledInputComponents";
+import CheckBox from "@/components/styled/CheckBox";
+import FileUpload from "@/components/styled/FileUpload";
+import MultiFileUpload from "@/components/styled/MultiFileUpload";
+import LoadingAnimation from "@/components/styled/LoadingAnimation";
+import validateString from "@/util/inputCheck";
 
-  const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const MAX_FILE_SIZE_MB = 10;
 
+export default function registrationArtContest() {
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [artistName, setArtistName] = useState("");
+  const [imageTitle, setImageTitle] = useState("");
 
+  const [website, setWebsite] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [file, setFile] = useState([]);
+  const [previewUrl, setPreviewUrl] = useState([]);
 
+  const [message, setMessage] = useState("");
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [dataStorage, setDataStorage] = useState(false);
+  const [pictureRights, setPictureRights] = useState(false);
+  const [artistConditions, setArtistConditions] = useState(false);
 
-export default function registrationArtContest(){
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [confirmEmail, setConfirmEmail] = useState("");
-    const [artistName, setArtistName] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState("");
+  const [fileError, setFileError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const [website, setWebsite] = useState("");
-    const [instagram, setInstagram] = useState("");
-    const [file, setFile] = useState(null);
-    const [previewUrl, setPreviewUrl] = useState(null);
+  const refs = {
+    name: useRef(null),
+    lastName: useRef(null),
+    email: useRef(null),
+    confirmEmail: useRef(null),
+    artistName: useRef(null),
+    imageTitle: useRef(null),
+    website: useRef(null),
+    instagram: useRef(null),
+    file: useRef(null),
+    message: useRef(null),
+    privacyPolicy: useRef(null),
+    dataStorage: useRef(null),
+    pictureRights: useRef(null),
+    artistConditions: useRef(null),
+  };
 
-    const [message, setMessage] = useState("");
-    const [privacyPolicy, setPrivacyPolicy] = useState(false);
-    const [dataStorage, setDataStorage] = useState(false);
-    const [pictureRights, setPictureRights] = useState(false);
+  async function submit(event) {
+    event.preventDefault();
 
-    const [errors, setErrors] = useState([]);
-    const [success, setSuccess] = useState("");
-    const [fileError, setFileError] = useState("");
-    const [loading, setLoading] = useState(false);
+    const newErrors = [];
+    setErrors([]);
+    setSuccess("");
 
-    const refs = {
-        name: useRef(null),
-        lastName: useRef(null),
-        email: useRef(null),
-        confirmEmail: useRef(null),
-        artistName: useRef(null),
-        website: useRef(null),
-        instagram: useRef(null),
-        file: useRef(null),
-        message: useRef(null),
-        privacyPolicy: useRef(null),
-        dataStorage: useRef(null),
-        pictureRights: useRef(null),
-      };
-
-
-      async function submit(event) {
-        event.preventDefault();
-
-           
-        const newErrors = [];
-        setErrors([]);
-        setSuccess("");
-
-          // Validierungslogik mit validateString
+    // Validierungslogik mit validateString
     // Name Validierung
     const nameValidation = validateString(name, "Vorname", 2, 50, true);
     if (!nameValidation.check)
@@ -97,37 +95,49 @@ export default function registrationArtContest(){
     if (!artistNameValidation.check)
       newErrors.push({ field: "artistName", message: artistNameValidation.description });
 
-     //Website Validierung
-     const websiteValidation = validateString(website, "Website", 0, 100);
-     if (!websiteValidation.check)
-       newErrors.push({ field: "website", message: websiteValidation.description });
- 
-     //Instagram Validierung
-     const instagramValidation = validateString(instagram, "Instagram", 0, 100);
-     if (!instagramValidation.check)
-       newErrors.push({ field: "instagram", message: instagramValidation.description });
- 
-     //Nachricht Validierung
-     const messageValidation = validateString(message, "Nachricht", 0, 2500);
-     if (!messageValidation.check)
-       newErrors.push({ field: "message", message: messageValidation.description });
- 
-     //Bild
-     if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
- 
-     //Datenschutzerklärung
-     if (!privacyPolicy)
-       newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
- 
-     //Datenspeicherung
-     if (!dataStorage)
-       newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
- 
-     //Bildrechte
-     if (!pictureRights)
-       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
+    //ImageTitle Validierung
+    const imageTitleValidation = validateString(imageTitle, "Bildtitel", 2, 100);
+    if (!imageTitleValidation.check)
+      newErrors.push({ field: "imageTitle", message: imageTitleValidation.description });
 
-     //Check if there are any errors
+    //Website Validierung
+    const websiteValidation = validateString(website, "Website", 0, 100);
+    if (!websiteValidation.check)
+      newErrors.push({ field: "website", message: websiteValidation.description });
+
+    //Instagram Validierung
+    const instagramValidation = validateString(instagram, "Instagram", 0, 100);
+    if (!instagramValidation.check)
+      newErrors.push({ field: "instagram", message: instagramValidation.description });
+
+    //Nachricht Validierung
+    const messageValidation = validateString(message, "Nachricht", 0, 2500);
+    if (!messageValidation.check)
+      newErrors.push({ field: "message", message: messageValidation.description });
+
+    //Bild
+    if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
+
+    //Datenschutzerklärung
+    if (!privacyPolicy)
+      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
+
+    //Datenspeicherung
+    if (!dataStorage)
+      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
+
+    //Bildrechte
+    if (!pictureRights)
+      newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
+
+    //Teilnahmebedingungen
+    if (!artistConditions)
+      newErrors.push({
+        field: "artistConditions",
+        message: "Teilnahmebedingungen müssen akzeptiert werden",
+      });
+
+    //Check if there are any errors
     if (newErrors.length > 0) {
       setErrors(newErrors);
 
@@ -141,19 +151,21 @@ export default function registrationArtContest(){
     }
 
     setLoading(true);
- 
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("lastName", lastName);
     formData.append("email", email);
     formData.append("artistName", artistName);
+    formData.append("imageTitle", imageTitle);
     formData.append("website", website);
     formData.append("instagram", instagram);
     formData.append("message", message);
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
-    formData.append("file", file);
+    formData.append("artistConditions", artistConditions);
+    formData.append("file", file[0]);
 
     try {
       const response = await fetch("/api/registrationArtContest", {
@@ -170,12 +182,14 @@ export default function registrationArtContest(){
         setEmail("");
         setConfirmEmail("");
         setArtistName("");
+        setImageTitle("");
         setWebsite("");
         setInstagram("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
         setPictureRights(false);
+        setArtistConditions(false);
         setFile(null);
         setPreviewUrl(null);
         setErrors([]);
@@ -196,32 +210,33 @@ export default function registrationArtContest(){
       ]);
     }
     setLoading(false);
+  }
 
+  return (
+    <>
+      <h1>Anmeldung zum Zeichenwettbewerb</h1>
+      <p>
+        Du möchtest am Zeichenwettbewerb auf der YumeKai 2025 teilnehmen!
+        <br />
+        <br />
+        Bitte beachtet die{" "}
+        <StyledLink
+          href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
+          target="_blank"
+        >
+          Teilnahme- und Auswahlbedingungen für den Zeichenwettbewerb
+        </StyledLink>
+        .
+        <br />
+        <br />
+        Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
+        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
+      </p>
 
-      }
-
-    return  (
+      {!success && (
         <>
-            <h1>Anmeldung zum Zeichenwettbewerb</h1>
-            <p>
-                Du möchtest am Zeichenwettbewerb auf der YumeKai 2025 teilnehmen!
-                <br />
-                <br />
-                Bitte beachtet die{" "}
-                <StyledLink href="/" target="_blank">
-                Teilnahme- und Auswahlbedingungen für den Zeichenwettbewerb
-                </StyledLink>
-                .
-                <br />
-                <br />
-                Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
-                <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
-                <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
-            </p>
-
-            {!success && (
-                <>
-                 <p>
+          <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
 
@@ -259,20 +274,25 @@ export default function registrationArtContest(){
               isError={errors.some((error) => error.field === "confirmEmail")}
               require
             />
-             <InputOptionInput
+            <InputOptionInput
               title="ArtistName"
               inputText={artistName}
               inputChange={(value) => setArtistName(value)}
               inputRef={refs.name}
               isError={errors.some((error) => error.field === "name")}
             />
+            <InputOptionInput
+              title="Bildtitel"
+              inputText={imageTitle}
+              inputChange={(value) => setImageTitle(value)}
+              inputRef={refs.imageTitle}
+              isError={errors.some((error) => error.field === "imageTitle")}
+              require
+            />
 
             <Spacer />
 
-            <p>
-              Bild für Teilnahme (max.{" "}
-              {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp)
-            </p>
+            <p>Bild für Teilnahme (max. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp)</p>
             <MultiFileUpload
               inputRef={refs.imageUpload}
               previewUrl={previewUrl}
@@ -369,6 +389,26 @@ export default function registrationArtContest(){
               isError={errors.some((error) => error.field === "pictureRights")}
               require
             />
+            <CheckBox
+              title="artistConditions"
+              content={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink
+                    href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
+                    target="_blank"
+                  >
+                    Teilnahmebedingungen
+                  </StyledLink>{" "}
+                  gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={artistConditions}
+              inputChange={(value) => setArtistConditions(value)}
+              inputRef={refs.artistConditions}
+              isError={errors.some((error) => error.field === "artistConditions")}
+              require
+            />
 
             {errors && (
               <ul>
@@ -381,20 +421,19 @@ export default function registrationArtContest(){
             )}
 
             <StyledButton type="submit">Anmelden</StyledButton>
-
-            </StyledForm>
-                </>
-            )}
-
-            {success && <SuccessText>{success}</SuccessText>}
-
-            {loading && (
-              <>
-                <ModalOverlay>
-                  <LoadingAnimation />
-                </ModalOverlay>
-              </>
-            )}
+          </StyledForm>
         </>
-    );
+      )}
+
+      {success && <SuccessText>{success}</SuccessText>}
+
+      {loading && (
+        <>
+          <ModalOverlay>
+            <LoadingAnimation />
+          </ModalOverlay>
+        </>
+      )}
+    </>
+  );
 }
