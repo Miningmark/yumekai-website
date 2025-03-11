@@ -275,11 +275,11 @@ export default function RegistrationArtContest() {
               require
             />
             <InputOptionInput
-              title="ArtistName"
+              title="Künstlername"
               inputText={artistName}
               inputChange={(value) => setArtistName(value)}
-              inputRef={refs.name}
-              isError={errors.some((error) => error.field === "name")}
+              inputRef={refs.artistName}
+              isError={errors.some((error) => error.field === "artistName")}
             />
             <InputOptionInput
               title="Bildtitel"

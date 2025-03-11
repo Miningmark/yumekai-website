@@ -21,6 +21,7 @@ import HelferPost from "@/components/articles/2025/HelferPost";
 import AnkundigungSebastianFitzner from "@/components/articles/2025/AnkundigungSebastianFitzner";
 import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
 import AnmeldungCatwalk from "@/components/articles/2025/AnmeldungCatwalk";
+import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe";
 
 export default function Home() {
   return (
@@ -33,6 +34,10 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+
+      <AnkundigungMaidCafe />
+
+      <Spacer />
 
       <AnmeldungCatwalk />
 
