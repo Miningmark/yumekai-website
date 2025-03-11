@@ -1,6 +1,5 @@
 `use server`;
 
-import path from "path";
 import { sendMail } from "@/util/sendEmail";
 
 export default function emailRegistrationArtistContest({
@@ -13,8 +12,6 @@ export default function emailRegistrationArtistContest({
   instagram,
   message,
 }) {
-  const imagePath = path.join(process.cwd(), "public", "assets", "logo", "yumekai_256px.png");
-
   // HTML-Inhalt der E-Mail
   const htmlContent = `
 <!doctype html>

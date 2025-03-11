@@ -1,6 +1,5 @@
 `use server`;
 
-import path from "path";
 import { sendMail } from "@/util/sendEmail";
 
 export default function emailRegistrationCatwalk({
@@ -11,8 +10,6 @@ export default function emailRegistrationCatwalk({
   characterName,
   message,
 }) {
-  const imagePath = path.join(process.cwd(), "public", "assets", "logo", "yumekai_256px.png");
-
   // HTML-Inhalt der E-Mail
   const htmlContent = `
 <!doctype html>
@@ -60,7 +57,7 @@ export default function emailRegistrationCatwalk({
   const mail = {
     to: email,
     subject: "Anmeldung für Cosplay-Catwalk auf der YumeKai 2025",
-    text: `Cosplay-Catwalk: ${name}`,
+    text: `Cosplay-Catwalk: ${name} ${lastName}  ${characterName}`,
   };
 
   sendMail(mail, mailOptions);
