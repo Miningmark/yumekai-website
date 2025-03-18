@@ -1,6 +1,5 @@
 import mysql from "mysql2/promise";
 import path from "path";
-import fs from "fs/promises";
 import formidable from "formidable";
 import emailRegistrationCosplayAuction from "@/util/email_registrationCosplayAuction";
 import validateString from "@/util/inputCheck";
