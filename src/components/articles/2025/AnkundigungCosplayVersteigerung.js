@@ -36,13 +36,13 @@ SPENDENÜBERGABE DAZU PACKEN
 */
 
 import Image from "next/image";
-import { StyledLink } from "@/components/styledComponents";
+import { StyledLink, DynamicContent } from "@/components/styledComponents";
 import styled from "styled-components";
 
 //Images
 import Spendenubergabe24Image from "/public/assets/images/yumekai-night-2-2024/Spendenubergabe_CoHeKi.jpg";
 
-
+/*
 const DynamicContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,6 +55,7 @@ const DynamicContent = styled.div`
     width: 100%;
   }
 `;
+*/
 
 export default function AnkundigungCosplayVersteigerung(){
 

@@ -106,3 +106,16 @@ export const ModalOverlay = styled.div`
   justify-content: center;
   z-index: 9999;
 `;
+
+export const DynamicContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${({$justify}) => $justify && $justify};
+  align-content: ${({$align})=> $align && $align};
+  width: ${({ $widthpercent }) => `calc(${$widthpercent}% - 10px)`};
+  ${({ $maxwidth }) => $maxwidth && `max-width: ${$maxwidth}px;`}
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+`;
