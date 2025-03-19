@@ -115,7 +115,8 @@ export default function AnkundigungCosplayVersteigerung(){
                 <br />
                 Es gibt keine Anmeldefrist, wir nehmen Cosplayer an, solange der Platz reicht. Auch vor Ort sind
                 Anmeldungen noch möglich, sofern es noch freie Plätz gibt.
-                Bewerbung für Cosplayer:
+                <br/>
+                Bewerbung für Cosplayer:{" "}
                 <StyledLink href="/registration/registrationCosplayAuction" target="_blank">
                     Anmeldung
                 </StyledLink>
