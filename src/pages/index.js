@@ -23,6 +23,7 @@ import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
 import AnmeldungCatwalk from "@/components/articles/2025/AnmeldungCatwalk";
 import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe";
 import AnkundigungCosplayVersteigerung from "@/components/articles/2025/AnkundigungCosplayVersteigerung";
+import AnkundigungZeichenwettbewerb from "@/components/articles/2025/AnkundigungZeichenwettbewerb";
 
 export default function Home() {
   return (
@@ -39,6 +40,10 @@ export default function Home() {
       <AnkundigungCosplayVersteigerung/>
 
       <Spacer />
+
+      <AnkundigungZeichenwettbewerb />
+
+      <Spacer/>
 
       <AnkundigungMaidCafe />
 

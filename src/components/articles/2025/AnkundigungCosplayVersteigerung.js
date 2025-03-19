@@ -46,6 +46,8 @@ import Spendenubergabe24Image from "/public/assets/images/yumekai-night-2-2024/S
 const DynamicContent = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: ${({$justify}) => $justify && $justify};
+  align-content: ${({$align})=> $align && $align};
   width: ${({ $widthpercent }) => `calc(${$widthpercent}% - 10px)`};
   ${({ $maxwidth }) => $maxwidth && `max-width: ${$maxwidth}px;`}
 
@@ -71,8 +73,9 @@ export default function AnkundigungCosplayVersteigerung(){
       >
         <DynamicContent
           $widthpercent={40}
-          $maxwidth={300}
-          style={{ justifyContent: "center", alignContent: "center" }}
+          //$maxwidth={300}
+          $align="center"
+          $justify="center"
         >
           <Image
             src={Spendenubergabe24Image}
