@@ -22,6 +22,7 @@ import AnkundigungSebastianFitzner from "@/components/articles/2025/AnkundigungS
 import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
 import AnmeldungCatwalk from "@/components/articles/2025/AnmeldungCatwalk";
 import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe";
+import AnkundigungCosplayVersteigerung from "@/components/articles/2025/AnkundigungCosplayVersteigerung";
 
 export default function Home() {
   return (
@@ -34,6 +35,10 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+
+      <AnkundigungCosplayVersteigerung/>
+
+      <Spacer />
 
       <AnkundigungMaidCafe />
 
