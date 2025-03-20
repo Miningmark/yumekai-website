@@ -226,8 +226,9 @@ export default function RegistrationCosplayAuction() {
         Letztes Jahr gab es zu jedem ersteigerten Cosplayer noch ein weiteres Goodie, welches durch
         Händler, Künstler und unsere Sponsoren bereitgestellt wurde. Gerne können auch in diesem
         Jahr wieder Sachspenden abgegeben werden, um die Versteigerung zu unterstützen. Falls ihr
-        uns auf diese Weise helfen möchtet, meldet euch gerne über unser Kontaktformular (mit dem
-        Bereich „Bühne“) bei uns!
+        uns auf diese Weise helfen möchtet, meldet euch gerne über unser{" "}
+        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink> (mit dem Bereich „Bühne“)
+        bei uns!
         <br />
         <br />
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
