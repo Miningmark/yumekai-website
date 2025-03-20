@@ -1,11 +1,3 @@
-/*
-
-Eingabe Felder: Name, Vorname, Künstlername, Geburtsdatum, E-Mail, Hobby, Name des Cosplay Charakter, Woher kommt der Cosplay Charakter (Film/Serie/Buch/etc.)
-Als Pflicht Checkbox Feld: "Hiermit bestätige ich, dass ich über 18 Jahre alt bin und einer Altersüberprüfung durch Vorzeigen eines gültigen Lichtbildausweises/Reisepasses/Führerscheins am Tag der Convention zustimme."
-Infotext: "Nach deiner Online-Anmeldung erhältst du eine Bestätigungs-E-Mail, die dir deinen Platz sichert. Falls alle Plätze bereits vergeben sind, bekommst du stattdessen eine Absage-E-Mail." 
-
-*/
-
 import { useState, useRef } from "react";
 
 //Components
