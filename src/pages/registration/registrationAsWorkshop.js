@@ -432,7 +432,7 @@ export default function RegistrationAsWorkshop() {
         Angebots führt.
       </p>
       <p>
-        Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+        Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
