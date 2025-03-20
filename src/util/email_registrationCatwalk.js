@@ -32,7 +32,7 @@ export default function emailRegistrationCatwalk({
       <br />
       E-Mail: ${email}
       <br />
-      Künstlername: ${artistName || "Keine Nachricht angegeben"}
+      Künstlername: ${artistName || "Keinen Künstlernamen angegeben"}
       <br />
       Charakter: ${characterName}
       <br />
