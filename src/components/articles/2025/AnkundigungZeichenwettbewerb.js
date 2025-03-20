@@ -1,29 +1,16 @@
 import Image from "next/image";
-import { StyledLink } from "@/components/styledComponents";
+import { StyledLink, DynamicContent } from "@/components/styledComponents";
 import styled from "styled-components";
 
 //Images
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 
-
-const DynamicContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: ${({ $widthpercent }) => `calc(${$widthpercent}% - 10px)`};
-  ${({ $maxwidth }) => $maxwidth && `max-width: ${$maxwidth}px;`}
-
-  @media (max-width: 800px) {
-    width: 100%;
-  }
-`;
-
-export default function AnkundigungZeichenwettbewerb(){
-
-    return (
+export default function AnkundigungZeichenwettbewerb() {
+  return (
     <>
-        <h2>Der YumeKai Zeichenwettbewerb</h2>
-        
-        <div
+      <h2>Der YumeKai Zeichenwettbewerb</h2>
+
+      <div
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -32,34 +19,41 @@ export default function AnkundigungZeichenwettbewerb(){
           marginBottom: "20px",
         }}
       >
-       
         <DynamicContent $widthpercent={60}>
-            <p>
-               
-                <br />
-                <br />
-                
-                <br />
-                <br />
-                
-                <br />
-                <br />
-                
-                <br />
-                <br />
-                
-                <br/>
-                Teilnahme am Zeichenwettbewerb:{" "}
-                <StyledLink href="/registration/registrationArtContest" target="_blank">
-                    Anmeldung
-                </StyledLink>
-            </p>
+          <p>
+            Hey, du hast diese unglaubliche Kreativität in dir? Perfekt!
+            <br />
+            <br />
+            Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben
+            erweckst? Lass deiner Fantasie freien Lauf! Ob du Hiru als Genderbend darstellst, in
+            alternativen Stilen experimentierst oder in einem völlig anderen Genre platzierst –
+            alles ist erlaubt, solange Hiru immer noch erkennbar ist. 🎨✨
+            <br />
+            <br />
+            Es wird einen Jury-Favoriten geben, welcher unter anderem einen Pokal erhält! Außerdem
+            wird es für jede Kategorie einen Gewinner geben. (Jedes Bild kann nur in einer Kategorie
+            gewinnen.)
+            <br />
+            <br />
+            Folgende Kategorien gibt es:
+            <br />
+            ⭐ Beste Technik
+            <br />
+            ⭐ Kreativste Idee
+            <br />
+            ⭐ Qualität des Gesamtbilds
+            <br />
+            <br />
+            Wir sind super gespannt darauf, was du zauberst! Also schnapp dir deine Lieblingsstifte
+            oder öffne dein Grafiktablett – und lass Hiru in deiner Kreativität neu erstrahlen! 🖊
+            <br />
+            Teilnahme am Zeichenwettbewerb:{" "}
+            <StyledLink href="/registration/registrationArtContest" target="_blank">
+              Anmeldung
+            </StyledLink>
+          </p>
         </DynamicContent>
-        <DynamicContent
-          $widthpercent={40}
-          $maxwidth={300}
-          style={{ justifyContent: "center", alignContent: "center" }}
-        >
+        <DynamicContent $widthpercent={40} $align="center" $justify="center">
           <Image
             src={hiruKunstlerImage}
             alt="Künstler Hiru"
@@ -72,5 +66,5 @@ export default function AnkundigungZeichenwettbewerb(){
         </DynamicContent>
       </div>
     </>
-    )
+  );
 }

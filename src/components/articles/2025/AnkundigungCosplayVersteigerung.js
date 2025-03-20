@@ -50,10 +50,10 @@ export default function AnkundigungCosplayVersteigerung() {
             Werde Teil dieser besonderen Aktion!
             <br />
             Letztes Jahr konnten wir gemeinsam unglaubliche 1.555€ durch die Cosplayer-Versteigerung
-            sammeln. Die Spendenübergabe fand bei unserem nächsten Event, der YumeKai - Night live
-            auf der Bühne statt, wo die erste Vorsitzende des Vereins, Linda Fremuth, die Spende
-            persönlich entgegennehmen durfte. Auch in diesem Jahr hoffen wir auf eine große
-            Beteiligung, um erneut eine stolze Summe für den guten Zweck zu sammeln!
+            sammeln. Die Spendenübergabe fand bei der YumeKai - Night live auf der Bühne statt, wo
+            die erste Vorsitzende des Vereins, Linda Fremuth, die Spende persönlich entgegennehmen
+            durfte. Auch in diesem Jahr hoffen wir auf eine große Beteiligung, um erneut eine stolze
+            Summe für den guten Zweck zu sammeln!
             <br />
             <br />
             Wie kannst du mitmachen?
