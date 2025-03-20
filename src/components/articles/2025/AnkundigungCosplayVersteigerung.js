@@ -40,11 +40,8 @@ export default function AnkundigungCosplayVersteigerung() {
             Cosplayer-Versteigerung gemeinsam mit CoHeki e.V. (Cosplayer helfen Kindern e.V.)
             durchzuführen! Hier haben Besucher die einzigartige Gelegenheit, für eine Stunde am
             Samstag Nachmittag einen Cosplayer zu ersteigern und dabei gleichzeitig etwas Gutes zu
-            tun.
-            <br />
-            <br />
-            Der gesamte Erlös der Auktion geht an den Förderkreis für chronisch nierenkranke Kinder
-            und Jugendliche Memmingen e. V. (kurz "Nierenkinder").
+            tun. Der gesamte Erlös der Auktion geht an den Förderkreis für chronisch nierenkranke
+            Kinder und Jugendliche Memmingen e. V. (kurz "Nierenkinder").
             <br />
             <br />
             Werde Teil dieser besonderen Aktion!
