@@ -41,7 +41,7 @@ export default function AnkundigungCosplayVersteigerung() {
             durchzuführen! Hier haben Besucher die einzigartige Gelegenheit, für eine Stunde am
             Samstag Nachmittag einen Cosplayer zu ersteigern und dabei gleichzeitig etwas Gutes zu
             tun. Der gesamte Erlös der Auktion geht an den Förderkreis für chronisch nierenkranke
-            Kinder und Jugendliche Memmingen e. V. (kurz "Nierenkinder").
+            Kinder und Jugendliche Memmingen e. V. (kurz &quot;Nierenkinder&quot;).
             <br />
             <br />
             Werde Teil dieser besonderen Aktion!
@@ -55,10 +55,10 @@ export default function AnkundigungCosplayVersteigerung() {
             <br />
             Wie kannst du mitmachen?
             <br />
-            Wenn du als Cosplayer Lust hast, dich für den guten Zweck "ersteigern" zu lassen, und du
-            mindesten 18 Jahre alt bist, dann melde dich jetzt an! Die Teilnehmer der Versteigerung
-            stellen sich am Samstag Nachmittag auf der Bühne vor, und die Besucher haben die
-            Möglichkeit, auf eine Stunde mit ihrem Lieblingscharakter zu bieten.
+            Wenn du als Cosplayer Lust hast, dich für den guten Zweck &quot;ersteigern&quot; zu
+            lassen, und du mindesten 18 Jahre alt bist, dann melde dich jetzt an! Die Teilnehmer der
+            Versteigerung stellen sich am Samstag Nachmittag auf der Bühne vor, und die Besucher
+            haben die Möglichkeit, auf eine Stunde mit ihrem Lieblingscharakter zu bieten.
             <br />
             <br />
             Es gibt keine Anmeldefrist, wir nehmen Cosplayer an, solange der Platz reicht. Auch vor

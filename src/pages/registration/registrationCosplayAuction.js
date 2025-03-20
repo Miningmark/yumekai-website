@@ -220,6 +220,20 @@ export default function RegistrationCosplayAuction() {
     <>
       <h1>Anmeldung zur Cosplay versteigerung</h1>
       <p>
+        <strong>Unterstützung durch Sachspenden</strong>
+        <br />
+        <br />
+        Letztes Jahr gab es zu jedem ersteigerten Cosplayer noch ein weiteres Goodie, welches durch
+        Händler, Künstler und unsere Sponsoren bereitgestellt wurde. Gerne können auch in diesem
+        Jahr wieder Sachspenden abgegeben werden, um die Versteigerung zu unterstützen. Falls ihr
+        uns auf diese Weise helfen möchtet, meldet euch gerne über unser Kontaktformular (mit dem
+        Bereich „Bühne“) bei uns!
+        <br />
+        <br />
+        Lasst uns gemeinsam erneut eine große Summe für die Nierenkinder sammeln! Wir freuen uns auf
+        euch!
+        <br />
+        <br />
         Bei Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
