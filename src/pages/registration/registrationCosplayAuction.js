@@ -258,6 +258,7 @@ export default function RegistrationCosplayAuction() {
             />
             <InputOptionInput
               title="Geburtsdatum"
+              type="date"
               inputText={birthDate}
               inputChange={(value) => setBirthDate(value)}
               inputRef={refs.birthDate}

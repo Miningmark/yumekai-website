@@ -37,14 +37,16 @@ export default function Home() {
       </p>
       <SpacerEmpty />
 
+      {/*
       <AnkundigungCosplayVersteigerung/>
 
       <Spacer />
-
+*/}
+      {/*
       <AnkundigungZeichenwettbewerb />
 
       <Spacer/>
-
+*/}
       <AnkundigungMaidCafe />
 
       <Spacer />

@@ -12,7 +12,7 @@ export const config = {
 
 /*
 
-CREATE TABLE registration_catwalk (
+CREATE TABLE registration_auction (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_ip VARCHAR(64),
     name VARCHAR(50) NOT NULL,
@@ -95,9 +95,10 @@ export default async function handler(req, res) {
   const characterOrigin = fields.characterOrigin[0];
   const hobby = fields.hobby[0];
   const message = fields.message[0];
-  const privacyPolicy = fields.privacyPolicy[0];
-  const dataStorage = fields.dataStorage[0];
-  const ageCheck = fields.ageCheck[0];
+  const privacyPolicy = ["true", "yes", "1"].includes(fields.privacyPolicy[0].toLowerCase());
+  const dataStorage = ["true", "yes", "1"].includes(fields.dataStorage[0].toLowerCase());
+  const ageCheck = ["true", "yes", "1"].includes(fields.ageCheck[0].toLowerCase());
+  console.log(fields);
 
   const errors = [];
 
@@ -197,6 +198,8 @@ export default async function handler(req, res) {
       };
     });
 
+    console.error("Fehler bei der Validierung:", errors);
+
     await logError(clientIp, "Cosplay Auction", email, errorlog);
     return res.status(400).json({ errors });
   }
@@ -219,20 +222,20 @@ export default async function handler(req, res) {
 
     // Inserting the new data record
     const query = `
-     INSERT INTO registration_catwalk (
-         client_ip,
-         name,
-         last_name,
-            birthdate,
-         email,
-         artist_name,
-         character_name,
-            character_origin,
-            hobby,
-         message,
-         privacy_policy,
-         data_storage,
-            age_check
+     INSERT INTO registration_auction (
+        client_ip,
+        name,
+        last_name,
+        birthdate,
+        email,
+        artist_name,
+        character_name,
+        character_origin,
+        hobby,
+        message,
+        privacy_policy,
+        data_storage,
+        age_check
      ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [

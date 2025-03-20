@@ -2,6 +2,11 @@
 
 import { sendMail } from "@/util/sendEmail";
 
+const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split("-");
+  return `${day}.${month}.${year}`;
+};
+
 export default function emailRegistrationCosplayAuction({
   name,
   lastName,
@@ -33,7 +38,7 @@ export default function emailRegistrationCosplayAuction({
         <br />
         Nachname: ${lastName}
         <br />
-        Geburtsdatum: ${birthdate}
+        Geburtsdatum: ${formatDate(birthdate)}
         <br />
         E-Mail: ${email}
         <br />
@@ -59,14 +64,14 @@ export default function emailRegistrationCosplayAuction({
   const mailOptions = {
     from: "info@yumekai.de",
     to: email,
-    subject: "Anmeldung für Cosplay-Catwalk auf der YumeKai 2025",
+    subject: "Anmeldung für Cosplay-Versteigerung auf der YumeKai 2025",
     html: htmlContent,
   };
 
   const mail = {
     to: email,
-    subject: "Anmeldung für Cosplay-Catwalk auf der YumeKai 2025",
-    text: `Cosplay-Catwalk: ${name} ${lastName}  ${characterName}`,
+    subject: "Anmeldung für Cosplay-Versteigerung auf der YumeKai 2025",
+    text: `Cosplay-Versteigerung: ${name} ${lastName}  ${characterName}`,
   };
 
   sendMail(mail, mailOptions);
