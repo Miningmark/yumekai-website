@@ -36,42 +36,71 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
-      {/*
-      <AnkundigungCosplayVersteigerung/>
+
+      <AnkundigungCosplayVersteigerung />
 
       <Spacer />
-*/}
+
       <AnkundigungZeichenwettbewerb />
+
       <Spacer />
 
       <AnkundigungMaidCafe />
+
       <Spacer />
+
       <AnmeldungCatwalk />
+
       <Spacer />
+
       <AnkundigungBall />
+
       <Spacer />
+
       <HierKonntIhrUnsTreffen />
+
       <Spacer />
+
       <AnkundigungSebastianFitzner />
+
       <Spacer />
+
       <HelferPost />
+
       <Spacer />
+
       <AnkundigungAndyKnote />
+
       <Spacer />
+
       <PhotoContest1 />
+
       <Spacer />
+
       <AnkundigungDominikAuer />
+
       <Spacer />
+
       <AnkundigungPetraScheeser />
+
       <Spacer />
+
       <EroffnungTicketShop />
+
       <Spacer />
+
       <AnkundigungJuliaMeyen />
+
       <Spacer />
+
       <Spendenubergabe />
+
       <Spacer />
+
       <AnkundigungYumeKai2025 />
+
       <Spacer />
+
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
           <StyledButton>Archiv</StyledButton>
