@@ -54,7 +54,7 @@ export default function AnmeldungCatwalk() {
             Die Anmeldung für den Cosplay Catwalk ist bis einschließlich des 22.05.2025 offen.
             <br />
             <br />
-            Du möchtest beim Cosplay Crafting Wettbewerb teilnehmen? Das kannst du Hier machen.{" "}
+            Du möchtest beim Cosplay Crafting Wettbewerb teilnehmen? Das kannst du{" "}
             <StyledLink href="/registration/registrationCosplayCatwalk">Hier</StyledLink> machen.
             <br />
             <br />
