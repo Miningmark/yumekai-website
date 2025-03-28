@@ -18,6 +18,7 @@ import zauberfederImage from "/public/assets/images/sponsors/Zauberfeder.png";
 import stadtMM from "/public/assets/images/sponsors/Stadt_Memmingen.png";
 import mrVeranstaltung from "/public/assets/images/sponsors/MR_Veranstaltung.png";
 import crunchyrollImage from "/public/assets/images/sponsors/Crunchyroll_Orange_Logo.png";
+import paperToonsImage from "/public/assets/images/sponsors/Papertoons_logo.png";
 import { SpacerEmpty } from "../styledComponents";
 
 const sponsorList = [
@@ -34,6 +35,7 @@ const sponsorList = [
   { image: stadtMM, alt: "Stadt Memmingen", link: "https://www.memmingen.de/" },
   { image: mrVeranstaltung, alt: "M&R Veranstaltung", link: "https://mr-veranstaltung.de/" },
   { image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
+  { image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
 ];
 
 const SponsorsComponentWrapper = styled.section`
