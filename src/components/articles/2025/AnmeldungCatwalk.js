@@ -19,7 +19,7 @@ const DynamicContent = styled.div`
 export default function AnmeldungCatwalk() {
   return (
     <>
-      <h2>Cosplay Catwalk</h2>
+      <h2>Cosplay Crafting Wettbewerb</h2>
       <div
         style={{
           display: "flex",
@@ -45,14 +45,16 @@ export default function AnmeldungCatwalk() {
         </DynamicContent>
         <DynamicContent $widthpercent={60}>
           <p>
-            Bei unserem Cosplay Catwalk könnt ihr in Kürze die tollsten Cosplays bewundern! Hier hat
-            jeder die Chance, für ein paar Sekunden die Bühne zu erobern und sein Kostüm zu
-            präsentieren. Dabei spielt es keine Rolle, was ihr cosplayt oder woher ihr kommt.
+            Bei unserem Cosplay Crafting Wettbererb dreht sich alles um das Thema Crafting. Hier
+            wird die Machart eures Cosplay von unserer talentierten Jurry bewertet. Zusätzlich
+            bekommt jeder Teilnehmer die Chance für 30 Sekunden die Bühne zu erobern und sich in
+            tolle Posen zu werfen für unser Publikum & unsere Fotografen. Selbstverständlich haben
+            alle Teilnehmer auch hier die Möglichkeit, etwas zu gewinnen!
+            <br />
+            Die Anmeldung für den Cosplay Catwalk ist bis einschließlich des 22.05.2025 offen.
             <br />
             <br />
-            Das Craften des Cosplays an sich steht hier im Mittelpunkt. Selbstverständlich haben
-            alle Teilnehmer auch hier die Möglichkeit, etwas zu gewinnen! Du möchtest beim Cosplay
-            Catwalk teilnehmen das kannst du{" "}
+            Du möchtest beim Cosplay Crafting Wettbewerb teilnehmen? Das kannst du Hier machen.{" "}
             <StyledLink href="/registration/registrationCosplayCatwalk">Hier</StyledLink> machen.
             <br />
             <br />
@@ -85,8 +87,8 @@ export default function AnmeldungCatwalk() {
               </StyledLink>
             </li>
             <li>
-              <StyledLink href="/" target="_blank">
-                ????
+              <StyledLink href="https://www.instagram.com/eralia_iwahana/" target="_blank">
+                Eralia
               </StyledLink>
             </li>
           </ul>

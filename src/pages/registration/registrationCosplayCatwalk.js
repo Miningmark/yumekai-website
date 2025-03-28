@@ -202,7 +202,7 @@ export default function RegistrationCosplayCatwalk() {
 
   return (
     <>
-      <h1>Anmeldung für Cosplay Catwalk</h1>
+      <h1>Anmeldung für Cosplay Crafting Wettbewerb</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2025!
         <br />
@@ -212,7 +212,7 @@ export default function RegistrationCosplayCatwalk() {
           href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
           target="_blank"
         >
-          Teilnahmebedingungen für den Cosplay Catwalk
+          Teilnahmebedingungen für den Cosplay Crafting Wettbewerb
         </StyledLink>
         .
         <br />
