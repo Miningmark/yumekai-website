@@ -37,7 +37,7 @@ export default function AnkundigungCosplayVersteigerung() {
         <DynamicContent $widthpercent={60}>
           <p>
             Auch dieses Jahr freuen wir uns, auf unserer Convention die beliebte
-            Cosplayer-Versteigerung gemeinsam mit CoHeki e.V. (Cosplayer helfen Kindern e.V.)
+            Cosplayer-Versteigerung gemeinsam mit CoHeKi e.V. (Cosplayer helfen Kindern e.V.)
             durchzuführen! Hier haben Besucher die einzigartige Gelegenheit, für eine Stunde am
             Samstag Nachmittag einen Cosplayer zu ersteigern und dabei gleichzeitig etwas Gutes zu
             tun. Der gesamte Erlös der Auktion geht an den Förderkreis für chronisch nierenkranke

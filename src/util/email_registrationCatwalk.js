@@ -22,7 +22,7 @@ export default function emailRegistrationCatwalk({
     </div>
     <div style="font-weight:normal;padding:0px 24px 16px 24px">
       <br/>
-      Du hast dich für den Cosplay-Catwalk auf der YumeKai 2025 beworben. Wir haben deine Anmeldung erhalten und werden uns bei dir melden.
+      Du hast dich für den Cosplay Crafting Wettbererb auf der YumeKai 2025 beworben. Wir haben deine Anmeldung erhalten und werden uns bei dir melden.
       Nachfolgend findest du eine Kopie deiner Anmeldung:
       <br />
       <br />
@@ -50,14 +50,14 @@ export default function emailRegistrationCatwalk({
   const mailOptions = {
     from: "info@yumekai.de",
     to: email,
-    subject: "Anmeldung für Cosplay-Catwalk auf der YumeKai 2025",
+    subject: "Anmeldung für Cosplay Crafting Wettbererb auf der YumeKai 2025",
     html: htmlContent,
   };
 
   const mail = {
     to: email,
-    subject: "Anmeldung für Cosplay-Catwalk auf der YumeKai 2025",
-    text: `Cosplay-Catwalk: ${name} ${lastName}  ${characterName}`,
+    subject: "Anmeldung für Cosplay Crafting Wettbererb auf der YumeKai 2025",
+    text: `Cosplay Crafting Wettbererb: ${name} ${lastName}  ${characterName}`,
   };
 
   sendMail(mail, mailOptions);
