@@ -20,9 +20,9 @@ export default function AnkundigungPetraScheeser() {
               Auftritt verzaubern!
               <br />
               <br />
-              Erlebt die Stimme hinter den Openings von Winx Club, Sailor Moon, Digimon, Ranma ½ und
-              vielen weiteren Klassikern. Lasst euch von diesen legendären Anime- und
-              Serien-Openings in Gänsehaut-Momente versetzen! 🌟
+              Erlebt die Stimme hinter den Openings von Winx Club, Digimon, Ranma ½ und vielen
+              weiteren Klassikern. Lasst euch von diesen legendären Anime- und Serien-Openings in
+              Gänsehaut-Momente versetzen! 🌟
               <br />
               <br />
               Freut euch auf spannende Einblicke in Petras beeindruckende Arbeit, eine Signierstunde
