@@ -17,6 +17,7 @@ import squiggzImage from "/public/assets/images/sponsors/Squiggz.png";
 import zauberfederImage from "/public/assets/images/sponsors/Zauberfeder.png";
 import stadtMM from "/public/assets/images/sponsors/Stadt_Memmingen.png";
 import mrVeranstaltung from "/public/assets/images/sponsors/MR_Veranstaltung.png";
+import crunchyrollImage from "/public/assets/images/sponsors/Crunchyroll_Orange_Logo.png";
 import { SpacerEmpty } from "../styledComponents";
 
 const sponsorList = [
@@ -27,11 +28,12 @@ const sponsorList = [
   { image: heldenschmiedeImage, alt: "Heldenschmiede", link: "https://www.heldenschmiede.eu/" },
   { image: japandigestImage, alt: "Japandigest", link: "https://www.japandigest.de/" },
   { image: mangaMerchImage, alt: "Manga Merch", link: "https://manga-merch.com/" },
-  { image: sndrbrImage, alt: "Sndrbr", link: "https://sndrbr.de/" },
+  //{ image: sndrbrImage, alt: "Sndrbr", link: "https://sndrbr.de/" },
   { image: squiggzImage, alt: "Squiggz", link: "https://www.squiggz.com/" },
   { image: zauberfederImage, alt: "Zauberfeder", link: "https://zauberfeder.de/" },
   { image: stadtMM, alt: "Stadt Memmingen", link: "https://www.memmingen.de/" },
   { image: mrVeranstaltung, alt: "M&R Veranstaltung", link: "https://mr-veranstaltung.de/" },
+  { image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
 ];
 
 const SponsorsComponentWrapper = styled.section`
