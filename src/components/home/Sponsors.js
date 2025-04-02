@@ -27,7 +27,7 @@ const sponsorList = [
   { image: foamlordImage, alt: "Foamlord", link: "https://www.foamlord.de/" },
   { image: fuyukoImage, alt: "Fuyuko", link: "https://fuyuko.de/" },
   { image: heldenschmiedeImage, alt: "Heldenschmiede", link: "https://www.heldenschmiede.eu/" },
-  { image: japandigestImage, alt: "Japandigest", link: "https://www.japandigest.de/" },
+  //{ image: japandigestImage, alt: "Japandigest", link: "https://www.japandigest.de/" },
   { image: mangaMerchImage, alt: "Manga Merch", link: "https://manga-merch.com/" },
   //{ image: sndrbrImage, alt: "Sndrbr", link: "https://sndrbr.de/" },
   { image: squiggzImage, alt: "Squiggz", link: "https://www.squiggz.com/" },
