@@ -18,6 +18,8 @@ import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString from "@/util/inputCheck";
 
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
+const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+const ACCEPTED_SOUND_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".mp3", "wav",".mp4"];
 const MAX_FILE_SIZE_MB = 10;
 
 export default function RegistrationCosplayCatwalk() {
@@ -28,19 +30,28 @@ export default function RegistrationCosplayCatwalk() {
 
   const [artistName, setArtistName] = useState("");
   const [characterName, setCharacterName] = useState("");
+  const [characterOrigin, setCharacterOrigin] = useState("");
 
   const [file, setFile] = useState([]);
   const [previewUrl, setPreviewUrl] = useState([]);
+
+  const [file2, setFile2] = useState([]);
+  const [previewUrl2, setPreviewUrl2] = useState([]);
+
+  const [file3, setFile3] = useState([]);
+  const [previewUrl3, setPreviewUrl3] = useState([]);
 
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [catwalkConditions, setCatwalkConditions] = useState(false);
+  const [performanceConditions, setPerformanceConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
+  const [fileError2, setFileError2] = useState("");
+  const [fileError3, setFileError3] = useState("");
   const [loading, setLoading] = useState(false);
 
   const refs = {
@@ -50,13 +61,16 @@ export default function RegistrationCosplayCatwalk() {
     confirmEmail: useRef(null),
     artistName: useRef(null),
     characterName: useRef(null),
+    characterOrigin: useRef(null),
     file: useRef(null),
+    file2: useRef(null),
+    file3: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    catwalkConditions: useRef(null),
+    performanceConditions: useRef(null),
   };
 
   async function submit(event) {
@@ -96,14 +110,23 @@ export default function RegistrationCosplayCatwalk() {
     if (!characterNameValidation.check)
       newErrors.push({ field: "characterName", message: characterNameValidation.description });
 
+    // Charakter Herkunft Validierung
+    const characterOriginValidation = validateString(characterOrigin, "Charakter", 2, 50, true);
+    if (!characterOriginValidation.check)
+      newErrors.push({ field: "characterOrigin", message: characterOriginValidation.description });
+
     //Nachricht Validierung
     const messageValidation = validateString(message, "Nachricht", 0, 2500);
     if (!messageValidation.check)
       newErrors.push({ field: "message", message: messageValidation.description });
 
-    //Daten
+    //Daten Charakter Referenz
     if (file.length === 0)
-      newErrors.push({ field: "dataField", message: "Crafting Tagebuch ist ein Pflichtfeld" });
+      newErrors.push({ field: "dataField", message: "Charakterreferenz ist ein Pflichtfeld" });
+
+    //Daten Charakter Bilder
+    if (file2.length === 0)
+      newErrors.push({ field: "dataField", message: "Charakterbild ist ein Pflichtfeld" });
 
     //Datenschutzerklärung
     if (!privacyPolicy)
@@ -118,9 +141,9 @@ export default function RegistrationCosplayCatwalk() {
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
 
     //Teilnahmebedingungen
-    if (!catwalkConditions)
+    if (!performanceConditions)
       newErrors.push({
-        field: "catwalkConditions",
+        field: "performanceConditions",
         message: "Teilnahmebedingungen müssen akzeptiert werden",
       });
 
@@ -145,19 +168,30 @@ export default function RegistrationCosplayCatwalk() {
     formData.append("email", email);
     formData.append("artistName", artistName);
     formData.append("characterName", characterName);
+    formData.append("characterOrigin", characterOrigin);
     formData.append("message", message);
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
-    formData.append("catwalkConditions", catwalkConditions);
+    formData.append("performanceConditions", performanceConditions);
     if (file && Array.isArray(file)) {
       file.forEach((singleFile, index) => {
         formData.append(`file[${index}]`, singleFile);
       });
     }
+    if (file2 && Array.isArray(file2)) {
+      file2.forEach((singleFile, index) => {
+        formData.append(`file2[${index}]`, singleFile);
+      });
+    }
+    if (file3 && Array.isArray(file3)) {
+      file3.forEach((singleFile, index) => {
+        formData.append(`file3[${index}]`, singleFile);
+      });
+    }
 
     try {
-      const response = await fetch("/api/registrationCosplayCatwalk", {
+      const response = await fetch("/api/registrationCosplayPerformance", {
         method: "POST",
         body: formData,
       });
@@ -172,13 +206,18 @@ export default function RegistrationCosplayCatwalk() {
         setConfirmEmail("");
         setArtistName("");
         setCharacterName("");
+        setCharacterOrigin("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
         setPictureRights(false);
-        setCatwalkConditions(false);
+        setPerformanceConditions(false);
         setFile([]);
+        setFile2([]);
+        setFile3([]);
         setPreviewUrl([]);
+        setPreviewUrl2([]);
+        setPreviewUrl3([]);
         setErrors([]);
       } else {
         setErrors([
@@ -202,17 +241,17 @@ export default function RegistrationCosplayCatwalk() {
 
   return (
     <>
-      <h1>Anmeldung für Cosplay Catwalk</h1>
+      <h1>Anmeldung für die Cosplay Performance </h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2025!
         <br />
         <br />
         Bitte beachtet die{" "}
         <StyledLink
-          href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+          href=""
           target="_blank"
         >
-          Teilnahmebedingungen für den Cosplay Catwalk
+          Teilnahmebedingungen für den Cosplay Performance
         </StyledLink>
         .
         <br />
@@ -269,16 +308,24 @@ export default function RegistrationCosplayCatwalk() {
               isError={errors.some((error) => error.field === "artistName")}
             />
             <InputOptionInput
-              title="Charakter"
+              title="Charakter Name"
               inputText={characterName}
               inputChange={(value) => setCharacterName(value)}
               inputRef={refs.characterName}
               isError={errors.some((error) => error.field === "characterName")}
               require
             />
+            <InputOptionInput
+              title="Charakter Herkunft"
+              inputText={characterOrigin}
+              inputChange={(value) => setCharacterOrigin(value)}
+              inputRef={refs.characterOrigin}
+              isError={errors.some((error) => error.field === "characterOrigin")}
+              require
+            />
 
             <p>
-              Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) und Bild des Cosplays (max. 3 Dateien
+              Abgabe Vorlage/Referenz des Cosplays (max. 3 Dateien
               mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
@@ -295,6 +342,44 @@ export default function RegistrationCosplayCatwalk() {
               setFileError={setFileError}
             />
             {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
+
+            <p>
+              Bild des Cosplays (max. 3 Dateien
+              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp)
+            </p>
+            <MultiFileUpload
+              inputRef={refs.dataField2}
+              previewUrl={previewUrl2}
+              files={file2}
+              setFiles={setFile2}
+              previewUrls={previewUrl2}
+              setPreviewUrls={setPreviewUrl2}
+              maxFileSize={MAX_FILE_SIZE_MB}
+              maxFiles={3}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
+              isError={errors.some((error) => error.field === "dataField2") || fileError2}
+              setFileError={setFileError2}
+            />
+            {fileError2 && <ErrorText style={{ textAlign: "center" }}>{fileError2}</ErrorText>}
+
+            <p>
+              Hintergrund für den Auftritt Bild,Ton oder Video (max. 4 Dateien
+              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, mp3, wav, mp4)
+            </p>
+            <MultiFileUpload
+              inputRef={refs.dataField3}
+              previewUrl={previewUrl3}
+              files={file3}
+              setFiles={setFile3}
+              previewUrls={previewUrl3}
+              setPreviewUrls={setPreviewUrl3}
+              maxFileSize={MAX_FILE_SIZE_MB}
+              maxFiles={4}
+              acceptedExtensions={ACCEPTED_SOUND_IMAGE_EXTENSIONS}
+              isError={errors.some((error) => error.field === "dataField3") || fileError3}
+              setFileError={setFileError3}
+            />
+            {fileError3 && <ErrorText style={{ textAlign: "center" }}>{fileError3}</ErrorText>}
 
             <InputOptionTextArea
               title="Nachricht"
@@ -362,12 +447,12 @@ export default function RegistrationCosplayCatwalk() {
               require
             />
             <CheckBox
-              title="catwalkConditions"
+              title="performanceConditions"
               content={
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+                    href=""
                     target="_blank"
                   >
                     Teilnahmebedingungen
@@ -375,10 +460,10 @@ export default function RegistrationCosplayCatwalk() {
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
                 </p>
               }
-              isChecked={catwalkConditions}
-              inputChange={(value) => setCatwalkConditions(value)}
-              inputRef={refs.catwalkConditions}
-              isError={errors.some((error) => error.field === "catwalkConditions")}
+              isChecked={performanceConditions}
+              inputChange={(value) => setPerformanceConditions(value)}
+              inputRef={refs.performanceConditions}
+              isError={errors.some((error) => error.field === "performanceConditions")}
               require
             />
 
