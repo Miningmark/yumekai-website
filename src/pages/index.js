@@ -36,6 +36,10 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+      
+      <HierKonntIhrUnsTreffen />
+
+      <Spacer />
 
       <AnkundigungCosplayVersteigerung />
 
@@ -54,10 +58,6 @@ export default function Home() {
       <Spacer />
 
       <AnkundigungBall />
-
-      <Spacer />
-
-      <HierKonntIhrUnsTreffen />
 
       <Spacer />
 

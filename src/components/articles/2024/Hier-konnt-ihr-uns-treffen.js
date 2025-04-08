@@ -20,10 +20,13 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>29.03-30.03 GG Bavaria in München</li>
                     <li>12.04.25 Frühlings Gamevention in Kempten</li>
-                    <li>10.05-11.05 Mini Con in Lustenau</li>
-                    <li>17.05.25 Hana und Spring in Königsbrunn</li>
+                    <li>25.04 - 27.04 Animuc in Fürstenfeldbruck</li>
+                    <li>03.05 - 04.05 Kitsucon in Thayngen/ Reiat</li>
+                    <li>10.05 - 11.05 Mini Con in Lustenau</li>
+                    <li>17.05 Hana und Spring in Königsbrunn</li>
+                    <li>24.05 - 25.05 NonkiCon in Spyer</li>
+                    <li>04.06 - 06.06 WieMaiKai in Flörsheim</li>
                   </ul>
                 </>
               }
@@ -45,6 +48,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Frankenmexx in Nürnberg</li>
                     <li>ComicCon in Dornbirn</li>
                     <li>Mishiro in Augsburg</li>
+                    <li>GG Bavaria in München</li>
                   </ul>
                 </>
               }

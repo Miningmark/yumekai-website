@@ -70,7 +70,7 @@ const HomeSliderComponentContent = styled.div`
 `;
 
 export default function HomeSlider() {
-  const duration = 3;
+  const duration = 4;
   const space = "0";
   const controls = false;
   const sliderAlign = "start";
