@@ -21,6 +21,7 @@ const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const ACCEPTED_SOUND_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".mp3", "wav",".mp4"];
 const MAX_FILE_SIZE_MB = 10;
+const MAX_FILE_SIZE_MB_2 = 50;
 
 export default function RegistrationCosplayCatwalk() {
   const [name, setName] = useState("");
@@ -106,12 +107,12 @@ export default function RegistrationCosplayCatwalk() {
       newErrors.push({ field: "artistName", message: artistNameValidation.description });
 
     // Charakter Validierung
-    const characterNameValidation = validateString(characterName, "Charakter", 2, 50, true);
+    const characterNameValidation = validateString(characterName, "Charakter Name", 2, 50, true);
     if (!characterNameValidation.check)
       newErrors.push({ field: "characterName", message: characterNameValidation.description });
 
     // Charakter Herkunft Validierung
-    const characterOriginValidation = validateString(characterOrigin, "Charakter", 2, 50, true);
+    const characterOriginValidation = validateString(characterOrigin, "Charakter Herkunft", 2, 50, true);
     if (!characterOriginValidation.check)
       newErrors.push({ field: "characterOrigin", message: characterOriginValidation.description });
 
@@ -325,7 +326,7 @@ export default function RegistrationCosplayCatwalk() {
             />
 
             <p>
-              Abgabe Vorlage/Referenz des Cosplays (max. 3 Dateien
+              Charakter Vorlage/Referenz des Cosplays (max. 3 Dateien
               mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
@@ -364,7 +365,7 @@ export default function RegistrationCosplayCatwalk() {
 
             <p>
               Hintergrund für den Auftritt Bild,Ton oder Video (max. 4 Dateien
-              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, mp3, wav, mp4)
+              mit je. {MAX_FILE_SIZE_MB_2}MB, jpg, jpeg, png, webp, mp3, wav, mp4)
             </p>
             <MultiFileUpload
               inputRef={refs.dataField3}
