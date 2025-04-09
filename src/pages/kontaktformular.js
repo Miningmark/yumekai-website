@@ -111,12 +111,12 @@ export default function Kontaktformular() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name,
-          lastName: lastName || null,
+          name: name.trim(),
+          lastName: lastName.trim() || null,
           email: email.trim().toLowerCase(),
           area,
-          subject,
-          message,
+          subject: subject.trim(),
+          message: message.trim(),
           privacyPolicy,
         }),
       });
