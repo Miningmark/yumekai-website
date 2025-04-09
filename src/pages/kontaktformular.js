@@ -113,7 +113,7 @@ export default function Kontaktformular() {
         body: JSON.stringify({
           name,
           lastName: lastName || null,
-          email,
+          email: email.trim().toLowerCase(),
           area,
           subject,
           message,
