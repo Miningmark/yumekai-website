@@ -50,7 +50,7 @@ const parseForm = (req) => {
   return new Promise((resolve, reject) => {
     const form = formidable({
       multiples: true,
-      uploadDir: path.join(process.cwd(), "/private/catwalk"),
+      uploadDir: path.join(process.cwd(), "/private/performance"),
       keepExtensions: true,
     });
     form.parse(req, (err, fields, files) => {
@@ -88,6 +88,9 @@ export default async function handler(req, res) {
   const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   const { fields, files } = await parseForm(req);
+
+  //console.log("Fields:", fields);
+  //console.log("Files:", files);
 
   const name = fields.name[0];
   const lastName = fields.lastName[0];
@@ -132,11 +135,16 @@ export default async function handler(req, res) {
     errors.push({ field: "name", message: characterNameValidation.description });
 
   // Charakter Validierung
-  const characterOriginValidation = validateString(characterOrigin, "Charakter Herkunft", 2, 50, true);
+  const characterOriginValidation = validateString(
+    characterOrigin,
+    "Charakter Herkunft",
+    2,
+    50,
+    true
+  );
   if (!characterOriginValidation.check)
     errors.push({ field: "name", message: characterOriginValidation.description });
 
-    
   //Nachricht Validierung
   const messageValidation = validateString(message, "Nachricht", 0, 2500);
   if (!messageValidation.check)
@@ -161,10 +169,10 @@ export default async function handler(req, res) {
       message: "Bildrechte müssen bestätigt werden",
     });
   }
-  if (typeof catwalkConditions !== "boolean" || catwalkConditions === false) {
+  if (typeof performanceConditions !== "boolean" || performanceConditions === false) {
     errors.push({
-      field: "catwalkConditions",
-      message: "Catwalk-Bedingungen müssen bestätigt werden",
+      field: "performanceConditions",
+      message: "Performance-Bedingungen müssen bestätigt werden",
     });
   }
 
@@ -180,6 +188,7 @@ export default async function handler(req, res) {
     });
 
     await logError(clientIp, "Performance Anmeldung", email, errorlog);
+    //console.error("Fehler bei der Validierung:", errorlog);
     return res.status(400).json({ errors });
   }
 
@@ -205,29 +214,27 @@ export default async function handler(req, res) {
     await fs.mkdir(uploadDir, { recursive: true });
 
     const files1 = Object.keys(files)
-      .filter((key) => key.startsWith("file"))
+      .filter((key) => key.startsWith("file1"))
       .map((key) => files[key]) // Die Werte der entsprechenden Keys extrahieren
       .flat(); // Falls die Dateien als Array gespeichert sind, flach machen
 
-    const files2 = Object.keys(files2)
-    .filter((key) => key.startsWith("file2"))
-    .map((key) => files2[key]) // Die Werte der entsprechenden Keys extrahieren
-    .flat(); // Falls die Dateien als Array gespeichert sind, flach machen
+    const files2 = Object.keys(files)
+      .filter((key) => key.startsWith("file2"))
+      .map((key) => files[key]) // Die Werte der entsprechenden Keys extrahieren
+      .flat(); // Falls die Dateien als Array gespeichert sind, flach machen
 
-    const files3 = Object.keys(files3)
-    .filter((key) => key.startsWith("file3"))
-    .map((key) => files3[key]) // Die Werte der entsprechenden Keys extrahieren
-    .flat(); // Falls die Dateien als Array gespeichert sind, flach machen
+    const files3 = Object.keys(files)
+      .filter((key) => key.startsWith("file3"))
+      .map((key) => files[key]) // Die Werte der entsprechenden Keys extrahieren
+      .flat(); // Falls die Dateien als Array gespeichert sind, flach machen
 
+    //console.log("FILES 1:", files1);
+    //console.log("FILES 2:", files2);
+    //console.log("FILES 3:", files3);
 
-    console.log("FILES 1:", files1);
-    console.log("FILES 2:", files2);
-    console.log("FILES 3:", files3);
-
-
-    const filePath = [];
-    const filePath2 = [];
-    const filePath3 = [];
+    let filePath = [];
+    let filePath2 = [];
+    let filePath3 = [];
 
     // `for...of` Schleife für asynchrone Verarbeitung
     for (const file of files1) {
@@ -236,20 +243,26 @@ export default async function handler(req, res) {
 
       await fs.rename(file.filepath, uploadPath);
 
+      //console.log("uploadPath:", uploadPath);
+
       const publicPath = `/performance/${filename}`;
       filePath.push(publicPath);
     }
+
+    //console.log("filePath:", filePath);
 
     // `for...of` Schleife für asynchrone Verarbeitung
     for (const file of files2) {
       const filename = Date.now() + "_" + file.originalFilename.replaceAll(" ", "_");
       const uploadPath = path.join(uploadDir, filename);
 
-      await fs.rename(file.filepath2, uploadPath);
+      await fs.rename(file.filepath, uploadPath);
 
       const publicPath = `/performance/${filename}`;
       filePath2.push(publicPath);
     }
+
+    //console.log("filePath2:", filePath2);
 
     // `for...of` Schleife für asynchrone Verarbeitung
     for (const file of files3) {
@@ -262,11 +275,11 @@ export default async function handler(req, res) {
       filePath3.push(publicPath);
     }
 
-
+    //console.log("filePath3:", filePath3);
 
     // Inserting the new data record
     const query = `
-      INSERT INTO registration_catwalk (
+      INSERT INTO registration_performance (
           client_ip,
           name,
           last_name,
@@ -278,10 +291,10 @@ export default async function handler(req, res) {
           privacy_policy,
           data_storage,
           picture_rights,
-          catwalk_conditions,
+          performance_conditions,
           referenz_file_url,
           image_file_url,
-          background_file_url,
+          background_file_url
       ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
 
     const values = [
@@ -291,6 +304,7 @@ export default async function handler(req, res) {
       email,
       artistName || null,
       characterName,
+      characterOrigin,
       message || null,
       privacyPolicy,
       dataStorage,
@@ -317,9 +331,10 @@ export default async function handler(req, res) {
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {
     console.error("Fehler beim Einfügen der Daten:", error);
-    await logError(clientIp, "Catwalk Anmeldung", email, [
+    await logError(clientIp, "Performance Anmeldung", email, [
       { field: "server", message: error.message },
     ]);
+    //console.error("Fehler beim Einfügen der Daten:", error.message);
     res.status(500).json({ error: "Daten konnten nicht gespeichert werden." });
   }
 }
