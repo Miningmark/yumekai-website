@@ -37,7 +37,7 @@ export default function emailRegistrationPerformance({
       <br />
       Charakter: ${characterName}
       <br/>
-      Charakter Herkunft: ${characterOrigin}
+      Charakter Ursprung: ${characterOrigin}
       <br />
       Nachricht: ${message || "Keine Nachricht angegeben"}
       <br />

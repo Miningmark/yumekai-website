@@ -390,7 +390,7 @@ export default function RegistrationCosplayCatwalk() {
               require
             />
             <InputOptionInput
-              title="Charakter Herkunft"
+              title="Charakter Ursprung"
               inputText={characterOrigin}
               inputChange={(value) => setCharacterOrigin(value)}
               inputRef={refs.characterOrigin}
