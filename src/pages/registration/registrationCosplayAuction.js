@@ -159,15 +159,15 @@ export default function RegistrationCosplayAuction() {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("lastName", lastName);
+    formData.append("name", name.trim());
+    formData.append("lastName", lastName.trim());
     formData.append("birthdate", birthDate);
-    formData.append("email", email);
-    formData.append("artistName", artistName);
-    formData.append("characterName", characterName);
-    formData.append("characterOrigin", characterOrigin);
-    formData.append("hobby", hobby);
-    formData.append("message", message);
+    formData.append("email", email.trim().toLowerCase());
+    formData.append("artistName", artistName.trim());
+    formData.append("characterName", characterName.trim());
+    formData.append("characterOrigin", characterOrigin.trim());
+    formData.append("hobby", hobby.trim());
+    formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("ageCheck", ageCheck);

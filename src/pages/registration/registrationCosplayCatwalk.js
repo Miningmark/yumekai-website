@@ -140,12 +140,12 @@ export default function RegistrationCosplayCatwalk() {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("lastName", lastName);
-    formData.append("email", email);
-    formData.append("artistName", artistName);
-    formData.append("characterName", characterName);
-    formData.append("message", message);
+    formData.append("name", name.trim());
+    formData.append("lastName", lastName.trim());
+    formData.append("email", email.trim().toLowerCase());
+    formData.append("artistName", artistName.trim());
+    formData.append("characterName", characterName.trim());
+    formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);

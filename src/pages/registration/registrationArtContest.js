@@ -157,14 +157,14 @@ export default function RegistrationArtContest() {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("lastName", lastName);
-    formData.append("email", email);
-    formData.append("artistName", artistName);
-    formData.append("imageTitle", imageTitle);
-    formData.append("website", website);
-    formData.append("instagram", instagram);
-    formData.append("message", message);
+    formData.append("name", name.trim());
+    formData.append("lastName", lastName.trim());
+    formData.append("email", email.trim().toLowerCase());
+    formData.append("artistName", artistName.trim());
+    formData.append("imageTitle", imageTitle.trim());
+    formData.append("website", website.trim());
+    formData.append("instagram", instagram.trim());
+    formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
