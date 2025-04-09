@@ -24,12 +24,12 @@ export default function AnkundigungMion() {
             Wir freuen uns euch ankündigen zu können, dass MION auf der
             YumeKai2025 auftreten wird! MION ist eine presigekrönte Sängerin und
             Songwriterin aus Nagoya. Aichi landete bei den Oricon Single Charts
-            auf Platz 1 mit ihrem Hit 'Summer Magic'.
+            auf Platz 1 mit ihrem Hit &apos;Summer Magic&apos;.
             <br />
             <br />
             Als sie 16 war gewann sie den Outstanding Performance Award beim
-            YAMAHA's Music Revolution Wettbewerb. Durch diesen Gewinn konnte
-            MION ihre professionelle Karriere starten.
+            YAMAHA&apos;s Music Revolution Wettbewerb. Durch diesen Gewinn
+            konnte MION ihre professionelle Karriere starten.
             <br />
             <br />
             In ihrer Heimat war MION bereits 10 Jahre als Sängerin und
