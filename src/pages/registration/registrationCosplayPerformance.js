@@ -1,7 +1,10 @@
 import { useState, useRef } from "react";
 
 //Components
-import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
+import {
+  InputOptionTextArea,
+  InputOptionInput,
+} from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -19,7 +22,15 @@ import validateString from "@/util/inputCheck";
 
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
-const ACCEPTED_SOUND_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".mp3", "wav",".mp4"];
+const ACCEPTED_SOUND_IMAGE_EXTENSIONS = [
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".mp3",
+  "wav",
+  ".mp4",
+];
 const MAX_FILE_SIZE_MB = 10;
 const MAX_FILE_SIZE_MB_2 = 50;
 
@@ -88,9 +99,18 @@ export default function RegistrationCosplayCatwalk() {
       newErrors.push({ field: "name", message: nameValidation.description });
 
     // Nachname Validierung
-    const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+    const lastNameValidation = validateString(
+      lastName,
+      "Nachname",
+      2,
+      50,
+      true
+    );
     if (!lastNameValidation.check)
-      newErrors.push({ field: "lastName", message: lastNameValidation.description });
+      newErrors.push({
+        field: "lastName",
+        message: lastNameValidation.description,
+      });
 
     // Email Validierung
     const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
@@ -99,47 +119,94 @@ export default function RegistrationCosplayCatwalk() {
 
     // Email Bestätigung
     if (email !== confirmEmail)
-      newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
+      newErrors.push({
+        field: "confirmEmail",
+        message: "E-Mail stimmt nicht überein",
+      });
 
     // Künstlername Validierung
-    const artistNameValidation = validateString(artistName, "Künstlername", 2, 50);
+    const artistNameValidation = validateString(
+      artistName,
+      "Künstlername",
+      2,
+      50
+    );
     if (!artistNameValidation.check)
-      newErrors.push({ field: "artistName", message: artistNameValidation.description });
+      newErrors.push({
+        field: "artistName",
+        message: artistNameValidation.description,
+      });
 
     // Charakter Validierung
-    const characterNameValidation = validateString(characterName, "Charakter Name", 2, 50, true);
+    const characterNameValidation = validateString(
+      characterName,
+      "Charakter Name",
+      2,
+      50,
+      true
+    );
     if (!characterNameValidation.check)
-      newErrors.push({ field: "characterName", message: characterNameValidation.description });
+      newErrors.push({
+        field: "characterName",
+        message: characterNameValidation.description,
+      });
 
     // Charakter Herkunft Validierung
-    const characterOriginValidation = validateString(characterOrigin, "Charakter Herkunft", 2, 50, true);
+    const characterOriginValidation = validateString(
+      characterOrigin,
+      "Charakter Herkunft",
+      2,
+      50,
+      true
+    );
     if (!characterOriginValidation.check)
-      newErrors.push({ field: "characterOrigin", message: characterOriginValidation.description });
+      newErrors.push({
+        field: "characterOrigin",
+        message: characterOriginValidation.description,
+      });
 
     //Nachricht Validierung
     const messageValidation = validateString(message, "Nachricht", 0, 2500);
     if (!messageValidation.check)
-      newErrors.push({ field: "message", message: messageValidation.description });
+      newErrors.push({
+        field: "message",
+        message: messageValidation.description,
+      });
 
     //Daten Charakter Referenz
     if (file.length === 0)
-      newErrors.push({ field: "dataField", message: "Charakterreferenz ist ein Pflichtfeld" });
+      newErrors.push({
+        field: "dataField",
+        message: "Charakterreferenz ist ein Pflichtfeld",
+      });
 
     //Daten Charakter Bilder
     if (file2.length === 0)
-      newErrors.push({ field: "dataField", message: "Charakterbild ist ein Pflichtfeld" });
+      newErrors.push({
+        field: "dataField",
+        message: "Charakterbild ist ein Pflichtfeld",
+      });
 
     //Datenschutzerklärung
     if (!privacyPolicy)
-      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
+      newErrors.push({
+        field: "privacyPolicy",
+        message: "Datenschutzerklärung zustimmen",
+      });
 
     //Datenspeicherung
     if (!dataStorage)
-      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
+      newErrors.push({
+        field: "dataStorage",
+        message: "Datenspeicherung muss akzeptiert werden",
+      });
 
     //Bildrechte
     if (!pictureRights)
-      newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
+      newErrors.push({
+        field: "pictureRights",
+        message: "Bildrechte müssen bestätigt werden",
+      });
 
     //Teilnahmebedingungen
     if (!performanceConditions)
@@ -155,7 +222,10 @@ export default function RegistrationCosplayCatwalk() {
       // Scroll to the first error
       const firstError = newErrors[0];
       if (refs[firstError.field]?.current) {
-        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstError.field].current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
         refs[firstError.field].current.focus();
       }
       return;
@@ -224,7 +294,8 @@ export default function RegistrationCosplayCatwalk() {
         setErrors([
           {
             field: "general",
-            message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
+            message:
+              "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
           },
         ]);
       }
@@ -232,7 +303,8 @@ export default function RegistrationCosplayCatwalk() {
       setErrors([
         {
           field: "general",
-          message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
+          message:
+            "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
         },
       ]);
     }
@@ -242,23 +314,24 @@ export default function RegistrationCosplayCatwalk() {
 
   return (
     <>
-      <h1>Anmeldung für die Cosplay Performance </h1>
+      <h1>Anmeldung für den Cosplay Performance Wettbewerb </h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2025!
         <br />
         <br />
         Bitte beachtet die{" "}
-        <StyledLink
-          href=""
-          target="_blank"
-        >
-          Teilnahmebedingungen für den Cosplay Performance
+        <StyledLink href="" target="_blank">
+          Teilnahmebedingungen für den Cosplay Performance Wettbewerb
         </StyledLink>
         .
         <br />
         <br />
-        Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
-        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
+        Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail
+        an:{" "}
+        <StyledLink href="mailto:info@yumekai.de">
+          info@yumekai.de
+        </StyledLink>{" "}
+        oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
       {!success && (
@@ -321,13 +394,15 @@ export default function RegistrationCosplayCatwalk() {
               inputText={characterOrigin}
               inputChange={(value) => setCharacterOrigin(value)}
               inputRef={refs.characterOrigin}
-              isError={errors.some((error) => error.field === "characterOrigin")}
+              isError={errors.some(
+                (error) => error.field === "characterOrigin"
+              )}
               require
             />
 
             <p>
-              Charakter Vorlage/Referenz des Cosplays (max. 3 Dateien
-              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
+              Charakter Vorlage/Referenz des Cosplays (max. 3 Dateien mit je.{" "}
+              {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
               inputRef={refs.dataField}
@@ -339,14 +414,18 @@ export default function RegistrationCosplayCatwalk() {
               maxFileSize={MAX_FILE_SIZE_MB}
               maxFiles={3}
               acceptedExtensions={ACCEPTED_FILE_EXTENSIONS}
-              isError={errors.some((error) => error.field === "dataField") || fileError}
+              isError={
+                errors.some((error) => error.field === "dataField") || fileError
+              }
               setFileError={setFileError}
             />
-            {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
+            {fileError && (
+              <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>
+            )}
 
             <p>
-              Bild des Cosplays (max. 3 Dateien
-              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp)
+              Bild des Cosplays (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}MB,
+              jpg, jpeg, png, webp)
             </p>
             <MultiFileUpload
               inputRef={refs.dataField2}
@@ -358,14 +437,22 @@ export default function RegistrationCosplayCatwalk() {
               maxFileSize={MAX_FILE_SIZE_MB}
               maxFiles={3}
               acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
-              isError={errors.some((error) => error.field === "dataField2") || fileError2}
+              isError={
+                errors.some((error) => error.field === "dataField2") ||
+                fileError2
+              }
               setFileError={setFileError2}
             />
-            {fileError2 && <ErrorText style={{ textAlign: "center" }}>{fileError2}</ErrorText>}
+            {fileError2 && (
+              <ErrorText style={{ textAlign: "center" }}>
+                {fileError2}
+              </ErrorText>
+            )}
 
             <p>
               Hintergrund für den Auftritt Bild,Ton oder Video (max. 4 Dateien
-              mit je. {MAX_FILE_SIZE_MB_2}MB, jpg, jpeg, png, webp, mp3, wav, mp4)
+              mit je. {MAX_FILE_SIZE_MB_2}MB, jpg, jpeg, png, webp, mp3, wav,
+              mp4)
             </p>
             <MultiFileUpload
               inputRef={refs.dataField3}
@@ -377,10 +464,17 @@ export default function RegistrationCosplayCatwalk() {
               maxFileSize={MAX_FILE_SIZE_MB}
               maxFiles={4}
               acceptedExtensions={ACCEPTED_SOUND_IMAGE_EXTENSIONS}
-              isError={errors.some((error) => error.field === "dataField3") || fileError3}
+              isError={
+                errors.some((error) => error.field === "dataField3") ||
+                fileError3
+              }
               setFileError={setFileError3}
             />
-            {fileError3 && <ErrorText style={{ textAlign: "center" }}>{fileError3}</ErrorText>}
+            {fileError3 && (
+              <ErrorText style={{ textAlign: "center" }}>
+                {fileError3}
+              </ErrorText>
+            )}
 
             <InputOptionTextArea
               title="Nachricht"
@@ -401,9 +495,10 @@ export default function RegistrationCosplayCatwalk() {
                   <StyledLink href="/datenschutz" target="_blank">
                     Datenschutzerklärung
                   </StyledLink>{" "}
-                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
-                  Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
-                  habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden,
+                  dass ich die Zustimmung zur Datenschutzerklärung jederzeit
+                  widerrufen kann. Über den Widerruf habe ich die Passage in der
+                  Datenschutzerklärung gelesen und verstanden.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }
@@ -417,9 +512,10 @@ export default function RegistrationCosplayCatwalk() {
               title="dataStorage"
               content={
                 <p>
-                  Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
-                  elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung
-                  an die zuständigen Bereiche weitergeleitet werden dürfen.
+                  Ich bin damit einverstanden, dass meine Daten durch die
+                  Dreamfly-Events UG elektronisch gespeichert werden und zum
+                  Zweck der Durchführung der Veranstaltung an die zuständigen
+                  Bereiche weitergeleitet werden dürfen.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }
@@ -433,12 +529,14 @@ export default function RegistrationCosplayCatwalk() {
               title="pictureRights"
               content={
                 <p>
-                  Hiermit bestätige ich, dass die Bildrechte der hochgeladenen Bilder bei mir
-                  liegen. Ich bin damit einverstanden und genehmige der Dreamfly-Events UG das hier
-                  eingereichte Bildmaterial zu ihren Zwecken sowohl digital als auch in gedruckter
-                  Form (z.B. Werbung, Social Media, Programmheft, Webseite, etc.) nutzen zu dürfen.
-                  Alternativ - sofern kein Bildmaterial hochgeladen worden ist - dass kein
-                  Bildmaterial eingereicht wurde.<RequiredNote>*</RequiredNote>
+                  Hiermit bestätige ich, dass die Bildrechte der hochgeladenen
+                  Bilder bei mir liegen. Ich bin damit einverstanden und
+                  genehmige der Dreamfly-Events UG das hier eingereichte
+                  Bildmaterial zu ihren Zwecken sowohl digital als auch in
+                  gedruckter Form (z.B. Werbung, Social Media, Programmheft,
+                  Webseite, etc.) nutzen zu dürfen. Alternativ - sofern kein
+                  Bildmaterial hochgeladen worden ist - dass kein Bildmaterial
+                  eingereicht wurde.<RequiredNote>*</RequiredNote>
                 </p>
               }
               isChecked={pictureRights}
@@ -452,10 +550,7 @@ export default function RegistrationCosplayCatwalk() {
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink
-                    href=""
-                    target="_blank"
-                  >
+                  <StyledLink href="" target="_blank">
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
@@ -464,7 +559,9 @@ export default function RegistrationCosplayCatwalk() {
               isChecked={performanceConditions}
               inputChange={(value) => setPerformanceConditions(value)}
               inputRef={refs.performanceConditions}
-              isError={errors.some((error) => error.field === "performanceConditions")}
+              isError={errors.some(
+                (error) => error.field === "performanceConditions"
+              )}
               require
             />
 
