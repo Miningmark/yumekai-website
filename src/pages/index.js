@@ -30,6 +30,7 @@ import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe"
 import AnkundigungCosplayVersteigerung from "@/components/articles/2025/AnkundigungCosplayVersteigerung";
 import AnkundigungZeichenwettbewerb from "@/components/articles/2025/AnkundigungZeichenwettbewerb";
 import AnkundigungCUG from "@/components/articles/2025/AkundigungCUG";
+import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 
 export default function Home() {
   return (
@@ -43,6 +44,10 @@ export default function Home() {
         rund um die YumeKai.
       </p>
       <SpacerEmpty />
+
+      <AnkundigungCoheki />
+
+      <Spacer />
 
       <AnkundigungCUG />
 
