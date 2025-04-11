@@ -369,6 +369,7 @@ export default function RegistrationCosplayCatwalk() {
               jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
+              name="referenz"
               inputRef={refs.dataField}
               previewUrl={previewUrl}
               files={file}
@@ -387,6 +388,7 @@ export default function RegistrationCosplayCatwalk() {
               Bild des Cosplays (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp)
             </p>
             <MultiFileUpload
+              name="image"
               inputRef={refs.dataField2}
               previewUrl={previewUrl2}
               files={file2}
@@ -406,6 +408,7 @@ export default function RegistrationCosplayCatwalk() {
               {MAX_FILE_SIZE_MB_2}MB, jpg, jpeg, png, webp, mp3, wav, mp4)
             </p>
             <MultiFileUpload
+              name="background"
               inputRef={refs.dataField3}
               previewUrl={previewUrl3}
               files={file3}
