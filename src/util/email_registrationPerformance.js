@@ -23,7 +23,7 @@ export default function emailRegistrationPerformance({
     </div>
     <div style="font-weight:normal;padding:0px 24px 16px 24px">
       <br/>
-      Du hast dich für den Cosplay-Catwalk auf der YumeKai 2025 beworben. Wir haben deine Anmeldung erhalten und werden uns bei dir melden.
+      Du hast dich für den Cosplay-Performance Wettbewerb auf der YumeKai 2025 beworben. Wir haben deine Anmeldung erhalten und werden uns bei dir melden.
       Nachfolgend findest du eine Kopie deiner Anmeldung:
       <br />
       <br />
