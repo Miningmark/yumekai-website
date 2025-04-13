@@ -290,7 +290,10 @@ export default function RegistrationCosplayCatwalk() {
         <br />
         <br />
         Bitte beachtet die{" "}
-        <StyledLink href="" target="_blank">
+        <StyledLink
+          href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+          target="_blank"
+        >
           Teilnahmebedingungen für den Cosplay Performance Wettbewerb
         </StyledLink>
         .
@@ -493,7 +496,10 @@ export default function RegistrationCosplayCatwalk() {
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink href="" target="_blank">
+                  <StyledLink
+                    href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+                    target="_blank"
+                  >
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
