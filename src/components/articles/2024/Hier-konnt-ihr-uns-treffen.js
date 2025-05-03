@@ -20,8 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>12.04.25 Frühlings Gamevention in Kempten</li>
-                    <li>25.04 - 27.04 Animuc in Fürstenfeldbruck</li>
                     <li>03.05 - 04.05 Kitsucon in Thayngen/ Reiat</li>
                     <li>10.05 - 11.05 Mini Con in Lustenau</li>
                     <li>17.05 Hana und Spring in Königsbrunn</li>
@@ -34,8 +32,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>Hanami in Koblenz</li>
-                    <li>Loricon in Seefeld in Tirol</li>
                     <li>Wie.Mai.Kai in Flörsheim</li>
                     <li>Cosday² in Frankfurt</li>
                     <li>DGT in Aach am Bodensee</li>
@@ -49,6 +45,8 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>ComicCon in Dornbirn</li>
                     <li>Mishiro in Augsburg</li>
                     <li>GG Bavaria in München</li>
+                    <li>Frühlings Gamevention in Kempten</li>
+                    <li>Animuc in Fürstenfeldbruck</li>
                   </ul>
                 </>
               }
