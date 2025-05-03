@@ -31,7 +31,6 @@ const menuItems = [
       { name: "Night-II", path: "/review/yumekai-night-II-2024" },
     ],
   },
-  { name: "Anmeldungen für YumeKai", path: "/voranmeldungen" },
   { name: "Tickets", path: "/shop" },
 ];
 

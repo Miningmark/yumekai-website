@@ -5,7 +5,7 @@ import Columns2 from "@/components/elements/Columns2";
 import { StyledButton, UnstyledLink } from "@/components/styledComponents";
 import FlippingCard from "@/components/elements/FlippingCard";
 
-//logos
+//images
 import hiruHandy from "/public/assets/logo/Hiru-Handy.webp";
 
 export default function HierKonntIhrUnsTreffen() {
