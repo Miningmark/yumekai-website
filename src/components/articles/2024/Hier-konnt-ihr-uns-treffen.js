@@ -20,10 +20,10 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>03.05 - 04.05 Kitsucon in Thayngen/ Reiat</li>
                     <li>10.05 - 11.05 Mini Con in Lustenau</li>
                     <li>17.05 Hana und Spring in Königsbrunn</li>
                     <li>24.05 - 25.05 NonkiCon in Spyer</li>
+                    <li>31.05 - 01.06 YumeKai in Memmingen</li>
                     <li>04.06 - 06.06 WieMaiKai in Flörsheim</li>
                   </ul>
                 </>
@@ -47,6 +47,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>GG Bavaria in München</li>
                     <li>Frühlings Gamevention in Kempten</li>
                     <li>Animuc in Fürstenfeldbruck</li>
+                    <li>Kitsucon in Thayngen/Reiat</li>
                   </ul>
                 </>
               }
