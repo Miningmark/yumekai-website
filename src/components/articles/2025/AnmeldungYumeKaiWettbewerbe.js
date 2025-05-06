@@ -35,7 +35,39 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                     zur Anmeldung
                 </StyledLinkAsButton>
             </div>
+
+            <div>
+                <h3>Cosplay Crafting Wettbewerb</h3>
+                <p>
+                    Du baust deine eigenen Cosplays? Wie wäre es, wenn du uns dein können beim Cosplay Crafting Wettbewerb zeigst.
+                    <br />
+                    <StyledLink href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf" target="_blank">
+                        Teilnahmebedingungen Cosplay Crafting Wettbewerb
+                    </StyledLink>
+                </p>
+                <StyledLinkAsButton href={"/registration/registrationCosplayCatwalk"} target="_blank" rel="noopener noreferrer">
+                    zur Anmeldung
+                </StyledLinkAsButton>
+            </div>
          
+            <div>
+                <h3>Cosplay Performance Wettbewerb</h3>
+                <p>
+                    Du baust deine eigenen Cosplays? Wie wäre es, wenn du uns dein können auf der Bühne zeigst.
+                    <br />
+                    <StyledLink href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf" target="_blank">
+                        Teilnahmebedingungen Cosplay Performance Wettbewerb
+                    </StyledLink>
+                </p>
+                <StyledLinkAsButton href={"/registration/registrationCosplayPerformance"} target="_blank" rel="noopener noreferrer">
+                    zur Anmeldung
+                </StyledLinkAsButton>
+            </div>
+
+            <p>
+                Bei allen Wettbewerben erwarten dich tolle Preise, es lohnt sich teilzunehmen.
+            </p>
+
         </DynamicContent>
 
         <DynamicContent

@@ -49,7 +49,7 @@ export default function Home() {
 
       <AnmeldungYumeKaiWettbewerbe/>
 
-      <SpacerEmpty />
+      <Spacer />
 
       <AnkundigungMion />
 
