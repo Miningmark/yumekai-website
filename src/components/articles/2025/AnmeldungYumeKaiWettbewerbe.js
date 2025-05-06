@@ -10,7 +10,7 @@ import hiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
 export default function AnmeldungYumeKaiWettbewerbe() {
   return (
     <>
-        <h2>YumeKai Wettbewerbe</h2>
+        <h2>YumeKai Wettbewerbs Anmeldungen</h2>
 
         <div
         style={{
@@ -23,6 +23,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
       >
         <DynamicContent $widthpercent={70}>
             <div>
+                <h3>Zeichenwettbewerb</h3>
                 <p>
                     Du bist kreativ? Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben erweckst? Lass deiner Fantasie freien lauf.
                     <br />
@@ -30,7 +31,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                         Teilnahmebedingungen Zeichenwettbewerb
                     </StyledLink>
                 </p>
-                <StyledLinkAsButton href={"/registration/registrationArtContest"} target="_blank">
+                <StyledLinkAsButton href={"/registration/registrationArtContest"} target="_blank" rel="noopener noreferrer">
                     zur Anmeldung
                 </StyledLinkAsButton>
             </div>
