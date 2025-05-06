@@ -2,7 +2,7 @@ import Image from "next/image";
 
 //Components
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
-import { Spacer, StyledButton, StyledLink } from "@/components/styledComponents";
+import { Spacer, StyledButton, StyledLink, DynamicContent } from "@/components/styledComponents";
 
 //Images
 import hiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
@@ -24,7 +24,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
         <DynamicContent $widthpercent={70}>
             <div>
                 <p>
-                    Du bist kreativ? Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stiel zum Leben erweckst? Lass deiner Fantasie freien lauf.
+                    Du bist kreativ? Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben erweckst? Lass deiner Fantasie freien lauf.
                     <br />
                     <StyledLink href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf" target="_blank">
                         Teilnahmebedingungen Zeichenwettbewerb
