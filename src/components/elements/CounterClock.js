@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 // images
 import hiruImage from "/public/assets/logo/Hiru.webp";
 
-export default function CounterClock({ finalDate, imageURL = hiruImage }) {
+export default function CounterClock({ finalDate, imageURL = hiruImage, headline = "" }) {
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
 
   function getTimeRemaining() {
@@ -31,7 +31,7 @@ export default function CounterClock({ finalDate, imageURL = hiruImage }) {
     <Container>
       <ClockWrapper>
         <Wrapper>
-          <Headline>Bald ist es soweit!</Headline>
+          <Headline>{headline}</Headline>
           <Time>
             <TimeBlock>
               <TimeNumber>
