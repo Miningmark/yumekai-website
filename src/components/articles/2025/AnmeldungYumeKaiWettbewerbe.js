@@ -26,7 +26,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                 Bei allen Wettbewerben erwarten dich tolle Preise, es lohnt sich teilzunehmen.
             </p>
 
-            <div style={{marginBottom: "15px"}}>
+            <div style={{marginBottom: "20px"}}>
                 <h3>Zeichenwettbewerb</h3>
                 <p>
                     Du bist kreativ? Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben erweckst? Lass deiner Fantasie freien lauf.
@@ -40,7 +40,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                 </StyledLinkAsButton>
             </div>
 
-            <div style={{marginBottom: "15px"}}>
+            <div style={{marginBottom: "20px"}}>
                 <h3>Cosplay Crafting Wettbewerb</h3>
                 <p>
                     Du baust deine eigenen Cosplays? Wie wäre es, wenn du uns dein Können beim Cosplay Crafting Wettbewerb zeigst.
@@ -54,7 +54,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                 </StyledLinkAsButton>
             </div>
          
-            <div style={{marginBottom: "15px"}}>
+            <div style={{marginBottom: "20px"}}>
                 <h3>Cosplay Performance Wettbewerb</h3>
                 <p>
                     Du liebst es zu performen und hast ein Cosplay? Dann schau doch bei unserem Cosplay Performance Wettbewerb vorbei und zeige dein Können auf der großen Bühne.
