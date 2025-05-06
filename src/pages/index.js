@@ -28,6 +28,7 @@ import AnkundigungCUG from "@/components/articles/2025/AkundigungCUG";
 import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 import CounterClock from "@/components/elements/CounterClock";
+import AnmeldungYumeKaiWettbewerbe from "@/components/articles/2025/AnmeldungYumeKaiWettbewerbe";
 
 export default function Home() {
   return (
@@ -44,6 +45,10 @@ export default function Home() {
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
+      <SpacerEmpty />
+
+      <AnmeldungYumeKaiWettbewerbe/>
+
       <SpacerEmpty />
 
       <AnkundigungMion />
