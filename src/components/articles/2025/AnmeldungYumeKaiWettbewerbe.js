@@ -22,7 +22,11 @@ export default function AnmeldungYumeKaiWettbewerbe() {
         }}
       >
         <DynamicContent $widthpercent={70}>
-            <div>
+            <p style={{marginBottom: "15px"}}>
+                Bei allen Wettbewerben erwarten dich tolle Preise, es lohnt sich teilzunehmen.
+            </p>
+
+            <div style={{marginBottom: "15px"}}>
                 <h3>Zeichenwettbewerb</h3>
                 <p>
                     Du bist kreativ? Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben erweckst? Lass deiner Fantasie freien lauf.
@@ -36,10 +40,10 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                 </StyledLinkAsButton>
             </div>
 
-            <div>
+            <div style={{marginBottom: "15px"}}>
                 <h3>Cosplay Crafting Wettbewerb</h3>
                 <p>
-                    Du baust deine eigenen Cosplays? Wie wäre es, wenn du uns dein können beim Cosplay Crafting Wettbewerb zeigst.
+                    Du baust deine eigenen Cosplays? Wie wäre es, wenn du uns dein Können beim Cosplay Crafting Wettbewerb zeigst.
                     <br />
                     <StyledLink href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf" target="_blank">
                         Teilnahmebedingungen Cosplay Crafting Wettbewerb
@@ -50,10 +54,10 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                 </StyledLinkAsButton>
             </div>
          
-            <div>
+            <div style={{marginBottom: "15px"}}>
                 <h3>Cosplay Performance Wettbewerb</h3>
                 <p>
-                    Du baust deine eigenen Cosplays? Wie wäre es, wenn du uns dein können auf der Bühne zeigst.
+                    Du liebst es zu performen und hast ein Cosplay? Dann schau doch bei unserem Cosplay Performance Wettbewerb vorbei und zeige dein Können auf der großen Bühne.
                     <br />
                     <StyledLink href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf" target="_blank">
                         Teilnahmebedingungen Cosplay Performance Wettbewerb
@@ -64,9 +68,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
                 </StyledLinkAsButton>
             </div>
 
-            <p>
-                Bei allen Wettbewerben erwarten dich tolle Preise, es lohnt sich teilzunehmen.
-            </p>
+           
 
         </DynamicContent>
 
