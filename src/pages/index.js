@@ -6,13 +6,8 @@ import SponsorsComponent from "@/components/home/Sponsors";
 import HomeSlider from "@/components/home/HomeSlider";
 
 //Articles
-import AnkundigungYumeKai2025 from "@/components/articles/2024/Ankundigung-YumeKai2025";
-
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";
-
-import Spendenubergabe from "@/components/articles/2024/Spendenubergabe";
 import AnkundigungJuliaMeyen from "@/components/articles/2024/AnkundigungJuliaMeyen";
-import EroffnungTicketShop from "@/components/articles/2024/EroffnungTicketShop";
 import AnkundigungPetraScheeser from "@/components/articles/2025/AnkundigungPetraScheeser";
 import AnkundigungDominikAuer from "@/components/articles/2025/AnkundigungDominikAuer";
 import PhotoContest1 from "@/components/articles/2025/PhotoContest1";
@@ -111,19 +106,7 @@ export default function Home() {
 
       <Spacer />
 
-      <EroffnungTicketShop />
-
-      <Spacer />
-
       <AnkundigungJuliaMeyen />
-
-      <Spacer />
-
-      <Spendenubergabe />
-
-      <Spacer />
-
-      <AnkundigungYumeKai2025 />
 
       <Spacer />
 
