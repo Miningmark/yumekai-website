@@ -24,6 +24,7 @@ import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 import CounterClock from "@/components/elements/CounterClock";
 import AnmeldungYumeKaiWettbewerbe from "@/components/articles/2025/AnmeldungYumeKaiWettbewerbe";
+import Programm2025 from "@/components/articles/2025/Programm2025";
 
 export default function Home() {
   return (
@@ -41,6 +42,10 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+
+      <Programm2025/>
+
+      <Spacer />
 
       <AnmeldungYumeKaiWettbewerbe/>
 
