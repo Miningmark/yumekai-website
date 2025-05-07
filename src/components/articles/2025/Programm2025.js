@@ -19,7 +19,7 @@ export default function Programm2025() {
         <h2>YumeKai 2025</h2>
 
         <p>Das vollständige Programm der YumeKai wird es hier ab dem 17.05.2025 zu sehen geben.</p>
-        <DisabledButton>zum Programm</DisabledButton>
+        
 
         <h3>Öffnungszeiten</h3>
         <p>
