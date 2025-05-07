@@ -36,7 +36,7 @@ export default function Home() {
       <HomeSlider />
       <SpacerEmpty />
 
-      <CounterClock finalDate="2025-05-31T10:00:00Z" headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."/>
+      <CounterClock finalDate="2025-05-31T08:00:00Z" headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."/> {/*UTC Time */}
 
       <SpacerEmpty />
 
