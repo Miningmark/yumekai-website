@@ -1,12 +1,9 @@
-import Image from "next/image";
 import styled from "styled-components";
 
 //Components
-import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
-import { Spacer, StyledButton, StyledLink, DynamicContent } from "@/components/styledComponents";
+import { Spacer, StyledButton, StyledLink } from "@/components/styledComponents";
 
 //Images
-import hiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
 
 const DisabledButton = styled(StyledButton)`
   background-color: gray;
@@ -20,7 +17,10 @@ export default function Programm2025() {
         <h2>YumeKai 2025</h2>
 
         <p>Das vollständige Programm der YumeKai wird es hier ab dem 17.05.2025 zu sehen geben.</p>
-        <DisabledButton>zum Programm</DisabledButton>
+        <div>
+            <DisabledButton>zum Programm</DisabledButton>
+        </div>
+        
 
         <h3>Öffnungszeiten</h3>
         <p>
