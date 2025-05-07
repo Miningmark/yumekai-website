@@ -74,7 +74,7 @@ export default function AnmeldungYumeKaiWettbewerbe() {
 
         <DynamicContent
           $widthpercent={30}
-          $maxwidth={300}
+          //$maxwidth={300}
           $align="center"
           $justify="center"
         >
