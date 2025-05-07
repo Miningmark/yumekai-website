@@ -14,7 +14,9 @@ export default function Shop() {
 
       <h1>Ticketshop</h1>
       <p>
-        Der Ticketvorverkauf startet am 15.12.2024 um 16:00 Uhr.
+        <strong>
+          Die Sammler Tickets sowie Goldtickets gibt es nur bis zum 16.05.2025 um 23:59 Uhr.
+        </strong>
         <br />
         Falls das Ticketshop Widget nicht lädt kannst du den Ticketshop unter{" "}
         <StyledLink href="https://pretix.eu/Dreamfly-Events/yumekai-25/" target="_blank">
