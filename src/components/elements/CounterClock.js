@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 // images
-import hiruImage from "/public/assets/logo/Hiru.webp";
+import hiruImage from "/public/assets/hirus/Hiru.png";
 
 export default function CounterClock({ finalDate, imageURL = hiruImage, headline = "" }) {
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
