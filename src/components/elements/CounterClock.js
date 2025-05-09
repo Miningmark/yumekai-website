@@ -1,31 +1,45 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-// images
 import hiruImage from "/public/assets/logo/Hiru.webp";
 
-export default function CounterClock({ finalDate, imageURL = hiruImage, headline = "" }) {
-  const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
+function getTimeRemaining(finalDate) {
+  const targetTime = finalDate instanceof Date ? finalDate.getTime() : Date.parse(finalDate);
+  const total = targetTime - Date.now();
 
-  function getTimeRemaining() {
-    const targetTime = finalDate instanceof Date ? finalDate.getTime() : Date.parse(finalDate);
-    const total = targetTime - Date.now();
-    const seconds = Math.max(Math.floor((total / 1000) % 60), 0);
-    const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0);
-    const hours = Math.max(Math.floor((total / (1000 * 60 * 60)) % 24), 0);
-    const days = Math.max(Math.floor(total / (1000 * 60 * 60 * 24)), 0);
-    return { total, days, hours, minutes, seconds };
+  if (total <= 0) {
+    return { total: 0, days: 0, hours: 0, minutes: 0, seconds: 0 };
   }
 
+  const seconds = Math.floor((total / 1000) % 60);
+  const minutes = Math.floor((total / 1000 / 60) % 60);
+  const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+  const days = Math.floor(total / (1000 * 60 * 60 * 24));
+  return { total, days, hours, minutes, seconds };
+}
+
+function padZero(num, length = 2) {
+  return String(num).padStart(length, "0");
+}
+
+export default function CounterClock({ finalDate, imageURL = hiruImage, headline = "" }) {
+  const [timeLeft, setTimeLeft] = useState(null);
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
+    setIsClient(true);
+
+    const update = () => setTimeLeft(getTimeRemaining(finalDate));
+    update();
+
     const timer = setInterval(() => {
-      const updated = getTimeRemaining();
-      setTimeLeft(updated);
-      if (updated.total <= 0) clearInterval(timer);
+      update();
     }, 1000);
+
     return () => clearInterval(timer);
-  }, []);
+  }, [finalDate]);
+
+  if (!isClient || !timeLeft) return null;
 
   return (
     <Container>
@@ -34,34 +48,22 @@ export default function CounterClock({ finalDate, imageURL = hiruImage, headline
           <Headline>{headline}</Headline>
           <Time>
             <TimeBlock>
-              <TimeNumber>
-                {timeLeft.days > 99 ? "" : timeLeft.days > 9 ? "0" : "00"}
-                {timeLeft.days}
-              </TimeNumber>
+              <TimeNumber>{padZero(timeLeft.days, 3)}</TimeNumber>
               <TimeLabel>Tage</TimeLabel>
             </TimeBlock>
             <Colon>:</Colon>
             <TimeBlock>
-              <TimeNumber>
-                {timeLeft.hours < 10 ? "0" : ""}
-                {timeLeft.hours}
-              </TimeNumber>
+              <TimeNumber>{padZero(timeLeft.hours)}</TimeNumber>
               <TimeLabel>Stunden</TimeLabel>
             </TimeBlock>
             <Colon>:</Colon>
             <TimeBlock>
-              <TimeNumber>
-                {timeLeft.minutes < 10 ? "0" : ""}
-                {timeLeft.minutes}
-              </TimeNumber>
+              <TimeNumber>{padZero(timeLeft.minutes)}</TimeNumber>
               <TimeLabel>Minuten</TimeLabel>
             </TimeBlock>
             <Colon>:</Colon>
             <TimeBlock>
-              <TimeNumber>
-                {timeLeft.seconds < 10 ? "0" : ""}
-                {timeLeft.seconds}
-              </TimeNumber>
+              <TimeNumber>{padZero(timeLeft.seconds)}</TimeNumber>
               <TimeLabel>Sekunden</TimeLabel>
             </TimeBlock>
           </Time>
@@ -117,6 +119,7 @@ const Headline = styled.h3`
   font-size: clamp(1.2rem, 4vw, 2rem);
   margin-bottom: 1.5rem;
   text-align: center;
+  color: #363537;
 `;
 
 const ClockWrapper = styled.div`
@@ -143,6 +146,7 @@ const TimeBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #363537;
 `;
 
 const TimeNumber = styled.span`
@@ -150,6 +154,7 @@ const TimeNumber = styled.span`
   font-weight: bold;
   min-width: 40px;
   text-align: center;
+  color: #363537;
 `;
 
 const Colon = styled.span`
@@ -157,6 +162,7 @@ const Colon = styled.span`
   font-weight: bold;
   align-self: center;
   line-height: 1;
+  color: #363537;
 `;
 
 const TimeLabel = styled.span`
