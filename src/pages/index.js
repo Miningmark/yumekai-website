@@ -1,5 +1,3 @@
-//Imports
-
 //Components
 import { StyledButton, UnstyledLink, Spacer, SpacerEmpty } from "@/components/styledComponents";
 import SponsorsComponent from "@/components/home/Sponsors";
@@ -31,90 +29,54 @@ export default function Home() {
     <>
       <HomeSlider />
       <SpacerEmpty />
-
-      <CounterClock finalDate="2025-05-31T08:00:00Z" headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."/> {/*UTC Time */}
-
+      <CounterClock
+        finalDate="2025-05-31T08:00:00Z"
+        headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."
+      />
+      {/*UTC Time */}
       <SpacerEmpty />
-
       <h1>Aktuelles</h1>
       <p>
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
-
-      <Programm2025/>
-
+      <Programm2025 />
       <Spacer />
-
-      <AnmeldungYumeKaiWettbewerbe/>
-
+      <AnmeldungYumeKaiWettbewerbe />
       <Spacer />
-
       <AnkundigungMion />
-
       <Spacer />
-
       <AnkundigungCoheki />
-
       <Spacer />
-
       <AnkundigungCUG />
-
       <Spacer />
-
       <HierKonntIhrUnsTreffen />
-
       <Spacer />
-
       <AnkundigungCosplayVersteigerung />
-
       <Spacer />
-
       <AnkundigungZeichenwettbewerb />
-
       <Spacer />
-
       <AnkundigungMaidCafe />
-
       <Spacer />
-
       <AnmeldungCatwalk />
-
       <Spacer />
-
       <AnkundigungBall />
-
       <Spacer />
-
       <AnkundigungSebastianFitzner />
-
       <Spacer />
-
       <HelferPost />
-
       <Spacer />
-
       <AnkundigungAndyKnote />
-
       <Spacer />
-
       <PhotoContest1 />
-
       <Spacer />
-
       <AnkundigungDominikAuer />
-
       <Spacer />
-
       <AnkundigungPetraScheeser />
-
       <Spacer />
-
       <AnkundigungJuliaMeyen />
-
       <Spacer />
-
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
           <StyledButton>Archiv</StyledButton>
