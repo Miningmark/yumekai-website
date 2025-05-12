@@ -3,6 +3,22 @@ import Link from "next/link";
 import styled from "styled-components";
 import { StyledLink } from "@/components/styledComponents";
 
+/*
+Aufruf der Component
+
+      import ContentCard from "@/components/elements/ContentCard";
+
+      <ContentCard
+        href="http://www.instagram.com/anara"
+        title="Anara Twice"
+        text="Ich bin ein Text"     //optional
+        imageSrc={hiruKunstler}
+        altText="Logo von Anara Twice"
+      />
+
+      
+*/
+
 const CardWrapper = styled(StyledLink)`
   width: calc(50% - 20px);
   max-width: 290px;
