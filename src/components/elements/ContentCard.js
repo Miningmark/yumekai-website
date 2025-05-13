@@ -29,12 +29,9 @@ const CardContent = styled.div`
   position: relative;
   transition: all 0.3s ease-in-out;
 
-  p, h2:{
+  p,
+  h2 {
     color: ${({ theme }) => theme.text};
-  }
-
-  &:hover {
-    animation: border-animation 1s linear forwards;
   }
 
   &::before {
@@ -42,42 +39,31 @@ const CardContent = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
-    height: 0;
+    width: 100%;
+    height: 100%;
     border: 2px solid transparent;
-    animation: border-animation 1s linear forwards;
+    pointer-events: none;
+    background: linear-gradient(90deg, black, black) no-repeat;
+    background-size: 400% 400%;
+    animation: snake-border 4s linear infinite;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 2px;
   }
 
-  @keyframes border-animation {
+  @keyframes snake-border {
     0% {
-      width: 0;
-      height: 0;
-      border-color: transparent;
-    }
-    25% {
-      width: 100%;
-      height: 0;
-      border-color: black;
-    }
-    50% {
-      width: 100%;
-      height: 100%;
-      border-color: black;
-    }
-    75% {
-      width: 0;
-      height: 100%;
-      border-color: black;
+      background-position: 0% 50%;
     }
     100% {
-      width: 100%;
-      height: 100%;
-      border-color: black;
+      background-position: 400% 50%;
     }
   }
 `;
 
-export default function ContentCard({ href, title, text, imageSrc, altText }){
+export default function ContentCard({ href, title, text, imageSrc, altText }) {
   return (
     <CardWrapper href={href} target="_blank">
       <CardContent>
@@ -94,4 +80,4 @@ export default function ContentCard({ href, title, text, imageSrc, altText }){
       </CardContent>
     </CardWrapper>
   );
-};
+}
