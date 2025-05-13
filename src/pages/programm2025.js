@@ -48,6 +48,20 @@ export default function Programm2025() {
     <>
       <h1 style={{ textAlign: "center" }}>YumeKai Programm 2025</h1>
 
+      <MenuLink href={"/programm2025/allgemein"}>
+          <LinkContent>
+            <h2 style={{ textAlign: "center" }}>Händler</h2>
+            <Image
+              src={hiruPlan}
+              alt="Plan-Hiru"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </LinkContent>
+        </MenuLink>
+
       <MenuContainer>
         <MenuLink href={"/programm2025/kuenstler"}>
           <LinkContent>
@@ -91,19 +105,7 @@ export default function Programm2025() {
           </LinkContent>
         </MenuLink>
 
-        <MenuLink href={"/programm2025/plan"}>
-          <LinkContent>
-            <h2 style={{ textAlign: "center" }}>Händler</h2>
-            <Image
-              src={hiruPlan}
-              alt="Plan-Hiru"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-          </LinkContent>
-        </MenuLink>
+        
       </MenuContainer>
     </>
   );

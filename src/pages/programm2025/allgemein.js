@@ -20,6 +20,8 @@ export default function Allgemein(){
     return(
     <>
         <h1>Allgemein</h1>
+
+        <p>Text......</p>
     </>
     )
 }
