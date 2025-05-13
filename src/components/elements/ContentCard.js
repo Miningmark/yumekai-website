@@ -19,7 +19,7 @@ Aufruf der Component
       
 */
 
-const CardWrapper = styled(StyledLink)`
+const CardWrapper = styled.div`
   width: calc(50% - 20px);
   max-width: 290px;
 `;
@@ -65,10 +65,10 @@ const CardContent = styled.div`
 
 export default function ContentCard({ href, title, text, imageSrc, altText }) {
   return (
-    <CardWrapper href={href} target="_blank">
+    <CardWrapper>
       <CardContent>
         <h2 style={{ textAlign: "center" }}>{title}</h2>
-        {text ? <p>{text}</p> : null}
+        {text ? <>{text}</> : null}
         <Image
           src={imageSrc}
           alt={altText}
