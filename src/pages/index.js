@@ -1,5 +1,10 @@
 //Components
-import { StyledButton, UnstyledLink, Spacer, SpacerEmpty } from "@/components/styledComponents";
+import {
+  StyledButton,
+  UnstyledLink,
+  Spacer,
+  SpacerEmpty,
+} from "@/components/styledComponents";
 import SponsorsComponent from "@/components/home/Sponsors";
 import HomeSlider from "@/components/home/HomeSlider";
 
@@ -23,6 +28,7 @@ import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 import CounterClock from "@/components/elements/CounterClock";
 import AnmeldungYumeKaiWettbewerbe from "@/components/articles/2025/AnmeldungYumeKaiWettbewerbe";
 import Programm2025 from "@/components/articles/2025/Programm2025";
+import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 
 export default function Home() {
   return (
@@ -37,13 +43,16 @@ export default function Home() {
       <SpacerEmpty />
       <h1>Aktuelles</h1>
       <p>
-        In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
-        erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
+        In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai
+        geschieht. Hier erwarten dich fortlaufend neue und fesselnde Nachrichten
+        rund um die YumeKai.
       </p>
       <SpacerEmpty />
       <Programm2025 />
       <Spacer />
       <AnmeldungYumeKaiWettbewerbe />
+      <Spacer />
+      <AnkundigungMayumiNagashi />
       <Spacer />
       <AnkundigungMion />
       <Spacer />
