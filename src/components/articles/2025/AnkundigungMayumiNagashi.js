@@ -37,32 +37,20 @@ export default function AnkundigungMayumiNagashi() {
 
         <DynamicContent $widthpercent={75}>
           {/* Muss mit oberer übereinstimmen */}
-          <p>
-            Manga zu lesen macht Spaß – aber wie oft bekommt ihr die
-            Gelegenheit, einen Blick in das echte Arbeitsumfeld einer
-            Manga-Künstlerin zu werfen? Die „Manga-Werkstatt“ bringt dieses
-            seltene Erlebnis mitten ins Eventgeschehen.
-            <br />
-            <br />
-            Die japanische Profi-Zeichnerin Mayumi Nagashi lässt euch zuschauen,
-            wie ihre Zeichnungen entstehen – präzise, sicher und voller
-            Ausdruck.
-            <br />
-            <br />
-            Tafeln am Stand liefern zusätzliche Einblicke in ihre Werke, ihren
-            Stil und den kreativen Prozess.
-            <br />
-            <br />
-            Für Zeicheninteressierte bietet sich außerdem eine persönliche
-            Beratung – nicht in Worten, sondern in Linien (eigene Zeichnungen
-            sind mitzubringen). Ein Moment der Konzentration – vergänglich, und
-            doch unvergesslich.
-            <br />
-            <br />
-            <br />
-            <br />
-            Bild: ©Mayumi Nagashi/Cygames,Inc
-          </p>
+         <p>
+  Manga zu lesen macht Spaß – aber wie oft bekommt man die Gelegenheit, hinter die Kulissen einer professionellen Manga-Produktion zu blicken? Die &quot;Manga-Werkstatt&quot; bringt genau dieses Erlebnis direkt ins Event.
+  <br /><br />
+  Die japanische Profi-Zeichnerin Mayumi Nagashi zeigt live, wie ihre Zeichnungen entstehen – präzise, ausdrucksstark und mit sicherer Hand. 
+  <br /><br />
+  Infotafeln am Stand geben zusätzliche Einblicke in ihren Zeichenstil, ihre Werke und ihren kreativen Arbeitsprozess – anschaulich und inspirierend.
+  <br /><br />
+  Für alle, die selbst zeichnen, bietet sich ein besonderes Extra: individuelle Zeichenberatung – nicht durch Worte, sondern direkt durch Linien. Eigene Skizzen können mitgebracht und von ihr persönlich begutachtet werden. 
+  <br /><br />
+  Ein einzigartiger Moment kreativen Austauschs – kurzlebig, aber unvergesslich.
+  <br /><br /><br /><br />
+  Bild: &copy;Mayumi Nagashi / Cygames, Inc.
+</p>
+
         </DynamicContent>
       </div>
     </>
