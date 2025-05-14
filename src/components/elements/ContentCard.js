@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
-import { StyledLink } from "@/components/styledComponents";
 
 /*
 Aufruf der Component
@@ -34,36 +32,28 @@ const CardContent = styled.div`
     color: ${({ theme }) => theme.text};
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    pointer-events: none;
-    background: linear-gradient(90deg, black, black) no-repeat;
-    background-size: 400% 400%;
-    animation: snake-border 4s linear infinite;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: destination-out;
-    padding: 2px;
-  }
+  &:hover {
+  border: 8px solid;
+  border-image: repeating-linear-gradient(135deg,#F8CA00 0 10px,#E97F02 0 20px,#BD1550 0 30px) 8;
+  -webkit-mask: 
+    conic-gradient(from 180deg at top 8px right 8px, #0000 90deg,#000 0)
+     var(--_i,200%) 0  /200% var(--_i,8px) border-box no-repeat,
+    conic-gradient(at bottom 8px left  8px,  #0000 90deg,#000 0)
+     0   var(--_i,200%)/var(--_i,8px) 200% border-box no-repeat,
+    linear-gradient(#000 0 0) padding-box no-repeat;
+  transition: .3s, -webkit-mask-position .3s .3s;
+}
 
-  @keyframes snake-border {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 400% 50%;
-    }
-  }
+/*
+&:hover {
+  --_i: 100%;
+  color: #CC333F;
+  transition: .3s, -webkit-mask-size .3s .3s;
+}
+  */
 `;
 
-export default function ContentCard({ href, title, text, imageSrc, altText }) {
+export default function ContentCard({ title, text, imageSrc, altText }) {
   return (
     <CardWrapper>
       <CardContent>
