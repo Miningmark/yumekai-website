@@ -20,7 +20,7 @@ const StyledBG = styled.div`
 
 
 export default function Survey2025(){
-     const [selectedDay, setSelectedDay] = useState("");
+    const [selectedDay, setSelectedDay] = useState("");
   const [yumeKaiRating, setYumeKaiRating] = useState(5);
   const [stageProgramRating, setStageProgramRating] = useState(5);
   const [workshopRating, setWorkshopRating] = useState(5);
@@ -38,6 +38,8 @@ export default function Survey2025(){
   const [formError, setFormError] = useState("");
 
   const [ipCheckError, setIpCheckError] = useState(false);
+
+  const today = new Date(); //Fertig machen
 
 
     useEffect(() => {
@@ -119,6 +121,10 @@ export default function Survey2025(){
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
       </StyledBG>
     );
+  }
+
+  if(false){    //Datum Prüfen
+
   }
 
     return (<><h1>YumeKai 2025 Umfrage</h1></>)
