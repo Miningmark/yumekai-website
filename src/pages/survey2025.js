@@ -1,5 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+
+
 
 //Components
 
@@ -37,24 +40,54 @@ export default function Survey2025(){
   const [surveyFinish, setSurveyFinish] = useState(false);
   const [formError, setFormError] = useState("");
 
-  const [ipCheckError, setIpCheckError] = useState(false);
+  const [alreadyParticipated, setAlreadyParticipated] = useState(null);
+  const [ticketId, setTicketId] = useState(null);
+  const [ticketDay, setTicketDay] = useState(null); //Sa, So, We, Ball als array
 
-  const today = new Date(); //Fertig machen
+  const router = useRouter();
+
+const deadline = new Date("2025-06-09T21:59:00Z"); // UTC entspricht 23:59 CEST
+const now = new Date();
+
+
+  useEffect(() => {
+    if (router.isReady) {
+      const { query } = router;
+      if (query.ticket) {
+        setTicketId(query.ticket);
+      }
+    }
+  }, [router.isReady, router.query]);
+
+
 
 
     useEffect(() => {
-    async function checkIp() {
+    async function checkTicket() {
       try {
-        const response = await fetch("/api/check-ip");
+        const response = await fetch("/api/survey/checkTicket", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ticketId: ticketId,
+        }),
+      });
+
+      if (response.ok) {
         const data = await response.json();
-        if (data.exists) {
-          setIpCheckError(true);
+        if (data) {
+            setIpCheckError(true);
         }
-      } catch (error) {
-        //console.error("Fehler bei der IP-Prüfung:", error);
       }
+      
+    } catch (error) {
+        //console.error("Fehler bei der IP-Prüfung:", error);
     }
-    checkIp();
+      
+    }
+    checkTicket();
   }, []);
 
   async function handleSubmit() {
@@ -106,7 +139,36 @@ export default function Survey2025(){
     setFormError("");
   }
 
-  if (ipCheckError) {
+   if(now > deadline){    //Datum Prüfen
+    return (
+      <StyledBG>
+        <h1>
+          <PrimaryText>YumeKai</PrimaryText>
+          <SecondaryText> Umfrage</SecondaryText>
+        </h1>
+        <p>Die Umfrage lief nur bis zum 09.06.2025 23:59 Uhr.</p>
+        <p>
+          Danke an alle die teilgenommen haben, die gewinner werden am 17.06.2025 bekannt gegeben.
+        </p>
+        <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
+      </StyledBG>
+    );
+  }
+
+  if(alreadyParticipated === null || ticketDay === null){
+ return (
+      <StyledBG>
+        <h1>
+          <PrimaryText>YumeKai</PrimaryText>
+          <SecondaryText> Umfrage</SecondaryText>
+        </h1>
+        <p>Umfrage Daten werden geladen, bitte einem moment gedult</p>
+        <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
+      </StyledBG>
+    );
+  }
+
+  if (alreadyParticipated) {
     return (
       <StyledBG>
         <h1>
@@ -123,9 +185,10 @@ export default function Survey2025(){
     );
   }
 
-  if(false){    //Datum Prüfen
+ 
 
-  }
-
-    return (<><h1>YumeKai 2025 Umfrage</h1></>)
+    return (<> <h1>
+          <PrimaryText>YumeKai</PrimaryText>
+          <SecondaryText> Umfrage</SecondaryText>
+        </h1></>)
 }
