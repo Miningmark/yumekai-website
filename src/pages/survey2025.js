@@ -22,7 +22,6 @@ const SecondaryText = styled.span`
 `;
 
 export default function Survey2025() {
-  const [selectedDay, setSelectedDay] = useState("");
   const [yumeKaiRating, setYumeKaiRating] = useState(null);
   const [stageProgramRating, setStageProgramRating] = useState(null);
   const [workshopRating, setWorkshopRating] = useState(null);
@@ -30,6 +29,7 @@ export default function Survey2025() {
   const [artistRating, setArtistRating] = useState(null);
   const [gameAreaRating, setGameAreaRating] = useState(null);
   const [priceRating, setPriceRating] = useState(null);
+  const [cosplayBallRating, setCosplayBallRating] = useState(null);
   const [bestPart, setBestPart] = useState("");
   const [improvement, setImprovement] = useState("");
 
@@ -199,12 +199,12 @@ export default function Survey2025() {
       {!surveyFinish && (
         <StyledForm onSubmit={handleSubmit}>
           <p>
-            Du warst bei uns auf der YumeKai und möchtest mithelfen unsere Veranstaltung zu
-            verbessern? <br />
+            Du warst bei uns auf der YumeKai und möchtest mithelfen die YumeKai noch besser zu
+            machen? <br />
             Dann füll doch kurz unsere Umfrage aus und mit etwas Glück gehörst du auch zu den
-            Gewinnern, denn unter allen Teilnehmenden verlosen wir drei Merch Pakete. Die Umfrage
-            läuft noch bis zum 09.06.2024, 23:59 Uhr. Die Gewinner benachrichtigen wir am
-            15.06.2024.
+            Gewinnern, denn unter allen Teilnehmenden verlosen wir drei Tickets für die YumeKai
+            2026. Die Umfrage läuft noch bis zum 09.06.2025, 23:59 Uhr. Die Gewinner benachrichtigen
+            wir am 16.06.2025.
           </p>
           <QuestionSlider
             question={"Wie gut hat dir die YumeKai 2024 gefallen?"}
@@ -241,6 +241,13 @@ export default function Survey2025() {
             value={priceRating}
             onChange={setPriceRating}
           />
+
+          <QuestionSlider
+            question={"Wie hat dir der Cosplayball gefallen?"}
+            value={cosplayBallRating}
+            onChange={setCosplayBallRating}
+          />
+
           <QuestionTextField
             question={"Was hat dir am besten gefallen?"}
             value={bestPart}
@@ -252,16 +259,20 @@ export default function Survey2025() {
             onChange={setImprovement}
           />
           <br />
+
+          {/*
           <p>
             Für die Teilnehme an der Verlosung brauchen wir noch deine E-Mail-Adresse und deinen
             Namen.
           </p>
+
           <QuestionNameEmail
             nameValue={name}
             emailValue={email}
             onNameChange={setName}
             onEmailChange={setEmail}
           />
+           */}
 
           {formError && <p style={{ color: "red" }}>{formError}</p>}
 
