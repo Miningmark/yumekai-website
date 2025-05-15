@@ -51,7 +51,7 @@ export default function Programm2025() {
       <MenuContainer>
         <MenuLink href={"/programm2025/allgemein"}>
           <LinkContent>
-            <h2 style={{ textAlign: "center" }}>Händler</h2>
+            <h2 style={{ textAlign: "center" }}>Allgemein</h2>
             <Image
               src={hiruPlan}
               alt="Plan-Hiru"
@@ -93,7 +93,7 @@ export default function Programm2025() {
 
         <MenuLink href={"/programm2025/cosplay"}>
           <LinkContent>
-            <h2 style={{ textAlign: "center" }}>Händler</h2>
+            <h2 style={{ textAlign: "center" }}>Cosplayer</h2>
             <Image
               src={hiruCosplay}
               alt="Cosplay-Hiru"
