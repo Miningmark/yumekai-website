@@ -4,6 +4,11 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 //Components
+import QuestionRadioButton from "@/components/elements/survey25/QuestionRadioButton";
+import QuestionSlider from "@/components/elements/survey25/QuestionSlider";
+import QuestionTextField from "@/components/elements/survey25/QuestionTextField";
+import QuestionNameEmail from "@/components/elements/survey25/QuestionNameEmail";
+import StyledForm from "@/components/elements/survey25/StyledForm";
 
 //Images
 import hiruHandy from "/public/assets/hirus/Hiru_Handy.png";
@@ -18,13 +23,13 @@ const SecondaryText = styled.span`
 
 export default function Survey2025() {
   const [selectedDay, setSelectedDay] = useState("");
-  const [yumeKaiRating, setYumeKaiRating] = useState(5);
-  const [stageProgramRating, setStageProgramRating] = useState(5);
-  const [workshopRating, setWorkshopRating] = useState(5);
-  const [vendorRating, setVendorRating] = useState(5);
-  const [artistRating, setArtistRating] = useState(5);
-  const [gameAreaRating, setGameAreaRating] = useState(5);
-  const [priceRating, setPriceRating] = useState(5);
+  const [yumeKaiRating, setYumeKaiRating] = useState(null);
+  const [stageProgramRating, setStageProgramRating] = useState(null);
+  const [workshopRating, setWorkshopRating] = useState(null);
+  const [vendorRating, setVendorRating] = useState(null);
+  const [artistRating, setArtistRating] = useState(null);
+  const [gameAreaRating, setGameAreaRating] = useState(null);
+  const [priceRating, setPriceRating] = useState(null);
   const [bestPart, setBestPart] = useState("");
   const [improvement, setImprovement] = useState("");
 
@@ -185,11 +190,97 @@ export default function Survey2025() {
     );
   }
 
-  return;
-  <>
-    <h1>
-      <PrimaryText>YumeKai</PrimaryText>
-      <SecondaryText> Umfrage</SecondaryText>
-    </h1>
-  </>;
+  return (
+    <>
+      <h1>
+        <PrimaryText>YumeKai</PrimaryText>
+        <SecondaryText> Umfrage</SecondaryText>
+      </h1>
+      {!surveyFinish && (
+        <StyledForm onSubmit={handleSubmit}>
+          <p>
+            Du warst bei uns auf der YumeKai und möchtest mithelfen unsere Veranstaltung zu
+            verbessern? <br />
+            Dann füll doch kurz unsere Umfrage aus und mit etwas Glück gehörst du auch zu den
+            Gewinnern, denn unter allen Teilnehmenden verlosen wir drei Merch Pakete. Die Umfrage
+            läuft noch bis zum 09.06.2024, 23:59 Uhr. Die Gewinner benachrichtigen wir am
+            15.06.2024.
+          </p>
+          <QuestionSlider
+            question={"Wie gut hat dir die YumeKai 2024 gefallen?"}
+            value={yumeKaiRating}
+            onChange={setYumeKaiRating}
+          />
+          <QuestionSlider
+            question={"Wie zufrieden warst du mit dem Bühnenprogramm?"}
+            value={stageProgramRating}
+            onChange={setStageProgramRating}
+          />
+          <QuestionSlider
+            question={"Wie zufrieden warst du mit den Workshops?"}
+            value={workshopRating}
+            onChange={setWorkshopRating}
+          />
+          <QuestionSlider
+            question={"Wie zufrieden warst du mit den Händlern?"}
+            value={vendorRating}
+            onChange={setVendorRating}
+          />
+          <QuestionSlider
+            question={"Wie zufrieden warst du mit dem Künstleratelier?"}
+            value={artistRating}
+            onChange={setArtistRating}
+          />
+          <QuestionSlider
+            question={"Wie zufrieden warst du mit den Spielbereichen?"}
+            value={gameAreaRating}
+            onChange={setGameAreaRating}
+          />
+          <QuestionSlider
+            question={"Fandest du das der Preis für das Programm gepasst hat?"}
+            value={priceRating}
+            onChange={setPriceRating}
+          />
+          <QuestionTextField
+            question={"Was hat dir am besten gefallen?"}
+            value={bestPart}
+            onChange={setBestPart}
+          />
+          <QuestionTextField
+            question={"Was könnten wir verbessern?"}
+            value={improvement}
+            onChange={setImprovement}
+          />
+          <br />
+          <p>
+            Für die Teilnehme an der Verlosung brauchen wir noch deine E-Mail-Adresse und deinen
+            Namen.
+          </p>
+          <QuestionNameEmail
+            nameValue={name}
+            emailValue={email}
+            onNameChange={setName}
+            onEmailChange={setEmail}
+          />
+
+          {formError && <p style={{ color: "red" }}>{formError}</p>}
+
+          <button type="submit">Abschicken</button>
+        </StyledForm>
+      )}
+      {surveyFinish && (
+        <>
+          <p>
+            Vielen Dank für deine Teilnahme und Unterstützung bei der YumeKai, wir hoffen das wir
+            dich auch bei unserer nächsten Veranstaltung begrüßen können! 😀
+          </p>
+          <p>
+            Die Umfrage läuft noch bis zum 09.06.2024, 23:59 Uhr. Die Gewinner benachrichtigen wir
+            am 15.06.2024.
+          </p>
+          <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
+        </>
+      )}
+    </>
+  );
 }
