@@ -9,6 +9,7 @@ import QuestionSlider from "@/components/elements/survey25/QuestionSlider";
 import QuestionTextField from "@/components/elements/survey25/QuestionTextField";
 import QuestionNameEmail from "@/components/elements/survey25/QuestionNameEmail";
 import StyledForm from "@/components/elements/survey25/StyledForm";
+import { StyledButton } from "@/components/styledComponents";
 
 //Images
 import hiruHandy from "/public/assets/hirus/Hiru_Handy.png";
@@ -32,9 +33,6 @@ export default function Survey2025() {
   const [cosplayBallRating, setCosplayBallRating] = useState(null);
   const [bestPart, setBestPart] = useState("");
   const [improvement, setImprovement] = useState("");
-
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
 
   const [surveyFinish, setSurveyFinish] = useState(false);
   const [formError, setFormError] = useState("");
@@ -104,9 +102,6 @@ export default function Survey2025() {
     }
 
     const formData = {
-      email,
-      name,
-      selectedDay,
       yumeKaiRating,
       stageProgramRating,
       priceRating,
@@ -114,6 +109,7 @@ export default function Survey2025() {
       vendorRating,
       artistRating,
       gameAreaRating,
+      cosplayBallRating,
       bestPart,
       improvement,
     };
@@ -276,7 +272,7 @@ export default function Survey2025() {
 
           {formError && <p style={{ color: "red" }}>{formError}</p>}
 
-          <button type="submit">Abschicken</button>
+          <StyledButton type="submit">Abschicken</StyledButton>
         </StyledForm>
       )}
       {surveyFinish && (
