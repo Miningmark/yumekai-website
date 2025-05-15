@@ -1,29 +1,23 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-
-
+import { useEffect, useState } from "react";
 
 //Components
 
-
 //Images
+import hiruHandy from "/public/assets/hirus/Hiru_Handy.png";
 
-
-const StyledBG = styled.div`
-  background-color: var(--background-color);
-  width: 100vw;
-  max-width: 1200px;
-  padding: 0 0 30px 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const PrimaryText = styled.span`
+  color: var(--primary-color);
 `;
 
+const SecondaryText = styled.span`
+  color: var(--secondary-color);
+`;
 
-export default function Survey2025(){
-    const [selectedDay, setSelectedDay] = useState("");
+export default function Survey2025() {
+  const [selectedDay, setSelectedDay] = useState("");
   const [yumeKaiRating, setYumeKaiRating] = useState(5);
   const [stageProgramRating, setStageProgramRating] = useState(5);
   const [workshopRating, setWorkshopRating] = useState(5);
@@ -46,11 +40,13 @@ export default function Survey2025(){
 
   const router = useRouter();
 
-const deadline = new Date("2025-06-09T21:59:00Z"); // UTC entspricht 23:59 CEST
-const now = new Date();
-const isDeadlinePassed = now > deadline;
+  const deadline = new Date("2025-06-09T21:59:00Z"); // UTC entspricht 23:59 CEST
+  const now = new Date();
+  const isDeadlinePassed = now > deadline;
 
-
+  console.log("alreadyParticipated", alreadyParticipated);
+  console.log("ticketDay", ticketDay);
+  console.log("ticketId", ticketId);
 
   useEffect(() => {
     if (router.isReady) {
@@ -61,44 +57,36 @@ const isDeadlinePassed = now > deadline;
     }
   }, [router.isReady, router.query]);
 
-
-
-
-    useEffect(() => {
-      if (!ticketId) return;
+  useEffect(() => {
+    if (!ticketId) return;
 
     async function checkTicket() {
       try {
         const response = await fetch("/api/survey/checkTicket", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ticketId: ticketId,
-        }),
-      });
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ticketId: ticketId,
+          }),
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data) {
-          // Speichert den Wert für bereits teilgenommen
-          setAlreadyParticipated(data.alreadyUsed ?? null);
+        if (response.ok) {
+          const data = await response.json();
+          if (data) {
+            // Speichert den Wert für bereits teilgenommen
+            setAlreadyParticipated(data.alreadyUsed ?? null);
 
-          // Falls ticketDay eine Liste zurückgibt, speichere sie als Array
-          setTicketDay(Array.isArray(data.ticketDay) ? data.ticketDay : null);
-        
+            // Falls ticketDay eine Liste zurückgibt, speichere sie als Array
+            setTicketDay(Array.isArray(data.ticketDay) ? data.ticketDay : null);
+          }
         }
-      }
-
-    } catch (error) {
+      } catch (error) {
         console.error("Fehler bei der Ticket-Prüfung");
-
-    }
-      
+      }
     }
     checkTicket();
-
   }, [ticketId]);
 
   async function handleSubmit(event) {
@@ -150,9 +138,10 @@ const isDeadlinePassed = now > deadline;
     setFormError("");
   }
 
-   if(isDeadlinePassed){    //Datum Prüfen
+  if (isDeadlinePassed) {
+    //Datum Prüfen
     return (
-      <StyledBG>
+      <>
         <h1>
           <PrimaryText>YumeKai</PrimaryText>
           <SecondaryText> Umfrage</SecondaryText>
@@ -162,26 +151,26 @@ const isDeadlinePassed = now > deadline;
           Danke an alle die teilgenommen haben, die gewinner werden am 17.06.2025 bekannt gegeben.
         </p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
-      </StyledBG>
+      </>
     );
   }
 
-  if(alreadyParticipated === null || ticketDay === null){
+  if (alreadyParticipated === null || ticketDay === null) {
     return (
-      <StyledBG>
+      <>
         <h1>
           <PrimaryText>YumeKai</PrimaryText>
           <SecondaryText> Umfrage</SecondaryText>
         </h1>
         <p>Umfrage Daten werden geladen, bitte einem moment gedult</p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
-      </StyledBG>
+      </>
     );
   }
 
   if (alreadyParticipated) {
     return (
-      <StyledBG>
+      <>
         <h1>
           <PrimaryText>YumeKai</PrimaryText>
           <SecondaryText> Umfrage</SecondaryText>
@@ -192,19 +181,15 @@ const isDeadlinePassed = now > deadline;
           16.06.2025.
         </p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
-      </StyledBG>
+      </>
     );
   }
 
- 
-
-    return 
-    (
-      <> 
-        <h1>
-          <PrimaryText>YumeKai</PrimaryText>
-          <SecondaryText> Umfrage</SecondaryText>
-        </h1>
-      </>
-      )
+  return;
+  <>
+    <h1>
+      <PrimaryText>YumeKai</PrimaryText>
+      <SecondaryText> Umfrage</SecondaryText>
+    </h1>
+  </>;
 }
