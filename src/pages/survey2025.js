@@ -48,6 +48,8 @@ export default function Survey2025(){
 
 const deadline = new Date("2025-06-09T21:59:00Z"); // UTC entspricht 23:59 CEST
 const now = new Date();
+const isDeadlinePassed = now > deadline;
+
 
 
   useEffect(() => {
@@ -63,6 +65,8 @@ const now = new Date();
 
 
     useEffect(() => {
+      if (!ticketId) return;
+
     async function checkTicket() {
       try {
         const response = await fetch("/api/survey/checkTicket", {
@@ -93,13 +97,11 @@ const now = new Date();
     }
       
     }
-    if (ticketId) {
-      checkTicket();
-    }
+    checkTicket();
 
   }, [ticketId]);
 
-  async function handleSubmit() {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     // Validierung
@@ -148,7 +150,7 @@ const now = new Date();
     setFormError("");
   }
 
-   if(now > deadline){    //Datum Prüfen
+   if(isDeadlinePassed){    //Datum Prüfen
     return (
       <StyledBG>
         <h1>
@@ -165,7 +167,7 @@ const now = new Date();
   }
 
   if(alreadyParticipated === null || ticketDay === null){
- return (
+    return (
       <StyledBG>
         <h1>
           <PrimaryText>YumeKai</PrimaryText>
@@ -196,8 +198,13 @@ const now = new Date();
 
  
 
-    return (<> <h1>
+    return 
+    (
+      <> 
+        <h1>
           <PrimaryText>YumeKai</PrimaryText>
           <SecondaryText> Umfrage</SecondaryText>
-        </h1></>)
+        </h1>
+      </>
+      )
 }
