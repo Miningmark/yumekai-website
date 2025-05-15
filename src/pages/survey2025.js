@@ -78,17 +78,26 @@ const now = new Date();
       if (response.ok) {
         const data = await response.json();
         if (data) {
-            setIpCheckError(true);
+          // Speichert den Wert für bereits teilgenommen
+          setAlreadyParticipated(data.alreadyUsed ?? null);
+
+          // Falls ticketDay eine Liste zurückgibt, speichere sie als Array
+          setTicketDay(Array.isArray(data.ticketDay) ? data.ticketDay : null);
+        
         }
       }
-      
+
     } catch (error) {
-        //console.error("Fehler bei der IP-Prüfung:", error);
+        console.error("Fehler bei der Ticket-Prüfung");
+
     }
       
     }
-    checkTicket();
-  }, []);
+    if (ticketId) {
+      checkTicket();
+    }
+
+  }, [ticketId]);
 
   async function handleSubmit() {
     event.preventDefault();
