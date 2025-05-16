@@ -31,7 +31,6 @@ const Slider = styled.input`
     background: ${({ $unselected }) => ($unselected ? "#999" : "#4caf50")};
     cursor: pointer;
     border: 2px solid white;
-    margin-top: -6px;
   }
 
   &::-moz-range-thumb {

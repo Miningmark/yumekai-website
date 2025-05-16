@@ -31,6 +31,7 @@ export default function Survey2025() {
   const [gameAreaRating, setGameAreaRating] = useState(null);
   const [priceRating, setPriceRating] = useState(null);
   const [cosplayBallRating, setCosplayBallRating] = useState(null);
+  const [goldRating, setGoldRating] = useState(null);
   const [bestPart, setBestPart] = useState("");
   const [improvement, setImprovement] = useState("");
 
@@ -110,6 +111,7 @@ export default function Survey2025() {
       artistRating,
       gameAreaRating,
       cosplayBallRating,
+      goldRating,
       bestPart,
       improvement,
     };
@@ -202,46 +204,59 @@ export default function Survey2025() {
             2026. Die Umfrage läuft noch bis zum 09.06.2025, 23:59 Uhr. Die Gewinner benachrichtigen
             wir am 16.06.2025.
           </p>
-          <QuestionSlider
-            question={"Wie gut hat dir die YumeKai 2024 gefallen?"}
-            value={yumeKaiRating}
-            onChange={setYumeKaiRating}
-          />
-          <QuestionSlider
-            question={"Wie zufrieden warst du mit dem Bühnenprogramm?"}
-            value={stageProgramRating}
-            onChange={setStageProgramRating}
-          />
-          <QuestionSlider
-            question={"Wie zufrieden warst du mit den Workshops?"}
-            value={workshopRating}
-            onChange={setWorkshopRating}
-          />
-          <QuestionSlider
-            question={"Wie zufrieden warst du mit den Händlern?"}
-            value={vendorRating}
-            onChange={setVendorRating}
-          />
-          <QuestionSlider
-            question={"Wie zufrieden warst du mit dem Künstleratelier?"}
-            value={artistRating}
-            onChange={setArtistRating}
-          />
-          <QuestionSlider
-            question={"Wie zufrieden warst du mit den Spielbereichen?"}
-            value={gameAreaRating}
-            onChange={setGameAreaRating}
-          />
-          <QuestionSlider
-            question={"Fandest du das der Preis für das Programm gepasst hat?"}
-            value={priceRating}
-            onChange={setPriceRating}
-          />
+
+          {ticketDay.includes("Sa") || ticketDay.includes("So") || ticketDay.includes("We") ? (
+            <>
+              <QuestionSlider
+                question={"Wie gut hat dir die YumeKai 2024 gefallen?"}
+                value={yumeKaiRating}
+                onChange={setYumeKaiRating}
+              />
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit dem Bühnenprogramm?"}
+                value={stageProgramRating}
+                onChange={setStageProgramRating}
+              />
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit den Workshops?"}
+                value={workshopRating}
+                onChange={setWorkshopRating}
+              />
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit den Händlern?"}
+                value={vendorRating}
+                onChange={setVendorRating}
+              />
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit dem Künstleratelier?"}
+                value={artistRating}
+                onChange={setArtistRating}
+              />
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit den Spielbereichen?"}
+                value={gameAreaRating}
+                onChange={setGameAreaRating}
+              />
+              <QuestionSlider
+                question={"Fandest du das der Preis für das Programm gepasst hat?"}
+                value={priceRating}
+                onChange={setPriceRating}
+              />
+            </>
+          ) : null}
+
+          {ticketDay.includes("Ball") ? (
+            <QuestionSlider
+              question={"Wie hat dir der Cosplayball gefallen?"}
+              value={cosplayBallRating}
+              onChange={setCosplayBallRating}
+            />
+          ) : null}
 
           <QuestionSlider
-            question={"Wie hat dir der Cosplayball gefallen?"}
-            value={cosplayBallRating}
-            onChange={setCosplayBallRating}
+            question={"Wie zufrieden warst du mit der Goldtüte?"}
+            value={goldRating}
+            onChange={setGoldRating}
           />
 
           <QuestionTextField
