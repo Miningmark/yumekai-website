@@ -17,6 +17,9 @@ import hiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
 import hiruSpielen from "/public/assets/hirus/Hiru_Spielen.png";
 import hiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
 import hiruNormal from "/public/assets/hirus/Hiru.png";
+import hiruEssen from "/public/assets/hirus/Hiru_Essen.png";
+import hiruShowact from "/public/assets/hirus/Hiru_Showact.png";
+import hiruBall from "/public/assets/hirus/Hiru_Ball.png";
 
 const MenuContainer = styled.div`
   display: flex;
@@ -63,6 +66,34 @@ export default function Programm2025() {
           </LinkContent>
         </MenuLink>
 
+        <MenuLink href={"/programm2025/cosplayball"}>
+          <LinkContent>
+            <h2 style={{ textAlign: "center" }}>Cosplayball</h2>
+            <Image
+              src={hiruBall}
+              alt="Ball-Hiru"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </LinkContent>
+          </MenuLink>
+
+          <MenuLink href={"/programm2025/workshops"}>
+          <LinkContent>
+            <h2 style={{ textAlign: "center" }}>Workshops</h2>
+            <Image
+              src={hiruWorkshop}
+              alt="Workshop-Hiru"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </LinkContent>
+          </MenuLink>
+
         <MenuLink href={"/programm2025/kuenstler"}>
           <LinkContent>
             <h2 style={{ textAlign: "center" }}>Künstler</h2>
@@ -91,7 +122,21 @@ export default function Programm2025() {
           </LinkContent>
         </MenuLink>
 
-        <MenuLink href={"/programm2025/cosplay"}>
+        <MenuLink href={"/programm2025/Ehrengaeste"}>
+          <LinkContent>
+            <h2 style={{ textAlign: "center" }}>Ehrengäste</h2>
+            <Image
+              src={hiruShowact}
+              alt="Showact-Hiru"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </LinkContent>
+        </MenuLink>
+
+        <MenuLink href={"/programm2025/cosplayer"}>
           <LinkContent>
             <h2 style={{ textAlign: "center" }}>Cosplayer</h2>
             <Image
@@ -104,6 +149,51 @@ export default function Programm2025() {
             />
           </LinkContent>
         </MenuLink>
+
+        <MenuLink href={"/programm2025/aussteller"}>
+          <LinkContent>
+            <h2 style={{ textAlign: "center" }}>Aussteller</h2>
+            <Image
+              src={hiruNormal}
+              alt="Hiru"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </LinkContent>
+          </MenuLink>
+
+        <MenuLink href={"/programm2025/essen"}>
+          <LinkContent>
+            <h2 style={{ textAlign: "center" }}>Essen</h2>
+            <Image
+              src={hiruEssen}
+              alt="Essen-Hiru"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </LinkContent>
+          </MenuLink>
+
+
+          <MenuLink href={"/programm2025/wettbewerbe"}>
+          <LinkContent>
+            <h2 style={{ textAlign: "center" }}>Wettbewerbe</h2>
+            <Image
+              src={hiruSpielen}
+              alt="Spielen-Hiru"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          </LinkContent>
+          </MenuLink>
+
+
       </MenuContainer>
     </>
   );

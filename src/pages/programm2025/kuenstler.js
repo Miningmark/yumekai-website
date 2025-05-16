@@ -36,6 +36,9 @@ import yupiistarImage from "/public/assets/images/yumekai2025/yupiistar_Image.pn
 import ValyrakaImage from "/public/assets/images/yumekai2025/Valyraka_Image.png";
 import KirianYumeImage from "/public/assets/images/yumekai2025/KirianYume_Image.png";
 import ChristalShad0w0Image from "/public/assets/images/yumekai2025/ChristalShad0w0_Image.png";
+import YuiSpallekImage from "/public/assets/images/yumekai2025/YuiSpallek_Image.png";
+import MarkWamslerImage from "/public/assets/images/yumekai2025/MarkWamsler_Image.png";
+import AshturiaImage from "/public/assets/images/yumekai2025/Ashturia_Image.png";
 import AnaraImage from "/public/assets/images/yumekai2025/Anara_Image.png";
 
 
@@ -179,6 +182,28 @@ export default function Kuenstler() {
                 title={<StyledLink href="https://www.instagram.com/valyraka/" target="_blank">Valyraka</StyledLink>}
                 imageSrc={ValyrakaImage}
                 altText="Logo von Valyraka"
+        />
+        </ContentContainer>
+        
+
+        <h1 style={{ textAlign: "center" }}>Autoren</h1>
+
+        <ContentContainer>
+
+        <ContentCard
+                title={<StyledLink href="https://www.instagram.com/yui_spallek" target="_blank">Yui Spallek</StyledLink>}
+                imageSrc={YuiSpallekImage}
+                altText="Logo von Yui Spallek" 
+        />
+        <ContentCard
+                title={<StyledLink href="https://www.markwamsler.de" target="_blank">Kemosabe</StyledLink>}
+                imageSrc={MarkWamslerImage}
+                altText="Logo von Kemosabe" 
+        />
+        <ContentCard
+                title={<StyledLink href="https://www.naomihuber.com/" target="_blank">Ashturia</StyledLink>}
+                imageSrc={AshturiaImage}
+                altText="Logo von Ashturia" 
         />
 
       </ContentContainer>
