@@ -123,7 +123,13 @@ export default function ShowFullSizeURIData({ file, handleClose }) {
                 alt={fileName}
                 width={800}
                 height={600}
-                style={{ width: "auto", height: "60vh" }}
+                style={{
+                  maxWidth: "90vmin",
+                  maxHeight: "90vmin",
+                  height: "auto",
+                  width: "auto",
+                  objectFit: "contain",
+                }}
               />
               <StyledButton style={{ width: "150px" }} onClick={handleDownload}>
                 Download
