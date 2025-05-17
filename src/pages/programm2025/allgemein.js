@@ -32,6 +32,7 @@ const DynamicContent = styled.div`
 const NoDotList = styled.ol`
   list-style: none;
   counter-reset: list;
+  padding-left: 10px;
 `;
 
 const NoDotListItem = styled.li`
@@ -96,7 +97,9 @@ export default function Allgemein() {
       <Spacer />
 
       <h3>Programmheft</h3>
-      <p>Lust auf mehr Infos? Unser digitales Programmheft gibt&apos;s hier als PDF zum Mitnehmen.</p>
+      <p>
+        Lust auf mehr Infos? Unser digitales Programmheft gibt&apos;s hier als PDF zum Mitnehmen.
+      </p>
       <div style={{ margin: "20px 0" }}>
         <StyledLinkAsButton href={"/downloads/YumeKai_2025_Programmheft.pdf"} target="_blank">
           Programmheft 2025
