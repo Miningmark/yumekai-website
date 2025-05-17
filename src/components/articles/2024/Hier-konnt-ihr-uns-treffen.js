@@ -20,7 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>10.05 - 11.05 Mini Con in Lustenau</li>
                     <li>17.05 Hana und Spring in Königsbrunn</li>
                     <li>24.05 - 25.05 NonkiCon in Spyer</li>
                     <li>31.05 - 01.06 YumeKai in Memmingen</li>
@@ -32,10 +31,7 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>Wie.Mai.Kai in Flörsheim</li>
                     <li>Cosday² in Frankfurt</li>
-                    <li>DGT in Aach am Bodensee</li>
-                    <li>Natsucon in Coburg</li>
                     <li>Nihonbashi in Kassel</li>
                     <li>Gamesvention in Kempten</li>
                     <li>Manganacht in Memmingen</li>
@@ -48,6 +44,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Frühlings Gamevention in Kempten</li>
                     <li>Animuc in Fürstenfeldbruck</li>
                     <li>Kitsucon in Thayngen/Reiat</li>
+                    <li>Mini Con in Lustenau</li>
                   </ul>
                 </>
               }

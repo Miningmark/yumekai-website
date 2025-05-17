@@ -15,7 +15,7 @@ export default function Shop() {
       <h1>Ticketshop</h1>
       <p>
         <strong>
-          Die Sammler Tickets sowie Goldtickets gibt es nur bis zum 16.05.2025 um 23:59 Uhr.
+          Die Sammler Tickets sowie Goldtickets gibt es nur bis zum 24.05.2025 um 23:59 Uhr.
         </strong>
         <br />
         Falls das Ticketshop Widget nicht lädt kannst du den Ticketshop unter{" "}

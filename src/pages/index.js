@@ -1,7 +1,10 @@
-//Imports
-
 //Components
-import { StyledButton, UnstyledLink, Spacer, SpacerEmpty } from "@/components/styledComponents";
+import {
+  StyledButton,
+  UnstyledLink,
+  Spacer,
+  SpacerEmpty,
+} from "@/components/styledComponents";
 import SponsorsComponent from "@/components/home/Sponsors";
 import HomeSlider from "@/components/home/HomeSlider";
 
@@ -25,96 +28,64 @@ import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 import CounterClock from "@/components/elements/CounterClock";
 import AnmeldungYumeKaiWettbewerbe from "@/components/articles/2025/AnmeldungYumeKaiWettbewerbe";
 import Programm2025 from "@/components/articles/2025/Programm2025";
+import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 
 export default function Home() {
   return (
     <>
       <HomeSlider />
       <SpacerEmpty />
-
-      <CounterClock finalDate="2025-05-31T08:00:00Z" headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."/> {/*UTC Time */}
-
+      <CounterClock
+        finalDate="2025-05-31T08:00:00Z"
+        headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."
+      />
+      {/*UTC Time */}
       <SpacerEmpty />
-
       <h1>Aktuelles</h1>
       <p>
-        In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
-        erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
+        In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai
+        geschieht. Hier erwarten dich fortlaufend neue und fesselnde Nachrichten
+        rund um die YumeKai.
       </p>
       <SpacerEmpty />
-
-      <Programm2025/>
-
+      <Programm2025 />
       <Spacer />
-
-      <AnmeldungYumeKaiWettbewerbe/>
-
+      <AnmeldungYumeKaiWettbewerbe />
       <Spacer />
-
+      <AnkundigungMayumiNagashi />
+      <Spacer />
       <AnkundigungMion />
-
       <Spacer />
-
       <AnkundigungCoheki />
-
       <Spacer />
-
       <AnkundigungCUG />
-
       <Spacer />
-
       <HierKonntIhrUnsTreffen />
-
       <Spacer />
-
       <AnkundigungCosplayVersteigerung />
-
       <Spacer />
-
       <AnkundigungZeichenwettbewerb />
-
       <Spacer />
-
       <AnkundigungMaidCafe />
-
       <Spacer />
-
       <AnmeldungCatwalk />
-
       <Spacer />
-
       <AnkundigungBall />
-
       <Spacer />
-
       <AnkundigungSebastianFitzner />
-
       <Spacer />
-
       <HelferPost />
-
       <Spacer />
-
       <AnkundigungAndyKnote />
-
       <Spacer />
-
       <PhotoContest1 />
-
       <Spacer />
-
       <AnkundigungDominikAuer />
-
       <Spacer />
-
       <AnkundigungPetraScheeser />
-
       <Spacer />
-
       <AnkundigungJuliaMeyen />
-
       <Spacer />
-
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
           <StyledButton>Archiv</StyledButton>
