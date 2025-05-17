@@ -65,6 +65,8 @@ export default function Haendler() {
           }
           instaLink="https://www.heldenschmiede.eu/"
           instaLinkText="Heldenschmiede"
+          webLink="https://www.heldenschmiede.eu/"
+          webLinkText="Heldenschmiede"
         />
         <ContentCard
           title="Manga-Merch"
