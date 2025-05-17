@@ -62,126 +62,174 @@ export default function Kuenstler() {
       <ContentContainer>
 
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/alicemysecret" target="_blank">AliceMySecret</StyledLink>}
+                title={"AliceMySecret"}
                 imageSrc={AliceMySecretImage}
                 altText="Logo von AliceMySecret" 
+                instaLink="https://www.instagram.com/alicemysecret"
+                instaLinkText="AliceMySecret"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/crazy_berrin" target="_blank">Berrin Jost</StyledLink>}
+                title={"Berrin Jost"}
                 imageSrc={BerrinJostImage}
                 altText="Logo von Berrin Jost"
+                instaLink="https://www.instagram.com/crazy_berrin"
+                instaLinkText="Berrin Jost"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/emytsuu/?hl=de" target="_blank">Emytsuu</StyledLink>}
+                title={"Emytsuu"}
                 imageSrc={EmytsuuImage}
                 altText="Logo von Emytsuu"
+                instaLink="https://www.instagram.com/emytsuu/?hl=de"
+                instaLinkText="Emytsuu"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/loonarisarts" target="_blank">Loonaris</StyledLink>}
+                title={"Loonaris"}
                 imageSrc={LoonarisImage}
                 altText="Logo von Loonaris"
+                instaLink="https://www.instagram.com/loonarisarts"
+                instaLinkText="Loonaris"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/animalixu" target="_blank">Animalixu</StyledLink>}
+                title={"Animalixu"}
                 imageSrc={AnimalixuImage}
                 altText="Logo von Animalixu"
+                instaLink="https://www.instagram.com/animalixu"
+                instaLinkText="Animalixu"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/bavarianwoodfox/" target="_blank">BavarianWoodfox.art</StyledLink>}
+                title={"BavarianWoodfox.art"}
                 imageSrc={BavarianwoodfoxImage}
                 altText="Logo von BavarianWoodfox.art"
+                instaLink="https://www.instagram.com/bavarianwoodfox/"
+                instaLinkText="BavarianWoodfox.art"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/pridenplush" target="_blank">Pride&apos;n&apos;Plush</StyledLink>}
+                title="Pride&apos;n&apos;Plush"
                 imageSrc={PridenPlushImage}
                 altText="Logo von Pride&apos;n&apos;Plush"
+                instaLink="https://www.instagram.com/pridenplush"
+                instaLinkText="Pride&apos;n&apos;Plush"
         />
         <ContentCard
-                title={<StyledLink href="https://www.stellabialek.com" target="_blank">Stella Bialek</StyledLink>}
+                title={"Stella Bialek"}
                 imageSrc={StellaBialekImage}
                 altText="Logo von Stella Bialek"
+                instaLink="https://www.instagram.com/stellabialek"
+                instaLinkText="Stella Bialek"
         />
         <ContentCard
-                title={<StyledLink href="Amidala-Art.com" target="_blank">Amidala Artwork</StyledLink>}
+                title={"Amidala Artwork"}
                 imageSrc={AmidalaImage}
                 altText="Logo von Amidala Artwork"
+                instaLink="https://www.instagram.com/amidala.artwork/"
+                instaLinkText="Amidala Artwork"
         />
         <ContentCard
-                title={<StyledLink href="https://francinevada.com/" target="_blank">Franci Nevada</StyledLink>}
+                title={"Franci Nevada"}
                 imageSrc={FranciNevadaImage}
                 altText="Logo von Franci Nevada"
+                instaLink="https://www.instagram.com/nevada.art.shop/"
+                instaLinkText="Franci Nevada"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/kitsu_kami/" target="_blank">Kitsukami</StyledLink>}
+                title={"Kitsukami"}
                 imageSrc={KitsukamiImage}
                 altText="Logo von Kitsukami"
+                instaLink="https://www.instagram.com/kitsu_kami/"
+                instaLinkText="Kitsukami"
         />
         <ContentCard
-                title={<StyledLink href="https://linktr.ee/tactoki" target="_blank">TacToki Illustrations</StyledLink>}
+                title={"TacToki Illustrations"}
                 imageSrc={TacTokiImage}
                 altText="Logo von TacToki Illustrations"
+                instaLink="https://www.instagram.com/tactoki/"
+                instaLinkText="TacToki Illustrations"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/lariina.art/" target="_blank">Larina</StyledLink>}
+                title={"Larina"}
                 imageSrc={LarinaImage}
                 altText="Logo von Larina"
+                instaLink="https://www.instagram.com/lariina.art/"
+                instaLinkText="Larina"
         />
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/madyra_arts" target="_blank">Madyra</StyledLink>}
+                title={"Madyra"}
                 imageSrc={MadyraImage}
                 altText="Logo von Madyra"
+                instaLink="https://www.instagram.com/madyra_arts"
+                instaLinkText="Madyra"
         />
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/quinnskanzashi/" target="_blank">Quinn</StyledLink>}
                 imageSrc={QuinnImage}
                 altText="Logo von Quinn"
+                instaLink=""
+                instaLinkText=""
         />
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/rina.mora.art" target="_blank">Rina Mora Art</StyledLink>}
                 imageSrc={RinaMoraImage}
                 altText="Logo von Rina Mora Art"
+                instaLink=""
+                instaLinkText=""
         />
 
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/beehiveartists/" target="_blank">BeehiveArtists</StyledLink>}
                 imageSrc={BeehiveArtistsImage}
                 altText="Logo von BeehiveArtists"
+                instaLink=""
+                instaLinkText=""
         />
         <ContentCard
                 title={<StyledLink href="https://instagram.com/fyly_cosplays" target="_blank">Fyly</StyledLink>}
                 imageSrc={FyflyImage}
                 altText="Logo von Fyly"
+                instaLink=""
+                instaLinkText=""
         />
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/cyancalla/" target="_blank">Tiny Paws Treasures &amp; CyanCalla</StyledLink>}
                 imageSrc={tinypawsImage}
                 altText="Logo von Tiny Paws Treasures &amp; CyanCalla"
+                instaLink=""
+                instaLinkText=""
         />
         <ContentCard
                 title={<StyledLink href="https://yupiistar.carrd.co/#portfolio" target="_blank">Yupiistar</StyledLink>}
                 imageSrc={yupiistarImage}
                 altText="Logo von Yupiistar"
+                instaLink=""
+                instaLinkText=""
         />
 
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/anaratwice/?hl=de" target="_blank">Anara_Twice</StyledLink>}
                 imageSrc={AnaraImage}
                 altText="Logo von Anara_Twice"
+                instaLink=""
+                instaLinkText=""
         />
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/christal.shadow/" target="_blank">Christal.Shad0w0</StyledLink>}
                 imageSrc={ChristalShad0w0Image}
                 altText="Logo von Christal.Shad0w0"
+                instaLink=""
+                instaLinkText=""
         />
         <ContentCard
                 title={<StyledLink href="https://linktr.ee/KirianYume" target="_blank">Kirian Yume</StyledLink>}
                 imageSrc={KirianYumeImage}
                 altText="Logo von Kirian Yume"
+                instaLink=""
+                instaLinkText=""
         />
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/valyraka/" target="_blank">Valyraka</StyledLink>}
                 imageSrc={ValyrakaImage}
                 altText="Logo von Valyraka"
+                instaLink=""
+                instaLinkText=""
         />
         </ContentContainer>
         
@@ -193,17 +241,23 @@ export default function Kuenstler() {
         <ContentCard
                 title={<StyledLink href="https://www.instagram.com/yui_spallek" target="_blank">Yui Spallek</StyledLink>}
                 imageSrc={YuiSpallekImage}
-                altText="Logo von Yui Spallek" 
+                altText="Logo von Yui Spallek"
+                instaLink=""
+                instaLinkText="" 
         />
         <ContentCard
                 title={<StyledLink href="https://www.markwamsler.de" target="_blank">Kemosabe</StyledLink>}
                 imageSrc={MarkWamslerImage}
-                altText="Logo von Kemosabe" 
+                altText="Logo von Kemosabe"
+                instaLink=""
+                instaLinkText="" 
         />
         <ContentCard
                 title={<StyledLink href="https://www.naomihuber.com/" target="_blank">Ashturia</StyledLink>}
                 imageSrc={AshturiaImage}
-                altText="Logo von Ashturia" 
+                altText="Logo von Ashturia"
+                instaLink=""
+                instaLinkText="" 
         />
 
       </ContentContainer>
