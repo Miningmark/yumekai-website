@@ -73,7 +73,7 @@ const LinkButton = styled(Link)`
 export default function ReturnButton({ link, tooltip = "Zurück" }) {
   return (
     <>
-      <LinkButton href={link}>
+      <LinkButton href={link} aria-label={tooltip} role="link">
         <IconReturn />
         <span>{tooltip}</span>
       </LinkButton>
