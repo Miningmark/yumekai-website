@@ -87,12 +87,6 @@ export default function Kuenstler() {
           instaLinkText="BavarianWoodfox.art"
         />
         <ContentCard
-          imageSrc={PridenPlushImage}
-          altText="Logo von Pride'n'Plush"
-          instaLink="https://www.instagram.com/pridenplush"
-          instaLinkText="Pride'n'Plush"
-        />
-        <ContentCard
           imageSrc={StellaBialekImage}
           altText="Logo von Stella Bialek"
           instaLink="https://www.instagram.com/stellabialek"
@@ -161,15 +155,15 @@ export default function Kuenstler() {
         />
         <ContentCard
           imageSrc={tinypawsImage}
-          altText="Logo von Tiny Paws Treasures &amp; CyanCalla"
+          altText="Logo von Tiny Paws Treasures"
           instaLink="https://www.instagram.com/cyancalla/"
-          instaLinkText="Tiny Paws Treasures &amp; CyanCalla"
+          instaLinkText="Tiny Paws Treasures"
         />
         <ContentCard
           imageSrc={yupiistarImage}
           altText="Logo von Yupiistar"
-          instaLink="https://yupiistar.carrd.co/#portfolio"
-          instaLinkText="Yupiistar"
+          webLink="https://yupiistar.carrd.co/#portfolio"
+          webLinkText="Yupiistar"
         />
 
         <ContentCard
@@ -206,12 +200,6 @@ export default function Kuenstler() {
           altText="Logo von Yui Spallek"
           instaLink="https://www.instagram.com/yui_spallek"
           instaLinkText="Yui Spallek"
-        />
-        <ContentCard
-          imageSrc={MarkWamslerImage}
-          altText="Logo von Kemosabe"
-          webLink="https://www.markwamsler.de"
-          webLinkText="Kemosabe"
         />
         <ContentCard
           imageSrc={AshturiaImage}
