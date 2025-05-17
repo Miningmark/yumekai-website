@@ -1,8 +1,10 @@
 import Image from "next/image";
-import styled, { keyframes } from "styled-components";
+import Link from "next/link";
+import styled from "styled-components";
 
 //Icons
 import InstaIcon from "/public/assets/icons/instagram.svg";
+import EarthIcon from "/public/assets/icons/earth.svg";
 
 /*
 Aufruf der Component
@@ -72,7 +74,7 @@ const CardTitle = styled.h2`
   margin-bottom: 0px;
 `;
 
-const InstaLink = styled.a`
+const InstaLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -97,33 +99,68 @@ const InstaLink = styled.a`
   }
 `;
 
+const WebLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #3b82f6; // Standard: leichtes Blau (z. B. Tailwind blue-500)
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #3b82f6;
+    transition: fill 0.3s;
+  }
+
+  &:hover {
+    color: #1d4ed8; // Dunkleres Blau beim Hover
+
+    svg {
+      fill: #1d4ed8;
+    }
+  }
+`;
+
 export default function ContentCard({
-  title,
+  title = null,
   text = null,
-  imageSrc,
-  altText,
+  imageSrc = null,
+  altText = null,
   instaLink = null,
   instaLinkText = null,
+  webLink = null,
+  webLinkText = null,
 }) {
   return (
     <CardWrapper>
       <CardContent className="card">
         <div className="card2">
-          <CardTitle>{title}</CardTitle>
+          {title ? <CardTitle>{title}</CardTitle> : null}
           {text ? <>{text}</> : null}
-          <Image
-            src={imageSrc}
-            alt={altText}
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-          />
+          {imageSrc && altText ? (
+            <Image
+              src={imageSrc}
+              alt={altText}
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+          ) : null}
+
           {instaLink && instaLinkText && (
             <InstaLink href={instaLink} target="_blank" rel="noopener noreferrer">
               <InstaIcon />
               {instaLinkText}
             </InstaLink>
+          )}
+          {webLink && webLinkText && (
+            <WebLink href={webLink} target="_blank" rel="noopener noreferrer">
+              <EarthIcon />
+              {webLinkText}
+            </WebLink>
           )}
         </div>
       </CardContent>
