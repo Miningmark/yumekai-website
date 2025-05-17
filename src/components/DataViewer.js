@@ -80,7 +80,6 @@ const EnlargedImageContainer = styled.div`
 `;
 
 export default function ShowFullSizeURIData({ file, handleClose }) {
-  console.log("File:", file);
   const fileName = file.split("/").pop();
   const normalizedFile = file.startsWith("/public") ? file.replace("/public", "") : file;
 
