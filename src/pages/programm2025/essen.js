@@ -49,15 +49,15 @@ export default function Kuenstler() {
                 text={<p>Taucht ein in eine Welt voller Magie und Charme! Wir laden euch herzlich im Maximilian-Kolbe-Haus ein, das einzigartige Erlebnis unseres Maid Cafés zu genießen. Unser Team von Vivid Arise freut sich darauf, euch mit einem Lächeln zu empfangen und einen unvergesslichen Aufenthalt zu gestalten.</p>}  
         />
         <ContentCard
-                title={"GRAF FOOD ON WHEELS!"}
+                title={"Taiyaki"}
                 imageSrc={TaiyakiImage}
-                altText="Logo von AliceMySecret"
+                altText="Bild von Taiyaki"
                 text={<p>Die Wie.MAI.KAI bietet die beliebten, fischförmigen Waffeln an, die traditionell mit süßer roter Bohnenpaste (Anko) gefüllt sind. Alternativ gibt es auch Varianten mit köstlicher Schokocreme. Der Name &quot;Taiyaki&quot; bedeutet wörtlich &quot;gebackene Meerbrasse&quot; und bezieht sich auf die charakteristische Form der Waffel.</p>}  
         />
         <ContentCard
                 title={"bubbleTime"}
                 imageSrc={BubbleTimeImage}
-                altText="Logo von AliceMySecret"
+                altText="Logo von bubbleTime"
                 text={<p>Angeboten werden alle möglichen Fruchtbubbletee, Milch Bubbletee und Klassik Bubble Tea.</p>}  
         />
 

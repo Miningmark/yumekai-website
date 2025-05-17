@@ -27,8 +27,8 @@ Aufruf der Component
 */
 
 const CardWrapper = styled.div`
-  flex: 1 1 290px;
-  max-width: 290px;
+  flex: 1 1 ${({$maxwidth}) => $maxwidth}px;
+  max-width: ${({$maxwidth}) => $maxwidth}px;
 
   .card {
     width: 100%;
@@ -75,6 +75,10 @@ const CardTitle = styled.h2`
   text-align: center;
   margin-bottom: 0px;
 `;
+
+const CardSubtitle = styled.h3`
+  margin-top: 0px;
+  `;
 
 const InstaLink = styled(Link)`
   display: flex;
@@ -127,6 +131,7 @@ const WebLink = styled(Link)`
 
 export default function ContentCard({
   title = null,
+  subtitle = null,
   text = null,
   imageSrc = null,
   altText = null,
@@ -134,12 +139,14 @@ export default function ContentCard({
   instaLinkText = null,
   webLink = null,
   webLinkText = null,
+  maxWidth = 290,
 }) {
   return (
-    <CardWrapper>
+    <CardWrapper $maxwidth={maxWidth}>
       <CardContent className="card">
         <div className="card2">
           {title ? <CardTitle>{title}</CardTitle> : null}
+          {subtitle ? <CardSubtitle>{subtitle}</CardSubtitle> : null}
           {text ? <>{text}</> : null}
           {imageSrc && altText ? (
             <Image
