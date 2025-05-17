@@ -136,8 +136,8 @@ export default function Workshops() {
           altText="Bild von 1x1 Kanzashi Kunst"
           text={
             <p>
-              Tauche ein in die bunte Blütenwelt der Kanzashi Kunst. In meinem Workshop "1x1 der
-              Kanzashi Kunst" dreht sich alles um die wichtigsten Materialien und Werkzeuge, die du
+              Tauche ein in die bunte Blütenwelt der Kanzashi Kunst. In meinem Workshop &quot;1x1 der
+              Kanzashi Kunst&quot; dreht sich alles um die wichtigsten Materialien und Werkzeuge, die du
               für den Einstieg benötigst. Ich zeige dir, welche Stoffe, Schneidewerkzeuge und
               Zubehörteile du brauchst, um deine ersten wunderschönen Kanzashi-Blüten zu kreieren.
               Außerdem gebe ich dir praktische Tipps und Tricks, wo du das Material günstig und
