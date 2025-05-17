@@ -30,7 +30,7 @@ reverse   false -> nothing
 const ColumnsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: ${({$align})=>($align==1 ? "center":"flex-start")};
   width: 100%;
 
   @media (max-width: 800px) {
@@ -49,9 +49,9 @@ const Column = styled.div`
   }
 `;
 
-export default function Columns2({ left, right, mobile = 1, reverse = false }) {
+export default function Columns2({ left, right, mobile = 1, reverse = false, align=1 }) {
   return (
-    <ColumnsWrapper $mobile={mobile}>
+    <ColumnsWrapper $mobile={mobile} $align={align}>
       <Column $mobile={mobile} $reverse={reverse} $isRight={false}>
         {left}
       </Column>
