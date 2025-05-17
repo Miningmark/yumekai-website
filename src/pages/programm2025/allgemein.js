@@ -8,7 +8,7 @@ import Columns2 from "@/components/elements/Columns2";
 import Columns3 from "@/components/elements/Columns3";
 import RectangleContainer from "@/components/elements/RectangleContainer";
 import MovingContentWrapper from "@/components/elements/MovingContent";
-import { SpacerEmpty,Spacer, StyledLink } from "@/components/styledComponents";
+import { SpacerEmpty, Spacer, StyledLink } from "@/components/styledComponents";
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
@@ -20,34 +20,57 @@ import lageplanKolbehausImage from "/public/assets/images/yumekai2025/Lageplan_K
 import lageplanSatdthalleEGImage from "/public/assets/images/yumekai2025/Lageplan_Stadthalle_EG.png";
 import lageplanSatdthalleOGImage from "/public/assets/images/yumekai2025/Lageplan_Stadthalle_OG.png";
 import ortImage from "/public/assets/images/yumekai2025/Ort_Image.png";
+import zeitplanSamstagImage from "/public/assets/images/yumekai2025/Zeitplan_Samstag.png";
+import zeitplanSonntagImage from "/public/assets/images/yumekai2025/Zeitplan_Sonntag.png";
 
 export default function Allgemein() {
   const [viewFile, setViewFile] = useState(null);
 
   return (
     <>
-    <ReturnButton link="/programm2025" />
+      <ReturnButton link="/programm2025" />
       <h1>Allgemein</h1>
       <h3>Öffnungszeiten</h3>
-      <p>Unsere Öffnungszeiten für die YumeKai 2025 sind wie folgt:<br />
-      Samstag: 10:00 - 21:00 Uhr<br />
-      Sonntag: 10:00 - 17:30 Uhr<br />
-      <br />
-      Besucher mit einem Goldticket dürfen bereits 30 Minuten früher auf die Convention und haben somit einen Einlass ab 9:30 Uhr.<br />
-      <br />
-      Einzelne Bereiche schließen bereits früher/später:<br />
-      Küntlerbereich:<br />
-      Samstag bis 19:00 Uhr<br />
-      Sonntag bis 17:30 Uhr<br /><br />
-      Händlerbereich:<br />
-      Samstag bis 19:00 Uhr<br />
-      Sonntag bis 17:30 Uhr<br /><br />
-      Vivid Arise Maid Café:<br />
-      Samstag bis 20:00 Uhr<br />
-      Sonntag bis 17:00 Uhr<br /><br />
-      Cospayball:<br />
-      Samstag bis 23:00 Uhr</p>
-  <Spacer/>
+      <p>
+        Unsere Öffnungszeiten für die YumeKai 2025 sind wie folgt:
+        <br />
+        Samstag: 10:00 - 21:00 Uhr
+        <br />
+        Sonntag: 10:00 - 17:30 Uhr
+        <br />
+        <br />
+        Besucher mit einem Goldticket dürfen bereits 30 Minuten früher auf die Convention und haben
+        somit einen Einlass ab 9:30 Uhr.
+        <br />
+        <br />
+        Einzelne Bereiche schließen bereits früher/später:
+        <br />
+        Küntlerbereich:
+        <br />
+        Samstag bis 19:00 Uhr
+        <br />
+        Sonntag bis 17:30 Uhr
+        <br />
+        <br />
+        Händlerbereich:
+        <br />
+        Samstag bis 19:00 Uhr
+        <br />
+        Sonntag bis 17:30 Uhr
+        <br />
+        <br />
+        Vivid Arise Maid Café:
+        <br />
+        Samstag bis 20:00 Uhr
+        <br />
+        Sonntag bis 17:00 Uhr
+        <br />
+        <br />
+        Cospayball:
+        <br />
+        Samstag bis 23:00 Uhr
+      </p>
+      <Spacer />
 
       <h3>Programmheft</h3>
       <p>Lust auf mehr Infos? Unser digitales Programmheft gibt's hier als PDF zum Mitnehmen.</p>
@@ -57,28 +80,47 @@ export default function Allgemein() {
         </StyledLinkAsButton>
       </div>
 
-      <Spacer/>
-<h3>Anfahrt</h3>
-<p style={{marginBottom : "0"}}>Die Yumekai 2025 findet in der Stadthalle Memmingen, sowie in dem Maximilian-Kolbe-Haus und dem gegenüberliegendem Gebäude der VHS Memmingen statt. Das Haupthaus, in dem ihr auch die Tageskasse und den Waffencheck findet, ist die Stadthalle Memmingen.<br />
-<br />
-<strong>Adresse der Stadthalle Memmingen:</strong><br />
-Platz der deutschen Einheit 1, 87700 Memmingen<br />
-<br />
-<strong>Anfahrt mit dem Auto:</strong><br />
-Die Stadthalle Memmingen ist über die Autobahn A7 oder A96 mit der Ausfahrt &quot;13 Memmingen Nord&quot; oder mit öffentlichen Verkehrsmitteln zu erreichen. Wir empfehlen die Anreise mit den öffentlichen Verkehrsmitteln.<br />
-<br />
-<strong>Parken:</strong></p>
-<ul style={{margin : "0"}}>
-  <li>Tiefgarage Stadthalle, 450 Stellplätze, Entfernung: ca. 0 Minute zu Fuß</li>
-  <li>Parkhaus Schwesternstraße, 335 Stellplätze, Entfernung: ca. 10 Minuten zu Fuß</li>
-  <li>Parkhaus Steinbogenstraße, 330 Stellplätze, Entfernung: ca. 12 Minuten zu Fuß</li>
-  <li>Parkhaus Bahnhofsstraße, 330 Stellplätze, Entfernung: ca. 15 Minuten zu Fuß</li>
-</ul>
-<p style={{marginTop : "5px"}}>Weitere Informationen bezüglich Parkmöglichkeiten entnehmen Sie bitte folgender Seite: <StyledLink href={"https://stadtwerke-memmingen.de/parkhaeuser"} target="_blank">https://stadtwerke-memmingen.de/parkhaeuser</StyledLink>.</p>
+      <Spacer />
+      <h3>Anfahrt</h3>
+      <p style={{ marginBottom: "0" }}>
+        Die Yumekai 2025 findet in der Stadthalle Memmingen, sowie in dem Maximilian-Kolbe-Haus und
+        dem gegenüberliegendem Gebäude der VHS Memmingen statt. Das Haupthaus, in dem ihr auch die
+        Tageskasse und den Waffencheck findet, ist die Stadthalle Memmingen.
+        <br />
+        <br />
+        <strong>Adresse der Stadthalle Memmingen:</strong>
+        <br />
+        Platz der deutschen Einheit 1, 87700 Memmingen
+        <br />
+        <br />
+        <strong>Anfahrt mit dem Auto:</strong>
+        <br />
+        Die Stadthalle Memmingen ist über die Autobahn A7 oder A96 mit der Ausfahrt &quot;13
+        Memmingen Nord&quot; oder mit öffentlichen Verkehrsmitteln zu erreichen. Wir empfehlen die
+        Anreise mit den öffentlichen Verkehrsmitteln.
+        <br />
+        <br />
+        <strong>Parken:</strong>
+      </p>
+      <ul style={{ margin: "0" }}>
+        <li>Tiefgarage Stadthalle, 450 Stellplätze, Entfernung: ca. 0 Minute zu Fuß</li>
+        <li>Parkhaus Schwesternstraße, 335 Stellplätze, Entfernung: ca. 10 Minuten zu Fuß</li>
+        <li>Parkhaus Steinbogenstraße, 330 Stellplätze, Entfernung: ca. 12 Minuten zu Fuß</li>
+        <li>Parkhaus Bahnhofsstraße, 330 Stellplätze, Entfernung: ca. 15 Minuten zu Fuß</li>
+      </ul>
+      <p style={{ marginTop: "5px" }}>
+        Weitere Informationen bezüglich Parkmöglichkeiten entnehmen Sie bitte folgender Seite:{" "}
+        <StyledLink href={"https://stadtwerke-memmingen.de/parkhaeuser"} target="_blank">
+          https://stadtwerke-memmingen.de/parkhaeuser
+        </StyledLink>
+        .
+      </p>
 
-<p><strong>Anfahrt mit den öffentlichen Verkehrsmitteln:</strong><br />
-Die Stadthalle Memmingen ist zu Fuß ca. 15 Minuten (1 Km) vom Bahnhof entfernt.</p>
-
+      <p>
+        <strong>Anfahrt mit den öffentlichen Verkehrsmitteln:</strong>
+        <br />
+        Die Stadthalle Memmingen ist zu Fuß ca. 15 Minuten (1 Km) vom Bahnhof entfernt.
+      </p>
 
       <Image
         src={mapImage}
@@ -102,11 +144,16 @@ Die Stadthalle Memmingen ist zu Fuß ca. 15 Minuten (1 Km) vom Bahnhof entfernt.
           zu Google Maps
         </StyledLinkAsButton>
       </div>
-            <Spacer/>
-<h3>Ort</h3>
-<p>Dieses Jahr wächst die YumeKai - neben der Stadthalle Memmingen erwarten euch zwei weitere Locations: das Maximilian-Kolbe-Haus und die VHS Memmingen!<br />
-Beide Gebäude liegen weniger als 200 Meter von der Stadthalle entfernt und erweitern unser Programm mit vielen spannenden Inhalten.</p>
-<Image
+      <Spacer />
+      <h3>Ort</h3>
+      <p>
+        Dieses Jahr wächst die YumeKai - neben der Stadthalle Memmingen erwarten euch zwei weitere
+        Locations: das Maximilian-Kolbe-Haus und die VHS Memmingen!
+        <br />
+        Beide Gebäude liegen weniger als 200 Meter von der Stadthalle entfernt und erweitern unser
+        Programm mit vielen spannenden Inhalten.
+      </p>
+      <Image
         src={ortImage}
         alt="Wegbeschreibung zu den Gebüuden der VHS und des Maximilian-Kolbe-Hauses"
         style={{
@@ -124,7 +171,7 @@ Beide Gebäude liegen weniger als 200 Meter von der Stadthalle entfernt und erwe
         www.geoportal.bayern.de
       </small>
 
-      <Spacer/>
+      <Spacer />
       <h3>Lageplan</h3>
       <p>Maximilian-Kolbe-Haus und VHS Memmingen</p>
 
@@ -167,6 +214,36 @@ Beide Gebäude liegen weniger als 200 Meter von der Stadthalle entfernt und erwe
         }}
         onClick={() => {
           setViewFile("/public/assets/images/yumekai2025/Lageplan_Stadthalle_OG.png");
+        }}
+      />
+
+      <Spacer />
+
+      <Image
+        src={zeitplanSamstagImage}
+        alt="Zeitplan Samstag"
+        style={{
+          width: "350px",
+          height: "auto",
+          borderRadius: "10px",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          setViewFile("/public/assets/images/yumekai2025/Zeitplan_Samstag.png");
+        }}
+      />
+
+      <Image
+        src={zeitplanSonntagImage}
+        alt="Zeitplan Sonntag"
+        style={{
+          width: "350px",
+          height: "auto",
+          borderRadius: "10px",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          setViewFile("/public/assets/images/yumekai2025/Zeitplan_Sonntag.png");
         }}
       />
 

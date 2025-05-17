@@ -1,14 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
-import { useRef, useEffect, useState } from "react";
 
 //Components
-import Columns2 from "@/components/elements/Columns2";
-import Columns3 from "@/components/elements/Columns3";
-import RectangleContainer from "@/components/elements/RectangleContainer";
-import MovingContentWrapper from "@/components/elements/MovingContent";
-import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 
@@ -41,8 +33,6 @@ import MarkWamslerImage from "/public/assets/images/yumekai2025/MarkWamsler_Imag
 import AshturiaImage from "/public/assets/images/yumekai2025/Ashturia_Image.png";
 import AnaraImage from "/public/assets/images/yumekai2025/Anara_Image.png";
 
-
-
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -60,179 +50,175 @@ export default function Kuenstler() {
       <h1 style={{ textAlign: "center" }}>Künstler</h1>
 
       <ContentContainer>
-
         <ContentCard
-                imageSrc={AliceMySecretImage}
-                altText="Logo von AliceMySecret" 
-                instaLink="https://www.instagram.com/alicemysecret"
-                instaLinkText="AliceMySecret"
-        />
-        <ContentCard
-                imageSrc={BerrinJostImage}
-                altText="Logo von Berrin Jost"
-                instaLink="https://www.instagram.com/crazy_berrin"
-                instaLinkText="Berrin Jost"
+          imageSrc={AliceMySecretImage}
+          altText="Logo von AliceMySecret"
+          instaLink="https://www.instagram.com/alicemysecret"
+          instaLinkText="AliceMySecret"
         />
         <ContentCard
-                imageSrc={EmytsuuImage}
-                altText="Logo von Emytsuu"
-                instaLink="https://www.instagram.com/emytsuu/?hl=de"
-                instaLinkText="Emytsuu"
-        />
-        <ContentCard     
-                imageSrc={LoonarisImage}
-                altText="Logo von Loonaris"
-                instaLink="https://www.instagram.com/loonarisarts"
-                instaLinkText="Loonaris"
-        />
-        <ContentCard       
-                imageSrc={AnimalixuImage}
-                altText="Logo von Animalixu"
-                instaLink="https://www.instagram.com/animalixu"
-                instaLinkText="Animalixu"
-        />
-        <ContentCard    
-                imageSrc={BavarianwoodfoxImage}
-                altText="Logo von BavarianWoodfox.art"
-                instaLink="https://www.instagram.com/bavarianwoodfox/"
-                instaLinkText="BavarianWoodfox.art"
-        />
-        <ContentCard  
-                imageSrc={PridenPlushImage}
-                altText="Logo von Pride&apos;n&apos;Plush"
-                instaLink="https://www.instagram.com/pridenplush"
-                instaLinkText="Pride&apos;n&apos;Plush"
+          imageSrc={BerrinJostImage}
+          altText="Logo von Berrin Jost"
+          instaLink="https://www.instagram.com/crazy_berrin"
+          instaLinkText="Berrin Jost"
         />
         <ContentCard
-                imageSrc={StellaBialekImage}
-                altText="Logo von Stella Bialek"
-                instaLink="https://www.instagram.com/stellabialek"
-                instaLinkText="Stella Bialek"
+          imageSrc={EmytsuuImage}
+          altText="Logo von Emytsuu"
+          instaLink="https://www.instagram.com/emytsuu/?hl=de"
+          instaLinkText="Emytsuu"
         />
         <ContentCard
-                imageSrc={AmidalaImage}
-                altText="Logo von Amidala Artwork"
-                instaLink="https://www.instagram.com/amidala.artwork/"
-                instaLinkText="Amidala Artwork"
+          imageSrc={LoonarisImage}
+          altText="Logo von Loonaris"
+          instaLink="https://www.instagram.com/loonarisarts"
+          instaLinkText="Loonaris"
         />
         <ContentCard
-                imageSrc={FranciNevadaImage}
-                altText="Logo von Franci Nevada"
-                instaLink="https://www.instagram.com/nevada.art.shop/"
-                instaLinkText="Franci Nevada"
+          imageSrc={AnimalixuImage}
+          altText="Logo von Animalixu"
+          instaLink="https://www.instagram.com/animalixu"
+          instaLinkText="Animalixu"
         />
         <ContentCard
-                imageSrc={KitsukamiImage}
-                altText="Logo von Kitsukami"
-                instaLink="https://www.instagram.com/kitsu_kami/"
-                instaLinkText="Kitsukami"
+          imageSrc={BavarianwoodfoxImage}
+          altText="Logo von BavarianWoodfox.art"
+          instaLink="https://www.instagram.com/bavarianwoodfox/"
+          instaLinkText="BavarianWoodfox.art"
         />
         <ContentCard
-                imageSrc={TacTokiImage}
-                altText="Logo von TacToki Illustrations"
-                instaLink="https://www.instagram.com/tactoki/"
-                instaLinkText="TacToki Illustrations"
+          imageSrc={PridenPlushImage}
+          altText="Logo von Pride'n'Plush"
+          instaLink="https://www.instagram.com/pridenplush"
+          instaLinkText="Pride'n'Plush"
         />
         <ContentCard
-                imageSrc={LarinaImage}
-                altText="Logo von Larina"
-                instaLink="https://www.instagram.com/lariina.art/"
-                instaLinkText="Larina"
+          imageSrc={StellaBialekImage}
+          altText="Logo von Stella Bialek"
+          instaLink="https://www.instagram.com/stellabialek"
+          instaLinkText="Stella Bialek"
         />
         <ContentCard
-                imageSrc={MadyraImage}
-                altText="Logo von Madyra"
-                instaLink="https://www.instagram.com/madyra_arts"
-                instaLinkText="Madyra"
+          imageSrc={AmidalaImage}
+          altText="Logo von Amidala Artwork"
+          instaLink="https://www.instagram.com/amidala.artwork/"
+          instaLinkText="Amidala Artwork"
         />
         <ContentCard
-                imageSrc={QuinnImage}
-                altText="Logo von Quinn"
-                instaLink="https://www.instagram.com/quinnskanzashi/"
-                instaLinkText="Quinn"
+          imageSrc={FranciNevadaImage}
+          altText="Logo von Franci Nevada"
+          instaLink="https://www.instagram.com/nevada.art.shop/"
+          instaLinkText="Franci Nevada"
         />
         <ContentCard
-                imageSrc={RinaMoraImage}
-                altText="Logo von Rina Mora Art"
-                instaLink="https://www.instagram.com/rina.mora.art"
-                instaLinkText="Rina Mora Art"
-        />
-
-        <ContentCard
-                imageSrc={BeehiveArtistsImage}
-                altText="Logo von BeehiveArtists"
-                instaLink="https://www.instagram.com/beehiveartists/"
-                instaLinkText="BeehiveArtists"
+          imageSrc={KitsukamiImage}
+          altText="Logo von Kitsukami"
+          instaLink="https://www.instagram.com/kitsu_kami/"
+          instaLinkText="Kitsukami"
         />
         <ContentCard
-                imageSrc={FyflyImage}
-                altText="Logo von Fyly"
-                instaLink="https://instagram.com/fyly_cosplays"
-                instaLinkText="Fyly"
+          imageSrc={TacTokiImage}
+          altText="Logo von TacToki Illustrations"
+          instaLink="https://www.instagram.com/tactoki/"
+          instaLinkText="TacToki Illustrations"
         />
         <ContentCard
-                imageSrc={tinypawsImage}
-                altText="Logo von Tiny Paws Treasures &amp; CyanCalla"
-                instaLink="https://www.instagram.com/cyancalla/"
-                instaLinkText="Tiny Paws Treasures &amp; CyanCalla"
+          imageSrc={LarinaImage}
+          altText="Logo von Larina"
+          instaLink="https://www.instagram.com/lariina.art/"
+          instaLinkText="Larina"
         />
         <ContentCard
-                imageSrc={yupiistarImage}
-                altText="Logo von Yupiistar"
-                instaLink="https://yupiistar.carrd.co/#portfolio"
-                instaLinkText="Yupiistar"
+          imageSrc={MadyraImage}
+          altText="Logo von Madyra"
+          instaLink="https://www.instagram.com/madyra_arts"
+          instaLinkText="Madyra"
+        />
+        <ContentCard
+          imageSrc={QuinnImage}
+          altText="Logo von Quinn"
+          instaLink="https://www.instagram.com/quinnskanzashi/"
+          instaLinkText="Quinn"
+        />
+        <ContentCard
+          imageSrc={RinaMoraImage}
+          altText="Logo von Rina Mora Art"
+          instaLink="https://www.instagram.com/rina.mora.art"
+          instaLinkText="Rina Mora Art"
         />
 
         <ContentCard
-                imageSrc={AnaraImage}
-                altText="Logo von Anara_Twice"
-                instaLink="https://www.instagram.com/anaratwice/?hl=de"
-                instaLinkText="Anara_Twice"
+          imageSrc={BeehiveArtistsImage}
+          altText="Logo von BeehiveArtists"
+          instaLink="https://www.instagram.com/beehiveartists/"
+          instaLinkText="BeehiveArtists"
         />
         <ContentCard
-                imageSrc={ChristalShad0w0Image}
-                altText="Logo von Christal.Shad0w0"
-                instaLink="https://www.instagram.com/christal.shadow/"
-                instaLinkText="Christal.Shad0w0"
+          imageSrc={FyflyImage}
+          altText="Logo von Fyly"
+          instaLink="https://instagram.com/fyly_cosplays"
+          instaLinkText="Fyly"
         />
         <ContentCard
-                imageSrc={KirianYumeImage}
-                altText="Logo von Kirian Yume"
-                instaLink="https://www.instagram.com/kirianyume/"
-                instaLinkText="Kirian Yume"
+          imageSrc={tinypawsImage}
+          altText="Logo von Tiny Paws Treasures &amp; CyanCalla"
+          instaLink="https://www.instagram.com/cyancalla/"
+          instaLinkText="Tiny Paws Treasures &amp; CyanCalla"
         />
         <ContentCard
-                imageSrc={ValyrakaImage}
-                altText="Logo von Valyraka"
-                instaLink="https://www.instagram.com/valyraka/"
-                instaLinkText="Valyraka"
+          imageSrc={yupiistarImage}
+          altText="Logo von Yupiistar"
+          instaLink="https://yupiistar.carrd.co/#portfolio"
+          instaLinkText="Yupiistar"
         />
-        </ContentContainer>
-        
-
-        <h1 style={{ textAlign: "center" }}>Autoren</h1>
-
-        <ContentContainer>
 
         <ContentCard
-                imageSrc={YuiSpallekImage}
-                altText="Logo von Yui Spallek"
-                instaLink="https://www.instagram.com/yui_spallek"
-                instaLinkText="Yui Spallek" 
+          imageSrc={AnaraImage}
+          altText="Logo von Anara_Twice"
+          instaLink="https://www.instagram.com/anaratwice/?hl=de"
+          instaLinkText="Anara_Twice"
         />
         <ContentCard
-                imageSrc={MarkWamslerImage}
-                altText="Logo von Kemosabe"
-                webLink="https://www.markwamsler.de"
-                webLinkText="Kemosabe" 
+          imageSrc={ChristalShad0w0Image}
+          altText="Logo von Christal.Shad0w0"
+          instaLink="https://www.instagram.com/christal.shadow/"
+          instaLinkText="Christal.Shad0w0"
         />
         <ContentCard
-                imageSrc={AshturiaImage}
-                altText="Logo von Ashturia"
-                webLink="https://www.naomihuber.com/"
-                webLinkText="Ashturia" 
+          imageSrc={KirianYumeImage}
+          altText="Logo von Kirian Yume"
+          instaLink="https://www.instagram.com/kirianyume/"
+          instaLinkText="Kirian Yume"
         />
+        <ContentCard
+          imageSrc={ValyrakaImage}
+          altText="Logo von Valyraka"
+          instaLink="https://www.instagram.com/valyraka/"
+          instaLinkText="Valyraka"
+        />
+      </ContentContainer>
 
+      <h1 style={{ textAlign: "center" }}>Autoren</h1>
+
+      <ContentContainer>
+        <ContentCard
+          imageSrc={YuiSpallekImage}
+          altText="Logo von Yui Spallek"
+          instaLink="https://www.instagram.com/yui_spallek"
+          instaLinkText="Yui Spallek"
+        />
+        <ContentCard
+          imageSrc={MarkWamslerImage}
+          altText="Logo von Kemosabe"
+          webLink="https://www.markwamsler.de"
+          webLinkText="Kemosabe"
+        />
+        <ContentCard
+          imageSrc={AshturiaImage}
+          altText="Logo von Ashturia"
+          webLink="https://www.naomihuber.com/"
+          webLinkText="Ashturia"
+        />
       </ContentContainer>
     </>
   );
