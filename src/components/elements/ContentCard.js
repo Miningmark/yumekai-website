@@ -1,5 +1,8 @@
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+//Icons
+import InstaIcon from "/public/assets/icons/instagram.svg";
 
 /*
 Aufruf der Component
@@ -12,61 +15,117 @@ Aufruf der Component
         text="Ich bin ein Text"     //optional
         imageSrc={hiruKunstler}
         altText="Logo von Anara Twice"
+        instaLink="https://www.instagram.com/anara"
+        instaLinkText="Instagram"
       />
 
       
 */
 
 const CardWrapper = styled.div`
-  width: calc(50% - 20px);
+  flex: 1 1 290px;
   max-width: 290px;
+
+  .card {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(163deg, #e9300b 0%, #ffb01e 100%);
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+
+  .card2 {
+    width: calc(100% - 16px);
+    height: 100%;
+    background-color: ${({ theme }) => theme.backgroundColor4};
+    padding: 8px;
+    border-radius: 18px;
+    transition: all 0.2s;
+
+    p,
+    h2 {
+      color: ${({ theme }) => theme.text};
+    }
+  }
+
+  .card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+  }
+
+  .card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(255, 176, 30, 0.3);
+  }
 `;
 
 const CardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   width: 100%;
-  position: relative;
-  transition: all 0.3s ease-in-out;
+  text-align: center;
+`;
 
-  p,
-  h2 {
-    color: ${({ theme }) => theme.text};
+const CardTitle = styled.h2`
+  min-height: 2.3em;
+  text-align: center;
+  margin-bottom: 0px;
+`;
+
+const InstaLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  text-decoration: none;
+  color: #bd1550;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #bd1550;
   }
 
   &:hover {
-  border: 8px solid;
-  border-image: repeating-linear-gradient(135deg,#F8CA00 0 10px,#E97F02 0 20px,#BD1550 0 30px) 8;
-  -webkit-mask: 
-    conic-gradient(from 180deg at top 8px right 8px, #0000 90deg,#000 0)
-     var(--_i,200%) 0  /200% var(--_i,8px) border-box no-repeat,
-    conic-gradient(at bottom 8px left  8px,  #0000 90deg,#000 0)
-     0   var(--_i,200%)/var(--_i,8px) 200% border-box no-repeat,
-    linear-gradient(#000 0 0) padding-box no-repeat;
-  transition: .3s, -webkit-mask-position .3s .3s;
-}
+    color: #a78bfa;
+    transition: fill 0.3s;
 
-/*
-&:hover {
-  --_i: 100%;
-  color: #CC333F;
-  transition: .3s, -webkit-mask-size .3s .3s;
-}
-  */
+    svg {
+      fill: #a78bfa;
+      transition: fill 0.3s;
+    }
+  }
 `;
 
-export default function ContentCard({ title, text, imageSrc, altText }) {
+export default function ContentCard({
+  title,
+  text = null,
+  imageSrc,
+  altText,
+  instaLink = null,
+  instaLinkText = null,
+}) {
   return (
     <CardWrapper>
-      <CardContent>
-        <h2 style={{ textAlign: "center" }}>{title}</h2>
-        {text ? <>{text}</> : null}
-        <Image
-          src={imageSrc}
-          alt={altText}
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
-        />
+      <CardContent className="card">
+        <div className="card2">
+          <CardTitle>{title}</CardTitle>
+          {text ? <>{text}</> : null}
+          <Image
+            src={imageSrc}
+            alt={altText}
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+          />
+          {instaLink && instaLinkText && (
+            <InstaLink href={instaLink} target="_blank" rel="noopener noreferrer">
+              <InstaIcon />
+              {instaLinkText}
+            </InstaLink>
+          )}
+        </div>
       </CardContent>
     </CardWrapper>
   );
