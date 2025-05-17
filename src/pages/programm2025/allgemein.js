@@ -1,16 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 
 //Components
 import Columns2 from "@/components/elements/Columns2";
-import Columns3 from "@/components/elements/Columns3";
-import RectangleContainer from "@/components/elements/RectangleContainer";
-import MovingContentWrapper from "@/components/elements/MovingContent";
 import { SpacerEmpty, Spacer, StyledLink } from "@/components/styledComponents";
 import ReturnButton from "@/components/menu/ReturnButton";
-import ContentCard from "@/components/elements/ContentCard";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
 import DataViewer from "@/components/DataViewer";
 
@@ -22,8 +17,6 @@ import lageplanSatdthalleOGImage from "/public/assets/images/yumekai2025/Lagepla
 import ortImage from "/public/assets/images/yumekai2025/Ort_Image.png";
 import zeitplanSamstagImage from "/public/assets/images/yumekai2025/Zeitplan_Samstag.png";
 import zeitplanSonntagImage from "/public/assets/images/yumekai2025/Zeitplan_Sonntag.png";
-import ZeitplanSamstagGrossImage from "/public/assets/images/yumekai2025/ZeitplanSamstagGross_Image.png";
-import ZeitplanSonntagGrossImage from "/public/assets/images/yumekai2025/ZeitplanSonntagGross_Image.png";
 
 const DynamicContent = styled.div`
   display: flex;
@@ -37,20 +30,20 @@ const DynamicContent = styled.div`
 `;
 
 const NoDotList = styled.ol`
-list-style: none;
-counter-reset: list;
+  list-style: none;
+  counter-reset: list;
 `;
 
 const NoDotListItem = styled.li`
-counter-increment: list;
-posision: relative;
+  counter-increment: list;
+  position: relative;
 
-&::before{
-content: counter(list) " ";
-posision: absolute;
-left: 0;
-font-weight: bold;
-}
+  &::before {
+    content: counter(list) " ";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
 `;
 
 export default function Allgemein() {
@@ -203,220 +196,222 @@ export default function Allgemein() {
 
       <Spacer />
       <h3>Lageplan</h3>
-      <p><strong>Maximilian-Kolbe-Haus und VHS Memmingen</strong></p>
+      <p>
+        <strong>Maximilian-Kolbe-Haus und VHS Memmingen</strong>
+      </p>
       <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "20px",
-                marginBottom: "20px",
-              }}
-            >
-              <DynamicContent
-                $widthpercent={60}
-                style={{ justifyContent: "center", alignContent: "center" }}
-              >
-                <Image
-        src={lageplanKolbehausImage}
-        alt="Lageplan Kolbehaus"
         style={{
-          width: "100%",
-          height: "auto",
-          borderRadius: "10px",
-          cursor: "pointer",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
         }}
-        onClick={() => {
-          setViewFile("/public/assets/images/yumekai2025/Lageplan_Kolbe-VHS.png");
-        }}
-      />
-              </DynamicContent>
-              <DynamicContent $widthpercent={40}>
-                
-            <h4 style={{marginBottom:"0"}}>Autoren:</h4>
-            
-              <p>Naomi Huber<br />
-              Yui Spallek</p>
-              <p></p>
-            
-           
-            
-            <h4 style={{marginBottom:"0"}}>Synchronsprecher & Ehrengäste:</h4>
-            <p>
-              Sebastian Fitzner<br />
-              Dominik Auer<br />
-              Julia Meynen<br />
-              Andy Knote<br />
-              Petra Scheeser
-            </p>
-              </DynamicContent>
-            </div>
+      >
+        <DynamicContent
+          $widthpercent={60}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Image
+            src={lageplanKolbehausImage}
+            alt="Lageplan Kolbehaus"
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: "10px",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              setViewFile("/public/assets/images/yumekai2025/Lageplan_Kolbe-VHS.png");
+            }}
+          />
+        </DynamicContent>
+        <DynamicContent $widthpercent={40}>
+          <h4 style={{ marginBottom: "0" }}>Autoren:</h4>
 
+          <p>
+            Naomi Huber
+            <br />
+            Yui Spallek
+          </p>
+          <p></p>
 
-            <p><strong>Stadthalle Erdgeschoss</strong></p>
+          <h4 style={{ marginBottom: "0" }}>Synchronsprecher & Ehrengäste:</h4>
+          <p>
+            Sebastian Fitzner
+            <br />
+            Dominik Auer
+            <br />
+            Julia Meynen
+            <br />
+            Andy Knote
+            <br />
+            Petra Scheeser
+          </p>
+        </DynamicContent>
+      </div>
+
+      <p>
+        <strong>Stadthalle Erdgeschoss</strong>
+      </p>
       <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "20px",
-                marginBottom: "20px",
-              }}
-            >
-              <DynamicContent
-                $widthpercent={60}
-                style={{ justifyContent: "center", alignContent: "center" }}
-              >
-                <Image
-        src={lageplanSatdthalleEGImage}
-        alt="Lageplan Stadthalle EG"
         style={{
-          width: "100%",
-          height: "auto",
-          cursor: "pointer",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
         }}
-        onClick={() => {
-          setViewFile("/public/assets/images/yumekai2025/Lageplan_Stadthalle_EG.png");
-        }}
-      />
-              </DynamicContent>
-              <DynamicContent $widthpercent={40}>
-                <Columns2 mobile={2} align={2} left={
-          <>
-            <h4>Aussteller:</h4>
-            <NoDotList>
-              <NoDotListItem>Cosplay Repair</NoDotListItem>
-              
-<NoDotListItem>Vivid Arise e.V.</NoDotListItem>
-<NoDotListItem>Cosplay Union Germany</NoDotListItem>
-<NoDotListItem>CoHeKi e.V. </NoDotListItem>
-<NoDotListItem>CosQuest</NoDotListItem>
-<NoDotListItem>Mishiro Augsburg</NoDotListItem>
-<NoDotListItem>KDKasai</NoDotListItem>
-<NoDotListItem>Bayerische Go Verein </NoDotListItem>
-<NoDotListItem>Hana & Spring </NoDotListItem>
-<NoDotListItem>Towelday-Austira</NoDotListItem>
-            </NoDotList>
-            <p></p>
-            <h4 style={{marginBottom:"0"}}>Foto Punkt:</h4>
-            <p>Vanity Art Photography</p>
-          </>
-        }
-        right={
-          <>
-            <h4>Ehrengäste:</h4>
-            <NoDotList>
-              <NoDotListItem>Cosplay Repair</NoDotListItem>
-              
-<NoDotListItem>Mayumi Nagashi</NoDotListItem>
-<NoDotListItem>Korriban Cosplay</NoDotListItem>
-<NoDotListItem>Zaylina</NoDotListItem>
-<NoDotListItem>Dokyato</NoDotListItem>
-<NoDotListItem>Imonee Cosplay</NoDotListItem>
-<NoDotListItem>Yaraiya Cosplay</NoDotListItem>
-<NoDotListItem>Eralia</NoDotListItem>
-</NoDotList>
-          </>
+      >
+        <DynamicContent
+          $widthpercent={60}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Image
+            src={lageplanSatdthalleEGImage}
+            alt="Lageplan Stadthalle EG"
+            style={{
+              width: "100%",
+              height: "auto",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              setViewFile("/public/assets/images/yumekai2025/Lageplan_Stadthalle_EG.png");
+            }}
+          />
+        </DynamicContent>
+        <DynamicContent $widthpercent={40}>
+          <Columns2
+            mobile={2}
+            align={2}
+            left={
+              <>
+                <h4>Aussteller:</h4>
+                <NoDotList>
+                  <NoDotListItem>Cosplay Repair</NoDotListItem>
+                  <NoDotListItem>Vivid Arise e.V.</NoDotListItem>
+                  <NoDotListItem>Cosplay Union Germany</NoDotListItem>
+                  <NoDotListItem>CoHeKi e.V. </NoDotListItem>
+                  <NoDotListItem>CosQuest</NoDotListItem>
+                  <NoDotListItem>Mishiro Augsburg</NoDotListItem>
+                  <NoDotListItem>KDKasai</NoDotListItem>
+                  <NoDotListItem>Bayerische Go Verein </NoDotListItem>
+                  <NoDotListItem>Hana & Spring </NoDotListItem>
+                  <NoDotListItem>Towelday-Austira</NoDotListItem>
+                </NoDotList>
+                <p></p>
+                <h4 style={{ marginBottom: "0" }}>Foto Punkt:</h4>
+                <p>Vanity Art Photography</p>
+              </>
+            }
+            right={
+              <>
+                <h4>Ehrengäste:</h4>
+                <NoDotList>
+                  <NoDotListItem>Cosplay Repair</NoDotListItem>
+                  <NoDotListItem>Mayumi Nagashi</NoDotListItem>
+                  <NoDotListItem>Korriban Cosplay</NoDotListItem>
+                  <NoDotListItem>Zaylina</NoDotListItem>
+                  <NoDotListItem>Dokyato</NoDotListItem>
+                  <NoDotListItem>Imonee Cosplay</NoDotListItem>
+                  <NoDotListItem>Yaraiya Cosplay</NoDotListItem>
+                  <NoDotListItem>Eralia</NoDotListItem>
+                </NoDotList>
+              </>
+            }
+          />
+        </DynamicContent>
+      </div>
 
-
-        }/>
-              </DynamicContent>
-            </div>
-
-      <p><strong>Stadthalle Obergeschoss</strong></p>
+      <p>
+        <strong>Stadthalle Obergeschoss</strong>
+      </p>
       <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "20px",
-                marginBottom: "20px",
-              }}
-            >
-              <DynamicContent
-                $widthpercent={60}
-                style={{ justifyContent: "center", alignContent: "center" }}
-              >
-                <Image
-        src={lageplanSatdthalleOGImage}
-        alt="Lageplan Stadthalle OG"
         style={{
-          width: "100%",
-          height: "auto",
-          cursor: "pointer",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
         }}
-        onClick={() => {
-          setViewFile("/public/assets/images/yumekai2025/Lageplan_Stadthalle_OG.png");
-        }}
-      />
-              </DynamicContent>
-              <DynamicContent $widthpercent={40}>
-                <Columns2 mobile={2} align={2} left={
-          <>
-            <h4>Händlerbereich:</h4>
-            <NoDotList>
-              <NoDotListItem>Heldenschmiede</NoDotListItem>
-              <NoDotListItem>Squiggz</NoDotListItem>
-              <NoDotListItem>PokéVend</NoDotListItem>
-              <NoDotListItem>Info- und Merchstand</NoDotListItem>
-              <NoDotListItem>NöRD Shop</NoDotListItem>
-              <NoDotListItem>Cute Paradise</NoDotListItem>
-              <NoDotListItem>Silver Dragon Sabers</NoDotListItem>
-              <NoDotListItem>Arnos Retro Videogames</NoDotListItem>
-              <NoDotListItem>HeroBase</NoDotListItem>
-              <NoDotListItem>Otaku Wonderland</NoDotListItem>
-              <NoDotListItem>Steam Spirits</NoDotListItem>
-              <NoDotListItem>Cosmic Moonlight</NoDotListItem>
-              <NoDotListItem>Manga Merch</NoDotListItem>
-              <NoDotListItem>3D Druck David Verhoeven</NoDotListItem>
-              <NoDotListItem>Rune Store</NoDotListItem>
-              <NoDotListItem>Spiel- / Interaktionsfläche</NoDotListItem>
-              
-
-</NoDotList>
-
-          </>
-        }
-        right={
-          <>
-            <h4>Künstlerbereich:</h4>
-            <NoDotList>
-              <NoDotListItem>Yupiistar</NoDotListItem>
-              <NoDotListItem>Animalixu</NoDotListItem>
-              <NoDotListItem>Christal.ShadOwO</NoDotListItem>
-              <NoDotListItem>BeehiveArtists</NoDotListItem>
-              <NoDotListItem>Rina Mora Art</NoDotListItem>
-              <NoDotListItem>Larina</NoDotListItem>
-              <NoDotListItem>Tiny Paws Treasure und CyanCalla</NoDotListItem>
-              <NoDotListItem>Stellabialek</NoDotListItem>
-              <NoDotListItem>Berrin Jost</NoDotListItem>
-              <NoDotListItem>Loonaris</NoDotListItem>
-              <NoDotListItem>Fyly Artworks</NoDotListItem>
-              <NoDotListItem>Kitsukami</NoDotListItem>
-              <NoDotListItem>Quinnskanzashi</NoDotListItem>
-              <NoDotListItem>Franci Nevada</NoDotListItem>
-              <NoDotListItem>Emytsuu</NoDotListItem>
-              <NoDotListItem>Valyraka</NoDotListItem>
-              <NoDotListItem>Kirian Yume</NoDotListItem>
-              <NoDotListItem>Bavarian Woodfox Art</NoDotListItem>
-              <NoDotListItem>Madyra</NoDotListItem>
-              <NoDotListItem>Anara_Twice</NoDotListItem>
-              <NoDotListItem>Amidala Artwork</NoDotListItem>
-              <NoDotListItem>Alice My Secret</NoDotListItem>
-              <NoDotListItem>TacToki Illustrations</NoDotListItem>
-             </NoDotList>
-
-            
-          </>
-        }/>
-                
-                
-              </DynamicContent>
-            </div>
-
-      
-
-      
+      >
+        <DynamicContent
+          $widthpercent={60}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Image
+            src={lageplanSatdthalleOGImage}
+            alt="Lageplan Stadthalle OG"
+            style={{
+              width: "100%",
+              height: "auto",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              setViewFile("/public/assets/images/yumekai2025/Lageplan_Stadthalle_OG.png");
+            }}
+          />
+        </DynamicContent>
+        <DynamicContent $widthpercent={40}>
+          <Columns2
+            mobile={2}
+            align={2}
+            left={
+              <>
+                <h4>Händlerbereich:</h4>
+                <NoDotList>
+                  <NoDotListItem>Heldenschmiede</NoDotListItem>
+                  <NoDotListItem>Squiggz</NoDotListItem>
+                  <NoDotListItem>PokéVend</NoDotListItem>
+                  <NoDotListItem>Info- und Merchstand</NoDotListItem>
+                  <NoDotListItem>NöRD Shop</NoDotListItem>
+                  <NoDotListItem>Cute Paradise</NoDotListItem>
+                  <NoDotListItem>Silver Dragon Sabers</NoDotListItem>
+                  <NoDotListItem>Arnos Retro Videogames</NoDotListItem>
+                  <NoDotListItem>HeroBase</NoDotListItem>
+                  <NoDotListItem>Otaku Wonderland</NoDotListItem>
+                  <NoDotListItem>Steam Spirits</NoDotListItem>
+                  <NoDotListItem>Cosmic Moonlight</NoDotListItem>
+                  <NoDotListItem>Manga Merch</NoDotListItem>
+                  <NoDotListItem>3D Druck David Verhoeven</NoDotListItem>
+                  <NoDotListItem>Rune Store</NoDotListItem>
+                  <NoDotListItem>Spiel- / Interaktionsfläche</NoDotListItem>
+                </NoDotList>
+              </>
+            }
+            right={
+              <>
+                <h4>Künstlerbereich:</h4>
+                <NoDotList>
+                  <NoDotListItem>Yupiistar</NoDotListItem>
+                  <NoDotListItem>Animalixu</NoDotListItem>
+                  <NoDotListItem>Christal.ShadOwO</NoDotListItem>
+                  <NoDotListItem>BeehiveArtists</NoDotListItem>
+                  <NoDotListItem>Rina Mora Art</NoDotListItem>
+                  <NoDotListItem>Larina</NoDotListItem>
+                  <NoDotListItem>Tiny Paws Treasure und CyanCalla</NoDotListItem>
+                  <NoDotListItem>Stellabialek</NoDotListItem>
+                  <NoDotListItem>Berrin Jost</NoDotListItem>
+                  <NoDotListItem>Loonaris</NoDotListItem>
+                  <NoDotListItem>Fyly Artworks</NoDotListItem>
+                  <NoDotListItem>Kitsukami</NoDotListItem>
+                  <NoDotListItem>Quinnskanzashi</NoDotListItem>
+                  <NoDotListItem>Franci Nevada</NoDotListItem>
+                  <NoDotListItem>Emytsuu</NoDotListItem>
+                  <NoDotListItem>Valyraka</NoDotListItem>
+                  <NoDotListItem>Kirian Yume</NoDotListItem>
+                  <NoDotListItem>Bavarian Woodfox Art</NoDotListItem>
+                  <NoDotListItem>Madyra</NoDotListItem>
+                  <NoDotListItem>Anara_Twice</NoDotListItem>
+                  <NoDotListItem>Amidala Artwork</NoDotListItem>
+                  <NoDotListItem>Alice My Secret</NoDotListItem>
+                  <NoDotListItem>TacToki Illustrations</NoDotListItem>
+                </NoDotList>
+              </>
+            }
+          />
+        </DynamicContent>
+      </div>
 
       <Spacer />
       <h3>Zeitplan</h3>
@@ -426,7 +421,7 @@ export default function Allgemein() {
         alt="Zeitplan Samstag"
         style={{
           width: "50vw",
-          maxWidth :"1200px",
+          maxWidth: "1200px",
           height: "auto",
           borderRadius: "10px",
           cursor: "pointer",
@@ -435,13 +430,13 @@ export default function Allgemein() {
           setViewFile("/public/assets/images/yumekai2025/ZeitplanSamstagGross_Image.png");
         }}
       />
-<SpacerEmpty/>
+      <SpacerEmpty />
       <Image
         src={zeitplanSonntagImage}
         alt="Zeitplan Sonntag"
         style={{
           width: "50vw",
-          maxWidth :"1200px",
+          maxWidth: "1200px",
           height: "auto",
           borderRadius: "10px",
           cursor: "pointer",
