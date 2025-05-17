@@ -127,7 +127,7 @@ export default function Ehrengaeste() {
               Gemeinsam mit dem CoHeKi e.V. möchten wir euch zu etwas ganz Besonderem einladen:
               unserer Cosplayer-Versteigerung! Aber was ist eine Cosplayer-Versteigerung? Hier
               werden nicht einfach Kostüme versteigert, sondern Cosplayer*innen bieten sich selbst
-              für den guten Zweck an. Die Höchstbietende Person erhält eine Stunde Zeit, die sie mit
+              für den guten Zweck an. Wenn du dich auf der Bühne versteigern lassen möchtest, kannst du dich vor Ort am Infostand der YumeKai anmelden. Die Höchstbietende Person erhält eine Stunde Zeit, die sie mit
               der versteigerten Person auf der YumeKai verbringen kann, und dafür spendet der CoHeKi
               e.V. die Erlöse an ein Kinderhilfsprojekt. Das genaue Spendenziel könnt ihr entweder
               auf der YumeKai am Stand des CoHeKi e.V. erfahren oder direkt auf der Bühne. Was ihr
