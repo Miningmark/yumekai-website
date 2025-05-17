@@ -12,18 +12,24 @@ import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
+import DataViewer from "@/components/DataViewer";
 
 //Images
 import mapImage from "/public/assets/images/yumekai2025/map.png";
+import lageplanKolbehausImage from "/public/assets/images/yumekai2025/Lageplan_Kolbe-VHS.png";
+import lageplanSatdthalleEGImage from "/public/assets/images/yumekai2025/Lageplan_Stadthalle_EG.png";
+import lageplanSatdthalleOGImage from "/public/assets/images/yumekai2025/Lageplan_Stadthalle_OG.png";
 
 export default function Allgemein() {
+  const [viewFile, setViewFile] = useState(null);
+
   return (
     <>
       <h1>Allgemein</h1>
 
       <p>Text......</p>
 
-      <div style={{ margin: "20px 0", width: "300px", height: "200px" }}>
+      <div style={{ margin: "20px 0" }}>
         <StyledLinkAsButton href={"/downloads/YumeKai_2025_Programmheft.pdf"} target="_blank">
           Programmheft 2025
         </StyledLinkAsButton>
@@ -35,19 +41,78 @@ export default function Allgemein() {
         src={mapImage}
         alt="Anfahrt Karte"
         style={{
-          width: "100%",
+          width: "350px",
           height: "auto",
           borderRadius: "10px",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          setViewFile("/public/assets/images/yumekai2025/map.png");
         }}
       />
-      <small>
+      <small style={{ fontSize: "0.5em", marginTop: "5px" }}>
         Hintergrundkarte: © Bayerische Vermessungsverwaltung (2025), Datenquelle: Geoportal Bayern
         www.geoportal.bayern.de
       </small>
+      <div style={{ margin: "20px 0" }}>
+        <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"}>
+          zu Google Maps
+        </StyledLinkAsButton>
+      </div>
 
-      <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"}>
-        zu Google Maps
-      </StyledLinkAsButton>
+      <SpacerEmpty />
+      <h3>Lageplan</h3>
+
+      <Image
+        src={lageplanKolbehausImage}
+        alt="Lageplan Kolbehaus"
+        style={{
+          width: "350px",
+          height: "auto",
+          borderRadius: "10px",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          setViewFile("/public/assets/images/yumekai2025/Lageplan_Kolbe-VHS.png");
+        }}
+      />
+
+      <Image
+        src={lageplanSatdthalleEGImage}
+        alt="Lageplan Stadthalle EG"
+        style={{
+          width: "350px",
+          height: "auto",
+          borderRadius: "10px",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          setViewFile("/public/assets/images/yumekai2025/Lageplan_Stadthalle_EG.png");
+        }}
+      />
+
+      <Image
+        src={lageplanSatdthalleOGImage}
+        alt="Lageplan Stadthalle OG"
+        style={{
+          width: "350px",
+          height: "auto",
+          borderRadius: "10px",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          setViewFile("/public/assets/images/yumekai2025/Lageplan_Stadthalle_OG.png");
+        }}
+      />
+
+      {viewFile ? (
+        <DataViewer
+          file={viewFile}
+          handleClose={() => {
+            setViewFile(null);
+          }}
+        />
+      ) : null}
     </>
   );
 }
