@@ -13,7 +13,10 @@ import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 
 //Images
-import AliceMySecretImage from "/public/assets/images/yumekai2025/AliceMySecret_Image.png";
+import BubbleTimeImage from "/public/assets/images/yumekai2025/BubbleTime_Image.png";
+import GrafImage from "/public/assets/images/yumekai2025/Graf_Image.png";
+import TaiyakiImage from "/public/assets/images/yumekai2025/Taiyaki_Image.png";
+import MaidCafeImage from "/public/assets/images/yumekai2025/MaidCafe_Image.png";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -34,10 +37,31 @@ export default function Kuenstler() {
       <ContentContainer>
 
         <ContentCard
-                title={<StyledLink href="https://www.instagram.com/alicemysecret" target="_blank">Bubble Time</StyledLink>}
-                imageSrc={AliceMySecretImage}
-                altText="Logo von AliceMySecret" 
+                title={"GRAF FOOD ON WHEELS!"}
+                imageSrc={MaidCafeImage}
+                altText="Logo von AliceMySecret"
+                text={<p></p>} 
         />
+        <ContentCard
+                title={"GRAF FOOD ON WHEELS!"}
+                imageSrc={GrafImage}
+                altText="Logo von AliceMySecret"
+                text={<p></p>}  
+        />
+        <ContentCard
+                title={"GRAF FOOD ON WHEELS!"}
+                imageSrc={TaiyakiImage}
+                altText="Logo von AliceMySecret"
+                text={<p></p>}  
+        />
+        <ContentCard
+                title={"GRAF FOOD ON WHEELS!"}
+                imageSrc={BubbleTimeImage}
+                altText="Logo von AliceMySecret"
+                text={<p></p>}  
+        />
+
+
         </ContentContainer>
     </>
   );

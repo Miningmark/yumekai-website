@@ -50,7 +50,7 @@ export default function Cosplayer() {
         title="Eralia"
         imageSrc={EraliaImage}
         altText="Bild von Eralia"
-        text={<p>Die erfahrene Cosplayerin <StyledLink href="https://www.instagram.com/eralia_iwahana/" target="_blank">Eralia</StyledLink> aus den Niederlanden begeistert seit 2010 mit aufwendigen Designs aus Games wie Final Fantasy und Baldur&apos;s Gate. Internationale Wettbewerbsteilnahmen unterstreichen ihre Leidenschaft für Details, Handwerk und Performance.</p>}
+        text={<p>Unser Ehrengast aus den Niederlanden begeistert seit 2010 mit aufwendigen Designs aus Games wie Final Fantasy und Baldur&apos;s Gate. Internationale Wettbewerbsteilnahmen unterstreichen <StyledLink href="https://www.instagram.com/eralia_iwahana/" target="_blank">Eralias</StyledLink> Leidenschaft für Details, Handwerk und Performance.</p>}
       />
       <ContentCard
         title="Korriban Cosplay"
