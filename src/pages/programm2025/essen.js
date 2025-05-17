@@ -38,27 +38,27 @@ export default function Kuenstler() {
 
         <ContentCard
                 title={"GRAF FOOD ON WHEELS!"}
-                imageSrc={MaidCafeImage}
-                altText="Logo von AliceMySecret"
-                text={<p></p>} 
-        />
-        <ContentCard
-                title={"GRAF FOOD ON WHEELS!"}
                 imageSrc={GrafImage}
-                altText="Logo von AliceMySecret"
-                text={<p></p>}  
+                altText="Bild von GRAF FOOD ON WHEELS!"
+                text={<p>Heiße HOT DOGS - natürlich auch vegan, würzige CURRYWURST mit knusprigen POMMES, herzhaftes GYROS mit POMMES, RINDSBURGER & CHEESEBURGER mit 150g Rindfleischpatty, feuriges CHILI CON CARNE und veganes CHILI SIN CARNE.</p>} 
         />
         <ContentCard
-                title={"GRAF FOOD ON WHEELS!"}
+                title={"Vivid Arise Maid Café"}
+                imageSrc={MaidCafeImage}
+                altText="Logo von Vivid Arise Maid Café"
+                text={<p>Taucht ein in eine Welt voller Magie und Charme! Wir laden euch herzlich im Maximilian-Kolbe-Haus ein, das einzigartige Erlebnis unseres Maid Cafés zu genießen. Unser Team von Vivid Arise freut sich darauf, euch mit einem Lächeln zu empfangen und einen unvergesslichen Aufenthalt zu gestalten.</p>}  
+        />
+        <ContentCard
+                title={"Taiyaki"}
                 imageSrc={TaiyakiImage}
-                altText="Logo von AliceMySecret"
-                text={<p></p>}  
+                altText="Bild von Taiyaki"
+                text={<p>Die Wie.MAI.KAI bietet die beliebten, fischförmigen Waffeln an, die traditionell mit süßer roter Bohnenpaste (Anko) gefüllt sind. Alternativ gibt es auch Varianten mit köstlicher Schokocreme. Der Name &quot;Taiyaki&quot; bedeutet wörtlich &quot;gebackene Meerbrasse&quot; und bezieht sich auf die charakteristische Form der Waffel.</p>}  
         />
         <ContentCard
-                title={"GRAF FOOD ON WHEELS!"}
+                title={"bubbleTime"}
                 imageSrc={BubbleTimeImage}
-                altText="Logo von AliceMySecret"
-                text={<p></p>}  
+                altText="Logo von bubbleTime"
+                text={<p>Angeboten werden alle möglichen Fruchtbubbletee, Milch Bubbletee und Klassik Bubble Tea.</p>}  
         />
 
 
