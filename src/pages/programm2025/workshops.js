@@ -1,14 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
 import styled from "styled-components";
-import { useRef, useEffect, useState } from "react";
 
 //Components
-import Columns2 from "@/components/elements/Columns2";
-import Columns3 from "@/components/elements/Columns3";
-import RectangleContainer from "@/components/elements/RectangleContainer";
-import MovingContentWrapper from "@/components/elements/MovingContent";
-import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 
@@ -161,17 +153,23 @@ export default function Workshops() {
           title="Speedpainting Challenge"
           imageSrc={speedpaintingImage}
           altText="Bild von Speedpainting Challenge"
-          text={<p>Das Team der Heldenschmiede steht uns dieses Jahr nicht nur übers gesamte Wochenende mit einem
-coolen Stand voller Merchandise zur Verfügung, sondern bietet außerdem am Sonntag noch zwei
-Speedpainting Challenges an! Hierbei bekommt ihr Farben, Pinsel und eine Figur gestellt und habt
-nach einer kurzen Einführung eine volle Stunde Zeit, die Miniatur zu bemalen. Es gibt dabei keine
-Vorgaben zur Bemalung und ihr müsst nichts mitbringen außer Begeisterung und vielleicht einem
-Hauch Disziplin - wer schon Hobbyerfahrung hat, weiß, dass eine Stunde pro Modell eine knackige
-Vorgabe ist. Die Modelle werden euch von Games Workshop, die Farben von Army Painter und die
-Pinsel von Lupri zur Verfügung gestellt - vielen Dank an der Stelle für den Support! Im Anschluss dürft
-ihr das Modell natürlich behalten und so eine coole Erinnerung mit heim nehmen. Die Startzeiten am
-Sonntag sind um 12:15 und um 15:45 - bitte meldet euch vorher an, da wir pro Challenge nur 10
-Plätze haben. Die Anmeldeliste könnt ihr beim Infostand der YumeKai finden.</p>}
+          text={
+            <p>
+              Das Team der Heldenschmiede steht uns dieses Jahr nicht nur übers gesamte Wochenende
+              mit einem coolen Stand voller Merchandise zur Verfügung, sondern bietet außerdem am
+              Sonntag noch zwei Speedpainting Challenges an! Hierbei bekommt ihr Farben, Pinsel und
+              eine Figur gestellt und habt nach einer kurzen Einführung eine volle Stunde Zeit, die
+              Miniatur zu bemalen. Es gibt dabei keine Vorgaben zur Bemalung und ihr müsst nichts
+              mitbringen außer Begeisterung und vielleicht einem Hauch Disziplin - wer schon
+              Hobbyerfahrung hat, weiß, dass eine Stunde pro Modell eine knackige Vorgabe ist. Die
+              Modelle werden euch von Games Workshop, die Farben von Army Painter und die Pinsel von
+              Lupri zur Verfügung gestellt - vielen Dank an der Stelle für den Support! Im Anschluss
+              dürft ihr das Modell natürlich behalten und so eine coole Erinnerung mit heim nehmen.
+              Die Startzeiten am Sonntag sind um 12:15 und um 15:45 - bitte meldet euch vorher an,
+              da wir pro Challenge nur 10 Plätze haben. Die Anmeldeliste könnt ihr beim Infostand
+              der YumeKai finden.
+            </p>
+          }
           webLink="https://www.heldenschmiede.eu/"
           webLinkText="Heldenschmiede"
           maxWidth={550}
@@ -181,17 +179,23 @@ Plätze haben. Die Anmeldeliste könnt ihr beim Infostand der YumeKai finden.</p
           subtitle="die Kunst des schnellen Zeichnens"
           imageSrc={laratornowCroquisDieKunstDesSchnellenZeichnensImage}
           altText="Bild von Croquis"
-          text={<p>Mit Croquis bezeichnet man eine Zeichenübungstechnik, durch die schnelles Zeichnen aller Dinge und
-Wesen möglich wird, auch Comics, Mangas und Animationen werden u.a. durch sie erschaffen. So ist
-durch jene Zeichentechnik auch die Möglichkeit gegeben Proportionen, Gesten, Gelenke und
-Gliedmaßen in ihrer realistischen Darstellung zeichnerisch zu perfektionieren.
-Im hier angebotenen Craschkurs geht es nach einer kurzen theoretischen Einführung weiter zum
-praktischen Teil - Croquis-Aufwärmtraining. Hierfür benötigen die Teilnehmer Papier und idealerweise
-Kugelschreiber oder Stabilo. Die Farbe eurer Stifte kann gerne variieren. Nachdem erklärt wurde, auf
-was während der praktischen Phase geachtet werden sollte, geht es mit den ersten Runden los. Dabei
-handelt es sich um das Skizzieren eines vorgegebenen Objektes durch bestimmte Stiftführung
-innerhalb eines Zeitraffers, welcher sich wiederum pro Runde etwas verkürzt.
-Auf diese Weise wird durch Croquis die schnelle Beobachtungsgabe und Stiftführung trainiert.</p>}
+          text={
+            <p>
+              Mit Croquis bezeichnet man eine Zeichenübungstechnik, durch die schnelles Zeichnen
+              aller Dinge und Wesen möglich wird, auch Comics, Mangas und Animationen werden u.a.
+              durch sie erschaffen. So ist durch jene Zeichentechnik auch die Möglichkeit gegeben
+              Proportionen, Gesten, Gelenke und Gliedmaßen in ihrer realistischen Darstellung
+              zeichnerisch zu perfektionieren. Im hier angebotenen Craschkurs geht es nach einer
+              kurzen theoretischen Einführung weiter zum praktischen Teil - Croquis-Aufwärmtraining.
+              Hierfür benötigen die Teilnehmer Papier und idealerweise Kugelschreiber oder Stabilo.
+              Die Farbe eurer Stifte kann gerne variieren. Nachdem erklärt wurde, auf was während
+              der praktischen Phase geachtet werden sollte, geht es mit den ersten Runden los. Dabei
+              handelt es sich um das Skizzieren eines vorgegebenen Objektes durch bestimmte
+              Stiftführung innerhalb eines Zeitraffers, welcher sich wiederum pro Runde etwas
+              verkürzt. Auf diese Weise wird durch Croquis die schnelle Beobachtungsgabe und
+              Stiftführung trainiert.
+            </p>
+          }
           instaLink=""
           instaLinkText="Lara"
           maxWidth={550}
@@ -201,8 +205,13 @@ Auf diese Weise wird durch Croquis die schnelle Beobachtungsgabe und Stiftführu
           subtitle="Vorbereitung auf die Endzeit"
           imageSrc={nuclearBastardsImage}
           altText="Bild von die Kunst des Überlebens"
-          text={<p>In diesem Workshop zeigen euch die Nuclear Bastards die Grundlagen was eigentlich Endzeit ist, die
-ersten Schritte beim Basteln und geben euch Tipps und Tricks damit ihr durchstarten könnt.</p>}
+          text={
+            <p>
+              In diesem Workshop zeigen euch die Nuclear Bastards die Grundlagen was eigentlich
+              Endzeit ist, die ersten Schritte beim Basteln und geben euch Tipps und Tricks damit
+              ihr durchstarten könnt.
+            </p>
+          }
           instaLink="https://www.instagram.com/nuclear.bastards/"
           instaLinkText="Nuclear Bastards"
           maxWidth={550}
@@ -211,15 +220,19 @@ ersten Schritte beim Basteln und geben euch Tipps und Tricks damit ihr durchstar
           title="Interaktive Manga-Werkstatt"
           imageSrc={mayumiNagashifbcJcultureInteraktiveMangawerkstattImage}
           altText="Bild von Interaktive Manga-Werkstatt"
-          text={<p>Manga zu lesen macht Spaß - aber wie oft bekommt ihr die Gelegenheit, einen Blick in das echte
-Arbeitsumfeld einer Manga-Künstlerin zu werfen? Die „Manga-Werkstatt“ bringt dieses seltene
-Erlebnis mitten ins Eventgeschehen.
-Die japanische Profi-Zeichnerin Mayumi Nagashi lässt euch zuschauen, wie ihre Zeichnungen
-entstehen - präzise, sicher und voller Ausdruck. Tafeln am Stand liefern zusätzliche Einblicke in ihre
-Werke, ihren Stil und den kreativen Prozess.
-Für Zeicheninteressierte bietet sich außerdem eine persönliche Beratung - nicht in Worten, sondern
-in Linien &#40;eigene Zeichnungen sind mitzubringen&#41;.
-Ein Moment der Konzentration - vergänglich, und doch unvergesslich.</p>}
+          text={
+            <p>
+              Manga zu lesen macht Spaß - aber wie oft bekommt ihr die Gelegenheit, einen Blick in
+              das echte Arbeitsumfeld einer Manga-Künstlerin zu werfen? Die „Manga-Werkstatt“ bringt
+              dieses seltene Erlebnis mitten ins Eventgeschehen. Die japanische Profi-Zeichnerin
+              Mayumi Nagashi lässt euch zuschauen, wie ihre Zeichnungen entstehen - präzise, sicher
+              und voller Ausdruck. Tafeln am Stand liefern zusätzliche Einblicke in ihre Werke,
+              ihren Stil und den kreativen Prozess. Für Zeicheninteressierte bietet sich außerdem
+              eine persönliche Beratung - nicht in Worten, sondern in Linien &#40;eigene Zeichnungen
+              sind mitzubringen&#41;. Ein Moment der Konzentration - vergänglich, und doch
+              unvergesslich.
+            </p>
+          }
           instaLink="https://www.instagram.com/nagashi_mayumi/"
           instaLinkText="Mayumi Nagashi"
           maxWidth={550}
@@ -228,9 +241,13 @@ Ein Moment der Konzentration - vergänglich, und doch unvergesslich.</p>}
           title="Q&A mit Andy Knote"
           imageSrc={HiruWorkshop}
           altText="Bild von Andy Knote"
-          text={<p>Andy Knote ist der Produzent vieler alter deutschen Anime Openings wie beispielsweise von Yu-Gi-
-Oh!, One Piece, Detectve Conan. Auf der YuemKai bietet er für euch ein Q&A an, auf welchem ihr ihm
-eure Fragen stellen könnt.</p>}
+          text={
+            <p>
+              Andy Knote ist der Produzent vieler alter deutschen Anime Openings wie beispielsweise
+              von Yu-Gi- Oh!, One Piece, Detectve Conan. Auf der YuemKai bietet er für euch ein Q&A
+              an, auf welchem ihr ihm eure Fragen stellen könnt.
+            </p>
+          }
           instaLink="https://www.instagram.com/andy_knote/"
           instaLinkText="Andy Knote"
           maxWidth={550}
@@ -239,14 +256,19 @@ eure Fragen stellen könnt.</p>}
           title="Display Competition für Beginner"
           imageSrc={minekeImage}
           altText="Bild von Display Competition für Beginner"
-          text={<p>Du hast Lust, an einem Cosplay-Wettbewerb teilzunehmen, weißt aber nicht, wo du anfangen sollst?
-Dann ist dieser Workshop genau das Richtige für dich! Die erfahrene Cosplayerin Mineke &#40;alias
-Yaraiya&#41; aus den Niederlanden gibt dir wertvolle Tipps und Einblicke in die Welt der Cosplay-
-Competitions. Seit 2010 im Cosplay aktiv, vertritt Mineke seit 2016 regelmäßig ihr Land bei
-internationalen Wettbewerben wie dem WCS &#40;World Cosplay Summit&#41; und C4. Besonders liebt sie es,
-aufwendige Details umzusetzen und spektakuläre Bühnen-Requisiten zu bauen. In diesem Workshop
-teilt sie ihre Erfahrungen und erklärt euch die wichtigsten Grundlagen. Mineke freut sich darauf, euch
-kennenzulernen.</p>}
+          text={
+            <p>
+              Du hast Lust, an einem Cosplay-Wettbewerb teilzunehmen, weißt aber nicht, wo du
+              anfangen sollst? Dann ist dieser Workshop genau das Richtige für dich! Die erfahrene
+              Cosplayerin Mineke &#40;alias Yaraiya&#41; aus den Niederlanden gibt dir wertvolle
+              Tipps und Einblicke in die Welt der Cosplay- Competitions. Seit 2010 im Cosplay aktiv,
+              vertritt Mineke seit 2016 regelmäßig ihr Land bei internationalen Wettbewerben wie dem
+              WCS &#40;World Cosplay Summit&#41; und C4. Besonders liebt sie es, aufwendige Details
+              umzusetzen und spektakuläre Bühnen-Requisiten zu bauen. In diesem Workshop teilt sie
+              ihre Erfahrungen und erklärt euch die wichtigsten Grundlagen. Mineke freut sich
+              darauf, euch kennenzulernen.
+            </p>
+          }
           instaLink="https://www.instagram.com/yaraiyacosplay/"
           instaLinkText="Yaraiya Cosplay"
           maxWidth={550}
@@ -256,16 +278,22 @@ kennenzulernen.</p>}
           subtitle="Basics bis Profi-Tricks"
           imageSrc={cosplayfotosBearbeitenBasicsBisProfitricksPhilippImage}
           altText="Bild von Cosplay-Fotos bearbeiten"
-          text={<p>Möchtest du wissen, wie Cosplay-Fotografen ihre Bilder bearbeiten? Möchtest du selbst kreativ
-werden, statt auf Standardfilter zurückzugreifen? Oder die Fotos vom letzten Cosplay-Shooting
-endlich selbst bearbeiten, weil der Fotograf nicht dazu kommt? Ob Anfänger*in oder
-Fortgeschrittene*r - in diesem Workshop zeige ich dir, wie du deine Cosplay-Fotos auf das nächste
-Level bringst. Zunächst behandeln wir die Basics: Belichtung, Farben, Kontraste. Du lernst, mit
-einfachen Techniken schnell sichtbare Verbesserungen zu erzielen. Danach geht es um
-fortgeschrittene Techniken. Du erfährst, wie du mit Masken den Blick des Betrachters lenkst und
-Details hervorhebst, damit deine Bilder richtig zur Geltung kommen. Hinweis: Ich präsentiere die
-Techniken mit Adobe Lightroom, das einige kostenpflichtige Funktionen bietet. Aber keine Sorge: Das
-Wissen ist allgemein anwendbar und du kannst das Gelernte auch mit anderen Tools umsetzen.</p>}
+          text={
+            <p>
+              Möchtest du wissen, wie Cosplay-Fotografen ihre Bilder bearbeiten? Möchtest du selbst
+              kreativ werden, statt auf Standardfilter zurückzugreifen? Oder die Fotos vom letzten
+              Cosplay-Shooting endlich selbst bearbeiten, weil der Fotograf nicht dazu kommt? Ob
+              Anfänger*in oder Fortgeschrittene*r - in diesem Workshop zeige ich dir, wie du deine
+              Cosplay-Fotos auf das nächste Level bringst. Zunächst behandeln wir die Basics:
+              Belichtung, Farben, Kontraste. Du lernst, mit einfachen Techniken schnell sichtbare
+              Verbesserungen zu erzielen. Danach geht es um fortgeschrittene Techniken. Du erfährst,
+              wie du mit Masken den Blick des Betrachters lenkst und Details hervorhebst, damit
+              deine Bilder richtig zur Geltung kommen. Hinweis: Ich präsentiere die Techniken mit
+              Adobe Lightroom, das einige kostenpflichtige Funktionen bietet. Aber keine Sorge: Das
+              Wissen ist allgemein anwendbar und du kannst das Gelernte auch mit anderen Tools
+              umsetzen.
+            </p>
+          }
           instaLink="https://www.instagram.com/photos_by_philipp/"
           instaLinkText="Philipp"
           maxWidth={550}
@@ -274,14 +302,16 @@ Wissen ist allgemein anwendbar und du kannst das Gelernte auch mit anderen Tools
           title="Stockings Workshop"
           imageSrc={StockingsWorkshopImage}
           altText="Bild von Stockings Workshop"
-          text={<p>Außergewöhnliche Charakterdesigns stellen uns Cosplayer immer wieder vor neue Herausforderungen:
-Ein gutes Beispiel hierfür ist die Vielzahl an
-bunten, gemusterten Socken, Strümpfen und
-Strumpfhosen unserer Lieblingscharaktere.
-Oft gibt es diese weder in gewünschter Farbe
-oder Material, noch mit dem passendem Muster zu kaufen. Also heißt es mal wieder: selber machen!
-Im folgenden Tutorial zeigen wir euch, wie ihr
-die außergewöhnliche Beinbekleidung eurer Helden selbst herstellt.</p>}
+          text={
+            <p>
+              Außergewöhnliche Charakterdesigns stellen uns Cosplayer immer wieder vor neue
+              Herausforderungen: Ein gutes Beispiel hierfür ist die Vielzahl an bunten, gemusterten
+              Socken, Strümpfen und Strumpfhosen unserer Lieblingscharaktere. Oft gibt es diese
+              weder in gewünschter Farbe oder Material, noch mit dem passendem Muster zu kaufen.
+              Also heißt es mal wieder: selber machen! Im folgenden Tutorial zeigen wir euch, wie
+              ihr die außergewöhnliche Beinbekleidung eurer Helden selbst herstellt.
+            </p>
+          }
           instaLink="https://www.instagram.com/imoneecosplay/"
           instaLinkText="Imonee Cosplay"
           maxWidth={550}
@@ -291,18 +321,20 @@ die außergewöhnliche Beinbekleidung eurer Helden selbst herstellt.</p>}
           subtitle="Eleganz trifft Fantasie"
           imageSrc={zaylinaBallkleiderNaehenImage}
           altText="Bild von Ballkleider"
-          text={<p>Tauche ein in die Welt der prachtvollen Ballkleider.
-In diesem Workshop lernst du, wie du atemberaubende Kleider für Cosplay-Bälle, Fantasy-Events
-oder Fotoshootings gestaltest. Wir besprechen verschiedene Schnittmuster, Stoffwahl, Verzierungen
-und wie du dein Ballkleid strukturierst. Egal ob du ein historisch inspiriertes Design oder eine
-märchenhafte Robe planst - hier bekommst du wertvolle Tipps für die Umsetzung. Lass dich
-inspirieren und bring deine Ideen mit!</p>}
+          text={
+            <p>
+              Tauche ein in die Welt der prachtvollen Ballkleider. In diesem Workshop lernst du, wie
+              du atemberaubende Kleider für Cosplay-Bälle, Fantasy-Events oder Fotoshootings
+              gestaltest. Wir besprechen verschiedene Schnittmuster, Stoffwahl, Verzierungen und wie
+              du dein Ballkleid strukturierst. Egal ob du ein historisch inspiriertes Design oder
+              eine märchenhafte Robe planst - hier bekommst du wertvolle Tipps für die Umsetzung.
+              Lass dich inspirieren und bring deine Ideen mit!
+            </p>
+          }
           instaLink="https://www.instagram.com/zaylina1/"
           instaLinkText="Zaylina"
           maxWidth={550}
         />
-        
-        
       </ContentContainer>
     </>
   );
