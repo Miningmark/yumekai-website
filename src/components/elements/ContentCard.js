@@ -11,14 +11,16 @@ Aufruf der Component
 
       import ContentCard from "@/components/elements/ContentCard";
 
-      <ContentCard
+      <ContentCard     //alles ist optional
         href="http://www.instagram.com/anara"
         title="Anara Twice"
-        text="Ich bin ein Text"     //optional
+        text="Ich bin ein Text"    
         imageSrc={hiruKunstler}
         altText="Logo von Anara Twice"
         instaLink="https://www.instagram.com/anara"
         instaLinkText="Instagram"
+        webLink="https://www.heldenschmiede.eu/"
+        webLinkText="Heldenschmiede"
       />
 
       
@@ -105,7 +107,7 @@ const WebLink = styled(Link)`
   gap: 8px;
   margin-top: 12px;
   text-decoration: none;
-  color: #3b82f6; // Standard: leichtes Blau (z. B. Tailwind blue-500)
+  color: #3b82f6;
 
   svg {
     width: 24px;
@@ -115,7 +117,7 @@ const WebLink = styled(Link)`
   }
 
   &:hover {
-    color: #1d4ed8; // Dunkleres Blau beim Hover
+    color: #1d4ed8;
 
     svg {
       fill: #1d4ed8;

@@ -40,6 +40,28 @@ const ScrollToTopButton = styled.div`
     transition: 0.3s;
     opacity: 1;
   }
+
+  &:hover span {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  span {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
 `;
 
 const SiteWrapper = styled.div`
@@ -130,6 +152,7 @@ export default function App({ Component, pageProps }) {
       {isVisible && (
         <ScrollToTopButton onClick={scrollToTop}>
           <IconUp />
+          <span>nach oben</span>
         </ScrollToTopButton>
       )}
     </ThemeProvider>

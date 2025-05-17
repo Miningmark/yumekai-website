@@ -3,15 +3,15 @@ import Link from "next/link";
 import styled from "styled-components";
 
 // Import Icons
-import IconUp from "/public/assets/icons/arrow_drop_up.svg";
+import IconReturn from "/public/assets/icons/chevron_left.svg";
 
 const LinkButton = styled(Link)`
   position: fixed;
   left: 50px;
   top: 100px;
   z-index: 9999;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #f6f6f9;
   border: 2px solid ${({ theme }) => theme.primaryColor};
@@ -38,13 +38,37 @@ const LinkButton = styled(Link)`
     transition: 0.3s;
     opacity: 1;
   }
+
+  &:hover span {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  span {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
 `;
 
-export default function ReturnButton({link}){
-
-    return (<>
-        <LinkButton href={link}>
-            <IconUp />
-          </LinkButton>
-          </>)
+export default function ReturnButton({ link, tooltip = "Zurück" }) {
+  return (
+    <>
+      <LinkButton href={link}>
+        <IconReturn />
+        <span>{tooltip}</span>
+      </LinkButton>
+    </>
+  );
 }
