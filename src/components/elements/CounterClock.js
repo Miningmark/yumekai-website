@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import hiruImage from "/public/assets/logo/Hiru.webp";
+
+//Images
+import hiruImage from "/public/assets/hirus/Hiru.png";
 
 function getTimeRemaining(finalDate) {
   const targetTime = finalDate instanceof Date ? finalDate.getTime() : Date.parse(finalDate);
