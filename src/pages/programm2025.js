@@ -136,7 +136,7 @@ const menuItems = [
   },
   {
     title: "Ehrengäste",
-    href: "/programm2025/Ehrengaeste",
+    href: "/programm2025/ehrengaeste",
     image: hiruShowact,
     alt: "Showact-Hiru",
   },
