@@ -16,29 +16,38 @@ import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
 //Images
 import mapImage from "/public/assets/images/yumekai2025/map.png";
 
-
-export default function Allgemein(){
-
-
-    return(
+export default function Allgemein() {
+  return (
     <>
-        <h1>Allgemein</h1>
+      <h1>Allgemein</h1>
 
-        <p>Text......</p>
+      <p>Text......</p>
 
-        <Image
-                  src={mapImage}
-                  alt="Anfahrt Karte"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "10px",
-                  }}
-                />
-                <small>Hintergrundkarte: © Bayerische Vermessungsverwaltung (2025), Datenquelle: Geoportal Bayern www.geoportal.bayern.de</small>
+      <div style={{ margin: "20px 0", width: "300px", height: "200px" }}>
+        <StyledLinkAsButton href={"/downloads/YumeKai_2025_Programmheft.pdf"} target="_blank">
+          Programmheft 2025
+        </StyledLinkAsButton>
+      </div>
 
-         <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"}>zu Google Maps</StyledLinkAsButton>
+      <SpacerEmpty />
 
+      <Image
+        src={mapImage}
+        alt="Anfahrt Karte"
+        style={{
+          width: "100%",
+          height: "auto",
+          borderRadius: "10px",
+        }}
+      />
+      <small>
+        Hintergrundkarte: © Bayerische Vermessungsverwaltung (2025), Datenquelle: Geoportal Bayern
+        www.geoportal.bayern.de
+      </small>
+
+      <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"}>
+        zu Google Maps
+      </StyledLinkAsButton>
     </>
-    )
+  );
 }
