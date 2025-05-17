@@ -23,11 +23,11 @@ const ContentContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
+  align-items: stretch; // wichtig: sorgt dafür, dass Cards gleich hoch werden
+  gap: 30px;
 `;
 
-export default function Kuenstler() {
+export default function Essen() {
   return (
     <>
       <ReturnButton link="/programm2025" />

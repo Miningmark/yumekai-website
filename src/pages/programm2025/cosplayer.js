@@ -18,7 +18,7 @@ import EraliaImage from "/public/assets/images/yumekai2025/Eralia_Image.png";
 import KorribanImage from "/public/assets/images/yumekai2025/Korriban_Image.png";
 import MinekeImage from "/public/assets/images/yumekai2025/Mineke_Image.png";
 import ZalinaImage from "/public/assets/images/yumekai2025/Zalina_Image.png";
-//import ImoneeImage from "/public/assets/images/yumekai2025/Imonee_Image.png";
+import UchihaCorpImage from "/public/assets/images/yumekai2025/UchihaCorp_Image.png";
 
 
 const ContentContainer = styled.div`
@@ -26,8 +26,8 @@ const ContentContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
+  align-items: stretch; // wichtig: sorgt dafür, dass Cards gleich hoch werden
+  gap: 30px;
 `;
 
 export default function Cosplayer() {
@@ -77,12 +77,12 @@ export default function Cosplayer() {
         imageSrc={ZalinaImage}
         altText="Bild von Zaylina"
         text={<p>Zaylina cosplayt seit 2017 mit viel Herzblut und Kreativität. Von aufwendigen Perücken bis hin zu selbstgemachtem Schmuck - sie lebt ihr Handwerk. Besonders liebt sie Charaktere aus Barbie Filmen, Animes, Disney und der Gaming-Welt.</p>}
-        instaLink="https://www.instagram.com/yaraiyacosplay/"
+        instaLink="https://www.instagram.com/zaylina1/"
         instaLinkText="Zaylina"
       />
       <ContentCard
         title="Imonee Cosplay"
-        imageSrc={ZalinaImage}
+        imageSrc={UchihaCorpImage}
         altText="Bild von Imonee Cosplay"
         text={<p> Das preisgekrönte Cosplay Duo war bereits Finalist bei DCM, C4 und Teilnehmer beim WCS 2022 in Japan. Als Jury und beim Q&A auf der YumeKai teilen sie ihre Erfahrung mit euch. Triff sie auch am eigenen Stand!</p>}
         instaLink="https://www.instagram.com/imoneecosplay/"
