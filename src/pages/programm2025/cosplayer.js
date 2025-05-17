@@ -43,38 +43,50 @@ export default function Cosplayer() {
         title="Dokyato"
         imageSrc={DokyatoImage}
         altText="Bild von Dokyato"
-        text={<p>Rudy, bekannt als <StyledLink href="https://www.instagram.com/dokyato/" target="_blank">Dokyato</StyledLink>, begeistert seit acht Jahren mit kreativem Makeup, Wig-Styling und Cosplays. Besonders beliebt sind seine humorvollen Inhalte mit seinem Vater. Auf der YumeKai 2025 könnt ihr ihn endlich persönlich kennenlernen!</p>}
+        text={<p>Rudy, bekannt als Dokyato, begeistert seit acht Jahren mit kreativem Makeup, Wig-Styling und Cosplays. Besonders beliebt sind seine humorvollen Inhalte mit seinem Vater. Auf der YumeKai 2025 könnt ihr ihn endlich persönlich kennenlernen!</p>}
+        instaLink="https://www.instagram.com/dokyato/"
+        instaLinkText="Dokyato"
       />
 
       <ContentCard
         title="Eralia"
         imageSrc={EraliaImage}
         altText="Bild von Eralia"
-        text={<p>Unser Ehrengast aus den Niederlanden begeistert seit 2010 mit aufwendigen Designs aus Games wie Final Fantasy und Baldur&apos;s Gate. Internationale Wettbewerbsteilnahmen unterstreichen <StyledLink href="https://www.instagram.com/eralia_iwahana/" target="_blank">Eralias</StyledLink> Leidenschaft für Details, Handwerk und Performance.</p>}
+        text={<p>Unser Ehrengast aus den Niederlanden begeistert seit 2010 mit aufwendigen Designs aus Games wie Final Fantasy und Baldur&apos;s Gate. Internationale Wettbewerbsteilnahmen unterstreichen Eralias Leidenschaft für Details, Handwerk und Performance.</p>}
+        instaLink="https://www.instagram.com/eralia_iwahana/"
+        instaLinkText="Eralia_Iwahana"
       />
       <ContentCard
         title="Korriban Cosplay"
         imageSrc={KorribanImage}
         altText="Bild von Korriban"
         text={<p>Marten ist gelernter Maßschneider, Modedesigner und professioneller Cosplayer mit großer Star-Wars-Leidenschaft. Seit 2020 macht er Cosplay beruflich. Begleitet wird er von seiner Freundin Lordzwiebelback. Wir freuen uns auf dieses talentierte Duo!</p>}
+        instaLink="https://www.instagram.com/korribancosplay/"
+        instaLinkText="Korriban Cosplay"
       />
       <ContentCard
         title="Yaraiya Cosplay"
         imageSrc={MinekeImage}
         altText="Bild von Yaraiya"
-        text={<p>Die niederländische Cosplayerin Mineke, bekannt als <StyledLink href="https://www.instagram.com/yaraiyacosplay/" target="_blank">Yaraiya</StyledLink>, ist erfahrene internationale Teilnehmerin bei WCS, C4 und anderen Wettbewerben. Sie liebt es, spektakuläre Requisiten zu bauen und ihr Wissen mit der Commuity zu teilen. </p>}
+        text={<p>Die niederländische Cosplayerin Mineke, bekannt als Yaraiya, ist erfahrene internationale Teilnehmerin bei WCS, C4 und anderen Wettbewerben. Sie liebt es, spektakuläre Requisiten zu bauen und ihr Wissen mit der Commuity zu teilen.</p>}
+        instaLink="https://www.instagram.com/yaraiyacosplay/"
+        instaLinkText="Yaraiya Cosplay"
       />
       <ContentCard
         title="Zaylina"
         imageSrc={ZalinaImage}
         altText="Bild von Zaylina"
-        text={<p><StyledLink href="https://www.instagram.com/yaraiyacosplay/" target="_blank">Zaylina</StyledLink> cosplayt seit 2017 mit viel Herzblut und Kreativität. Von aufwendigen Perücken bis hin zu selbstgemachtem Schmuck - sie lebt ihr Handwerk. Besonders liebt sie Charaktere aus Barbie Filmen, Animes, Disney und der Gaming-Welt. </p>}
+        text={<p>Zaylina cosplayt seit 2017 mit viel Herzblut und Kreativität. Von aufwendigen Perücken bis hin zu selbstgemachtem Schmuck - sie lebt ihr Handwerk. Besonders liebt sie Charaktere aus Barbie Filmen, Animes, Disney und der Gaming-Welt.</p>}
+        instaLink="https://www.instagram.com/yaraiyacosplay/"
+        instaLinkText="Zaylina"
       />
       <ContentCard
         title="Imonee Cosplay"
         imageSrc={ZalinaImage}
-        altText="Bild von Zaylina"
-        text={<p> Das preisgekrönte Cosplay Duo war bereits Finalist bei DCM, C4 und Teilnehmer beim WCS 2022 in Japan. Als Jury und beim Q&A auf der YumeKai teilen sie ihre Erfahrung mit euch. Triff sie auch am eigenen Stand! </p>}
+        altText="Bild von Imonee Cosplay"
+        text={<p> Das preisgekrönte Cosplay Duo war bereits Finalist bei DCM, C4 und Teilnehmer beim WCS 2022 in Japan. Als Jury und beim Q&A auf der YumeKai teilen sie ihre Erfahrung mit euch. Triff sie auch am eigenen Stand!</p>}
+        instaLink="https://www.instagram.com/imoneecosplay/"
+        instaLinkText="Imonee Cosplay"
       />
 
       </ContentContainer>
