@@ -68,28 +68,28 @@ export default function Allgemein() {
         <br />
         Einzelne Bereiche schließen bereits früher/später:
         <br />
-        Küntlerbereich:
+        <strong>Künstlerbereich:</strong>
         <br />
         Samstag bis 19:00 Uhr
         <br />
         Sonntag bis 17:30 Uhr
         <br />
         <br />
-        Händlerbereich:
+        <strong>Händlerbereich:</strong>
         <br />
         Samstag bis 19:00 Uhr
         <br />
         Sonntag bis 17:30 Uhr
         <br />
         <br />
-        Vivid Arise Maid Café:
+        <strong>Vivid Arise Maid Café:</strong>
         <br />
         Samstag bis 20:00 Uhr
         <br />
         Sonntag bis 17:00 Uhr
         <br />
         <br />
-        Cospayball:
+        <strong>Cospayball:</strong>
         <br />
         Samstag bis 23:00 Uhr
       </p>
@@ -126,7 +126,7 @@ export default function Allgemein() {
         <strong>Parken:</strong>
       </p>
       <ul style={{ margin: "0" }}>
-        <li>Tiefgarage Stadthalle, 450 Stellplätze, Entfernung: ca. 0 Minute zu Fuß</li>
+        <li>Tiefgarage Stadthalle, 450 Stellplätze, Entfernung: ca. 0 Minuten zu Fuß</li>
         <li>Parkhaus Schwesternstraße, 335 Stellplätze, Entfernung: ca. 10 Minuten zu Fuß</li>
         <li>Parkhaus Steinbogenstraße, 330 Stellplätze, Entfernung: ca. 12 Minuten zu Fuß</li>
         <li>Parkhaus Bahnhofsstraße, 330 Stellplätze, Entfernung: ca. 15 Minuten zu Fuß</li>

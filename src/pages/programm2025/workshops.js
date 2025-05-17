@@ -19,6 +19,7 @@ import speedpaintingImage from "/public/assets/images/yumekai2025/Speedpainting.
 import vanessaHerzPropmakingFürBeginnerImage from "/public/assets/images/yumekai2025/Vanessa_Herz_Propmaking_für_Beginner.jpg";
 import zaylinaBallkleiderNaehenImage from "/public/assets/images/yumekai2025/Zaylina_-_Ballkleider_naehen.jpg";
 import StockingsWorkshopImage from "/public/assets/images/yumekai2025/StockingsWorkshop_Image.png";
+import andyKnoteImage from "/public/assets/images/yumekai2025/Andy_Knote.jpg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -239,7 +240,7 @@ export default function Workshops() {
         />
         <ContentCard
           title="Q&A mit Andy Knote"
-          imageSrc={HiruWorkshop}
+          imageSrc={andyKnoteImage}
           altText="Bild von Andy Knote"
           text={
             <p>
