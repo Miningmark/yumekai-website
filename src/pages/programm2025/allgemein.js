@@ -36,12 +36,12 @@ const NoDotList = styled.ol`
 
 const NoDotListItem = styled.li`
   counter-increment: list;
-  position: relative;
+  //position: relative;
 
   &::before {
     content: counter(list) " ";
-    position: absolute;
-    left: 0;
+    //position: absolute;
+    //left: 0;
     font-weight: bold;
   }
 `;
