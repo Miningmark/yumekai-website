@@ -86,8 +86,8 @@ const StyledImage = styled(Image)`
   height: 100%;
   transition: transform 0.3s ease-in-out;
 
-  ${({ animate }) =>
-    animate &&
+  ${({ $animate }) =>
+    $animate === 1 &&
     css`
       animation: ${floatDiagonal} 2s ease-in-out infinite;
     `}
@@ -187,7 +187,7 @@ export default function Programm2025() {
                 <StyledImage
                   src={item.image}
                   alt={item.alt}
-                  animate={hoveredIndex === index}
+                  $animate={hoveredIndex === index ? 1 : 0}
                   priority
                 />
               </ImageWrapper>
