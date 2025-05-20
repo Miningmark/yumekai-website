@@ -42,6 +42,7 @@ export default function Wettbewerbe() {
             </>
           }
         />
+
         <ContentCard
           title="Cosplay Crafting Wettbewerb"
           text={
@@ -57,6 +58,7 @@ export default function Wettbewerbe() {
             </>
           }
         />
+
         <ContentCard
           title="Karavision Song Contest"
           text={
@@ -89,6 +91,7 @@ export default function Wettbewerbe() {
             </p>
           }
         />
+
         <ContentCard
           title="One Piece Card Game Turnier"
           text={
@@ -106,6 +109,7 @@ export default function Wettbewerbe() {
             </p>
           }
         />
+
         <ContentCard
           title="YU-GI-OH! - Turnier"
           text={
@@ -143,6 +147,7 @@ export default function Wettbewerbe() {
             </p>
           }
         />
+
         <ContentCard
           title="Dragon Ball FighterZ - Turnier"
           text={
@@ -159,6 +164,37 @@ export default function Wettbewerbe() {
               <br />
               Modus: 1 vs. 1<br />
               Start: 1. Juni um 11 Uhr
+            </p>
+          }
+        />
+
+         <ContentCard
+          title="Zeichenwettbewerb"
+          text={
+            <p>
+              Hey, du hast diese unglaubliche Kreativität in dir? Perfekt!
+            <br />
+            <br />
+            Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben
+            erweckst? Lass deiner Fantasie freien Lauf! Ob du Hiru als Genderbend darstellst, in
+            alternativen Stilen experimentierst oder in einem völlig anderen Genre platzierst –
+            alles ist erlaubt, solange Hiru immer noch erkennbar ist. 🎨✨
+            <br />
+            <br />
+            Es wird einen Jury-Favoriten geben, welcher unter anderem einen Pokal erhält! Außerdem
+            wird es für jede Kategorie einen Gewinner geben. (Jedes Bild kann nur in einer Kategorie
+            gewinnen.)
+            <br />
+            <br />
+            Folgende Kategorien gibt es:
+            <br />
+            ⭐ Beste Technik
+            <br />
+            ⭐ Kreativste Idee
+            <br />
+            ⭐ Qualität des Gesamtbilds
+            <br />
+            Anmeldung bis zum 17.05.2025
             </p>
           }
         />
