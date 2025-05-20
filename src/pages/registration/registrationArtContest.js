@@ -225,7 +225,7 @@ export default function RegistrationArtContest() {
         Du möchtest am Zeichenwettbewerb auf der YumeKai 2025 teilnehmen!
         <br />
         <br />
-        Bitte beachtet die{" "}
+        Bitte beachte die{" "}
         <StyledLink
           href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
           target="_blank"
