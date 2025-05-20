@@ -216,30 +216,7 @@ export default function RegistrationArtContest() {
     setLoading(false);
   }
 
-  retrun (
-  <>
-    <h1>Anmeldung zum Zeichenwettbewerb</h1>
-    <p>
-      Du möchtest am Zeichenwettbewerb auf der YumeKai 2025 teilnehmen!
-      <br />
-      <br />
-      Bitte beachtet die{" "}
-      <StyledLink
-        href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
-        target="_blank"
-      >
-        Teilnahme- und Auswahlbedingungen für den Zeichenwettbewerb
-      </StyledLink>
-      .
-      <br />
-      <br />
-      Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
-      <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
-      <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
-    </p>
-    <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
-  </>
-  )
+
 
   return (
     <>
@@ -263,6 +240,9 @@ export default function RegistrationArtContest() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
+       <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
+
+{/* 
       {!success && (
         <>
           <p>
@@ -463,6 +443,8 @@ export default function RegistrationArtContest() {
           </ModalOverlay>
         </>
       )}
+
+      */}
     </>
   );
 }
