@@ -1,16 +1,5 @@
-import styled from "styled-components";
-
 //Components
-import { Spacer, StyledButton, StyledLink } from "@/components/styledComponents";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
-
-//Images
-
-const DisabledButton = styled(StyledButton)`
-  background-color: gray;
-  color: white;
-  cursor: not-allowed;
-`;
 
 export default function Programm2025() {
   return (

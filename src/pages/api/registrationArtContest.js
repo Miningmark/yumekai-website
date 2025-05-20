@@ -85,6 +85,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Methode nicht erlaubt." });
   }
 
+  //Zum Deaktivieren der API
+  if (req.method === "POST") {
+    return res.status(405).json({ message: "Methode nicht erlaubt." });
+  }
+
   const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   const { fields, files } = await parseForm(req);

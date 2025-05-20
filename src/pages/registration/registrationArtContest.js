@@ -216,8 +216,6 @@ export default function RegistrationArtContest() {
     setLoading(false);
   }
 
-
-
   return (
     <>
       <h1>Anmeldung zum Zeichenwettbewerb</h1>
@@ -237,12 +235,12 @@ export default function RegistrationArtContest() {
         <br />
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
-        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
+        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-       <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
+      <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
 
-{/* 
+      {/* 
       {!success && (
         <>
           <p>
