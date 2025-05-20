@@ -178,12 +178,7 @@ export default function Wettbewerbe() {
             Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben
             erweckst? Lass deiner Fantasie freien Lauf! Ob du Hiru als Genderbend darstellst, in
             alternativen Stilen experimentierst oder in einem völlig anderen Genre platzierst –
-            alles ist erlaubt, solange Hiru immer noch erkennbar ist. 🎨✨
-            <br />
-            <br />
-            Es wird einen Jury-Favoriten geben, welcher unter anderem einen Pokal erhält! Außerdem
-            wird es für jede Kategorie einen Gewinner geben. (Jedes Bild kann nur in einer Kategorie
-            gewinnen.)
+            alles ist erlaubt, solange Hiru immer noch erkennbar ist.
             <br />
             <br />
             Folgende Kategorien gibt es:
@@ -193,6 +188,7 @@ export default function Wettbewerbe() {
             ⭐ Kreativste Idee
             <br />
             ⭐ Qualität des Gesamtbilds
+            <br />
             <br />
             Anmeldung bis zum 17.05.2025
             </p>
