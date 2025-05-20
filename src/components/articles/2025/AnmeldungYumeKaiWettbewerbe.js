@@ -27,20 +27,6 @@ export default function AnmeldungYumeKaiWettbewerbe() {
             </p>
 
             <div style={{marginBottom: "20px"}}>
-                <h3>Zeichenwettbewerb</h3>
-                <p>
-                    Du bist kreativ? Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben erweckst? Lass deiner Fantasie freien lauf.
-                    <br />
-                    <StyledLink href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf" target="_blank">
-                        Teilnahmebedingungen Zeichenwettbewerb
-                    </StyledLink>
-                </p>
-                <StyledLinkAsButton href={"/registration/registrationArtContest"} target="_blank" rel="noopener noreferrer">
-                    zur Anmeldung
-                </StyledLinkAsButton>
-            </div>
-
-            <div style={{marginBottom: "20px"}}>
                 <h3>Cosplay Crafting Wettbewerb</h3>
                 <p>
                     Du baust deine eigenen Cosplays? Wie wäre es, wenn du uns dein Können beim Cosplay Crafting Wettbewerb zeigst.

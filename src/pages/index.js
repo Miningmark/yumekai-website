@@ -63,8 +63,10 @@ export default function Home() {
       <HierKonntIhrUnsTreffen />
       <Spacer />
       <AnkundigungCosplayVersteigerung />
+      {/* 
       <Spacer />
       <AnkundigungZeichenwettbewerb />
+      */}
       <Spacer />
       <AnkundigungMaidCafe />
       <Spacer />
