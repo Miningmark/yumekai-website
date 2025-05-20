@@ -237,7 +237,6 @@ export default function RegistrationArtContest() {
       <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
       <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
     </p>
-    <br/>
     <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
   </>
   )
