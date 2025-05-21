@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { SocialMediaContainerFooter } from "@/components/menu/SocialMediaContainer";
-import { StyledButton } from "@/components/styledComponents";
 import { StyledLinkAsButton } from "../elements/StyledLinkAsButton";
 
 const FooterBackground = styled.footer`
