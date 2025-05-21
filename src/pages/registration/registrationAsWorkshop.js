@@ -438,7 +438,7 @@ export default function RegistrationAsWorkshop() {
       </p>
 
       
-      <h2>Die Anmeldung als Showact ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.</h2>
 
       {/* 
 

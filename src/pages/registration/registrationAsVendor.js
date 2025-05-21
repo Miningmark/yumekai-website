@@ -445,6 +445,11 @@ export default function RegistrationAsVendor() {
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
+
+      
+      <h2>Die Anmeldung als Händler ist momentan geschlossen.</h2>
+
+      {/* 
       {!success && (
         <>
           <p>
@@ -802,6 +807,8 @@ export default function RegistrationAsVendor() {
           </ModalOverlay>
         </>
       )}
+
+      */}
     </>
   );
 }
