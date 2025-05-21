@@ -136,7 +136,7 @@ export default function Allgemein() {
       </ul>
       <p style={{ marginTop: "5px" }}>
         Weitere Informationen bezüglich Parkmöglichkeiten entnehmen Sie bitte folgender Seite:{" "}
-        <StyledLink href={"https://stadtwerke-memmingen.de/parkhaeuser"} target="_blank">
+        <StyledLink href={"https://stadtwerke-memmingen.de/parkhaeuser"} target="_blank" rel="noopener noreferrer">
           https://stadtwerke-memmingen.de/parkhaeuser
         </StyledLink>
         .
@@ -166,7 +166,7 @@ export default function Allgemein() {
         www.geoportal.bayern.de
       </small>
       <div style={{ margin: "20px 0" }}>
-        <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"} target="_blank">
+        <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"} target="_blank"  rel="noopener noreferrer">
           zu Google Maps
         </StyledLinkAsButton>
       </div>
