@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { StyledLink, DynamicContent } from "@/components/styledComponents";
-import styled from "styled-components";
 
 //Images
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
