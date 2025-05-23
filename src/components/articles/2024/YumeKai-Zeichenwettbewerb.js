@@ -83,7 +83,7 @@ export default function YumeKaiZeichenwettbewerb() {
                   />
                   <p style={{ textAlign: "center", marginTop: 0 }}>
                     von:{" "}
-                    <StyledLink href={"https://www.instagram.com/mirukusagii/"} target="_blank">
+                    <StyledLink href={"https://www.instagram.com/mirukusagii/"} target="_blank" rel="noopener noreferrer">
                       Miru
                     </StyledLink>
                   </p>
@@ -102,7 +102,7 @@ export default function YumeKaiZeichenwettbewerb() {
                   />
                   <p style={{ textAlign: "center", marginTop: 0 }}>
                     von:{" "}
-                    <StyledLink href={"https://www.instagram.com/hydrangea_bunny/"} target="_blank">
+                    <StyledLink href={"https://www.instagram.com/hydrangea_bunny/"} target="_blank" rel="noopener noreferrer">
                       LeLo
                     </StyledLink>
                   </p>
@@ -124,7 +124,7 @@ export default function YumeKaiZeichenwettbewerb() {
                   />
                   <p style={{ textAlign: "center", marginTop: 0 }}>
                     von:{" "}
-                    <StyledLink href={"https://www.instagram.com/emytsuu/"} target="_blank">
+                    <StyledLink href={"https://www.instagram.com/emytsuu/"} target="_blank" rel="noopener noreferrer">
                       Emytsuu
                     </StyledLink>
                   </p>

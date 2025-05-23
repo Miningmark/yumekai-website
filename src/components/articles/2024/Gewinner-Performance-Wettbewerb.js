@@ -24,23 +24,23 @@ export default function GewinnerPerformanceWettbewerb() {
         <p>
           Bei unserem Cosplay Performance Wettbewerb am Samstag hatten wir unglaublich talentierte
           Teilnehmer. Da ist es für unsere Jury, die aus{" "}
-          <StyledLink href={"https://www.instagram.com/evelyn_cosplay/"} target="_blank">
+          <StyledLink href={"https://www.instagram.com/evelyn_cosplay/"} target="_blank"  rel="noopener noreferrer">
             Evelyn Cosplay
           </StyledLink>
           ,{" "}
-          <StyledLink href={"https://www.instagram.com/imoneecosplay/"} target="_blank">
+          <StyledLink href={"https://www.instagram.com/imoneecosplay/"} target="_blank" rel="noopener noreferrer">
             Imoneecosplay
           </StyledLink>
           ,{" "}
-          <StyledLink href={"https://www.instagram.com/n4ru_cosplay/"} target="_blank">
+          <StyledLink href={"https://www.instagram.com/n4ru_cosplay/"} target="_blank" rel="noopener noreferrer">
             Naru Cosplay
           </StyledLink>
           ,{" "}
-          <StyledLink href={"https://www.instagram.com/imoneecosplay/"} target="_blank">
+          <StyledLink href={"https://www.instagram.com/imoneecosplay/"} target="_blank" rel="noopener noreferrer">
             Mero
           </StyledLink>
           {" & "}
-          <StyledLink href={"https://www.instagram.com/yunyte/"}>Yunyte</StyledLink> bestand gar
+          <StyledLink href={"https://www.instagram.com/yunyte/"} target="_blank" rel="noopener noreferrer">Yunyte</StyledLink> bestand gar
           nicht so leicht gefallen die Gewinner zu küren.
         </p>
         <Columns4
@@ -57,7 +57,7 @@ export default function GewinnerPerformanceWettbewerb() {
                 }}
               />
               <p style={{ textAlign: "center", marginTop: 0 }}>
-                <StyledLink href={"https://www.instagram.com/onyx_costumes/"} target="_blank">
+                <StyledLink href={"https://www.instagram.com/onyx_costumes/"} target="_blank" rel="noopener noreferrer">
                   Onyx
                 </StyledLink>{" "}
                 als Toybox Hatsune Miku von Vocaloid
@@ -77,7 +77,7 @@ export default function GewinnerPerformanceWettbewerb() {
                 }}
               />
               <p style={{ textAlign: "center", marginTop: 0 }}>
-                <StyledLink href={"https://www.instagram.com/fyly_cosplays/"} target="_blank">
+                <StyledLink href={"https://www.instagram.com/fyly_cosplays/"} target="_blank" rel="noopener noreferrer">
                   Fyly
                 </StyledLink>{" "}
                 als Shea Haulia von Arifureta S2
@@ -97,7 +97,7 @@ export default function GewinnerPerformanceWettbewerb() {
                 }}
               />
               <p style={{ textAlign: "center", marginTop: 0 }}>
-                <StyledLink href={"https://www.instagram.com/scarlettsirene2/"} target="_blank">
+                <StyledLink href={"https://www.instagram.com/scarlettsirene2/"} target="_blank" rel="noopener noreferrer">
                   Scarlett Sirene
                 </StyledLink>{" "}
                 als Soraka Koi von League of Legends
@@ -117,7 +117,7 @@ export default function GewinnerPerformanceWettbewerb() {
                 }}
               />
               <p style={{ textAlign: "center", marginTop: 0 }}>
-                <StyledLink href={"https://www.instagram.com/tinyfufu/"} target="_blank">
+                <StyledLink href={"https://www.instagram.com/tinyfufu/"} target="_blank" rel="noopener noreferrer">
                   Tinyfufu
                 </StyledLink>{" "}
                 als Amity Blight von The Owl House

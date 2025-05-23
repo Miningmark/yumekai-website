@@ -9,6 +9,7 @@ import BubbleTimeImage from "/public/assets/images/yumekai2025/BubbleTime_Image.
 import GrafImage from "/public/assets/images/yumekai2025/Graf_Image.png";
 import TaiyakiImage from "/public/assets/images/yumekai2025/Taiyaki_Image.png";
 import MaidCafeImage from "/public/assets/images/yumekai2025/MaidCafe_Image.png";
+import daZioTullioImage from "/public/assets/images/yumekai2025/Da_Zio_Tullio.jpg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ export default function Essen() {
             </p>
           }
         />
+
         <ContentCard
           title={"Vivid Arise Maid Café"}
           imageSrc={MaidCafeImage}
@@ -52,6 +54,7 @@ export default function Essen() {
             </p>
           }
         />
+
         <ContentCard
           title={"Taiyaki"}
           imageSrc={TaiyakiImage}
@@ -65,6 +68,7 @@ export default function Essen() {
             </p>
           }
         />
+
         <ContentCard
           title={"bubbleTime"}
           imageSrc={BubbleTimeImage}
@@ -73,6 +77,19 @@ export default function Essen() {
             <p>
               Angeboten werden alle möglichen Fruchtbubbletee, Milch Bubbletee und Klassik Bubble
               Tea.
+            </p>
+          }
+        />
+
+        <ContentCard
+          title={"Da Zio Tullio"}
+          imageSrc={daZioTullioImage}
+          altText="Bild von Foodtruck"
+          text={
+            <p>
+              Da Zio Tullio bringt authentische italienische Köstlichkeiten zur YumeKai! Aus unserem Foodtruck 
+              Servieren wir frisch gebackene Pinsa, hausgemachte Paste und knusprige Panzerotti. Alles mit viel 
+              Liebe und nach original italienischer Art zubereitet. Kommt vorbei und erlebt den echten Geschmack Italiens!
             </p>
           }
         />

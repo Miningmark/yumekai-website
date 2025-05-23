@@ -53,6 +53,7 @@ export default function AnkundigungCoheki() {
             <StyledLink
               href="https://www.instagram.com/coheki_ev/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               @coheki_ev
             </StyledLink>

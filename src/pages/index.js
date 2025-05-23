@@ -21,7 +21,6 @@ import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
 import AnmeldungCatwalk from "@/components/articles/2025/AnmeldungCatwalk";
 import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe";
 import AnkundigungCosplayVersteigerung from "@/components/articles/2025/AnkundigungCosplayVersteigerung";
-import AnkundigungZeichenwettbewerb from "@/components/articles/2025/AnkundigungZeichenwettbewerb";
 import AnkundigungCUG from "@/components/articles/2025/AkundigungCUG";
 import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
@@ -63,8 +62,6 @@ export default function Home() {
       <HierKonntIhrUnsTreffen />
       <Spacer />
       <AnkundigungCosplayVersteigerung />
-      <Spacer />
-      <AnkundigungZeichenwettbewerb />
       <Spacer />
       <AnkundigungMaidCafe />
       <Spacer />

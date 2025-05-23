@@ -1,9 +1,4 @@
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
-import Image from "next/image";
-
-//Components
-
-//Images
 
 export default function HelferPost() {
   return (

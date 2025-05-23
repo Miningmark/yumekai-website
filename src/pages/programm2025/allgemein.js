@@ -32,6 +32,7 @@ const DynamicContent = styled.div`
 const NoDotList = styled.ol`
   list-style: none;
   counter-reset: list;
+  padding-left: 10px;
 `;
 
 const NoDotListItem = styled.li`
@@ -104,7 +105,9 @@ export default function Allgemein() {
       <Spacer />
 
       <h3>Programmheft</h3>
-      <p>Lust auf mehr Infos? Unser digitales Programmheft gibt&apos;s hier als PDF zum Mitnehmen.</p>
+      <p>
+        Lust auf mehr Infos? Unser digitales Programmheft gibt&apos;s hier als PDF zum Mitnehmen.
+      </p>
       <div style={{ margin: "20px 0" }}>
         <StyledLinkAsButton href={"/downloads/YumeKai_2025_Programmheft.pdf"} target="_blank">
           Programmheft 2025
@@ -141,7 +144,7 @@ export default function Allgemein() {
       </ul>
       <p style={{ marginTop: "5px" }}>
         Weitere Informationen bezüglich Parkmöglichkeiten entnehmen Sie bitte folgender Seite:{" "}
-        <StyledLink href={"https://stadtwerke-memmingen.de/parkhaeuser"} target="_blank">
+        <StyledLink href={"https://stadtwerke-memmingen.de/parkhaeuser"} target="_blank" rel="noopener noreferrer">
           https://stadtwerke-memmingen.de/parkhaeuser
         </StyledLink>
         .
@@ -171,7 +174,7 @@ export default function Allgemein() {
         www.geoportal.bayern.de
       </small>
       <div style={{ margin: "20px 0" }}>
-        <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"} target="_blank">
+        <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"} target="_blank"  rel="noopener noreferrer">
           zu Google Maps
         </StyledLinkAsButton>
       </div>

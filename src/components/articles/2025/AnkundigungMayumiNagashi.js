@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StyledLink, DynamicContent } from "@/components/styledComponents";
+import {DynamicContent } from "@/components/styledComponents";
 
 //Images
 import MayumiNagashi from "/public/assets/images/yumekai2025/MayumiNagashi.jpg"; // bei Bildern muss Änderung mit ran

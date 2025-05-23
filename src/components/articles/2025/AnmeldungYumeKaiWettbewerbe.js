@@ -2,7 +2,7 @@ import Image from "next/image";
 
 //Components
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
-import { Spacer, StyledButton, StyledLink, DynamicContent } from "@/components/styledComponents";
+import {StyledLink, DynamicContent } from "@/components/styledComponents";
 
 //Images
 import hiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
@@ -25,20 +25,6 @@ export default function AnmeldungYumeKaiWettbewerbe() {
             <p style={{marginBottom: "15px"}}>
                 Bei allen Wettbewerben erwarten dich tolle Preise, es lohnt sich teilzunehmen.
             </p>
-
-            <div style={{marginBottom: "20px"}}>
-                <h3>Zeichenwettbewerb</h3>
-                <p>
-                    Du bist kreativ? Wie wäre es, wenn du unser süßes Maskottchen Hiru in deinem ganz eigenen Stil zum Leben erweckst? Lass deiner Fantasie freien lauf.
-                    <br />
-                    <StyledLink href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf" target="_blank">
-                        Teilnahmebedingungen Zeichenwettbewerb
-                    </StyledLink>
-                </p>
-                <StyledLinkAsButton href={"/registration/registrationArtContest"} target="_blank" rel="noopener noreferrer">
-                    zur Anmeldung
-                </StyledLinkAsButton>
-            </div>
 
             <div style={{marginBottom: "20px"}}>
                 <h3>Cosplay Crafting Wettbewerb</h3>

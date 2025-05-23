@@ -23,19 +23,18 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
   position: fixed;
+  width: 90vw;
+  height: 90vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0 auto;
   z-index: 105;
   padding: 20px;
-  max-width: 400px;
-  width: 90%;
-  max-height: 90vh;
   overflow: auto;
   border-radius: var(--border-radius);
-  color: ${({ theme }) => theme.textColor};
-  background-color: ${({ theme }) => theme.color2};
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.backgroundColor3};
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 
   h2 {
@@ -95,7 +94,7 @@ export default function ShowFullSizeURIData({ file, handleClose }) {
       <ModalOverlay onClick={handleClose}>
         <EnlargedImageContainer onClick={handleClose}>
           {fileName.endsWith(".pdf") ? (
-            <ModalContent style={{ width: "90vw", maxWidth: "90vw", height: "90vh" }}>
+            <ModalContent>
               <ModalCloseIcon onClick={handleClose} />
               <h2>{fileName}</h2>
               <div style={{ height: "calc(90vh - 70px)" }}>
@@ -121,8 +120,8 @@ export default function ShowFullSizeURIData({ file, handleClose }) {
               <Image
                 src={normalizedFile}
                 alt={fileName}
-                width={800}
-                height={600}
+                width={1200}
+                height={1000}
                 style={{
                   maxWidth: "90vmin",
                   maxHeight: "90vmin",

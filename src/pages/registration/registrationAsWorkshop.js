@@ -437,6 +437,11 @@ export default function RegistrationAsWorkshop() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
+      
+      <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.</h2>
+
+      {/* 
+
       {!success && (
         <>
           <p>
@@ -737,6 +742,8 @@ export default function RegistrationAsWorkshop() {
           </ModalOverlay>
         </>
       )}
+
+      */}
     </>
   );
 }

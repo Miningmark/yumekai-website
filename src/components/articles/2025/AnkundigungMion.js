@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StyledLink, DynamicContent } from "@/components/styledComponents";
+import { DynamicContent } from "@/components/styledComponents";
 
 //Images
 import MionImage from "/public/assets/images/yumekai2025/MION.png"; // bei Bildern muss Änderung mit ran
