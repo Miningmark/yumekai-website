@@ -254,7 +254,7 @@ export default function Workshops() {
           maxWidth={550}
         />
         <ContentCard
-          title="Display Competition für Beginner"
+          title="Cosplay Competition für Beginner"
           imageSrc={minekeImage}
           altText="Bild von Display Competition für Beginner"
           text={

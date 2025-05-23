@@ -95,6 +95,14 @@ export default function Allgemein() {
       </p>
       <Spacer />
 
+      <h3>Tageskasse</h3>
+      <p>An den Veranstaltungstagen können vor Ort noch Tickets gekauft werden, leider ist hier keine Barzahlung möglich.</p>
+      <Spacer />
+
+      <h3>Wichtiger Hinweis zur Veranstaltung</h3>
+      <p>Bitte habt Verständnis dafür, dass wir unter Umständen nicht allen den Eintritt gewähren können, wenn ein Gebäude voll ist. Laut Hausordnung dürfen wir nur eine bestimmte Anzahl an Leuten reinlassen, ist die Kapazität erreicht, müssen wir den Einlass vorübergehend stoppen.<br />Wir bitten um euer Verständnis. Eure Sicherheit steht für uns an erster Stelle.</p>
+      <Spacer />
+
       <h3>Programmheft</h3>
       <p>Lust auf mehr Infos? Unser digitales Programmheft gibt&apos;s hier als PDF zum Mitnehmen.</p>
       <div style={{ margin: "20px 0" }}>
