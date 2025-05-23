@@ -98,7 +98,7 @@ export default function Allgemein() {
 
       <h3>Tageskasse</h3>
       <p>An den Veranstaltungstagen können vor Ort noch Tickets gekauft werden, leider ist hier keine Barzahlung möglich.<br />
-      Der <StyledLink href="https://yumekai.de/shop" target="_blank">Online Ticketshop</StyledLink> wird auch während der Convention noch erreichbar sein, wir empfehlen euch hier euer Ticket zu kaufen, um Wartezeiten an der Kasse zu vermeiden.</p>
+      Der <StyledLink href="/shop" target="_blank">Online Ticketshop</StyledLink> wird auch während der Convention noch erreichbar sein, wir empfehlen euch hier euer Ticket zu kaufen, um Wartezeiten an der Kasse zu vermeiden.</p>
       <Spacer />
 
       <h3>Wichtiger Hinweis zur Veranstaltung</h3>
