@@ -20,7 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>24.05 - 25.05 NonkiCon in Spyer</li>
                     <li>31.05 - 01.06 YumeKai in Memmingen</li>
                     <li>04.06 - 06.06 WieMaiKai in Flörsheim</li>
                   </ul>
@@ -31,7 +30,6 @@ export default function HierKonntIhrUnsTreffen() {
                   <h3>Hier waren wir:</h3>
                   <ul>
                     <li>Cosday² in Frankfurt</li>
-                    <li>Nihonbashi in Kassel</li>
                     <li>Gamesvention in Kempten</li>
                     <li>Manganacht in Memmingen</li>
                     <li>ComicCon in Stuttgart</li>
@@ -45,6 +43,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Kitsucon in Thayngen/Reiat</li>
                     <li>Mini Con in Lustenau</li>
                     <li>Hana und Spring in Königsbrunn</li>
+                    <li>NonkiCon in Speyer</li>
                   </ul>
                 </>
               }
