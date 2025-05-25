@@ -90,7 +90,7 @@ export default function Allgemein() {
         Sonntag bis 17:00 Uhr
         <br />
         <br />
-        <strong>Cospayball:</strong>
+        <strong>Cosplayball:</strong>
         <br />
         Samstag bis 23:00 Uhr
       </p>
