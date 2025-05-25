@@ -23,6 +23,7 @@ export default function ConventionsTippsFurElternCA() {
           <StyledLink
             href={"https://www.c-and-a.com/de/de/shop/comic-und-manga-conventions"}
             target="_blank"
+             rel="noopener noreferrer"
           >
             Comic- und Manga-Conventions: Überblick und Tipps für Eltern
           </StyledLink>

@@ -45,7 +45,7 @@ export default function PhotoContest1() {
             <p style={{ textAlign: "center", marginTop: 0 }}>
               🥇 1. Platz
               <br />
-              <StyledLink href="https://www.instagram.com/rhean_cosplay/" target="_blank">
+              <StyledLink href="https://www.instagram.com/rhean_cosplay/" target="_blank" rel="noopener noreferrer">
                 rhean_cosplay
               </StyledLink>{" "}
               als ein Clicker aus The Last of Us <br /> Foto: battitude_arts
@@ -65,7 +65,7 @@ export default function PhotoContest1() {
             <p style={{ textAlign: "center", marginTop: 0 }}>
               🥈 2. Platz
               <br />
-              <StyledLink href="https://www.instagram.com/avokaddocosplay/" target="_blank">
+              <StyledLink href="https://www.instagram.com/avokaddocosplay/" target="_blank" rel="noopener noreferrer">
                 avokaddocosplay
               </StyledLink>{" "}
               als Loid Forger aus Spy x Family <br /> Foto: leolina_shots <br /> Anya:
@@ -86,7 +86,7 @@ export default function PhotoContest1() {
             <p style={{ textAlign: "center", marginTop: 0 }}>
               🥉 3. Platz
               <br />
-              <StyledLink href="https://www.instagram.com/_sunnycos/" target="_blank">
+              <StyledLink href="https://www.instagram.com/_sunnycos/" target="_blank" rel="noopener noreferrer">
                 _sunnycos
               </StyledLink>{" "}
               als Sasuke aus Naruto <br /> Foto: matze_photographing
@@ -106,7 +106,7 @@ export default function PhotoContest1() {
             <p style={{ textAlign: "center", marginTop: 0 }}>
               ⭐ Yumekais Favorite
               <br />
-              <StyledLink href="https://www.instagram.com/myo_cos/" target="_blank">
+              <StyledLink href="https://www.instagram.com/myo_cos/" target="_blank" rel="noopener noreferrer">
                 myo_cos
               </StyledLink>{" "}
               als Aelin Ashryver Galathynius aus Throne of Glass <br /> Foto: @der_doppelbock <br />

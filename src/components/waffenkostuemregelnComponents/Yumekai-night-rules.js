@@ -88,6 +88,7 @@ export default function YumeKaiNightRules() {
       <StyledLink
         href={"https://www.gesetze-im-internet.de/waffg_2002/anlage_2.html"}
         target="_blank"
+        rel="noopener noreferrer"
       >
         https://www.gesetze-im-internet.de/waffg_2002/anlage_2.html
       </StyledLink>

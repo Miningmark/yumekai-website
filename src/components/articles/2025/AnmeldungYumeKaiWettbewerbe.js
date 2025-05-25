@@ -2,7 +2,7 @@ import Image from "next/image";
 
 //Components
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
-import { Spacer, StyledButton, StyledLink, DynamicContent } from "@/components/styledComponents";
+import {StyledLink, DynamicContent } from "@/components/styledComponents";
 
 //Images
 import hiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";

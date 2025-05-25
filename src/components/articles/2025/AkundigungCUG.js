@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StyledLink, DynamicContent } from "@/components/styledComponents";
+import { DynamicContent } from "@/components/styledComponents";
 
 //Images
 import CUG_LogoImage from "/public/assets/images/yumekai2025/CUG_Logo.png"; // bei Bildern muss Änderung mit ran

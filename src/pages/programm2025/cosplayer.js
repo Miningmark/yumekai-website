@@ -93,7 +93,7 @@ export default function Cosplayer() {
           text={
             <p>
               Zaylina cosplayt seit 2017 mit viel Herzblut und Kreativität. Von aufwendigen Perücken
-              bis hin zu selbstgemachtem Schmuck - sie lebt ihr Handwerk. Besonders liebt sie
+              bis hin zu selbstgemachtem Schmuck - Zaylina lebt das Handwerk. Besonders liebt Zaylina
               Charaktere aus Barbie Filmen, Animes, Disney und der Gaming-Welt.
             </p>
           }

@@ -124,7 +124,8 @@ export default function Workshops() {
               zum Beispiel aus Final Fantasy oder Baldur&apos;s Gate. Eralias Erfahrungen haben them
               die Möglichkeit gegeben die Niederlande in den ECG finals in Paris zu vertreten. Jetzt
               teilt Eralia die eigene Leidenschaft fürs Crafting - in diesem fall für Lederarbeiten
-              - mit euch! Lerne, wie du deinem Cosplay mit Leder ausschmücken kannst.
+              - mit euch! Lerne, wie du deinem Cosplay mit Leder ausschmücken kannst.<br />
+              <em>Dieser Workshop wird auf englisch gehalten.</em>
             </p>
           }
           instaLink="https://www.instagram.com/eralia_iwahana/"
@@ -254,7 +255,7 @@ export default function Workshops() {
           maxWidth={550}
         />
         <ContentCard
-          title="Display Competition für Beginner"
+          title="Cosplay Competition für Beginner"
           imageSrc={minekeImage}
           altText="Bild von Display Competition für Beginner"
           text={
@@ -267,7 +268,8 @@ export default function Workshops() {
               WCS &#40;World Cosplay Summit&#41; und C4. Besonders liebt sie es, aufwendige Details
               umzusetzen und spektakuläre Bühnen-Requisiten zu bauen. In diesem Workshop teilt sie
               ihre Erfahrungen und erklärt euch die wichtigsten Grundlagen. Mineke freut sich
-              darauf, euch kennenzulernen.
+              darauf, euch kennenzulernen.<br />
+              <em>Dieser Workshop wurd auf englisch gehalten.</em>
             </p>
           }
           instaLink="https://www.instagram.com/yaraiyacosplay/"
