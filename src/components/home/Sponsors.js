@@ -21,6 +21,7 @@ import mrVeranstaltung from "/public/assets/images/sponsors/MR_Veranstaltung.png
 import crunchyrollImage from "/public/assets/images/sponsors/Crunchyroll_Orange_Logo.png";
 import paperToonsImage from "/public/assets/images/sponsors/Papertoons_logo.png";
 import cosplayConstelationsImage from "/public/assets/images/sponsors/Cosplay_Constellations.png";
+import cosmicMoonlightImage from "/public/assets/images/sponsors/cosmicmoonlight.jpg";
 
 const sponsorList = [
   { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
@@ -41,6 +42,11 @@ const sponsorList = [
     image: cosplayConstelationsImage,
     alt: "Cosplay Constellations",
     link: "https://www.instagram.com/cosplay.constellations/",
+  },
+  {
+    image: cosmicMoonlightImage,
+    alt: "Cosmic Moonlight",
+    link: "https://www.cosmicmoonlight.com/i/links",
   },
 ];
 
