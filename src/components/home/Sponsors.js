@@ -3,6 +3,7 @@ import { useRef, useEffect } from "react";
 
 //Components
 import ImageCarousel from "@/components/elements/ImageCarousel";
+import { SpacerEmpty } from "../styledComponents";
 
 //Sponsor Images
 import cineplexImage from "/public/assets/images/sponsors/Cineplex.png";
@@ -19,7 +20,7 @@ import stadtMM from "/public/assets/images/sponsors/Stadt_Memmingen.png";
 import mrVeranstaltung from "/public/assets/images/sponsors/MR_Veranstaltung.png";
 import crunchyrollImage from "/public/assets/images/sponsors/Crunchyroll_Orange_Logo.png";
 import paperToonsImage from "/public/assets/images/sponsors/Papertoons_logo.png";
-import { SpacerEmpty } from "../styledComponents";
+import cosplayConstelationsImage from "/public/assets/images/sponsors/Cosplay_Constellations.png";
 
 const sponsorList = [
   { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
@@ -36,6 +37,11 @@ const sponsorList = [
   { image: mrVeranstaltung, alt: "M&R Veranstaltung", link: "https://mr-veranstaltung.de/" },
   { image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
   { image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
+  {
+    image: cosplayConstelationsImage,
+    alt: "Cosplay Constellations",
+    link: "https://www.instagram.com/cosplay.constellations/",
+  },
 ];
 
 const SponsorsComponentWrapper = styled.section`
