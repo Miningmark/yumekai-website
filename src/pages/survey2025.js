@@ -35,12 +35,22 @@ export default function Survey2025() {
   const [bestPart, setBestPart] = useState("");
   const [improvement, setImprovement] = useState("");
 
+  const [haStandPlaceRating, setHaStandPlaceRating] = useState(null);
+  const [haPriceRating, setHaPriceRating] = useState(null);
+  const [haSupportRating, setHaSupportRating] = useState(null);
+  const [haImprovement, setHaImprovement] = useState("");
+
+  const [kuStandPlaceRating, setKuStandPlaceRating] = useState(null);
+  const [kuPriceRating, setKuPriceRating] = useState(null);
+  const [kuSupportRating, setKuSupportRating] = useState(null);
+  const [kuImprovement, setKuImprovement] = useState("");
+
   const [surveyFinish, setSurveyFinish] = useState(false);
   const [formError, setFormError] = useState("");
 
   const [alreadyParticipated, setAlreadyParticipated] = useState(null);
   const [ticketId, setTicketId] = useState(null);
-  const [ticketDay, setTicketDay] = useState(null); //Sa, So, We, Ball als array
+  const [ticketDay, setTicketDay] = useState(null); //Sa, So, We, Ba, Go, Ha, Ku, Au als array
 
   const router = useRouter();
 
@@ -96,24 +106,26 @@ export default function Survey2025() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    // Validierung
-    if (!selectedDay) {
-      setFormError("Bitte gebe an wann du auf der YumeKai warst.");
-      return;
-    }
-
     const formData = {
-      yumeKaiRating,
-      stageProgramRating,
-      priceRating,
-      workshopRating,
-      vendorRating,
-      artistRating,
-      gameAreaRating,
-      cosplayBallRating,
-      goldRating,
-      bestPart,
-      improvement,
+      yumeKaiRating: yumeKaiRating ?? 99,
+      stageProgramRating: stageProgramRating ?? 99,
+      priceRating: priceRating ?? 99,
+      workshopRating: workshopRating ?? 99,
+      vendorRating: vendorRating ?? 99,
+      artistRating: artistRating ?? 99,
+      gameAreaRating: gameAreaRating ?? 99,
+      cosplayBallRating: cosplayBallRating ?? 99,
+      goldRating: goldRating ?? 99,
+      haStandPlaceRating: haStandPlaceRating ?? 99,
+      haPriceRating: haPriceRating ?? 99,
+      haSupportRating: haSupportRating ?? 99,
+      haImprovement: haImprovement || "",
+      kuStandPlaceRating: kuStandPlaceRating ?? 99,
+      kuPriceRating: kuPriceRating ?? 99,
+      kuSupportRating: kuSupportRating ?? 99,
+      kuImprovement: kuImprovement || "",
+      bestPart: bestPart || "",
+      improvement: improvement || "",
     };
 
     try {
@@ -128,11 +140,11 @@ export default function Survey2025() {
       if (response.ok) {
         const result = await response.json();
         //console.log("Daten erfolgreich eingefügt:", result.insertId); //TODO: Löschen reselt.insertID
+        setSurveyFinish(true);
       } else {
         const result = await response.json();
         //console.error("Fehler beim Einfügen der Daten:", result.error); //TODO: allternative bestätigunsseite wegen bereits eingegebener E-Mail
       }
-      setSurveyFinish(true);
     } catch (error) {
       //console.error("Fehler beim Einfügen der Daten:", error);
     }
@@ -206,7 +218,9 @@ export default function Survey2025() {
           </p>
 
           {ticketDay.includes("Sa") || ticketDay.includes("So") || ticketDay.includes("We") ? (
+            
             <>
+              <h2>Allgemeine Fragen</h2>
               <QuestionSlider
                 question={"Wie gut hat dir die YumeKai 2024 gefallen?"}
                 value={yumeKaiRating}
@@ -242,33 +256,94 @@ export default function Survey2025() {
                 value={priceRating}
                 onChange={setPriceRating}
               />
+              <QuestionTextField
+                question={"Was hat dir am besten gefallen?"}
+                value={bestPart}
+                onChange={setBestPart}
+              />
+
+              <QuestionTextField
+                question={"Was könnten wir verbessern?"}
+                value={improvement}
+                onChange={setImprovement}
+              />
             </>
           ) : null}
 
-          {ticketDay.includes("Ball") ? (
-            <QuestionSlider
-              question={"Wie hat dir der Cosplayball gefallen?"}
-              value={cosplayBallRating}
-              onChange={setCosplayBallRating}
-            />
+          {ticketDay.includes("Ba") ? (
+            <>
+              <h2>Cosplayball</h2>
+              <QuestionSlider
+                question={"Wie hat dir der Cosplayball gefallen?"}
+                value={cosplayBallRating}
+                onChange={setCosplayBallRating}
+              />
+            </>
           ) : null}
 
-          <QuestionSlider
-            question={"Wie zufrieden warst du mit der Goldtüte?"}
-            value={goldRating}
-            onChange={setGoldRating}
-          />
+          {ticketDay.includes("Go") ? (
+            <>
+              <h2>Goldticket</h2>
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit der Goldtüte?"}
+                value={goldRating}
+                onChange={setGoldRating}
+              />
+            </>
+          ) : null}
 
-          <QuestionTextField
-            question={"Was hat dir am besten gefallen?"}
-            value={bestPart}
-            onChange={setBestPart}
-          />
-          <QuestionTextField
-            question={"Was könnten wir verbessern?"}
-            value={improvement}
-            onChange={setImprovement}
-          />
+          {ticketDay.includes("Ha") && (
+            <>
+             <h2>Händlerstand</h2>
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit der Lage deiner Standfläche als Händler?"}
+                value={haStandPlaceRating}
+                onChange={setHaStandPlaceRating}
+              />
+              <QuestionSlider
+                question={"Wie fair fandest du die Standgebühren?"}
+                value={haPriceRating}
+                onChange={setHaPriceRating}
+              />
+              <QuestionSlider
+                question={"Wie gut war die Organisation und Betreuung für Händler?"}
+                value={haSupportRating}
+                onChange={setHaSupportRating}
+              />
+              <QuestionTextField
+                question={"Welche Verbesserungen würdest du dir als Händler wünschen?"}
+                value={haImprovement}
+                onChange={setHaImprovement}
+              />
+            </>
+          )}
+
+          {ticketDay.includes("Ku") && (
+            <>
+             <h2>Künstlerstand</h2>
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit der Lage deiner Standfläche als Künstler?"}
+                value={kuStandPlaceRating}
+                onChange={setKuStandPlaceRating}
+              />
+              <QuestionSlider
+                question={"Wie fair fandest du die Standgebühren für Künstler?"}
+                value={kuPriceRating}
+                onChange={setKuPriceRating}
+              />
+              <QuestionSlider
+                question={"Wie gut war die Organisation und Betreuung für Künstler?"}
+                value={kuSupportRating}
+                onChange={setKuSupportRating}
+              />
+              <QuestionTextField
+                question={"Welche Verbesserungen würdest du dir als Künstler wünschen?"}
+                value={kuImprovement}
+                onChange={setKuImprovement}
+              />
+            </>
+          )}
+
           <br />
 
           {/*
