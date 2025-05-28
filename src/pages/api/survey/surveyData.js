@@ -89,7 +89,7 @@ const {
   const errors = [];
 
  // Validierung der Strings
-  const ticketIdValidation = validateString(ticketId, "Ticket-ID", 1, 20, true);
+  const ticketIdValidation = validateString(ticketId, "Ticket-ID", 5, 10, true);
   if (!ticketIdValidation.check) {
     errors.push({ field: "ticketID", message: ticketIdValidation.description });
   }
@@ -131,7 +131,7 @@ const {
         ku_improvement, best_part, improvement
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    
+
     await connection.query(query, [
       ticketId, 
       yumeKaiRating || 99, 
