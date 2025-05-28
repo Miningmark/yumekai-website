@@ -107,6 +107,7 @@ export default function Survey2025() {
     event.preventDefault();
 
     const formData = {
+      ticketId: ticketId,
       yumeKaiRating: yumeKaiRating ?? 99,
       stageProgramRating: stageProgramRating ?? 99,
       priceRating: priceRating ?? 99,
