@@ -85,7 +85,7 @@ export default function Allgemein() {
         <br />
         <strong>Vivid Arise Maid Café:</strong>
         <br />
-        Samstag bis 20:00 Uhr
+        Samstag bis 19:00 Uhr
         <br />
         Sonntag bis 17:00 Uhr
         <br />
