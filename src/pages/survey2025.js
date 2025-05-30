@@ -226,7 +226,7 @@ export default function Survey2025() {
             <>
               <h2>Allgemeine Fragen</h2>
               <QuestionSlider
-                question={"Wie gut hat dir die YumeKai 2024 gefallen?"}
+                question={"Wie gut hat dir die YumeKai 2025 gefallen?"}
                 value={yumeKaiRating}
                 onChange={setYumeKaiRating}
               />
