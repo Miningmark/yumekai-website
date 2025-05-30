@@ -92,12 +92,16 @@ export default function Survey2025() {
             // Speichert den Wert für bereits teilgenommen
             setAlreadyParticipated(data.alreadyUsed ?? null);
 
+            const ticketDays = data.ticketDay[0].split(",");
+
+            console.log("Ticket-Tag:", ticketDays);
+
             // Falls ticketDay eine Liste zurückgibt, speichere sie als Array
-            setTicketDay(Array.isArray(data.ticketDay) ? data.ticketDay : null);
+            setTicketDay(Array.isArray(ticketDays) ? ticketDays : null);
           }
         }
       } catch (error) {
-        console.error("Fehler bei der Ticket-Prüfung");
+        console.error("Fehler bei der Ticket-Prüfung", error);
       }
     }
     checkTicket();
@@ -219,7 +223,6 @@ export default function Survey2025() {
           </p>
 
           {ticketDay.includes("Sa") || ticketDay.includes("So") || ticketDay.includes("We") ? (
-            
             <>
               <h2>Allgemeine Fragen</h2>
               <QuestionSlider
@@ -295,7 +298,7 @@ export default function Survey2025() {
 
           {ticketDay.includes("Ha") && (
             <>
-             <h2>Händlerstand</h2>
+              <h2>Händlerstand</h2>
               <QuestionSlider
                 question={"Wie zufrieden warst du mit der Lage deiner Standfläche als Händler?"}
                 value={haStandPlaceRating}
@@ -321,7 +324,7 @@ export default function Survey2025() {
 
           {ticketDay.includes("Ku") && (
             <>
-             <h2>Künstlerstand</h2>
+              <h2>Künstlerstand</h2>
               <QuestionSlider
                 question={"Wie zufrieden warst du mit der Lage deiner Standfläche als Künstler?"}
                 value={kuStandPlaceRating}
