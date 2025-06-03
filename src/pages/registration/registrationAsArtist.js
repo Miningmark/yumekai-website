@@ -403,7 +403,7 @@ export default function RegistrationAsArtist() {
       </p>
 
             
-            <h2>Die Anmeldung als Händler ist momentan geschlossen.</h2>
+            <h2>Die Anmeldung als Künstler ist momentan geschlossen.</h2>
       
             {/* 
       {!success && (
