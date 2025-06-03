@@ -34,10 +34,12 @@ export default function Home() {
     <>
       <HomeSlider />
       <SpacerEmpty />
+      {/*
       <CounterClock
         finalDate="2025-05-31T08:00:00Z"
         headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."
       />
+       */}
       {/*UTC Time */}
       <SpacerEmpty />
       <h1>Aktuelles</h1>
@@ -49,8 +51,10 @@ export default function Home() {
       <SpacerEmpty />
       <Programm2025 />
       <Spacer />
+      {/* 
       <AnmeldungYumeKaiWettbewerbe />
       <Spacer />
+      */}
       <AnkundigungMayumiNagashi />
       <Spacer />
       <AnkundigungMion />
@@ -65,14 +69,18 @@ export default function Home() {
       <Spacer />
       <AnkundigungMaidCafe />
       <Spacer />
+      {/*
       <AnmeldungCatwalk />
       <Spacer />
+      */}
       <AnkundigungBall />
       <Spacer />
       <AnkundigungSebastianFitzner />
       <Spacer />
+      {/* 
       <HelferPost />
       <Spacer />
+      */}
       <AnkundigungAndyKnote />
       <Spacer />
       <PhotoContest1 />
