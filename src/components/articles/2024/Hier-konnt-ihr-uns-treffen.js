@@ -20,7 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>31.05 - 01.06 YumeKai in Memmingen</li>
                     <li>04.06 - 06.06 WieMaiKai in Flörsheim</li>
                   </ul>
                 </>
