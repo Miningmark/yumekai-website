@@ -39,9 +39,10 @@ export default function Home() {
         finalDate="2025-05-31T08:00:00Z"
         headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."
       />
+      <SpacerEmpty />
        */}
       {/*UTC Time */}
-      <SpacerEmpty />
+      
       <h1>Aktuelles</h1>
       <p>
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai
