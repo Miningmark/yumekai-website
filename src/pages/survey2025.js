@@ -4,10 +4,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 //Components
-import QuestionRadioButton from "@/components/elements/survey25/QuestionRadioButton";
 import QuestionSlider from "@/components/elements/survey25/QuestionSlider";
 import QuestionTextField from "@/components/elements/survey25/QuestionTextField";
-import QuestionNameEmail from "@/components/elements/survey25/QuestionNameEmail";
 import StyledForm from "@/components/elements/survey25/StyledForm";
 import { StyledButton } from "@/components/styledComponents";
 
@@ -54,13 +52,13 @@ export default function Survey2025() {
 
   const router = useRouter();
 
-  const deadline = new Date("2025-06-09T21:59:00Z"); // UTC entspricht 23:59 CEST
+  const deadline = new Date("2025-06-15T21:59:00Z"); // UTC entspricht 23:59 CEST
   const now = new Date();
   const isDeadlinePassed = now > deadline;
 
-  console.log("alreadyParticipated", alreadyParticipated);
-  console.log("ticketDay", ticketDay);
-  console.log("ticketId", ticketId);
+  //console.log("alreadyParticipated", alreadyParticipated);
+  //console.log("ticketDay", ticketDay);
+  //console.log("ticketId", ticketId);
 
   useEffect(() => {
     if (router.isReady) {
@@ -94,14 +92,14 @@ export default function Survey2025() {
 
             const ticketDays = data.ticketDay[0].split(",");
 
-            console.log("Ticket-Tag:", ticketDays);
+            //console.log("Ticket-Tag:", ticketDays);
 
             // Falls ticketDay eine Liste zurückgibt, speichere sie als Array
             setTicketDay(Array.isArray(ticketDays) ? ticketDays : null);
           }
         }
       } catch (error) {
-        console.error("Fehler bei der Ticket-Prüfung", error);
+        console.error("Fehler bei der Ticket-Prüfung");
       }
     }
     checkTicket();
@@ -134,7 +132,7 @@ export default function Survey2025() {
     };
 
     try {
-      const response = await fetch("/api/submit-survey", {
+      const response = await fetch("/api/survey/surveyData", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -166,9 +164,9 @@ export default function Survey2025() {
           <PrimaryText>YumeKai</PrimaryText>
           <SecondaryText> Umfrage</SecondaryText>
         </h1>
-        <p>Die Umfrage lief nur bis zum 09.06.2025 23:59 Uhr.</p>
+        <p>Die Umfrage lief nur bis zum 15.06.2025 23:59 Uhr.</p>
         <p>
-          Danke an alle die teilgenommen haben, die gewinner werden am 17.06.2025 bekannt gegeben.
+          Danke an alle die teilgenommen haben, die gewinner werden am 22.06.2025 bekannt gegeben.
         </p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
       </>
@@ -197,8 +195,8 @@ export default function Survey2025() {
         </h1>
         <p>Du hast bereits an der Umfrage teilgenommen. Vielen Dank für deine Unterstützung! 😀</p>
         <p>
-          Die Umfrage läuft noch bis zum 09.06.2025, 23:59 Uhr. Die Gewinner benachrichtigen wir am
-          16.06.2025.
+          Die Umfrage läuft noch bis zum 15.06.2025, 23:59 Uhr. Die Gewinner benachrichtigen wir am
+          22.06.2025.
         </p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
       </>
@@ -218,8 +216,8 @@ export default function Survey2025() {
             machen? <br />
             Dann füll doch kurz unsere Umfrage aus und mit etwas Glück gehörst du auch zu den
             Gewinnern, denn unter allen Teilnehmenden verlosen wir drei Tickets für die YumeKai
-            2026. Die Umfrage läuft noch bis zum 09.06.2025, 23:59 Uhr. Die Gewinner benachrichtigen
-            wir am 16.06.2025.
+            2026. Die Umfrage läuft noch bis zum 15.06.2025, 23:59 Uhr. Die Gewinner benachrichtigen
+            wir am 22.06.2025.
           </p>
 
           {ticketDay.includes("Sa") || ticketDay.includes("So") || ticketDay.includes("We") ? (
@@ -376,8 +374,8 @@ export default function Survey2025() {
             dich auch bei unserer nächsten Veranstaltung begrüßen können! 😀
           </p>
           <p>
-            Die Umfrage läuft noch bis zum 09.06.2024, 23:59 Uhr. Die Gewinner benachrichtigen wir
-            am 15.06.2024.
+            Die Umfrage läuft noch bis zum 15.06.2024, 23:59 Uhr. Die Gewinner benachrichtigen wir
+            am 22.06.2024.
           </p>
           <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchpriority="high" />
         </>

@@ -62,7 +62,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Nur POST erlaubt." });
   }
 
-const {
+  const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+
+  const {
     ticketId,
     yumeKaiRating,
     stageProgramRating,
@@ -82,14 +84,13 @@ const {
     kuSupportRating,
     kuImprovement,
     bestPart,
-    improvement
+    improvement,
   } = req.body;
-
 
   const errors = [];
 
- // Validierung der Strings
-  const ticketIdValidation = validateString(ticketId, "Ticket-ID", 5, 10, true);
+  // Validierung der Strings
+  const ticketIdValidation = validateString(ticketId, "Ticket-ID", 3, 10, true);
   if (!ticketIdValidation.check) {
     errors.push({ field: "ticketID", message: ticketIdValidation.description });
   }
@@ -104,12 +105,24 @@ const {
     errors.push({ field: "improvement", message: improvementValidation.description });
   }
 
-  const kuImprovementValidation = validateString(kuImprovement, "Künstler Verbesserung", 0, 500, false);
+  const kuImprovementValidation = validateString(
+    kuImprovement,
+    "Künstler Verbesserung",
+    0,
+    500,
+    false
+  );
   if (!kuImprovementValidation.check) {
     errors.push({ field: "kuImprovement", message: kuImprovementValidation.description });
   }
 
-  const haImprovementValidation = validateString(haImprovement, "Händler Verbesserung", 0, 500, false);
+  const haImprovementValidation = validateString(
+    haImprovement,
+    "Händler Verbesserung",
+    0,
+    500,
+    false
+  );
   if (!haImprovementValidation.check) {
     errors.push({ field: "haImprovement", message: haImprovementValidation.description });
   }
@@ -119,7 +132,6 @@ const {
     await logError(clientIp, "EventBewertung", ticketId, errors);
     return res.status(400).json({ errors });
   }
-
 
   try {
     const query = `
@@ -133,27 +145,34 @@ const {
     `;
 
     await connection.query(query, [
-      ticketId, 
-      yumeKaiRating || 99, 
-      stageProgramRating || 99, 
+      ticketId,
+      yumeKaiRating || 99,
+      stageProgramRating || 99,
       priceRating || 99,
-      workshopRating || 99, 
-      vendorRating || 99, 
-      artistRating || 99, 
+      workshopRating || 99,
+      vendorRating || 99,
+      artistRating || 99,
       gameAreaRating || 99,
-      cosplayBallRating || 99, 
-      goldRating || 99, 
+      cosplayBallRating || 99,
+      goldRating || 99,
       haStandPlaceRating || 99,
-      haPriceRating || 99, 
-      haSupportRating || 99, 
+      haPriceRating || 99,
+      haSupportRating || 99,
       haImprovement || null,
-      kuStandPlaceRating || 99, 
-      kuPriceRating || 99, 
+      kuStandPlaceRating || 99,
+      kuPriceRating || 99,
       kuSupportRating || 99,
-      kuImprovement || null, 
-      bestPart || null, 
-      improvement || null
+      kuImprovement || null,
+      bestPart || null,
+      improvement || null,
     ]);
+
+    const querryTicket = `
+      UPDATE ticket_participation
+      SET already_participated = 1
+      WHERE ticket_id = ?
+    `;
+    await connection.query(querryTicket, [ticketId]);
 
     res.status(201).json({ message: "Bewertung erfolgreich gespeichert." });
   } catch (err) {
@@ -161,7 +180,4 @@ const {
     await logError(clientIp, "EventBewertung", ticketId, err.message);
     res.status(500).json({ message: "Interner Serverfehler" });
   }
-
-
-
 }
