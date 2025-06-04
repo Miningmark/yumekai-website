@@ -32,6 +32,35 @@ import SteamSpiritsImage from "/public/assets/images/yumekai2025/SteamSpirits_Im
 
 
 //Künstler
+import AliceMySecretImage from "/public/assets/images/yumekai2025/AliceMySecret_Image.png";
+import BerrinJostImage from "/public/assets/images/yumekai2025/BerrinJost_Image.png";
+import EmytsuuImage from "/public/assets/images/yumekai2025/Emytsuu_Image.png";
+import LoonarisImage from "/public/assets/images/yumekai2025/Loonaris_Image.png";
+import AnimalixuImage from "/public/assets/images/yumekai2025/Animalixu_Image.png";
+import BavarianwoodfoxImage from "/public/assets/images/yumekai2025/Bavarianwoodfox_Image.png";
+import StellaBialekImage from "/public/assets/images/yumekai2025/StellaBialek_Image.png";
+import AmidalaImage from "/public/assets/images/yumekai2025/Amidala_Image.png";
+import FranciNevadaImage from "/public/assets/images/yumekai2025/FranciNevada_Image.png";
+import KitsukamiImage from "/public/assets/images/yumekai2025/Kitsukami_Image.png";
+import TacTokiImage from "/public/assets/images/yumekai2025/TacToki_Image.png";
+import LarinaImage from "/public/assets/images/yumekai2025/Larina_Image.png";
+import MadyraImage from "/public/assets/images/yumekai2025/Madyra_Image.png";
+import QuinnImage from "/public/assets/images/yumekai2025/Quinn_Image.png";
+import RinaMoraImage from "/public/assets/images/yumekai2025/RinaMora_Image.png";
+import BeehiveArtistsImage from "/public/assets/images/yumekai2025/BeehiveArtists_Image.png";
+import FyflyImage from "/public/assets/images/yumekai2025/Fyfly_Image.png";
+import tinypawsImage from "/public/assets/images/yumekai2025/tinypaws_Image.png";
+import yupiistarImage from "/public/assets/images/yumekai2025/yupiistar_Image.png";
+import ValyrakaImage from "/public/assets/images/yumekai2025/Valyraka_Image.png";
+import KirianYumeImage from "/public/assets/images/yumekai2025/KirianYume_Image.png";
+import ChristalShad0w0Image from "/public/assets/images/yumekai2025/ChristalShad0w0_Image.png";
+import AnaraImage from "/public/assets/images/yumekai2025/Anara_Image.png";
+
+
+//Autoren
+import YuiSpallekImage from "/public/assets/images/yumekai2025/YuiSpallek_Image.png";
+import AshturiaImage from "/public/assets/images/yumekai2025/Ashturia_Image.png";
+
 
 //Vereine
 
@@ -278,6 +307,9 @@ export default function YumeKai2025() {
               <StyledLink href="#kuenstleratelier">Künstleratelier</StyledLink>
             </li>
             <li>
+                <StyledLink href="#autoren">Autoren</StyledLink>
+            </li>
+            <li>
               <StyledLink href="#vereine">Vereine</StyledLink>
             </li>
             <li>
@@ -344,7 +376,40 @@ export default function YumeKai2025() {
                    <Spacer id="kuenstleratelier" />
                         <h2>Künstleratelier</h2>
                          <p></p>
-                  <ContentWrapper></ContentWrapper>
+                  <ContentWrapper>
+                    <ContentContainer src={AliceMySecretImage} alt="AliceMySecret" link="https://www.instagram.com/alicemysecret" />
+                    <ContentContainer src={BerrinJostImage} alt="Berrin Jost" link="https://www.instagram.com/crazy_berrin" />
+                    <ContentContainer src={EmytsuuImage} alt="Emytsuu" link="https://www.instagram.com/emytsuu/?hl=de" />
+                    <ContentContainer src={LoonarisImage} alt="Loonaris" link="https://www.instagram.com/loonarisarts" />
+                    <ContentContainer src={AnimalixuImage} alt="Animalixu" link="https://www.instagram.com/animalixu" />
+                    <ContentContainer src={BavarianwoodfoxImage} alt="BavarianWoodfox.art" link="https://www.instagram.com/bavarianwoodfox/" />
+                    <ContentContainer src={StellaBialekImage} alt="Stella Bialek" link="https://www.instagram.com/stellabialek" />
+                    <ContentContainer src={AmidalaImage} alt="Amidala Artwork" link="https://www.instagram.com/amidala.artwork/" />
+                    <ContentContainer src={FranciNevadaImage} alt="Franci Nevada" link="https://www.instagram.com/nevada.art.shop/" />
+                    <ContentContainer src={KitsukamiImage} alt="Kitsukami" link="https://www.instagram.com/kitsu_kami/" />
+                    <ContentContainer src={TacTokiImage} alt="TacToki Illustrations" link="https://www.instagram.com/tactoki/" />
+                    <ContentContainer src={LarinaImage} alt="Larina" link="https://www.instagram.com/lariina.art/" />
+                    <ContentContainer src={MadyraImage} alt="Madyra" link="https://www.instagram.com/madyra_arts" />
+                    <ContentContainer src={QuinnImage} alt="Quinn" link="https://www.instagram.com/quinnskanzashi/" />
+                    <ContentContainer src={RinaMoraImage} alt="Rina Mora Art" link="https://www.instagram.com/rina.mora.art" />
+                    <ContentContainer src={BeehiveArtistsImage} alt="BeehiveArtists" link="https://www.instagram.com/beehiveartists/" />
+                    <ContentContainer src={FyflyImage} alt="Fyly" link="https://instagram.com/fyly_cosplays" />
+                    <ContentContainer src={tinypawsImage} alt="Tiny Paws Treasures" link="https://www.instagram.com/cyancalla/" />
+                    <ContentContainer src={yupiistarImage} alt="Yupiistar" link="https://yupiistar.carrd.co/#portfolio" />
+                    <ContentContainer src={AnaraImage} alt="Anara_Twice" link="https://www.instagram.com/anaratwice/?hl=de" />
+                    <ContentContainer src={ChristalShad0w0Image} alt="Christal.Shad0w0" link="https://www.instagram.com/christal.shadow/" />
+                    <ContentContainer src={KirianYumeImage} alt="Kirian Yume" link="https://www.instagram.com/kirianyume/" />
+                    <ContentContainer src={ValyrakaImage} alt="Valyraka" link="https://www.instagram.com/valyraka/" />
+                  </ContentWrapper>
+
+                   <Spacer id="autoren" />
+                        <h2>Autoren</h2>
+                         <p>In diesem Jahr gab es zusätzlich zu all den tollen Künstlern auch noch einen eigenen Autoren-Brerich.</p>
+                        <ContentWrapper>
+                            <ContentContainer src={YuiSpallekImage} alt="Yui Spallek" link="https://www.instagram.com/yui_spallek" />
+                            <ContentContainer src={AshturiaImage} alt="Ashturia" link="https://www.naomihuber.com/" />
+                        </ContentWrapper>
+
 
                    <Spacer id="vereine" />
                         <h2>Vereine</h2>
