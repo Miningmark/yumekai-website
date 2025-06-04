@@ -32,7 +32,7 @@ const menuItems = [
       { name: "Night-II", path: "/review/yumekai-night-II-2024" },
     ],
   },
-  { name: "Tickets", path: "/shop" },
+  //{ name: "Tickets", path: "/shop" },
 ];
 
 const StyledHeader = styled.header`

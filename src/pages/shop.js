@@ -13,6 +13,8 @@ export default function Shop() {
       />
 
       <h1>Ticketshop</h1>
+      <p>Der Ticketshop für die YumeKai 2026 ist noch geschlossen.</p>
+      {/* 
       <p>
         <strong>
           Die Sammler Tickets sowie Goldtickets gibt es nur bis zum 24.05.2025 um 23:59 Uhr.
@@ -38,6 +40,7 @@ export default function Shop() {
             `,
         }}
       />
+      */}
       <Banner />
     </>
   );
