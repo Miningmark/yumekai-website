@@ -15,6 +15,21 @@ import ImageCarousel from "@/components/elements/ImageCarousel";
 //Aussteller
 
 //Händler
+import HeldenschmiedeImage from "/public/assets/images/yumekai2025/Heldenschmiede_Image.png";
+import MangaMerchImage from "/public/assets/images/yumekai2025/MangaMerch_Image.png";
+import CosmicMoonlightImage from "/public/assets/images/yumekai2025/CosmicMoonlight_Image.png";
+import DavidVerhoevenImage from "/public/assets/images/yumekai2025/3D_Druck_David_Verhoeven_Image.png";
+import ArnosRetroVideogamesImage from "/public/assets/images/yumekai2025/ArnosRetroVideogames_Image.png";
+import CuteParadiseImage from "/public/assets/images/yumekai2025/CuteParadise_Image.png";
+import NoerdShopImage from "/public/assets/images/yumekai2025/NoerdShop_Image.png";
+import HeroBaseImage from "/public/assets/images/yumekai2025/HeroBase_Image.png";
+import OtakuwonderlandImage from "/public/assets/images/yumekai2025/Otakuwonderland_Image.png";
+import PokeVendImage from "/public/assets/images/yumekai2025/PokeVend_Image.png";
+import RuneImage from "/public/assets/images/yumekai2025/Rune_Image.png";
+import SilverdragonsabersImage from "/public/assets/images/yumekai2025/Silverdragonsabers_Image.png";
+import SquiggzImage from "/public/assets/images/yumekai2025/Squiggz_Image.png";
+import SteamSpiritsImage from "/public/assets/images/yumekai2025/SteamSpirits_Image.png";
+
 
 //Künstler
 
@@ -306,8 +321,25 @@ export default function YumeKai2025() {
 
                   <Spacer id="haendler" />
                         <h2>Händler</h2>
-                          <p></p>
-                  <ContentWrapper></ContentWrapper>
+                          <p>
+                            Die YumeKai 2025 war nicht nur eine Convention voller Spaß und Unterhaltung, sondern dank unserer vielfältigen Händler auch ein einzigartiges Shopping-Erlebnis.
+                          </p>
+                  <ContentWrapper>
+                    <ContentContainer src={HeldenschmiedeImage} alt="Heldenschmiede" link="https://www.heldenschmiede.eu/" />
+                    <ContentContainer src={MangaMerchImage} alt="Manga-Merch" link="https://www.manga-merch.com" />
+                    <ContentContainer src={CosmicMoonlightImage} alt="CosmicMoonlight" link="https://www.cosmicmoonlight.com/" />
+                    <ContentContainer src={DavidVerhoevenImage} alt="3D Druck David Verhoeven" link="https://www.instagram.com/djv_3d/" />
+                    <ContentContainer src={ArnosRetroVideogamesImage} alt="Arnos Retro Videogames" link="https://www.arnos-retro-videogames.com" />
+                    <ContentContainer src={CuteParadiseImage} alt="Cute Paradise" link="https://cute-paradise.at/" />
+                    <ContentContainer src={NoerdShopImage} alt="Dein NöRD Shop" link="https://www.dein-noerd-shop.com" />
+                    <ContentContainer src={OtakuwonderlandImage} alt="Otakuwonderland" link="https://www.instagram.com/otakuwonderland_de/" />
+                    <ContentContainer src={PokeVendImage} alt="PokèVend" link="https://www.pokevend.at" />
+                    <ContentContainer src={HeroBaseImage} alt="Hero Base" link="https://alexander-karnitschnig.myshopify.com/collections" />
+                    <ContentContainer src={RuneImage} alt="Rune Store" link="https://www.rune-online.com" />
+                    <ContentContainer src={SilverdragonsabersImage} alt="Silver Dragon Sabers" link="https://www.sd-sabers.de" />
+                    <ContentContainer src={SquiggzImage} alt="Squiggz" link="https://www.squiggz.com/" />
+                    <ContentContainer src={SteamSpiritsImage} alt="SteamSpirits" link="https://www.steamspirits.net" />
+                  </ContentWrapper>
 
                    <Spacer id="kuenstleratelier" />
                         <h2>Künstleratelier</h2>
