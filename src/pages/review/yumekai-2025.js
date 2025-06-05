@@ -12,7 +12,6 @@ import ImageCarousel from "@/components/elements/ImageCarousel";
 import CelloticDuetImage from "/public/assets/images/yumekai2025/25_Cellotic_Duet.jpg";
 import andyKnoteImage from "/public/assets/images/yumekai2025/Andy_Knote.jpg";
 import angeliqueImage from "/public/assets/images/yumekai2025/Angelique.jpg";
-import cosplayVersteigerung1Image from "/public/assets/images/yumekai2025/Cosplay_Versteigerung_1.jpg";
 import dominikAuerImage from "/public/assets/images/yumekai2025/Dominik_Auer.jpg";
 import echoAneImage from "/public/assets/images/yumekai2025/Echo_Ane.png";
 import juliaMeynenImage from "/public/assets/images/yumekai2025/Julia_Meynen_collage.jpg";
@@ -24,7 +23,6 @@ import petraScheeserImage from "/public/assets/images/yumekai2025/Petra_Scheeser
 import sebastianFitznerImage from "/public/assets/images/yumekai2025/Sebastian_Fitzner.jpg";
 import stellariaYumekaiPromobild2025Image from "/public/assets/images/yumekai2025/Stellaria_YumeKai_Promobild_2025.png";
 
-
 //Cosplayer
 import DokyatoImage from "/public/assets/images/yumekai2025/Dokyato_Image.png";
 import EraliaImage from "/public/assets/images/yumekai2025/Eralia_Image.png";
@@ -33,8 +31,20 @@ import MinekeImage from "/public/assets/images/yumekai2025/Mineke_Image.png";
 import ZalinaImage from "/public/assets/images/yumekai2025/Zalina_Image.png";
 import UchihaCorpImage from "/public/assets/images/yumekai2025/UchihaCorp_Image.png";
 
-
 //Aussteller
+import cohekiImage from "/public/assets/images/yumekai2025/CoHeKi.png";
+import cosplayAlpinImage from "/public/assets/images/yumekai2025/Cosplay_Alpin.jpg";
+import cosquestLogoImage from "/public/assets/images/yumekai2025/CosQuest_Logo.png";
+import cuglogoImage from "/public/assets/images/yumekai2025/CUGLogo.jpg";
+import goVereinImage from "/public/assets/images/yumekai2025/Go_Verein.png";
+import kdkasaiImage from "/public/assets/images/yumekai2025/KDKasai.png";
+import mishiroBannerImage from "/public/assets/images/yumekai2025/Mishiro_Banner.png";
+import ngeItashasImage from "/public/assets/images/yumekai2025/NGE_Itashas.jpg";
+import nuclearBastardsImage from "/public/assets/images/yumekai2025/Nuclear_Bastards.jpg";
+import towldayaustriaImage from "/public/assets/images/yumekai2025/TowldayAustria.jpg";
+import vanityartImage from "/public/assets/images/yumekai2025/VanityArt.jpg";
+import vividAriseEvImage from "/public/assets/images/yumekai2025/Vivid_Arise_eV.png";
+import HanaUSpringImage from "/public/assets/images/yumekai2025/HanaUSpring_Image.png";
 
 //Händler
 import HeldenschmiedeImage from "/public/assets/images/yumekai2025/Heldenschmiede_Image.png";
@@ -51,7 +61,6 @@ import RuneImage from "/public/assets/images/yumekai2025/Rune_Image.png";
 import SilverdragonsabersImage from "/public/assets/images/yumekai2025/Silverdragonsabers_Image.png";
 import SquiggzImage from "/public/assets/images/yumekai2025/Squiggz_Image.png";
 import SteamSpiritsImage from "/public/assets/images/yumekai2025/SteamSpirits_Image.png";
-
 
 //Künstler
 import AliceMySecretImage from "/public/assets/images/yumekai2025/AliceMySecret_Image.png";
@@ -387,7 +396,21 @@ export default function YumeKai2025() {
                    <Spacer id="aussteller" />
                         <h2>Aussteller</h2>
                         <p></p>
-                  <ContentWrapper></ContentWrapper>
+                  <ContentWrapper>
+                    <ContentContainer src={cuglogoImage} alt="Cosplay Union Germany" link="https://www.instagram.com/cosplay_union_germany/" />
+                    <ContentContainer src={mishiroBannerImage} alt="Mishiro" link="https://www.instagram.com/mishiro_augsburg/" />
+                    <ContentContainer src={vanityartImage} alt="Vanity Art Photography" link="https://www.instagram.com/vanity_art_photography/" />
+                    <ContentContainer src={kdkasaiImage} alt="KDKasai" link="https://www.instagram.com/kdkasai/" />
+                    <ContentContainer src={cohekiImage} alt="CoHeKi e.V." link="https://www.instagram.com/coheki_ev/" />
+                    <ContentContainer src={ngeItashasImage} alt="N.G.E. Itasha e.V" link="https://www.instagram.com/n.g.e._itasha/" />
+                    <ContentContainer src={nuclearBastardsImage} alt="Nuclear Bastards" link="https://www.instagram.com/nuclear.bastards/" />
+                    <ContentContainer src={cosquestLogoImage} alt="CosQuest" link="https://www.instagram.com/cosplay_questmuc/" />
+                    <ContentContainer src={cosplayAlpinImage} alt="Cosplay Alpin" link="https://www.instagram.com/cosplayalpin/" />
+                    <ContentContainer src={towldayaustriaImage} alt="Towelday Austria" link="https://www.instagram.com/towelday_austria/" />
+                    <ContentContainer src={goVereinImage} alt="Bayrischer Go Verein e.V." link="https://www.bgov.de/" />
+                    <ContentContainer src={vividAriseEvImage} alt="Vivid Arise eSports e.V." link="https://www.instagram.com/vivid_arise_esports/" />
+                    <ContentContainer src={HanaUSpringImage} alt="Hana & Spring Convention" link="https://www.instagram.com/hana_spring_con/" />
+                  </ContentWrapper>
 
                   <Spacer id="haendler" />
                         <h2>Händler</h2>

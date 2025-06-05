@@ -159,7 +159,6 @@ export default function Aussteller() {
           altText="Logo von Cosplay Alpin"
           text={
             <p>
-              {" "}
               Cosplay Alpin aus Vorarlberg ist auf der YumeKai! Von Star Wars über Herr der Ringe
               bis Anime - wir bringen detailreiche Kostüme und beeindruckende Props mit. Bestaunt
               unsere Werke und taucht in die Welt des Cosplays ein!
