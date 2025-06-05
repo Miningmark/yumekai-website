@@ -11,6 +11,13 @@ import ImageCarousel from "@/components/elements/ImageCarousel";
 //Ehrengäste
 
 //Cosplayer
+import DokyatoImage from "/public/assets/images/yumekai2025/Dokyato_Image.png";
+import EraliaImage from "/public/assets/images/yumekai2025/Eralia_Image.png";
+import KorribanImage from "/public/assets/images/yumekai2025/Korriban_Image.png";
+import MinekeImage from "/public/assets/images/yumekai2025/Mineke_Image.png";
+import ZalinaImage from "/public/assets/images/yumekai2025/Zalina_Image.png";
+import UchihaCorpImage from "/public/assets/images/yumekai2025/UchihaCorp_Image.png";
+
 
 //Aussteller
 
@@ -344,7 +351,14 @@ export default function YumeKai2025() {
             
                   <h2>Cosplayer</h2>
                   <p></p>
-                  <ContentWrapper></ContentWrapper>
+                  <ContentWrapper>
+                    <ContentContainer src={DokyatoImage} alt="Dokyato" link="https://www.instagram.com/dokyato/" />
+                    <ContentContainer src={EraliaImage} alt="Eralia" link="https://www.instagram.com/eralia_iwahana/" />
+                    <ContentContainer src={KorribanImage} alt="Korriban Cosplay" link="https://www.instagram.com/korribancosplay/" />
+                    <ContentContainer src={MinekeImage} alt="Yaraiya Cosplay" link="https://www.instagram.com/yaraiyacosplay/" />
+                    <ContentContainer src={ZalinaImage} alt="Zaylina" link="https://www.instagram.com/zaylina1/" />
+                    <ContentContainer src={UchihaCorpImage} alt="Imonee Cosplay" link="https://www.instagram.com/imoneecosplay/" />
+                  </ContentWrapper>
 
                    <Spacer id="aussteller" />
                         <h2>Aussteller</h2>
