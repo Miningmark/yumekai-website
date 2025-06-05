@@ -359,7 +359,6 @@ export default function YumeKai2025() {
            <ContentContainer src={stellariaYumekaiPromobild2025Image} alt="Stellaria" link="https://www.instagram.com/stellaria.idols/" />
           <ContentContainer src={mionHHeartImage} alt="MION" link="https://www.instagram.com/mion_official/" />
           <ContentContainer src={echoAneImage} alt="Echo Ane" link="https://www.instagram.com/echoane_music?igsh=MWk2Y2piODNkbnRqaw%3D%3D&utm_source=qr" />
-          <ContentContainer src={cosplayVersteigerung1Image} alt="Cosplayer Versteigerung" link="https://www.instagram.com/coheki_ev/" />
           <ContentContainer src={junihuhnShinkaiImage} alt="Junihuhn" link="https://www.instagram.com/juni.huhn/" />
           <ContentContainer src={petraScheeserImage} alt="Petra Scheeser" link="https://www.instagram.com/scheeserin/" />
           <ContentContainer src={lyriaIdolsignature2Image} alt="Lyria" link="https://www.instagram.com/lyriavt/" />
