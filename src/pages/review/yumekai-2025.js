@@ -367,7 +367,9 @@ export default function YumeKai2025() {
           <ContentContainer src={angeliqueImage} alt="Live on Stage: Angel_NG" link="https://www.instagram.com/angel_ng___?igsh=MW5uYzZ4YzNmYW5x&utm_source=qr" />
           <ContentContainer src={nerdDaddysImage} alt="Nerd Daddy's - Anime, Manga & das Leben Ü30 - LIVE auf der Yumekai!" link="https://www.instagram.com/nerddaddys.podcast/" />
           <ContentContainer src={andyKnoteImage} alt="Andy Knote" link="https://www.instagram.com/andy_knote/" />
-                  
+          <ContentContainer src={dominikAuerImage} alt="Dominik Auer" link="https://www.instagram.com/dominikauer.official/" />
+          <ContentContainer src={juliaMeynenImage} alt="Julia Meynen" link="https://www.instagram.com/juliameynen/" />  
+          <ContentContainer src={sebastianFitznerImage} alt="Sebastian Fitzner" link="https://www.instagram.com/fitzner.sebastian/" />  
             </ContentWrapper>
 
              <Spacer id="cosplayer" />
