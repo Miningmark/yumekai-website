@@ -9,6 +9,21 @@ import ImageCarousel from "@/components/elements/ImageCarousel";
 
 //Images
 //Ehrengäste
+import CelloticDuetImage from "/public/assets/images/yumekai2025/25_Cellotic_Duet.jpg";
+import andyKnoteImage from "/public/assets/images/yumekai2025/Andy_Knote.jpg";
+import angeliqueImage from "/public/assets/images/yumekai2025/Angelique.jpg";
+import cosplayVersteigerung1Image from "/public/assets/images/yumekai2025/Cosplay_Versteigerung_1.jpg";
+import dominikAuerImage from "/public/assets/images/yumekai2025/Dominik_Auer.jpg";
+import echoAneImage from "/public/assets/images/yumekai2025/Echo_Ane.png";
+import juliaMeynenImage from "/public/assets/images/yumekai2025/Julia_Meynen_collage.jpg";
+import junihuhnShinkaiImage from "/public/assets/images/yumekai2025/Junihuhn_Shinkai.png";
+import lyriaIdolsignature2Image from "/public/assets/images/yumekai2025/Lyria_idolsignature_2.png";
+import mionHHeartImage from "/public/assets/images/yumekai2025/MION_H_Heart.jpg";
+import nerdDaddysImage from "/public/assets/images/yumekai2025/nerd_Daddys.jpg";
+import petraScheeserImage from "/public/assets/images/yumekai2025/Petra_Scheeser.jpg";
+import sebastianFitznerImage from "/public/assets/images/yumekai2025/Sebastian_Fitzner.jpg";
+import stellariaYumekaiPromobild2025Image from "/public/assets/images/yumekai2025/Stellaria_YumeKai_Promobild_2025.png";
+
 
 //Cosplayer
 import DokyatoImage from "/public/assets/images/yumekai2025/Dokyato_Image.png";
@@ -341,9 +356,20 @@ export default function YumeKai2025() {
           <h2>Ehrengäste</h2>
           <p></p>
           <ContentWrapper>
-            {/* 
-                  <ContentContainer src={tanukiImage} alt="Tanuki" link="https://tanuki-band.de/" />
-            */}
+           <ContentContainer src={stellariaYumekaiPromobild2025Image} alt="Stellaria: Moonlight Melodies" link="https://www.instagram.com/stellaria.idols/" />
+<ContentContainer src={mionHHeartImage} alt="MION" link="https://www.instagram.com/mion_official/" />
+<ContentContainer src={echoAneImage} alt="Echo Ane" link="https://www.instagram.com/echoane_music?igsh=MWk2Y2piODNkbnRqaw%3D%3D&utm_source=qr" />
+<ContentContainer src={HiruCosplay} alt="Cosplay Performance Wettbewerb" link="https://www.instagram.com/yumekai.official/" />
+<ContentContainer src={cosplayVersteigerung1Image} alt="Cosplayer Versteigerung" link="https://www.instagram.com/coheki_ev/" />
+<ContentContainer src={junihuhnShinkaiImage} alt="Junihuhn - Shinkai Piano Concert" link="https://www.instagram.com/juni.huhn/" />
+<ContentContainer src={petraScheeserImage} alt="Petra Scheeser" link="https://www.instagram.com/scheeserin/" />
+<ContentContainer src={lyriaIdolsignature2Image} alt="Lyria" link="https://www.instagram.com/lyriavt/" />
+<ContentContainer src={CelloticDuetImage} alt="Cellotic Duets" link="https://linktr.ee/cellotic" />
+<ContentContainer src={angeliqueImage} alt="Live on Stage: Angel_NG" link="https://www.instagram.com/angel_ng___?igsh=MW5uYzZ4YzNmYW5x&utm_source=qr" />
+<ContentContainer src={HiruCosplay} alt="Cosplay Crafting Wettbewerb" link="https://www.instagram.com/yumekai.official/" />
+<ContentContainer src={nerdDaddysImage} alt="Nerd Daddy's - Anime, Manga & das Leben Ü30 - LIVE auf der Yumekai!" link="https://www.instagram.com/nerddaddys.podcast/" />
+
+<ContentContainer src={andyKnoteImage} alt="Andy Knote" link="https://www.instagram.com/andy_knote/" />
                   
             </ContentWrapper>
 
