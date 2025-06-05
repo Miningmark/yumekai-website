@@ -356,16 +356,16 @@ export default function YumeKai2025() {
           <h2>Ehrengäste</h2>
           <p></p>
           <ContentWrapper>
-           <ContentContainer src={stellariaYumekaiPromobild2025Image} alt="Stellaria: Moonlight Melodies" link="https://www.instagram.com/stellaria.idols/" />
+           <ContentContainer src={stellariaYumekaiPromobild2025Image} alt="Stellaria" link="https://www.instagram.com/stellaria.idols/" />
           <ContentContainer src={mionHHeartImage} alt="MION" link="https://www.instagram.com/mion_official/" />
           <ContentContainer src={echoAneImage} alt="Echo Ane" link="https://www.instagram.com/echoane_music?igsh=MWk2Y2piODNkbnRqaw%3D%3D&utm_source=qr" />
           <ContentContainer src={cosplayVersteigerung1Image} alt="Cosplayer Versteigerung" link="https://www.instagram.com/coheki_ev/" />
-          <ContentContainer src={junihuhnShinkaiImage} alt="Junihuhn - Shinkai Piano Concert" link="https://www.instagram.com/juni.huhn/" />
+          <ContentContainer src={junihuhnShinkaiImage} alt="Junihuhn" link="https://www.instagram.com/juni.huhn/" />
           <ContentContainer src={petraScheeserImage} alt="Petra Scheeser" link="https://www.instagram.com/scheeserin/" />
           <ContentContainer src={lyriaIdolsignature2Image} alt="Lyria" link="https://www.instagram.com/lyriavt/" />
           <ContentContainer src={CelloticDuetImage} alt="Cellotic Duets" link="https://linktr.ee/cellotic" />
-          <ContentContainer src={angeliqueImage} alt="Live on Stage: Angel_NG" link="https://www.instagram.com/angel_ng___?igsh=MW5uYzZ4YzNmYW5x&utm_source=qr" />
-          <ContentContainer src={nerdDaddysImage} alt="Nerd Daddy's - Anime, Manga & das Leben Ü30 - LIVE auf der Yumekai!" link="https://www.instagram.com/nerddaddys.podcast/" />
+          <ContentContainer src={angeliqueImage} alt="Angel_NG" link="https://www.instagram.com/angel_ng___?igsh=MW5uYzZ4YzNmYW5x&utm_source=qr" />
+          <ContentContainer src={nerdDaddysImage} alt="Nerd Daddy's" link="https://www.instagram.com/nerddaddys.podcast/" />
           <ContentContainer src={andyKnoteImage} alt="Andy Knote" link="https://www.instagram.com/andy_knote/" />
           <ContentContainer src={dominikAuerImage} alt="Dominik Auer" link="https://www.instagram.com/dominikauer.official/" />
           <ContentContainer src={juliaMeynenImage} alt="Julia Meynen" link="https://www.instagram.com/juliameynen/" />  
