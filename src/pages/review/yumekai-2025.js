@@ -103,12 +103,12 @@ import kanzashiKunstQuinnsArtImage from "/public/assets/images/yumekai2025/Kanza
 import laratornowCroquisDieKunstDesSchnellenZeichnensImage from "/public/assets/images/yumekai2025/LaraTornow_Croquis_-_die_Kunst_des_schnellen_Zeichnens.png";
 import mayumiNagashifbcJcultureInteraktiveMangawerkstattImage from "/public/assets/images/yumekai2025/Mayumi_Nagashi_FBC_J-Culture_-_Interaktive_Mangawerkstatt.png";
 import minekeImage from "/public/assets/images/yumekai2025/Mineke.jpg";
-//import nuclearBastardsImage from "/public/assets/images/yumekai2025/Nuclear_Bastards.png";
+//import nuclearBastardsImage from "/public/assets/images/yumekai2025/Nuclear_Bastards.png";  //Doppelt
 import speedpaintingImage from "/public/assets/images/yumekai2025/Speedpainting.jpg";
 import vanessaHerzPropmakingFürBeginnerImage from "/public/assets/images/yumekai2025/Vanessa_Herz_Propmaking_für_Beginner.jpg";
 import zaylinaBallkleiderNaehenImage from "/public/assets/images/yumekai2025/Zaylina_-_Ballkleider_naehen.jpg";
 import StockingsWorkshopImage from "/public/assets/images/yumekai2025/StockingsWorkshop_Image.png";
-//import andyKnoteImage from "/public/assets/images/yumekai2025/Andy_Knote.jpg";
+//import andyKnoteImage from "/public/assets/images/yumekai2025/Andy_Knote.jpg";  //Doppelt
 
 //Essen
 import GrafImage from "/public/assets/images/yumekai2025/Graf_Image.png";
