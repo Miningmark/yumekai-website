@@ -490,7 +490,7 @@ export default function YumeKai2025() {
                    <Spacer id="workshops" />
                         <h2>Workshops</h2>
                         <p></p>
-                        {/*
+                        
                   <ContentWrapper>
                     <ContentContainer src={cosplayAlsBerufseinstiegAusbildungZumDamenmaßschneiderImage} alt="Cosplay als Berufseinstieg" link="https://www.instagram.com/korribancosplay/" />
                     <ContentContainer src={vanessaHerzPropmakingFürBeginnerImage} alt="Propmaking für Beginner" link="https://www.instagram.com/Akunyaah/" />
@@ -508,7 +508,7 @@ export default function YumeKai2025() {
                     <ContentContainer src={StockingsWorkshopImage} alt="Stockings Workshop" link="https://www.instagram.com/imoneecosplay/" />
                     <ContentContainer src={zaylinaBallkleiderNaehenImage} alt="Ballkleider - Eleganz trifft Fantasie" link="https://www.instagram.com/zaylina1/" />
                   </ContentWrapper>
-                   */}
+                   
 
                    <Spacer id="essen" />
                         <h2>Essen</h2>
