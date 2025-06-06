@@ -93,11 +93,28 @@ import YuiSpallekImage from "/public/assets/images/yumekai2025/YuiSpallek_Image.
 import AshturiaImage from "/public/assets/images/yumekai2025/Ashturia_Image.png";
 
 
-//Vereine
-
 //Workshops
+import HiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
+import cosplayfotosBearbeitenBasicsBisProfitricksPhilippImage from "/public/assets/images/yumekai2025/Cosplay-Fotos_bearbeiten_Basics_bis_Profi-Tricks_-_Philipp.jpg";
+import cosplayAlsBerufseinstiegAusbildungZumDamenmaßschneiderImage from "/public/assets/images/yumekai2025/Cosplay_als_Berufseinstieg_-_Ausbildung_zum_Damenmaßschneider.png";
+import desnescitrusErfolgreichImNetzImage from "/public/assets/images/yumekai2025/DesnesCitrus_-_Erfolgreich_im_Netz.png";
+import fylyColorierenMitAlkoholmarkerImage from "/public/assets/images/yumekai2025/fyly_-_Colorieren_mit_Alkoholmarker.png";
+import kanzashiKunstQuinnsArtImage from "/public/assets/images/yumekai2025/Kanzashi_Kunst_-_Quinns_Art.jpg";
+import laratornowCroquisDieKunstDesSchnellenZeichnensImage from "/public/assets/images/yumekai2025/LaraTornow_Croquis_-_die_Kunst_des_schnellen_Zeichnens.png";
+import mayumiNagashifbcJcultureInteraktiveMangawerkstattImage from "/public/assets/images/yumekai2025/Mayumi_Nagashi_FBC_J-Culture_-_Interaktive_Mangawerkstatt.png";
+import minekeImage from "/public/assets/images/yumekai2025/Mineke.jpg";
+import nuclearBastardsImage from "/public/assets/images/yumekai2025/Nuclear_Bastards.png";
+import speedpaintingImage from "/public/assets/images/yumekai2025/Speedpainting.jpg";
+import vanessaHerzPropmakingFürBeginnerImage from "/public/assets/images/yumekai2025/Vanessa_Herz_Propmaking_für_Beginner.jpg";
+import zaylinaBallkleiderNaehenImage from "/public/assets/images/yumekai2025/Zaylina_-_Ballkleider_naehen.jpg";
+import StockingsWorkshopImage from "/public/assets/images/yumekai2025/StockingsWorkshop_Image.png";
+import andyKnoteImage from "/public/assets/images/yumekai2025/Andy_Knote.jpg";
 
 //Essen
+import GrafImage from "/public/assets/images/yumekai2025/Graf_Image.png";
+import TaiyakiImage from "/public/assets/images/yumekai2025/Taiyaki_Image.png";
+import MaidCafeImage from "/public/assets/images/yumekai2025/MaidCafe_Image.png";
+import daZioTullioImage from "/public/assets/images/yumekai2025/Da_Zio_Tullio.jpg";
 
 //Cosplay Wettbewerbe
 import catwalk01Image from "/public/assets/images/yumekai2024/catwalk_01.jpg";
@@ -341,9 +358,6 @@ export default function YumeKai2025() {
                 <StyledLink href="#autoren">Autoren</StyledLink>
             </li>
             <li>
-              <StyledLink href="#vereine">Vereine</StyledLink>
-            </li>
-            <li>
               <StyledLink href="#workshops">Workshops</StyledLink>
             </li>
             <li>
@@ -472,18 +486,37 @@ export default function YumeKai2025() {
                         </ContentWrapper>
 
 
-                   <Spacer id="vereine" />
-                        <h2>Vereine</h2>
-                          <p></p>
-                  <ContentWrapper></ContentWrapper>
-
+                  
                    <Spacer id="workshops" />
                         <h2>Workshops</h2>
                         <p></p>
-                  <ContentWrapper></ContentWrapper>
+                  <ContentWrapper>
+                    <ContentContainer src={cosplayAlsBerufseinstiegAusbildungZumDamenmaßschneiderImage} alt="Cosplay als Berufseinstieg" link="https://www.instagram.com/korribancosplay/" />
+                    <ContentContainer src={vanessaHerzPropmakingFürBeginnerImage} alt="Propmaking für Beginner" link="https://www.instagram.com/Akunyaah/" />
+                    <ContentContainer src={desnescitrusErfolgreichImNetzImage} alt="Erfolgreich im Netz" link="https://www.instagram.com/DesnesCitrus/" />
+                    <ContentContainer src={fylyColorierenMitAlkoholmarkerImage} alt="Colorieren mit Alkoholmarker für Anfänger" link="https://www.instagram.com/fyly_draws/" />
+                    <ContentContainer src={HiruWorkshop} alt="Arbeiten mit Leder für Cosplay" link="https://www.instagram.com/eralia_iwahana/" />
+                    <ContentContainer src={kanzashiKunstQuinnsArtImage} alt="1x1 Kanzashi Kunst" link="https://www.instagram.com/quinnskanzashi/" />
+                    <ContentContainer src={speedpaintingImage} alt="Speedpainting Challenge" link="https://www.heldenschmiede.eu/" />
+                    <ContentContainer src={laratornowCroquisDieKunstDesSchnellenZeichnensImage} alt="Croquis - die Kunst des schnellen Zeichnens" />
+                    <ContentContainer src={nuclearBastardsImage} alt="Die Kunst des Überlebens - Vorbereitung auf die Endzeit" link="https://www.instagram.com/nuclear.bastards/" />
+                    <ContentContainer src={mayumiNagashifbcJcultureInteraktiveMangawerkstattImage} alt="Interaktive Manga-Werkstatt" link="https://www.instagram.com/nagashi_mayumi/" />
+                    <ContentContainer src={andyKnoteImage} alt="Q&A mit Andy Knote" link="https://www.instagram.com/andy_knote/" />
+                    <ContentContainer src={minekeImage} alt="Cosplay Competition für Beginner" link="https://www.instagram.com/yaraiyacosplay/" />
+                    <ContentContainer src={cosplayfotosBearbeitenBasicsBisProfitricksPhilippImage} alt="Cosplay-Fotos bearbeiten - Basics bis Profi-Tricks" link="https://www.instagram.com/photos_by_philipp/" />
+                    <ContentContainer src={StockingsWorkshopImage} alt="Stockings Workshop" link="https://www.instagram.com/imoneecosplay/" />
+                    <ContentContainer src={zaylinaBallkleiderNaehenImage} alt="Ballkleider - Eleganz trifft Fantasie" link="https://www.instagram.com/zaylina1/" />
+                  </ContentWrapper>
 
                    <Spacer id="essen" />
                         <h2>Essen</h2>
+                        <p></p>
+                  <ContentWrapper>
+                    <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" />
+                    <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" />
+                    <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" />
+                    <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" />
+                  </ContentWrapper>
 
                          <Spacer id="spiele-gaming" />
                               <h2>Spiele & Gaming</h2>
