@@ -513,13 +513,14 @@ export default function YumeKai2025() {
                    <Spacer id="essen" />
                         <h2>Essen</h2>
                         <p></p>
+                         {/*
                   <ContentWrapper>
                     <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" link=""/>
                     <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" link=""/>
                     <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" link=""/>
                     <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" link=""/>
                   </ContentWrapper>
-
+                    */}
                          <Spacer id="spiele-gaming" />
                               <h2>Spiele & Gaming</h2>
 
