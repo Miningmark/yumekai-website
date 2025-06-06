@@ -179,37 +179,7 @@ const ContentWrapper = styled.div`
   gap: 20px;
 `;
 
-const FoodImageWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-`;
 
-const FoodImageContainer = styled.div`
-  margin: 0;
-  padding: 0;
-  width: calc((100% - 20px) / 2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    border-radius: 8px;
-  }
-`;
-
-export function FoodImageWrapperComponent({ src1, alt1 = "Bild", src2, alt2 = "Bild" }) {
-  return (
-    <FoodImageWrapper>
-      <FoodImageContainer>
-        <Image src={src1} alt={alt1} style={{ width: "100%", height: "auto" }} />
-      </FoodImageContainer>
-      <FoodImageContainer>
-        <Image src={src2} alt={alt2} style={{ width: "100%", height: "auto" }} />
-      </FoodImageContainer>
-    </FoodImageWrapper>
-  );
-}
 
 const ContentContainer2 = styled.div`
   display: flex;
