@@ -56,9 +56,9 @@ export default function Survey2025() {
   const now = new Date();
   const isDeadlinePassed = now > deadline;
 
-  //console.log("alreadyParticipated", alreadyParticipated);
-  //console.log("ticketDay", ticketDay);
-  //console.log("ticketId", ticketId);
+  console.log("alreadyParticipated", alreadyParticipated);
+  console.log("ticketDay", ticketDay);
+  console.log("ticketId", ticketId);
 
   useEffect(() => {
     if (router.isReady) {
@@ -91,11 +91,12 @@ export default function Survey2025() {
             setAlreadyParticipated(data.alreadyUsed ?? null);
 
             const ticketDays = data.ticketDay[0].split(",");
+            const cleanedTicketDay = ticketDays.map((day) => day.trim());
 
             //console.log("Ticket-Tag:", ticketDays);
 
             // Falls ticketDay eine Liste zurückgibt, speichere sie als Array
-            setTicketDay(Array.isArray(ticketDays) ? ticketDays : null);
+            setTicketDay(Array.isArray(cleanedTicketDay) ? cleanedTicketDay : null);
           }
         }
       } catch (error) {
@@ -220,7 +221,13 @@ export default function Survey2025() {
             wir am 22.06.2025.
           </p>
 
-          {ticketDay.includes("Sa") || ticketDay.includes("So") || ticketDay.includes("We") ? (
+          {ticketDay.includes("Sa") ||
+          ticketDay.includes("So") ||
+          ticketDay.includes("We") ||
+          ticketDay.includes("Go") ||
+          ticketDay.includes("Ha") ||
+          ticketDay.includes("Ku") ||
+          ticketDay.includes("Au") ? (
             <>
               <h2>Allgemeine Fragen</h2>
               <QuestionSlider
