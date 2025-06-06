@@ -496,7 +496,7 @@ export default function YumeKai2025() {
                     <ContentContainer src={vanessaHerzPropmakingFürBeginnerImage} alt="Propmaking für Beginner" link="https://www.instagram.com/Akunyaah/" />
                     <ContentContainer src={desnescitrusErfolgreichImNetzImage} alt="Erfolgreich im Netz" link="https://www.instagram.com/DesnesCitrus/" />
                     <ContentContainer src={fylyColorierenMitAlkoholmarkerImage} alt="Colorieren mit Alkoholmarker für Anfänger" link="https://www.instagram.com/fyly_draws/" />
-                    <ContentContainer src={HiruWorkshop} alt="Arbeiten mit Leder für Cosplay" link="https://www.instagram.com/eralia_iwahana/" />
+                    {/*<ContentContainer src={HiruWorkshop} alt="Arbeiten mit Leder für Cosplay" link="https://www.instagram.com/eralia_iwahana/" />*/}
                     <ContentContainer src={kanzashiKunstQuinnsArtImage} alt="1x1 Kanzashi Kunst" link="https://www.instagram.com/quinnskanzashi/" />
                     <ContentContainer src={speedpaintingImage} alt="Speedpainting Challenge" link="https://www.heldenschmiede.eu/" />
                     <ContentContainer src={laratornowCroquisDieKunstDesSchnellenZeichnensImage} alt="Croquis - die Kunst des schnellen Zeichnens" />
@@ -513,14 +513,14 @@ export default function YumeKai2025() {
                    <Spacer id="essen" />
                         <h2>Essen</h2>
                         <p></p>
-                         {/*
+                         
                   <ContentWrapper>
-                    <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" link=""/>
-                    <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" link=""/>
-                    <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" link=""/>
-                    <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" link=""/>
+                    <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" />
+                    <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" />
+                    <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" />
+                    <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" />
                   </ContentWrapper>
-                    */}
+                    
                          <Spacer id="spiele-gaming" />
                               <h2>Spiele & Gaming</h2>
 
