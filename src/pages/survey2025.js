@@ -56,9 +56,9 @@ export default function Survey2025() {
   const now = new Date();
   const isDeadlinePassed = now > deadline;
 
-  console.log("alreadyParticipated", alreadyParticipated);
-  console.log("ticketDay", ticketDay);
-  console.log("ticketId", ticketId);
+  //console.log("alreadyParticipated", alreadyParticipated);
+  //console.log("ticketDay", ticketDay);
+  //console.log("ticketId", ticketId);
 
   useEffect(() => {
     if (router.isReady) {
