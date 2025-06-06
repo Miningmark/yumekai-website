@@ -87,11 +87,9 @@ import KirianYumeImage from "/public/assets/images/yumekai2025/KirianYume_Image.
 import ChristalShad0w0Image from "/public/assets/images/yumekai2025/ChristalShad0w0_Image.png";
 import AnaraImage from "/public/assets/images/yumekai2025/Anara_Image.png";
 
-
 //Autoren
 import YuiSpallekImage from "/public/assets/images/yumekai2025/YuiSpallek_Image.png";
 import AshturiaImage from "/public/assets/images/yumekai2025/Ashturia_Image.png";
-
 
 //Workshops
 import HiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
@@ -141,7 +139,7 @@ import catwalk21Image from "/public/assets/images/yumekai2024/catwalk_21.jpg";
 import catwalk22Image from "/public/assets/images/yumekai2024/catwalk_22.jpg";
 import catwalk23Image from "/public/assets/images/yumekai2024/catwalk_23.jpg";
 import catwalk24Image from "/public/assets/images/yumekai2024/catwalk_24.jpg";
-import catwalk25Image from "/public/assets/images/yumekai2024/catwalk_25.jpg"
+import catwalk25Image from "/public/assets/images/yumekai2024/catwalk_25.jpg";
 
 const catwalkImages = [
   { image: catwalk01Image, alt: "Bild Catwalk 01", link: "" },
@@ -178,8 +176,6 @@ const ContentWrapper = styled.div`
   justify-content: center;
   gap: 20px;
 `;
-
-
 
 const ContentContainer2 = styled.div`
   display: flex;
@@ -293,241 +289,563 @@ export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
 export default function YumeKai2025() {
   return (
     <>
-     <h1>Rückblick YumeKai 2025</h1>
-          <p>
-            Am 31.Mai & 1.Juni 2025 hat die erste YumeKai stattgefunden. Hier könnt ihr nochmal Eindrücke
-            von unserer ersten Convention durch Bilder und Videos erleben!
-          </p>
-    
-          <p>
-            Hier könnt ihr einen Blick in unser{" "}
-            <StyledLink href="/downloads/YumeKai_2025_Programmheft.pdf" target="_blank">
-              Programmheft
-            </StyledLink>{" "}
-            von 2025 werfen und so einen guten Eindruck von unseren vielzähligen Programmpunkten
-            bekommen.
-          </p>
-    
-          <ul>
-            <li>
-              <StyledLink href="#ehrengaeste">Ehrengäste</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#cosplayer">Cosplayer</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#aussteller">Aussteller</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#haendler">Händler</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#kuenstleratelier">Künstleratelier</StyledLink>
-            </li>
-            <li>
-                <StyledLink href="#autoren">Autoren</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#workshops">Workshops</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#essen">Essen</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#spiele-gaming">Spiele & Gaming</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</StyledLink>
-            </li>
-            <li>
-              <StyledLink href="#danksagung">Danksagung</StyledLink>
-            </li>
-          </ul>
-    
-          <Spacer id="ehrengaeste" />
-    
-          <h2>Ehrengäste</h2>
-          <p></p>
-          <ContentWrapper>
-           <ContentContainer src={stellariaYumekaiPromobild2025Image} alt="Stellaria" link="https://www.instagram.com/stellaria.idols/" />
-          <ContentContainer src={mionHHeartImage} alt="MION" link="https://www.instagram.com/mion_official/" />
-          <ContentContainer src={echoAneImage} alt="Echo Ane" link="https://www.instagram.com/echoane_music?igsh=MWk2Y2piODNkbnRqaw%3D%3D&utm_source=qr" />
-          <ContentContainer src={junihuhnShinkaiImage} alt="Junihuhn" link="https://www.instagram.com/juni.huhn/" />
-          <ContentContainer src={petraScheeserImage} alt="Petra Scheeser" link="https://www.instagram.com/scheeserin/" />
-          <ContentContainer src={lyriaIdolsignature2Image} alt="Lyria" link="https://www.instagram.com/lyriavt/" />
-          <ContentContainer src={CelloticDuetImage} alt="Cellotic Duets" link="https://linktr.ee/cellotic" />
-          <ContentContainer src={angeliqueImage} alt="Angel_NG" link="https://www.instagram.com/angel_ng___?igsh=MW5uYzZ4YzNmYW5x&utm_source=qr" />
-          <ContentContainer src={nerdDaddysImage} alt="Nerd Daddy's" link="https://www.instagram.com/nerddaddys.podcast/" />
-          <ContentContainer src={andyKnoteImage} alt="Andy Knote" link="https://www.instagram.com/andy_knote/" />
-          <ContentContainer src={dominikAuerImage} alt="Dominik Auer" link="https://www.instagram.com/dominikauer.official/" />
-          <ContentContainer src={juliaMeynenImage} alt="Julia Meynen" link="https://www.instagram.com/juliameynen/" />  
-          <ContentContainer src={sebastianFitznerImage} alt="Sebastian Fitzner" link="https://www.instagram.com/fitzner.sebastian/" />  
-            </ContentWrapper>
+      <h1>Rückblick YumeKai 2025</h1>
+      <p>
+        Am 31.Mai & 1.Juni 2025 hat die erste YumeKai stattgefunden. Hier könnt ihr nochmal
+        Eindrücke von unserer ersten Convention durch Bilder und Videos erleben!
+      </p>
 
-             <Spacer id="cosplayer" />
-            
-                  <h2>Cosplayer</h2>
-                  <p></p>
-                  <ContentWrapper>
-                    <ContentContainer src={DokyatoImage} alt="Dokyato" link="https://www.instagram.com/dokyato/" />
-                    <ContentContainer src={EraliaImage} alt="Eralia" link="https://www.instagram.com/eralia_iwahana/" />
-                    <ContentContainer src={KorribanImage} alt="Korriban Cosplay" link="https://www.instagram.com/korribancosplay/" />
-                    <ContentContainer src={MinekeImage} alt="Yaraiya Cosplay" link="https://www.instagram.com/yaraiyacosplay/" />
-                    <ContentContainer src={ZalinaImage} alt="Zaylina" link="https://www.instagram.com/zaylina1/" />
-                    <ContentContainer src={UchihaCorpImage} alt="Imonee Cosplay" link="https://www.instagram.com/imoneecosplay/" />
-                  </ContentWrapper>
+      <p>
+        Hier könnt ihr einen Blick in unser{" "}
+        <StyledLink href="/downloads/YumeKai_2025_Programmheft.pdf" target="_blank">
+          Programmheft
+        </StyledLink>{" "}
+        von 2025 werfen und so einen guten Eindruck von unseren vielzähligen Programmpunkten
+        bekommen.
+      </p>
 
-                   <Spacer id="aussteller" />
-                        <h2>Aussteller</h2>
-                        <p></p>
-                  <ContentWrapper>
-                    <ContentContainer src={cuglogoImage} alt="Cosplay Union Germany" link="https://www.instagram.com/cosplay_union_germany/" />
-                    <ContentContainer src={mishiroBannerImage} alt="Mishiro" link="https://www.instagram.com/mishiro_augsburg/" />
-                    <ContentContainer src={vanityartImage} alt="Vanity Art Photography" link="https://www.instagram.com/vanity_art_photography/" />
-                    <ContentContainer src={kdkasaiImage} alt="KDKasai" link="https://www.instagram.com/kdkasai/" />
-                    <ContentContainer src={cohekiImage} alt="CoHeKi e.V." link="https://www.instagram.com/coheki_ev/" />
-                    <ContentContainer src={ngeItashasImage} alt="N.G.E. Itasha e.V" link="https://www.instagram.com/n.g.e._itasha/" />
-                    <ContentContainer src={nuclearBastardsImage} alt="Nuclear Bastards" link="https://www.instagram.com/nuclear.bastards/" />
-                    <ContentContainer src={cosquestLogoImage} alt="CosQuest" link="https://www.instagram.com/cosplay_questmuc/" />
-                    <ContentContainer src={cosplayAlpinImage} alt="Cosplay Alpin" link="https://www.instagram.com/cosplayalpin/" />
-                    <ContentContainer src={towldayaustriaImage} alt="Towelday Austria" link="https://www.instagram.com/towelday_austria/" />
-                    <ContentContainer src={goVereinImage} alt="Bayrischer Go Verein e.V." link="https://www.bgov.de/" />
-                    <ContentContainer src={vividAriseEvImage} alt="Vivid Arise eSports e.V." link="https://www.instagram.com/vivid_arise_esports/" />
-                    <ContentContainer src={HanaUSpringImage} alt="Hana & Spring Convention" link="https://www.instagram.com/hana_spring_con/" />
-                  </ContentWrapper>
+      <ul>
+        <li>
+          <StyledLink href="#ehrengaeste">Ehrengäste</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#cosplayer">Cosplayer</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#aussteller">Aussteller</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#haendler">Händler</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#kuenstleratelier">Künstleratelier</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#autoren">Autoren</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#workshops">Workshops</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#essen">Essen</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#spiele-gaming">Spiele & Gaming</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#danksagung">Danksagung</StyledLink>
+        </li>
+      </ul>
 
-                  <Spacer id="haendler" />
-                        <h2>Händler</h2>
-                          <p>
-                            Die YumeKai 2025 war nicht nur eine Convention voller Spaß und Unterhaltung, sondern dank unserer vielfältigen Händler auch ein einzigartiges Shopping-Erlebnis.
-                          </p>
-                  <ContentWrapper>
-                    <ContentContainer src={HeldenschmiedeImage} alt="Heldenschmiede" link="https://www.heldenschmiede.eu/" />
-                    <ContentContainer src={MangaMerchImage} alt="Manga-Merch" link="https://www.manga-merch.com" />
-                    <ContentContainer src={CosmicMoonlightImage} alt="CosmicMoonlight" link="https://www.cosmicmoonlight.com/" />
-                    <ContentContainer src={DavidVerhoevenImage} alt="3D Druck David Verhoeven" link="https://www.instagram.com/djv_3d/" />
-                    <ContentContainer src={ArnosRetroVideogamesImage} alt="Arnos Retro Videogames" link="https://www.arnos-retro-videogames.com" />
-                    <ContentContainer src={CuteParadiseImage} alt="Cute Paradise" link="https://cute-paradise.at/" />
-                    <ContentContainer src={NoerdShopImage} alt="Dein NöRD Shop" link="https://www.dein-noerd-shop.com" />
-                    <ContentContainer src={OtakuwonderlandImage} alt="Otakuwonderland" link="https://www.instagram.com/otakuwonderland_de/" />
-                    <ContentContainer src={PokeVendImage} alt="PokèVend" link="https://www.pokevend.at" />
-                    <ContentContainer src={HeroBaseImage} alt="Hero Base" link="https://alexander-karnitschnig.myshopify.com/collections" />
-                    <ContentContainer src={RuneImage} alt="Rune Store" link="https://www.rune-online.com" />
-                    <ContentContainer src={SilverdragonsabersImage} alt="Silver Dragon Sabers" link="https://www.sd-sabers.de" />
-                    <ContentContainer src={SquiggzImage} alt="Squiggz" link="https://www.squiggz.com/" />
-                    <ContentContainer src={SteamSpiritsImage} alt="SteamSpirits" link="https://www.steamspirits.net" />
-                  </ContentWrapper>
+      <Spacer id="ehrengaeste" />
 
-                   <Spacer id="kuenstleratelier" />
-                        <h2>Künstleratelier</h2>
-                         <p></p>
-                  <ContentWrapper>
-                    <ContentContainer src={AliceMySecretImage} alt="AliceMySecret" link="https://www.instagram.com/alicemysecret" />
-                    <ContentContainer src={BerrinJostImage} alt="Berrin Jost" link="https://www.instagram.com/crazy_berrin" />
-                    <ContentContainer src={EmytsuuImage} alt="Emytsuu" link="https://www.instagram.com/emytsuu/?hl=de" />
-                    <ContentContainer src={LoonarisImage} alt="Loonaris" link="https://www.instagram.com/loonarisarts" />
-                    <ContentContainer src={AnimalixuImage} alt="Animalixu" link="https://www.instagram.com/animalixu" />
-                    <ContentContainer src={BavarianwoodfoxImage} alt="BavarianWoodfox.art" link="https://www.instagram.com/bavarianwoodfox/" />
-                    <ContentContainer src={StellaBialekImage} alt="Stella Bialek" link="https://www.instagram.com/stellabialek" />
-                    <ContentContainer src={AmidalaImage} alt="Amidala Artwork" link="https://www.instagram.com/amidala.artwork/" />
-                    <ContentContainer src={FranciNevadaImage} alt="Franci Nevada" link="https://www.instagram.com/nevada.art.shop/" />
-                    <ContentContainer src={KitsukamiImage} alt="Kitsukami" link="https://www.instagram.com/kitsu_kami/" />
-                    <ContentContainer src={TacTokiImage} alt="TacToki Illustrations" link="https://www.instagram.com/tactoki/" />
-                    <ContentContainer src={LarinaImage} alt="Larina" link="https://www.instagram.com/lariina.art/" />
-                    <ContentContainer src={MadyraImage} alt="Madyra" link="https://www.instagram.com/madyra_arts" />
-                    <ContentContainer src={QuinnImage} alt="Quinn" link="https://www.instagram.com/quinnskanzashi/" />
-                    <ContentContainer src={RinaMoraImage} alt="Rina Mora Art" link="https://www.instagram.com/rina.mora.art" />
-                    <ContentContainer src={BeehiveArtistsImage} alt="BeehiveArtists" link="https://www.instagram.com/beehiveartists/" />
-                    <ContentContainer src={FyflyImage} alt="Fyly" link="https://instagram.com/fyly_cosplays" />
-                    <ContentContainer src={tinypawsImage} alt="Tiny Paws Treasures" link="https://www.instagram.com/cyancalla/" />
-                    <ContentContainer src={yupiistarImage} alt="Yupiistar" link="https://yupiistar.carrd.co/#portfolio" />
-                    <ContentContainer src={AnaraImage} alt="Anara_Twice" link="https://www.instagram.com/anaratwice/?hl=de" />
-                    <ContentContainer src={ChristalShad0w0Image} alt="Christal.Shad0w0" link="https://www.instagram.com/christal.shadow/" />
-                    <ContentContainer src={KirianYumeImage} alt="Kirian Yume" link="https://www.instagram.com/kirianyume/" />
-                    <ContentContainer src={ValyrakaImage} alt="Valyraka" link="https://www.instagram.com/valyraka/" />
-                  </ContentWrapper>
+      <h2>Ehrengäste</h2>
+      <p></p>
+      <ContentWrapper>
+        <ContentContainer
+          src={stellariaYumekaiPromobild2025Image}
+          alt="Stellaria"
+          link="https://www.instagram.com/stellaria.idols/"
+        />
+        <ContentContainer
+          src={mionHHeartImage}
+          alt="MION"
+          link="https://www.instagram.com/mion_official/"
+        />
+        <ContentContainer
+          src={echoAneImage}
+          alt="Echo Ane"
+          link="https://www.instagram.com/echoane_music?igsh=MWk2Y2piODNkbnRqaw%3D%3D&utm_source=qr"
+        />
+        <ContentContainer
+          src={junihuhnShinkaiImage}
+          alt="Junihuhn"
+          link="https://www.instagram.com/juni.huhn/"
+        />
+        <ContentContainer
+          src={petraScheeserImage}
+          alt="Petra Scheeser"
+          link="https://www.instagram.com/scheeserin/"
+        />
+        <ContentContainer
+          src={lyriaIdolsignature2Image}
+          alt="Lyria"
+          link="https://www.instagram.com/lyriavt/"
+        />
+        <ContentContainer
+          src={CelloticDuetImage}
+          alt="Cellotic Duets"
+          link="https://linktr.ee/cellotic"
+        />
+        <ContentContainer
+          src={angeliqueImage}
+          alt="Angel_NG"
+          link="https://www.instagram.com/angel_ng___?igsh=MW5uYzZ4YzNmYW5x&utm_source=qr"
+        />
+        <ContentContainer
+          src={nerdDaddysImage}
+          alt="Nerd Daddy's"
+          link="https://www.instagram.com/nerddaddys.podcast/"
+        />
+        <ContentContainer
+          src={andyKnoteImage}
+          alt="Andy Knote"
+          link="https://www.instagram.com/andy_knote/"
+        />
+        <ContentContainer
+          src={dominikAuerImage}
+          alt="Dominik Auer"
+          link="https://www.instagram.com/dominikauer.official/"
+        />
+        <ContentContainer
+          src={juliaMeynenImage}
+          alt="Julia Meynen"
+          link="https://www.instagram.com/juliameynen/"
+        />
+        <ContentContainer
+          src={sebastianFitznerImage}
+          alt="Sebastian Fitzner"
+          link="https://www.instagram.com/fitzner.sebastian/"
+        />
+      </ContentWrapper>
 
-                   <Spacer id="autoren" />
-                        <h2>Autoren</h2>
-                         <p>In diesem Jahr gab es zusätzlich zu all den tollen Künstlern auch noch einen eigenen Autoren-Brerich.</p>
-                        <ContentWrapper>
-                            <ContentContainer src={YuiSpallekImage} alt="Yui Spallek" link="https://www.instagram.com/yui_spallek" />
-                            <ContentContainer src={AshturiaImage} alt="Ashturia" link="https://www.naomihuber.com/" />
-                        </ContentWrapper>
+      <Spacer id="cosplayer" />
 
+      <h2>Cosplayer</h2>
+      <p></p>
+      <ContentWrapper>
+        <ContentContainer
+          src={DokyatoImage}
+          alt="Dokyato"
+          link="https://www.instagram.com/dokyato/"
+        />
+        <ContentContainer
+          src={EraliaImage}
+          alt="Eralia"
+          link="https://www.instagram.com/eralia_iwahana/"
+        />
+        <ContentContainer
+          src={KorribanImage}
+          alt="Korriban Cosplay"
+          link="https://www.instagram.com/korribancosplay/"
+        />
+        <ContentContainer
+          src={MinekeImage}
+          alt="Yaraiya Cosplay"
+          link="https://www.instagram.com/yaraiyacosplay/"
+        />
+        <ContentContainer
+          src={ZalinaImage}
+          alt="Zaylina"
+          link="https://www.instagram.com/zaylina1/"
+        />
+        <ContentContainer
+          src={UchihaCorpImage}
+          alt="Imonee Cosplay"
+          link="https://www.instagram.com/imoneecosplay/"
+        />
+      </ContentWrapper>
 
-                  
-                   <Spacer id="workshops" />
-                        <h2>Workshops</h2>
-                        <p></p>
-                        
-                  <ContentWrapper>
-                    <ContentContainer src={cosplayAlsBerufseinstiegAusbildungZumDamenmaßschneiderImage} alt="Cosplay als Berufseinstieg" link="https://www.instagram.com/korribancosplay/" />
-                    <ContentContainer src={vanessaHerzPropmakingFürBeginnerImage} alt="Propmaking für Beginner" link="https://www.instagram.com/Akunyaah/" />
-                    <ContentContainer src={desnescitrusErfolgreichImNetzImage} alt="Erfolgreich im Netz" link="https://www.instagram.com/DesnesCitrus/" />
-                    <ContentContainer src={fylyColorierenMitAlkoholmarkerImage} alt="Colorieren mit Alkoholmarker für Anfänger" link="https://www.instagram.com/fyly_draws/" />
-                    {/*<ContentContainer src={HiruWorkshop} alt="Arbeiten mit Leder für Cosplay" link="https://www.instagram.com/eralia_iwahana/" />*/}
-                    <ContentContainer src={kanzashiKunstQuinnsArtImage} alt="1x1 Kanzashi Kunst" link="https://www.instagram.com/quinnskanzashi/" />
-                    <ContentContainer src={speedpaintingImage} alt="Speedpainting Challenge" link="https://www.heldenschmiede.eu/" />
-                    <ContentContainer src={laratornowCroquisDieKunstDesSchnellenZeichnensImage} alt="Croquis - die Kunst des schnellen Zeichnens" />
-                    <ContentContainer src={nuclearBastardsImage} alt="Die Kunst des Überlebens - Vorbereitung auf die Endzeit" link="https://www.instagram.com/nuclear.bastards/" />
-                    <ContentContainer src={mayumiNagashifbcJcultureInteraktiveMangawerkstattImage} alt="Interaktive Manga-Werkstatt" link="https://www.instagram.com/nagashi_mayumi/" />
-                    <ContentContainer src={andyKnoteImage} alt="Q&A mit Andy Knote" link="https://www.instagram.com/andy_knote/" />
-                    <ContentContainer src={minekeImage} alt="Cosplay Competition für Beginner" link="https://www.instagram.com/yaraiyacosplay/" />
-                    <ContentContainer src={cosplayfotosBearbeitenBasicsBisProfitricksPhilippImage} alt="Cosplay-Fotos bearbeiten - Basics bis Profi-Tricks" link="https://www.instagram.com/photos_by_philipp/" />
-                    <ContentContainer src={StockingsWorkshopImage} alt="Stockings Workshop" link="https://www.instagram.com/imoneecosplay/" />
-                    <ContentContainer src={zaylinaBallkleiderNaehenImage} alt="Ballkleider - Eleganz trifft Fantasie" link="https://www.instagram.com/zaylina1/" />
-                  </ContentWrapper>
-                   
+      <Spacer id="aussteller" />
+      <h2>Aussteller</h2>
+      <p></p>
+      <ContentWrapper>
+        <ContentContainer
+          src={cuglogoImage}
+          alt="Cosplay Union Germany"
+          link="https://www.instagram.com/cosplay_union_germany/"
+        />
+        <ContentContainer
+          src={mishiroBannerImage}
+          alt="Mishiro"
+          link="https://www.instagram.com/mishiro_augsburg/"
+        />
+        <ContentContainer
+          src={vanityartImage}
+          alt="Vanity Art Photography"
+          link="https://www.instagram.com/vanity_art_photography/"
+        />
+        <ContentContainer
+          src={kdkasaiImage}
+          alt="KDKasai"
+          link="https://www.instagram.com/kdkasai/"
+        />
+        <ContentContainer
+          src={cohekiImage}
+          alt="CoHeKi e.V."
+          link="https://www.instagram.com/coheki_ev/"
+        />
+        <ContentContainer
+          src={ngeItashasImage}
+          alt="N.G.E. Itasha e.V"
+          link="https://www.instagram.com/n.g.e._itasha/"
+        />
+        <ContentContainer
+          src={nuclearBastardsImage}
+          alt="Nuclear Bastards"
+          link="https://www.instagram.com/nuclear.bastards/"
+        />
+        <ContentContainer
+          src={cosquestLogoImage}
+          alt="CosQuest"
+          link="https://www.instagram.com/cosplay_questmuc/"
+        />
+        <ContentContainer
+          src={cosplayAlpinImage}
+          alt="Cosplay Alpin"
+          link="https://www.instagram.com/cosplayalpin/"
+        />
+        <ContentContainer
+          src={towldayaustriaImage}
+          alt="Towelday Austria"
+          link="https://www.instagram.com/towelday_austria/"
+        />
+        <ContentContainer
+          src={goVereinImage}
+          alt="Bayrischer Go Verein e.V."
+          link="https://www.bgov.de/"
+        />
+        <ContentContainer
+          src={vividAriseEvImage}
+          alt="Vivid Arise eSports e.V."
+          link="https://www.instagram.com/vivid_arise_esports/"
+        />
+        <ContentContainer
+          src={HanaUSpringImage}
+          alt="Hana & Spring Convention"
+          link="https://www.instagram.com/hana_spring_con/"
+        />
+      </ContentWrapper>
 
-                   <Spacer id="essen" />
-                        <h2>Essen</h2>
-                        <p></p>
-                         
-                  <ContentWrapper>
-                    <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" />
-                    <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" />
-                    <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" />
-                    <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" />
-                  </ContentWrapper>
-                    
-                         <Spacer id="spiele-gaming" />
-                              <h2>Spiele & Gaming</h2>
+      <Spacer id="haendler" />
+      <h2>Händler</h2>
+      <p>
+        Die YumeKai 2025 war nicht nur eine Convention voller Spaß und Unterhaltung, sondern dank
+        unserer vielfältigen Händler auch ein einzigartiges Shopping-Erlebnis.
+      </p>
+      <ContentWrapper>
+        <ContentContainer
+          src={HeldenschmiedeImage}
+          alt="Heldenschmiede"
+          link="https://www.heldenschmiede.eu/"
+        />
+        <ContentContainer
+          src={MangaMerchImage}
+          alt="Manga-Merch"
+          link="https://www.manga-merch.com"
+        />
+        <ContentContainer
+          src={CosmicMoonlightImage}
+          alt="CosmicMoonlight"
+          link="https://www.cosmicmoonlight.com/"
+        />
+        <ContentContainer
+          src={DavidVerhoevenImage}
+          alt="3D Druck David Verhoeven"
+          link="https://www.instagram.com/djv_3d/"
+        />
+        <ContentContainer
+          src={ArnosRetroVideogamesImage}
+          alt="Arnos Retro Videogames"
+          link="https://www.arnos-retro-videogames.com"
+        />
+        <ContentContainer
+          src={CuteParadiseImage}
+          alt="Cute Paradise"
+          link="https://cute-paradise.at/"
+        />
+        <ContentContainer
+          src={NoerdShopImage}
+          alt="Dein NöRD Shop"
+          link="https://www.dein-noerd-shop.com"
+        />
+        <ContentContainer
+          src={OtakuwonderlandImage}
+          alt="Otakuwonderland"
+          link="https://www.instagram.com/otakuwonderland_de/"
+        />
+        <ContentContainer src={PokeVendImage} alt="PokèVend" link="https://www.pokevend.at" />
+        <ContentContainer
+          src={HeroBaseImage}
+          alt="Hero Base"
+          link="https://alexander-karnitschnig.myshopify.com/collections"
+        />
+        <ContentContainer src={RuneImage} alt="Rune Store" link="https://www.rune-online.com" />
+        <ContentContainer
+          src={SilverdragonsabersImage}
+          alt="Silver Dragon Sabers"
+          link="https://www.sd-sabers.de"
+        />
+        <ContentContainer src={SquiggzImage} alt="Squiggz" link="https://www.squiggz.com/" />
+        <ContentContainer
+          src={SteamSpiritsImage}
+          alt="SteamSpirits"
+          link="https://www.steamspirits.net"
+        />
+      </ContentWrapper>
 
-                               <Spacer id="cosplay-wettbewerbe" />
-                                    <h2>Cosplay Wettbewerbe</h2>
-                                    <h3>Catwalk:</h3>
+      <Spacer id="kuenstleratelier" />
+      <h2>Künstleratelier</h2>
+      <p></p>
+      <ContentWrapper>
+        <ContentContainer
+          src={AliceMySecretImage}
+          alt="AliceMySecret"
+          link="https://www.instagram.com/alicemysecret"
+        />
+        <ContentContainer
+          src={BerrinJostImage}
+          alt="Berrin Jost"
+          link="https://www.instagram.com/crazy_berrin"
+        />
+        <ContentContainer
+          src={EmytsuuImage}
+          alt="Emytsuu"
+          link="https://www.instagram.com/emytsuu/?hl=de"
+        />
+        <ContentContainer
+          src={LoonarisImage}
+          alt="Loonaris"
+          link="https://www.instagram.com/loonarisarts"
+        />
+        <ContentContainer
+          src={AnimalixuImage}
+          alt="Animalixu"
+          link="https://www.instagram.com/animalixu"
+        />
+        <ContentContainer
+          src={BavarianwoodfoxImage}
+          alt="BavarianWoodfox.art"
+          link="https://www.instagram.com/bavarianwoodfox/"
+        />
+        <ContentContainer
+          src={StellaBialekImage}
+          alt="Stella Bialek"
+          link="https://www.instagram.com/stellabialek"
+        />
+        <ContentContainer
+          src={AmidalaImage}
+          alt="Amidala Artwork"
+          link="https://www.instagram.com/amidala.artwork/"
+        />
+        <ContentContainer
+          src={FranciNevadaImage}
+          alt="Franci Nevada"
+          link="https://www.instagram.com/nevada.art.shop/"
+        />
+        <ContentContainer
+          src={KitsukamiImage}
+          alt="Kitsukami"
+          link="https://www.instagram.com/kitsu_kami/"
+        />
+        <ContentContainer
+          src={TacTokiImage}
+          alt="TacToki Illustrations"
+          link="https://www.instagram.com/tactoki/"
+        />
+        <ContentContainer
+          src={LarinaImage}
+          alt="Larina"
+          link="https://www.instagram.com/lariina.art/"
+        />
+        <ContentContainer
+          src={MadyraImage}
+          alt="Madyra"
+          link="https://www.instagram.com/madyra_arts"
+        />
+        <ContentContainer
+          src={QuinnImage}
+          alt="Quinn"
+          link="https://www.instagram.com/quinnskanzashi/"
+        />
+        <ContentContainer
+          src={RinaMoraImage}
+          alt="Rina Mora Art"
+          link="https://www.instagram.com/rina.mora.art"
+        />
+        <ContentContainer
+          src={BeehiveArtistsImage}
+          alt="BeehiveArtists"
+          link="https://www.instagram.com/beehiveartists/"
+        />
+        <ContentContainer src={FyflyImage} alt="Fyly" link="https://instagram.com/fyly_cosplays" />
+        <ContentContainer
+          src={tinypawsImage}
+          alt="Tiny Paws Treasures"
+          link="https://www.instagram.com/cyancalla/"
+        />
+        <ContentContainer
+          src={yupiistarImage}
+          alt="Yupiistar"
+          link="https://yupiistar.carrd.co/#portfolio"
+        />
+        <ContentContainer
+          src={AnaraImage}
+          alt="Anara_Twice"
+          link="https://www.instagram.com/anaratwice/?hl=de"
+        />
+        <ContentContainer
+          src={ChristalShad0w0Image}
+          alt="Christal.Shad0w0"
+          link="https://www.instagram.com/christal.shadow/"
+        />
+        <ContentContainer
+          src={KirianYumeImage}
+          alt="Kirian Yume"
+          link="https://www.instagram.com/kirianyume/"
+        />
+        <ContentContainer
+          src={ValyrakaImage}
+          alt="Valyraka"
+          link="https://www.instagram.com/valyraka/"
+        />
+      </ContentWrapper>
 
-                                    <h3>Performance:</h3>
+      <Spacer id="autoren" />
+      <h2>Autoren</h2>
+      <p>
+        In diesem Jahr gab es zusätzlich zu all den tollen Künstlern auch noch einen eigenen
+        Autoren-Brerich.
+      </p>
+      <ContentWrapper>
+        <ContentContainer
+          src={YuiSpallekImage}
+          alt="Yui Spallek"
+          link="https://www.instagram.com/yui_spallek"
+        />
+        <ContentContainer src={AshturiaImage} alt="Ashturia" link="https://www.naomihuber.com/" />
+      </ContentWrapper>
 
-                                      <Spacer id="danksagung" />
-                                          <h2>Danksagung</h2>
-                                         <p>
-                                            Ein riesiges Dankeschön an alle, die die YumeKai 2025 zu einem unvergesslichen Erlebnis gemacht haben! 
-                                            Ohne euch wäre diese Convention nicht das, was sie ist. Unser besonderer Dank gilt den Helfern, 
-                                            deren unermüdlicher Einsatz und Leidenschaft das Herzstück unseres Erfolgs waren. Ebenso danken wir 
-                                            den Händlern, die mit ihren einzigartigen Produkten und kreativen Ständen die YumeKai bereichert haben.
-                                            <br />
-                                            <br />
-                                            Ein herzliches Dankeschön an unsere fantastischen Besucher – eure Energie, Begeisterung und Kreativität 
-                                            haben die Atmosphäre der YumeKai geprägt. Auch den Showacts und Ehrengästen gilt unser großer Dank: 
-                                            Eure Auftritte und Panels haben die Convention zu einem besonderen Highlight gemacht. 
-                                            <br />
-                                            <br />
-                                            Ein extra großes Dankeschön geht an die Cosplayer und Walking Acts, die mit ihren beeindruckenden Kostümen 
-                                            und ihrer Präsenz für eine lebendige und farbenfrohe Convention gesorgt haben. Ebenso möchten wir die 
-                                            zahlreichen Vereine und Künstler hervorheben, deren Präsentationen und Kunstwerke die Vielfalt und Kreativität 
-                                            der YumeKai in den Mittelpunkt gerückt haben.
-                                            <br />
-                                            <br />
-                                            Nicht zu vergessen sind die Workshop-Leiter, die mit ihrer Expertise und Leidenschaft Wissen vermittelt und 
-                                            unsere Besucher inspiriert haben.
-                                            <br />
-                                            <br />
-                                            Dank euch allen war die YumeKai 2025 ein voller Erfolg! Wir freuen uns schon auf das nächste Jahr und können es 
-                                            kaum erwarten, euch alle wiederzusehen!
-                                        </p>
+      <Spacer id="workshops" />
+      <h2>Workshops</h2>
+      <p></p>
 
+      <ContentWrapper>
+        <ContentContainer
+          src={cosplayAlsBerufseinstiegAusbildungZumDamenmaßschneiderImage}
+          alt="Cosplay als Berufseinstieg"
+          link="https://www.instagram.com/korribancosplay/"
+        />
+        <ContentContainer
+          src={vanessaHerzPropmakingFürBeginnerImage}
+          alt="Propmaking für Beginner"
+          link="https://www.instagram.com/Akunyaah/"
+        />
+        <ContentContainer
+          src={desnescitrusErfolgreichImNetzImage}
+          alt="Erfolgreich im Netz"
+          link="https://www.instagram.com/DesnesCitrus/"
+        />
+        <ContentContainer
+          src={fylyColorierenMitAlkoholmarkerImage}
+          alt="Colorieren mit Alkoholmarker für Anfänger"
+          link="https://www.instagram.com/fyly_draws/"
+        />
+        {/*<ContentContainer src={HiruWorkshop} alt="Arbeiten mit Leder für Cosplay" link="https://www.instagram.com/eralia_iwahana/" />*/}
+        <ContentContainer
+          src={kanzashiKunstQuinnsArtImage}
+          alt="1x1 Kanzashi Kunst"
+          link="https://www.instagram.com/quinnskanzashi/"
+        />
+        <ContentContainer
+          src={speedpaintingImage}
+          alt="Speedpainting Challenge"
+          link="https://www.heldenschmiede.eu/"
+        />
+        <ContentContainer
+          src={laratornowCroquisDieKunstDesSchnellenZeichnensImage}
+          alt="Croquis - die Kunst des schnellen Zeichnens"
+        />
+        <ContentContainer
+          src={nuclearBastardsImage}
+          alt="Die Kunst des Überlebens - Vorbereitung auf die Endzeit"
+          link="https://www.instagram.com/nuclear.bastards/"
+        />
+        <ContentContainer
+          src={mayumiNagashifbcJcultureInteraktiveMangawerkstattImage}
+          alt="Interaktive Manga-Werkstatt"
+          link="https://www.instagram.com/nagashi_mayumi/"
+        />
+        <ContentContainer
+          src={andyKnoteImage}
+          alt="Q&A mit Andy Knote"
+          link="https://www.instagram.com/andy_knote/"
+        />
+        <ContentContainer
+          src={minekeImage}
+          alt="Cosplay Competition für Beginner"
+          link="https://www.instagram.com/yaraiyacosplay/"
+        />
+        <ContentContainer
+          src={cosplayfotosBearbeitenBasicsBisProfitricksPhilippImage}
+          alt="Cosplay-Fotos bearbeiten - Basics bis Profi-Tricks"
+          link="https://www.instagram.com/photos_by_philipp/"
+        />
+        <ContentContainer
+          src={StockingsWorkshopImage}
+          alt="Stockings Workshop"
+          link="https://www.instagram.com/imoneecosplay/"
+        />
+        <ContentContainer
+          src={zaylinaBallkleiderNaehenImage}
+          alt="Ballkleider - Eleganz trifft Fantasie"
+          link="https://www.instagram.com/zaylina1/"
+        />
+      </ContentWrapper>
+
+      <Spacer id="essen" />
+      <h2>Essen</h2>
+      <p></p>
+
+      <ContentWrapper>
+        <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" />
+        <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" />
+        <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" />
+        <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" />
+      </ContentWrapper>
+
+      <Spacer id="spiele-gaming" />
+      <h2>Spiele & Gaming</h2>
+
+      <Spacer id="cosplay-wettbewerbe" />
+      <h2>Cosplay Wettbewerbe</h2>
+      <h3>Catwalk:</h3>
+
+      <h3>Performance:</h3>
+
+      <Spacer id="danksagung" />
+      <h2>Danksagung</h2>
+      <p>
+        Ein riesiges Dankeschön an alle, die die YumeKai 2025 zu einem unvergesslichen Erlebnis
+        gemacht haben! Ohne euch wäre diese Convention nicht das, was sie ist. Unser besonderer Dank
+        gilt den Helfern, deren unermüdlicher Einsatz und Leidenschaft das Herzstück unseres Erfolgs
+        waren. Ebenso danken wir den Händlern, die mit ihren einzigartigen Produkten und kreativen
+        Ständen die YumeKai bereichert haben.
+        <br />
+        <br />
+        Ein herzliches Dankeschön an unsere fantastischen Besucher – eure Energie, Begeisterung und
+        Kreativität haben die Atmosphäre der YumeKai geprägt. Auch den Showacts und Ehrengästen gilt
+        unser großer Dank: Eure Auftritte und Panels haben die Convention zu einem besonderen
+        Highlight gemacht.
+        <br />
+        <br />
+        Ein extra großes Dankeschön geht an die Cosplayer und Walking Acts, die mit ihren
+        beeindruckenden Kostümen und ihrer Präsenz für eine lebendige und farbenfrohe Convention
+        gesorgt haben. Ebenso möchten wir die zahlreichen Vereine und Künstler hervorheben, deren
+        Präsentationen und Kunstwerke die Vielfalt und Kreativität der YumeKai in den Mittelpunkt
+        gerückt haben.
+        <br />
+        <br />
+        Nicht zu vergessen sind die Workshop-Leiter, die mit ihrer Expertise und Leidenschaft Wissen
+        vermittelt und unsere Besucher inspiriert haben.
+        <br />
+        <br />
+        Dank euch allen war die YumeKai 2025 ein voller Erfolg! Wir freuen uns schon auf das nächste
+        Jahr und können es kaum erwarten, euch alle wiederzusehen!
+      </p>
     </>
-  )
+  );
 }
