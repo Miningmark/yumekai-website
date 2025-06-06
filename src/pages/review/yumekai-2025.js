@@ -514,10 +514,10 @@ export default function YumeKai2025() {
                         <h2>Essen</h2>
                         <p></p>
                   <ContentWrapper>
-                    <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" />
-                    <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" />
-                    <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" />
-                    <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" />
+                    <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" link=""/>
+                    <ContentContainer src={daZioTullioImage} alt="Da Zio Tullio" link=""/>
+                    <ContentContainer src={TaiyakiImage} alt="Wie.MAI.KAI" link=""/>
+                    <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" link=""/>
                   </ContentWrapper>
 
                          <Spacer id="spiele-gaming" />
