@@ -291,16 +291,16 @@ export default function YumeKai2025() {
     <>
       <h1>Rückblick YumeKai 2025</h1>
       <p>
-        Am 31.Mai & 1.Juni 2025 hat die erste YumeKai stattgefunden. Hier könnt ihr nochmal
-        Eindrücke von unserer ersten Convention durch Bilder und Videos erleben!
+        Am 31.Mai & 1.Juni 2025 hat die zweite YumeKai stattgefunden. Hier könnt ihr nochmal
+        Eindrücke der Convention durch Bilder und Videos erleben!
       </p>
 
       <p>
-        Hier könnt ihr einen Blick in unser{" "}
+        Werft gerne auch einen Blick in unser{" "}
         <StyledLink href="/downloads/YumeKai_2025_Programmheft.pdf" target="_blank">
           Programmheft
         </StyledLink>{" "}
-        von 2025 werfen und so einen guten Eindruck von unseren vielzähligen Programmpunkten
+        von 2025, um so einen besseren Eindruck von unseren vielzähligen Programmpunkten zu
         bekommen.
       </p>
 
@@ -343,7 +343,28 @@ export default function YumeKai2025() {
       <Spacer id="ehrengaeste" />
 
       <h2>Ehrengäste</h2>
-      <p></p>
+      <p>Dieses Jahr hatten wir für euch noch mehr Ehrengäste im Programm und sogar unseren ersten internationalen Showact auf der Bühne stehen!<br />
+      <br />
+      Zum ersten Mal haben wir auch mit den Nerd Daddy's live Podcasts auf unserer Bühne präsentieren dürfen. Bei den Podcasts waren auch ein großer Teil unserer Ehrengäste mit dabei, so konntet ihr mehr über Petra Scheeser oder Andy Knote erfahren am Samstag. Und am Sonntag wurden die Synchronsprecher Dominik Auer, Julia Meynen und Sebastian Fitzner in den Fokus genommen.<br />
+      <br />
+      Natürlich durfte auch bei dieser Veranstaltung von uns Stellaria nicht fehlen, sie gehören inzwischen zu unserem festen Inventar und zeigen immer vollen Einsatz auf der Bühne. Mit ihrem Programm &quot;Stellaria: Moonlight Melodies&quot; haben sie die Bühne ordentlich in Stimmung gebracht am Samstagvormittag. Anschließend waren sie an ihrem Merchstand für euch da, für Bilder, Gespräche und Fragen.<br/>
+      <br />
+      Unsere internationale Sängerin MION hat mit ihrem Repertoire an Songs und ihrer süßen Art jeden in den Bann gezogen und ihr konntet sie über die ganze Convention hinweg auch an ihrem eigenen Merchstand antreffen und euch mit ihr unterhalten. Wir hatten die Freude sie und ihren Manager vom Flughafen abzuholen und ihnen Deutschland etwas näher zu bringen. Wir haben unterschiedliche Städte besichtigt und sie haben Currywurst und Brezeln probiert, welche ihnen sehr geschmeckt haben.<br />
+      <br />
+      Mit geballter Stimmenpower durften wir Echo Ane zum ersten Mal bei uns auf der Bühne begrüßen. Sie hat ihren eigenen Song &quot;Kawaii-Rave&quot; bei uns präsentiert und mit ihrer Songliste nicht nur Anime Herzen höher schlagen lassen, sondern auch die Kindheitserinnerungen wieder aufleben lassen.<br />
+      <br />
+      Auch Junihuhn war dieses Jahr wieder mit am Start und hat mit seinem Programmpunkt &quot;Junihuhn - Shinkai Piano Concert&quot;. Das Publikum wurde durch die emotionale Piano Aufführung zu Tränen gerührt. Für alle Fans von &quot;Suzume&quot;, &quot;Your Name&quot; und &quot;Weathering With You&quot; können wir nur empfehlen die Aufführung von Junihuhn zu sehen!<br />
+      <br />
+      Highlight am Samstagabend war dann das Konzert von Petra Scheeser, welche die Nostalgie im Bühnensaal erweckt hat. Sie und Andy Knote konntet ihr am Samstag auf der Convention antreffen und bei einem Q&A und Podcast mehr über die beiden erfahren. Am Abend gab es nach dem Konzert auch noch die Möglichkeit bei einer gratis Autogrammstunde bei ihnen vorbei zu schauen.<br />
+      <br />
+      Wer am Samstag auf dem Cosplay Ball war, hatte die Gelegenheit zu der Musik von Cellotic Duetts zu tanzen. Als Duett haben die beiden den Tanzsaal ordentlich in Stimmung gebracht und so manchen Tanzpärchen eine Träne aus dem Auge gelockt mit ihren emotionalen Stücken. Auch am Sonntag konntet ihr sie nochmals live auf der Bühne erleben oder sie an ihrem Merchstand ansprechen.<br />
+      <br />
+      Mit dabei hatten wir dieses Jahr auch Lyria, eine VTuberin aus der Schweiz, welche wir auch letztes Jahr schon bei uns begrüßen durften. Sie hat die lange Reise mit der Bahn auf sich genommen, um vor Ort dabei zu sein und euch von hinter dem Vorhang sehen zu können.<br />
+      <br />
+      Angel_NG hat bei uns ihren aller ersten Bühnenauftritt gefeiert und dank eurer Unterstützung eine gute Premiere bei uns machen dürfen! Bei ihrer Liederauswahl war Sie besonders aufmerksam und wollte euch Songs präsentieren, die nicht zu häufig auf der Bühne vorkommen und auch die Kindheitserinnerungen in euch wecken.<br />
+      <br />
+      Unsere Synchronsprecher Dominik Auer, Julia Meynen und Sebastian Fitzner konntet ihr im Synchronsprecher Bereich des Maximilian-Kolbe-Haus auffinden und mit ihnen unvergessliche Momente kreieren.
+    </p>
       <ContentWrapper>
         <ContentContainer
           src={stellariaYumekaiPromobild2025Image}
@@ -415,7 +436,10 @@ export default function YumeKai2025() {
       <Spacer id="cosplayer" />
 
       <h2>Cosplayer</h2>
-      <p></p>
+      <p>Auch dieses Jahr hatten wir wieder unglaublich talentierte Cosplayer bei uns zu Gast. <br />
+      <br />
+      Ihr konntet sie an ihren Ständen in der Stadthalle zu verschiedenen Themen ansprechen oder Fotos mit ihnen machen. Bei den Cosplay Wettbewerben waren sie als Jury dabei und bei dem Q&A konnte man sie näher kennen lernen. 
+      <br /><br />Bei jedem von ihnen konntet ihr auch bei einem Workshop tiefer in Cosplay Themen reinkommen und nochmals gezielte Fragen stellen. Über das Wochenende hinweg haben Sie Erfahrungen, Tipps und Tricks mit euch geteilt und standen mit all ihrer Erfahrung euch zur Seite.</p>
       <ContentWrapper>
         <ContentContainer
           src={DokyatoImage}
@@ -451,7 +475,11 @@ export default function YumeKai2025() {
 
       <Spacer id="aussteller" />
       <h2>Aussteller</h2>
-      <p></p>
+      <p>Unsere Austeller haben euch die unterschiedlichsten Themengebiete nähergebracht und ausprobieren lassen. Für jeden war etwas dabei, sei es eine entspannte Runde Go spielen oder bei den Nuclear Bastads eine Endzeit-Bastel-Aktivität mitzumachen. <br />
+      <br />
+      Dieses Jahr konntet ihr im Sonnenschein auch richtig die Itashas der N.G.E Itascha e.V. bewundern. Oder das Maid Café von Vivid Arise eSports e.V. für Kuchen und Kaffee besuchen.<br />
+      <br />Bei den Foto Requisiten von Cosplay Alpin konnten wieder super Bilder geschossen werden. Und der CoHeKi e.V. war wieder für Spendensammlung für einen guten Zweck unterwegs.<br />
+      <br />Bei unseren zahlreichen Ausstellern konntet ihr auch mehr zu anderen Themen wie Conventions oder Cosplay mehr erfahren.</p>
       <ContentWrapper>
         <ContentContainer
           src={cuglogoImage}
@@ -523,8 +551,8 @@ export default function YumeKai2025() {
       <Spacer id="haendler" />
       <h2>Händler</h2>
       <p>
-        Die YumeKai 2025 war nicht nur eine Convention voller Spaß und Unterhaltung, sondern dank
-        unserer vielfältigen Händler auch ein einzigartiges Shopping-Erlebnis.
+        Auch bei der YumeKai 2025 boten unsere Händler ein vielfältiges Shopping-Erlebnis für euch an. 
+        <br />Egal in welche Richtung, hier war alles vertreten von unter anderem Brettspielen zu Plüschtieren zu Schmuck und auch über Tabletop und TCG hinweg gab es auch Lichtschwerter oder 3D Druck und auch Klemmbausteine.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -589,7 +617,8 @@ export default function YumeKai2025() {
 
       <Spacer id="kuenstleratelier" />
       <h2>Künstleratelier</h2>
-      <p></p>
+      <p>In unserem Künstlerbereich konntet ihr ein paar bekannte Gesichter von letztem Jahr wieder finden, aber auch viele neue kennenlernen. Unser Künstleratelier hat euch in allen Bereichen und von den unterschiedlichsten Fandoms Kunst und handgemachtes geboten. <br />
+      Einige haben ihr Wissen und ihre Expertise auch in Workshops mit euch geteilt und dort nochmal spezifischere Fragen beantwortet.</p>
       <ContentWrapper>
         <ContentContainer
           src={AliceMySecretImage}
@@ -708,7 +737,7 @@ export default function YumeKai2025() {
       <h2>Autoren</h2>
       <p>
         In diesem Jahr gab es zusätzlich zu all den tollen Künstlern auch noch einen eigenen
-        Autoren-Brerich.
+        Autoren-Brerich. Hier konntet ihr euch mit Yui Spallek und Ashturia unterhalten und euch austauschen.
       </p>
       <ContentWrapper>
         <ContentContainer
