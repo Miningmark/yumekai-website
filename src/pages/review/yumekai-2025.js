@@ -115,42 +115,59 @@ import MaidCafeImage from "/public/assets/images/yumekai2025/MaidCafe_Image.png"
 import daZioTullioImage from "/public/assets/images/yumekai2025/Da_Zio_Tullio.jpg";
 
 //Cosplay Wettbewerbe
-import catwalk01Image from "/public/assets/images/yumekai2024/catwalk_01.jpg";
-import catwalk02Image from "/public/assets/images/yumekai2024/catwalk_02.jpg";
-import catwalk03Image from "/public/assets/images/yumekai2024/catwalk_03.jpg";
-import catwalk04Image from "/public/assets/images/yumekai2024/catwalk_04.jpg";
-import catwalk05Image from "/public/assets/images/yumekai2024/catwalk_05.jpg";
-import catwalk06Image from "/public/assets/images/yumekai2024/catwalk_06.jpg";
-import catwalk07Image from "/public/assets/images/yumekai2024/catwalk_07.jpg";
-import catwalk08Image from "/public/assets/images/yumekai2024/catwalk_08.jpg";
-import catwalk09Image from "/public/assets/images/yumekai2024/catwalk_09.jpg";
-import catwalk10Image from "/public/assets/images/yumekai2024/catwalk_10.jpg";
-import catwalk11Image from "/public/assets/images/yumekai2024/catwalk_11.jpg";
-import catwalk12Image from "/public/assets/images/yumekai2024/catwalk_12.jpg";
-import catwalk13Image from "/public/assets/images/yumekai2024/catwalk_13.jpg";
-import catwalk14Image from "/public/assets/images/yumekai2024/catwalk_14.jpg";
-import catwalk15Image from "/public/assets/images/yumekai2024/catwalk_15.jpg";
-import catwalk16Image from "/public/assets/images/yumekai2024/catwalk_16.jpg";
-import catwalk17Image from "/public/assets/images/yumekai2024/catwalk_17.jpg";
-import catwalk18Image from "/public/assets/images/yumekai2024/catwalk_18.jpg";
-import catwalk19Image from "/public/assets/images/yumekai2024/catwalk_19.jpg";
-import catwalk20Image from "/public/assets/images/yumekai2024/catwalk_20.jpg";
-import catwalk21Image from "/public/assets/images/yumekai2024/catwalk_21.jpg";
-import catwalk22Image from "/public/assets/images/yumekai2024/catwalk_22.jpg";
-import catwalk23Image from "/public/assets/images/yumekai2024/catwalk_23.jpg";
-import catwalk24Image from "/public/assets/images/yumekai2024/catwalk_24.jpg";
-import catwalk25Image from "/public/assets/images/yumekai2024/catwalk_25.jpg";
+import catwalk1Image from "/public/assets/images/yumekai2025/Catwalk1.jpg";
+import catwalk10Image from "/public/assets/images/yumekai2025/Catwalk10.jpg";
+import catwalk11Image from "/public/assets/images/yumekai2025/Catwalk11.jpg";
+import catwalk12Image from "/public/assets/images/yumekai2025/Catwalk12.jpg";
+import catwalk13Image from "/public/assets/images/yumekai2025/Catwalk13.jpg";
+import catwalk14Image from "/public/assets/images/yumekai2025/Catwalk14.jpg";
+import catwalk15Image from "/public/assets/images/yumekai2025/Catwalk15.jpg";
+import catwalk16Image from "/public/assets/images/yumekai2025/Catwalk16.jpg";
+import catwalk17Image from "/public/assets/images/yumekai2025/Catwalk17.jpg";
+import catwalk18Image from "/public/assets/images/yumekai2025/Catwalk18.jpg";
+import catwalk19Image from "/public/assets/images/yumekai2025/Catwalk19.jpg";
+import catwalk2Image from "/public/assets/images/yumekai2025/Catwalk2.jpg";
+import catwalk20Image from "/public/assets/images/yumekai2025/Catwalk20.jpg";
+import catwalk21Image from "/public/assets/images/yumekai2025/Catwalk21.jpg";
+import catwalk22Image from "/public/assets/images/yumekai2025/Catwalk22.jpg";
+import catwalk23Image from "/public/assets/images/yumekai2025/Catwalk23.jpg";
+import catwalk24Image from "/public/assets/images/yumekai2025/Catwalk24.jpg";
+import catwalk25Image from "/public/assets/images/yumekai2025/Catwalk25.jpg";
+import catwalk26Image from "/public/assets/images/yumekai2025/Catwalk26.jpg";
+import catwalk27Image from "/public/assets/images/yumekai2025/Catwalk27.jpg";
+import catwalk28Image from "/public/assets/images/yumekai2025/Catwalk28.jpg";
+import catwalk29Image from "/public/assets/images/yumekai2025/Catwalk29.jpg";
+import catwalk3Image from "/public/assets/images/yumekai2025/Catwalk3.jpg";
+import catwalk30Image from "/public/assets/images/yumekai2025/Catwalk30.jpg";
+import catwalk31Image from "/public/assets/images/yumekai2025/Catwalk31.jpg";
+import catwalk32Image from "/public/assets/images/yumekai2025/Catwalk32.jpg";
+import catwalk33Image from "/public/assets/images/yumekai2025/Catwalk33.jpg";
+import catwalk34Image from "/public/assets/images/yumekai2025/Catwalk34.jpg";
+import catwalk35Image from "/public/assets/images/yumekai2025/Catwalk35.jpg";
+import catwalk36Image from "/public/assets/images/yumekai2025/Catwalk36.jpg";
+import catwalk37Image from "/public/assets/images/yumekai2025/Catwalk37.jpg";
+import catwalk38Image from "/public/assets/images/yumekai2025/Catwalk38.jpg";
+import catwalk39Image from "/public/assets/images/yumekai2025/Catwalk39.jpg";
+import catwalk4Image from "/public/assets/images/yumekai2025/Catwalk4.jpg";
+import catwalk5Image from "/public/assets/images/yumekai2025/Catwalk5.jpg";
+import catwalk6Image from "/public/assets/images/yumekai2025/Catwalk6.jpg";
+import catwalk7Image from "/public/assets/images/yumekai2025/Catwalk7.jpg";
+import catwalk8Image from "/public/assets/images/yumekai2025/Catwalk8.jpg";
+import catwalk9Image from "/public/assets/images/yumekai2025/Catwalk9.jpg";
+
+import performanceGruppeImage0 from "/public/assets/images/yumekai2025/Performance_Gruppe_Image.jpg";
+import performanceGruppeImage from "/public/assets/images/yumekai2025/Performance_Gruppe.jpg";
 
 const catwalkImages = [
-  { image: catwalk01Image, alt: "Bild Catwalk 01", link: "" },
-  { image: catwalk02Image, alt: "Bild Catwalk 02", link: "" },
-  { image: catwalk03Image, alt: "Bild Catwalk 03", link: "" },
-  { image: catwalk04Image, alt: "Bild Catwalk 04", link: "" },
-  { image: catwalk05Image, alt: "Bild Catwalk 05", link: "" },
-  { image: catwalk06Image, alt: "Bild Catwalk 06", link: "" },
-  { image: catwalk07Image, alt: "Bild Catwalk 07", link: "" },
-  { image: catwalk08Image, alt: "Bild Catwalk 08", link: "" },
-  { image: catwalk09Image, alt: "Bild Catwalk 09", link: "" },
+  { image: catwalk1Image, alt: "Bild Catwalk 1", link: "" },
+  { image: catwalk2Image, alt: "Bild Catwalk 2", link: "" },
+  { image: catwalk3Image, alt: "Bild Catwalk 3", link: "" },
+  { image: catwalk4Image, alt: "Bild Catwalk 4", link: "" },
+  { image: catwalk5Image, alt: "Bild Catwalk 5", link: "" },
+  { image: catwalk6Image, alt: "Bild Catwalk 6", link: "" },
+  { image: catwalk7Image, alt: "Bild Catwalk 7", link: "" },
+  { image: catwalk8Image, alt: "Bild Catwalk 8", link: "" },
+  { image: catwalk9Image, alt: "Bild Catwalk 9", link: "" },
   { image: catwalk10Image, alt: "Bild Catwalk 10", link: "" },
   { image: catwalk11Image, alt: "Bild Catwalk 11", link: "" },
   { image: catwalk12Image, alt: "Bild Catwalk 12", link: "" },
@@ -167,6 +184,20 @@ const catwalkImages = [
   { image: catwalk23Image, alt: "Bild Catwalk 23", link: "" },
   { image: catwalk24Image, alt: "Bild Catwalk 24", link: "" },
   { image: catwalk25Image, alt: "Bild Catwalk 25", link: "" },
+  { image: catwalk26Image, alt: "Bild Catwalk 26", link: "" },
+  { image: catwalk27Image, alt: "Bild Catwalk 27", link: "" },
+  { image: catwalk28Image, alt: "Bild Catwalk 28", link: "" },
+  { image: catwalk29Image, alt: "Bild Catwalk 29", link: "" },
+  { image: catwalk30Image, alt: "Bild Catwalk 30", link: "" },
+  { image: catwalk31Image, alt: "Bild Catwalk 31", link: "" },
+  { image: catwalk32Image, alt: "Bild Catwalk 32", link: "" },
+  { image: catwalk33Image, alt: "Bild Catwalk 33", link: "" },
+  { image: catwalk34Image, alt: "Bild Catwalk 34", link: "" },
+  { image: catwalk35Image, alt: "Bild Catwalk 35", link: "" },
+  { image: catwalk36Image, alt: "Bild Catwalk 36", link: "" },
+  { image: catwalk37Image, alt: "Bild Catwalk 37", link: "" },
+  { image: catwalk38Image, alt: "Bild Catwalk 38", link: "" },
+  { image: catwalk39Image, alt: "Bild Catwalk 39", link: "" },
 ];
 
 const ContentWrapper = styled.div`
@@ -291,16 +322,16 @@ export default function YumeKai2025() {
     <>
       <h1>Rückblick YumeKai 2025</h1>
       <p>
-        Am 31.Mai & 1.Juni 2025 hat die erste YumeKai stattgefunden. Hier könnt ihr nochmal
-        Eindrücke von unserer ersten Convention durch Bilder und Videos erleben!
+        Am 31.Mai & 1.Juni 2025 hat die zweite YumeKai stattgefunden. Hier könnt ihr nochmal
+        Eindrücke der Convention durch Bilder und Videos erleben!
       </p>
 
       <p>
-        Hier könnt ihr einen Blick in unser{" "}
+        Werft gerne auch einen Blick in unser{" "}
         <StyledLink href="/downloads/YumeKai_2025_Programmheft.pdf" target="_blank">
           Programmheft
         </StyledLink>{" "}
-        von 2025 werfen und so einen guten Eindruck von unseren vielzähligen Programmpunkten
+        von 2025, um so einen besseren Eindruck von unseren vielzähligen Programmpunkten zu
         bekommen.
       </p>
 
@@ -343,7 +374,75 @@ export default function YumeKai2025() {
       <Spacer id="ehrengaeste" />
 
       <h2>Ehrengäste</h2>
-      <p></p>
+      <p>
+        Dieses Jahr hatten wir für euch noch mehr Ehrengäste im Programm und sogar unseren ersten
+        internationalen Showact auf der Bühne stehen!
+        <br />
+        <br />
+        Zum ersten Mal haben wir auch mit den Nerd Daddy's live Podcasts auf unserer Bühne
+        präsentieren dürfen. Bei den Podcasts waren auch ein großer Teil unserer Ehrengäste mit
+        dabei, so konntet ihr mehr über Petra Scheeser oder Andy Knote erfahren am Samstag. Und am
+        Sonntag wurden die Synchronsprecher Dominik Auer, Julia Meynen und Sebastian Fitzner in den
+        Fokus genommen.
+        <br />
+        <br />
+        Natürlich durfte auch bei dieser Veranstaltung von uns Stellaria nicht fehlen, sie gehören
+        inzwischen zu unserem festen Inventar und zeigen immer vollen Einsatz auf der Bühne. Mit
+        ihrem Programm &quot;Stellaria: Moonlight Melodies&quot; haben sie die Bühne ordentlich in
+        Stimmung gebracht am Samstagvormittag. Anschließend waren sie an ihrem Merchstand für euch
+        da, für Bilder, Gespräche und Fragen.
+        <br />
+        <br />
+        Unsere internationale Sängerin MION hat mit ihrem Repertoire an Songs und ihrer süßen Art
+        jeden in den Bann gezogen und ihr konntet sie über die ganze Convention hinweg auch an ihrem
+        eigenen Merchstand antreffen und euch mit ihr unterhalten. Wir hatten die Freude sie und
+        ihren Manager vom Flughafen abzuholen und ihnen Deutschland etwas näher zu bringen. Wir
+        haben unterschiedliche Städte besichtigt und sie haben Currywurst und Brezeln probiert,
+        welche ihnen sehr geschmeckt haben.
+        <br />
+        <br />
+        Mit geballter Stimmenpower durften wir Echo Ane zum ersten Mal bei uns auf der Bühne
+        begrüßen. Sie hat ihren eigenen Song &quot;Kawaii-Rave&quot; bei uns präsentiert und mit
+        ihrer Songliste nicht nur Anime Herzen höherschlagen lassen, sondern auch die
+        Kindheitserinnerungen wieder aufleben lassen.
+        <br />
+        <br />
+        Auch Junihuhn war dieses Jahr wieder mit am Start und hat mit seinem Programmpunkt
+        &quot;Junihuhn - Shinkai Piano Concert&quot;. Das Publikum wurde durch die emotionale Piano
+        Aufführung zu Tränen gerührt. Für alle Fans von &quot;Suzume&quot;, &quot;Your Name&quot;
+        und &quot;Weathering With You&quot; können wir nur empfehlen die Aufführung von Junihuhn zu
+        sehen!
+        <br />
+        <br />
+        Highlight am Samstagabend war dann das Konzert von Petra Scheeser, welche die Nostalgie im
+        Bühnensaal erweckt hat. Sie und Andy Knote konntet ihr am Samstag auf der Convention
+        antreffen und bei einem Q&A und Podcast mehr über die beiden erfahren. Am Abend gab es nach
+        dem Konzert auch noch die Möglichkeit bei einer gratis Autogrammstunde bei ihnen vorbei zu
+        schauen.
+        <br />
+        <br />
+        Wer am Samstag auf dem Cosplay Ball war, hatte die Gelegenheit zu der Musik von Cellotic
+        Duetts zu tanzen. Als Duett haben die beiden den Tanzsaal ordentlich in Stimmung gebracht
+        und so manchen Tanzpärchen eine Träne aus dem Auge gelockt mit ihren emotionalen Stücken.
+        Auch am Sonntag konntet ihr sie nochmals live auf der Bühne erleben oder sie an ihrem
+        Merchstand ansprechen.
+        <br />
+        <br />
+        Mit dabei hatten wir dieses Jahr auch Lyria, eine VTuberin aus der Schweiz, welche wir auch
+        letztes Jahr schon bei uns begrüßen durften. Sie hat die lange Reise mit der Bahn auf sich
+        genommen, um vor Ort dabei zu sein und euch von hinter dem Vorhang sehen zu können.
+        <br />
+        <br />
+        Angel_NG hat bei uns ihren aller ersten Bühnenauftritt gefeiert und dank eurer Unterstützung
+        eine gute Premiere bei uns machen dürfen! Bei ihrer Liederauswahl war Sie besonders
+        aufmerksam und wollte euch Songs präsentieren, die nicht zu häufig auf der Bühne vorkommen
+        und auch die Kindheitserinnerungen in euch wecken.
+        <br />
+        <br />
+        Unsere Synchronsprecher Dominik Auer, Julia Meynen und Sebastian Fitzner konntet ihr im
+        Synchronsprecher Bereich des Maximilian-Kolbe-Haus auffinden und mit ihnen unvergessliche
+        Momente kreieren.
+      </p>
       <ContentWrapper>
         <ContentContainer
           src={stellariaYumekaiPromobild2025Image}
@@ -415,7 +514,18 @@ export default function YumeKai2025() {
       <Spacer id="cosplayer" />
 
       <h2>Cosplayer</h2>
-      <p></p>
+      <p>
+        Auch dieses Jahr hatten wir wieder unglaublich talentierte Cosplayer bei uns zu Gast. <br />
+        <br />
+        Ihr konntet sie an ihren Ständen in der Stadthalle zu verschiedenen Themen ansprechen oder
+        Fotos mit ihnen machen. Bei den Cosplay Wettbewerben waren sie als Jury dabei und bei dem
+        Q&A konnte man sie näher kennen lernen.
+        <br />
+        <br />
+        Bei jedem von ihnen konntet ihr auch bei einem Workshop tiefer in Cosplay Themen reinkommen
+        und nochmals gezielte Fragen stellen. Über das Wochenende hinweg haben Sie Erfahrungen,
+        Tipps und Tricks mit euch geteilt und standen mit all ihrer Erfahrung euch zur Seite.
+      </p>
       <ContentWrapper>
         <ContentContainer
           src={DokyatoImage}
@@ -451,7 +561,22 @@ export default function YumeKai2025() {
 
       <Spacer id="aussteller" />
       <h2>Aussteller</h2>
-      <p></p>
+      <p>
+        Unsere Austeller haben euch die unterschiedlichsten Themengebiete nähergebracht und
+        ausprobieren lassen. Für jeden war etwas dabei, sei es eine entspannte Runde Go spielen oder
+        bei den Nuclear Bastads eine Endzeit-Bastel-Aktivität mitzumachen. <br />
+        <br />
+        Dieses Jahr konntet ihr im Sonnenschein auch richtig die Itashas der N.G.E Itascha e.V.
+        bewundern. Oder das Maid Café von Vivid Arise eSports e.V. für Kuchen und Kaffee besuchen.
+        <br />
+        <br />
+        Bei den Foto Requisiten von Cosplay Alpin konnten wieder super Bilder geschossen werden. Und
+        der CoHeKi e.V. war wieder für Spendensammlung für einen guten Zweck unterwegs.
+        <br />
+        <br />
+        Bei unseren zahlreichen Ausstellern konntet ihr auch mehr zu anderen Themen wie Conventions
+        oder Cosplay mehr erfahren.
+      </p>
       <ContentWrapper>
         <ContentContainer
           src={cuglogoImage}
@@ -523,8 +648,12 @@ export default function YumeKai2025() {
       <Spacer id="haendler" />
       <h2>Händler</h2>
       <p>
-        Die YumeKai 2025 war nicht nur eine Convention voller Spaß und Unterhaltung, sondern dank
-        unserer vielfältigen Händler auch ein einzigartiges Shopping-Erlebnis.
+        Auch bei der YumeKai 2025 boten unsere Händler ein vielfältiges Shopping-Erlebnis für euch
+        an.
+        <br />
+        Egal in welche Richtung, hier war alles vertreten von unter anderem Brettspielen zu
+        Plüschtieren zu Schmuck und auch über Tabletop und TCG hinweg gab es auch Lichtschwerter
+        oder 3D Druck und auch Klemmbausteine.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -589,7 +718,13 @@ export default function YumeKai2025() {
 
       <Spacer id="kuenstleratelier" />
       <h2>Künstleratelier</h2>
-      <p></p>
+      <p>
+        In unserem Künstlerbereich konntet ihr ein paar bekannte Gesichter von letztem Jahr wieder
+        finden, aber auch viele neue kennenlernen. Unser Künstleratelier hat euch in allen Bereichen
+        und von den unterschiedlichsten Fandoms Kunst und handgemachtes geboten. <br />
+        Einige haben ihr Wissen und ihre Expertise auch in Workshops mit euch geteilt und dort
+        nochmal spezifischere Fragen beantwortet.
+      </p>
       <ContentWrapper>
         <ContentContainer
           src={AliceMySecretImage}
@@ -708,7 +843,8 @@ export default function YumeKai2025() {
       <h2>Autoren</h2>
       <p>
         In diesem Jahr gab es zusätzlich zu all den tollen Künstlern auch noch einen eigenen
-        Autoren-Brerich.
+        Autoren-Bereich. Hier konntet ihr euch mit Yui Spallek und Ashturia unterhalten und euch
+        austauschen.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -721,7 +857,13 @@ export default function YumeKai2025() {
 
       <Spacer id="workshops" />
       <h2>Workshops</h2>
-      <p></p>
+      <p>
+        Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene
+        Themenbereiche wurden hier dieses Jahr präsentiert, sei es Cosplay, Zeichnen, Miniaturen
+        bemalen, Internet Präsenz zeigen oder auch Bühnenauftritte. Hier gab es wirklich zu allen
+        Themen etwas, ein besonderes Highlight war unser Q&A mit Andy Knoten, welchen ihr näher
+        kennenlernen durftet.
+      </p>
 
       <ContentWrapper>
         <ContentContainer
@@ -798,7 +940,11 @@ export default function YumeKai2025() {
 
       <Spacer id="essen" />
       <h2>Essen</h2>
-      <p></p>
+      <p>
+        Was wäre eine Convention ohne die richtige Stärkung zwischendurch? Bei unseren Foodtrucks
+        und Außenständen konntet ihr euch sowohl Deftiges als auch Süßes holen und wer sich dabei
+        ein bisschen entspannen wollte konnte das Vivid Arise Maid Café besuchen kommen.
+      </p>
 
       <ContentWrapper>
         <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" />
@@ -808,13 +954,154 @@ export default function YumeKai2025() {
       </ContentWrapper>
 
       <Spacer id="spiele-gaming" />
-      <h2>Spiele & Gaming</h2>
+      <h2>Spiele, Gaming & Karaoke</h2>
+      <p>
+        Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der
+        Heldenschmiede und dem Squiggz ein hervorragendes Angebot. Hier konnten nicht nur
+        verschiedenste Spiele gekauft werden, sondern auch Demospiele getestet werden! Für alle Fans
+        von TCG gab es Turniere von Magic: the Gathering, YU-GI-OH! und dem One Piece Card Game mit
+        tollen Preisen!
+        <br />
+        <br />
+        Wer mit Brettspielen, Kartenspielen oder Tabletop nichts anfangen konnte war bei unserem
+        Gamingraum, der von dem Skyforgern geleitet wurde gut aufgehoben. Hier gab es nicht nur
+        verschiedenste Konsolen und Spiele zum Testen sondern auch interessante Turniere wie Dragon
+        Ball FighterZ!
+        <br />
+        <br />
+        Neu dabei war dieses Jahr unser Karaoke Raum, in welchem ihr über das gesamte Wochenende
+        singen konntet. Am Samstagabend gab es dort sogar einen Karavision Song Contest!
+      </p>
 
       <Spacer id="cosplay-wettbewerbe" />
-      <h2>Cosplay Wettbewerbe</h2>
-      <h3>Catwalk:</h3>
-
+      <h2>Cosplay Wettbewerbe & Catwalk</h2>
       <h3>Performance:</h3>
+      <p>
+        Bei unserem Performance Wettbewerb hatte jeder Teilnehmer bis zu 4 Minuten auf der Bühne
+        Zeit, sich mit einer kurzen Darbietung auf der Bühne zu präsentieren. Da wir in diesem Jahr
+        leider nur wenige Teilnehmer begrüßen durften, haben wir uns dazu entschieden, lediglich
+        einen ersten Platz zu vergeben. Alle vier Teilnehmenden erhielten jedoch als Anerkennung für
+        ihren Mut und ihre Teilnahme eine kleine Gewinntüte. Unser Jury bestehend aus{" "}
+        <StyledLink
+          href="https://www.instagram.com/eralia_iwahana/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          Eralia
+        </StyledLink>
+        ,
+        <StyledLink
+          href="https://www.instagram.com/zaylina1/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          Zaylina
+        </StyledLink>
+        ,{" "}
+        <StyledLink
+          href="https://www.instagram.com/yaraiyacosplay/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Yaraiya
+        </StyledLink>{" "}
+        und{" "}
+        <StyledLink
+          href="https://www.instagram.com/imoneecosplay/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Imonee Cosplay
+        </StyledLink>{" "}
+        hatte es sehr schwer sich für einen Gewinner zu entscheiden. Der erste Platz ging an das Duo{" "}
+        <StyledLink
+          href="https://www.instagram.com/tiefseemonster.krake/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Krake und Tiger
+        </StyledLink>{" "}
+        als Seth (god Version) und Anubis (child Version).
+      </p>
+      <ContentWrapper>
+        <ContentContainer src={performanceGruppeImage} alt="Performance Wettbewerb Teilnehmer" />
+        <ContentContainer src={performanceGruppeImage0} alt="Preisverleihung" />
+      </ContentWrapper>
+
+      <h3>Crafting:</h3>
+      <p>
+        Mit unserem Crafting Wettbewerb wollten wir mal etwas ganz anderes ausprobieren. Hier wurden
+        nur die Cosplays, Wigs, Accessoires und Make-Up der Teilnehmenden Bewertet. Der kurze
+        Catwalk auf der Bühne wurde nicht in die Bewertung aufgenommen, sodass es wirklich nur um
+        die Crafting Techniken und sie Fähigkeiten der Teilnehmer ging. Unsere Jury bestand aus{" "}
+        <StyledLink
+          href="https://www.instagram.com/dokyato/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Dokyato
+        </StyledLink>
+        ,
+        <StyledLink
+          href="https://www.instagram.com/eralia_iwahana/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          Eralia
+        </StyledLink>
+        ,{" "}
+        <StyledLink
+          href="https://www.instagram.com/yaraiyacosplay/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Yaraiya
+        </StyledLink>{" "}
+        und{" "}
+        <StyledLink
+          href="https://www.instagram.com/korribancosplay/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Korriban
+        </StyledLink>
+        .<br />
+        <br />
+        1.Platz: Lara als Sister Lidwin von Baldur's Gate 3<br />
+        2.Platz: Duo bestehend aus{" "}
+        <StyledLink
+          href="https://www.instagram.com/tiefseemonster.krake/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Krake und Tiger
+        </StyledLink>{" "}
+        als Aonung und Tsireya von Avatar
+        <br />
+        3.Platz:{" "}
+        <StyledLink
+          href="https://www.instagram.com/fenriscosplay/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Fenriscosplay{" "}
+        </StyledLink>
+        als Valkyre aus Black Desert
+      </p>
+      {/*<ContentWrapper>
+        <ContentContainer src={GrafImage} alt="Bild von dem Cosplay Performance Wettbewerb" />
+      </ContentWrapper>*/}
+
+      <h3>Offener Catwalk:</h3>
+      <p>
+        Bei dem Offenen Catwalk durfte jeder teilnehmen und einmal über die große Bühne laufen und
+        posieren. Ganz ohne Druck vor Bewertung oder Performance durfte jeder hier die Zeit auf der
+        Bühne genießen. Hier ein paar Einblicke der Teilnehmer:
+      </p>
+      <ImageCarousel visibleCount={5.5} duration={2.5} images={catwalkImages} />
 
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
@@ -826,7 +1113,7 @@ export default function YumeKai2025() {
         Ständen die YumeKai bereichert haben.
         <br />
         <br />
-        Ein herzliches Dankeschön an unsere fantastischen Besucher – eure Energie, Begeisterung und
+        Ein herzliches Dankeschön an unsere fantastischen Besucher, eure Energie, Begeisterung und
         Kreativität haben die Atmosphäre der YumeKai geprägt. Auch den Showacts und Ehrengästen gilt
         unser großer Dank: Eure Auftritte und Panels haben die Convention zu einem besonderen
         Highlight gemacht.
@@ -843,8 +1130,8 @@ export default function YumeKai2025() {
         vermittelt und unsere Besucher inspiriert haben.
         <br />
         <br />
-        Dank euch allen war die YumeKai 2025 ein voller Erfolg! Wir freuen uns schon auf das nächste
-        Jahr und können es kaum erwarten, euch alle wiederzusehen!
+        Dank euch allen war die YumeKai 2025 ein Erfolg! Wir freuen uns schon auf das nächste Jahr
+        und können es kaum erwarten, euch alle wiederzusehen!
       </p>
     </>
   );
