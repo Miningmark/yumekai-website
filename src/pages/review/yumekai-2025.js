@@ -155,6 +155,9 @@ import catwalk7Image from "/public/assets/images/yumekai2025/Catwalk7.jpg";
 import catwalk8Image from "/public/assets/images/yumekai2025/Catwalk8.jpg";
 import catwalk9Image from "/public/assets/images/yumekai2025/Catwalk9.jpg";
 
+import craftingGruppeImage from "/public/assets/images/yumekai2025/Crafting_Gruppe.jpg";
+import performanceGruppeImage from "/public/assets/images/yumekai2025/Performance_Gruppe.jpg";
+
 const catwalkImages = [
   { image: catwalk1Image, alt: "Bild Catwalk 1", link: "" },
   { image: catwalk2Image, alt: "Bild Catwalk 2", link: "" },
