@@ -941,9 +941,9 @@ export default function YumeKai2025() {
       <Spacer id="essen" />
       <h2>Essen</h2>
       <p>
-        Was wäre eine Convention ohne die richtige Stärkung zwischendurch? Bei unseren Foodtrucks und
-        Außenständen  konntet ihr euch sowohl Deftiges als auch Süßes holen und wer sich dabei ein
-        bisschen entspannen wollte konnte das Vivid Arise Maid Café besuchen kommen.
+        Was wäre eine Convention ohne die richtige Stärkung zwischendurch? Bei unseren Foodtrucks
+        und Außenständen konntet ihr euch sowohl Deftiges als auch Süßes holen und wer sich dabei
+        ein bisschen entspannen wollte konnte das Vivid Arise Maid Café besuchen kommen.
       </p>
 
       <ContentWrapper>
@@ -987,15 +987,17 @@ export default function YumeKai2025() {
           target="_blank"
           rel="noopener noreferrer"
         >
+          {" "}
           Eralia
         </StyledLink>
-        , 
+        ,
         <StyledLink
           href="https://www.instagram.com/zaylina1/"
           target="_blank"
           rel="noopener noreferrer"
         >
-         {" "}Zaylina
+          {" "}
+          Zaylina
         </StyledLink>
         ,{" "}
         <StyledLink
@@ -1032,7 +1034,7 @@ export default function YumeKai2025() {
       <p>
         Mit unserem Crafting Wettbewerb wollten wir mal etwas ganz anderes ausprobieren. Hier wurden
         nur die Cosplays, Wigs, Accessoires und Make-Up der Teilnehmenden Bewertet. Der kurze
-        Catwalk auf der Bühne wurde nicht in die Bewertung  aufgenommen, sodass es wirklich nur um
+        Catwalk auf der Bühne wurde nicht in die Bewertung aufgenommen, sodass es wirklich nur um
         die Crafting Techniken und sie Fähigkeiten der Teilnehmer ging. Unsere Jury bestand aus{" "}
         <StyledLink
           href="https://www.instagram.com/dokyato/"
@@ -1047,7 +1049,8 @@ export default function YumeKai2025() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {" "}Eralia
+          {" "}
+          Eralia
         </StyledLink>
         ,{" "}
         <StyledLink
@@ -1086,7 +1089,7 @@ export default function YumeKai2025() {
         >
           Fenriscosplay{" "}
         </StyledLink>
-         als Valkyre aus Black Desert
+        als Valkyre aus Black Desert
       </p>
       {/*<ContentWrapper>
         <ContentContainer src={GrafImage} alt="Bild von dem Cosplay Performance Wettbewerb" />
@@ -1127,8 +1130,8 @@ export default function YumeKai2025() {
         vermittelt und unsere Besucher inspiriert haben.
         <br />
         <br />
-        Dank euch allen war die YumeKai 2025 ein Erfolg! Wir freuen uns schon auf das nächste
-        Jahr und können es kaum erwarten, euch alle wiederzusehen!
+        Dank euch allen war die YumeKai 2025 ein Erfolg! Wir freuen uns schon auf das nächste Jahr
+        und können es kaum erwarten, euch alle wiederzusehen!
       </p>
     </>
   );
