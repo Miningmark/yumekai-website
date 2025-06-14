@@ -750,7 +750,7 @@ export default function YumeKai2025() {
 
       <Spacer id="workshops" />
       <h2>Workshops</h2>
-      <p></p>
+      <p>Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene tehmenbereiche wurden hier dieses Jahr präsentiert, sei es Cosplay, Zeichnen, Miniaturen bemalen, Internet päsenz zeigen oder auch Bühnenauftritte. Hier gab es wirklich zu allen Themen etwas, ein besinderes Highlight war unser Q&A mit Andy Knoten, welchen ihr näher kennenlernen durftet.</p>
 
       <ContentWrapper>
         <ContentContainer
@@ -827,7 +827,7 @@ export default function YumeKai2025() {
 
       <Spacer id="essen" />
       <h2>Essen</h2>
-      <p></p>
+      <p>Was wäre eine Convention ohne die richtige Stärung zwischendurch? Bei unseren Foodtrucks und außenständen konttet ihr euch sowohl Deftiges als auch Süßes holen und wer sich dabei ein bisschen entspannen wollte konnte das Vivid Arise Maid Café besuchen kommen.</p>
 
       <ContentWrapper>
         <ContentContainer src={GrafImage} alt="GRAF FOOD ON WHEELS!" />
@@ -837,13 +837,41 @@ export default function YumeKai2025() {
       </ContentWrapper>
 
       <Spacer id="spiele-gaming" />
-      <h2>Spiele & Gaming</h2>
+      <h2>Spiele, Gaming & Karaoke</h2>
+      <p>Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der Heldenschmiede und dem Squiggz ein hervorangendes Angebot. Hier konnten nicht nur verschiedenste Spiele gekauft werden, sonder auch Demospiele getestet werden! Für alle Fans von TCG gab es Tuniere von Magic: the Gathering, YU-GI-OH! und dem One Piece Card Game mit tollen Preisen!<br />
+<br />
+Wer mit Brettspielen, Kartenspielen oder Tabletop nichts anfangen konnte war bei unserem Gamingraum, der von dem Skyforgern geleitet wurde gut aufgehoben. Hier gab es nicht nur verschiedenste Konsolen und Spiele zum testen sondern auch interessante Turniere wie Dragon Ball FighterZ!<br />
+<br />
+Neu dabei war dieses Jahr unser Karaoke Raum, in welchem ihr über das gesamte Wochenende singen konntet. Am Samstagabend gab es dort sogar einen Karavision Song Contest!</p>
 
       <Spacer id="cosplay-wettbewerbe" />
-      <h2>Cosplay Wettbewerbe</h2>
-      <h3>Catwalk:</h3>
-
+      <h2>Cosplay Wettbewerbe & Catwalk</h2>
       <h3>Performance:</h3>
+      <p>Bei unserem Performance Wettbewerb hatte jeder teilnehmer bis zu 4 Minuten auf der Bühne Zeit,  sich mit einer kurzen Darbietung auf der Bühne zu präsentieren. Da wir in diesem Jahr leider nur wenige Teilnehmer begrüßen durften, haben wir uns dazu entschieden, lediglich einen ersten Platz zu vergeben. Alle vier Teilnehmenden erhielten jedoch als Anerkennung für ihren Mut und ihre Teilnahme eine kleine Gewinntüte. Unser Jurry bestehend aus <StyledLink href="https://www.instagram.com/eralia_iwahana/" target="_blank" rel="noopener noreferrer">Eralia</StyledLink>,<StyledLink href="https://www.instagram.com/zaylina1/" target="_blank" rel="noopener noreferrer">Zaylina</StyledLink>, <StyledLink href="https://www.instagram.com/yaraiyacosplay/" target="_blank" rel="noopener noreferrer">Yaraiya</StyledLink> und <StyledLink href="https://www.instagram.com/imoneecosplay/" target="_blank" rel="noopener noreferrer">Imonee Cosplay</StyledLink> hatte es sehr schwer sich für einen Gewinner zu entscheiden. Der erste Platz ging an das Duo <StyledLink href="https://www.instagram.com/tiefseemonster.krake/" target="_blank" rel="noopener noreferrer">Krake und Tiger</StyledLink> als Seth (god version) und Anubis (child version).</p>
+      <ContentWrapper>
+        <ContentContainer src={GrafImage} alt="Bild von dem Cosplay Performance Wettbewerb" />
+      </ContentWrapper>
+
+      <h3>Crafting:</h3>
+      <p>Mit unserem Crafting Wettbewerb wollten wir mal etwas ganz anderes ausprobieren. Hier wurden nur die Cosplays, Wigs, Accessoires und Make-Up der Teilnehmnden Berwertet. Der kurze catwalk auf der Bühne wurde nicht in die Bewertwung aufgenommen, sodass es wirklich nur um die Crafting Techniken und sie Fähigkeiten der Teilnehmer ging. Unsere Jury bestand aus <StyledLink href="https://www.instagram.com/dokyato/" target="_blank" rel="noopener noreferrer">Dokyato</StyledLink>,<StyledLink href="https://www.instagram.com/eralia_iwahana/" target="_blank" rel="noopener noreferrer">Eralia</StyledLink>, <StyledLink href="https://www.instagram.com/yaraiyacosplay/" target="_blank" rel="noopener noreferrer">Yaraiya</StyledLink> und <StyledLink href="https://www.instagram.com/korribancosplay/" target="_blank" rel="noopener noreferrer">Korriban</StyledLink>.<br />
+      <br />
+      1.Platz: Lara als Sister Lidwin von Baldur's Gate 3<br />
+      2.Platz: Duo bestehend aus <StyledLink href="https://www.instagram.com/tiefseemonster.krake/" target="_blank" rel="noopener noreferrer">Krake und Tiger</StyledLink> als Aonung und Tsireya von Avatar<br />
+      3.Platz: <StyledLink href="https://www.instagram.com/fenriscosplay/" target="_blank" rel="noopener noreferrer">Fenriscosplay</StyledLink>Fenriscosplay als Valkyre aus Black Desert</p>
+      <ContentWrapper>
+        <ContentContainer src={GrafImage} alt="Bild von dem Cosplay Performance Wettbewerb" />
+      </ContentWrapper>
+      
+      <h3>Offener Catwalk:</h3>
+      <p>Bei dem Offenen Catwalk durfte jeder Teilnehmen und einmal über die große Bühne laufen und posieren. Ganz ohne Druck vor Bewertung oder Performance durfte jeder hier die Zeit auf der Bühne genießen. Hier ein paar Einblicke der Teilnehmer:</p>
+
+
+
+
+
+
+
+
 
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
@@ -855,7 +883,7 @@ export default function YumeKai2025() {
         Ständen die YumeKai bereichert haben.
         <br />
         <br />
-        Ein herzliches Dankeschön an unsere fantastischen Besucher – eure Energie, Begeisterung und
+        Ein herzliches Dankeschön an unsere fantastischen Besucher, eure Energie, Begeisterung und
         Kreativität haben die Atmosphäre der YumeKai geprägt. Auch den Showacts und Ehrengästen gilt
         unser großer Dank: Eure Auftritte und Panels haben die Convention zu einem besonderen
         Highlight gemacht.
