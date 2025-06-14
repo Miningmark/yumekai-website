@@ -1070,7 +1070,7 @@ export default function YumeKai2025() {
         </StyledLink>
         .<br />
         <br />
-        1.Platz: Lara als Sister Lidwin von Baldur's Gate 3<br />
+        1.Platz: Lara als Sister Lidwin von Baldur&apos;s Gate 3<br />
         2.Platz: Duo bestehend aus{" "}
         <StyledLink
           href="https://www.instagram.com/tiefseemonster.krake/"
