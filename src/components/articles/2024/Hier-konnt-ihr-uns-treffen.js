@@ -21,6 +21,8 @@ export default function HierKonntIhrUnsTreffen() {
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
                     <li>04.06 - 06.06 WieMaiKai in Flörsheim</li>
+                    <li>05.07 - 06.07 Loricon in Seefeld</li>
+                    <li>05.07 - 06.07 Cosday² in Frankfurt</li>
                     <li>08.08 - 10.08 DGT in Aach</li>
                     <li>05.09 - 07.09 Asia Area in Oschersleben</li>
                     <li>12.09 - 14.09 Gamesvention in Kempten</li>
