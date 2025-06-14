@@ -379,7 +379,7 @@ export default function YumeKai2025() {
         internationalen Showact auf der Bühne stehen!
         <br />
         <br />
-        Zum ersten Mal haben wir auch mit den Nerd Daddy's live Podcasts auf unserer Bühne
+        Zum ersten Mal haben wir auch mit den Nerd Daddy&apos;s live Podcasts auf unserer Bühne
         präsentieren dürfen. Bei den Podcasts waren auch ein großer Teil unserer Ehrengäste mit
         dabei, so konntet ihr mehr über Petra Scheeser oder Andy Knote erfahren am Samstag. Und am
         Sonntag wurden die Synchronsprecher Dominik Auer, Julia Meynen und Sebastian Fitzner in den
