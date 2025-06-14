@@ -155,7 +155,7 @@ import catwalk7Image from "/public/assets/images/yumekai2025/Catwalk7.jpg";
 import catwalk8Image from "/public/assets/images/yumekai2025/Catwalk8.jpg";
 import catwalk9Image from "/public/assets/images/yumekai2025/Catwalk9.jpg";
 
-import craftingGruppeImage from "/public/assets/images/yumekai2025/Crafting_Gruppe.jpg";
+import performanceGruppeImage0 from "/public/assets/images/yumekai2025/Performance_Gruppe_Image.jpg";
 import performanceGruppeImage from "/public/assets/images/yumekai2025/Performance_Gruppe.jpg";
 
 const catwalkImages = [
@@ -403,7 +403,7 @@ export default function YumeKai2025() {
         <br />
         Mit geballter Stimmenpower durften wir Echo Ane zum ersten Mal bei uns auf der Bühne
         begrüßen. Sie hat ihren eigenen Song &quot;Kawaii-Rave&quot; bei uns präsentiert und mit
-        ihrer Songliste nicht nur Anime Herzen höher schlagen lassen, sondern auch die
+        ihrer Songliste nicht nur Anime Herzen höherschlagen lassen, sondern auch die
         Kindheitserinnerungen wieder aufleben lassen.
         <br />
         <br />
@@ -843,7 +843,7 @@ export default function YumeKai2025() {
       <h2>Autoren</h2>
       <p>
         In diesem Jahr gab es zusätzlich zu all den tollen Künstlern auch noch einen eigenen
-        Autoren-Brerich. Hier konntet ihr euch mit Yui Spallek und Ashturia unterhalten und euch
+        Autoren-Bereich. Hier konntet ihr euch mit Yui Spallek und Ashturia unterhalten und euch
         austauschen.
       </p>
       <ContentWrapper>
@@ -859,9 +859,9 @@ export default function YumeKai2025() {
       <h2>Workshops</h2>
       <p>
         Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene
-        tehmenbereiche wurden hier dieses Jahr präsentiert, sei es Cosplay, Zeichnen, Miniaturen
-        bemalen, Internet päsenz zeigen oder auch Bühnenauftritte. Hier gab es wirklich zu allen
-        Themen etwas, ein besinderes Highlight war unser Q&A mit Andy Knoten, welchen ihr näher
+        Themenbereiche wurden hier dieses Jahr präsentiert, sei es Cosplay, Zeichnen, Miniaturen
+        bemalen, Internet Präsenz zeigen oder auch Bühnenauftritte. Hier gab es wirklich zu allen
+        Themen etwas, ein besonderes Highlight war unser Q&A mit Andy Knoten, welchen ihr näher
         kennenlernen durftet.
       </p>
 
@@ -941,8 +941,8 @@ export default function YumeKai2025() {
       <Spacer id="essen" />
       <h2>Essen</h2>
       <p>
-        Was wäre eine Convention ohne die richtige Stärung zwischendurch? Bei unseren Foodtrucks und
-        außenständen konttet ihr euch sowohl Deftiges als auch Süßes holen und wer sich dabei ein
+        Was wäre eine Convention ohne die richtige Stärkung zwischendurch? Bei unseren Foodtrucks und
+        Außenständen  konntet ihr euch sowohl Deftiges als auch Süßes holen und wer sich dabei ein
         bisschen entspannen wollte konnte das Vivid Arise Maid Café besuchen kommen.
       </p>
 
@@ -957,15 +957,15 @@ export default function YumeKai2025() {
       <h2>Spiele, Gaming & Karaoke</h2>
       <p>
         Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der
-        Heldenschmiede und dem Squiggz ein hervorangendes Angebot. Hier konnten nicht nur
-        verschiedenste Spiele gekauft werden, sonder auch Demospiele getestet werden! Für alle Fans
-        von TCG gab es Tuniere von Magic: the Gathering, YU-GI-OH! und dem One Piece Card Game mit
+        Heldenschmiede und dem Squiggz ein hervorragendes Angebot. Hier konnten nicht nur
+        verschiedenste Spiele gekauft werden, sondern auch Demospiele getestet werden! Für alle Fans
+        von TCG gab es Turniere von Magic: the Gathering, YU-GI-OH! und dem One Piece Card Game mit
         tollen Preisen!
         <br />
         <br />
         Wer mit Brettspielen, Kartenspielen oder Tabletop nichts anfangen konnte war bei unserem
         Gamingraum, der von dem Skyforgern geleitet wurde gut aufgehoben. Hier gab es nicht nur
-        verschiedenste Konsolen und Spiele zum testen sondern auch interessante Turniere wie Dragon
+        verschiedenste Konsolen und Spiele zum Testen sondern auch interessante Turniere wie Dragon
         Ball FighterZ!
         <br />
         <br />
@@ -977,11 +977,11 @@ export default function YumeKai2025() {
       <h2>Cosplay Wettbewerbe & Catwalk</h2>
       <h3>Performance:</h3>
       <p>
-        Bei unserem Performance Wettbewerb hatte jeder teilnehmer bis zu 4 Minuten auf der Bühne
+        Bei unserem Performance Wettbewerb hatte jeder Teilnehmer bis zu 4 Minuten auf der Bühne
         Zeit, sich mit einer kurzen Darbietung auf der Bühne zu präsentieren. Da wir in diesem Jahr
         leider nur wenige Teilnehmer begrüßen durften, haben wir uns dazu entschieden, lediglich
         einen ersten Platz zu vergeben. Alle vier Teilnehmenden erhielten jedoch als Anerkennung für
-        ihren Mut und ihre Teilnahme eine kleine Gewinntüte. Unser Jurry bestehend aus{" "}
+        ihren Mut und ihre Teilnahme eine kleine Gewinntüte. Unser Jury bestehend aus{" "}
         <StyledLink
           href="https://www.instagram.com/eralia_iwahana/"
           target="_blank"
@@ -989,13 +989,13 @@ export default function YumeKai2025() {
         >
           Eralia
         </StyledLink>
-        ,
+        , 
         <StyledLink
           href="https://www.instagram.com/zaylina1/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Zaylina
+         {" "}Zaylina
         </StyledLink>
         ,{" "}
         <StyledLink
@@ -1021,17 +1021,18 @@ export default function YumeKai2025() {
         >
           Krake und Tiger
         </StyledLink>{" "}
-        als Seth (god version) und Anubis (child version).
+        als Seth (god Version) und Anubis (child Version).
       </p>
       <ContentWrapper>
-        <ContentContainer src={GrafImage} alt="Bild von dem Cosplay Performance Wettbewerb" />
+        <ContentContainer src={performanceGruppeImage} alt="Performance Wettbewerb Teilnehmer" />
+        <ContentContainer src={performanceGruppeImage0} alt="Preisverleihung" />
       </ContentWrapper>
 
       <h3>Crafting:</h3>
       <p>
         Mit unserem Crafting Wettbewerb wollten wir mal etwas ganz anderes ausprobieren. Hier wurden
-        nur die Cosplays, Wigs, Accessoires und Make-Up der Teilnehmnden Berwertet. Der kurze
-        catwalk auf der Bühne wurde nicht in die Bewertwung aufgenommen, sodass es wirklich nur um
+        nur die Cosplays, Wigs, Accessoires und Make-Up der Teilnehmenden Bewertet. Der kurze
+        Catwalk auf der Bühne wurde nicht in die Bewertung  aufgenommen, sodass es wirklich nur um
         die Crafting Techniken und sie Fähigkeiten der Teilnehmer ging. Unsere Jury bestand aus{" "}
         <StyledLink
           href="https://www.instagram.com/dokyato/"
@@ -1046,7 +1047,7 @@ export default function YumeKai2025() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Eralia
+          {" "}Eralia
         </StyledLink>
         ,{" "}
         <StyledLink
@@ -1083,17 +1084,17 @@ export default function YumeKai2025() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Fenriscosplay
+          Fenriscosplay{" "}
         </StyledLink>
-        Fenriscosplay als Valkyre aus Black Desert
+         als Valkyre aus Black Desert
       </p>
-      <ContentWrapper>
+      {/*<ContentWrapper>
         <ContentContainer src={GrafImage} alt="Bild von dem Cosplay Performance Wettbewerb" />
-      </ContentWrapper>
+      </ContentWrapper>*/}
 
       <h3>Offener Catwalk:</h3>
       <p>
-        Bei dem Offenen Catwalk durfte jeder Teilnehmen und einmal über die große Bühne laufen und
+        Bei dem Offenen Catwalk durfte jeder teilnehmen und einmal über die große Bühne laufen und
         posieren. Ganz ohne Druck vor Bewertung oder Performance durfte jeder hier die Zeit auf der
         Bühne genießen. Hier ein paar Einblicke der Teilnehmer:
       </p>
@@ -1126,7 +1127,7 @@ export default function YumeKai2025() {
         vermittelt und unsere Besucher inspiriert haben.
         <br />
         <br />
-        Dank euch allen war die YumeKai 2025 ein voller Erfolg! Wir freuen uns schon auf das nächste
+        Dank euch allen war die YumeKai 2025 ein Erfolg! Wir freuen uns schon auf das nächste
         Jahr und können es kaum erwarten, euch alle wiederzusehen!
       </p>
     </>
