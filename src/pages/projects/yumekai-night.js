@@ -117,11 +117,10 @@ export default function Projects() {
         right={
           <>
             <RectangleContainer center={1} color={1}>
-              <h2 style={{ margin: "10px" }}>Nächste Veranstaltung</h2>
+              <h2 style={{ margin: "10px" }}>Nächste YumeKai - Night</h2>
               <ScheduleIconWrapper>
                 <ScheduleIcon />
               </ScheduleIconWrapper>
-              <p>YumeKai - Night</p>
               <p>Wo: ???</p>
               <p>Wann: ???</p>
             </RectangleContainer>

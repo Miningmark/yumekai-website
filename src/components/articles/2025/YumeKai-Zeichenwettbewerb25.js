@@ -38,18 +38,18 @@ const StyledImageHome = styled(Image)`
 export default function YumeKaiZeichenwettbewerb25() {
   return (
     <>
+      <h2>YumeKai Zeichenwettbewerb 2025</h2>
       <Columns2
         left={
           <>
-            <h2>YumeKai Zeichenwettbewerb 2025</h2>
             <p>
               Wir freuen uns, die Gewinner unseres Zeichenwettbewerbs bekannt zu geben! Das Thema in
-              diesem Jahr: Unser Maskottchen Hiru – gezeichnet in eurem eigenen Stil. Die Künstler
+              diesem Jahr: Unser Maskottchen Hiru - gezeichnet in eurem eigenen Stil. Die Künstler
               haben beeindruckende Kreativität bewiesen und Hiru in einzigartigen, fantasievollen
               Interpretationen zum Leben erweckt.
             </p>
             <div style={{ justifyContent: "center" }} className="responsive-container">
-              <div style={{ width: "60%", height: "auto" }}>
+              <div style={{ width: "80%", height: "auto" }}>
                 <StyledYumekoImage
                   src={hiruImage}
                   alt="Maskottchen Yumeko"

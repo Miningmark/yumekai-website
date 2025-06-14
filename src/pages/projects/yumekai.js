@@ -124,32 +124,30 @@ export default function Projects() {
         right={
           <>
             <RectangleContainer center={1} color={1}>
-              <h2 style={{ margin: "10px" }}>Nächste Veranstaltung</h2>
+              <h2 style={{ margin: "10px" }}>Nächste YumeKai</h2>
               <ScheduleIconWrapper>
                 <ScheduleIcon />
               </ScheduleIconWrapper>
-              <p>YumeKai</p>
-              <p>Wo: Stadthalle Memmingen und Maximilian Kolbe Haus</p>
-              <p>Wann: 31.05 - 01.06</p>
+              <p>Wo: ???</p>
+              <p>Wann: ???</p>
             </RectangleContainer>
             <MovingContentWrapper content={<YumeKaiLogo />}></MovingContentWrapper>
           </>
         }
       />
       <SpacerEmpty />
-      <h2>Programm YumeKai 2024</h2>
+      <h2>YumeKai Rückblicke</h2>
       <p>
-        Endlich war es so weit, die YumeKai hat zum ersten mal stattgefunden!{" "}
-        <StyledLink href={"/review/yumekai-2024"}>Hier</StyledLink> könnt ihr euch das Programm der
-        YumeKai noch einmal ansehen. Es gab das ganze Wochenende über viel zu entdecken. <br />{" "}
-        <StyledLink href={"/review/yumekai-2024"}>Hier</StyledLink> habt ihr einmal ein paar kleine
-        Einblicke, was alles geboten wurde. Für diejenigen, die bestimmte Künstler, Händler oder
-        Special Guests suchen, steht das vollständige Programm der YumeKai 2024 mit einem Klick noch
-        immer zur Verfügung, <StyledLink href={"/review/yumekai-2024"}>hier</StyledLink> könnt Ihr
-        alle angekündigten Highlights und Programmpunkte finden. Wir sehen uns 2025 auf der nächsten
-        YumeKai!
+        Schon im letzten Jahr hat die YumeKai viele Besucher begeistert - das komplette Programm von
+        2024 könnt ihr euch weiterhin
+        <StyledLink href={"/review/yumekai-2024"}> hier</StyledLink> ansehen.
+        <br /> Auch in diesem Jahr gab es wieder ein ganzes Wochenende voller spannender
+        Programmpunkte, Künstler, Händler und Special Guests. Einen Rückblick auf das, was euch 2025
+        erwartet hat, findet ihr
+        <StyledLink href={"/review/yumekai-2025"}> hier</StyledLink>.
       </p>
 
+      {/*
       <Columns3
         left={
           <>
@@ -203,6 +201,7 @@ export default function Projects() {
           </>
         }
       />
+       */}
     </>
   );
 }
