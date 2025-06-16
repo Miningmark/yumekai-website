@@ -12,24 +12,22 @@ export default function Shop() {
         crossOrigin="anonymous"
       />
 
-      <h1>Ticketshop</h1>
-      <p>Der Ticketshop für die YumeKai 2026 ist noch geschlossen.</p>
-      {/* 
+      <h1>YumeKai Crowdfunding</h1>
+      <p></p>
+      
       <p>
-        <strong>
-          Die Sammler Tickets sowie Goldtickets gibt es nur bis zum 24.05.2025 um 23:59 Uhr.
-        </strong>
+        
         <br />
         Falls das Ticketshop Widget nicht lädt kannst du den Ticketshop unter{" "}
-        <StyledLink href="https://pretix.eu/Dreamfly-Events/yumekai-25/" target="_blank">
-          pretix.eu/Dreamfly-Events/yumekai-25/
+        <StyledLink href="https://pretix.eu/Dreamfly-Events/crowdfunding/" target="_blank">
+          pretix.eu/Dreamfly-Events/crowdfunding/
         </StyledLink>{" "}
         erreichen.
       </p>
       <div
         dangerouslySetInnerHTML={{
           __html: `
-            <pretix-widget event="https://pretix.eu/Dreamfly-Events/yumekai-25/" single-item-select="button"></pretix-widget>
+            <pretix-widget event="https://pretix.eu/Dreamfly-Events/crowdfunding/" single-item-select="button"></pretix-widget>
             <noscript>
                 <div class="pretix-widget">
                     <div class="pretix-widget-info-message">
@@ -40,7 +38,7 @@ export default function Shop() {
             `,
         }}
       />
-      */}
+      
       <Banner />
     </>
   );
