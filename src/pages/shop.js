@@ -18,7 +18,7 @@ export default function Shop() {
       <p>
         
         <br />
-        Falls das Ticketshop Widget nicht lädt kannst du den Ticketshop unter{" "}
+        Falls das Widget nicht lädt kannst du den Ticketshop unter{" "}
         <StyledLink href="https://pretix.eu/Dreamfly-Events/crowdfunding/" target="_blank">
           pretix.eu/Dreamfly-Events/crowdfunding/
         </StyledLink>{" "}
