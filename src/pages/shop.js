@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Script from "next/script";
 import Banner from "@/components/shop/Banner";
 import { StyledLink } from "@/components/styledComponents";
-import Columns2 from "@/components/elements/Columns2";
 import { DynamicContent } from "@/components/styledComponents";
 import Image from "next/image";
 
@@ -55,10 +54,10 @@ export default function Shop() {
       </p>
       <h2>Warum Crowdfunding?</h2>
       <p>
-        Das Jahr 2025 war für die YumeKai eine kein Leichtes. Leider konnten wir nicht so viele
-        Gäste begrüßen wie erhofft. Gleichzeitig sind die Kosten in vielen Bereichen stark
-        gestiegen, wie etwa für Raummiete, Technik, Sicherheitsdienst und zahlreiche weitere
-        essentielle Bestandteile, die eine Convention überhaupt erst möglich machen.
+        Das Jahr 2025 war für die YumeKai kein Leichtes. Leider konnten wir nicht so viele Gäste
+        begrüßen wie erhofft. Gleichzeitig sind die Kosten in vielen Bereichen stark gestiegen, wie
+        etwa für Raummiete, Technik, Sicherheitsdienst und zahlreiche weitere essentielle
+        Bestandteile, die eine Convention überhaupt erst möglich machen.
         <br />
         Deshalb wenden wir uns nun an euch, unsere großartige Community und bitten um eure
         Unterstützung. Jeder einzelne Cent aus diesem Crowdfunding fließt direkt in die Planung und
@@ -69,7 +68,7 @@ export default function Shop() {
       <p>
         Mit jeder höheren Stufe erhältst du automatisch auch alle Belohnungen der vorherigen Stufen.
         Wenn du also das 35€-Paket wählst, bekommst du zusätzlich die Belohnungen der 5€-, 10€-,
-        15€- und 20€-Stufen.
+        15€- und 20€- Stufe.
         <br />
         Die limitierte Version von unserer Supporter Hiru 2025 gibt es nur während unserem
         Crowdfunding bei uns im Shop oder an unseren Infoständen zu kaufen.
@@ -92,7 +91,7 @@ export default function Shop() {
         <DynamicContent $widthpercent={60} $align="center" $justify="start">
           <h3>5€ - Hirus kleiner Helfer</h3>
           <ul>
-            <li>Nennung auf der Supporter-Seite der Webseite</li>
+            <li>Nennung auf der Supporter-Seite unserer Webseite</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -264,7 +263,15 @@ export default function Shop() {
         <DynamicContent $widthpercent={60} $align="center" $justify="start">
           <h3>200€ - Yumekos Goldene Einladung</h3>
           <ul>
-            <li>Goldticket</li>
+            <li>
+              Goldticket
+              <ul>
+                <li>Wochenendticket</li>
+                <li>Merchendaise Tüte</li>
+                <li>30 Minuten früherer Einlass</li>
+                <li>Weitere überaschungen</li>
+              </ul>
+            </li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -324,7 +331,7 @@ export default function Shop() {
 
       <h2>Top-Unterstützer</h2>
       <ul>
-        <li>noch keinen</li>
+        <li>noch keiner</li>
       </ul>
 
       <p>
