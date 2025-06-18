@@ -267,7 +267,7 @@ export default function Shop() {
               Goldticket
               <ul>
                 <li>Wochenendticket</li>
-                <li>Merchendaise Tüte</li>
+                <li>Merchendise Tüte</li>
                 <li>30 Minuten früherer Einlass</li>
                 <li>Weitere überaschungen</li>
               </ul>
