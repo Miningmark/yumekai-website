@@ -310,7 +310,7 @@ export default function Shop() {
           <h3>550€ - Hirus Private Suite</h3>
           <ul>
             <li>Ein zweites Goldticket</li>
-            <li>Hotelübernachtung für zwei Personen im Doppelzimmer inkl. Frühstück</li>
+            <li>Hotelübernachtung für zwei Personen im Doppelzimmer inkl. Frühstück von Sa - So</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
