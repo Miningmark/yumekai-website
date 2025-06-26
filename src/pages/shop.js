@@ -330,9 +330,13 @@ export default function Shop() {
       </p>
 
       <h2>Top-Unterstützer</h2>
-      <ul>
-        <li>noch keiner</li>
-      </ul>
+      <ol>
+        <li>HerrHomie</li>
+        <li>Karokitty</li>
+        <li>Sara Hetges</li>
+        <li>Joey Jäger</li>
+        <li>Kio der Schwabenotter</li>
+      </ol>
 
       <p>
         <br />
