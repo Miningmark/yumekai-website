@@ -111,6 +111,7 @@ export default function Shop() {
           <h3>10€ - Yumekos Band der Freundschaft</h3>
           <ul>
             <li>Festivalbändchen aus Stoff mit Hiru als Abbildung.</li>
+            <li>sowie alles von: Hirus kleiner Helfer</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -131,6 +132,7 @@ export default function Shop() {
           <ul>
             <li>Nennung im Programmheft der YumeKai 2026</li>
             <li>Stickerbogen</li>
+            <li>sowie alles von: Yumekos Band der Freundschaft</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -150,6 +152,7 @@ export default function Shop() {
           <h3>20€ - Yumekos Gläsernes Atelier</h3>
           <ul>
             <li>Graviertes Trinkglas</li>
+            <li>sowie alles von: Hirus Sticker-Schmiede</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -169,6 +172,7 @@ export default function Shop() {
           <h3>35€ - Hirus Schlüsselbund</h3>
           <ul>
             <li>Acryl Schlüsselanhänger</li>
+            <li>sowie alles von: Yumekos Gläsernes Atelier</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -188,6 +192,7 @@ export default function Shop() {
           <h3>50€ - Hirus Ehrenemblem</h3>
           <ul>
             <li>Enamel Pin</li>
+            <li>sowie alles von: Hirus Schlüsselbund</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -207,6 +212,7 @@ export default function Shop() {
           <h3>75€ - Hirus Lichterparade</h3>
           <ul>
             <li>Penlight</li>
+            <li>sowie alles von: Hirus Ehrenemblem</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -226,6 +232,7 @@ export default function Shop() {
           <h3>100€ - Hirus Plüsch-Patrol</h3>
           <ul>
             <li>Hiru Plüschtier Anhänger (7cm)</li>
+            <li>sowie alles von: Hirus Lichterparade</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -245,6 +252,7 @@ export default function Shop() {
           <h3>150€ - Stickerbuch der Hiru-Künste</h3>
           <ul>
             <li>Wiederverwendbares A6 Stickerbuch</li>
+            <li>sowie alles von: Hirus Plüsch-Patrol</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -272,6 +280,7 @@ export default function Shop() {
                 <li>Weitere überaschungen</li>
               </ul>
             </li>
+            <li>sowie alles von: Stickerbuch der Hiru-Künste</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -291,6 +300,7 @@ export default function Shop() {
           <h3>250€ - Yumekos Stoffgeheimnis</h3>
           <ul>
             <li>T-Shirt</li>
+            <li>sowie alles von: Yumekos Goldene Einladung</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
@@ -311,6 +321,7 @@ export default function Shop() {
           <ul>
             <li>Ein zweites Goldticket</li>
             <li>Hotelübernachtung für zwei Personen im Doppelzimmer inkl. Frühstück von Sa - So</li>
+            <li>sowie alles von: Yumekos Stoffgeheimnis</li>
           </ul>
         </DynamicContent>
       </DynamicContentWrapper>
