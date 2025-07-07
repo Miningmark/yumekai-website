@@ -343,10 +343,10 @@ export default function Shop() {
       <h2>Top-Unterstützer</h2>
       <ol>
         <li>HerrHomie</li>
+        <li>Shinoa Aizawa</li>
         <li>Lukas</li>
         <li>Karokitty</li>
         <li>Sara Hetges</li>
-        <li>Joey Jäger</li>
       </ol>
 
       <p>
