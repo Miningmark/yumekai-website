@@ -14,7 +14,7 @@ import YumeKaiLogo from "/public/assets/logo/yumekai_color_font.svg";
 
 const menuItems = [
   { name: "Startseite", path: "/" },
-  { name: "Programm", path: "/programm2025" },
+  //{ name: "Programm", path: "/programm2025" },
   {
     name: "Projekte",
     //path: "/projects",
