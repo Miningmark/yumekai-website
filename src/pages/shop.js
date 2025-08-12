@@ -344,9 +344,9 @@ export default function Shop() {
       <ol>
         <li>HerrHomie</li>
         <li>Shinoa Aizawa</li>
+        <li>TOWELDAY Austria </li>
         <li>Lukas</li>
         <li>Karokitty</li>
-        <li>Sara Hetges</li>
       </ol>
 
       <p>

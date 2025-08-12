@@ -20,7 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>08.08 - 10.08 DGT in Aach</li>
                     <li>05.09 - 07.09 Asia Area in Oschersleben</li>
                     <li>12.09 - 14.09 Gamesvention in Kempten</li>
                     <li>07.11 - 09.11 YaYoCo in Dachau</li>
