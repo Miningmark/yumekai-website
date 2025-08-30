@@ -52,7 +52,7 @@ export default function Slide2() {
       <Wrapper>
         <Content>
           <Headline>
-            31.05 - 01.06 2025 <br />
+            09.05 - 10.05 2026 <br />
             Memmingen
           </Headline>
         </Content>
