@@ -20,9 +20,10 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>05.09 - 07.09 Asia Area in Oschersleben</li>
-                    <li>12.09 - 14.09 Gamesvention in Kempten</li>
+                    <li>27.09 - 28.09 Techniktreffen in Speyer</li>
+                    <li>11.10 - 12.10 Cosplay & Game in Bludenz Österreich</li>
                     <li>07.11 - 09.11 YaYoCo in Dachau</li>
+                    <li>29.11 - 30.11 ComicCon in Stuttgart</li>
                   </ul>
                 </>
               }
