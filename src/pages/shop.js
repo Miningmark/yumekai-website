@@ -342,11 +342,11 @@ export default function Shop() {
 
       <h2>Top-Unterstützer</h2>
       <ol>
-        <li>HerrHomie</li>
         <li>Shinoa Aizawa</li>
+        <li>HerrHomie</li>
         <li>TOWELDAY Austria </li>
         <li>Lukas</li>
-        <li>Karokitty</li>
+        <li>AkioSensei </li>
       </ol>
 
       <p>
