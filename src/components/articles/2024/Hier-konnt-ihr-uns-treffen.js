@@ -20,7 +20,7 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>27.09 - 28.09 Techniktreffen in Speyer</li>
+                    
                     <li>11.10 - 12.10 Cosplay & Game in Bludenz Österreich</li>
                     <li>07.11 - 09.11 YaYoCo in Dachau</li>
                     <li>29.11 - 30.11 ComicCon in Stuttgart</li>
@@ -31,9 +31,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>ComicCon in Stuttgart</li>
-                    <li>MostiCon in Wieselsburg</li>
-                    <li>Frankenmexx in Nürnberg</li>
                     <li>ComicCon in Dornbirn</li>
                     <li>Mishiro in Augsburg</li>
                     <li>GG Bavaria in München</li>
@@ -46,6 +43,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>WieMaiKai in Flörsheim</li>
                     <li>Loricon in Seefeld</li>
                     <li>Cosday² in Frankfurt</li>
+                    <li>Techniktreffen in Speyer</li>
                   </ul>
                 </>
               }
