@@ -18,12 +18,24 @@ import PhotoContest1 from "@/components/articles/2025/PhotoContest1";
 import AnkundigungAndyKnote from "@/components/articles/2025/AnkundigungAndyKnote";
 import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe";
 import AnkundigungCosplayVersteigerung from "@/components/articles/2025/AnkundigungCosplayVersteigerung";
+import AnkundigungSebastianFitzner from "@/components/articles/2025/AnkundigungSebastianFitzner";
+import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
+import AnkundigungCUG from "@/components/articles/2025/AkundigungCUG";
+import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 
 export default function Archiv() {
   return (
     <>
       <h1>Archiv</h1>
       <p>Hier findet ihr alle älteren Beiträge von der Startseite (Aktuelles).</p>
+      <Spacer />
+      <AnkundigungCoheki />
+      <Spacer />
+      <AnkundigungCUG />
+      <Spacer />
+      <AnkundigungBall />
+      <Spacer />
+      <AnkundigungSebastianFitzner />
       <Spacer />
       <AnkundigungCosplayVersteigerung />
       <Spacer />

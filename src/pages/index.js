@@ -30,71 +30,38 @@ export default function Home() {
     <>
       <HomeSlider />
       <SpacerEmpty />
-      {/*
+      
+      {/*UTC Time */}
       <CounterClock
         finalDate="2026-05-09T08:00:00Z"
-        headline="Bald ist es soweit! Und die YumeKai 2026 findet statt."
+        headline="Wir freuen uns auf die YumeKai 2026!"
       />
       <SpacerEmpty />
-       */}
-      {/*UTC Time */}
-
+       
       <h1>Aktuelles</h1>
       <p>
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+      
+      <HierKonntIhrUnsTreffen />
+      <Spacer />
       <YumeKaiZeichenwettbewerb25 />
       <Spacer />
       {/* 
       <Programm2025 />
       <Spacer />
       */}
-      {/* 
-      <AnmeldungYumeKaiWettbewerbe />
-      <Spacer />
-      */}
       <AnkundigungMayumiNagashi />
       <Spacer />
       <AnkundigungMion />
-      <Spacer />
-      <AnkundigungCoheki />
-      <Spacer />
-      <AnkundigungCUG />
-      <Spacer />
-      <HierKonntIhrUnsTreffen />
-      {/*
-      <Spacer />
-      <AnkundigungCosplayVersteigerung />
-      <Spacer />
-      <AnkundigungMaidCafe />
       
-      */}
-      {/*
-      <Spacer />
-      <AnmeldungCatwalk />
-      <Spacer />
-      */}
-      <AnkundigungBall />
-      <Spacer />
-      <AnkundigungSebastianFitzner />
       {/* 
       <Spacer />
       <HelferPost />
       */}
-      {/*
-      <Spacer />
-      <AnkundigungAndyKnote />
-      <Spacer />
-      <PhotoContest1 />
-      <Spacer />
-      <AnkundigungDominikAuer />
-      <Spacer />
-      <AnkundigungPetraScheeser />
-      <Spacer />
-      <AnkundigungJuliaMeyen />
-      */}
+      
       <Spacer />
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
