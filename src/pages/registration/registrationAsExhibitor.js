@@ -57,19 +57,15 @@ export default function RegistrationAsExhibitor() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [vendorName, setVendorName] = useState("");
-  const [artistName, setArtistName] = useState("");
   const [street, setStreet] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const [typeOfArt, setTypeOfArt] = useState("");
-  const [standSize, setStandSize] = useState("");
-  const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(false);
-  const [wlan, setWlan] = useState(false);
-  const [programmBooklet, setProgrammBooklet] = useState("Nein");
+  const [groupName, setGroupName] = useState("");
+  const [groupMembers, setGroupMembers] = useState(1);
   const [descriptionOfStand, setDescriptionOfStand] = useState("");
+  const [standSize, setStandSize] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
@@ -80,7 +76,7 @@ export default function RegistrationAsExhibitor() {
   const [dataStorage, setDataStorage] = useState(false);
   const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [artistConditions, setArtistConditions] = useState(false);
+  const [conditions, setConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -92,18 +88,14 @@ export default function RegistrationAsExhibitor() {
     lastName: useRef(null),
     email: useRef(null),
     confirmEmail: useRef(null),
-    vendorName: useRef(null),
-    artistName: useRef(null),
     street: useRef(null),
     postalCode: useRef(null),
     city: useRef(null),
     country: useRef(null),
-    typeOfArt: useRef(null),
-    standSize: useRef(null),
-    additionalExhibitorTicket: useRef(null),
-    wlan: useRef(null),
-    programmBooklet: useRef(null),
+    groupName: useRef(null),
+    groupMembers: useRef(null),
     descriptionOfStand: useRef(null),
+    standSize: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
     image: useRef(null),
@@ -114,29 +106,6 @@ export default function RegistrationAsExhibitor() {
     pictureRights: useRef(null),
     artistConditions: useRef(null),
   };
-
-  // Kostenberechnung
-  const standCosts = {
-    "Ganzer Tisch": 90,
-    "Halber Tisch": 50,
-  };
-
-  const programmBookletCost = {
-    Nein: 0,
-    "Ganze Seite": 85,
-    "Halbe Seite": 45,
-    "Viertel Seite": 30,
-  };
-
-  const ticketCost = 52;
-  const wlanCost = 10;
-
-  const selectedStandCost = standCosts[standSize] || 0;
-  const totalTicketCost = additionalExhibitorTicket ? ticketCost : 0;
-  const totalWlanCost = wlan ? wlanCost : 0;
-  const totalProgrammBookletCost = programmBookletCost[programmBooklet] || 0;
-
-  const totalCost = selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalWlanCost;
 
   async function submit(event) {
     event.preventDefault();
@@ -163,16 +132,6 @@ export default function RegistrationAsExhibitor() {
     if (!emailValidation.check)
       newErrors.push({ field: "email", message: emailValidation.description });
 
-    //Firmenname Validierung
-    const vendorNameValidation = validateString(vendorName, "Firmenname");
-    if (!vendorNameValidation.check)
-      newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
-
-    //Künstlername Validierung
-    const artistNameValidation = validateString(artistName, "Künstlername", 2, 50, true);
-    if (!artistNameValidation.check)
-      newErrors.push({ field: "artistName", message: artistNameValidation.description });
-
     //Straße Validierung
     const streetValidation = validateString(street, "Straße", 3, 50, true);
     if (!streetValidation.check)
@@ -193,10 +152,16 @@ export default function RegistrationAsExhibitor() {
     if (!countryValidation.check)
       newErrors.push({ field: "country", message: countryValidation.description });
 
-    //Art der Kunst Validierung
-    const typeOfArtValidation = validateString(typeOfArt, "Art der Kunst", 2, 2500, true);
-    if (!typeOfArtValidation.check)
-      newErrors.push({ field: "typeOfArt", message: typeOfArtValidation.description });
+    //Gruppenname Validierung
+    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 50, true);
+    if (!groupNameValidation.check)
+      newErrors.push({ field: "groupName", message: groupNameValidation.description });
+
+    //Gruppenmitglieder Validierung
+    if (groupMembers < 1)
+      newErrors.push({ field: "groupMembers", message: "Mindestens 1 Gruppenmitglied" });
+    if (groupMembers > 25)
+      newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
 
     //Beschreibung des Standes Validierung
     const descriptionOfStandValidation = validateString(
@@ -210,6 +175,20 @@ export default function RegistrationAsExhibitor() {
       newErrors.push({
         field: "descriptionOfStand",
         message: descriptionOfStandValidation.description,
+      });
+
+    //Standgröße Validierung
+    const standSizeValidation = validateString(
+      descriptionOfStand,
+      "Standgröße",
+      5,
+      2500,
+      true
+    );
+    if (!standSizeValidation.check)
+      newErrors.push({
+        field: "standSize",
+        message: standSizeValidation.description,
       });
 
     //Website Validierung
@@ -255,9 +234,9 @@ export default function RegistrationAsExhibitor() {
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
 
     //Teilnahmebedingungen
-    if (!artistConditions)
+    if (!conditions)
       newErrors.push({
-        field: "artistConditions",
+        field: "conditions",
         message: "Teilnahmebedingungen müssen akzeptiert werden",
       });
 
@@ -279,18 +258,14 @@ export default function RegistrationAsExhibitor() {
     formData.append("name", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
-    formData.append("vendorName", vendorName.trim());
-    formData.append("artistName", artistName.trim());
     formData.append("street", street.trim());
     formData.append("postalCode", postalCode.trim());
     formData.append("city", city.trim());
     formData.append("country", country.trim());
-    formData.append("typeOfArt", typeOfArt.trim());
+    formData.append("groupName", groupName.trim());
+    formData.append("groupMembers", groupMembers.trim());
     formData.append("descriptionOfStand", descriptionOfStand.trim());
     formData.append("standSize", standSize);
-    formData.append("additionalExhibitorTicket", additionalExhibitorTicket);
-    formData.append("wlan", wlan);
-    formData.append("programmBooklet", programmBooklet);
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
@@ -298,11 +273,11 @@ export default function RegistrationAsExhibitor() {
     formData.append("dataStorage", dataStorage);
     formData.append("licensedMusic", licensedMusic);
     formData.append("pictureRights", pictureRights);
-    formData.append("artistConditions", artistConditions);
+    formData.append("conditions", conditions);
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/registrationAsArtist", {
+      const response = await fetch("/api/registrationAsExhibitor", {
         method: "POST",
         body: formData,
       });
@@ -315,17 +290,13 @@ export default function RegistrationAsExhibitor() {
         setLastName("");
         setEmail("");
         setConfirmEmail("");
-        setVendorName("");
-        setArtistName("");
         setStreet("");
         setPostalCode("");
         setCity("");
         setCountry("");
-        setTypeOfArt("");
+        setGroupName("");
+        setGroupMembers(1);
         setStandSize("");
-        setAdditionalExhibitorTicket(false);
-        setWlan(false);
-        setProgrammBooklet("Nein");
         setDescriptionOfStand("");
         setWebsite("");
         setInstagram("");
@@ -334,7 +305,7 @@ export default function RegistrationAsExhibitor() {
         setDataStorage(false);
         setLicensedMusic(false);
         setPictureRights(false);
-        setArtistConditions(false);
+        setConditions(false);
         setFile(null);
         setPreviewUrl(null);
       } else {
@@ -385,14 +356,14 @@ export default function RegistrationAsExhibitor() {
 
   return (
     <>
-      <h1>Anmeldung als Künstler</h1>
+      <h1>Anmeldung Gruppen/Fan Stand</h1>
       <p>
-        Sichert euch euren Platz auf der YumeKai 2025!
+        Sichert euch euren Platz auf der YumeKai 2026!
         <br />
         <br />
         Bitte beachtet die{" "}
-        <StyledLink href="/downloads/Teilnahmebedingungen_Kuenstler_2025.pdf" target="_blank">
-          Teilnahme- und Auswahlbedingungen für Künstler
+        <StyledLink href="/" target="_blank">
+          Teilnahme- und Auswahlbedingungen
         </StyledLink>
         .
         <br />
@@ -412,7 +383,7 @@ export default function RegistrationAsExhibitor() {
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
           <StyledForm onSubmit={submit}>
-            <h2>Persönliche Angaben</h2>
+            <h2>Persönliche Angaben (Kontaktperson)</h2>
             <InputOptionInput
               title="Name"
               inputText={name}
@@ -443,21 +414,6 @@ export default function RegistrationAsExhibitor() {
               inputChange={setConfirmEmail}
               inputRef={refs.emailConfirm}
               isError={errors.some((error) => error.field === "confirmEmail")}
-              require
-            />
-            <InputOptionInput
-              title="Firmenname"
-              inputText={vendorName}
-              inputChange={(value) => setVendorName(value)}
-              inputRef={refs.vendorName}
-              isError={errors.some((error) => error.field === "vendorName")}
-            />
-            <InputOptionInput
-              title="Künstlername"
-              inputText={artistName}
-              inputChange={(value) => setArtistName(value)}
-              inputRef={refs.artistName}
-              isError={errors.some((error) => error.field === "artistName")}
               require
             />
 
@@ -500,13 +456,24 @@ export default function RegistrationAsExhibitor() {
 
             <Spacer />
             <h2>Stand</h2>
-            <InputOptionTextArea
-              title="Art der Kunst"
-              inputText={typeOfArt}
-              inputChange={(value) => setTypeOfArt(value)}
-              inputRef={refs.typeOfArt}
-              isError={errors.some((error) => error.field === "typeOfArt")}
+            <InputOptionInput
+              title="Gruppenname"
+              inputText={groupName}
+              inputChange={(value) => setGroupName(value)}
+              inputRef={refs.groupName}
+              isError={errors.some((error) => error.field === "Gruppenname")}
               require
+            />
+            <InputOptionInput
+                title="Gruppenmitglieder"
+                inputText={groupMembers}
+                inputChange={setGroupMembers}
+                inputRef={refs.groupMembers}
+                isError={errors.some((error) => error.field === "groupMembers")}
+                require
+                type="number"
+                min={1}
+                max={25}
             />
             <InputOptionTextArea
               title="Beschreibung des Standes"
@@ -514,6 +481,14 @@ export default function RegistrationAsExhibitor() {
               inputChange={(value) => setDescriptionOfStand(value)}
               inputRef={refs.descriptionOfStand}
               isError={errors.some((error) => error.field === "descriptionOfStand")}
+              require
+            />
+            <InputOptionTextArea
+              title="Standgröße"
+              inputText={standSize}
+              inputChange={(value) => setStandSize(value)}
+              inputRef={refs.standSize}
+              isError={errors.some((error) => error.field === "standSize")}
               require
             />
             <p>
@@ -538,57 +513,6 @@ export default function RegistrationAsExhibitor() {
               isError={errors.some((error) => error.field === "standSize")}
               require
             />
-            <CheckBox
-              title="Zusätzliches Ausstellerticket (42€)"
-              inputText={additionalExhibitorTicket}
-              inputChange={(value) => setAdditionalExhibitorTicket(value)}
-              inputRef={refs.additionalExhibitorTicket}
-              isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
-            />
-            <CheckBox
-              title="wlan"
-              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10€)"
-              isChecked={wlan}
-              inputChange={(value) => setWlan(value)}
-              inputRef={refs.wlan}
-              isError={errors.some((error) => error.field === "wlan")}
-            />
-            <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
-            <RadioButton
-              title={
-                <>
-                  <span>
-                    Programmheft{" "}
-                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blanck">
-                      Infoblatt
-                    </StyledLink>{" "}
-                  </span>
-                </>
-              }
-              names={["Nein", "Viertel Seite (30€)", "Halbe Seite (45€)", "Ganze Seite (85€)"]}
-              options={["Nein", "Viertel Seite", "Halbe Seite", "Ganze Seite"]}
-              selectedOption={programmBooklet}
-              inputChange={(value) => setProgrammBooklet(value)}
-              inputRef={refs.programmBooklet}
-              isError={errors.some((error) => error.field === "programmBooklet")}
-              require
-            />
-
-            <h3>Gesamtkosten</h3>
-            <ul>
-              <li>
-                Standgröße: {standSize} ({selectedStandCost.toFixed(2)}€)
-              </li>
-              {additionalExhibitorTicket && <li>Zusätzliche Ausstellertickets: 52,00€</li>}
-              {wlan && <li>W-Lan: 10,00€</li>}
-              {programmBooklet !== "Nein" && (
-                <li>
-                  Programmheft: {programmBooklet} ({totalProgrammBookletCost.toFixed(2)}€)
-                </li>
-              )}
-            </ul>
-
-            <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST</h4>
 
             <Spacer />
             <h2>Allgemeines</h2>
@@ -687,12 +611,12 @@ export default function RegistrationAsExhibitor() {
               require
             />
             <CheckBox
-              title="artistConditions"
+              title="conditions"
               content={
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Teilnahmebedingungen_Kuenstler_2025.pdf"
+                    href="/"
                     target="_blank"
                   >
                     Teilnahmebedingungen
