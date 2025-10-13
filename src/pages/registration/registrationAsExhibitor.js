@@ -613,10 +613,10 @@ export default function RegistrationAsExhibitor() {
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
                 </p>
               }
-              isChecked={artistConditions}
-              inputChange={(value) => setArtistConditions(value)}
-              inputRef={refs.artistConditions}
-              isError={errors.some((error) => error.field === "artistConditions")}
+              isChecked={conditions}
+              inputChange={(value) => setConditions(value)}
+              inputRef={refs.conditions}
+              isError={errors.some((error) => error.field === "conditions")}
               require
             />
 
