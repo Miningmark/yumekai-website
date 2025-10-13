@@ -43,7 +43,7 @@ export default function Crowdfunding() {
         <br/><br/>
             Bis zum 31. Dezember 2025 kannst du uns auf  <StyledLink href="/shop" target="_blank">
               YumeKai-Crowdfunding
-            </StyledLink> unterstützen und dafür tolle Belohnungen.
+            </StyledLink> unterstützen und dafür tolle Belohnungen erhalten.
             <br/><br/>
             Jede Spende, egal wie klein, bringt uns näher an unser Ziel. Werde Teil der YumeKai-Community und hilf uns, ein unvergessliches Erlebnis zu schaffen!</p>
 
