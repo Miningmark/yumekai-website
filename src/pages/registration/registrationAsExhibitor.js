@@ -257,9 +257,9 @@ export default function RegistrationAsExhibitor() {
     formData.append("city", city.trim());
     formData.append("country", country.trim());
     formData.append("groupName", groupName.trim());
-    formData.append("groupMembers", groupMembers.trim());
+    formData.append("groupMembers", groupMembers);
     formData.append("descriptionOfStand", descriptionOfStand.trim());
-    formData.append("standSize", standSize);
+    formData.append("standSize", standSize.trim());
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
