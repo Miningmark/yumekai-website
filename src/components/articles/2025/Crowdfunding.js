@@ -20,8 +20,7 @@ export default function Crowdfunding() {
         }}
       >
         <DynamicContent
-          $widthpercent={25} // soll 40% von der Seite einnehmen
-          //  $maxwidth={300}
+          $widthpercent={25}
           $align="center"
           $justify="center"
         >
@@ -37,7 +36,6 @@ export default function Crowdfunding() {
         </DynamicContent>
 
         <DynamicContent $widthpercent={75}>
-          {/* Muss mit oberer übereinstimmen */}
           <h3>Hilf mit, die YumeKai 2026 Wirklichkeit werden zu lassen!</h3>
          <p>Die YumeKai 2026 braucht deine Unterstützung! Wir sind auf einem spannenden Crowdfunding-Trip, um dieses einzigartige Event zu realisieren.
         <br/><br/>

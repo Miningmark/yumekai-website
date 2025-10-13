@@ -223,8 +223,7 @@ export default function RegistrationCosplayCatwalk() {
       </p>
 
       <h2>Die Anmeldung für den Cosplay Crafting Wettbewerb ist bereits geschlossen.</h2>
-
-      {/* 
+ 
       {!success && (
         <>
           <p>
@@ -409,7 +408,6 @@ export default function RegistrationCosplayCatwalk() {
           </ModalOverlay>
         </>
       )}
-        */}
     </>
   );
 }

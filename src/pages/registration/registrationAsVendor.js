@@ -449,7 +449,6 @@ export default function RegistrationAsVendor() {
       
       <h2>Die Anmeldung als Händler ist momentan geschlossen.</h2>
 
-      {/* 
       {!success && (
         <>
           <p>
@@ -808,7 +807,6 @@ export default function RegistrationAsVendor() {
         </>
       )}
 
-      */}
     </>
   );
 }

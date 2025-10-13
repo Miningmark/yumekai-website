@@ -458,7 +458,6 @@ export default function RegistrationAsShowact() {
 
       <h2>Die Anmeldung als Showact ist momentan geschlossen.</h2>
 
-      {/* 
 
       {!success && (
         <>
@@ -806,7 +805,6 @@ export default function RegistrationAsShowact() {
         </>
       )}
 
-      */}
     </>
   );
 }

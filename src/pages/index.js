@@ -8,7 +8,6 @@ import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-un
 //import HelferPost from "@/components/articles/2025/HelferPost";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 import CounterClock from "@/components/elements/CounterClock";
-//import AnmeldungYumeKaiWettbewerbe from "@/components/articles/2025/AnmeldungYumeKaiWettbewerbe";
 import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 import YumeKaiZeichenwettbewerb25 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb25";
 import Crowdfunding from "@/components/articles/2025/Crowdfunding";

@@ -405,10 +405,9 @@ export default function RegistrationAsArtist() {
             
             <h2>Die Anmeldung als Künstler ist momentan geschlossen.</h2>
       
-            {/* 
+             
       {!success && (
         <>
-          {" "}
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
@@ -730,7 +729,7 @@ export default function RegistrationAsArtist() {
           </ModalOverlay>
         </>
       )}
-        */}
+        
     </>
   );
 }

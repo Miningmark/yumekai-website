@@ -440,7 +440,6 @@ export default function RegistrationAsWorkshop() {
       
       <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.</h2>
 
-      {/* 
 
       {!success && (
         <>
@@ -743,7 +742,6 @@ export default function RegistrationAsWorkshop() {
         </>
       )}
 
-      */}
     </>
   );
 }

@@ -306,7 +306,6 @@ export default function RegistrationCosplayCatwalk() {
 
       <h2>Die Anmeldung für den Cosplay Performance Wettbewerb ist nur noch vor Ort möglich.</h2>
 
-      {/* 
       {!success && (
         <>
           <p>
@@ -539,7 +538,6 @@ export default function RegistrationCosplayCatwalk() {
           </ModalOverlay>
         </>
       )}
-        */}
     </>
   );
 }
