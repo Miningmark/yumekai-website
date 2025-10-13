@@ -19,9 +19,8 @@ import AnkundigungCosplayVersteigerung from "@/components/articles/2025/Ankundig
 import AnkundigungCUG from "@/components/articles/2025/AkundigungCUG";
 import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
-//import CounterClock from "@/components/elements/CounterClock";
+import CounterClock from "@/components/elements/CounterClock";
 //import AnmeldungYumeKaiWettbewerbe from "@/components/articles/2025/AnmeldungYumeKaiWettbewerbe";
-import Programm2025 from "@/components/articles/2025/Programm2025";
 import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 import YumeKaiZeichenwettbewerb25 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb25";
 
@@ -49,10 +48,7 @@ export default function Home() {
       <Spacer />
       <YumeKaiZeichenwettbewerb25 />
       <Spacer />
-      {/* 
-      <Programm2025 />
-      <Spacer />
-      */}
+     
       <AnkundigungMayumiNagashi />
       <Spacer />
       <AnkundigungMion />
