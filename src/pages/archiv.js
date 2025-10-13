@@ -11,12 +11,33 @@ import GewinnerPerformanceWettbewerb from "@/components/articles/2024/Gewinner-P
 //import AnkundigungYumeKai2025 from "@/components/articles/2024/Ankundigung-YumeKai2025";
 //import EroffnungTicketShop from "@/components/articles/2024/EroffnungTicketShop";
 import Spendenubergabe from "@/components/articles/2024/Spendenubergabe";
+import AnkundigungJuliaMeyen from "@/components/articles/2024/AnkundigungJuliaMeyen";
+import AnkundigungPetraScheeser from "@/components/articles/2025/AnkundigungPetraScheeser";
+import AnkundigungDominikAuer from "@/components/articles/2025/AnkundigungDominikAuer";
+import PhotoContest1 from "@/components/articles/2025/PhotoContest1";
+import AnkundigungAndyKnote from "@/components/articles/2025/AnkundigungAndyKnote";
+import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe";
+import AnkundigungCosplayVersteigerung from "@/components/articles/2025/AnkundigungCosplayVersteigerung";
 
 export default function Archiv() {
   return (
     <>
       <h1>Archiv</h1>
       <p>Hier findet ihr alle älteren Beiträge von der Startseite (Aktuelles).</p>
+      <Spacer />
+      <AnkundigungCosplayVersteigerung />
+      <Spacer />
+      <AnkundigungMaidCafe />
+      <Spacer />
+      <AnkundigungAndyKnote />
+      <Spacer />
+      <PhotoContest1 />
+      <Spacer />
+      <AnkundigungDominikAuer />
+      <Spacer />
+      <AnkundigungPetraScheeser />
+      <Spacer />
+      <AnkundigungJuliaMeyen />
       <Spacer />
       <Spendenubergabe />
       <Spacer />

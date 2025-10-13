@@ -32,8 +32,8 @@ export default function Home() {
       <SpacerEmpty />
       {/*
       <CounterClock
-        finalDate="2025-05-31T08:00:00Z"
-        headline="Bald ist es soweit! Und die YumeKai 2025 findet statt."
+        finalDate="2026-05-09T08:00:00Z"
+        headline="Bald ist es soweit! Und die YumeKai 2026 findet statt."
       />
       <SpacerEmpty />
        */}
@@ -64,23 +64,27 @@ export default function Home() {
       <AnkundigungCUG />
       <Spacer />
       <HierKonntIhrUnsTreffen />
+      {/*
       <Spacer />
       <AnkundigungCosplayVersteigerung />
       <Spacer />
       <AnkundigungMaidCafe />
-      <Spacer />
+      
+      */}
       {/*
+      <Spacer />
       <AnmeldungCatwalk />
       <Spacer />
       */}
       <AnkundigungBall />
       <Spacer />
       <AnkundigungSebastianFitzner />
-      <Spacer />
       {/* 
-      <HelferPost />
       <Spacer />
+      <HelferPost />
       */}
+      {/*
+      <Spacer />
       <AnkundigungAndyKnote />
       <Spacer />
       <PhotoContest1 />
@@ -90,6 +94,7 @@ export default function Home() {
       <AnkundigungPetraScheeser />
       <Spacer />
       <AnkundigungJuliaMeyen />
+      */}
       <Spacer />
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
