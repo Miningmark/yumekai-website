@@ -503,17 +503,6 @@ export default function RegistrationAsExhibitor() {
             />
             {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
 
-            <RadioButton
-              title="Standgröße"
-              names={["Ganzer Tisch (90€)", "Halber Tisch (50€)"]}
-              options={["Ganzer Tisch", "Halber Tisch"]}
-              selectedOption={standSize}
-              inputChange={(value) => setStandSize(value)}
-              inputRef={refs.gender}
-              isError={errors.some((error) => error.field === "standSize")}
-              require
-            />
-
             <Spacer />
             <h2>Allgemeines</h2>
 
