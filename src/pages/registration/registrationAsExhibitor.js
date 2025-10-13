@@ -368,7 +368,7 @@ export default function RegistrationAsExhibitor() {
       </p>
 
             
-            <h2>Die Anmeldung als Künstler ist momentan geschlossen.</h2>
+            <h2>Die Anmeldung für einen Gruppen/Fan stand ist momentan geschlossen.</h2>
       
              
       {!success && (
