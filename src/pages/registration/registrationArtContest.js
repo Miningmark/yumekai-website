@@ -240,7 +240,6 @@ export default function RegistrationArtContest() {
 
       <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
 
-      {/* 
       {!success && (
         <>
           <p>
@@ -442,7 +441,6 @@ export default function RegistrationArtContest() {
         </>
       )}
 
-      */}
     </>
   );
 }
