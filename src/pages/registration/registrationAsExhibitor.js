@@ -18,7 +18,6 @@ import {
   ModalOverlay,
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
-import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
@@ -104,7 +103,7 @@ export default function RegistrationAsExhibitor() {
     dataStorage: useRef(null),
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    artistConditions: useRef(null),
+    conditions: useRef(null),
   };
 
   async function submit(event) {
@@ -179,7 +178,7 @@ export default function RegistrationAsExhibitor() {
 
     //Standgröße Validierung
     const standSizeValidation = validateString(
-      descriptionOfStand,
+      standSize,
       "Standgröße",
       5,
       2500,
@@ -205,11 +204,6 @@ export default function RegistrationAsExhibitor() {
     const messageValidation = validateString(message, "Nachricht", 0, 2500);
     if (!messageValidation.check)
       newErrors.push({ field: "message", message: messageValidation.description });
-
-    if (!standSize)
-      newErrors.push({ field: "standSize", message: "Standgröße ist ein Pflichtfeld" });
-    if (!programmBooklet)
-      newErrors.push({ field: "programmBooklet", message: "Programmheft ist ein Pflichtfeld" });
 
     //Bild
     if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
