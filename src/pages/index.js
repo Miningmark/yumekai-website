@@ -5,24 +5,13 @@ import HomeSlider from "@/components/home/HomeSlider";
 
 //Articles
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";
-import AnkundigungJuliaMeyen from "@/components/articles/2024/AnkundigungJuliaMeyen";
-import AnkundigungPetraScheeser from "@/components/articles/2025/AnkundigungPetraScheeser";
-import AnkundigungDominikAuer from "@/components/articles/2025/AnkundigungDominikAuer";
-import PhotoContest1 from "@/components/articles/2025/PhotoContest1";
-import AnkundigungAndyKnote from "@/components/articles/2025/AnkundigungAndyKnote";
 //import HelferPost from "@/components/articles/2025/HelferPost";
-import AnkundigungSebastianFitzner from "@/components/articles/2025/AnkundigungSebastianFitzner";
-import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
-//import AnmeldungCatwalk from "@/components/articles/2025/AnmeldungCatwalk";
-import AnkundigungMaidCafe from "@/components/articles/2025/AnkundigungMaidCafe";
-import AnkundigungCosplayVersteigerung from "@/components/articles/2025/AnkundigungCosplayVersteigerung";
-import AnkundigungCUG from "@/components/articles/2025/AkundigungCUG";
-import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 import CounterClock from "@/components/elements/CounterClock";
 //import AnmeldungYumeKaiWettbewerbe from "@/components/articles/2025/AnmeldungYumeKaiWettbewerbe";
 import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 import YumeKaiZeichenwettbewerb25 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb25";
+import Crowdfunding from "@/components/articles/2025/Crowdfunding";
 
 export default function Home() {
   return (
@@ -43,7 +32,8 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
-      
+      <Crowdfunding/>
+      <Spacer />
       <HierKonntIhrUnsTreffen />
       <Spacer />
       <YumeKaiZeichenwettbewerb25 />
