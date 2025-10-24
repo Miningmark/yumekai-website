@@ -54,7 +54,7 @@ export default function RegistrationAsVendor() {
   const [country, setCountry] = useState("");
 
   const [typeOfAssortment, setTypeOfAssortment] = useState("");
-  const [standSize, setStandSize] = useState("2x2"); //ENUM: 2x2, 2x3, 2x4, 2x5, 2x6, 2x7, INDIVIDUAL
+  const [standSize, setStandSize] = useState("2X2"); //ENUM: 2x2, 2x3, 2x4, 2x5, 2x6, 2x7, INDIVIDUAL
   const [location, setLocation] = useState("STADTHALLE"); //ENUM: STADTHALLE, KOLBEHAUS, EGAL
   const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(0);
   const [power, setPower] = useState(false);
@@ -362,7 +362,7 @@ export default function RegistrationAsVendor() {
         setCity("");
         setCountry("");
         setTypeOfAssortment("");
-        setStandSize("");
+        setStandSize("2X2");
         setLocation("STADTHALLE");
         setAdditionalExhibitorTicket(0);
         setPower(false);
