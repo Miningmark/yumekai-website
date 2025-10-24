@@ -316,7 +316,7 @@ export default function RegistrationAsVendor() {
           headers: {
             "Content-Type": `application/json`,
           },
-          body: {
+          body: JSON.stringify({
             eventId: eventId,
             firstName: name.trim(),
             lastName: lastName.trim(),
@@ -343,7 +343,7 @@ export default function RegistrationAsVendor() {
             licensedMusicPolicy: licensedMusic,
             pictureRightsPolicy: pictureRights,
             conditionsPolicy: conditions,
-          },
+          }),
         }
       );
 
