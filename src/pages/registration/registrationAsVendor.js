@@ -313,7 +313,9 @@ export default function RegistrationAsVendor() {
         "https://node.miningmark.de/api/v1/event/application/createVendor",
         {
           method: "POST",
-          contentType: "application/json",
+          headers: {
+            "Content-Type": `application/json`,
+          },
           body: {
             eventId: eventId,
             firstName: name.trim(),
@@ -344,6 +346,7 @@ export default function RegistrationAsVendor() {
           },
         }
       );
+
       if (response.ok) {
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
