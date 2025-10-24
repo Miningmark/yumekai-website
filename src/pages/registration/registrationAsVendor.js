@@ -367,7 +367,7 @@ export default function RegistrationAsVendor() {
         setAdditionalExhibitorTicket(0);
         setPower(false);
         setWlan(false);
-        setProgrammBooklet("Nein");
+        setProgrammBooklet("NO");
         setTable("");
         setAnnouncement_text("");
         setWebsite("");
