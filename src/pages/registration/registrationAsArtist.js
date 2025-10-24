@@ -282,36 +282,39 @@ export default function RegistrationAsArtist() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("https://node.miningmark.de/api/v1/", {
-        method: "POST",
-        body: {
-          eventId: eventId,
-          firstName: name.trim(),
-          lastName: lastName.trim(),
-          email: email.trim().toLowerCase(),
-          vendorName: vendorName.trim(),
-          artistName: artistName.trim(),
-          street: street.trim(),
-          postalCode: postalCode.trim(),
-          city: city.trim(),
-          country: country.trim(),
-          typeOfArt: typeOfArt.trim(),
-          announcementText: announcementText.trim(),
-          standSize: standSize,
-          location: location,
-          additionalExhibitorTicket: additionalExhibitorTicket,
-          wlan: wlan,
-          programmBooklet: programmBooklet,
-          website: website.trim(),
-          instagram: instagram.trim(),
-          message: message.trim(),
-          privacyPolicy: privacyPolicy,
-          dataStoragePolicy: dataStorage,
-          licensedMusicPolicy: licensedMusic,
-          pictureRightsPolicy: pictureRights,
-          conditionsPolicy: conditions,
-        },
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createArtist",
+        {
+          method: "POST",
+          body: {
+            eventId: eventId,
+            firstName: name.trim(),
+            lastName: lastName.trim(),
+            email: email.trim().toLowerCase(),
+            vendorName: vendorName.trim(),
+            artistName: artistName.trim(),
+            street: street.trim(),
+            postalCode: postalCode.trim(),
+            city: city.trim(),
+            country: country.trim(),
+            typeOfArt: typeOfArt.trim(),
+            announcementText: announcementText.trim(),
+            standSize: standSize,
+            location: location,
+            additionalExhibitorTicket: additionalExhibitorTicket,
+            wlan: wlan,
+            programmBooklet: programmBooklet,
+            website: website.trim(),
+            instagram: instagram.trim(),
+            message: message.trim(),
+            privacyPolicy: privacyPolicy,
+            dataStoragePolicy: dataStorage,
+            licensedMusicPolicy: licensedMusic,
+            pictureRightsPolicy: pictureRights,
+            conditionsPolicy: conditions,
+          },
+        }
+      );
       if (response.ok) {
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."

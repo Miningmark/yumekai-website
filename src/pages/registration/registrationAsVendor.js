@@ -313,9 +313,6 @@ export default function RegistrationAsVendor() {
         "https://node.miningmark.de/api/v1/event/application/createVendor",
         {
           method: "POST",
-          headers: {
-            "Content-Type": `multipart/form-data`,
-          },
           body: formData,
 
           /*JSON.stringify({
