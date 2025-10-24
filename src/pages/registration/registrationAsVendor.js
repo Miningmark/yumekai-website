@@ -313,6 +313,7 @@ export default function RegistrationAsVendor() {
         "https://node.miningmark.de/api/v1/event/application/createVendor",
         {
           method: "POST",
+          contentType: "application/json",
           body: {
             eventId: eventId,
             firstName: name.trim(),
