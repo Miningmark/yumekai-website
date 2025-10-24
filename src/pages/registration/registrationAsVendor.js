@@ -293,7 +293,7 @@ export default function RegistrationAsVendor() {
     formData.append("announcementText", announcement_text.trim());
     formData.append("standSize", standSize);
     formData.append("location", location);
-    formData.append("additionalExhibitorTicket", additionalExhibitorTicket);
+    formData.append("additionalExhibitorTickets", additionalExhibitorTicket);
     formData.append("power", power);
     formData.append("wlan", wlan);
     formData.append("programmBooklet", programmBooklet);
@@ -330,11 +330,11 @@ export default function RegistrationAsVendor() {
             announcementText: announcement_text.trim(),
             standSize: standSize,
             location: location,
-            additionalExhibitorTicket: additionalExhibitorTicket,
-            power: power,
-            wlan: wlan,
-            programmBooklet: programmBooklet,
-            table: table === "Ja" ? true : false,
+            additionalExhibitorTickets: additionalExhibitorTicket,
+            powerRequired: power,
+            wlanRequired: wlan,
+            bookletSite: programmBooklet,
+            tableRequired: table === "Ja" ? true : false,
             website: website.trim(),
             instagram: instagram.trim(),
             message: message.trim(),

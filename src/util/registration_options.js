@@ -14,18 +14,18 @@ export const LOCATION_OPTIONS = [
 
 export const PROGRAMM_BOOKLET_OPTIONS = [
   { label: "Nein", value: "NO", price: 0 },
-  { label: "Viertel Seite (35€)", value: "QUATER_SITE", price: 35 },
+  { label: "Viertel Seite (35€)", value: "QUARTER_SITE", price: 35 },
   { label: "Halbe Seite (50€)", value: "HALF_SITE", price: 50 },
   { label: "Ganze Seite (85€)", value: "FULL_SITE", price: 85 },
 ];
 
 export const VENDOR_STANDSIZE_OPTIONS = [
-  { label: "2m x 2m", value: "2x2", price: 4 },
-  { label: "2m x 3m", value: "2x3", price: 6 },
-  { label: "2m x 4m", value: "2x4", price: 8 },
-  { label: "2m x 5m", value: "2x5", price: 10 },
-  { label: "2m x 6m", value: "2x6", price: 12 },
-  { label: "2m x 7m", value: "2x7", price: 14 },
+  { label: "2m x 2m", value: "2X2", price: 4 },
+  { label: "2m x 3m", value: "2X3", price: 6 },
+  { label: "2m x 4m", value: "2X4", price: 8 },
+  { label: "2m x 5m", value: "2X5", price: 10 },
+  { label: "2m x 6m", value: "2X6", price: 12 },
+  { label: "2m x 7m", value: "2X7", price: 14 },
   { label: "Individuel (Preis auf Anfrage)", value: "INDIVIDUAL", price: 0 },
 ];
 
