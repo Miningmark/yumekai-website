@@ -294,10 +294,10 @@ export default function RegistrationAsVendor() {
     formData.append("standSize", standSize);
     formData.append("location", location);
     formData.append("additionalExhibitorTickets", additionalExhibitorTicket);
-    formData.append("power", power);
-    formData.append("wlan", wlan);
-    formData.append("programmBooklet", programmBooklet);
-    formData.append("table", table === "Ja" ? true : false);
+    formData.append("powerRequired", power);
+    formData.append("wlanRequired", wlan);
+    formData.append("bookletSite", programmBooklet);
+    formData.append("tableRequired", table === "Ja" ? true : false);
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
@@ -314,9 +314,11 @@ export default function RegistrationAsVendor() {
         {
           method: "POST",
           headers: {
-            "Content-Type": `application/json`,
+            "Content-Type": `multipart/form-data`,
           },
-          body: JSON.stringify({
+          body: formData,
+
+          /*JSON.stringify({
             eventId: eventId,
             firstName: name.trim(),
             lastName: lastName.trim(),
@@ -344,6 +346,7 @@ export default function RegistrationAsVendor() {
             pictureRightsPolicy: pictureRights,
             conditionsPolicy: conditions,
           }),
+          */
         }
       );
 
