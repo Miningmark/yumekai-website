@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, use } from "react";
 
 //Components
 import {
@@ -23,28 +23,16 @@ import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString from "@/util/inputCheck";
 
-const EU_COUNTRIES = [
-  "Deutschland",
-  "Österreich",
-  "Schweiz",
-  "Belgien",
-  "Frankreich",
-  "Italien",
-  "Spanien",
-  "Niederlande",
-  "Polen",
-  "Tschechien",
-  "Dänemark",
-  "Schweden",
-  "Norwegen",
-  "Finnland",
-  "Irland",
-  "Portugal",
-  "Griechenland",
-  "Ungarn",
-  "Rumänien",
-  "Bulgarien",
-];
+import {
+  EVENT_ID,
+  TICKET_COST,
+  POWER_COST,
+  WLAN_COST,
+  COUNTRIES,
+  LOCATION_OPTIONS,
+  PROGRAMM_BOOKLET_OPTIONS,
+  VENDOR_STANDSIZE_OPTIONS,
+} from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -53,6 +41,8 @@ const isImageFile = (fileName) => {
 };
 
 export default function RegistrationAsVendor() {
+  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -64,13 +54,14 @@ export default function RegistrationAsVendor() {
   const [country, setCountry] = useState("");
 
   const [typeOfAssortment, setTypeOfAssortment] = useState("");
-  const [standSize, setStandSize] = useState("");
+  const [standSize, setStandSize] = useState("2x2"); //ENUM: 2x2, 2x3, 2x4, 2x5, 2x6, 2x7, INDIVIDUAL
+  const [location, setLocation] = useState("STADTHALLE"); //ENUM: STADTHALLE, KOLBEHAUS, EGAL
   const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(0);
-  const [strom, setStrom] = useState(false);
+  const [power, setPower] = useState(false);
   const [wlan, setWlan] = useState(false);
-  const [programmBooklet, setProgrammBooklet] = useState("Nein");
+  const [programmBooklet, setProgrammBooklet] = useState("NO"); //ENUM: NO, QUATER_SITE, HALF_SITE, FULL_SITE
   const [table, setTable] = useState("");
-  const [descriptionOfStand, setDescriptionOfStand] = useState("");
+  const [announcement_text, setAnnouncement_text] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
@@ -81,7 +72,7 @@ export default function RegistrationAsVendor() {
   const [dataStorage, setDataStorage] = useState(false);
   const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [vendorConditions, setVendorConditions] = useState(false);
+  const [conditions, setConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -100,12 +91,13 @@ export default function RegistrationAsVendor() {
     country: useRef(null),
     typeOfAssortment: useRef(null),
     standSize: useRef(null),
+    location: useRef(null),
     additionalExhibitorTicket: useRef(null),
-    strom: useRef(null),
+    power: useRef(null),
     wlan: useRef(null),
     programmBooklet: useRef(null),
     table: useRef(null),
-    descriptionOfStand: useRef(null),
+    announcement_text: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
     message: useRef(null),
@@ -116,44 +108,14 @@ export default function RegistrationAsVendor() {
     vendorConditions: useRef(null),
   };
 
-  const standSizes = {
-    "2x2": "2m x 2m",
-    "2x3": "2m x 3m",
-    "2x4": "2m x 4m",
-    "2x5": "2m x 5m",
-    "2x6": "2m x 6m",
-    "2x7": "2m x 7m",
-    individuell: 0,
-  };
-  const selectedStandSize = standSizes[standSize] || "--";
-
-  // Kostenberechnung
-  const standCosts = {
-    "2x2": 200,
-    "2x3": 300,
-    "2x4": 400,
-    "2x5": 500,
-    "2x6": 600,
-    "2x7": 700,
-    individuell: 0,
-  };
-
-  const programmBookletCost = {
-    Nein: 0,
-    "Ganze Seite": 85,
-    "Halbe Seite": 45,
-    "Viertel Seite": 30,
-  };
-
-  const ticketCost = 42;
-  const stromCost = 30;
-  const wlanCost = 10;
-
-  const selectedStandCost = standCosts[standSize] || 0;
-  const totalTicketCost = additionalExhibitorTicket * ticketCost;
-  const totalStromCost = strom ? stromCost : 0;
-  const totalWlanCost = wlan ? wlanCost : 0;
-  const totalProgrammBookletCost = programmBookletCost[programmBooklet] || 0;
+  const selectedStandCost =
+    VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
+      LOCATION_OPTIONS.find((option) => option.value === location).vendor || 0;
+  const totalTicketCost = additionalExhibitorTicket * TICKET_COST;
+  const totalStromCost = power ? POWER_COST : 0;
+  const totalWlanCost = wlan ? WLAN_COST : 0;
+  const totalProgrammBookletCost =
+    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet).price || 0;
 
   const totalCost =
     selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalStromCost + totalWlanCost;
@@ -168,13 +130,13 @@ export default function RegistrationAsVendor() {
 
     // Validierungslogik mit validateString
     // Name Validierung
-    const nameValidation = validateString(name, "Vorname", 2, 50, true);
+    const nameValidation = validateString(name, "Vorname", 2, 100, true);
     if (!nameValidation.check)
       newErrors.push({ field: "name", message: nameValidation.description });
 
     // Nachname Validierung
     if (lastName) {
-      const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+      const lastNameValidation = validateString(lastName, "Nachname", 2, 100, true);
       if (!lastNameValidation.check)
         newErrors.push({ field: "lastName", message: lastNameValidation.description });
     }
@@ -185,12 +147,12 @@ export default function RegistrationAsVendor() {
       newErrors.push({ field: "email", message: emailValidation.description });
 
     //Firmenname Validierung
-    const vendorNameValidation = validateString(vendorName, "Firmenname", 2, 50, true);
+    const vendorNameValidation = validateString(vendorName, "Firmenname", 2, 100, true);
     if (!vendorNameValidation.check)
       newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
 
     //Straße Validierung
-    const streetValidation = validateString(street, "Straße", 2, 50, true);
+    const streetValidation = validateString(street, "Straße", 2, 100, true);
     if (!streetValidation.check)
       newErrors.push({ field: "street", message: streetValidation.description });
 
@@ -200,12 +162,12 @@ export default function RegistrationAsVendor() {
       newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
 
     //Ort Validierung
-    const cityValidation = validateString(city, "Ort", 2, 50, true);
+    const cityValidation = validateString(city, "Ort", 2, 100, true);
     if (!cityValidation.check)
       newErrors.push({ field: "city", message: cityValidation.description });
 
     //Land Validierung
-    const countryValidation = validateString(country, "Land", 2, 50, true);
+    const countryValidation = validateString(country, "Land", 2, 100, true);
     if (!countryValidation.check)
       newErrors.push({ field: "country", message: countryValidation.description });
 
@@ -223,18 +185,18 @@ export default function RegistrationAsVendor() {
         message: typeOfAssortmentValidation.description,
       });
 
-    //Beschreibung des Standes Validierung
-    const descriptionOfStandValidation = validateString(
-      descriptionOfStand,
-      "Beschreibung des Standes",
+    //Ankündigungstext des Standes Validierung
+    const announcement_textValidation = validateString(
+      announcement_text,
+      "Ankündigungstext",
       10,
       2500,
       true
     );
-    if (!descriptionOfStandValidation.check)
+    if (!announcement_textValidation.check)
       newErrors.push({
-        field: "descriptionOfStand",
-        message: descriptionOfStandValidation.description,
+        field: "announcement_text",
+        message: announcement_textValidation.description,
       });
 
     //Standgröße Validierung
@@ -297,9 +259,9 @@ export default function RegistrationAsVendor() {
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
 
     //Teilnahmebedingungen
-    if (!vendorConditions)
+    if (!conditions)
       newErrors.push({
-        field: "vendorConditions",
+        field: "conditions",
         message: "Teilnahmebedingungen müssen akzeptiert werden",
       });
 
@@ -318,7 +280,8 @@ export default function RegistrationAsVendor() {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("name", name.trim());
+    formData.append("eventId", eventId);
+    formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("vendorName", vendorName.trim());
@@ -327,28 +290,32 @@ export default function RegistrationAsVendor() {
     formData.append("city", city.trim());
     formData.append("country", country.trim());
     formData.append("typeOfAssortment", typeOfAssortment.trim());
-    formData.append("descriptionOfStand", descriptionOfStand.trim());
+    formData.append("announcementText", announcement_text.trim());
     formData.append("standSize", standSize);
+    formData.append("location", location);
     formData.append("additionalExhibitorTicket", additionalExhibitorTicket);
-    formData.append("strom", strom);
+    formData.append("power", power);
     formData.append("wlan", wlan);
     formData.append("programmBooklet", programmBooklet);
-    formData.append("table", table);
+    formData.append("table", table === "Ja" ? true : false);
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("licensedMusic", licensedMusic);
-    formData.append("pictureRights", pictureRights);
-    formData.append("vendorConditions", vendorConditions);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("licensedMusicPolicy", licensedMusic);
+    formData.append("pictureRightsPolicy", pictureRights);
+    formData.append("conditionsPolicy", conditions);
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/registrationAsVendor", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createVendor",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       if (response.ok) {
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
@@ -365,12 +332,13 @@ export default function RegistrationAsVendor() {
         setCountry("");
         setTypeOfAssortment("");
         setStandSize("");
+        setLocation("STADTHALLE");
         setAdditionalExhibitorTicket(0);
-        setStrom(false);
+        setPower(false);
         setWlan(false);
         setProgrammBooklet("Nein");
         setTable("");
-        setDescriptionOfStand("");
+        setAnnouncement_text("");
         setWebsite("");
         setInstagram("");
         setMessage("");
@@ -378,7 +346,7 @@ export default function RegistrationAsVendor() {
         setDataStorage(false);
         setLicensedMusic(false);
         setPictureRights(false);
-        setVendorConditions(false);
+        setConditions(false);
         setFile(null);
         setPreviewUrl(null);
       } else {
@@ -405,10 +373,10 @@ export default function RegistrationAsVendor() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const maxFileSize = 10 * 1024 * 1024; // 10MB in Bytes
+    const maxFileSize = 5 * 1024 * 1024; // 5MB in Bytes
 
     if (file && file.size > maxFileSize) {
-      setFileError("Die Datei darf maximal 10MB groß sein.");
+      setFileError("Die Datei darf maximal 5MB groß sein.");
       return;
     }
     setFileError("");
@@ -446,7 +414,6 @@ export default function RegistrationAsVendor() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      
       <h2>Die Anmeldung als Händler ist momentan geschlossen.</h2>
 
       {!success && (
@@ -527,7 +494,7 @@ export default function RegistrationAsVendor() {
             />
             <InputOptionSelect
               title="Land"
-              options={EU_COUNTRIES}
+              options={COUNTRIES}
               inputText={country}
               inputChange={(value) => setCountry(value)}
               inputRef={refs.country}
@@ -547,15 +514,15 @@ export default function RegistrationAsVendor() {
               require
             />
             <InputOptionTextArea
-              title="Beschreibung des Standes"
-              inputText={descriptionOfStand}
-              inputChange={(value) => setDescriptionOfStand(value)}
-              inputRef={refs.descriptionOfStand}
-              isError={errors.some((error) => error.field === "descriptionOfStand")}
+              title="Ankündigungstext"
+              inputText={announcement_text}
+              inputChange={(value) => setAnnouncement_text(value)}
+              inputRef={refs.announcement_text}
+              isError={errors.some((error) => error.field === "announcement_text")}
               require
             />
             <p>
-              Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
             <FileUpload
               handleFileChange={handleFileChange}
@@ -567,26 +534,32 @@ export default function RegistrationAsVendor() {
             {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
 
             <RadioButton
-              title="Standgröße (50€ je m²)"
-              names={[
-                "2m x 2m",
-                "2m x 3m",
-                "2m x 4m",
-                "2m x 5m",
-                "2m x 6m",
-                "2m x 7m",
-                "Individuell (Preis auf Anfrage)",
-              ]}
-              options={["2x2", "2x3", "2x4", "2x5", "2x6", "2x7", "individuell"]}
+              title="Stand Lage"
+              names={LOCATION_OPTIONS.map((option) => option.label)}
+              options={LOCATION_OPTIONS.map((option) => option.value)}
+              selectedOption={location}
+              inputChange={(value) => setLocation(value)}
+              inputRef={refs.location}
+              isError={errors.some((error) => error.field === "location")}
+              require
+            />
+
+            <RadioButton
+              title={`Standgröße (${
+                LOCATION_OPTIONS.find((option) => option.value === location).vendor
+              }€ je m²)`}
+              names={VENDOR_STANDSIZE_OPTIONS.map((option) => option.label)}
+              options={VENDOR_STANDSIZE_OPTIONS.map((option) => option.value)}
               selectedOption={standSize}
               inputChange={(value) => setStandSize(value)}
               inputRef={refs.gender}
               isError={errors.some((error) => error.field === "standSize")}
               require
             />
+
             <InputOptionInput
               type="number"
-              title="Zusätzliches Ausstellerticket (je 42€)"
+              title={`Zusätzliches Ausstellerticket (je ${TICKET_COST}€)`}
               inputText={additionalExhibitorTicket}
               inputChange={(value) => setAdditionalExhibitorTicket(value)}
               inputRef={refs.additionalExhibitorTicket}
@@ -594,17 +567,19 @@ export default function RegistrationAsVendor() {
               min={0}
               max={4}
             />
+
             <CheckBox
               title="strom"
-              content="Strom - (30€)"
-              isChecked={strom}
-              inputChange={(value) => setStrom(value)}
-              inputRef={refs.strom}
-              isError={errors.some((error) => error.field === "strom")}
+              content={`Strom - (${POWER_COST}€)`}
+              isChecked={power}
+              inputChange={(value) => setPower(value)}
+              inputRef={refs.power}
+              isError={errors.some((error) => error.field === "power")}
             />
+
             <CheckBox
               title="wlan"
-              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10€)"
+              content={`W-lan für ein EC-Karten-/Kreditkartengerät - (${WLAN_COST}€)`}
               isChecked={wlan}
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}
@@ -621,8 +596,8 @@ export default function RegistrationAsVendor() {
                   </span>
                 </>
               }
-              names={["Nein", "Viertel Seite (30€)", "Halbe Seite (45€)", "Ganze Seite (85€)"]}
-              options={["Nein", "Viertel Seite", "Halbe Seite", "Ganze Seite"]}
+              names={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.label)}
+              options={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.value)}
               selectedOption={programmBooklet}
               inputChange={(value) => setProgrammBooklet(value)}
               inputRef={refs.programmBooklet}
@@ -633,7 +608,7 @@ export default function RegistrationAsVendor() {
 
             <RadioButton
               title="Tische - (inklusive)"
-              names={["Ja ", "Nein"]}
+              names={["Ja", "Nein"]}
               options={["Ja", "Nein"]}
               selectedOption={table}
               inputChange={(value) => setTable(value)}
@@ -645,28 +620,34 @@ export default function RegistrationAsVendor() {
             <h3>Gesamtkosten</h3>
             <ul>
               <li>
-                Standgröße: {selectedStandSize} (
-                {standSize !== "individuell"
-                  ? selectedStandCost.toFixed(2) + "€"
-                  : "Preis auf Anfrage"}
-                )
+                Standgröße:{" "}
+                {VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).label}
+                {standSize !== "INDIVIDUAL" ? ` (${selectedStandCost.toFixed(2)} €)` : ""}
               </li>
               {additionalExhibitorTicket > 0 && (
                 <li>
-                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x 42,00€ ={" "}
+                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST},00€ ={" "}
                   {totalTicketCost.toFixed(2)}€
                 </li>
               )}
-              {strom && <li>Strom: 30,00€</li>}
-              {wlan && <li>W-Lan: 10,00€</li>}
+              {power && <li>Strom: {POWER_COST},00€</li>}
+              {wlan && <li>W-Lan: {WLAN_COST},00€</li>}
               {programmBooklet !== "Nein" && (
                 <li>
-                  Programmheft: {programmBooklet} ({totalProgrammBookletCost.toFixed(2)}€)
+                  Programmheft:{" "}
+                  {
+                    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet)
+                      .label
+                  }{" "}
+                  ({totalProgrammBookletCost.toFixed(2)}€)
                 </li>
               )}
             </ul>
 
-            <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST</h4>
+            <h4>
+              Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST
+              {standSize === "INDIVIDUAL" && "  und Standkosten"}
+            </h4>
 
             <Spacer />
             <h2>Allgemeines</h2>
@@ -765,7 +746,7 @@ export default function RegistrationAsVendor() {
               require
             />
             <CheckBox
-              title="vendorConditions"
+              title="conditions"
               content={
                 <p>
                   Ich habe die{" "}
@@ -778,10 +759,10 @@ export default function RegistrationAsVendor() {
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
                 </p>
               }
-              isChecked={vendorConditions}
-              inputChange={(value) => setVendorConditions(value)}
-              inputRef={refs.vendorConditions}
-              isError={errors.some((error) => error.field === "vendorConditions")}
+              isChecked={conditions}
+              inputChange={(value) => setConditions(value)}
+              inputRef={refs.conditions}
+              isError={errors.some((error) => error.field === "conditions")}
               require
             />
 
@@ -806,7 +787,6 @@ export default function RegistrationAsVendor() {
           </ModalOverlay>
         </>
       )}
-
     </>
   );
 }

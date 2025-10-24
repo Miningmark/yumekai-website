@@ -23,28 +23,15 @@ import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
-const EU_COUNTRIES = [
-  "Deutschland",
-  "Österreich",
-  "Schweiz",
-  "Belgien",
-  "Frankreich",
-  "Italien",
-  "Spanien",
-  "Niederlande",
-  "Polen",
-  "Tschechien",
-  "Dänemark",
-  "Schweden",
-  "Norwegen",
-  "Finnland",
-  "Irland",
-  "Portugal",
-  "Griechenland",
-  "Ungarn",
-  "Rumänien",
-  "Bulgarien",
-];
+import {
+  EVENT_ID,
+  TICKET_COST,
+  WLAN_COST,
+  COUNTRIES,
+  LOCATION_OPTIONS,
+  PROGRAMM_BOOKLET_OPTIONS,
+  ARTIST_STANDSIZE_OPTIONS,
+} from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -53,6 +40,8 @@ const isImageFile = (fileName) => {
 };
 
 export default function RegistrationAsArtist() {
+  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -65,11 +54,12 @@ export default function RegistrationAsArtist() {
   const [country, setCountry] = useState("");
 
   const [typeOfArt, setTypeOfArt] = useState("");
-  const [standSize, setStandSize] = useState("");
-  const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(false);
+  const [standSize, setStandSize] = useState("FULL_TABLE"); //ENUM: HALF_TABLE, FULL_TABLE
+  const [location, setLocation] = useState("STADTHALLE"); //ENUM: STADTHALLE, KOLBEHAUS, EGAL
+  const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(0);
   const [wlan, setWlan] = useState(false);
-  const [programmBooklet, setProgrammBooklet] = useState("Nein");
-  const [descriptionOfStand, setDescriptionOfStand] = useState("");
+  const [programmBooklet, setProgrammBooklet] = useState("NO"); //ENUM: NO, QUATER_SITE, HALF_SITE, FULL_SITE
+  const [announcementText, setAnnouncementText] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
@@ -80,7 +70,7 @@ export default function RegistrationAsArtist() {
   const [dataStorage, setDataStorage] = useState(false);
   const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [artistConditions, setArtistConditions] = useState(false);
+  const [conditions, setConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -103,7 +93,7 @@ export default function RegistrationAsArtist() {
     additionalExhibitorTicket: useRef(null),
     wlan: useRef(null),
     programmBooklet: useRef(null),
-    descriptionOfStand: useRef(null),
+    announcementText: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
     image: useRef(null),
@@ -112,29 +102,17 @@ export default function RegistrationAsArtist() {
     dataStorage: useRef(null),
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    artistConditions: useRef(null),
+    conditions: useRef(null),
   };
 
-  // Kostenberechnung
-  const standCosts = {
-    "Ganzer Tisch": 90,
-    "Halber Tisch": 50,
-  };
-
-  const programmBookletCost = {
-    Nein: 0,
-    "Ganze Seite": 85,
-    "Halbe Seite": 45,
-    "Viertel Seite": 30,
-  };
-
-  const ticketCost = 52;
-  const wlanCost = 10;
-
-  const selectedStandCost = standCosts[standSize] || 0;
-  const totalTicketCost = additionalExhibitorTicket ? ticketCost : 0;
-  const totalWlanCost = wlan ? wlanCost : 0;
-  const totalProgrammBookletCost = programmBookletCost[programmBooklet] || 0;
+  const selectedStandCost =
+    ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
+      LOCATION_OPTIONS.find((option) => option.value === location).artist || 0;
+  const totalTicketCost =
+    additionalExhibitorTicket > 0 ? TICKET_COST * additionalExhibitorTicket : 0;
+  const totalWlanCost = wlan ? WLAN_COST : 0;
+  const totalProgrammBookletCost =
+    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet).price || 0;
 
   const totalCost = selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalWlanCost;
 
@@ -198,18 +176,18 @@ export default function RegistrationAsArtist() {
     if (!typeOfArtValidation.check)
       newErrors.push({ field: "typeOfArt", message: typeOfArtValidation.description });
 
-    //Beschreibung des Standes Validierung
-    const descriptionOfStandValidation = validateString(
-      descriptionOfStand,
-      "Beschreibung des Standes",
+    //Ankündigungstext des Standes Validierung
+    const announcementTextValidation = validateString(
+      announcementText,
+      "Ankündigungstext",
       5,
       2500,
       true
     );
-    if (!descriptionOfStandValidation.check)
+    if (!announcementTextValidation.check)
       newErrors.push({
-        field: "descriptionOfStand",
-        message: descriptionOfStandValidation.description,
+        field: "announcementText",
+        message: announcementTextValidation.description,
       });
 
     //Website Validierung
@@ -255,9 +233,9 @@ export default function RegistrationAsArtist() {
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
 
     //Teilnahmebedingungen
-    if (!artistConditions)
+    if (!conditions)
       newErrors.push({
-        field: "artistConditions",
+        field: "conditions",
         message: "Teilnahmebedingungen müssen akzeptiert werden",
       });
 
@@ -276,7 +254,8 @@ export default function RegistrationAsArtist() {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("name", name.trim());
+    formData.append("eventId", eventId);
+    formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("vendorName", vendorName.trim());
@@ -286,8 +265,9 @@ export default function RegistrationAsArtist() {
     formData.append("city", city.trim());
     formData.append("country", country.trim());
     formData.append("typeOfArt", typeOfArt.trim());
-    formData.append("descriptionOfStand", descriptionOfStand.trim());
+    formData.append("announcementText", announcementText.trim());
     formData.append("standSize", standSize);
+    formData.append("location", location);
     formData.append("additionalExhibitorTicket", additionalExhibitorTicket);
     formData.append("wlan", wlan);
     formData.append("programmBooklet", programmBooklet);
@@ -295,14 +275,14 @@ export default function RegistrationAsArtist() {
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("licensedMusic", licensedMusic);
-    formData.append("pictureRights", pictureRights);
-    formData.append("artistConditions", artistConditions);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("licensedMusicPolicy", licensedMusic);
+    formData.append("pictureRightsPolicy", pictureRights);
+    formData.append("conditionsPolicy", conditions);
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/registrationAsArtist", {
+      const response = await fetch("https://node.miningmark.de/api/v1/", {
         method: "POST",
         body: formData,
       });
@@ -322,11 +302,12 @@ export default function RegistrationAsArtist() {
         setCity("");
         setCountry("");
         setTypeOfArt("");
-        setStandSize("");
-        setAdditionalExhibitorTicket(false);
+        setStandSize("FULL_TABLE");
+        setLocation("STADTHALLE");
+        setAdditionalExhibitorTicket(0);
         setWlan(false);
-        setProgrammBooklet("Nein");
-        setDescriptionOfStand("");
+        setProgrammBooklet("NO");
+        setAnnouncementText("");
         setWebsite("");
         setInstagram("");
         setMessage("");
@@ -334,7 +315,7 @@ export default function RegistrationAsArtist() {
         setDataStorage(false);
         setLicensedMusic(false);
         setPictureRights(false);
-        setArtistConditions(false);
+        setConditions(false);
         setFile(null);
         setPreviewUrl(null);
       } else {
@@ -402,10 +383,8 @@ export default function RegistrationAsArtist() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-            
-            <h2>Die Anmeldung als Künstler ist momentan geschlossen.</h2>
-      
-             
+      <h2>Die Anmeldung als Künstler ist momentan geschlossen.</h2>
+
       {!success && (
         <>
           <p>
@@ -490,7 +469,7 @@ export default function RegistrationAsArtist() {
             />
             <InputOptionSelect
               title="Land"
-              options={EU_COUNTRIES}
+              options={COUNTRIES}
               inputText={country}
               inputChange={(value) => setCountry(value)}
               inputRef={refs.country}
@@ -509,15 +488,15 @@ export default function RegistrationAsArtist() {
               require
             />
             <InputOptionTextArea
-              title="Beschreibung des Standes"
-              inputText={descriptionOfStand}
-              inputChange={(value) => setDescriptionOfStand(value)}
-              inputRef={refs.descriptionOfStand}
-              isError={errors.some((error) => error.field === "descriptionOfStand")}
+              title="Ankündigungstext"
+              inputText={announcementText}
+              inputChange={(value) => setAnnouncementText(value)}
+              inputRef={refs.announcementText}
+              isError={errors.some((error) => error.field === "announcementText")}
               require
             />
             <p>
-              Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
             <FileUpload
               handleFileChange={handleFileChange}
@@ -529,25 +508,41 @@ export default function RegistrationAsArtist() {
             {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
 
             <RadioButton
+              title="Stand Lage"
+              names={LOCATION_OPTIONS.map((option) => option.label)}
+              options={LOCATION_OPTIONS.map((option) => option.value)}
+              selectedOption={location}
+              inputChange={(value) => setLocation(value)}
+              inputRef={refs.location}
+              isError={errors.some((error) => error.field === "location")}
+              require
+            />
+
+            <RadioButton
               title="Standgröße"
-              names={["Ganzer Tisch (90€)", "Halber Tisch (50€)"]}
-              options={["Ganzer Tisch", "Halber Tisch"]}
+              names={ARTIST_STANDSIZE_OPTIONS.map((option) => option.label)}
+              options={ARTIST_STANDSIZE_OPTIONS.map((option) => option.value)}
               selectedOption={standSize}
               inputChange={(value) => setStandSize(value)}
               inputRef={refs.gender}
               isError={errors.some((error) => error.field === "standSize")}
               require
             />
-            <CheckBox
-              title="Zusätzliches Ausstellerticket (42€)"
+
+            <InputOptionInput
+              type="number"
+              title={`Zusätzliches Ausstellerticket (je ${TICKET_COST}€)`}
               inputText={additionalExhibitorTicket}
               inputChange={(value) => setAdditionalExhibitorTicket(value)}
               inputRef={refs.additionalExhibitorTicket}
               isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
+              min={0}
+              max={2}
             />
+
             <CheckBox
               title="wlan"
-              content="W-lan für ein EC-Karten-/Kreditkartengerät - (10€)"
+              content={`W-lan für ein EC-Karten-/Kreditkartengerät (${WLAN_COST}€)`}
               isChecked={wlan}
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}
@@ -565,8 +560,8 @@ export default function RegistrationAsArtist() {
                   </span>
                 </>
               }
-              names={["Nein", "Viertel Seite (30€)", "Halbe Seite (45€)", "Ganze Seite (85€)"]}
-              options={["Nein", "Viertel Seite", "Halbe Seite", "Ganze Seite"]}
+              names={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.label)}
+              options={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.value)}
               selectedOption={programmBooklet}
               inputChange={(value) => setProgrammBooklet(value)}
               inputRef={refs.programmBooklet}
@@ -577,13 +572,25 @@ export default function RegistrationAsArtist() {
             <h3>Gesamtkosten</h3>
             <ul>
               <li>
-                Standgröße: {standSize} ({selectedStandCost.toFixed(2)}€)
+                Standgröße:{" "}
+                {ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).label} (
+                {selectedStandCost.toFixed(2)}€)
               </li>
-              {additionalExhibitorTicket && <li>Zusätzliche Ausstellertickets: 52,00€</li>}
-              {wlan && <li>W-Lan: 10,00€</li>}
+              {additionalExhibitorTicket > 0 && (
+                <li>
+                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST},00€ ={" "}
+                  {totalTicketCost.toFixed(2)}€
+                </li>
+              )}
+              {wlan && <li>W-Lan: {WLAN_COST},00€</li>}
               {programmBooklet !== "Nein" && (
                 <li>
-                  Programmheft: {programmBooklet} ({totalProgrammBookletCost.toFixed(2)}€)
+                  Programmheft:{" "}
+                  {
+                    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet)
+                      .label
+                  }{" "}
+                  ({totalProgrammBookletCost.toFixed(2)}€)
                 </li>
               )}
             </ul>
@@ -700,8 +707,8 @@ export default function RegistrationAsArtist() {
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
                 </p>
               }
-              isChecked={artistConditions}
-              inputChange={(value) => setArtistConditions(value)}
+              isChecked={conditions}
+              inputChange={(value) => setConditions(value)}
               inputRef={refs.artistConditions}
               isError={errors.some((error) => error.field === "artistConditions")}
               require
@@ -729,7 +736,6 @@ export default function RegistrationAsArtist() {
           </ModalOverlay>
         </>
       )}
-        
     </>
   );
 }
