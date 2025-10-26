@@ -22,28 +22,7 @@ import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
-const EU_COUNTRIES = [
-  "Deutschland",
-  "Österreich",
-  "Schweiz",
-  "Belgien",
-  "Frankreich",
-  "Italien",
-  "Spanien",
-  "Niederlande",
-  "Polen",
-  "Tschechien",
-  "Dänemark",
-  "Schweden",
-  "Norwegen",
-  "Finnland",
-  "Irland",
-  "Portugal",
-  "Griechenland",
-  "Ungarn",
-  "Rumänien",
-  "Bulgarien",
-];
+import { EVENT_ID, COUNTRIES } from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -52,6 +31,8 @@ const isImageFile = (fileName) => {
 };
 
 export default function RegistrationAsExhibitor() {
+  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -177,13 +158,7 @@ export default function RegistrationAsExhibitor() {
       });
 
     //Standgröße Validierung
-    const standSizeValidation = validateString(
-      standSize,
-      "Standgröße",
-      5,
-      2500,
-      true
-    );
+    const standSizeValidation = validateString(standSize, "Standgröße", 5, 2500, true);
     if (!standSizeValidation.check)
       newErrors.push({
         field: "standSize",
@@ -249,7 +224,8 @@ export default function RegistrationAsExhibitor() {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("name", name.trim());
+    formData.append("eventId", eventId);
+    formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("street", street.trim());
@@ -264,17 +240,20 @@ export default function RegistrationAsExhibitor() {
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("licensedMusic", licensedMusic);
-    formData.append("pictureRights", pictureRights);
-    formData.append("conditions", conditions);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("licensedMusicPolicy", licensedMusic);
+    formData.append("pictureRightsPolicy", pictureRights);
+    formData.append("conditionsPolicy", conditions);
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/registrationAsExhibitor", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createExhibitor",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       if (response.ok) {
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
@@ -367,10 +346,8 @@ export default function RegistrationAsExhibitor() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-            
-            <h2>Die Anmeldung für einen Gruppen/Fan stand ist momentan geschlossen.</h2>
-      
-             
+      <h2>Die Anmeldung für einen Gruppen/Fan stand ist momentan geschlossen.</h2>
+
       {!success && (
         <>
           <p>
@@ -459,15 +436,15 @@ export default function RegistrationAsExhibitor() {
               require
             />
             <InputOptionInput
-                title="Gruppenmitglieder"
-                inputText={groupMembers}
-                inputChange={setGroupMembers}
-                inputRef={refs.groupMembers}
-                isError={errors.some((error) => error.field === "groupMembers")}
-                require
-                type="number"
-                min={1}
-                max={25}
+              title="Gruppenmitglieder"
+              inputText={groupMembers}
+              inputChange={setGroupMembers}
+              inputRef={refs.groupMembers}
+              isError={errors.some((error) => error.field === "groupMembers")}
+              require
+              type="number"
+              min={1}
+              max={25}
             />
             <InputOptionTextArea
               title="Beschreibung des Standes"
@@ -598,10 +575,7 @@ export default function RegistrationAsExhibitor() {
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink
-                    href="/"
-                    target="_blank"
-                  >
+                  <StyledLink href="/" target="_blank">
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
@@ -636,7 +610,6 @@ export default function RegistrationAsExhibitor() {
           </ModalOverlay>
         </>
       )}
-        
     </>
   );
 }

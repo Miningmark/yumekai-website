@@ -314,36 +314,6 @@ export default function RegistrationAsVendor() {
         {
           method: "POST",
           body: formData,
-
-          /*JSON.stringify({
-            eventId: eventId,
-            firstName: name.trim(),
-            lastName: lastName.trim(),
-            email: email.trim().toLowerCase(),
-            vendorName: vendorName.trim(),
-            street: street.trim(),
-            postalCode: postalCode.trim(),
-            city: city.trim(),
-            country: country.trim(),
-            typeOfAssortment: typeOfAssortment.trim(),
-            announcementText: announcement_text.trim(),
-            standSize: standSize,
-            location: location,
-            additionalExhibitorTickets: additionalExhibitorTicket,
-            powerRequired: power,
-            wlanRequired: wlan,
-            bookletSite: programmBooklet,
-            tableRequired: table === "Ja" ? true : false,
-            website: website.trim(),
-            instagram: instagram.trim(),
-            message: message.trim(),
-            privacyPolicy: privacyPolicy,
-            dataStoragePolicy: dataStorage,
-            licensedMusicPolicy: licensedMusic,
-            pictureRightsPolicy: pictureRights,
-            conditionsPolicy: conditions,
-          }),
-          */
         }
       );
 
