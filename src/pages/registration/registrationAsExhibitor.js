@@ -305,10 +305,10 @@ export default function RegistrationAsExhibitor() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const maxFileSize = 10 * 1024 * 1024; // 10MB in Bytes
+    const maxFileSize = 5 * 1024 * 1024; // 5MB in Bytes
 
     if (file && file.size > maxFileSize) {
-      setFileError("Die Datei darf maximal 10MB groß sein.");
+      setFileError("Die Datei darf maximal 5MB groß sein.");
       return;
     }
     setFileError("");
@@ -417,7 +417,7 @@ export default function RegistrationAsExhibitor() {
             />
             <InputOptionSelect
               title="Land"
-              options={EU_COUNTRIES}
+              options={COUNTRIES}
               inputText={country}
               inputChange={(value) => setCountry(value)}
               inputRef={refs.country}
@@ -463,7 +463,7 @@ export default function RegistrationAsExhibitor() {
               require
             />
             <p>
-              Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
             <FileUpload
               handleFileChange={handleFileChange}
