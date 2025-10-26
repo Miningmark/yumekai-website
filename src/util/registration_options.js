@@ -64,3 +64,9 @@ export const COUNTRIES = [
   "Croatia",
   "Cyprus",
 ];
+
+export const SHOWACT_ACCOMODATION_OPTIONS = [
+  "Nicht benötigt",
+  "wäre gut, aber nicht notwendig",
+  "zwingend benötigt",
+];

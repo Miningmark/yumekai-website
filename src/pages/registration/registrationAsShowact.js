@@ -33,34 +33,7 @@ const TimeslotsContainer = styled.div`
   ${({ $iserror }) => $iserror && `padding: 10px;`}
 `;
 
-const EU_COUNTRIES = [
-  "Deutschland",
-  "Österreich",
-  "Schweiz",
-  "Belgien",
-  "Frankreich",
-  "Italien",
-  "Spanien",
-  "Niederlande",
-  "Polen",
-  "Tschechien",
-  "Dänemark",
-  "Schweden",
-  "Norwegen",
-  "Finnland",
-  "Irland",
-  "Portugal",
-  "Griechenland",
-  "Ungarn",
-  "Rumänien",
-  "Bulgarien",
-];
-
-const ACCOMODATION_OPTIONS = [
-  "Nicht benötigt",
-  "wäre gut, aber nicht notwendig",
-  "zwingend benötigt",
-];
+import { EVENT_ID, COUNTRIES, SHOWACT_ACCOMODATION_OPTIONS } from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
@@ -71,6 +44,8 @@ const isImageFile = (fileName) => {
 };
 
 export default function RegistrationAsShowact() {
+  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -106,7 +81,7 @@ export default function RegistrationAsShowact() {
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [showactConditions, setShowactConditions] = useState(false);
+  const [conditions, setConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -142,7 +117,7 @@ export default function RegistrationAsShowact() {
     dataStorage: useRef(null),
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    showactConditions: useRef(null),
+    conditions: useRef(null),
   };
 
   async function submit(event) {
@@ -288,9 +263,9 @@ export default function RegistrationAsShowact() {
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
 
     //Teilnahmebedingungen
-    if (!showactConditions)
+    if (!conditions)
       newErrors.push({
-        field: "showactConditions",
+        field: "conditions",
         message: "Teilnahmebedingungen müssen akzeptiert werden",
       });
 
@@ -320,7 +295,8 @@ export default function RegistrationAsShowact() {
       .trim();
 
     const formData = new FormData();
-    formData.append("name", name.trim());
+    formData.append("eventId", eventId);
+    formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("street", street.trim());
@@ -341,9 +317,9 @@ export default function RegistrationAsShowact() {
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
+    formData.append("dataStoragePolicy", dataStorage);
     formData.append("pictureRights", pictureRights);
-    formData.append("showactConditions", showactConditions);
+    formData.append("conditionsPolicy", conditions);
     formData.append("file", file);
     if (file2 && Array.isArray(file2)) {
       file2.forEach((singleFile, index) => {
@@ -352,10 +328,13 @@ export default function RegistrationAsShowact() {
     }
 
     try {
-      const response = await fetch("/api/registrationAsShowact", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createShowact",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         setSuccess(
@@ -388,7 +367,7 @@ export default function RegistrationAsShowact() {
         setPrivacyPolicy(false);
         setDataStorage(false);
         setPictureRights(false);
-        setShowactConditions(false);
+        setConditions(false);
         setFile(null);
         setFile2(null);
         setPreviewUrl(null);
@@ -457,7 +436,6 @@ export default function RegistrationAsShowact() {
       </p>
 
       <h2>Die Anmeldung als Showact ist momentan geschlossen.</h2>
-
 
       {!success && (
         <>
@@ -529,7 +507,7 @@ export default function RegistrationAsShowact() {
             />
             <InputOptionSelect
               title="Land"
-              options={EU_COUNTRIES}
+              options={COUNTRIES}
               inputText={country}
               inputChange={(value) => setCountry(value)}
               inputRef={refs.country}
@@ -568,7 +546,7 @@ export default function RegistrationAsShowact() {
               require
             />
             <p>
-              Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
             <FileUpload
               handleFileChange={handleFileChange}
@@ -661,7 +639,7 @@ export default function RegistrationAsShowact() {
 
             <InputOptionSelect
               title="Unterkunft"
-              options={ACCOMODATION_OPTIONS}
+              options={SHOWACT_ACCOMODATION_OPTIONS}
               inputText={accomodation}
               inputChange={(value) => setAccomodation(value)}
               inputRef={refs.accomodation}
@@ -766,7 +744,7 @@ export default function RegistrationAsShowact() {
               require
             />
             <CheckBox
-              title="showactConditions"
+              title="conditions"
               content={
                 <p>
                   Ich habe die{" "}
@@ -776,10 +754,10 @@ export default function RegistrationAsShowact() {
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
                 </p>
               }
-              isChecked={showactConditions}
-              inputChange={(value) => setShowactConditions(value)}
-              inputRef={refs.showactConditions}
-              isError={errors.some((error) => error.field === "showactConditions")}
+              isChecked={conditions}
+              inputChange={(value) => setConditions(value)}
+              inputRef={refs.conditions}
+              isError={errors.some((error) => error.field === "conditions")}
               require
             />
 
@@ -804,7 +782,6 @@ export default function RegistrationAsShowact() {
           </ModalOverlay>
         </>
       )}
-
     </>
   );
 }
