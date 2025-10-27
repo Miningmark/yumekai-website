@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useEffect, useState, useRef, use } from "react";
+import { useEffect, useState, useRef } from "react";
+import validateString from "@/util/inputCheck";
 
 //Components
 import {
@@ -17,22 +18,21 @@ import {
   ModalOverlay,
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
-import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
-import validateString from "@/util/inputCheck";
 
-import {
-  EVENT_ID,
-  TICKET_COST,
-  POWER_COST,
-  WLAN_COST,
-  COUNTRIES,
-  LOCATION_OPTIONS,
-  PROGRAMM_BOOKLET_OPTIONS,
-  VENDOR_STANDSIZE_OPTIONS,
-} from "@/util/registration_options";
+const TimeslotsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  ${({ $iserror }) => $iserror && `border: solid 2px red;`}
+  ${({ $iserror }) => $iserror && `padding: 10px;`}
+`;
+
+import { EVENT_ID, COUNTRIES } from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -40,28 +40,31 @@ const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
 };
 
-export default function RegistrationAsVendor() {
+export default function Workshop() {
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [vendorName, setVendorName] = useState("");
   const [street, setStreet] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const [typeOfAssortment, setTypeOfAssortment] = useState("");
-  const [standSize, setStandSize] = useState("2X2"); //ENUM: 2x2, 2x3, 2x4, 2x5, 2x6, 2x7, INDIVIDUAL
-  const [location, setLocation] = useState("STADTHALLE"); //ENUM: STADTHALLE, KOLBEHAUS, EGAL
-  const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(0);
-  const [power, setPower] = useState(false);
-  const [wlan, setWlan] = useState(false);
-  const [programmBooklet, setProgrammBooklet] = useState("NO"); //ENUM: NO, QUATER_SITE, HALF_SITE, FULL_SITE
-  const [table, setTable] = useState("");
-  const [announcement_text, setAnnouncement_text] = useState("");
+  const [workshopTitle, setWorkshopTitle] = useState("");
+  const [announcementText, setAnnouncementText] = useState("");
+  const [leaders, setLeaders] = useState(1);
+  const [timeSlot1, setTimeSlot1] = useState(false);
+  const [timeSlot2, setTimeSlot2] = useState(false);
+  const [timeSlot3, setTimeSlot3] = useState(false);
+  const [timeSlot4, setTimeSlot4] = useState(false);
+  const [constructionTime, setConstructionTime] = useState(0);
+  const [workshopTime, setWorkshopTime] = useState(0);
+  const [deconstructionTime, setDeconstructionTime] = useState(0);
+  const [workshopRequirements, setWorkshopRequirements] = useState("");
+  const [participants, setParticipants] = useState(0);
+
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
@@ -70,9 +73,7 @@ export default function RegistrationAsVendor() {
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
-  const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [conditions, setConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -84,45 +85,29 @@ export default function RegistrationAsVendor() {
     lastName: useRef(null),
     email: useRef(null),
     confirmEmail: useRef(null),
-    vendorName: useRef(null),
     street: useRef(null),
     postalCode: useRef(null),
     city: useRef(null),
     country: useRef(null),
-    typeOfAssortment: useRef(null),
-    standSize: useRef(null),
-    location: useRef(null),
-    additionalExhibitorTicket: useRef(null),
-    power: useRef(null),
-    wlan: useRef(null),
-    programmBooklet: useRef(null),
-    table: useRef(null),
-    announcement_text: useRef(null),
+    workshopTitle: useRef(null),
+    announcementText: useRef(null),
+    leaders: useRef(null),
+    timeSlots: useRef(null),
+    constructionTime: useRef(null),
+    workshopTime: useRef(null),
+    deconstructionTime: useRef(null),
+    workshopRequirements: useRef(null),
+    participants: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
-    licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    vendorConditions: useRef(null),
   };
-
-  const selectedStandCost =
-    VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
-      LOCATION_OPTIONS.find((option) => option.value === location).vendor || 0;
-  const totalTicketCost = additionalExhibitorTicket * TICKET_COST;
-  const totalStromCost = power ? POWER_COST : 0;
-  const totalWlanCost = wlan ? WLAN_COST : 0;
-  const totalProgrammBookletCost =
-    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet).price || 0;
-
-  const totalCost =
-    selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalStromCost + totalWlanCost;
 
   async function submit(event) {
     event.preventDefault();
-    console.log("Submit");
 
     const newErrors = [];
     setErrors([]);
@@ -130,13 +115,13 @@ export default function RegistrationAsVendor() {
 
     // Validierungslogik mit validateString
     // Name Validierung
-    const nameValidation = validateString(name, "Vorname", 2, 100, true);
+    const nameValidation = validateString(name, "Vorname", 2, 50, true);
     if (!nameValidation.check)
       newErrors.push({ field: "name", message: nameValidation.description });
 
     // Nachname Validierung
     if (lastName) {
-      const lastNameValidation = validateString(lastName, "Nachname", 2, 100, true);
+      const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
       if (!lastNameValidation.check)
         newErrors.push({ field: "lastName", message: lastNameValidation.description });
     }
@@ -146,13 +131,8 @@ export default function RegistrationAsVendor() {
     if (!emailValidation.check)
       newErrors.push({ field: "email", message: emailValidation.description });
 
-    //Firmenname Validierung
-    const vendorNameValidation = validateString(vendorName, "Firmenname", 2, 100, true);
-    if (!vendorNameValidation.check)
-      newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
-
     //Straße Validierung
-    const streetValidation = validateString(street, "Straße", 2, 100, true);
+    const streetValidation = validateString(street, "Straße", 2, 50, true);
     if (!streetValidation.check)
       newErrors.push({ field: "street", message: streetValidation.description });
 
@@ -162,65 +142,91 @@ export default function RegistrationAsVendor() {
       newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
 
     //Ort Validierung
-    const cityValidation = validateString(city, "Ort", 2, 100, true);
+    const cityValidation = validateString(city, "Ort", 2, 50, true);
     if (!cityValidation.check)
       newErrors.push({ field: "city", message: cityValidation.description });
 
     //Land Validierung
-    const countryValidation = validateString(country, "Land", 2, 100, true);
+    const countryValidation = validateString(country, "Land", 2, 50, true);
     if (!countryValidation.check)
       newErrors.push({ field: "country", message: countryValidation.description });
 
-    //Produktsortiment Validierung
-    const typeOfAssortmentValidation = validateString(
-      typeOfAssortment,
-      "Produktsortiment",
+    //Titel des Workshops Validierung
+    const workshopTitleValidation = validateString(
+      workshopTitle,
+      "Titel des Workshops",
       2,
-      2500,
+      250,
       true
     );
-    if (!typeOfAssortmentValidation.check)
-      newErrors.push({
-        field: "typeOfAssortment",
-        message: typeOfAssortmentValidation.description,
-      });
+    if (!workshopTitleValidation.check)
+      newErrors.push({ field: "workshopTitle", message: workshopTitleValidation.description });
 
-    //Ankündigungstext des Standes Validierung
-    const announcement_textValidation = validateString(
-      announcement_text,
+    //Beschreibung des Workshops Validierung
+    const announcementTextValidation = validateString(
+      announcementText,
       "Ankündigungstext",
       10,
       2500,
       true
     );
-    if (!announcement_textValidation.check)
+    if (!announcementTextValidation.check)
       newErrors.push({
-        field: "announcement_text",
-        message: announcement_textValidation.description,
+        field: "announcementText",
+        message: announcementTextValidation.description,
       });
 
-    //Standgröße Validierung
-    const standSizeValidation = validateString(standSize, "Standgröße", 2, 50, true);
-    if (!standSizeValidation.check)
-      newErrors.push({ field: "standSize", message: standSizeValidation.description });
+    //Leiter*innen Validierung
+    if (leaders < 1)
+      newErrors.push({ field: "leaders", message: "Leiter*innen muss mindestens 1 sein" });
+    if (leaders > 5)
+      newErrors.push({ field: "leaders", message: "Leiter*innen darf maximal 5 sein" });
 
-    //Zusätzliche Ausstellertickets Validierung
-    if (additionalExhibitorTicket < 0)
+    //Zeitslots Validierung
+    if (!(timeSlot1 || timeSlot2 || timeSlot3 || timeSlot4))
+      newErrors.push({ field: "timeSlots", message: "Bitte mindestens eine Option wählen" });
+
+    //Aufbauzeit
+    if (constructionTime < 1)
+      newErrors.push({ field: "constructionTime", message: "Aufbauzeit muss mindestens 1 sein" });
+    if (constructionTime > 30)
+      newErrors.push({ field: "constructionTime", message: "Aufbauzeit darf maximal 30 sein" });
+
+    //Workshopzeit
+    if (workshopTime < 30)
+      newErrors.push({ field: "workshopTime", message: "Workshopzeit muss mindestens 30 sein" });
+    if (workshopTime > 360)
+      newErrors.push({ field: "workshopTime", message: "Workshopzeit darf maximal 360 sein" });
+
+    //Abbauzeit
+    if (deconstructionTime < 1)
+      newErrors.push({ field: "deconstructionTime", message: "Abbauzeit muss mindestens 1 sein" });
+    if (deconstructionTime > 30)
+      newErrors.push({ field: "deconstructionTime", message: "Abbauzeit darf maximal 30 sein" });
+
+    //Anforderungen für den Workshop
+    const workshopRequirementsValidation = validateString(
+      workshopRequirements,
+      "Anforderungen für den Workshop",
+      0,
+      2500
+    );
+    if (!workshopRequirementsValidation.check)
       newErrors.push({
-        field: "additionalExhibitorTicket",
-        message: "Ungültige Anzahl an zusätzlichen Ausstellertickets (min. 0)",
-      });
-    if (additionalExhibitorTicket > 4)
-      newErrors.push({
-        field: "additionalExhibitorTicket",
-        message: "Ungültige Anzahl an zusätzlichen Ausstellertickets (max. 4)",
+        field: "workshopRequirements",
+        message: workshopRequirementsValidation.description,
       });
 
-    //Tische Validierung
-    const tableValidation = validateString(table, "Tische", 0, 10, true);
-    if (!tableValidation.check)
-      newErrors.push({ field: "table", message: tableValidation.description });
-
+    //Teilnehmer*innen
+    if (participants) {
+      if (participants < 1)
+        newErrors.push({
+          field: "participants",
+          message: "Teilnehmer*innen muss mindestens 1 sein",
+        });
+      if (participants > 40)
+        newErrors.push({ field: "participants", message: "Teilnehmer*innen darf maximal 40 sein" });
+    }
     //Website Validierung
     const websiteValidation = validateString(website, "Website", 0, 100);
     if (!websiteValidation.check)
@@ -247,23 +253,9 @@ export default function RegistrationAsVendor() {
     if (!dataStorage)
       newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
 
-    //GEMA
-    if (!licensedMusic)
-      newErrors.push({
-        field: "licensedMusic",
-        message: "GEMA-Lizenzierte Musik ist nicht erlaubt",
-      });
-
     //Bildrechte
     if (!pictureRights)
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
-
-    //Teilnahmebedingungen
-    if (!conditions)
-      newErrors.push({
-        field: "conditions",
-        message: "Teilnahmebedingungen müssen akzeptiert werden",
-      });
 
     //Check if there are any errors
     if (newErrors.length > 0) {
@@ -277,40 +269,48 @@ export default function RegistrationAsVendor() {
       }
       return;
     }
+
     setLoading(true);
+
+    const timeSlots = [
+      timeSlot1 && "Samstag 11:00-15:00 Uhr",
+      timeSlot2 && "Samstag 15:00-20:00 Uhr",
+      timeSlot3 && "Sonntag 11:00-14:00 Uhr",
+      timeSlot4 && "Sonntag 14:00-18:00 Uhr",
+    ]
+      .filter(Boolean)
+      .join(", ")
+      .trim();
 
     const formData = new FormData();
     formData.append("eventId", eventId);
     formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
-    formData.append("vendorName", vendorName.trim());
     formData.append("street", street.trim());
     formData.append("postalCode", postalCode.trim());
     formData.append("city", city.trim());
     formData.append("country", country.trim());
-    formData.append("typeOfAssortment", typeOfAssortment.trim());
-    formData.append("announcementText", announcement_text.trim());
-    formData.append("standSize", standSize);
-    formData.append("location", location);
-    formData.append("additionalExhibitorTickets", additionalExhibitorTicket);
-    formData.append("powerRequired", power);
-    formData.append("wlanRequired", wlan);
-    formData.append("bookletSite", programmBooklet);
-    formData.append("tableRequired", table === "Ja" ? true : false);
+    formData.append("workshopTitle", workshopTitle.trim());
+    formData.append("announcementText", announcementText.trim());
+    formData.append("leaders", leaders.trim());
+    formData.append("timeSlots", timeSlots);
+    formData.append("constructionTime", constructionTime);
+    formData.append("workshopTime", workshopTime);
+    formData.append("deconstructionTime", deconstructionTime);
+    formData.append("workshopRequirements", workshopRequirements.trim());
+    formData.append("participants", participants || 0);
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStoragePolicy", dataStorage);
-    formData.append("licensedMusicPolicy", licensedMusic);
-    formData.append("pictureRightsPolicy", pictureRights);
-    formData.append("conditionsPolicy", conditions);
+    formData.append("dataStorage", dataStorage);
+    formData.append("pictureRights", pictureRights);
     formData.append("file", file);
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createVendor",
+        "https://node.miningmark.de/api/v1/event/application/createWorkshop",
         {
           method: "POST",
           body: formData,
@@ -321,44 +321,42 @@ export default function RegistrationAsVendor() {
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
         );
-        setErrors([]);
         setName("");
         setLastName("");
         setEmail("");
         setConfirmEmail("");
-        setVendorName("");
         setStreet("");
         setPostalCode("");
         setCity("");
         setCountry("");
-        setTypeOfAssortment("");
-        setStandSize("2X2");
-        setLocation("STADTHALLE");
-        setAdditionalExhibitorTicket(0);
-        setPower(false);
-        setWlan(false);
-        setProgrammBooklet("NO");
-        setTable("");
-        setAnnouncement_text("");
+        setWorkshopTitle("");
+        setAnnouncementText("");
+        setLeaders(1);
+        setTimeSlot1(false);
+        setTimeSlot2(false);
+        setTimeSlot3(false);
+        setTimeSlot4(false);
+        setConstructionTime(0);
+        setWorkshopTime(0);
+        setDeconstructionTime(0);
+        setWorkshopRequirements("");
+        setParticipants(0);
         setWebsite("");
         setInstagram("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
-        setLicensedMusic(false);
         setPictureRights(false);
-        setConditions(false);
         setFile(null);
         setPreviewUrl(null);
+        setErrors([]);
       } else {
-        const result = await response.json();
         setErrors([
           {
             field: "general",
             message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
           },
         ]);
-        console.error("Fehler beim Einfügen der Daten:", result.error);
       }
     } catch (error) {
       setErrors([
@@ -367,7 +365,6 @@ export default function RegistrationAsVendor() {
           message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
         },
       ]);
-      console.error("Fehler beim Einfügen der Daten:", error);
     }
     setLoading(false);
   }
@@ -398,31 +395,40 @@ export default function RegistrationAsVendor() {
 
   return (
     <>
-      <h1>Anmeldung als Händler</h1>
+      <h1>Anmeldung als Workshopleiter</h1>
+      <p>Sichert euch euren Platz auf der YumeKai 2025!</p>
       <p>
-        Sichert euch euren Platz auf der YumeKai 2025!
+        <strong>HINWEIS:</strong>
+        <br />
+        Wir können nicht gewährleisten, dass euer Workshop für die YumeKai 2024 ausgewählt oder der
+        gewünschte Zeitslot garantiert werden kann. Bei einer hohen Nachfrage an Workshops streben
+        wir an, ein möglichst ausgewogenes Angebot zu schaffen.
         <br />
         <br />
-        Bitte beachtet die{" "}
-        <StyledLink href="/downloads/Teilnahmebedingungen_Haendler_2025.pdf" target="_blank">
-          Teilnahme- und Auswahlbedingungen für Händler
-        </StyledLink>
-        .
+        Falls euer Workshop oder Vortrag ausgewählt wird, erhaltet ihr von uns ein Wochenendticket,
+        das den Zugang zur Convention ermöglicht. Detaillierte Informationen zu eurem Workshop oder
+        Vortrag werden euch per E-Mail mitgeteilt, sofern ihr ausgewählt werdet.
         <br />
         <br />
+        Bitte beachtet, dass wir keine Erstattungen für Materialien oder Fahrtkosten für
+        Workshop-Leiter anbieten können. Als Workshopleiter musst du mindestens 18 Jahre alt sein.
+        Workshops, die von Ausstellern oder Helfern angeboten werden möchten, werden in unserer
+        Auswahl bevorzugt behandelt, sofern dies nicht zu einer Beeinträchtigung eines ausgewogenen
+        Angebots führt.
+      </p>
+      <p>
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      <h2>Die Anmeldung als Händler ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.</h2>
 
       {!success && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
-
           <StyledForm onSubmit={submit}>
             <h2>Persönliche Angaben</h2>
             <InputOptionInput
@@ -455,14 +461,6 @@ export default function RegistrationAsVendor() {
               inputChange={setConfirmEmail}
               inputRef={refs.emailConfirm}
               isError={errors.some((error) => error.field === "confirmEmail")}
-              require
-            />
-            <InputOptionInput
-              title="Firmenname"
-              inputText={vendorName}
-              inputChange={(value) => setVendorName(value)}
-              inputRef={refs.vendorName}
-              isError={errors.some((error) => error.field === "vendorName")}
               require
             />
 
@@ -504,23 +502,111 @@ export default function RegistrationAsVendor() {
             />
 
             <Spacer />
-            <h2>Stand</h2>
-
-            <InputOptionTextArea
-              title="Warensortiment"
-              inputText={typeOfAssortment}
-              inputChange={(value) => setTypeOfAssortment(value)}
-              inputRef={refs.typeOfAssortment}
-              isError={errors.some((error) => error.field === "typeOfAssortment")}
+            <h2>Workshop</h2>
+            <InputOptionInput
+              title="Titel des Workshops"
+              inputText={workshopTitle}
+              inputChange={setWorkshopTitle}
+              inputRef={refs.workshopTitle}
+              isError={errors.some((error) => error.field === "workshopTitle")}
               require
             />
             <InputOptionTextArea
               title="Ankündigungstext"
-              inputText={announcement_text}
-              inputChange={(value) => setAnnouncement_text(value)}
-              inputRef={refs.announcement_text}
-              isError={errors.some((error) => error.field === "announcement_text")}
+              inputText={announcementText}
+              inputChange={setAnnouncementText}
+              inputRef={refs.announcementText}
+              isError={errors.some((error) => error.field === "announcementText")}
               require
+            />
+            <InputOptionInput
+              title="Leiter*innen"
+              inputText={leaders}
+              inputChange={setLeaders}
+              inputRef={refs.leaders}
+              isError={errors.some((error) => error.field === "leaders")}
+              require
+              type="number"
+              min={1}
+              max={5}
+            />
+            <TimeslotsContainer $iserror={errors.some((error) => error.field === "timeSlots")}>
+              <h3>Bevorzugter Tag/Uhrzeit (min. 1 Option wählen)</h3>
+              <CheckBox
+                title="timeSlot1"
+                content="Samstag 11:00-15:00 Uhr"
+                isChecked={timeSlot1}
+                inputChange={(value) => setTimeSlot1(value)}
+                inputRef={refs.timeSlots}
+              />
+              <CheckBox
+                title="timeSlot2"
+                content="Samstag 15:00-20:00 Uhr"
+                isChecked={timeSlot2}
+                inputChange={(value) => setTimeSlot2(value)}
+              />
+              <CheckBox
+                title="timeSlot3"
+                content="Sonntag 11:00-14:00 Uhr"
+                isChecked={timeSlot3}
+                inputChange={(value) => setTimeSlot3(value)}
+              />
+              <CheckBox
+                title="timeSlot4"
+                content="Sonntag 14:00-18:00 Uhr"
+                isChecked={timeSlot4}
+                inputChange={(value) => setTimeSlot4(value)}
+              />
+            </TimeslotsContainer>
+            <InputOptionInput
+              title="Aufbauzeit (in Minuten)"
+              inputText={constructionTime}
+              inputChange={setConstructionTime}
+              inputRef={refs.constructionTime}
+              isError={errors.some((error) => error.field === "constructionTime")}
+              require
+              type="number"
+              min={1}
+              max={30}
+            />
+            <InputOptionInput
+              title="Workshopzeit (in Minuten)"
+              inputText={workshopTime}
+              inputChange={setWorkshopTime}
+              inputRef={refs.workshopTime}
+              isError={errors.some((error) => error.field === "workshopTime")}
+              require
+              type="number"
+              min={30}
+              max={360}
+            />
+            <InputOptionInput
+              title="Abbauzeit (in Minuten)"
+              inputText={deconstructionTime}
+              inputChange={setDeconstructionTime}
+              inputRef={refs.deconstructionTime}
+              isError={errors.some((error) => error.field === "deconstructionTime")}
+              require
+              type="number"
+              min={1}
+              max={30}
+            />
+            <InputOptionTextArea
+              title="Anforderungen für den Workshop (z.B. Material, Technik, etc.)"
+              inputText={workshopRequirements}
+              inputChange={setWorkshopRequirements}
+              inputRef={refs.workshopRequirements}
+              isError={errors.some((error) => error.field === "workshopRequirements")}
+            />
+            <InputOptionInput
+              title="Teilnehmer*innen"
+              inputText={participants}
+              inputChange={setParticipants}
+              inputRef={refs.participants}
+              isError={errors.some((error) => error.field === "participants")}
+              type="number"
+              min={1}
+              max={40}
             />
             <p>
               Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
@@ -533,122 +619,6 @@ export default function RegistrationAsVendor() {
               isError={errors.some((error) => error.field === "image")}
             />
             {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
-
-            <RadioButton
-              title="Stand Lage"
-              names={LOCATION_OPTIONS.map((option) => option.label)}
-              options={LOCATION_OPTIONS.map((option) => option.value)}
-              selectedOption={location}
-              inputChange={(value) => setLocation(value)}
-              inputRef={refs.location}
-              isError={errors.some((error) => error.field === "location")}
-              require
-            />
-
-            <RadioButton
-              title={`Standgröße (${
-                LOCATION_OPTIONS.find((option) => option.value === location).vendor
-              }€ je m²)`}
-              names={VENDOR_STANDSIZE_OPTIONS.map((option) => option.label)}
-              options={VENDOR_STANDSIZE_OPTIONS.map((option) => option.value)}
-              selectedOption={standSize}
-              inputChange={(value) => setStandSize(value)}
-              inputRef={refs.gender}
-              isError={errors.some((error) => error.field === "standSize")}
-              require
-            />
-
-            <InputOptionInput
-              type="number"
-              title={`Zusätzliches Ausstellerticket (je ${TICKET_COST}€)`}
-              inputText={additionalExhibitorTicket}
-              inputChange={(value) => setAdditionalExhibitorTicket(value)}
-              inputRef={refs.additionalExhibitorTicket}
-              isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
-              min={0}
-              max={4}
-            />
-
-            <CheckBox
-              title="strom"
-              content={`Strom - (${POWER_COST}€)`}
-              isChecked={power}
-              inputChange={(value) => setPower(value)}
-              inputRef={refs.power}
-              isError={errors.some((error) => error.field === "power")}
-            />
-
-            <CheckBox
-              title="wlan"
-              content={`W-lan für ein EC-Karten-/Kreditkartengerät - (${WLAN_COST}€)`}
-              isChecked={wlan}
-              inputChange={(value) => setWlan(value)}
-              inputRef={refs.wlan}
-              isError={errors.some((error) => error.field === "wlan")}
-            />
-            <RadioButton
-              title={
-                <>
-                  <span>
-                    Programmheft{" "}
-                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blanck">
-                      Infoblatt
-                    </StyledLink>{" "}
-                  </span>
-                </>
-              }
-              names={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.label)}
-              options={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.value)}
-              selectedOption={programmBooklet}
-              inputChange={(value) => setProgrammBooklet(value)}
-              inputRef={refs.programmBooklet}
-              isError={errors.some((error) => error.field === "programmBooklet")}
-              require
-            />
-            <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
-
-            <RadioButton
-              title="Tische - (inklusive)"
-              names={["Ja", "Nein"]}
-              options={["Ja", "Nein"]}
-              selectedOption={table}
-              inputChange={(value) => setTable(value)}
-              inputRef={refs.table}
-              isError={errors.some((error) => error.field === "table")}
-              require
-            />
-
-            <h3>Gesamtkosten</h3>
-            <ul>
-              <li>
-                Standgröße:{" "}
-                {VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).label}
-                {standSize !== "INDIVIDUAL" ? ` (${selectedStandCost.toFixed(2)} €)` : ""}
-              </li>
-              {additionalExhibitorTicket > 0 && (
-                <li>
-                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST},00€ ={" "}
-                  {totalTicketCost.toFixed(2)}€
-                </li>
-              )}
-              {power && <li>Strom: {POWER_COST},00€</li>}
-              {wlan && <li>W-Lan: {WLAN_COST},00€</li>}
-              {programmBooklet !== "Nein" && (
-                <li>
-                  Programmheft:{" "}
-                  {
-                    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet)
-                      .label
-                  }{" "}
-                  ({totalProgrammBookletCost.toFixed(2)}€)
-                </li>
-              )}
-            </ul>
-
-            <h4>
-              Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST
-              {standSize === "INDIVIDUAL" && "  und Standkosten"}
-            </h4>
 
             <Spacer />
             <h2>Allgemeines</h2>
@@ -715,20 +685,6 @@ export default function RegistrationAsVendor() {
               require
             />
             <CheckBox
-              title="licensedMusic"
-              content={
-                <p>
-                  Ich habe zur Kenntnis genommen, dass GEMA-Lizenzierte Tonwiedergabe nicht erlaubt
-                  ist.<RequiredNote>*</RequiredNote>
-                </p>
-              }
-              isChecked={licensedMusic}
-              inputChange={(value) => setLicensedMusic(value)}
-              inputRef={refs.licensedMusic}
-              isError={errors.some((error) => error.field === "licensedMusic")}
-              require
-            />
-            <CheckBox
               title="pictureRights"
               content={
                 <p>
@@ -744,26 +700,6 @@ export default function RegistrationAsVendor() {
               inputChange={(value) => setPictureRights(value)}
               inputRef={refs.pictureRights}
               isError={errors.some((error) => error.field === "pictureRights")}
-              require
-            />
-            <CheckBox
-              title="conditions"
-              content={
-                <p>
-                  Ich habe die{" "}
-                  <StyledLink
-                    href="/downloads/Teilnahmebedingungen_Haendler_2025.pdf"
-                    target="_blank"
-                  >
-                    Teilnahmebedingungen
-                  </StyledLink>{" "}
-                  gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
-                </p>
-              }
-              isChecked={conditions}
-              inputChange={(value) => setConditions(value)}
-              inputRef={refs.conditions}
-              isError={errors.some((error) => error.field === "conditions")}
               require
             />
 

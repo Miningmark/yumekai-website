@@ -39,7 +39,7 @@ const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
 };
 
-export default function RegistrationAsArtist() {
+export default function Artist() {
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
   const [name, setName] = useState("");

@@ -22,16 +22,6 @@ import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
-const TimeslotsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  ${({ $iserror }) => $iserror && `border: solid 2px red;`}
-  ${({ $iserror }) => $iserror && `padding: 10px;`}
-`;
-
 import { EVENT_ID, COUNTRIES } from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
@@ -40,7 +30,7 @@ const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
 };
 
-export default function RegistrationAsWorkshop() {
+export default function Exhibitor() {
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
   const [name, setName] = useState("");
@@ -52,19 +42,10 @@ export default function RegistrationAsWorkshop() {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const [workshopTitle, setWorkshopTitle] = useState("");
+  const [groupName, setGroupName] = useState("");
+  const [groupMembers, setGroupMembers] = useState(1);
   const [announcementText, setAnnouncementText] = useState("");
-  const [leaders, setLeaders] = useState(1);
-  const [timeSlot1, setTimeSlot1] = useState(false);
-  const [timeSlot2, setTimeSlot2] = useState(false);
-  const [timeSlot3, setTimeSlot3] = useState(false);
-  const [timeSlot4, setTimeSlot4] = useState(false);
-  const [constructionTime, setConstructionTime] = useState(0);
-  const [workshopTime, setWorkshopTime] = useState(0);
-  const [deconstructionTime, setDeconstructionTime] = useState(0);
-  const [workshopRequirements, setWorkshopRequirements] = useState("");
-  const [participants, setParticipants] = useState(0);
-
+  const [standSize, setStandSize] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
@@ -73,7 +54,9 @@ export default function RegistrationAsWorkshop() {
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
+  const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
+  const [conditions, setConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -89,21 +72,19 @@ export default function RegistrationAsWorkshop() {
     postalCode: useRef(null),
     city: useRef(null),
     country: useRef(null),
-    workshopTitle: useRef(null),
+    groupName: useRef(null),
+    groupMembers: useRef(null),
     announcementText: useRef(null),
-    leaders: useRef(null),
-    timeSlots: useRef(null),
-    constructionTime: useRef(null),
-    workshopTime: useRef(null),
-    deconstructionTime: useRef(null),
-    workshopRequirements: useRef(null),
-    participants: useRef(null),
+    standSize: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
+    image: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
+    licensedMusic: useRef(null),
     pictureRights: useRef(null),
+    conditions: useRef(null),
   };
 
   async function submit(event) {
@@ -132,7 +113,7 @@ export default function RegistrationAsWorkshop() {
       newErrors.push({ field: "email", message: emailValidation.description });
 
     //Straße Validierung
-    const streetValidation = validateString(street, "Straße", 2, 50, true);
+    const streetValidation = validateString(street, "Straße", 3, 50, true);
     if (!streetValidation.check)
       newErrors.push({ field: "street", message: streetValidation.description });
 
@@ -151,22 +132,22 @@ export default function RegistrationAsWorkshop() {
     if (!countryValidation.check)
       newErrors.push({ field: "country", message: countryValidation.description });
 
-    //Titel des Workshops Validierung
-    const workshopTitleValidation = validateString(
-      workshopTitle,
-      "Titel des Workshops",
-      2,
-      250,
-      true
-    );
-    if (!workshopTitleValidation.check)
-      newErrors.push({ field: "workshopTitle", message: workshopTitleValidation.description });
+    //Gruppenname Validierung
+    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 50, true);
+    if (!groupNameValidation.check)
+      newErrors.push({ field: "groupName", message: groupNameValidation.description });
 
-    //Beschreibung des Workshops Validierung
+    //Gruppenmitglieder Validierung
+    if (groupMembers < 1)
+      newErrors.push({ field: "groupMembers", message: "Mindestens 1 Gruppenmitglied" });
+    if (groupMembers > 25)
+      newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
+
+    //Beschreibung des Standes Validierung
     const announcementTextValidation = validateString(
       announcementText,
       "Ankündigungstext",
-      10,
+      5,
       2500,
       true
     );
@@ -176,57 +157,14 @@ export default function RegistrationAsWorkshop() {
         message: announcementTextValidation.description,
       });
 
-    //Leiter*innen Validierung
-    if (leaders < 1)
-      newErrors.push({ field: "leaders", message: "Leiter*innen muss mindestens 1 sein" });
-    if (leaders > 5)
-      newErrors.push({ field: "leaders", message: "Leiter*innen darf maximal 5 sein" });
-
-    //Zeitslots Validierung
-    if (!(timeSlot1 || timeSlot2 || timeSlot3 || timeSlot4))
-      newErrors.push({ field: "timeSlots", message: "Bitte mindestens eine Option wählen" });
-
-    //Aufbauzeit
-    if (constructionTime < 1)
-      newErrors.push({ field: "constructionTime", message: "Aufbauzeit muss mindestens 1 sein" });
-    if (constructionTime > 30)
-      newErrors.push({ field: "constructionTime", message: "Aufbauzeit darf maximal 30 sein" });
-
-    //Workshopzeit
-    if (workshopTime < 30)
-      newErrors.push({ field: "workshopTime", message: "Workshopzeit muss mindestens 30 sein" });
-    if (workshopTime > 360)
-      newErrors.push({ field: "workshopTime", message: "Workshopzeit darf maximal 360 sein" });
-
-    //Abbauzeit
-    if (deconstructionTime < 1)
-      newErrors.push({ field: "deconstructionTime", message: "Abbauzeit muss mindestens 1 sein" });
-    if (deconstructionTime > 30)
-      newErrors.push({ field: "deconstructionTime", message: "Abbauzeit darf maximal 30 sein" });
-
-    //Anforderungen für den Workshop
-    const workshopRequirementsValidation = validateString(
-      workshopRequirements,
-      "Anforderungen für den Workshop",
-      0,
-      2500
-    );
-    if (!workshopRequirementsValidation.check)
+    //Standgröße Validierung
+    const standSizeValidation = validateString(standSize, "Standgröße", 5, 2500, true);
+    if (!standSizeValidation.check)
       newErrors.push({
-        field: "workshopRequirements",
-        message: workshopRequirementsValidation.description,
+        field: "standSize",
+        message: standSizeValidation.description,
       });
 
-    //Teilnehmer*innen
-    if (participants) {
-      if (participants < 1)
-        newErrors.push({
-          field: "participants",
-          message: "Teilnehmer*innen muss mindestens 1 sein",
-        });
-      if (participants > 40)
-        newErrors.push({ field: "participants", message: "Teilnehmer*innen darf maximal 40 sein" });
-    }
     //Website Validierung
     const websiteValidation = validateString(website, "Website", 0, 100);
     if (!websiteValidation.check)
@@ -253,9 +191,23 @@ export default function RegistrationAsWorkshop() {
     if (!dataStorage)
       newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
 
+    //GEMA
+    if (!licensedMusic)
+      newErrors.push({
+        field: "licensedMusic",
+        message: "GEMA-Lizenzierte Musik ist nicht erlaubt",
+      });
+
     //Bildrechte
     if (!pictureRights)
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
+
+    //Teilnahmebedingungen
+    if (!conditions)
+      newErrors.push({
+        field: "conditions",
+        message: "Teilnahmebedingungen müssen akzeptiert werden",
+      });
 
     //Check if there are any errors
     if (newErrors.length > 0) {
@@ -269,18 +221,7 @@ export default function RegistrationAsWorkshop() {
       }
       return;
     }
-
     setLoading(true);
-
-    const timeSlots = [
-      timeSlot1 && "Samstag 11:00-15:00 Uhr",
-      timeSlot2 && "Samstag 15:00-20:00 Uhr",
-      timeSlot3 && "Sonntag 11:00-14:00 Uhr",
-      timeSlot4 && "Sonntag 14:00-18:00 Uhr",
-    ]
-      .filter(Boolean)
-      .join(", ")
-      .trim();
 
     const formData = new FormData();
     formData.append("eventId", eventId);
@@ -291,36 +232,33 @@ export default function RegistrationAsWorkshop() {
     formData.append("postalCode", postalCode.trim());
     formData.append("city", city.trim());
     formData.append("country", country.trim());
-    formData.append("workshopTitle", workshopTitle.trim());
+    formData.append("groupName", groupName.trim());
+    formData.append("groupMembers", groupMembers);
     formData.append("announcementText", announcementText.trim());
-    formData.append("leaders", leaders.trim());
-    formData.append("timeSlots", timeSlots);
-    formData.append("constructionTime", constructionTime);
-    formData.append("workshopTime", workshopTime);
-    formData.append("deconstructionTime", deconstructionTime);
-    formData.append("workshopRequirements", workshopRequirements.trim());
-    formData.append("participants", participants || 0);
+    formData.append("standSize", standSize.trim());
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("pictureRights", pictureRights);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("licensedMusicPolicy", licensedMusic);
+    formData.append("pictureRightsPolicy", pictureRights);
+    formData.append("conditionsPolicy", conditions);
     formData.append("file", file);
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createWorkshop",
+        "https://node.miningmark.de/api/v1/event/application/createExhibitor",
         {
           method: "POST",
           body: formData,
         }
       );
-
       if (response.ok) {
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
         );
+        setErrors([]);
         setName("");
         setLastName("");
         setEmail("");
@@ -329,34 +267,29 @@ export default function RegistrationAsWorkshop() {
         setPostalCode("");
         setCity("");
         setCountry("");
-        setWorkshopTitle("");
+        setGroupName("");
+        setGroupMembers(1);
+        setStandSize("");
         setAnnouncementText("");
-        setLeaders(1);
-        setTimeSlot1(false);
-        setTimeSlot2(false);
-        setTimeSlot3(false);
-        setTimeSlot4(false);
-        setConstructionTime(0);
-        setWorkshopTime(0);
-        setDeconstructionTime(0);
-        setWorkshopRequirements("");
-        setParticipants(0);
         setWebsite("");
         setInstagram("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
+        setLicensedMusic(false);
         setPictureRights(false);
+        setConditions(false);
         setFile(null);
         setPreviewUrl(null);
-        setErrors([]);
       } else {
+        const data = await response.json();
         setErrors([
           {
             field: "general",
             message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
           },
         ]);
+        console.error("Fehler beim Einfügen der Daten:", result.error);
       }
     } catch (error) {
       setErrors([
@@ -365,6 +298,7 @@ export default function RegistrationAsWorkshop() {
           message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
         },
       ]);
+      console.error("Fehler beim Einfügen der Daten:", error);
     }
     setLoading(false);
   }
@@ -395,34 +329,24 @@ export default function RegistrationAsWorkshop() {
 
   return (
     <>
-      <h1>Anmeldung als Workshopleiter</h1>
-      <p>Sichert euch euren Platz auf der YumeKai 2025!</p>
+      <h1>Anmeldung Gruppen/Fan Stand</h1>
       <p>
-        <strong>HINWEIS:</strong>
-        <br />
-        Wir können nicht gewährleisten, dass euer Workshop für die YumeKai 2024 ausgewählt oder der
-        gewünschte Zeitslot garantiert werden kann. Bei einer hohen Nachfrage an Workshops streben
-        wir an, ein möglichst ausgewogenes Angebot zu schaffen.
+        Sichert euch euren Platz auf der YumeKai 2026!
         <br />
         <br />
-        Falls euer Workshop oder Vortrag ausgewählt wird, erhaltet ihr von uns ein Wochenendticket,
-        das den Zugang zur Convention ermöglicht. Detaillierte Informationen zu eurem Workshop oder
-        Vortrag werden euch per E-Mail mitgeteilt, sofern ihr ausgewählt werdet.
+        Bitte beachtet die{" "}
+        <StyledLink href="/" target="_blank">
+          Teilnahme- und Auswahlbedingungen
+        </StyledLink>
+        .
         <br />
         <br />
-        Bitte beachtet, dass wir keine Erstattungen für Materialien oder Fahrtkosten für
-        Workshop-Leiter anbieten können. Als Workshopleiter musst du mindestens 18 Jahre alt sein.
-        Workshops, die von Ausstellern oder Helfern angeboten werden möchten, werden in unserer
-        Auswahl bevorzugt behandelt, sofern dies nicht zu einer Beeinträchtigung eines ausgewogenen
-        Angebots führt.
-      </p>
-      <p>
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung für einen Gruppen/Fan stand ist momentan geschlossen.</h2>
 
       {!success && (
         <>
@@ -430,7 +354,7 @@ export default function RegistrationAsWorkshop() {
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
           <StyledForm onSubmit={submit}>
-            <h2>Persönliche Angaben</h2>
+            <h2>Persönliche Angaben (Kontaktperson)</h2>
             <InputOptionInput
               title="Name"
               inputText={name}
@@ -502,111 +426,41 @@ export default function RegistrationAsWorkshop() {
             />
 
             <Spacer />
-            <h2>Workshop</h2>
+            <h2>Stand</h2>
             <InputOptionInput
-              title="Titel des Workshops"
-              inputText={workshopTitle}
-              inputChange={setWorkshopTitle}
-              inputRef={refs.workshopTitle}
-              isError={errors.some((error) => error.field === "workshopTitle")}
+              title="Gruppenname"
+              inputText={groupName}
+              inputChange={(value) => setGroupName(value)}
+              inputRef={refs.groupName}
+              isError={errors.some((error) => error.field === "Gruppenname")}
               require
+            />
+            <InputOptionInput
+              title="Gruppenmitglieder"
+              inputText={groupMembers}
+              inputChange={setGroupMembers}
+              inputRef={refs.groupMembers}
+              isError={errors.some((error) => error.field === "groupMembers")}
+              require
+              type="number"
+              min={1}
+              max={25}
             />
             <InputOptionTextArea
               title="Ankündigungstext"
               inputText={announcementText}
-              inputChange={setAnnouncementText}
-              inputRef={refs.announcementText}
-              isError={errors.some((error) => error.field === "announcementText")}
+              inputChange={(value) => setAnnouncementText(value)}
+              inputRef={refs.descriptionOfStand}
+              isError={errors.some((error) => error.field === "descriptionOfStand")}
               require
-            />
-            <InputOptionInput
-              title="Leiter*innen"
-              inputText={leaders}
-              inputChange={setLeaders}
-              inputRef={refs.leaders}
-              isError={errors.some((error) => error.field === "leaders")}
-              require
-              type="number"
-              min={1}
-              max={5}
-            />
-            <TimeslotsContainer $iserror={errors.some((error) => error.field === "timeSlots")}>
-              <h3>Bevorzugter Tag/Uhrzeit (min. 1 Option wählen)</h3>
-              <CheckBox
-                title="timeSlot1"
-                content="Samstag 11:00-15:00 Uhr"
-                isChecked={timeSlot1}
-                inputChange={(value) => setTimeSlot1(value)}
-                inputRef={refs.timeSlots}
-              />
-              <CheckBox
-                title="timeSlot2"
-                content="Samstag 15:00-20:00 Uhr"
-                isChecked={timeSlot2}
-                inputChange={(value) => setTimeSlot2(value)}
-              />
-              <CheckBox
-                title="timeSlot3"
-                content="Sonntag 11:00-14:00 Uhr"
-                isChecked={timeSlot3}
-                inputChange={(value) => setTimeSlot3(value)}
-              />
-              <CheckBox
-                title="timeSlot4"
-                content="Sonntag 14:00-18:00 Uhr"
-                isChecked={timeSlot4}
-                inputChange={(value) => setTimeSlot4(value)}
-              />
-            </TimeslotsContainer>
-            <InputOptionInput
-              title="Aufbauzeit (in Minuten)"
-              inputText={constructionTime}
-              inputChange={setConstructionTime}
-              inputRef={refs.constructionTime}
-              isError={errors.some((error) => error.field === "constructionTime")}
-              require
-              type="number"
-              min={1}
-              max={30}
-            />
-            <InputOptionInput
-              title="Workshopzeit (in Minuten)"
-              inputText={workshopTime}
-              inputChange={setWorkshopTime}
-              inputRef={refs.workshopTime}
-              isError={errors.some((error) => error.field === "workshopTime")}
-              require
-              type="number"
-              min={30}
-              max={360}
-            />
-            <InputOptionInput
-              title="Abbauzeit (in Minuten)"
-              inputText={deconstructionTime}
-              inputChange={setDeconstructionTime}
-              inputRef={refs.deconstructionTime}
-              isError={errors.some((error) => error.field === "deconstructionTime")}
-              require
-              type="number"
-              min={1}
-              max={30}
             />
             <InputOptionTextArea
-              title="Anforderungen für den Workshop (z.B. Material, Technik, etc.)"
-              inputText={workshopRequirements}
-              inputChange={setWorkshopRequirements}
-              inputRef={refs.workshopRequirements}
-              isError={errors.some((error) => error.field === "workshopRequirements")}
-            />
-            <InputOptionInput
-              title="Teilnehmer*innen"
-              inputText={participants}
-              inputChange={setParticipants}
-              inputRef={refs.participants}
-              isError={errors.some((error) => error.field === "participants")}
-              type="number"
-              min={1}
-              max={40}
+              title="Standgröße"
+              inputText={standSize}
+              inputChange={(value) => setStandSize(value)}
+              inputRef={refs.standSize}
+              isError={errors.some((error) => error.field === "standSize")}
+              require
             />
             <p>
               Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
@@ -685,6 +539,20 @@ export default function RegistrationAsWorkshop() {
               require
             />
             <CheckBox
+              title="licensedMusic"
+              content={
+                <p>
+                  Ich habe zur Kenntnis genommen, dass GEMA-Lizenzierte Tonwiedergabe nicht erlaubt
+                  ist.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={licensedMusic}
+              inputChange={(value) => setLicensedMusic(value)}
+              inputRef={refs.licensedMusic}
+              isError={errors.some((error) => error.field === "licensedMusic")}
+              require
+            />
+            <CheckBox
               title="pictureRights"
               content={
                 <p>
@@ -702,6 +570,23 @@ export default function RegistrationAsWorkshop() {
               isError={errors.some((error) => error.field === "pictureRights")}
               require
             />
+            <CheckBox
+              title="conditions"
+              content={
+                <p>
+                  Ich habe die{" "}
+                  <StyledLink href="/" target="_blank">
+                    Teilnahmebedingungen
+                  </StyledLink>{" "}
+                  gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={conditions}
+              inputChange={(value) => setConditions(value)}
+              inputRef={refs.conditions}
+              isError={errors.some((error) => error.field === "conditions")}
+              require
+            />
 
             {errors && (
               <ul>
@@ -712,6 +597,7 @@ export default function RegistrationAsWorkshop() {
                 ))}
               </ul>
             )}
+
             <StyledButton type="submit">Anmelden</StyledButton>
           </StyledForm>
         </>

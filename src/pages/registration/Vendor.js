@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, use } from "react";
 
 //Components
 import {
@@ -17,76 +17,66 @@ import {
   ModalOverlay,
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
+import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
-import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString from "@/util/inputCheck";
 
-const TimeslotsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  ${({ $iserror }) => $iserror && `border: solid 2px red;`}
-  ${({ $iserror }) => $iserror && `padding: 10px;`}
-`;
-
-import { EVENT_ID, COUNTRIES, SHOWACT_ACCOMODATION_OPTIONS } from "@/util/registration_options";
+import {
+  EVENT_ID,
+  TICKET_COST,
+  POWER_COST,
+  WLAN_COST,
+  COUNTRIES,
+  LOCATION_OPTIONS,
+  PROGRAMM_BOOKLET_OPTIONS,
+  VENDOR_STANDSIZE_OPTIONS,
+} from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
-const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
-const MAX_FILE_SIZE_MB = 10;
 
 const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
 };
 
-export default function RegistrationAsShowact() {
+export default function Vendor() {
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
+  const [vendorName, setVendorName] = useState("");
   const [street, setStreet] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const [groupName, setGroupName] = useState("");
-  const [groupMembers, setGroupMembers] = useState(1);
-  const [announcementText, setAnnouncementText] = useState("");
-  const [timeSlot1, setTimeSlot1] = useState(false);
-  const [timeSlot2, setTimeSlot2] = useState(false);
-  const [timeSlot3, setTimeSlot3] = useState(false);
-  const [timeSlot4, setTimeSlot4] = useState(false);
-  const [constructionTime, setConstructionTime] = useState("");
-  const [performanceTime, setPerformanceTime] = useState("");
-  const [deconstructionTime, setDeconstructionTime] = useState("");
-  const [accomodation, setAccomodation] = useState("");
-  const [requiredEquipment, setRequiredEquipment] = useState("");
-  const [broughtEquipment, setBroughtEquipment] = useState("");
-
+  const [typeOfAssortment, setTypeOfAssortment] = useState("");
+  const [standSize, setStandSize] = useState("2X2"); //ENUM: 2x2, 2x3, 2x4, 2x5, 2x6, 2x7, INDIVIDUAL
+  const [location, setLocation] = useState("STADTHALLE"); //ENUM: STADTHALLE, KOLBEHAUS, EGAL
+  const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(0);
+  const [power, setPower] = useState(false);
+  const [wlan, setWlan] = useState(false);
+  const [programmBooklet, setProgrammBooklet] = useState("NO"); //ENUM: NO, QUATER_SITE, HALF_SITE, FULL_SITE
+  const [table, setTable] = useState("");
+  const [announcement_text, setAnnouncement_text] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
-  const [file2, setFile2] = useState([]);
-  const [previewUrl2, setPreviewUrl2] = useState([]);
-
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
+  const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
   const [conditions, setConditions] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
-  const [fileError2, setFileError2] = useState("");
   const [loading, setLoading] = useState(false);
 
   const refs = {
@@ -94,34 +84,45 @@ export default function RegistrationAsShowact() {
     lastName: useRef(null),
     email: useRef(null),
     confirmEmail: useRef(null),
+    vendorName: useRef(null),
     street: useRef(null),
     postalCode: useRef(null),
     city: useRef(null),
     country: useRef(null),
-    groupName: useRef(null),
-    groupMembers: useRef(null),
-    announcementText: useRef(null),
-    timeSlots: useRef(null),
-    constructionTime: useRef(null),
-    performanceTime: useRef(null),
-    deconstructionTime: useRef(null),
-    accomodation: useRef(null),
-    requiredEquipment: useRef(null),
-    broughtEquipment: useRef(null),
+    typeOfAssortment: useRef(null),
+    standSize: useRef(null),
+    location: useRef(null),
+    additionalExhibitorTicket: useRef(null),
+    power: useRef(null),
+    wlan: useRef(null),
+    programmBooklet: useRef(null),
+    table: useRef(null),
+    announcement_text: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
-    file: useRef(null),
-    file2: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
-    conditions: useRef(null),
+    vendorConditions: useRef(null),
   };
+
+  const selectedStandCost =
+    VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
+      LOCATION_OPTIONS.find((option) => option.value === location).vendor || 0;
+  const totalTicketCost = additionalExhibitorTicket * TICKET_COST;
+  const totalStromCost = power ? POWER_COST : 0;
+  const totalWlanCost = wlan ? WLAN_COST : 0;
+  const totalProgrammBookletCost =
+    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet).price || 0;
+
+  const totalCost =
+    selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalStromCost + totalWlanCost;
 
   async function submit(event) {
     event.preventDefault();
+    console.log("Submit");
 
     const newErrors = [];
     setErrors([]);
@@ -129,22 +130,29 @@ export default function RegistrationAsShowact() {
 
     // Validierungslogik mit validateString
     // Name Validierung
-    const nameValidation = validateString(name, "Vorname", 2, 50, true);
+    const nameValidation = validateString(name, "Vorname", 2, 100, true);
     if (!nameValidation.check)
       newErrors.push({ field: "name", message: nameValidation.description });
 
     // Nachname Validierung
-    const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
-    if (!lastNameValidation.check)
-      newErrors.push({ field: "lastName", message: lastNameValidation.description });
+    if (lastName) {
+      const lastNameValidation = validateString(lastName, "Nachname", 2, 100, true);
+      if (!lastNameValidation.check)
+        newErrors.push({ field: "lastName", message: lastNameValidation.description });
+    }
 
     // Email Validierung
     const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
     if (!emailValidation.check)
       newErrors.push({ field: "email", message: emailValidation.description });
 
+    //Firmenname Validierung
+    const vendorNameValidation = validateString(vendorName, "Firmenname", 2, 100, true);
+    if (!vendorNameValidation.check)
+      newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
+
     //Straße Validierung
-    const streetValidation = validateString(street, "Straße", 2, 50, true);
+    const streetValidation = validateString(street, "Straße", 2, 100, true);
     if (!streetValidation.check)
       newErrors.push({ field: "street", message: streetValidation.description });
 
@@ -154,92 +162,64 @@ export default function RegistrationAsShowact() {
       newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
 
     //Ort Validierung
-    const cityValidation = validateString(city, "Ort", 2, 50, true);
+    const cityValidation = validateString(city, "Ort", 2, 100, true);
     if (!cityValidation.check)
       newErrors.push({ field: "city", message: cityValidation.description });
 
     //Land Validierung
-    const countryValidation = validateString(country, "Land", 2, 50, true);
+    const countryValidation = validateString(country, "Land", 2, 100, true);
     if (!countryValidation.check)
       newErrors.push({ field: "country", message: countryValidation.description });
 
-    //Gruppenname Validierung
-    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 50, true);
-    if (!groupNameValidation.check)
-      newErrors.push({ field: "groupName", message: groupNameValidation.description });
-
-    //Gruppenmitglieder Validierung
-    if (groupMembers < 1)
-      newErrors.push({ field: "groupMembers", message: "Mindestens 1 Gruppenmitglied" });
-    if (groupMembers > 25)
-      newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
-
-    //Beschreibung Validierung
-    const announcementTextValidation = validateString(
-      announcementText,
-      "Ankündigungstext",
-      5,
+    //Produktsortiment Validierung
+    const typeOfAssortmentValidation = validateString(
+      typeOfAssortment,
+      "Produktsortiment",
+      2,
       2500,
       true
     );
-    if (!announcementTextValidation.check)
+    if (!typeOfAssortmentValidation.check)
       newErrors.push({
-        field: "announcementText",
-        message: announcementTextValidation.description,
+        field: "typeOfAssortment",
+        message: typeOfAssortmentValidation.description,
       });
 
-    //Zeitslots Validierung
-    if (!timeSlot1 && !timeSlot2 && !timeSlot3 && !timeSlot4)
-      newErrors.push({ field: "timeSlots", message: "Bitte wähle mindestens einen Zeitraum" });
-
-    //Aufbauzeit Validierung
-    if (constructionTime < 1)
-      newErrors.push({ field: "constructionTime", message: "Aufbaudauer mindestens 1 Minute" });
-    if (constructionTime > 60)
-      newErrors.push({ field: "constructionTime", message: "Aufbaudauer maximal 60 Minuten" });
-
-    //Aufführungszeit Validierung
-    if (performanceTime < 30)
-      newErrors.push({ field: "performanceTime", message: "Auftritt mindestens 30 Minute" });
-    if (performanceTime > 180)
-      newErrors.push({ field: "performanceTime", message: "Auftritt maximal 180 Minuten" });
-
-    //Abbauzeit Validierung
-    if (deconstructionTime < 1)
-      newErrors.push({ field: "deconstructionTime", message: "Abbaudauer mindestens 1 Minute" });
-    if (deconstructionTime > 60)
-      newErrors.push({ field: "deconstructionTime", message: "Abbaudauer maximal 60 Minuten" });
-
-    //Unterkunft Validierung
-    const accomodationValidation = validateString(accomodation, "Unterkunft", 3, 100, true);
-    if (!accomodationValidation.check)
-      newErrors.push({ field: "accomodation", message: accomodationValidation.description });
-
-    //Benötigte Technik Validierung
-    const requiredEquipmentValidation = validateString(
-      requiredEquipment,
-      "Benötigte Technik",
-      0,
-      2500
+    //Ankündigungstext des Standes Validierung
+    const announcement_textValidation = validateString(
+      announcement_text,
+      "Ankündigungstext",
+      10,
+      2500,
+      true
     );
-    if (!requiredEquipmentValidation.check)
+    if (!announcement_textValidation.check)
       newErrors.push({
-        field: "requiredEquipment",
-        message: requiredEquipmentValidation.description,
+        field: "announcement_text",
+        message: announcement_textValidation.description,
       });
 
-    //Mitgebrachte Technik Validierung
-    const broughtEquipmentValidation = validateString(
-      broughtEquipment,
-      "Mitgebrachte Technik",
-      0,
-      2500
-    );
-    if (!broughtEquipmentValidation.check)
+    //Standgröße Validierung
+    const standSizeValidation = validateString(standSize, "Standgröße", 2, 50, true);
+    if (!standSizeValidation.check)
+      newErrors.push({ field: "standSize", message: standSizeValidation.description });
+
+    //Zusätzliche Ausstellertickets Validierung
+    if (additionalExhibitorTicket < 0)
       newErrors.push({
-        field: "broughtEquipment",
-        message: broughtEquipmentValidation.description,
+        field: "additionalExhibitorTicket",
+        message: "Ungültige Anzahl an zusätzlichen Ausstellertickets (min. 0)",
       });
+    if (additionalExhibitorTicket > 4)
+      newErrors.push({
+        field: "additionalExhibitorTicket",
+        message: "Ungültige Anzahl an zusätzlichen Ausstellertickets (max. 4)",
+      });
+
+    //Tische Validierung
+    const tableValidation = validateString(table, "Tische", 0, 10, true);
+    if (!tableValidation.check)
+      newErrors.push({ field: "table", message: tableValidation.description });
 
     //Website Validierung
     const websiteValidation = validateString(website, "Website", 0, 100);
@@ -267,6 +247,13 @@ export default function RegistrationAsShowact() {
     if (!dataStorage)
       newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
 
+    //GEMA
+    if (!licensedMusic)
+      newErrors.push({
+        field: "licensedMusic",
+        message: "GEMA-Lizenzierte Musik ist nicht erlaubt",
+      });
+
     //Bildrechte
     if (!pictureRights)
       newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
@@ -290,55 +277,40 @@ export default function RegistrationAsShowact() {
       }
       return;
     }
-
     setLoading(true);
-
-    const timeSlots = [
-      timeSlot1 && "Samstag 11:00-14:00 Uhr",
-      timeSlot2 && "Samstag 14:00-18:00 Uhr",
-      timeSlot3 && "Sonntag 11:00-14:00 Uhr",
-      timeSlot4 && "Sonntag 14:00-18:00 Uhr",
-    ]
-      .filter(Boolean)
-      .join(", ")
-      .trim();
 
     const formData = new FormData();
     formData.append("eventId", eventId);
     formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
+    formData.append("vendorName", vendorName.trim());
     formData.append("street", street.trim());
     formData.append("postalCode", postalCode.trim());
     formData.append("city", city.trim());
     formData.append("country", country.trim());
-    formData.append("groupName", groupName.trim());
-    formData.append("groupMembers", groupMembers);
-    formData.append("announcementText", announcementText.trim());
-    formData.append("timeSlots", timeSlots);
-    formData.append("constructionTime", constructionTime);
-    formData.append("performanceTime", performanceTime);
-    formData.append("deconstructionTime", deconstructionTime);
-    formData.append("accomodation", accomodation);
-    formData.append("requiredEquipment", requiredEquipment.trim());
-    formData.append("broughtEquipment", broughtEquipment.trim());
+    formData.append("typeOfAssortment", typeOfAssortment.trim());
+    formData.append("announcementText", announcement_text.trim());
+    formData.append("standSize", standSize);
+    formData.append("location", location);
+    formData.append("additionalExhibitorTickets", additionalExhibitorTicket);
+    formData.append("powerRequired", power);
+    formData.append("wlanRequired", wlan);
+    formData.append("bookletSite", programmBooklet);
+    formData.append("tableRequired", table === "Ja" ? true : false);
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStoragePolicy", dataStorage);
-    formData.append("pictureRights", pictureRights);
+    formData.append("licensedMusicPolicy", licensedMusic);
+    formData.append("pictureRightsPolicy", pictureRights);
     formData.append("conditionsPolicy", conditions);
     formData.append("file", file);
-    if (file2 && Array.isArray(file2)) {
-      file2.forEach((singleFile, index) => {
-        formData.append(`file2[${index}]`, singleFile);
-      });
-    }
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createShowact",
+        "https://node.miningmark.de/api/v1/event/application/createVendor",
         {
           method: "POST",
           body: formData,
@@ -349,46 +321,44 @@ export default function RegistrationAsShowact() {
         setSuccess(
           "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
         );
+        setErrors([]);
         setName("");
         setLastName("");
         setEmail("");
         setConfirmEmail("");
+        setVendorName("");
         setStreet("");
         setPostalCode("");
         setCity("");
         setCountry("");
-        setGroupName("");
-        setGroupMembers(1);
-        setAnnouncementText("");
-        setTimeSlot1(false);
-        setTimeSlot2(false);
-        setTimeSlot3(false);
-        setTimeSlot4(false);
-        setConstructionTime("");
-        setPerformanceTime("");
-        setDeconstructionTime("");
-        setAccomodation("");
-        setRequiredEquipment("");
-        setBroughtEquipment("");
+        setTypeOfAssortment("");
+        setStandSize("2X2");
+        setLocation("STADTHALLE");
+        setAdditionalExhibitorTicket(0);
+        setPower(false);
+        setWlan(false);
+        setProgrammBooklet("NO");
+        setTable("");
+        setAnnouncement_text("");
         setWebsite("");
         setInstagram("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
+        setLicensedMusic(false);
         setPictureRights(false);
         setConditions(false);
         setFile(null);
-        setFile2(null);
         setPreviewUrl(null);
-        setPreviewUrl2(null);
-        setErrors([]);
       } else {
+        const result = await response.json();
         setErrors([
           {
             field: "general",
             message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
           },
         ]);
+        console.error("Fehler beim Einfügen der Daten:", result.error);
       }
     } catch (error) {
       setErrors([
@@ -397,16 +367,17 @@ export default function RegistrationAsShowact() {
           message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
         },
       ]);
+      console.error("Fehler beim Einfügen der Daten:", error);
     }
     setLoading(false);
   }
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const maxFileSize = MAX_FILE_SIZE_MB * 1024 * 1024; // 1MB in Bytes
+    const maxFileSize = 5 * 1024 * 1024; // 5MB in Bytes
 
     if (file && file.size > maxFileSize) {
-      setFileError(`Die Datei darf maximal ${MAX_FILE_SIZE_MB}MB groß sein.`);
+      setFileError("Die Datei darf maximal 5MB groß sein.");
       return;
     }
     setFileError("");
@@ -427,14 +398,14 @@ export default function RegistrationAsShowact() {
 
   return (
     <>
-      <h1>Anmeldung als Showact</h1>
+      <h1>Anmeldung als Händler</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2025!
         <br />
         <br />
         Bitte beachtet die{" "}
-        <StyledLink href="/downloads/Infoblatt_Showacts_2025.pdf" target="_blank">
-          Teilnahme- und Auswahlbedingungen für Showacts
+        <StyledLink href="/downloads/Teilnahmebedingungen_Haendler_2025.pdf" target="_blank">
+          Teilnahme- und Auswahlbedingungen für Händler
         </StyledLink>
         .
         <br />
@@ -444,7 +415,7 @@ export default function RegistrationAsShowact() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      <h2>Die Anmeldung als Showact ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung als Händler ist momentan geschlossen.</h2>
 
       {!success && (
         <>
@@ -486,6 +457,14 @@ export default function RegistrationAsShowact() {
               isError={errors.some((error) => error.field === "confirmEmail")}
               require
             />
+            <InputOptionInput
+              title="Firmenname"
+              inputText={vendorName}
+              inputChange={(value) => setVendorName(value)}
+              inputRef={refs.vendorName}
+              isError={errors.some((error) => error.field === "vendorName")}
+              require
+            />
 
             <Spacer />
             <h2>Adresse</h2>
@@ -525,33 +504,22 @@ export default function RegistrationAsShowact() {
             />
 
             <Spacer />
-            <h2>Gruppenangaben</h2>
+            <h2>Stand</h2>
 
-            <InputOptionInput
-              title="Gruppenname"
-              inputText={groupName}
-              inputChange={setGroupName}
-              inputRef={refs.groupName}
-              isError={errors.some((error) => error.field === "groupName")}
+            <InputOptionTextArea
+              title="Warensortiment"
+              inputText={typeOfAssortment}
+              inputChange={(value) => setTypeOfAssortment(value)}
+              inputRef={refs.typeOfAssortment}
+              isError={errors.some((error) => error.field === "typeOfAssortment")}
               require
-            />
-            <InputOptionInput
-              title="Gruppenmitglieder"
-              inputText={groupMembers}
-              inputChange={setGroupMembers}
-              inputRef={refs.groupMembers}
-              isError={errors.some((error) => error.field === "groupMembers")}
-              require
-              type="number"
-              min={1}
-              max={25}
             />
             <InputOptionTextArea
               title="Ankündigungstext"
-              inputText={announcementText}
-              inputChange={setAnnouncementText}
-              inputRef={refs.description}
-              isError={errors.some((error) => error.field === "description")}
+              inputText={announcement_text}
+              inputChange={(value) => setAnnouncement_text(value)}
+              inputRef={refs.announcement_text}
+              isError={errors.some((error) => error.field === "announcement_text")}
               require
             />
             <p>
@@ -566,109 +534,121 @@ export default function RegistrationAsShowact() {
             />
             {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
 
-            <TimeslotsContainer $iserror={errors.some((error) => error.field === "timeSlots")}>
-              <h3>Bevorzugter Tag/Uhrzeit (min. 1 Option wählen)</h3>
-              <CheckBox
-                title="timeSlot1"
-                content="Samstag 11:00-14:00 Uhr"
-                isChecked={timeSlot1}
-                inputChange={(value) => setTimeSlot1(value)}
-                inputRef={refs.timeSlots}
-              />
-              <CheckBox
-                title="timeSlot2"
-                content="Samstag 14:00-18:00 Uhr"
-                isChecked={timeSlot2}
-                inputChange={(value) => setTimeSlot2(value)}
-              />
-              <CheckBox
-                title="timeSlot3"
-                content="Sonntag 11:00-14:00 Uhr"
-                isChecked={timeSlot3}
-                inputChange={(value) => setTimeSlot3(value)}
-              />
-              <CheckBox
-                title="timeSlot4"
-                content="Sonntag 14:00-18:00 Uhr"
-                isChecked={timeSlot4}
-                inputChange={(value) => setTimeSlot4(value)}
-              />
-            </TimeslotsContainer>
-            <InputOptionInput
-              title="Aufbauzeit (in Minuten)"
-              inputText={constructionTime}
-              inputChange={setConstructionTime}
-              inputRef={refs.constructionTime}
-              isError={errors.some((error) => error.field === "constructionTime")}
+            <RadioButton
+              title="Stand Lage"
+              names={LOCATION_OPTIONS.map((option) => option.label)}
+              options={LOCATION_OPTIONS.map((option) => option.value)}
+              selectedOption={location}
+              inputChange={(value) => setLocation(value)}
+              inputRef={refs.location}
+              isError={errors.some((error) => error.field === "location")}
               require
-              type="number"
-              min={1}
-              max={60}
             />
-            <InputOptionInput
-              title="Aufführungszeit (in Minuten)"
-              inputText={performanceTime}
-              inputChange={setPerformanceTime}
-              inputRef={refs.performanceTime}
-              isError={errors.some((error) => error.field === "performanceTime")}
-              require
-              type="number"
-              min={30}
-              max={180}
-            />
-            <InputOptionInput
-              title="Abbauzeit (in Minuten)"
-              inputText={deconstructionTime}
-              inputChange={setDeconstructionTime}
-              inputRef={refs.deconstructionTime}
-              isError={errors.some((error) => error.field === "deconstructionTime")}
-              require
-              type="number"
-              min={1}
-              max={60}
-            />
-            <p>
-              Technischer Rider / Hospitality Rider / Lichtplan (max. 3 Dateien mit je.{" "}
-              {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
-            </p>
-            <MultiFileUpload
-              inputRef={refs.technicalRider}
-              previewUrl={previewUrl2}
-              files={file2}
-              setFiles={setFile2}
-              previewUrls={previewUrl2}
-              setPreviewUrls={setPreviewUrl2}
-              maxFileSize={MAX_FILE_SIZE_MB}
-              maxFiles={3}
-              acceptedExtensions={ACCEPTED_FILE_EXTENSIONS}
-              isError={errors.some((error) => error.field === "technicalRider") || fileError2}
-              setFileError={setFileError2}
-            />
-            {fileError2 && <ErrorText style={{ textAlign: "center" }}>{fileError2}</ErrorText>}
 
-            <InputOptionSelect
-              title="Unterkunft"
-              options={SHOWACT_ACCOMODATION_OPTIONS}
-              inputText={accomodation}
-              inputChange={(value) => setAccomodation(value)}
-              inputRef={refs.accomodation}
-              isError={errors.some((error) => error.field === "accomodation")}
+            <RadioButton
+              title={`Standgröße (${
+                LOCATION_OPTIONS.find((option) => option.value === location).vendor
+              }€ je m²)`}
+              names={VENDOR_STANDSIZE_OPTIONS.map((option) => option.label)}
+              options={VENDOR_STANDSIZE_OPTIONS.map((option) => option.value)}
+              selectedOption={standSize}
+              inputChange={(value) => setStandSize(value)}
+              inputRef={refs.gender}
+              isError={errors.some((error) => error.field === "standSize")}
               require
             />
-            <InputOptionTextArea
-              title="Benötigte Technik"
-              inputText={requiredEquipment}
-              inputChange={setRequiredEquipment}
-              inputRef={refs.requiredEquipment}
-              isError={errors.some((error) => error.field === "requiredEquipment")}
+
+            <InputOptionInput
+              type="number"
+              title={`Zusätzliches Ausstellerticket (je ${TICKET_COST}€)`}
+              inputText={additionalExhibitorTicket}
+              inputChange={(value) => setAdditionalExhibitorTicket(value)}
+              inputRef={refs.additionalExhibitorTicket}
+              isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
+              min={0}
+              max={4}
             />
-            <InputOptionTextArea
-              title="Mitgebrachte Technik"
-              inputText={broughtEquipment}
-              inputChange={setBroughtEquipment}
-              inputRef={refs.broughtEquipment}
-              isError={errors.some((error) => error.field === "broughtEquipment")}
+
+            <CheckBox
+              title="strom"
+              content={`Strom - (${POWER_COST}€)`}
+              isChecked={power}
+              inputChange={(value) => setPower(value)}
+              inputRef={refs.power}
+              isError={errors.some((error) => error.field === "power")}
             />
+
+            <CheckBox
+              title="wlan"
+              content={`W-lan für ein EC-Karten-/Kreditkartengerät - (${WLAN_COST}€)`}
+              isChecked={wlan}
+              inputChange={(value) => setWlan(value)}
+              inputRef={refs.wlan}
+              isError={errors.some((error) => error.field === "wlan")}
+            />
+            <RadioButton
+              title={
+                <>
+                  <span>
+                    Programmheft{" "}
+                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blanck">
+                      Infoblatt
+                    </StyledLink>{" "}
+                  </span>
+                </>
+              }
+              names={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.label)}
+              options={PROGRAMM_BOOKLET_OPTIONS.map((option) => option.value)}
+              selectedOption={programmBooklet}
+              inputChange={(value) => setProgrammBooklet(value)}
+              inputRef={refs.programmBooklet}
+              isError={errors.some((error) => error.field === "programmBooklet")}
+              require
+            />
+            <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
+
+            <RadioButton
+              title="Tische - (inklusive)"
+              names={["Ja", "Nein"]}
+              options={["Ja", "Nein"]}
+              selectedOption={table}
+              inputChange={(value) => setTable(value)}
+              inputRef={refs.table}
+              isError={errors.some((error) => error.field === "table")}
+              require
+            />
+
+            <h3>Gesamtkosten</h3>
+            <ul>
+              <li>
+                Standgröße:{" "}
+                {VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).label}
+                {standSize !== "INDIVIDUAL" ? ` (${selectedStandCost.toFixed(2)} €)` : ""}
+              </li>
+              {additionalExhibitorTicket > 0 && (
+                <li>
+                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST},00€ ={" "}
+                  {totalTicketCost.toFixed(2)}€
+                </li>
+              )}
+              {power && <li>Strom: {POWER_COST},00€</li>}
+              {wlan && <li>W-Lan: {WLAN_COST},00€</li>}
+              {programmBooklet !== "Nein" && (
+                <li>
+                  Programmheft:{" "}
+                  {
+                    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet)
+                      .label
+                  }{" "}
+                  ({totalProgrammBookletCost.toFixed(2)}€)
+                </li>
+              )}
+            </ul>
+
+            <h4>
+              Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST
+              {standSize === "INDIVIDUAL" && "  und Standkosten"}
+            </h4>
 
             <Spacer />
             <h2>Allgemeines</h2>
@@ -735,6 +715,20 @@ export default function RegistrationAsShowact() {
               require
             />
             <CheckBox
+              title="licensedMusic"
+              content={
+                <p>
+                  Ich habe zur Kenntnis genommen, dass GEMA-Lizenzierte Tonwiedergabe nicht erlaubt
+                  ist.<RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={licensedMusic}
+              inputChange={(value) => setLicensedMusic(value)}
+              inputRef={refs.licensedMusic}
+              isError={errors.some((error) => error.field === "licensedMusic")}
+              require
+            />
+            <CheckBox
               title="pictureRights"
               content={
                 <p>
@@ -757,7 +751,10 @@ export default function RegistrationAsShowact() {
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink href="/downloads/Infoblatt_Showacts_2025.pdf" target="_blank">
+                  <StyledLink
+                    href="/downloads/Teilnahmebedingungen_Haendler_2025.pdf"
+                    target="_blank"
+                  >
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
