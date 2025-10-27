@@ -44,7 +44,7 @@ export default function RegistrationAsExhibitor() {
 
   const [groupName, setGroupName] = useState("");
   const [groupMembers, setGroupMembers] = useState(1);
-  const [descriptionOfStand, setDescriptionOfStand] = useState("");
+  const [announcementText, setAnnouncementText] = useState("");
   const [standSize, setStandSize] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -74,7 +74,7 @@ export default function RegistrationAsExhibitor() {
     country: useRef(null),
     groupName: useRef(null),
     groupMembers: useRef(null),
-    descriptionOfStand: useRef(null),
+    announcementText: useRef(null),
     standSize: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
@@ -144,17 +144,17 @@ export default function RegistrationAsExhibitor() {
       newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
 
     //Beschreibung des Standes Validierung
-    const descriptionOfStandValidation = validateString(
-      descriptionOfStand,
-      "Beschreibung des Standes",
+    const announcementTextValidation = validateString(
+      announcementText,
+      "Ankündigungstext",
       5,
       2500,
       true
     );
-    if (!descriptionOfStandValidation.check)
+    if (!announcementTextValidation.check)
       newErrors.push({
-        field: "descriptionOfStand",
-        message: descriptionOfStandValidation.description,
+        field: "announcementText",
+        message: announcementTextValidation.description,
       });
 
     //Standgröße Validierung
@@ -234,7 +234,7 @@ export default function RegistrationAsExhibitor() {
     formData.append("country", country.trim());
     formData.append("groupName", groupName.trim());
     formData.append("groupMembers", groupMembers);
-    formData.append("descriptionOfStand", descriptionOfStand.trim());
+    formData.append("announcementText", announcementText.trim());
     formData.append("standSize", standSize.trim());
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
@@ -270,7 +270,7 @@ export default function RegistrationAsExhibitor() {
         setGroupName("");
         setGroupMembers(1);
         setStandSize("");
-        setDescriptionOfStand("");
+        setAnnouncementText("");
         setWebsite("");
         setInstagram("");
         setMessage("");
@@ -447,9 +447,9 @@ export default function RegistrationAsExhibitor() {
               max={25}
             />
             <InputOptionTextArea
-              title="Beschreibung des Standes"
-              inputText={descriptionOfStand}
-              inputChange={(value) => setDescriptionOfStand(value)}
+              title="Ankündigungstext"
+              inputText={announcementText}
+              inputChange={(value) => setAnnouncementText(value)}
               inputRef={refs.descriptionOfStand}
               isError={errors.some((error) => error.field === "descriptionOfStand")}
               require

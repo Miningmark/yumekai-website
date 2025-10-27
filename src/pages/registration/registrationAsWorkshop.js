@@ -32,28 +32,7 @@ const TimeslotsContainer = styled.div`
   ${({ $iserror }) => $iserror && `padding: 10px;`}
 `;
 
-const EU_COUNTRIES = [
-  "Deutschland",
-  "Österreich",
-  "Schweiz",
-  "Belgien",
-  "Frankreich",
-  "Italien",
-  "Spanien",
-  "Niederlande",
-  "Polen",
-  "Tschechien",
-  "Dänemark",
-  "Schweden",
-  "Norwegen",
-  "Finnland",
-  "Irland",
-  "Portugal",
-  "Griechenland",
-  "Ungarn",
-  "Rumänien",
-  "Bulgarien",
-];
+import { EVENT_ID, COUNTRIES } from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -62,6 +41,8 @@ const isImageFile = (fileName) => {
 };
 
 export default function RegistrationAsWorkshop() {
+  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -72,7 +53,7 @@ export default function RegistrationAsWorkshop() {
   const [country, setCountry] = useState("");
 
   const [workshopTitle, setWorkshopTitle] = useState("");
-  const [workshopDescription, setWorkshopDescription] = useState("");
+  const [announcementText, setAnnouncementText] = useState("");
   const [leaders, setLeaders] = useState(1);
   const [timeSlot1, setTimeSlot1] = useState(false);
   const [timeSlot2, setTimeSlot2] = useState(false);
@@ -109,7 +90,7 @@ export default function RegistrationAsWorkshop() {
     city: useRef(null),
     country: useRef(null),
     workshopTitle: useRef(null),
-    workshopDescription: useRef(null),
+    announcementText: useRef(null),
     leaders: useRef(null),
     timeSlots: useRef(null),
     constructionTime: useRef(null),
@@ -182,17 +163,17 @@ export default function RegistrationAsWorkshop() {
       newErrors.push({ field: "workshopTitle", message: workshopTitleValidation.description });
 
     //Beschreibung des Workshops Validierung
-    const workshopDescriptionValidation = validateString(
-      workshopDescription,
-      "Beschreibung des Workshops",
+    const announcementTextValidation = validateString(
+      announcementText,
+      "Ankündigungstext",
       10,
       2500,
       true
     );
-    if (!workshopDescriptionValidation.check)
+    if (!announcementTextValidation.check)
       newErrors.push({
-        field: "workshopDescription",
-        message: workshopDescriptionValidation.description,
+        field: "announcementText",
+        message: announcementTextValidation.description,
       });
 
     //Leiter*innen Validierung
@@ -302,7 +283,8 @@ export default function RegistrationAsWorkshop() {
       .trim();
 
     const formData = new FormData();
-    formData.append("name", name.trim());
+    formData.append("eventId", eventId);
+    formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("street", street.trim());
@@ -310,7 +292,7 @@ export default function RegistrationAsWorkshop() {
     formData.append("city", city.trim());
     formData.append("country", country.trim());
     formData.append("workshopTitle", workshopTitle.trim());
-    formData.append("workshopDescription", workshopDescription.trim());
+    formData.append("announcementText", announcementText.trim());
     formData.append("leaders", leaders.trim());
     formData.append("timeSlots", timeSlots);
     formData.append("constructionTime", constructionTime);
@@ -327,10 +309,13 @@ export default function RegistrationAsWorkshop() {
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/registrationAsWorkshop", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createWorkshop",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         setSuccess(
@@ -345,7 +330,7 @@ export default function RegistrationAsWorkshop() {
         setCity("");
         setCountry("");
         setWorkshopTitle("");
-        setWorkshopDescription("");
+        setAnnouncementText("");
         setLeaders(1);
         setTimeSlot1(false);
         setTimeSlot2(false);
@@ -386,10 +371,10 @@ export default function RegistrationAsWorkshop() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const maxFileSize = 10 * 1024 * 1024; // 10MB in Bytes
+    const maxFileSize = 5 * 1024 * 1024; // 5MB in Bytes
 
     if (file && file.size > maxFileSize) {
-      setFileError("Die Datei darf maximal 10MB groß sein.");
+      setFileError("Die Datei darf maximal 5MB groß sein.");
       return;
     }
     setFileError("");
@@ -437,9 +422,7 @@ export default function RegistrationAsWorkshop() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      
       <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.</h2>
-
 
       {!success && (
         <>
@@ -510,7 +493,7 @@ export default function RegistrationAsWorkshop() {
             />
             <InputOptionSelect
               title="Land"
-              options={EU_COUNTRIES}
+              options={COUNTRIES}
               inputText={country}
               inputChange={(value) => setCountry(value)}
               inputRef={refs.country}
@@ -529,11 +512,11 @@ export default function RegistrationAsWorkshop() {
               require
             />
             <InputOptionTextArea
-              title="Beschreibung des Workshops"
-              inputText={workshopDescription}
-              inputChange={setWorkshopDescription}
-              inputRef={refs.workshopDescription}
-              isError={errors.some((error) => error.field === "workshopDescription")}
+              title="Ankündigungstext"
+              inputText={announcementText}
+              inputChange={setAnnouncementText}
+              inputRef={refs.announcementText}
+              isError={errors.some((error) => error.field === "announcementText")}
               require
             />
             <InputOptionInput
@@ -626,7 +609,7 @@ export default function RegistrationAsWorkshop() {
               max={40}
             />
             <p>
-              Logo/Ankündigungsbild (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
             <FileUpload
               handleFileChange={handleFileChange}
@@ -741,7 +724,6 @@ export default function RegistrationAsWorkshop() {
           </ModalOverlay>
         </>
       )}
-
     </>
   );
 }

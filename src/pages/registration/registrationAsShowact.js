@@ -57,7 +57,7 @@ export default function RegistrationAsShowact() {
 
   const [groupName, setGroupName] = useState("");
   const [groupMembers, setGroupMembers] = useState(1);
-  const [description, setDescription] = useState("");
+  const [announcementText, setAnnouncementText] = useState("");
   const [timeSlot1, setTimeSlot1] = useState(false);
   const [timeSlot2, setTimeSlot2] = useState(false);
   const [timeSlot3, setTimeSlot3] = useState(false);
@@ -100,7 +100,7 @@ export default function RegistrationAsShowact() {
     country: useRef(null),
     groupName: useRef(null),
     groupMembers: useRef(null),
-    description: useRef(null),
+    announcementText: useRef(null),
     timeSlots: useRef(null),
     constructionTime: useRef(null),
     performanceTime: useRef(null),
@@ -175,9 +175,18 @@ export default function RegistrationAsShowact() {
       newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
 
     //Beschreibung Validierung
-    const descriptionValidation = validateString(description, "Beschreibung", 5, 2500, true);
-    if (!descriptionValidation.check)
-      newErrors.push({ field: "description", message: descriptionValidation.description });
+    const announcementTextValidation = validateString(
+      announcementText,
+      "Ankündigungstext",
+      5,
+      2500,
+      true
+    );
+    if (!announcementTextValidation.check)
+      newErrors.push({
+        field: "announcementText",
+        message: announcementTextValidation.description,
+      });
 
     //Zeitslots Validierung
     if (!timeSlot1 && !timeSlot2 && !timeSlot3 && !timeSlot4)
@@ -305,7 +314,7 @@ export default function RegistrationAsShowact() {
     formData.append("country", country.trim());
     formData.append("groupName", groupName.trim());
     formData.append("groupMembers", groupMembers);
-    formData.append("description", description.trim());
+    formData.append("announcementText", announcementText.trim());
     formData.append("timeSlots", timeSlots);
     formData.append("constructionTime", constructionTime);
     formData.append("performanceTime", performanceTime);
@@ -350,7 +359,7 @@ export default function RegistrationAsShowact() {
         setCountry("");
         setGroupName("");
         setGroupMembers(1);
-        setDescription("");
+        setAnnouncementText("");
         setTimeSlot1(false);
         setTimeSlot2(false);
         setTimeSlot3(false);
@@ -538,9 +547,9 @@ export default function RegistrationAsShowact() {
               max={25}
             />
             <InputOptionTextArea
-              title="Beschreibung"
-              inputText={description}
-              inputChange={setDescription}
+              title="Ankündigungstext"
+              inputText={announcementText}
+              inputChange={setAnnouncementText}
               inputRef={refs.description}
               isError={errors.some((error) => error.field === "description")}
               require
