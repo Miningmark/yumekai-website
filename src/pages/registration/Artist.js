@@ -483,7 +483,7 @@ export default function Artist() {
             <Spacer />
             <h2>Stand</h2>
             <InputOptionTextArea
-              title="Art der Kunst"
+              title="Angebotene Artikel"
               inputText={typeOfArt}
               inputChange={(value) => setTypeOfArt(value)}
               inputRef={refs.typeOfArt}
