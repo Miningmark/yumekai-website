@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 //Components
 import { useState, useRef } from "react";
-import { InputOptionTextArea,  InputOptionSelect, InputOptionInput } from "@/components/elements/InputComponents";
+import {
+  InputOptionTextArea,
+  InputOptionSelect,
+  InputOptionInput,
+} from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -14,10 +18,7 @@ import {
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
-import {
-  EVENT_ID,
-  COUNTRIES,
-} from "@/util/registration_options";
+import { EVENT_ID, COUNTRIES } from "@/util/registration_options";
 
 export default function Presse() {
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
@@ -27,9 +28,9 @@ export default function Presse() {
   const [email, setEmail] = useState("");
 
   const [street, setStreet] = useState("");
-    const [postalCode, setPostalCode] = useState("");
-    const [city, setCity] = useState("");
-    const [country, setCountry] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
 
   const [workFunction, setWorkFunction] = useState("");
   const [medium, setMedium] = useState("");
@@ -46,12 +47,12 @@ export default function Presse() {
   // Refs for form fields
   const refs = {
     name: useRef(null),
-        lastName: useRef(null),
+    lastName: useRef(null),
     email: useRef(null),
     street: useRef(null),
-        postalCode: useRef(null),
-        city: useRef(null),
-        country: useRef(null),
+    postalCode: useRef(null),
+    city: useRef(null),
+    country: useRef(null),
     workFunction: useRef(null),
     medium: useRef(null),
     address: useRef(null),
@@ -67,7 +68,7 @@ export default function Presse() {
     const newErrors = [];
     setErrors([]);
 
-// Validierungslogik mit validateString
+    // Validierungslogik mit validateString
     // Name Validierung
     const nameValidation = validateString(name, "Vorname", 2, 50, true);
     if (!nameValidation.check)
@@ -85,26 +86,25 @@ export default function Presse() {
     if (!emailValidation.check)
       newErrors.push({ field: "email", message: emailValidation.description });
 
-     //Straße Validierung
-        const streetValidation = validateString(street, "Straße", 3, 50, true);
-        if (!streetValidation.check)
-          newErrors.push({ field: "street", message: streetValidation.description });
-    
-        //PLZ Validierung
-        const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
-        if (!postalCodeValidation.check)
-          newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
-    
-        //Ort Validierung
-        const cityValidation = validateString(city, "Ort", 2, 50, true);
-        if (!cityValidation.check)
-          newErrors.push({ field: "city", message: cityValidation.description });
-    
-        //Land Validierung
-        const countryValidation = validateString(country, "Land", 2, 50, true);
-        if (!countryValidation.check)
-          newErrors.push({ field: "country", message: countryValidation.description });
-    
+    //Straße Validierung
+    const streetValidation = validateString(street, "Straße", 3, 50, true);
+    if (!streetValidation.check)
+      newErrors.push({ field: "street", message: streetValidation.description });
+
+    //PLZ Validierung
+    const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
+    if (!postalCodeValidation.check)
+      newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
+
+    //Ort Validierung
+    const cityValidation = validateString(city, "Ort", 2, 50, true);
+    if (!cityValidation.check)
+      newErrors.push({ field: "city", message: cityValidation.description });
+
+    //Land Validierung
+    const countryValidation = validateString(country, "Land", 2, 50, true);
+    if (!countryValidation.check)
+      newErrors.push({ field: "country", message: countryValidation.description });
 
     if (workFunction.length < 3)
       newErrors.push({ field: "workFunction", message: "Berufsbezeichnung ist zu kurz" });
@@ -131,10 +131,9 @@ export default function Presse() {
     if (!privacyPolicy)
       newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung nicht akzeptiert" });
 
-        //Datenspeicherung
-        if (!dataStorage)
-          newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
-    
+    //Datenspeicherung
+    if (!dataStorage)
+      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
 
     if (newErrors.length > 0) {
       setErrors(newErrors);
@@ -149,37 +148,29 @@ export default function Presse() {
     setLoading(true);
 
     const formData = new FormData();
-        formData.append("eventId", eventId);
-        formData.append("firstName", name.trim());
-        formData.append("lastName", lastName.trim());
-        formData.append("email", email.trim().toLowerCase());
-        formData.append("street", street.trim());
-        formData.append("postalCode", postalCode.trim());
-        formData.append("city", city.trim());
-        formData.append("country", country.trim());
-        
+    formData.append("eventId", eventId);
+    formData.append("firstName", name.trim());
+    formData.append("lastName", lastName.trim());
+    formData.append("email", email.trim().toLowerCase());
+    formData.append("street", street.trim());
+    formData.append("postalCode", postalCode.trim());
+    formData.append("city", city.trim());
+    formData.append("country", country.trim());
+    formData.append("workFunction", workFunction.trim());
+    formData.append("mediaOutlet", medium.trim());
+    formData.append("pressPass", verification.trim());
+    formData.append("message", message.trim());
+    formData.append("privacyPolicy", privacyPolicy);
+    formData.append("dataStorage", dataStorage);
 
     try {
-      const response = await fetch("https://node.miningmark.de/api/v1/event/application/createPresseAkreditierung", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: name,
-          lastName: lastName,
-          email,
-          street,
-          postalCode,
-          city,
-          country,
-          workFunction,
-          medium,
-          verification,
-          message,
-          privacyPolicy,
-        }),
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createPress",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         setSuccess("Presse Akkreditierung erfolgreich abgeschickt");
@@ -337,41 +328,41 @@ export default function Presse() {
             />
 
             <Spacer />
-                        <h2>Adresse</h2>
-            
-                        <InputOptionInput
-                          title="Straße"
-                          inputText={street}
-                          inputChange={setStreet}
-                          inputRef={refs.street}
-                          isError={errors.some((error) => error.field === "street")}
-                          require
-                        />
-                        <InputOptionInput
-                          title="PLZ"
-                          inputText={postalCode}
-                          inputChange={setPostalCode}
-                          inputRef={refs.postalCode}
-                          isError={errors.some((error) => error.field === "postalCode")}
-                          require
-                        />
-                        <InputOptionInput
-                          title="Ort"
-                          inputText={city}
-                          inputChange={setCity}
-                          inputRef={refs.city}
-                          isError={errors.some((error) => error.field === "city")}
-                          require
-                        />
-                        <InputOptionSelect
-                          title="Land"
-                          options={COUNTRIES}
-                          inputText={country}
-                          inputChange={(value) => setCountry(value)}
-                          inputRef={refs.country}
-                          isError={errors.some((error) => error.field === "country")}
-                          require
-                        />
+            <h2>Adresse</h2>
+
+            <InputOptionInput
+              title="Straße"
+              inputText={street}
+              inputChange={setStreet}
+              inputRef={refs.street}
+              isError={errors.some((error) => error.field === "street")}
+              require
+            />
+            <InputOptionInput
+              title="PLZ"
+              inputText={postalCode}
+              inputChange={setPostalCode}
+              inputRef={refs.postalCode}
+              isError={errors.some((error) => error.field === "postalCode")}
+              require
+            />
+            <InputOptionInput
+              title="Ort"
+              inputText={city}
+              inputChange={setCity}
+              inputRef={refs.city}
+              isError={errors.some((error) => error.field === "city")}
+              require
+            />
+            <InputOptionSelect
+              title="Land"
+              options={COUNTRIES}
+              inputText={country}
+              inputChange={(value) => setCountry(value)}
+              inputRef={refs.country}
+              isError={errors.some((error) => error.field === "country")}
+              require
+            />
 
             <Spacer />
             <h2>Presseangaben</h2>

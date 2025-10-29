@@ -57,6 +57,7 @@ export default function Exhibitor() {
   const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
   const [conditions, setConditions] = useState(false);
+  const [registrationReminder, setRegistrationReminder] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -85,6 +86,7 @@ export default function Exhibitor() {
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
     conditions: useRef(null),
+    registrationReminder: useRef(null),
   };
 
   async function submit(event) {
@@ -133,7 +135,7 @@ export default function Exhibitor() {
       newErrors.push({ field: "country", message: countryValidation.description });
 
     //Gruppenname Validierung
-    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 50, true);
+    const groupNameValidation = validateString(groupName, "Gruppenname", 3, 100, true);
     if (!groupNameValidation.check)
       newErrors.push({ field: "groupName", message: groupNameValidation.description });
 
@@ -244,7 +246,8 @@ export default function Exhibitor() {
     formData.append("licensedMusicPolicy", licensedMusic);
     formData.append("pictureRightsPolicy", pictureRights);
     formData.append("conditionsPolicy", conditions);
-    formData.append("file", file);
+    formData.append("registrationReminder", registrationReminder);
+    formData.append("image", file);
 
     try {
       const response = await fetch(
@@ -279,6 +282,7 @@ export default function Exhibitor() {
         setLicensedMusic(false);
         setPictureRights(false);
         setConditions(false);
+        setRegistrationReminder(false);
         setFile(null);
         setPreviewUrl(null);
       } else {
@@ -586,6 +590,19 @@ export default function Exhibitor() {
               inputRef={refs.conditions}
               isError={errors.some((error) => error.field === "conditions")}
               require
+            />
+
+            <CheckBox
+              title="registrationReminder"
+              content={
+                <p>
+                  Ich möchte eine Erinnerungs-E-Mail erhalten, für die Anmeldungseröffnung der
+                  YumeKai 2027.
+                </p>
+              }
+              isChecked={registrationReminder}
+              inputChange={(value) => setRegistrationReminder(value)}
+              inputRef={refs.registrationReminder}
             />
 
             {errors && (

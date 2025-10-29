@@ -71,6 +71,7 @@ export default function Artist() {
   const [licensedMusic, setLicensedMusic] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
   const [conditions, setConditions] = useState(false);
+  const [registrationReminder, setRegistrationReminder] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -103,6 +104,7 @@ export default function Artist() {
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
     conditions: useRef(null),
+    registrationReminder: useRef(null),
   };
 
   const selectedStandCost =
@@ -147,7 +149,7 @@ export default function Artist() {
       newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
 
     //Künstlername Validierung
-    const artistNameValidation = validateString(artistName, "Künstlername", 2, 50, true);
+    const artistNameValidation = validateString(artistName, "Künstlername", 3, 100, true);
     if (!artistNameValidation.check)
       newErrors.push({ field: "artistName", message: artistNameValidation.description });
 
@@ -172,7 +174,7 @@ export default function Artist() {
       newErrors.push({ field: "country", message: countryValidation.description });
 
     //Art der Kunst Validierung
-    const typeOfArtValidation = validateString(typeOfArt, "Art der Kunst", 2, 2500, true);
+    const typeOfArtValidation = validateString(typeOfArt, "Art der Kunst", 5, 2500, true);
     if (!typeOfArtValidation.check)
       newErrors.push({ field: "typeOfArt", message: typeOfArtValidation.description });
 
@@ -279,7 +281,8 @@ export default function Artist() {
     formData.append("licensedMusicPolicy", licensedMusic);
     formData.append("pictureRightsPolicy", pictureRights);
     formData.append("conditionsPolicy", conditions);
-    formData.append("file", file);
+    formData.append("registrationReminder", registrationReminder);
+    formData.append("image", file);
 
     try {
       const response = await fetch(
@@ -319,6 +322,7 @@ export default function Artist() {
         setLicensedMusic(false);
         setPictureRights(false);
         setConditions(false);
+        setRegistrationReminder(false);
         setFile(null);
         setPreviewUrl(null);
       } else {
@@ -715,6 +719,19 @@ export default function Artist() {
               inputRef={refs.artistConditions}
               isError={errors.some((error) => error.field === "artistConditions")}
               require
+            />
+
+            <CheckBox
+              title="registrationReminder"
+              content={
+                <p>
+                  Ich möchte eine Erinnerungs-E-Mail erhalten, für die Anmeldungseröffnung der
+                  YumeKai 2027.
+                </p>
+              }
+              isChecked={registrationReminder}
+              inputChange={(value) => setRegistrationReminder(value)}
+              inputRef={refs.registrationReminder}
             />
 
             {errors && (

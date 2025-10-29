@@ -155,8 +155,8 @@ export default function Workshop() {
     const workshopTitleValidation = validateString(
       workshopTitle,
       "Titel des Workshops",
-      2,
-      250,
+      3,
+      100,
       true
     );
     if (!workshopTitleValidation.check)
@@ -208,7 +208,7 @@ export default function Workshop() {
     const workshopRequirementsValidation = validateString(
       workshopRequirements,
       "Anforderungen für den Workshop",
-      0,
+      5,
       2500
     );
     if (!workshopRequirementsValidation.check)
@@ -306,7 +306,7 @@ export default function Workshop() {
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
-    formData.append("file", file);
+    formData.append("image", file);
 
     try {
       const response = await fetch(

@@ -82,6 +82,7 @@ export default function Showact() {
   const [dataStorage, setDataStorage] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
   const [conditions, setConditions] = useState(false);
+  const [registrationReminder, setRegistrationReminder] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -118,6 +119,7 @@ export default function Showact() {
     licensedMusic: useRef(null),
     pictureRights: useRef(null),
     conditions: useRef(null),
+    registrationReminder: useRef(null),
   };
 
   async function submit(event) {
@@ -164,7 +166,7 @@ export default function Showact() {
       newErrors.push({ field: "country", message: countryValidation.description });
 
     //Gruppenname Validierung
-    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 50, true);
+    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 100, true);
     if (!groupNameValidation.check)
       newErrors.push({ field: "groupName", message: groupNameValidation.description });
 
@@ -329,10 +331,11 @@ export default function Showact() {
     formData.append("dataStoragePolicy", dataStorage);
     formData.append("pictureRights", pictureRights);
     formData.append("conditionsPolicy", conditions);
-    formData.append("file", file);
+    formData.append("registrationReminder", registrationReminder);
+    formData.append("image", file);
     if (file2 && Array.isArray(file2)) {
       file2.forEach((singleFile, index) => {
-        formData.append(`file2[${index}]`, singleFile);
+        formData.append(`documents`, singleFile);
       });
     }
 
@@ -377,6 +380,7 @@ export default function Showact() {
         setDataStorage(false);
         setPictureRights(false);
         setConditions(false);
+        setRegistrationReminder(false);
         setFile(null);
         setFile2(null);
         setPreviewUrl(null);
@@ -628,8 +632,8 @@ export default function Showact() {
               max={60}
             />
             <p>
-              Technischer Rider / Hospitality Rider / Lichtplan (max. 3 Dateien mit je.{" "}
-              {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf)
+              Tech-Rider / Hospitality-Rider / Lichtplan (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}
+              MB, jpg, jpeg, png, webp, pdf)
             </p>
             <MultiFileUpload
               inputRef={refs.technicalRider}
@@ -768,6 +772,19 @@ export default function Showact() {
               inputRef={refs.conditions}
               isError={errors.some((error) => error.field === "conditions")}
               require
+            />
+
+            <CheckBox
+              title="registrationReminder"
+              content={
+                <p>
+                  Ich möchte eine Erinnerungs-E-Mail erhalten, für die Anmeldungseröffnung der
+                  YumeKai 2027.
+                </p>
+              }
+              isChecked={registrationReminder}
+              inputChange={(value) => setRegistrationReminder(value)}
+              inputRef={refs.registrationReminder}
             />
 
             {errors && (
