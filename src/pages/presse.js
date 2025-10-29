@@ -15,6 +15,7 @@ import {
   ModalOverlay,
   SuccessText,
 } from "@/components/styledComponents";
+import validateString from "@/util/inputCheck";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
