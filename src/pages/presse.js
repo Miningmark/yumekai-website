@@ -35,7 +35,6 @@ export default function Presse() {
 
   const [workFunction, setWorkFunction] = useState("");
   const [medium, setMedium] = useState("");
-  const [address, setAddress] = useState("");
   const [verification, setVerification] = useState("");
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
@@ -56,7 +55,6 @@ export default function Presse() {
     country: useRef(null),
     workFunction: useRef(null),
     medium: useRef(null),
-    address: useRef(null),
     verification: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
@@ -114,9 +112,6 @@ export default function Presse() {
 
     if (medium.length < 3) newErrors.push({ field: "medium", message: "Medium ist zu kurz" });
     if (medium.length > 100) newErrors.push({ field: "medium", message: "Medium ist zu lang" });
-
-    if (address.length < 3) newErrors.push({ field: "address", message: "Adresse ist zu kurz" });
-    if (address.length > 255) newErrors.push({ field: "address", message: "Adresse ist zu lang" });
 
     if (!verification.trim())
       newErrors.push({ field: "verification", message: "Nachweis ist ein Pflichtfeld" });
@@ -420,6 +415,23 @@ export default function Presse() {
               isError={errors.some((error) => error.field === "privacyPolicy")}
               require
             />
+            <CheckBox
+              title="dataStorage"
+              content={
+                <p>
+                  Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
+                  elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung
+                  an die zuständigen Bereiche weitergeleitet werden dürfen.
+                  <RequiredNote>*</RequiredNote>
+                </p>
+              }
+              isChecked={dataStorage}
+              inputChange={(value) => setDataStorage(value)}
+              inputRef={refs.dataStorage}
+              isError={errors.some((error) => error.field === "dataStorage")}
+              require
+            />
+
             {errors.length > 0 && (
               <ul>
                 {errors.map((error, index) => (
