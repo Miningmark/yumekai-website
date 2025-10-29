@@ -120,8 +120,8 @@ export default function Presse() {
     if (verification.length > 500)
       newErrors.push({ field: "verification", message: "Nachweis ist zu lang" });
 
-    if (message.length < 10) newErrors.push({ field: "message", message: "Nachricht ist zu kurz" });
-    if (message.length > 500)
+    if (message.length < 5) newErrors.push({ field: "message", message: "Nachricht ist zu kurz" });
+    if (message.length > 2500)
       newErrors.push({ field: "message", message: "Nachricht ist zu lang" });
 
     if (!privacyPolicy)
@@ -157,7 +157,7 @@ export default function Presse() {
     formData.append("pressPass", verification.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
+    formData.append("dataStoragePolicy", dataStorage);
 
     try {
       const response = await fetch(
@@ -390,9 +390,10 @@ export default function Presse() {
               über Fanprojekte, über welche du schreibst)
             </p>
             <InputOptionTextArea
-              title="Nachricht"
+              title="Nachricht "
               inputText={message}
               inputChange={(value) => setMessage(value)}
+              require
               inputRef={refs.message}
               isError={errors.some((error) => error.field === "message")}
             />
