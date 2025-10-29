@@ -293,19 +293,19 @@ export default function Workshop() {
     formData.append("country", country.trim());
     formData.append("workshopTitle", workshopTitle.trim());
     formData.append("announcementText", announcementText.trim());
-    formData.append("leaders", leaders.trim());
+    formData.append("leaders", leaders);
     formData.append("timeSlots", timeSlots);
     formData.append("constructionTime", constructionTime);
     formData.append("workshopTime", workshopTime);
     formData.append("deconstructionTime", deconstructionTime);
     formData.append("workshopRequirements", workshopRequirements.trim());
-    formData.append("participants", participants || 0);
+    formData.append("participants", participants || 40);
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("pictureRights", pictureRights);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("pictureRightsPolicy", pictureRights);
     formData.append("image", file);
 
     try {
