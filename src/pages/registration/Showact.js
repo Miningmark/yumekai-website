@@ -329,7 +329,7 @@ export default function Showact() {
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStoragePolicy", dataStorage);
-    formData.append("pictureRights", pictureRights);
+    formData.append("pictureRightsPolicy", pictureRights);
     formData.append("conditionsPolicy", conditions);
     formData.append("registrationReminder", registrationReminder);
     formData.append("image", file);
