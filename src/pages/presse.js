@@ -14,16 +14,30 @@ import {
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
+import {
+  EVENT_ID,
+  COUNTRIES,
+} from "@/util/registration_options";
 
 export default function Presse() {
-  const [contactPerson, setContactPerson] = useState("");
+  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+
+  const [street, setStreet] = useState("");
+    const [postalCode, setPostalCode] = useState("");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+
   const [workFunction, setWorkFunction] = useState("");
   const [medium, setMedium] = useState("");
   const [address, setAddress] = useState("");
   const [verification, setVerification] = useState("");
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [dataStorage, setDataStorage] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState("");
@@ -31,14 +45,20 @@ export default function Presse() {
 
   // Refs for form fields
   const refs = {
-    contactPerson: useRef(null),
+    name: useRef(null),
+        lastName: useRef(null),
     email: useRef(null),
+    street: useRef(null),
+        postalCode: useRef(null),
+        city: useRef(null),
+        country: useRef(null),
     workFunction: useRef(null),
     medium: useRef(null),
     address: useRef(null),
     verification: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
+    dataStorage: useRef(null),
   };
 
   async function handleSubmit(e) {
@@ -47,18 +67,44 @@ export default function Presse() {
     const newErrors = [];
     setErrors([]);
 
-    // Validation
-    if (!contactPerson.trim())
-      newErrors.push({ field: "contactPerson", message: "Ansprechpartner ist ein Pflichtfeld" });
-    if (contactPerson.length < 3)
-      newErrors.push({ field: "contactPerson", message: "Ansprechpartner ist zu kurz" });
-    if (contactPerson.length > 50)
-      newErrors.push({ field: "contactPerson", message: "Ansprechpartner ist zu lang" });
+// Validierungslogik mit validateString
+    // Name Validierung
+    const nameValidation = validateString(name, "Vorname", 2, 50, true);
+    if (!nameValidation.check)
+      newErrors.push({ field: "name", message: nameValidation.description });
 
-    if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
-    if (!email.includes("@"))
-      newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
-    if (email.length > 50) newErrors.push({ field: "email", message: "E-Mail ist zu lang" });
+    // Nachname Validierung
+    if (lastName) {
+      const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
+      if (!lastNameValidation.check)
+        newErrors.push({ field: "lastName", message: lastNameValidation.description });
+    }
+
+    // Email Validierung
+    const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
+    if (!emailValidation.check)
+      newErrors.push({ field: "email", message: emailValidation.description });
+
+     //Straße Validierung
+        const streetValidation = validateString(street, "Straße", 3, 50, true);
+        if (!streetValidation.check)
+          newErrors.push({ field: "street", message: streetValidation.description });
+    
+        //PLZ Validierung
+        const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
+        if (!postalCodeValidation.check)
+          newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
+    
+        //Ort Validierung
+        const cityValidation = validateString(city, "Ort", 2, 50, true);
+        if (!cityValidation.check)
+          newErrors.push({ field: "city", message: cityValidation.description });
+    
+        //Land Validierung
+        const countryValidation = validateString(country, "Land", 2, 50, true);
+        if (!countryValidation.check)
+          newErrors.push({ field: "country", message: countryValidation.description });
+    
 
     if (workFunction.length < 3)
       newErrors.push({ field: "workFunction", message: "Berufsbezeichnung ist zu kurz" });
@@ -85,6 +131,11 @@ export default function Presse() {
     if (!privacyPolicy)
       newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung nicht akzeptiert" });
 
+        //Datenspeicherung
+        if (!dataStorage)
+          newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
+    
+
     if (newErrors.length > 0) {
       setErrors(newErrors);
       const firstError = newErrors[0];
@@ -97,18 +148,33 @@ export default function Presse() {
 
     setLoading(true);
 
+    const formData = new FormData();
+        formData.append("eventId", eventId);
+        formData.append("firstName", name.trim());
+        formData.append("lastName", lastName.trim());
+        formData.append("email", email.trim().toLowerCase());
+        formData.append("street", street.trim());
+        formData.append("postalCode", postalCode.trim());
+        formData.append("city", city.trim());
+        formData.append("country", country.trim());
+        
+
     try {
-      const response = await fetch("/api/presseAkreditierung", {
+      const response = await fetch("https://node.miningmark.de/api/v1/event/application/createPresseAkreditierung", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          contactPerson,
+          firstName: name,
+          lastName: lastName,
           email,
+          street,
+          postalCode,
+          city,
+          country,
           workFunction,
           medium,
-          address,
           verification,
           message,
           privacyPolicy,
@@ -117,11 +183,15 @@ export default function Presse() {
 
       if (response.ok) {
         setSuccess("Presse Akkreditierung erfolgreich abgeschickt");
-        setContactPerson("");
+        setName("");
+        setLastName("");
         setEmail("");
+        setStreet("");
+        setPostalCode("");
+        setCity("");
+        setCountry("");
         setWorkFunction("");
         setMedium("");
-        setAddress("");
         setVerification("");
         setMessage("");
         setPrivacyPolicy(false);
@@ -239,13 +309,22 @@ export default function Presse() {
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
           <StyledForm onSubmit={handleSubmit}>
+            <h2>Persönliche Angaben</h2>
             <InputOptionInput
-              title="Ansprechpartner"
-              inputText={contactPerson}
-              inputChange={(value) => setContactPerson(value)}
+              title="Name"
+              inputText={name}
+              inputChange={(value) => setName(value)}
+              inputRef={refs.name}
+              isError={errors.some((error) => error.field === "name")}
               require
-              inputRef={refs.contactPerson}
-              isError={errors.some((error) => error.field === "contactPerson")}
+            />
+            <InputOptionInput
+              title="Nachname"
+              inputText={lastName}
+              inputChange={(value) => setLastName(value)}
+              inputRef={refs.lastName}
+              isError={errors.some((error) => error.field === "lastName")}
+              require
             />
             <InputOptionInput
               title="E-Mail"
@@ -256,6 +335,47 @@ export default function Presse() {
               inputRef={refs.email}
               isError={errors.some((error) => error.field === "email")}
             />
+
+            <Spacer />
+                        <h2>Adresse</h2>
+            
+                        <InputOptionInput
+                          title="Straße"
+                          inputText={street}
+                          inputChange={setStreet}
+                          inputRef={refs.street}
+                          isError={errors.some((error) => error.field === "street")}
+                          require
+                        />
+                        <InputOptionInput
+                          title="PLZ"
+                          inputText={postalCode}
+                          inputChange={setPostalCode}
+                          inputRef={refs.postalCode}
+                          isError={errors.some((error) => error.field === "postalCode")}
+                          require
+                        />
+                        <InputOptionInput
+                          title="Ort"
+                          inputText={city}
+                          inputChange={setCity}
+                          inputRef={refs.city}
+                          isError={errors.some((error) => error.field === "city")}
+                          require
+                        />
+                        <InputOptionSelect
+                          title="Land"
+                          options={COUNTRIES}
+                          inputText={country}
+                          inputChange={(value) => setCountry(value)}
+                          inputRef={refs.country}
+                          isError={errors.some((error) => error.field === "country")}
+                          require
+                        />
+
+            <Spacer />
+            <h2>Presseangaben</h2>
+
             <InputOptionInput
               title="Funktion"
               inputText={workFunction}
@@ -269,13 +389,6 @@ export default function Presse() {
               inputChange={(value) => setMedium(value)}
               inputRef={refs.medium}
               isError={errors.some((error) => error.field === "medium")}
-            />
-            <InputOptionTextArea
-              title="Anschrift"
-              inputText={address}
-              inputChange={(value) => setAddress(value)}
-              inputRef={refs.address}
-              isError={errors.some((error) => error.field === "address")}
             />
             <InputOptionTextArea
               title="Nachweis "
