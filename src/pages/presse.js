@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 //Components
 import { useState, useRef } from "react";
-import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
+import { InputOptionTextArea,  InputOptionSelect, InputOptionInput } from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
