@@ -24,6 +24,9 @@ import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 
 import {
+  REGISTRATION_START_ARTIST,
+  REGISTRATION_END_ARTIST,
+  checkRegistrationPeriod,
   EVENT_ID,
   TICKET_COST,
   WLAN_COST,
@@ -40,6 +43,9 @@ const isImageFile = (fileName) => {
 };
 
 export default function Artist() {
+  const [registrationStatus, setRegistrationStatus] = useState(() =>
+    checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
+  );
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
   const [name, setName] = useState("");
@@ -106,6 +112,19 @@ export default function Artist() {
     conditions: useRef(null),
     registrationReminder: useRef(null),
   };
+
+  useEffect(() => {
+    // Aktualisiere den Status alle Minute
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
+      );
+    }, 60000); // 60 Sekunden
+
+    return () => clearInterval(interval);
+  }, []);
+
+  console.log("Registration Status:", registrationStatus);
 
   const selectedStandCost =
     ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
@@ -390,9 +409,22 @@ export default function Artist() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      <h2>Die Anmeldung als Künstler ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung als Künstler ist momentan geschlossen. (TEST-Modus)</h2>
 
-      {!success && (
+      {/* Anmeldezeitraum Status */}
+      {!registrationStatus.isActive && (
+        <h2>
+          <strong>{registrationStatus.message}</strong>
+        </h2>
+      )}
+
+      {registrationStatus.isActive && !success && (
+        <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>
+          {registrationStatus.message}
+        </SuccessText>
+      )}
+
+      {!success && registrationStatus.isActive && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.

@@ -1,3 +1,18 @@
+export const REGISTRATION_START_ARTIST = new Date("2025-10-05T12:00:00");
+export const REGISTRATION_END_ARTIST = new Date("2025-12-17T18:00:00");
+
+export const REGISTRATION_START_VENDOR = new Date("2025-11-05T12:00:00");
+export const REGISTRATION_END_VENDOR = new Date("2025-12-17T18:00:00");
+
+export const REGISTRATION_START_EXHIBITOR = new Date("2025-11-05T12:00:00");
+export const REGISTRATION_END_EXHIBITOR = new Date("2025-12-17T18:00:00");
+
+export const REGISTRATION_START_SHOWACT = new Date("2025-11-05T12:00:00");
+export const REGISTRATION_END_SHOWACT = new Date("2025-12-17T18:00:00");
+
+export const REGISTRATION_START_WORKSHOP = new Date("2025-11-05T12:00:00");
+export const REGISTRATION_END_WORKSHOP = new Date("2025-12-17T18:00:00");
+
 export const EVENT_ID = 2;
 
 export const TICKET_COST = 42;
@@ -70,3 +85,48 @@ export const SHOWACT_ACCOMODATION_OPTIONS = [
   "wäre gut, aber nicht notwendig",
   "zwingend benötigt",
 ];
+
+export function checkRegistrationPeriod(startDate, endDate) {
+  const now = new Date();
+
+  const isActive = now >= startDate && now <= endDate;
+  const startsIn = startDate > now ? Math.ceil((startDate - now) / (1000 * 60 * 60 * 24)) : null;
+  const endsIn = endDate > now ? Math.ceil((endDate - now) / (1000 * 60 * 60 * 24)) : null;
+
+  let message = "";
+
+  if (now < startDate) {
+    message = `Die Anmeldung öffnet am ${startDate.toLocaleDateString("de-DE", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })} Uhr`;
+  } else if (now > endDate) {
+    message = `Die Anmeldung ist seit dem ${endDate.toLocaleDateString("de-DE", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })} Uhr geschlossen`;
+  } else {
+    message = `Anmeldung möglich bis ${endDate.toLocaleDateString("de-DE", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })} Uhr`;
+  }
+
+  return {
+    isActive,
+    message,
+    startsIn,
+    endsIn,
+    startDate,
+    endDate,
+  };
+}

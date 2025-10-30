@@ -449,7 +449,7 @@ export default function Showact() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      <h2>Die Anmeldung als Showact ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung als Showact ist momentan geschlossen. (TEST-Modus)</h2>
 
       {!success && (
         <>

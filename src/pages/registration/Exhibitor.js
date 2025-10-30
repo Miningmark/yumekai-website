@@ -350,7 +350,7 @@ export default function Exhibitor() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
       </p>
 
-      <h2>Die Anmeldung für einen Gruppen/Fan stand ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung für einen Gruppen/Fan stand ist momentan geschlossen. (TEST-Modus)</h2>
 
       {!success && (
         <>
