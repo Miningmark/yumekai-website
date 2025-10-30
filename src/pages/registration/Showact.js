@@ -36,8 +36,9 @@ const TimeslotsContainer = styled.div`
 import { EVENT_ID, COUNTRIES, SHOWACT_ACCOMODATION_OPTIONS } from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
-const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
-const MAX_FILE_SIZE_MB = 10;
+const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf", "docx", ".xlsx"];
+const MAX_FILE_SIZE_MB = 50;
+const MAX_IMAGE_SIZE_MB = 5;
 
 const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
@@ -407,10 +408,10 @@ export default function Showact() {
 
   function handleFileChange(e) {
     const file = e.target.files[0];
-    const maxFileSize = MAX_FILE_SIZE_MB * 1024 * 1024; // 1MB in Bytes
+    const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024; // 1MB in Bytes
 
     if (file && file.size > maxFileSize) {
-      setFileError(`Die Datei darf maximal ${MAX_FILE_SIZE_MB}MB groß sein.`);
+      setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
       return;
     }
     setFileError("");
@@ -554,8 +555,8 @@ export default function Showact() {
               title="Ankündigungstext"
               inputText={announcementText}
               inputChange={setAnnouncementText}
-              inputRef={refs.description}
-              isError={errors.some((error) => error.field === "description")}
+              inputRef={refs.announcementText}
+              isError={errors.some((error) => error.field === "announcementText")}
               require
             />
             <p>
@@ -633,7 +634,7 @@ export default function Showact() {
             />
             <p>
               Tech-Rider / Hospitality-Rider / Lichtplan (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}
-              MB, jpg, jpeg, png, webp, pdf)
+              MB, jpg, jpeg, png, webp, pdf, docx, xlsx)
             </p>
             <MultiFileUpload
               inputRef={refs.technicalRider}
