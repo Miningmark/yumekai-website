@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 // Import Icons
@@ -17,6 +17,16 @@ export default function FileUpload({
   maxFiles = 1,
   name = "fileupload",
 }) {
+  useEffect(() => {
+    return () => {
+      previewUrls.forEach((url) => {
+        if (url && typeof url === "string" && url.startsWith("blob:")) {
+          URL.revokeObjectURL(url);
+        }
+      });
+    };
+  }, []);
+
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -41,16 +51,19 @@ export default function FileUpload({
   };
 
   const handleFileChange = (event) => {
-    const selectedFiles = event.target?.files || event.dataTransfer?.files; // Unterstützt beide Fälle
+    const selectedFiles = event.target?.files || event.dataTransfer?.files;
     if (!selectedFiles) return;
 
     const validFiles = [];
-    const validPreviews = [];
-    let error = "";
+    const errors = [];
 
     Array.from(selectedFiles).forEach((file) => {
-      if (files.length + validFiles.length >= maxFiles) {
-        error = `Maximale Anzahl von ${maxFiles} Dateien erreicht.`;
+      const currentFileCount = files.length + validFiles.length;
+
+      if (currentFileCount >= maxFiles) {
+        if (!errors.includes(`Maximale Anzahl von ${maxFiles} Dateien erreicht.`)) {
+          errors.push(`Maximale Anzahl von ${maxFiles} Dateien erreicht.`);
+        }
         return;
       }
 
@@ -58,28 +71,45 @@ export default function FileUpload({
         validFiles.push(file);
 
         if (file.type.startsWith("image")) {
-          // Generiere Vorschau für Bilder
           const reader = new FileReader();
           reader.onload = () => {
             setPreviewUrls((prev) => [...prev, reader.result]);
           };
           reader.readAsDataURL(file);
         } else {
-          // PDFs haben keine Vorschau
-          validPreviews.push("PDF File");
+          setPreviewUrls((prev) => [...prev, null]);
         }
       } else {
-        error = `Ungültiges Dateiformat oder Dateigröße zu groß (max. ${maxFileSize} MB).`;
+        const fileSize = (file.size / 1024 / 1024).toFixed(2);
+        const extension = file.name.split(".").pop();
+        errors.push(`"${file.name}" ist ungültig (${extension.toUpperCase()}, ${fileSize} MB).`);
       }
     });
 
-    // Dateien und Fehler aktualisieren
-    setFiles((prev) => [...prev, ...validFiles]);
-    setFileError(error);
+    if (validFiles.length > 0) {
+      setFiles((prev) => [...prev, ...validFiles]);
+    }
+
+    if (errors.length > 0) {
+      setFileError(errors.join(" "));
+    } else {
+      setFileError("");
+    }
+
+    // Input zurücksetzen, damit dieselbe Datei erneut ausgewählt werden kann
+    if (event.target) {
+      event.target.value = "";
+    }
   };
 
   const handleRemoveFile = (index, e) => {
     e.stopPropagation();
+
+    const urlToRevoke = previewUrls[index];
+    if (urlToRevoke && typeof urlToRevoke === "string" && urlToRevoke.startsWith("blob:")) {
+      URL.revokeObjectURL(urlToRevoke);
+    }
+
     setFiles((prev) => prev.filter((_, i) => i !== index));
     setPreviewUrls((prev) => prev.filter((_, i) => i !== index));
     setFileError("");
@@ -102,7 +132,14 @@ export default function FileUpload({
             <Text>oder</Text>
             <BrowseButton>Datei auswählen</BrowseButton>
           </FileUploadDesign>
-          <FileUploadInput id={name} type="file" onChange={handleFileChange} />
+          <FileUploadInput
+            id={name}
+            type="file"
+            multiple={maxFiles > 1}
+            accept={acceptedExtensions.join(",")}
+            onChange={handleFileChange}
+            aria-label="Datei hochladen"
+          />
         </Label>
       </FileUploadWrapper>
       <div style={{ marginTop: "20px" }} onClick={(e) => e.stopPropagation()}>
@@ -117,7 +154,11 @@ export default function FileUpload({
             ) : (
               <p>{file.name}</p>
             )}
-            <CloseButton onClick={(e) => handleRemoveFile(index, e)} type="button">
+            <CloseButton
+              onClick={(e) => handleRemoveFile(index, e)}
+              type="button"
+              aria-label={`${file.name} entfernen`}
+            >
               <IconClose
                 style={{ fill: "var(--danger)", height: "40px", width: "40px", margin: "0" }}
               />

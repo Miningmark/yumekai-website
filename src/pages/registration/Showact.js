@@ -21,7 +21,15 @@ import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
-import validateString from "@/util/inputCheck";
+import validateString, { validateField } from "@/util/inputCheck";
+import {
+  REGISTRATION_START_SHOWACT,
+  REGISTRATION_END_SHOWACT,
+  checkRegistrationPeriod,
+  EVENT_ID,
+  SHOWACT_ACCOMODATION_OPTIONS,
+} from "@/util/registration_options";
+import AddressFields from "@/components/registrations/AddressFields";
 
 const TimeslotsContainer = styled.div`
   display: flex;
@@ -32,8 +40,6 @@ const TimeslotsContainer = styled.div`
   ${({ $iserror }) => $iserror && `border: solid 2px red;`}
   ${({ $iserror }) => $iserror && `padding: 10px;`}
 `;
-
-import { EVENT_ID, COUNTRIES, SHOWACT_ACCOMODATION_OPTIONS } from "@/util/registration_options";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf", "docx", ".xlsx"];
@@ -47,14 +53,20 @@ const isImageFile = (fileName) => {
 export default function Showact() {
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
+  const [registrationStatus, setRegistrationStatus] = useState(() =>
+    checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
+  );
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [street, setStreet] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const [addressData, setAddressData] = useState({
+    street: "",
+    postalCode: "",
+    city: "",
+    country: "",
+  });
 
   const [groupName, setGroupName] = useState("");
   const [groupMembers, setGroupMembers] = useState(1);
@@ -123,6 +135,22 @@ export default function Showact() {
     registrationReminder: useRef(null),
   };
 
+  useEffect(() => {
+    // Aktualisiere den Status alle Minute
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
+      );
+    }, 60000); // 60 Sekunden
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handler für Adressdaten
+  const handleAddressDataChange = (field, value) => {
+    setAddressData((prev) => ({ ...prev, [field]: value }));
+  };
+
   async function submit(event) {
     event.preventDefault();
 
@@ -146,25 +174,18 @@ export default function Showact() {
     if (!emailValidation.check)
       newErrors.push({ field: "email", message: emailValidation.description });
 
-    //Straße Validierung
-    const streetValidation = validateString(street, "Straße", 2, 50, true);
-    if (!streetValidation.check)
-      newErrors.push({ field: "street", message: streetValidation.description });
+    // Validierung Adressdaten
+    const streetError = validateField(addressData.street, "Straße", 3, 50, true);
+    if (streetError) newErrors.push(streetError);
 
-    //PLZ Validierung
-    const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
-    if (!postalCodeValidation.check)
-      newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
+    const postalCodeError = validateField(addressData.postalCode, "PLZ", 2, 10, true);
+    if (postalCodeError) newErrors.push(postalCodeError);
 
-    //Ort Validierung
-    const cityValidation = validateString(city, "Ort", 2, 50, true);
-    if (!cityValidation.check)
-      newErrors.push({ field: "city", message: cityValidation.description });
+    const cityError = validateField(addressData.city, "Ort", 2, 50, true);
+    if (cityError) newErrors.push(cityError);
 
-    //Land Validierung
-    const countryValidation = validateString(country, "Land", 2, 50, true);
-    if (!countryValidation.check)
-      newErrors.push({ field: "country", message: countryValidation.description });
+    const countryError = validateField(addressData.country, "Land", 2, 50, true);
+    if (countryError) newErrors.push(countryError);
 
     //Gruppenname Validierung
     const groupNameValidation = validateString(groupName, "Gruppenname", 2, 100, true);
@@ -311,10 +332,10 @@ export default function Showact() {
     formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
-    formData.append("street", street.trim());
-    formData.append("postalCode", postalCode.trim());
-    formData.append("city", city.trim());
-    formData.append("country", country.trim());
+    formData.append("street", addressData.street.trim());
+    formData.append("postalCode", addressData.postalCode.trim());
+    formData.append("city", addressData.city.trim());
+    formData.append("country", addressData.country.trim());
     formData.append("groupName", groupName.trim());
     formData.append("groupMembers", groupMembers);
     formData.append("announcementText", announcementText.trim());
@@ -357,10 +378,7 @@ export default function Showact() {
         setLastName("");
         setEmail("");
         setConfirmEmail("");
-        setStreet("");
-        setPostalCode("");
-        setCity("");
-        setCountry("");
+        setAddressData({ street: "", postalCode: "", city: "", country: "" });
         setGroupName("");
         setGroupMembers(1);
         setAnnouncementText("");
@@ -451,7 +469,20 @@ export default function Showact() {
 
       <h2>Die Anmeldung als Showact ist momentan geschlossen. (TEST-Modus)</h2>
 
-      {!success && (
+      {/* Anmeldezeitraum Status */}
+      {!registrationStatus.isActive && (
+        <h2>
+          <strong>{registrationStatus.message}</strong>
+        </h2>
+      )}
+
+      {registrationStatus.isActive && !success && (
+        <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>
+          {registrationStatus.message}
+        </SuccessText>
+      )}
+
+      {!success && registrationStatus.isActive && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -495,38 +526,11 @@ export default function Showact() {
             <Spacer />
             <h2>Adresse</h2>
 
-            <InputOptionInput
-              title="Straße"
-              inputText={street}
-              inputChange={setStreet}
-              inputRef={refs.street}
-              isError={errors.some((error) => error.field === "street")}
-              require
-            />
-            <InputOptionInput
-              title="PLZ"
-              inputText={postalCode}
-              inputChange={setPostalCode}
-              inputRef={refs.postalCode}
-              isError={errors.some((error) => error.field === "postalCode")}
-              require
-            />
-            <InputOptionInput
-              title="Ort"
-              inputText={city}
-              inputChange={setCity}
-              inputRef={refs.city}
-              isError={errors.some((error) => error.field === "city")}
-              require
-            />
-            <InputOptionSelect
-              title="Land"
-              options={COUNTRIES}
-              inputText={country}
-              inputChange={(value) => setCountry(value)}
-              inputRef={refs.country}
-              isError={errors.some((error) => error.field === "country")}
-              require
+            <AddressFields
+              data={addressData}
+              onChange={handleAddressDataChange}
+              refs={refs}
+              errors={errors}
             />
 
             <Spacer />
