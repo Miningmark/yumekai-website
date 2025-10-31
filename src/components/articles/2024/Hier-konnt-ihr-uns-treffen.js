@@ -20,7 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>07.11 - 09.11 YaYoCo in Dachau</li>
                     <li>29.11 - 30.11 ComicCon in Stuttgart</li>
                     <li>24.01 Manganacht in Memmingen</li>
                     <li>06.06 - 07.06 PopCon in Lindau</li>
