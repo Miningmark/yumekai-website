@@ -2,11 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import validateString, { validateField } from "@/util/inputCheck";
 
 //Components
-import {
-  InputOptionTextArea,
-  InputOptionInput,
-  InputOptionSelect,
-} from "@/components/elements/InputComponents";
+import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -21,7 +17,6 @@ import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
-
 import {
   REGISTRATION_START_ARTIST,
   REGISTRATION_END_ARTIST,
@@ -42,10 +37,11 @@ const isImageFile = (fileName) => {
 };
 
 export default function Artist() {
+  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+
   const [registrationStatus, setRegistrationStatus] = useState(() =>
     checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
   );
-  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -84,8 +80,6 @@ export default function Artist() {
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  console.log(addressData);
 
   const refs = {
     name: useRef(null),
@@ -322,10 +316,6 @@ export default function Artist() {
         setVendorName("");
         setArtistName("");
         setAddressData({ street: "", postalCode: "", city: "", country: "" });
-        setStreet("");
-        setPostalCode("");
-        setCity("");
-        setCountry("");
         setTypeOfArt("");
         setStandSize("FULL_TABLE");
         setLocation("STADTHALLE");

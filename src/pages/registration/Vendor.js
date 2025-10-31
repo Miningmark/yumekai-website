@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState, useRef, use } from "react";
+import { useEffect, useState, useRef } from "react";
 
 //Components
 import {
@@ -21,18 +21,20 @@ import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
-import validateString from "@/util/inputCheck";
-
+import validateString, { validateField } from "@/util/inputCheck";
 import {
+  REGISTRATION_START_VENDOR,
+  REGISTRATION_END_VENDOR,
+  checkRegistrationPeriod,
   EVENT_ID,
   TICKET_COST,
   POWER_COST,
   WLAN_COST,
-  COUNTRIES,
   LOCATION_OPTIONS,
   PROGRAMM_BOOKLET_OPTIONS,
   VENDOR_STANDSIZE_OPTIONS,
 } from "@/util/registration_options";
+import AddressFields from "@/components/registrations/AddressFields";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -43,15 +45,21 @@ const isImageFile = (fileName) => {
 export default function Vendor() {
   const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
 
+  const [registrationStatus, setRegistrationStatus] = useState(() =>
+    checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR)
+  );
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [vendorName, setVendorName] = useState("");
-  const [street, setStreet] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const [addressData, setAddressData] = useState({
+    street: "",
+    postalCode: "",
+    city: "",
+    country: "",
+  });
 
   const [typeOfAssortment, setTypeOfAssortment] = useState("");
   const [standSize, setStandSize] = useState("2X2"); //ENUM: 2x2, 2x3, 2x4, 2x5, 2x6, 2x7, INDIVIDUAL
@@ -110,6 +118,22 @@ export default function Vendor() {
     registrationReminder: useRef(null),
   };
 
+  useEffect(() => {
+    // Aktualisiere den Status alle Minute
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR)
+      );
+    }, 60000); // 60 Sekunden
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handler für Adressdaten
+  const handleAddressDataChange = (field, value) => {
+    setAddressData((prev) => ({ ...prev, [field]: value }));
+  };
+
   const selectedStandCost =
     VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
       LOCATION_OPTIONS.find((option) => option.value === location).vendor || 0;
@@ -153,25 +177,18 @@ export default function Vendor() {
     if (!vendorNameValidation.check)
       newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
 
-    //Straße Validierung
-    const streetValidation = validateString(street, "Straße", 2, 100, true);
-    if (!streetValidation.check)
-      newErrors.push({ field: "street", message: streetValidation.description });
+    // Validierung Adressdaten
+    const streetError = validateField(addressData.street, "Straße", 3, 50, true);
+    if (streetError) newErrors.push(streetError);
 
-    //PLZ Validierung
-    const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
-    if (!postalCodeValidation.check)
-      newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
+    const postalCodeError = validateField(addressData.postalCode, "PLZ", 2, 10, true);
+    if (postalCodeError) newErrors.push(postalCodeError);
 
-    //Ort Validierung
-    const cityValidation = validateString(city, "Ort", 2, 100, true);
-    if (!cityValidation.check)
-      newErrors.push({ field: "city", message: cityValidation.description });
+    const cityError = validateField(addressData.city, "Ort", 2, 50, true);
+    if (cityError) newErrors.push(cityError);
 
-    //Land Validierung
-    const countryValidation = validateString(country, "Land", 2, 100, true);
-    if (!countryValidation.check)
-      newErrors.push({ field: "country", message: countryValidation.description });
+    const countryError = validateField(addressData.country, "Land", 2, 50, true);
+    if (countryError) newErrors.push(countryError);
 
     //Produktsortiment Validierung
     const typeOfAssortmentValidation = validateString(
@@ -287,10 +304,10 @@ export default function Vendor() {
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("vendorName", vendorName.trim());
-    formData.append("street", street.trim());
-    formData.append("postalCode", postalCode.trim());
-    formData.append("city", city.trim());
-    formData.append("country", country.trim());
+    formData.append("street", addressData.street.trim());
+    formData.append("postalCode", addressData.postalCode.trim());
+    formData.append("city", addressData.city.trim());
+    formData.append("country", addressData.country.trim());
     formData.append("typeOfAssortment", typeOfAssortment.trim());
     formData.append("announcementText", announcement_text.trim());
     formData.append("standSize", standSize);
@@ -330,10 +347,7 @@ export default function Vendor() {
         setEmail("");
         setConfirmEmail("");
         setVendorName("");
-        setStreet("");
-        setPostalCode("");
-        setCity("");
-        setCountry("");
+        setAddressData({ street: "", postalCode: "", city: "", country: "" });
         setTypeOfAssortment("");
         setStandSize("2X2");
         setLocation("STADTHALLE");
@@ -421,7 +435,20 @@ export default function Vendor() {
 
       <h2>Die Anmeldung als Händler ist momentan geschlossen. (TEST-Modus)</h2>
 
-      {!success && (
+      {/* Anmeldezeitraum Status */}
+      {!registrationStatus.isActive && (
+        <h2>
+          <strong>{registrationStatus.message}</strong>
+        </h2>
+      )}
+
+      {registrationStatus.isActive && !success && (
+        <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>
+          {registrationStatus.message}
+        </SuccessText>
+      )}
+
+      {!success && registrationStatus.isActive && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -473,38 +500,11 @@ export default function Vendor() {
             <Spacer />
             <h2>Adresse</h2>
 
-            <InputOptionInput
-              title="Straße"
-              inputText={street}
-              inputChange={setStreet}
-              inputRef={refs.street}
-              isError={errors.some((error) => error.field === "street")}
-              require
-            />
-            <InputOptionInput
-              title="PLZ"
-              inputText={postalCode}
-              inputChange={setPostalCode}
-              inputRef={refs.postalCode}
-              isError={errors.some((error) => error.field === "postalCode")}
-              require
-            />
-            <InputOptionInput
-              title="Ort"
-              inputText={city}
-              inputChange={setCity}
-              inputRef={refs.city}
-              isError={errors.some((error) => error.field === "city")}
-              require
-            />
-            <InputOptionSelect
-              title="Land"
-              options={COUNTRIES}
-              inputText={country}
-              inputChange={(value) => setCountry(value)}
-              inputRef={refs.country}
-              isError={errors.some((error) => error.field === "country")}
-              require
+            <AddressFields
+              data={addressData}
+              onChange={handleAddressDataChange}
+              refs={refs}
+              errors={errors}
             />
 
             <Spacer />
