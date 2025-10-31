@@ -30,3 +30,18 @@ export default function validateString(
   }
   return { check: true, description: "" };
 }
+
+// Validierungs-Helper
+export const validateField = (
+  value,
+  fieldName,
+  minLength = 2,
+  maxLength = 50,
+  required = true,
+  isEmail = false
+) => {
+  const validation = validateString(value, fieldName, minLength, maxLength, required, isEmail);
+  return validation.check
+    ? null
+    : { field: fieldName.toLowerCase().replace(/\s/g, ""), message: validation.description };
+};

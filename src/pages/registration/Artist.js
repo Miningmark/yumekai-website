@@ -1,6 +1,5 @@
-import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
-import validateString from "@/util/inputCheck";
+import validateString, { validateField } from "@/util/inputCheck";
 
 //Components
 import {
@@ -30,11 +29,11 @@ import {
   EVENT_ID,
   TICKET_COST,
   WLAN_COST,
-  COUNTRIES,
   LOCATION_OPTIONS,
   PROGRAMM_BOOKLET_OPTIONS,
   ARTIST_STANDSIZE_OPTIONS,
 } from "@/util/registration_options";
+import AddressFields from "@/components/registrations/AddressFields";
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -54,10 +53,12 @@ export default function Artist() {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [vendorName, setVendorName] = useState("");
   const [artistName, setArtistName] = useState("");
-  const [street, setStreet] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const [addressData, setAddressData] = useState({
+    street: "",
+    postalCode: "",
+    city: "",
+    country: "",
+  });
 
   const [typeOfArt, setTypeOfArt] = useState("");
   const [standSize, setStandSize] = useState("FULL_TABLE"); //ENUM: HALF_TABLE, FULL_TABLE
@@ -83,6 +84,8 @@ export default function Artist() {
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  console.log(addressData);
 
   const refs = {
     name: useRef(null),
@@ -124,7 +127,10 @@ export default function Artist() {
     return () => clearInterval(interval);
   }, []);
 
-  console.log("Registration Status:", registrationStatus);
+  // Handler für Adressdaten
+  const handleAddressDataChange = (field, value) => {
+    setAddressData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const selectedStandCost =
     ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
@@ -172,25 +178,18 @@ export default function Artist() {
     if (!artistNameValidation.check)
       newErrors.push({ field: "artistName", message: artistNameValidation.description });
 
-    //Straße Validierung
-    const streetValidation = validateString(street, "Straße", 3, 50, true);
-    if (!streetValidation.check)
-      newErrors.push({ field: "street", message: streetValidation.description });
+    // Validierung Adressdaten
+    const streetError = validateField(addressData.street, "Straße", 3, 50, true);
+    if (streetError) newErrors.push(streetError);
 
-    //PLZ Validierung
-    const postalCodeValidation = validateString(postalCode, "PLZ", 2, 10, true);
-    if (!postalCodeValidation.check)
-      newErrors.push({ field: "postalCode", message: postalCodeValidation.description });
+    const postalCodeError = validateField(addressData.postalCode, "PLZ", 2, 10, true);
+    if (postalCodeError) newErrors.push(postalCodeError);
 
-    //Ort Validierung
-    const cityValidation = validateString(city, "Ort", 2, 50, true);
-    if (!cityValidation.check)
-      newErrors.push({ field: "city", message: cityValidation.description });
+    const cityError = validateField(addressData.city, "Ort", 2, 50, true);
+    if (cityError) newErrors.push(cityError);
 
-    //Land Validierung
-    const countryValidation = validateString(country, "Land", 2, 50, true);
-    if (!countryValidation.check)
-      newErrors.push({ field: "country", message: countryValidation.description });
+    const countryError = validateField(addressData.country, "Land", 2, 50, true);
+    if (countryError) newErrors.push(countryError);
 
     //Art der Kunst Validierung
     const typeOfArtValidation = validateString(typeOfArt, "Art der Kunst", 5, 2500, true);
@@ -281,10 +280,10 @@ export default function Artist() {
     formData.append("email", email.trim().toLowerCase());
     formData.append("vendorName", vendorName.trim());
     formData.append("artistName", artistName.trim());
-    formData.append("street", street.trim());
-    formData.append("postalCode", postalCode.trim());
-    formData.append("city", city.trim());
-    formData.append("country", country.trim());
+    formData.append("street", addressData.street.trim());
+    formData.append("postalCode", addressData.postalCode.trim());
+    formData.append("city", addressData.city.trim());
+    formData.append("country", addressData.country.trim());
     formData.append("typeOfArt", typeOfArt.trim());
     formData.append("announcementText", announcementText.trim());
     formData.append("standSize", standSize);
@@ -322,6 +321,7 @@ export default function Artist() {
         setConfirmEmail("");
         setVendorName("");
         setArtistName("");
+        setAddressData({ street: "", postalCode: "", city: "", country: "" });
         setStreet("");
         setPostalCode("");
         setCity("");
@@ -481,39 +481,11 @@ export default function Artist() {
 
             <Spacer />
             <h2>Adresse</h2>
-
-            <InputOptionInput
-              title="Straße"
-              inputText={street}
-              inputChange={setStreet}
-              inputRef={refs.street}
-              isError={errors.some((error) => error.field === "street")}
-              require
-            />
-            <InputOptionInput
-              title="PLZ"
-              inputText={postalCode}
-              inputChange={setPostalCode}
-              inputRef={refs.postalCode}
-              isError={errors.some((error) => error.field === "postalCode")}
-              require
-            />
-            <InputOptionInput
-              title="Ort"
-              inputText={city}
-              inputChange={setCity}
-              inputRef={refs.city}
-              isError={errors.some((error) => error.field === "city")}
-              require
-            />
-            <InputOptionSelect
-              title="Land"
-              options={COUNTRIES}
-              inputText={country}
-              inputChange={(value) => setCountry(value)}
-              inputRef={refs.country}
-              isError={errors.some((error) => error.field === "country")}
-              require
+            <AddressFields
+              data={addressData}
+              onChange={handleAddressDataChange}
+              refs={refs}
+              errors={errors}
             />
 
             <Spacer />
