@@ -343,6 +343,7 @@ export default function Presse() {
               inputChange={(value) => setWorkFunction(value)}
               inputRef={refs.workFunction}
               isError={errors.some((error) => error.field === "workFunction")}
+              require
             />
             <InputOptionInput
               title="Medium"
@@ -350,6 +351,7 @@ export default function Presse() {
               inputChange={(value) => setMedium(value)}
               inputRef={refs.medium}
               isError={errors.some((error) => error.field === "medium")}
+              require
             />
             <InputOptionTextArea
               title="Nachweis "
