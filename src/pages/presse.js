@@ -23,17 +23,16 @@ export default function Presse() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-
   const [addressData, setAddressData] = useState({
     street: "",
     postalCode: "",
     city: "",
     country: "",
   });
-
   const [workFunction, setWorkFunction] = useState("");
   const [medium, setMedium] = useState("");
   const [verification, setVerification] = useState("");
+  const [website, setWebsite] = useState("");
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
@@ -54,6 +53,7 @@ export default function Presse() {
     workFunction: useRef(null),
     medium: useRef(null),
     verification: useRef(null),
+    website: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
@@ -116,6 +116,11 @@ export default function Presse() {
     if (verification.length > 500)
       newErrors.push({ field: "verification", message: "Nachweis ist zu lang" });
 
+    //Website Validierung
+    const websiteValidation = validateString(website, "Website", 0, 100);
+    if (!websiteValidation.check)
+      newErrors.push({ field: "website", message: websiteValidation.description });
+
     if (message.length < 5) newErrors.push({ field: "message", message: "Nachricht ist zu kurz" });
     if (message.length > 2500)
       newErrors.push({ field: "message", message: "Nachricht ist zu lang" });
@@ -152,6 +157,7 @@ export default function Presse() {
     formData.append("workFunction", workFunction.trim());
     formData.append("mediaOutlet", medium.trim());
     formData.append("pressPass", verification.trim());
+    formData.append("website", website.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStoragePolicy", dataStorage);
@@ -174,6 +180,7 @@ export default function Presse() {
         setWorkFunction("");
         setMedium("");
         setVerification("");
+        setWebsite("");
         setMessage("");
         setPrivacyPolicy(false);
       } else {
@@ -356,6 +363,7 @@ export default function Presse() {
               (Pressenachweis, einen schriftlichen Auftrag deines Chefredakteurs oder einen Nachweis
               über Fanprojekte, über welche du schreibst)
             </p>
+
             <InputOptionTextArea
               title="Nachricht "
               inputText={message}
@@ -363,6 +371,14 @@ export default function Presse() {
               require
               inputRef={refs.message}
               isError={errors.some((error) => error.field === "message")}
+            />
+
+            <InputOptionInput
+              title="Website"
+              inputText={website}
+              inputChange={setWebsite}
+              inputRef={refs.website}
+              isError={errors.some((error) => error.field === "website")}
             />
             <CheckBox
               title={
