@@ -71,11 +71,11 @@ export default function Artist() {
   const [wlan, setWlan] = useState(false);
   const [programmBooklet, setProgrammBooklet] = useState("NO");
   const [announcementText, setAnnouncementText] = useState("");
-  const [website, setWebsite] = useState("");
-  const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
+  const [website, setWebsite] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
@@ -489,7 +489,7 @@ export default function Artist() {
     <>
       <h1>Anmeldung als Künstler</h1>
       <p>
-        Sichert euch euren Platz auf der YumeKai 2025!
+        Sichert euch euren Platz auf der YumeKai 2026!
         <br />
         <br />
         Bitte beachtet die{" "}
