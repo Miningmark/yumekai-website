@@ -41,6 +41,12 @@ const TimeslotsContainer = styled.div`
   ${({ $iserror }) => $iserror && `padding: 10px;`}
 `;
 
+const FieldErrorText = styled(ErrorText)`
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+`;
+
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf", "docx", ".xlsx"];
 const MAX_FILE_SIZE_MB = 50;
@@ -51,7 +57,7 @@ const isImageFile = (fileName) => {
 };
 
 export default function Showact() {
-  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+  const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
     checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
@@ -97,11 +103,12 @@ export default function Showact() {
   const [conditions, setConditions] = useState(false);
   const [registrationReminder, setRegistrationReminder] = useState(false);
 
-  const [errors, setErrors] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
   const [fileError2, setFileError2] = useState("");
   const [loading, setLoading] = useState(false);
+  const [touchedFields, setTouchedFields] = useState({});
 
   const refs = {
     name: useRef(null),
@@ -129,188 +136,259 @@ export default function Showact() {
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
-    licensedMusic: useRef(null),
     pictureRights: useRef(null),
     conditions: useRef(null),
     registrationReminder: useRef(null),
   };
 
   useEffect(() => {
-    // Aktualisiere den Status alle Minute
     const interval = setInterval(() => {
       setRegistrationStatus(
         checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
       );
-    }, 60000); // 60 Sekunden
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Handler für Adressdaten
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Zentrale Validierungsfunktion
+  const validateSingleField = (field, value, additionalData = {}) => {
+    let error = null;
+
+    switch (field) {
+      case "name":
+        const nameValidation = validateString(value, "Vorname", 2, 50, true);
+        if (!nameValidation.check) error = nameValidation.description;
+        break;
+
+      case "lastName":
+        const lastNameValidation = validateString(value, "Nachname", 2, 50, true);
+        if (!lastNameValidation.check) error = lastNameValidation.description;
+        break;
+
+      case "email":
+        const emailValidation = validateString(value, "E-Mail", 2, 100, true, true);
+        if (!emailValidation.check) error = emailValidation.description;
+        break;
+
+      case "confirmEmail":
+        if (!value || value.trim() === "") {
+          error = "E-Mail-Bestätigung ist erforderlich";
+        } else if (value.trim().toLowerCase() !== additionalData.email?.trim().toLowerCase()) {
+          error = "E-Mail-Adressen stimmen nicht überein";
+        }
+        break;
+
+      case "street":
+        const streetError = validateField(value, "Straße", 3, 50, true);
+        if (streetError) error = streetError.message;
+        break;
+
+      case "postalCode":
+        const postalCodeError = validateField(value, "PLZ", 2, 10, true);
+        if (postalCodeError) error = postalCodeError.message;
+        break;
+
+      case "city":
+        const cityError = validateField(value, "Ort", 2, 50, true);
+        if (cityError) error = cityError.message;
+        break;
+
+      case "country":
+        const countryError = validateField(value, "Land", 2, 50, true);
+        if (countryError) error = countryError.message;
+        break;
+
+      case "groupName":
+        const groupNameValidation = validateString(value, "Gruppenname", 2, 100, true);
+        if (!groupNameValidation.check) error = groupNameValidation.description;
+        break;
+
+      case "groupMembers":
+        if (value < 1) error = "Mindestens 1 Gruppenmitglied";
+        else if (value > 25) error = "Maximal 25 Mitglieder";
+        break;
+
+      case "announcementText":
+        const announcementValidation = validateString(value, "Ankündigungstext", 5, 2500, true);
+        if (!announcementValidation.check) error = announcementValidation.description;
+        break;
+
+      case "timeSlots":
+        if (
+          !additionalData.timeSlot1 &&
+          !additionalData.timeSlot2 &&
+          !additionalData.timeSlot3 &&
+          !additionalData.timeSlot4
+        ) {
+          error = "Bitte wähle mindestens einen Zeitraum";
+        }
+        break;
+
+      case "constructionTime":
+        if (value < 1) error = "Aufbaudauer mindestens 1 Minute";
+        else if (value > 60) error = "Aufbaudauer maximal 60 Minuten";
+        break;
+
+      case "performanceTime":
+        if (value < 30) error = "Auftritt mindestens 30 Minuten";
+        else if (value > 180) error = "Auftritt maximal 180 Minuten";
+        break;
+
+      case "deconstructionTime":
+        if (value < 1) error = "Abbaudauer mindestens 1 Minute";
+        else if (value > 60) error = "Abbaudauer maximal 60 Minuten";
+        break;
+
+      case "accomodation":
+        const accomodationValidation = validateString(value, "Unterkunft", 3, 100, true);
+        if (!accomodationValidation.check) error = accomodationValidation.description;
+        break;
+
+      case "requiredEquipment":
+        const requiredValidation = validateString(value, "Benötigte Technik", 0, 2500);
+        if (!requiredValidation.check) error = requiredValidation.description;
+        break;
+
+      case "broughtEquipment":
+        const broughtValidation = validateString(value, "Mitgebrachte Technik", 0, 2500);
+        if (!broughtValidation.check) error = broughtValidation.description;
+        break;
+
+      case "website":
+        const websiteValidation = validateString(value, "Website", 0, 100);
+        if (!websiteValidation.check) error = websiteValidation.description;
+        break;
+
+      case "instagram":
+        const instagramValidation = validateString(value, "Instagram", 0, 100);
+        if (!instagramValidation.check) error = instagramValidation.description;
+        break;
+
+      case "message":
+        const messageValidation = validateString(value, "Nachricht", 0, 2500);
+        if (!messageValidation.check) error = messageValidation.description;
+        break;
+
+      case "image":
+        if (!additionalData.file) error = "Bild ist ein Pflichtfeld";
+        break;
+
+      case "privacyPolicy":
+        if (!value) error = "Datenschutzerklärung muss akzeptiert werden";
+        break;
+
+      case "dataStorage":
+        if (!value) error = "Datenspeicherung muss akzeptiert werden";
+        break;
+
+      case "pictureRights":
+        if (!value) error = "Bildrechte müssen bestätigt werden";
+        break;
+
+      case "conditions":
+        if (!value) error = "Teilnahmebedingungen müssen akzeptiert werden";
+        break;
+    }
+
+    return error;
+  };
+
+  // onBlur Handler für Echtzeit-Validierung
+  const handleBlur = (field, value, additionalData = {}) => {
+    console.log("Blur field:", field, "value:", value, "additionalData:", additionalData);
+    setTouchedFields((prev) => ({ ...prev, [field]: true }));
+
+    const error = validateSingleField(field, value, additionalData);
+    setFieldErrors((prev) => ({
+      ...prev,
+      [field]: error,
+    }));
+  };
+
+  // Fehler für ein bestimmtes Feld abrufen
+  const getFieldError = (field) => {
+    return touchedFields[field] ? fieldErrors[field] : null;
+  };
+
+  // Alle Felder validieren
+  const validateAllFields = () => {
+    const errors = {};
+
+    // Persönliche Angaben
+    errors.name = validateSingleField("name", name);
+    errors.lastName = validateSingleField("lastName", lastName);
+    errors.email = validateSingleField("email", email);
+    errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
+
+    // Adresse
+    errors.street = validateSingleField("street", addressData.street);
+    errors.postalCode = validateSingleField("postalCode", addressData.postalCode);
+    errors.city = validateSingleField("city", addressData.city);
+    errors.country = validateSingleField("country", addressData.country);
+
+    // Gruppenangaben
+    errors.groupName = validateSingleField("groupName", groupName);
+    errors.groupMembers = validateSingleField("groupMembers", groupMembers);
+    errors.announcementText = validateSingleField("announcementText", announcementText);
+    errors.timeSlots = validateSingleField("timeSlots", null, {
+      timeSlot1,
+      timeSlot2,
+      timeSlot3,
+      timeSlot4,
+    });
+    errors.constructionTime = validateSingleField("constructionTime", constructionTime);
+    errors.performanceTime = validateSingleField("performanceTime", performanceTime);
+    errors.deconstructionTime = validateSingleField("deconstructionTime", deconstructionTime);
+    errors.accomodation = validateSingleField("accomodation", accomodation);
+    errors.requiredEquipment = validateSingleField("requiredEquipment", requiredEquipment);
+    errors.broughtEquipment = validateSingleField("broughtEquipment", broughtEquipment);
+
+    // Allgemeines
+    errors.website = validateSingleField("website", website);
+    errors.instagram = validateSingleField("instagram", instagram);
+    errors.message = validateSingleField("message", message);
+    errors.image = validateSingleField("image", null, { file });
+
+    // Bedingungen
+    errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
+    errors.dataStorage = validateSingleField("dataStorage", dataStorage);
+    errors.pictureRights = validateSingleField("pictureRights", pictureRights);
+    errors.conditions = validateSingleField("conditions", conditions);
+
+    // Filtere null-Werte heraus
+    Object.keys(errors).forEach((key) => {
+      if (errors[key] === null) delete errors[key];
+    });
+
+    return errors;
   };
 
   async function submit(event) {
     event.preventDefault();
 
-    const newErrors = [];
-    setErrors([]);
     setSuccess("");
 
-    // Validierungslogik mit validateString
-    // Name Validierung
-    const nameValidation = validateString(name, "Vorname", 2, 50, true);
-    if (!nameValidation.check)
-      newErrors.push({ field: "name", message: nameValidation.description });
+    // Alle Felder als "touched" markieren
+    const allFields = Object.keys(refs);
+    const touched = {};
+    allFields.forEach((field) => (touched[field] = true));
+    setTouchedFields(touched);
 
-    // Nachname Validierung
-    const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
-    if (!lastNameValidation.check)
-      newErrors.push({ field: "lastName", message: lastNameValidation.description });
+    // Validierung durchführen
+    const errors = validateAllFields();
+    setFieldErrors(errors);
 
-    // Email Validierung
-    const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
-    if (!emailValidation.check)
-      newErrors.push({ field: "email", message: emailValidation.description });
-
-    // Validierung Adressdaten
-    const streetError = validateField(addressData.street, "Straße", 3, 50, true);
-    if (streetError) newErrors.push(streetError);
-
-    const postalCodeError = validateField(addressData.postalCode, "PLZ", 2, 10, true);
-    if (postalCodeError) newErrors.push(postalCodeError);
-
-    const cityError = validateField(addressData.city, "Ort", 2, 50, true);
-    if (cityError) newErrors.push(cityError);
-
-    const countryError = validateField(addressData.country, "Land", 2, 50, true);
-    if (countryError) newErrors.push(countryError);
-
-    //Gruppenname Validierung
-    const groupNameValidation = validateString(groupName, "Gruppenname", 2, 100, true);
-    if (!groupNameValidation.check)
-      newErrors.push({ field: "groupName", message: groupNameValidation.description });
-
-    //Gruppenmitglieder Validierung
-    if (groupMembers < 1)
-      newErrors.push({ field: "groupMembers", message: "Mindestens 1 Gruppenmitglied" });
-    if (groupMembers > 25)
-      newErrors.push({ field: "groupMembers", message: "Maximal 25 Mitglieder" });
-
-    //Beschreibung Validierung
-    const announcementTextValidation = validateString(
-      announcementText,
-      "Ankündigungstext",
-      5,
-      2500,
-      true
-    );
-    if (!announcementTextValidation.check)
-      newErrors.push({
-        field: "announcementText",
-        message: announcementTextValidation.description,
-      });
-
-    //Zeitslots Validierung
-    if (!timeSlot1 && !timeSlot2 && !timeSlot3 && !timeSlot4)
-      newErrors.push({ field: "timeSlots", message: "Bitte wähle mindestens einen Zeitraum" });
-
-    //Aufbauzeit Validierung
-    if (constructionTime < 1)
-      newErrors.push({ field: "constructionTime", message: "Aufbaudauer mindestens 1 Minute" });
-    if (constructionTime > 60)
-      newErrors.push({ field: "constructionTime", message: "Aufbaudauer maximal 60 Minuten" });
-
-    //Aufführungszeit Validierung
-    if (performanceTime < 30)
-      newErrors.push({ field: "performanceTime", message: "Auftritt mindestens 30 Minute" });
-    if (performanceTime > 180)
-      newErrors.push({ field: "performanceTime", message: "Auftritt maximal 180 Minuten" });
-
-    //Abbauzeit Validierung
-    if (deconstructionTime < 1)
-      newErrors.push({ field: "deconstructionTime", message: "Abbaudauer mindestens 1 Minute" });
-    if (deconstructionTime > 60)
-      newErrors.push({ field: "deconstructionTime", message: "Abbaudauer maximal 60 Minuten" });
-
-    //Unterkunft Validierung
-    const accomodationValidation = validateString(accomodation, "Unterkunft", 3, 100, true);
-    if (!accomodationValidation.check)
-      newErrors.push({ field: "accomodation", message: accomodationValidation.description });
-
-    //Benötigte Technik Validierung
-    const requiredEquipmentValidation = validateString(
-      requiredEquipment,
-      "Benötigte Technik",
-      0,
-      2500
-    );
-    if (!requiredEquipmentValidation.check)
-      newErrors.push({
-        field: "requiredEquipment",
-        message: requiredEquipmentValidation.description,
-      });
-
-    //Mitgebrachte Technik Validierung
-    const broughtEquipmentValidation = validateString(
-      broughtEquipment,
-      "Mitgebrachte Technik",
-      0,
-      2500
-    );
-    if (!broughtEquipmentValidation.check)
-      newErrors.push({
-        field: "broughtEquipment",
-        message: broughtEquipmentValidation.description,
-      });
-
-    //Website Validierung
-    const websiteValidation = validateString(website, "Website", 0, 100);
-    if (!websiteValidation.check)
-      newErrors.push({ field: "website", message: websiteValidation.description });
-
-    //Instagram Validierung
-    const instagramValidation = validateString(instagram, "Instagram", 0, 100);
-    if (!instagramValidation.check)
-      newErrors.push({ field: "instagram", message: instagramValidation.description });
-
-    //Nachricht Validierung
-    const messageValidation = validateString(message, "Nachricht", 0, 2500);
-    if (!messageValidation.check)
-      newErrors.push({ field: "message", message: messageValidation.description });
-
-    //Bild
-    if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
-
-    //Datenschutzerklärung
-    if (!privacyPolicy)
-      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
-
-    //Datenspeicherung
-    if (!dataStorage)
-      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
-
-    //Bildrechte
-    if (!pictureRights)
-      newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
-
-    //Teilnahmebedingungen
-    if (!conditions)
-      newErrors.push({
-        field: "conditions",
-        message: "Teilnahmebedingungen müssen akzeptiert werden",
-      });
-
-    //Check if there are any errors
-    if (newErrors.length > 0) {
-      setErrors(newErrors);
-
-      // Scroll to the first error
-      const firstError = newErrors[0];
-      if (refs[firstError.field]?.current) {
-        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
-        refs[firstError.field].current.focus();
+    // Wenn Fehler vorhanden sind, zum ersten Fehler scrollen
+    if (Object.keys(errors).length > 0) {
+      const firstErrorField = Object.keys(errors)[0];
+      if (refs[firstErrorField]?.current) {
+        refs[firstErrorField].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstErrorField].current.focus();
       }
       return;
     }
@@ -356,7 +434,7 @@ export default function Showact() {
     formData.append("registrationReminder", registrationReminder);
     formData.append("image", file);
     if (file2 && Array.isArray(file2)) {
-      file2.forEach((singleFile, index) => {
+      file2.forEach((singleFile) => {
         formData.append(`documents`, singleFile);
       });
     }
@@ -372,8 +450,9 @@ export default function Showact() {
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
         );
+        // Reset form
         setName("");
         setLastName("");
         setEmail("");
@@ -401,50 +480,60 @@ export default function Showact() {
         setConditions(false);
         setRegistrationReminder(false);
         setFile(null);
-        setFile2(null);
+        setFile2([]);
         setPreviewUrl(null);
-        setPreviewUrl2(null);
-        setErrors([]);
+        setPreviewUrl2([]);
+        setFieldErrors({});
+        setTouchedFields({});
       } else {
-        setErrors([
-          {
-            field: "general",
-            message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
-          },
-        ]);
+        setFieldErrors({
+          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+        });
       }
     } catch (error) {
-      setErrors([
-        {
-          field: "general",
-          message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
-        },
-      ]);
+      setFieldErrors({
+        general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+      });
     }
     setLoading(false);
   }
 
   function handleFileChange(e) {
-    const file = e.target.files[0];
-    const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024; // 1MB in Bytes
+    const selectedFile = e.target.files[0];
+    const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-    if (file && file.size > maxFileSize) {
+    if (selectedFile && selectedFile.size > maxFileSize) {
       setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
+      setFile(null);
+      setPreviewUrl(null);
       return;
     }
-    setFileError("");
-    setFile(file);
 
-    if (isImageFile(file.name)) {
+    if (selectedFile && !isImageFile(selectedFile.name)) {
+      setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
+      setFile(null);
+      setPreviewUrl(null);
+      return;
+    }
+
+    setFileError("");
+    setFile(selectedFile);
+
+    if (selectedFile && isImageFile(selectedFile.name)) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewUrl(reader.result);
       };
-      reader.readAsDataURL(file);
-    } else {
-      setPreviewUrl(null);
-      setFile(null);
-      setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
+      reader.readAsDataURL(selectedFile);
+    }
+
+    // Validierung triggern wenn Feld bereits berührt wurde
+    if (touchedFields.image) {
+      const error = validateSingleField("image", null, { file: selectedFile });
+      setFieldErrors((prev) => ({
+        ...prev,
+        image: error,
+      }));
     }
   }
 
@@ -463,13 +552,12 @@ export default function Showact() {
         <br />
         <br />
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
-        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
-        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutze unser{" "}
+        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
       <h2>Die Anmeldung als Showact ist momentan geschlossen. (TEST-Modus)</h2>
 
-      {/* Anmeldezeitraum Status */}
       {!registrationStatus.isActive && (
         <h2>
           <strong>{registrationStatus.message}</strong>
@@ -494,34 +582,49 @@ export default function Showact() {
               title="Name"
               inputText={name}
               inputChange={(value) => setName(value)}
+              onBlur={() => handleBlur("name", name)}
               inputRef={refs.name}
-              isError={errors.some((error) => error.field === "name")}
+              isError={!!getFieldError("name")}
               require
             />
+            {getFieldError("name") && <FieldErrorText>{getFieldError("name")}</FieldErrorText>}
+
             <InputOptionInput
               title="Nachname"
               inputText={lastName}
               inputChange={(value) => setLastName(value)}
+              onBlur={() => handleBlur("lastName", lastName)}
               inputRef={refs.lastName}
-              isError={errors.some((error) => error.field === "lastName")}
+              isError={!!getFieldError("lastName")}
               require
             />
+            {getFieldError("lastName") && (
+              <FieldErrorText>{getFieldError("lastName")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="E-Mail"
               inputText={email}
               inputChange={(value) => setEmail(value)}
+              onBlur={() => handleBlur("email", email)}
               inputRef={refs.email}
-              isError={errors.some((error) => error.field === "email")}
+              isError={!!getFieldError("email")}
               require
             />
+            {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
+
             <InputOptionInput
               title="E-Mail Bestätigen"
               inputText={confirmEmail}
               inputChange={setConfirmEmail}
-              inputRef={refs.emailConfirm}
-              isError={errors.some((error) => error.field === "confirmEmail")}
+              onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
+              inputRef={refs.confirmEmail}
+              isError={!!getFieldError("confirmEmail")}
               require
             />
+            {getFieldError("confirmEmail") && (
+              <FieldErrorText>{getFieldError("confirmEmail")}</FieldErrorText>
+            )}
 
             <Spacer />
             <h2>Adresse</h2>
@@ -529,8 +632,10 @@ export default function Showact() {
             <AddressFields
               data={addressData}
               onChange={handleAddressDataChange}
+              onBlur={handleBlur}
               refs={refs}
-              errors={errors}
+              errors={fieldErrors}
+              touchedFields={touchedFields}
             />
 
             <Spacer />
@@ -540,29 +645,44 @@ export default function Showact() {
               title="Gruppenname"
               inputText={groupName}
               inputChange={setGroupName}
+              onBlur={() => handleBlur("groupName", groupName)}
               inputRef={refs.groupName}
-              isError={errors.some((error) => error.field === "groupName")}
+              isError={!!getFieldError("groupName")}
               require
             />
+            {getFieldError("groupName") && (
+              <FieldErrorText>{getFieldError("groupName")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Gruppenmitglieder"
               inputText={groupMembers}
               inputChange={setGroupMembers}
+              onBlur={() => handleBlur("groupMembers", groupMembers)}
               inputRef={refs.groupMembers}
-              isError={errors.some((error) => error.field === "groupMembers")}
+              isError={!!getFieldError("groupMembers")}
               require
               type="number"
               min={1}
               max={25}
             />
+            {getFieldError("groupMembers") && (
+              <FieldErrorText>{getFieldError("groupMembers")}</FieldErrorText>
+            )}
+
             <InputOptionTextArea
               title="Ankündigungstext"
               inputText={announcementText}
               inputChange={setAnnouncementText}
+              onBlur={() => handleBlur("announcementText", announcementText)}
               inputRef={refs.announcementText}
-              isError={errors.some((error) => error.field === "announcementText")}
+              isError={!!getFieldError("announcementText")}
               require
             />
+            {getFieldError("announcementText") && (
+              <FieldErrorText>{getFieldError("announcementText")}</FieldErrorText>
+            )}
+
             <p>
               Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
@@ -571,71 +691,133 @@ export default function Showact() {
               inputRef={refs.image}
               previewUrl={previewUrl}
               file={file}
-              isError={errors.some((error) => error.field === "image")}
+              isError={!!getFieldError("image") || !!fileError}
             />
-            {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
+            {(fileError || getFieldError("image")) && (
+              <ErrorText style={{ textAlign: "center" }}>
+                {fileError || getFieldError("image")}
+              </ErrorText>
+            )}
 
-            <TimeslotsContainer $iserror={errors.some((error) => error.field === "timeSlots")}>
+            <TimeslotsContainer $iserror={!!getFieldError("timeSlots")} ref={refs.timeSlots}>
               <h3>Bevorzugter Tag/Uhrzeit (min. 1 Option wählen)</h3>
               <CheckBox
                 title="timeSlot1"
                 content="Samstag 11:00-14:00 Uhr"
                 isChecked={timeSlot1}
-                inputChange={(value) => setTimeSlot1(value)}
-                inputRef={refs.timeSlots}
+                inputChange={(value) => {
+                  setTimeSlot1(value);
+                  if (touchedFields.timeSlots) {
+                    handleBlur("timeSlots", null, {
+                      timeSlot1: value,
+                      timeSlot2,
+                      timeSlot3,
+                      timeSlot4,
+                    });
+                  }
+                }}
               />
               <CheckBox
                 title="timeSlot2"
                 content="Samstag 14:00-18:00 Uhr"
                 isChecked={timeSlot2}
-                inputChange={(value) => setTimeSlot2(value)}
+                inputChange={(value) => {
+                  setTimeSlot2(value);
+                  if (touchedFields.timeSlots) {
+                    handleBlur("timeSlots", null, {
+                      timeSlot1,
+                      timeSlot2: value,
+                      timeSlot3,
+                      timeSlot4,
+                    });
+                  }
+                }}
               />
               <CheckBox
                 title="timeSlot3"
                 content="Sonntag 11:00-14:00 Uhr"
                 isChecked={timeSlot3}
-                inputChange={(value) => setTimeSlot3(value)}
+                inputChange={(value) => {
+                  setTimeSlot3(value);
+                  if (touchedFields.timeSlots) {
+                    handleBlur("timeSlots", null, {
+                      timeSlot1,
+                      timeSlot2,
+                      timeSlot3: value,
+                      timeSlot4,
+                    });
+                  }
+                }}
               />
               <CheckBox
                 title="timeSlot4"
                 content="Sonntag 14:00-18:00 Uhr"
                 isChecked={timeSlot4}
-                inputChange={(value) => setTimeSlot4(value)}
+                inputChange={(value) => {
+                  setTimeSlot4(value);
+                  if (touchedFields.timeSlots) {
+                    handleBlur("timeSlots", null, {
+                      timeSlot1,
+                      timeSlot2,
+                      timeSlot3,
+                      timeSlot4: value,
+                    });
+                  }
+                }}
               />
             </TimeslotsContainer>
+            {getFieldError("timeSlots") && (
+              <FieldErrorText>{getFieldError("timeSlots")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Aufbauzeit (in Minuten)"
               inputText={constructionTime}
               inputChange={setConstructionTime}
+              onBlur={() => handleBlur("constructionTime", constructionTime)}
               inputRef={refs.constructionTime}
-              isError={errors.some((error) => error.field === "constructionTime")}
+              isError={!!getFieldError("constructionTime")}
               require
               type="number"
               min={1}
               max={60}
             />
+            {getFieldError("constructionTime") && (
+              <FieldErrorText>{getFieldError("constructionTime")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Aufführungszeit (in Minuten)"
               inputText={performanceTime}
               inputChange={setPerformanceTime}
+              onBlur={() => handleBlur("performanceTime", performanceTime)}
               inputRef={refs.performanceTime}
-              isError={errors.some((error) => error.field === "performanceTime")}
+              isError={!!getFieldError("performanceTime")}
               require
               type="number"
               min={30}
               max={180}
             />
+            {getFieldError("performanceTime") && (
+              <FieldErrorText>{getFieldError("performanceTime")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Abbauzeit (in Minuten)"
               inputText={deconstructionTime}
               inputChange={setDeconstructionTime}
+              onBlur={() => handleBlur("deconstructionTime", deconstructionTime)}
               inputRef={refs.deconstructionTime}
-              isError={errors.some((error) => error.field === "deconstructionTime")}
+              isError={!!getFieldError("deconstructionTime")}
               require
               type="number"
               min={1}
               max={60}
             />
+            {getFieldError("deconstructionTime") && (
+              <FieldErrorText>{getFieldError("deconstructionTime")}</FieldErrorText>
+            )}
+
             <p>
               Tech-Rider / Hospitality-Rider / Lichtplan (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}
               MB, jpg, jpeg, png, webp, pdf, docx, xlsx)
@@ -650,7 +832,7 @@ export default function Showact() {
               maxFileSize={MAX_FILE_SIZE_MB}
               maxFiles={3}
               acceptedExtensions={ACCEPTED_FILE_EXTENSIONS}
-              isError={errors.some((error) => error.field === "technicalRider") || fileError2}
+              isError={!!fileError2}
               setFileError={setFileError2}
             />
             {fileError2 && <ErrorText style={{ textAlign: "center" }}>{fileError2}</ErrorText>}
@@ -660,24 +842,38 @@ export default function Showact() {
               options={SHOWACT_ACCOMODATION_OPTIONS}
               inputText={accomodation}
               inputChange={(value) => setAccomodation(value)}
+              onBlur={() => handleBlur("accomodation", accomodation)}
               inputRef={refs.accomodation}
-              isError={errors.some((error) => error.field === "accomodation")}
+              isError={!!getFieldError("accomodation")}
               require
             />
+            {getFieldError("accomodation") && (
+              <FieldErrorText>{getFieldError("accomodation")}</FieldErrorText>
+            )}
+
             <InputOptionTextArea
               title="Benötigte Technik"
               inputText={requiredEquipment}
               inputChange={setRequiredEquipment}
+              onBlur={() => handleBlur("requiredEquipment", requiredEquipment)}
               inputRef={refs.requiredEquipment}
-              isError={errors.some((error) => error.field === "requiredEquipment")}
+              isError={!!getFieldError("requiredEquipment")}
             />
+            {getFieldError("requiredEquipment") && (
+              <FieldErrorText>{getFieldError("requiredEquipment")}</FieldErrorText>
+            )}
+
             <InputOptionTextArea
               title="Mitgebrachte Technik"
               inputText={broughtEquipment}
               inputChange={setBroughtEquipment}
+              onBlur={() => handleBlur("broughtEquipment", broughtEquipment)}
               inputRef={refs.broughtEquipment}
-              isError={errors.some((error) => error.field === "broughtEquipment")}
+              isError={!!getFieldError("broughtEquipment")}
             />
+            {getFieldError("broughtEquipment") && (
+              <FieldErrorText>{getFieldError("broughtEquipment")}</FieldErrorText>
+            )}
 
             <Spacer />
             <h2>Allgemeines</h2>
@@ -686,23 +882,37 @@ export default function Showact() {
               title="Website"
               inputText={website}
               inputChange={setWebsite}
+              onBlur={() => handleBlur("website", website)}
               inputRef={refs.website}
-              isError={errors.some((error) => error.field === "website")}
+              isError={!!getFieldError("website")}
             />
+            {getFieldError("website") && (
+              <FieldErrorText>{getFieldError("website")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Instagram"
               inputText={instagram}
               inputChange={setInstagram}
+              onBlur={() => handleBlur("instagram", instagram)}
               inputRef={refs.instagram}
-              isError={errors.some((error) => error.field === "instagram")}
+              isError={!!getFieldError("instagram")}
             />
+            {getFieldError("instagram") && (
+              <FieldErrorText>{getFieldError("instagram")}</FieldErrorText>
+            )}
+
             <InputOptionTextArea
               title="Nachricht"
               inputText={message}
               inputChange={setMessage}
+              onBlur={() => handleBlur("message", message)}
               inputRef={refs.message}
-              isError={errors.some((error) => error.field === "message")}
+              isError={!!getFieldError("message")}
             />
+            {getFieldError("message") && (
+              <FieldErrorText>{getFieldError("message")}</FieldErrorText>
+            )}
 
             <Spacer />
             <h2>Bedingungen</h2>
@@ -722,11 +932,20 @@ export default function Showact() {
                 </p>
               }
               isChecked={privacyPolicy}
-              inputChange={(value) => setPrivacyPolicy(value)}
+              inputChange={(value) => {
+                setPrivacyPolicy(value);
+                if (touchedFields.privacyPolicy) {
+                  handleBlur("privacyPolicy", value);
+                }
+              }}
               inputRef={refs.privacyPolicy}
-              isError={errors.some((error) => error.field === "privacyPolicy")}
+              isError={!!getFieldError("privacyPolicy")}
               require
             />
+            {getFieldError("privacyPolicy") && (
+              <FieldErrorText>{getFieldError("privacyPolicy")}</FieldErrorText>
+            )}
+
             <CheckBox
               title="dataStorage"
               content={
@@ -738,11 +957,20 @@ export default function Showact() {
                 </p>
               }
               isChecked={dataStorage}
-              inputChange={(value) => setDataStorage(value)}
+              inputChange={(value) => {
+                setDataStorage(value);
+                if (touchedFields.dataStorage) {
+                  handleBlur("dataStorage", value);
+                }
+              }}
               inputRef={refs.dataStorage}
-              isError={errors.some((error) => error.field === "dataStorage")}
+              isError={!!getFieldError("dataStorage")}
               require
             />
+            {getFieldError("dataStorage") && (
+              <FieldErrorText>{getFieldError("dataStorage")}</FieldErrorText>
+            )}
+
             <CheckBox
               title="pictureRights"
               content={
@@ -756,11 +984,20 @@ export default function Showact() {
                 </p>
               }
               isChecked={pictureRights}
-              inputChange={(value) => setPictureRights(value)}
+              inputChange={(value) => {
+                setPictureRights(value);
+                if (touchedFields.pictureRights) {
+                  handleBlur("pictureRights", value);
+                }
+              }}
               inputRef={refs.pictureRights}
-              isError={errors.some((error) => error.field === "pictureRights")}
+              isError={!!getFieldError("pictureRights")}
               require
             />
+            {getFieldError("pictureRights") && (
+              <FieldErrorText>{getFieldError("pictureRights")}</FieldErrorText>
+            )}
+
             <CheckBox
               title="conditions"
               content={
@@ -773,11 +1010,19 @@ export default function Showact() {
                 </p>
               }
               isChecked={conditions}
-              inputChange={(value) => setConditions(value)}
+              inputChange={(value) => {
+                setConditions(value);
+                if (touchedFields.conditions) {
+                  handleBlur("conditions", value);
+                }
+              }}
               inputRef={refs.conditions}
-              isError={errors.some((error) => error.field === "conditions")}
+              isError={!!getFieldError("conditions")}
               require
             />
+            {getFieldError("conditions") && (
+              <FieldErrorText>{getFieldError("conditions")}</FieldErrorText>
+            )}
 
             <CheckBox
               title="registrationReminder"
@@ -792,26 +1037,21 @@ export default function Showact() {
               inputRef={refs.registrationReminder}
             />
 
-            {errors && (
-              <ul>
-                {errors.map((error, index) => (
-                  <li key={index} style={{ color: "red" }}>
-                    {error.message}
-                  </li>
-                ))}
-              </ul>
+            {fieldErrors.general && (
+              <ErrorText style={{ marginTop: "1rem", textAlign: "center" }}>
+                {fieldErrors.general}
+              </ErrorText>
             )}
+
             <StyledButton type="submit">Anmelden</StyledButton>
           </StyledForm>
         </>
       )}
       {success && <SuccessText>{success}</SuccessText>}
       {loading && (
-        <>
-          <ModalOverlay>
-            <LoadingAnimation />
-          </ModalOverlay>
-        </>
+        <ModalOverlay>
+          <LoadingAnimation />
+        </ModalOverlay>
       )}
     </>
   );

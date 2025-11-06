@@ -1,4 +1,3 @@
-import { useState, forwardRef } from "react";
 import {
   InputField,
   InputArea,
@@ -24,6 +23,7 @@ export function InputOptionInput({
   min = 0,
   max = 99999,
   step = 1,
+  onBlur = () => {},
 }) {
   return (
     <>
@@ -37,6 +37,7 @@ export function InputOptionInput({
           value={inputText || ""}
           onChange={(e) => inputChange(type === "number" ? +e.target.value : e.target.value)}
           ref={inputRef}
+          onBlur={onBlur}
           $iserror={isError && "1"}
           {...(type === "number" && { min, max, step })}
         />
@@ -56,6 +57,7 @@ export function InputOptionTextArea({
   inputRef,
   require = false,
   isError,
+  onBlur = () => {},
 }) {
   return (
     <>
@@ -71,6 +73,7 @@ export function InputOptionTextArea({
           rows="5"
           ref={inputRef}
           $iserror={isError && "1"}
+          onBlur={onBlur}
         />
         <InputLabel className="inputLabel" htmlFor={title}>
           {title} {require && <RequiredNote>*</RequiredNote>}

@@ -1,44 +1,80 @@
+import styled from "styled-components";
 import { InputOptionInput, InputOptionSelect } from "@/components/elements/InputComponents";
+import { ErrorText } from "@/components/styledComponents";
 import { COUNTRIES } from "@/util/registration_options";
 
-export default function AddressFields({ data, onChange, refs, errors = [] }) {
-  const hasError = (field) => errors.some((error) => error.field === field);
+const FieldErrorText = styled(ErrorText)`
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+`;
+
+export default function AddressFields({
+  data,
+  onChange,
+  onBlur,
+  refs,
+  errors = {},
+  touchedFields = {},
+}) {
+  const getFieldError = (field) => {
+    return touchedFields[field] && errors[field] ? errors[field] : null;
+  };
+
+  const handleFieldBlur = (field, value) => {
+    if (onBlur) {
+      onBlur(field, value);
+    }
+  };
 
   return (
     <>
       <InputOptionInput
-        title="Straße"
+        title="Straße und Hausnummer"
         inputText={data.street}
         inputChange={(value) => onChange("street", value)}
+        onBlur={() => handleFieldBlur("street", data.street)}
         inputRef={refs.street}
-        isError={hasError("street")}
+        isError={!!getFieldError("street")}
         require
       />
+      {getFieldError("street") && <FieldErrorText>{getFieldError("street")}</FieldErrorText>}
+
       <InputOptionInput
         title="PLZ"
         inputText={data.postalCode}
         inputChange={(value) => onChange("postalCode", value)}
+        onBlur={() => handleFieldBlur("postalCode", data.postalCode)}
         inputRef={refs.postalCode}
-        isError={hasError("postalCode")}
+        isError={!!getFieldError("postalCode")}
         require
       />
+      {getFieldError("postalCode") && (
+        <FieldErrorText>{getFieldError("postalCode")}</FieldErrorText>
+      )}
+
       <InputOptionInput
         title="Ort"
         inputText={data.city}
         inputChange={(value) => onChange("city", value)}
+        onBlur={() => handleFieldBlur("city", data.city)}
         inputRef={refs.city}
-        isError={hasError("city")}
+        isError={!!getFieldError("city")}
         require
       />
+      {getFieldError("city") && <FieldErrorText>{getFieldError("city")}</FieldErrorText>}
+
       <InputOptionSelect
         title="Land"
         options={COUNTRIES}
         inputText={data.country}
         inputChange={(value) => onChange("country", value)}
+        onBlur={() => handleFieldBlur("country", data.country)}
         inputRef={refs.country}
-        isError={hasError("country")}
+        isError={!!getFieldError("country")}
         require
       />
+      {getFieldError("country") && <FieldErrorText>{getFieldError("country")}</FieldErrorText>}
     </>
   );
 }
