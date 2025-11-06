@@ -250,13 +250,19 @@ export default function Showact() {
         break;
 
       case "requiredEquipment":
-        const requiredValidation = validateString(value, "Benötigte Technik", 0, 2500);
-        if (!requiredValidation.check) error = requiredValidation.description;
+        if (value && value.trim().length > 0 && value.trim().length < 5) {
+          error = "Benötigte Technik muss mindestens 5 Zeichen haben oder leer sein";
+        } else if (value && value.trim().length > 2000) {
+          error = "Benötigte Technik darf maximal 2000 Zeichen haben";
+        }
         break;
 
       case "broughtEquipment":
-        const broughtValidation = validateString(value, "Mitgebrachte Technik", 0, 2500);
-        if (!broughtValidation.check) error = broughtValidation.description;
+        if (value && value.trim().length > 0 && value.trim().length < 5) {
+          error = "Mitgebrachte Technik muss mindestens 5 Zeichen haben oder leer sein";
+        } else if (value && value.trim().length > 2000) {
+          error = "Mitgebrachte Technik darf maximal 2000 Zeichen haben";
+        }
         break;
 
       case "website":
