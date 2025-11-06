@@ -547,7 +547,7 @@ export default function Showact() {
     <>
       <h1>Anmeldung als Showact</h1>
       <p>
-        Sichert euch euren Platz auf der YumeKai 2025!
+        Sichert euch euren Platz auf der YumeKai 2026!
         <br />
         <br />
         Bitte beachtet die{" "}
