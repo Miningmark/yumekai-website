@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 import validateString, { validateField } from "@/util/inputCheck";
 
@@ -30,14 +31,21 @@ import {
 } from "@/util/registration_options";
 import AddressFields from "@/components/registrations/AddressFields";
 
+const FieldErrorText = styled(ErrorText)`
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+`;
+
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+const MAX_IMAGE_SIZE_MB = 5;
 
 const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
 };
 
 export default function Artist() {
-  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+  const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
     checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
@@ -57,11 +65,11 @@ export default function Artist() {
   });
 
   const [typeOfArt, setTypeOfArt] = useState("");
-  const [standSize, setStandSize] = useState("FULL_TABLE"); //ENUM: HALF_TABLE, FULL_TABLE
-  const [location, setLocation] = useState("STADTHALLE"); //ENUM: STADTHALLE, KOLBEHAUS, EGAL
+  const [standSize, setStandSize] = useState("FULL_TABLE");
+  const [location, setLocation] = useState("STADTHALLE");
   const [additionalExhibitorTicket, setAdditionalExhibitorTicket] = useState(0);
   const [wlan, setWlan] = useState(false);
-  const [programmBooklet, setProgrammBooklet] = useState("NO"); //ENUM: NO, QUATER_SITE, HALF_SITE, FULL_SITE
+  const [programmBooklet, setProgrammBooklet] = useState("NO");
   const [announcementText, setAnnouncementText] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -76,10 +84,11 @@ export default function Artist() {
   const [conditions, setConditions] = useState(false);
   const [registrationReminder, setRegistrationReminder] = useState(false);
 
-  const [errors, setErrors] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [touchedFields, setTouchedFields] = useState({});
 
   const refs = {
     name: useRef(null),
@@ -94,6 +103,7 @@ export default function Artist() {
     country: useRef(null),
     typeOfArt: useRef(null),
     standSize: useRef(null),
+    location: useRef(null),
     additionalExhibitorTicket: useRef(null),
     wlan: useRef(null),
     programmBooklet: useRef(null),
@@ -111,160 +121,235 @@ export default function Artist() {
   };
 
   useEffect(() => {
-    // Aktualisiere den Status alle Minute
     const interval = setInterval(() => {
       setRegistrationStatus(
         checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
       );
-    }, 60000); // 60 Sekunden
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Handler für Adressdaten
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const selectedStandCost =
-    ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
-      LOCATION_OPTIONS.find((option) => option.value === location).artist || 0;
-  const totalTicketCost =
-    additionalExhibitorTicket > 0 ? TICKET_COST * additionalExhibitorTicket : 0;
-  const totalWlanCost = wlan ? WLAN_COST : 0;
-  const totalProgrammBookletCost =
-    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet).price || 0;
+  // Zentrale Validierungsfunktion
+  const validateSingleField = (field, value, additionalData = {}) => {
+    let error = null;
 
-  const totalCost = selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalWlanCost;
+    switch (field) {
+      case "name":
+        const nameValidation = validateString(value, "Vorname", 2, 50, true);
+        if (!nameValidation.check) error = nameValidation.description;
+        break;
+
+      case "lastName":
+        const lastNameValidation = validateString(value, "Nachname", 2, 50, true);
+        if (!lastNameValidation.check) error = lastNameValidation.description;
+        break;
+
+      case "email":
+        const emailValidation = validateString(value, "E-Mail", 2, 100, true, true);
+        if (!emailValidation.check) error = emailValidation.description;
+        break;
+
+      case "confirmEmail":
+        if (!value || value.trim() === "") {
+          error = "E-Mail-Bestätigung ist erforderlich";
+        } else if (value.trim().toLowerCase() !== additionalData.email?.trim().toLowerCase()) {
+          error = "E-Mail-Adressen stimmen nicht überein";
+        }
+        break;
+
+      case "vendorName":
+        if (value && value.trim().length > 0) {
+          const vendorNameValidation = validateString(value, "Firmenname", 2, 100);
+          if (!vendorNameValidation.check) error = vendorNameValidation.description;
+        }
+        break;
+
+      case "artistName":
+        const artistNameValidation = validateString(value, "Künstlername", 3, 100, true);
+        if (!artistNameValidation.check) error = artistNameValidation.description;
+        break;
+
+      case "street":
+        const streetError = validateField(value, "Straße", 3, 50, true);
+        if (streetError) error = streetError.message;
+        break;
+
+      case "postalCode":
+        const postalCodeError = validateField(value, "PLZ", 2, 10, true);
+        if (postalCodeError) error = postalCodeError.message;
+        break;
+
+      case "city":
+        const cityError = validateField(value, "Ort", 2, 50, true);
+        if (cityError) error = cityError.message;
+        break;
+
+      case "country":
+        const countryError = validateField(value, "Land", 2, 50, true);
+        if (countryError) error = countryError.message;
+        break;
+
+      case "typeOfArt":
+        const typeOfArtValidation = validateString(value, "Angebotene Artikel", 5, 2500, true);
+        if (!typeOfArtValidation.check) error = typeOfArtValidation.description;
+        break;
+
+      case "announcementText":
+        const announcementValidation = validateString(value, "Ankündigungstext", 5, 2500, true);
+        if (!announcementValidation.check) error = announcementValidation.description;
+        break;
+
+      case "standSize":
+        if (!value) error = "Standgröße ist erforderlich";
+        break;
+
+      case "additionalExhibitorTicket":
+        if (value < 0) error = "Mindestens 0 zusätzliche Ausstellertickets";
+        else if (value > 2) error = "Maximal 2 zusätzliche Ausstellertickets";
+        break;
+
+      case "programmBooklet":
+        if (!value) error = "Programmheft ist erforderlich";
+        break;
+
+      case "website":
+        const websiteValidation = validateString(value, "Website", 0, 100);
+        if (!websiteValidation.check) error = websiteValidation.description;
+        break;
+
+      case "instagram":
+        const instagramValidation = validateString(value, "Instagram", 0, 100);
+        if (!instagramValidation.check) error = instagramValidation.description;
+        break;
+
+      case "message":
+        const messageValidation = validateString(value, "Nachricht", 0, 2500);
+        if (!messageValidation.check) error = messageValidation.description;
+        break;
+
+      case "image":
+        if (!additionalData.file) error = "Bild ist ein Pflichtfeld";
+        break;
+
+      case "privacyPolicy":
+        if (!value) error = "Datenschutzerklärung muss akzeptiert werden";
+        break;
+
+      case "dataStorage":
+        if (!value) error = "Datenspeicherung muss akzeptiert werden";
+        break;
+
+      case "licensedMusic":
+        if (!value) error = "GEMA-Lizenzierte Musik ist nicht erlaubt";
+        break;
+
+      case "pictureRights":
+        if (!value) error = "Bildrechte müssen bestätigt werden";
+        break;
+
+      case "conditions":
+        if (!value) error = "Teilnahmebedingungen müssen akzeptiert werden";
+        break;
+    }
+
+    return error;
+  };
+
+  // onBlur Handler für Echtzeit-Validierung
+  const handleBlur = (field, value, additionalData = {}) => {
+    setTouchedFields((prev) => ({ ...prev, [field]: true }));
+
+    const error = validateSingleField(field, value, additionalData);
+    setFieldErrors((prev) => ({
+      ...prev,
+      [field]: error,
+    }));
+  };
+
+  // Fehler für ein bestimmtes Feld abrufen
+  const getFieldError = (field) => {
+    return touchedFields[field] ? fieldErrors[field] : null;
+  };
+
+  // Alle Felder validieren
+  const validateAllFields = () => {
+    const errors = {};
+
+    // Persönliche Angaben
+    errors.name = validateSingleField("name", name);
+    errors.lastName = validateSingleField("lastName", lastName);
+    errors.email = validateSingleField("email", email);
+    errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
+    errors.vendorName = validateSingleField("vendorName", vendorName);
+    errors.artistName = validateSingleField("artistName", artistName);
+
+    // Adresse
+    errors.street = validateSingleField("street", addressData.street);
+    errors.postalCode = validateSingleField("postalCode", addressData.postalCode);
+    errors.city = validateSingleField("city", addressData.city);
+    errors.country = validateSingleField("country", addressData.country);
+
+    // Stand
+    errors.typeOfArt = validateSingleField("typeOfArt", typeOfArt);
+    errors.announcementText = validateSingleField("announcementText", announcementText);
+    errors.standSize = validateSingleField("standSize", standSize);
+    errors.additionalExhibitorTicket = validateSingleField(
+      "additionalExhibitorTicket",
+      additionalExhibitorTicket
+    );
+    errors.programmBooklet = validateSingleField("programmBooklet", programmBooklet);
+
+    // Allgemeines
+    errors.website = validateSingleField("website", website);
+    errors.instagram = validateSingleField("instagram", instagram);
+    errors.message = validateSingleField("message", message);
+    errors.image = validateSingleField("image", null, { file });
+
+    // Bedingungen
+    errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
+    errors.dataStorage = validateSingleField("dataStorage", dataStorage);
+    errors.licensedMusic = validateSingleField("licensedMusic", licensedMusic);
+    errors.pictureRights = validateSingleField("pictureRights", pictureRights);
+    errors.conditions = validateSingleField("conditions", conditions);
+
+    // Filtere null-Werte heraus
+    Object.keys(errors).forEach((key) => {
+      if (errors[key] === null) delete errors[key];
+    });
+
+    return errors;
+  };
 
   async function submit(event) {
     event.preventDefault();
 
-    const newErrors = [];
-    setErrors([]);
     setSuccess("");
 
-    // Validierungslogik mit validateString
-    // Name Validierung
-    const nameValidation = validateString(name, "Vorname", 2, 50, true);
-    if (!nameValidation.check)
-      newErrors.push({ field: "name", message: nameValidation.description });
+    // Alle Felder als "touched" markieren
+    const allFields = Object.keys(refs);
+    const touched = {};
+    allFields.forEach((field) => (touched[field] = true));
+    setTouchedFields(touched);
 
-    // Nachname Validierung
-    if (lastName) {
-      const lastNameValidation = validateString(lastName, "Nachname", 2, 50, true);
-      if (!lastNameValidation.check)
-        newErrors.push({ field: "lastName", message: lastNameValidation.description });
-    }
+    // Validierung durchführen
+    const errors = validateAllFields();
+    setFieldErrors(errors);
 
-    // Email Validierung
-    const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
-    if (!emailValidation.check)
-      newErrors.push({ field: "email", message: emailValidation.description });
-
-    //Firmenname Validierung
-    const vendorNameValidation = validateString(vendorName, "Firmenname");
-    if (!vendorNameValidation.check)
-      newErrors.push({ field: "vendorName", message: vendorNameValidation.description });
-
-    //Künstlername Validierung
-    const artistNameValidation = validateString(artistName, "Künstlername", 3, 100, true);
-    if (!artistNameValidation.check)
-      newErrors.push({ field: "artistName", message: artistNameValidation.description });
-
-    // Validierung Adressdaten
-    const streetError = validateField(addressData.street, "Straße", 3, 50, true);
-    if (streetError) newErrors.push(streetError);
-
-    const postalCodeError = validateField(addressData.postalCode, "PLZ", 2, 10, true);
-    if (postalCodeError) newErrors.push(postalCodeError);
-
-    const cityError = validateField(addressData.city, "Ort", 2, 50, true);
-    if (cityError) newErrors.push(cityError);
-
-    const countryError = validateField(addressData.country, "Land", 2, 50, true);
-    if (countryError) newErrors.push(countryError);
-
-    //Art der Kunst Validierung
-    const typeOfArtValidation = validateString(typeOfArt, "Art der Kunst", 5, 2500, true);
-    if (!typeOfArtValidation.check)
-      newErrors.push({ field: "typeOfArt", message: typeOfArtValidation.description });
-
-    //Ankündigungstext des Standes Validierung
-    const announcementTextValidation = validateString(
-      announcementText,
-      "Ankündigungstext",
-      5,
-      2500,
-      true
-    );
-    if (!announcementTextValidation.check)
-      newErrors.push({
-        field: "announcementText",
-        message: announcementTextValidation.description,
-      });
-
-    //Website Validierung
-    const websiteValidation = validateString(website, "Website", 0, 100);
-    if (!websiteValidation.check)
-      newErrors.push({ field: "website", message: websiteValidation.description });
-
-    //Instagram Validierung
-    const instagramValidation = validateString(instagram, "Instagram", 0, 100);
-    if (!instagramValidation.check)
-      newErrors.push({ field: "instagram", message: instagramValidation.description });
-
-    //Nachricht Validierung
-    const messageValidation = validateString(message, "Nachricht", 0, 2500);
-    if (!messageValidation.check)
-      newErrors.push({ field: "message", message: messageValidation.description });
-
-    if (!standSize)
-      newErrors.push({ field: "standSize", message: "Standgröße ist ein Pflichtfeld" });
-    if (!programmBooklet)
-      newErrors.push({ field: "programmBooklet", message: "Programmheft ist ein Pflichtfeld" });
-
-    //Bild
-    if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
-
-    //Datenschutzerklärung
-    if (!privacyPolicy)
-      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
-
-    //Datenspeicherung
-    if (!dataStorage)
-      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
-
-    //GEMA
-    if (!licensedMusic)
-      newErrors.push({
-        field: "licensedMusic",
-        message: "GEMA-Lizenzierte Musik ist nicht erlaubt",
-      });
-
-    //Bildrechte
-    if (!pictureRights)
-      newErrors.push({ field: "pictureRights", message: "Bildrechte müssen bestätigt werden" });
-
-    //Teilnahmebedingungen
-    if (!conditions)
-      newErrors.push({
-        field: "conditions",
-        message: "Teilnahmebedingungen müssen akzeptiert werden",
-      });
-
-    //Check if there are any errors
-    if (newErrors.length > 0) {
-      setErrors(newErrors);
-
-      // Scroll to the first error
-      const firstError = newErrors[0];
-      if (refs[firstError.field]?.current) {
-        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
-        refs[firstError.field].current.focus();
+    // Wenn Fehler vorhanden sind, zum ersten Fehler scrollen
+    if (Object.keys(errors).length > 0) {
+      const firstErrorField = Object.keys(errors)[0];
+      if (refs[firstErrorField]?.current) {
+        refs[firstErrorField].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstErrorField].current.focus();
       }
       return;
     }
+
     setLoading(true);
 
     const formData = new FormData();
@@ -304,11 +389,12 @@ export default function Artist() {
           body: formData,
         }
       );
+
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
         );
-        setErrors([]);
+        // Reset form
         setName("");
         setLastName("");
         setEmail("");
@@ -334,51 +420,70 @@ export default function Artist() {
         setRegistrationReminder(false);
         setFile(null);
         setPreviewUrl(null);
+        setFieldErrors({});
+        setTouchedFields({});
       } else {
-        const data = await response.json();
-        setErrors([
-          {
-            field: "general",
-            message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
-          },
-        ]);
-        console.error("Fehler beim Einfügen der Daten:", result.error);
+        setFieldErrors({
+          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+        });
       }
     } catch (error) {
-      setErrors([
-        {
-          field: "general",
-          message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
-        },
-      ]);
-      console.error("Fehler beim Einfügen der Daten:", error);
+      setFieldErrors({
+        general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+      });
     }
     setLoading(false);
   }
 
   function handleFileChange(e) {
-    const file = e.target.files[0];
-    const maxFileSize = 10 * 1024 * 1024; // 10MB in Bytes
+    const selectedFile = e.target.files[0];
+    const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-    if (file && file.size > maxFileSize) {
-      setFileError("Die Datei darf maximal 10MB groß sein.");
+    if (selectedFile && selectedFile.size > maxFileSize) {
+      setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
+      setFile(null);
+      setPreviewUrl(null);
       return;
     }
-    setFileError("");
-    setFile(file);
 
-    if (isImageFile(file.name)) {
+    if (selectedFile && !isImageFile(selectedFile.name)) {
+      setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
+      setFile(null);
+      setPreviewUrl(null);
+      return;
+    }
+
+    setFileError("");
+    setFile(selectedFile);
+
+    if (selectedFile && isImageFile(selectedFile.name)) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewUrl(reader.result);
       };
-      reader.readAsDataURL(file);
-    } else {
-      setPreviewUrl(null);
-      setFile(null);
-      setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
+      reader.readAsDataURL(selectedFile);
+    }
+
+    // Validierung triggern wenn Feld bereits berührt wurde
+    if (touchedFields.image) {
+      const error = validateSingleField("image", null, { file: selectedFile });
+      setFieldErrors((prev) => ({
+        ...prev,
+        image: error,
+      }));
     }
   }
+
+  const selectedStandCost =
+    ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
+      LOCATION_OPTIONS.find((option) => option.value === location).artist || 0;
+  const totalTicketCost =
+    additionalExhibitorTicket > 0 ? TICKET_COST * additionalExhibitorTicket : 0;
+  const totalWlanCost = wlan ? WLAN_COST : 0;
+  const totalProgrammBookletCost =
+    PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet).price || 0;
+
+  const totalCost = selectedStandCost + totalProgrammBookletCost + totalTicketCost + totalWlanCost;
 
   return (
     <>
@@ -395,13 +500,12 @@ export default function Artist() {
         <br />
         <br />
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
-        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt unser{" "}
-        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. 
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutze unser{" "}
+        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
       <h2>Die Anmeldung als Künstler ist momentan geschlossen. (TEST-Modus)</h2>
 
-      {/* Anmeldezeitraum Status */}
       {!registrationStatus.isActive && (
         <h2>
           <strong>{registrationStatus.message}</strong>
@@ -419,83 +523,123 @@ export default function Artist() {
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
+
           <StyledForm onSubmit={submit}>
             <h2>Persönliche Angaben</h2>
             <InputOptionInput
               title="Name"
               inputText={name}
               inputChange={(value) => setName(value)}
+              onBlur={() => handleBlur("name", name)}
               inputRef={refs.name}
-              isError={errors.some((error) => error.field === "name")}
+              isError={!!getFieldError("name")}
               require
             />
+            {getFieldError("name") && <FieldErrorText>{getFieldError("name")}</FieldErrorText>}
+
             <InputOptionInput
               title="Nachname"
               inputText={lastName}
               inputChange={(value) => setLastName(value)}
+              onBlur={() => handleBlur("lastName", lastName)}
               inputRef={refs.lastName}
-              isError={errors.some((error) => error.field === "lastName")}
+              isError={!!getFieldError("lastName")}
               require
             />
+            {getFieldError("lastName") && (
+              <FieldErrorText>{getFieldError("lastName")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="E-Mail"
               inputText={email}
               inputChange={(value) => setEmail(value)}
+              onBlur={() => handleBlur("email", email)}
               inputRef={refs.email}
-              isError={errors.some((error) => error.field === "email")}
+              isError={!!getFieldError("email")}
               require
             />
+            {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
+
             <InputOptionInput
               title="E-Mail Bestätigen"
               inputText={confirmEmail}
               inputChange={setConfirmEmail}
-              inputRef={refs.emailConfirm}
-              isError={errors.some((error) => error.field === "confirmEmail")}
+              onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
+              inputRef={refs.confirmEmail}
+              isError={!!getFieldError("confirmEmail")}
               require
             />
+            {getFieldError("confirmEmail") && (
+              <FieldErrorText>{getFieldError("confirmEmail")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Firmenname"
               inputText={vendorName}
               inputChange={(value) => setVendorName(value)}
+              onBlur={() => handleBlur("vendorName", vendorName)}
               inputRef={refs.vendorName}
-              isError={errors.some((error) => error.field === "vendorName")}
+              isError={!!getFieldError("vendorName")}
             />
+            {getFieldError("vendorName") && (
+              <FieldErrorText>{getFieldError("vendorName")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Künstlername"
               inputText={artistName}
               inputChange={(value) => setArtistName(value)}
+              onBlur={() => handleBlur("artistName", artistName)}
               inputRef={refs.artistName}
-              isError={errors.some((error) => error.field === "artistName")}
+              isError={!!getFieldError("artistName")}
               require
             />
+            {getFieldError("artistName") && (
+              <FieldErrorText>{getFieldError("artistName")}</FieldErrorText>
+            )}
 
             <Spacer />
             <h2>Adresse</h2>
+
             <AddressFields
               data={addressData}
               onChange={handleAddressDataChange}
+              onBlur={handleBlur}
               refs={refs}
-              errors={errors}
+              errors={fieldErrors}
+              touchedFields={touchedFields}
             />
 
             <Spacer />
             <h2>Stand</h2>
+
             <InputOptionTextArea
               title="Angebotene Artikel"
               inputText={typeOfArt}
               inputChange={(value) => setTypeOfArt(value)}
+              onBlur={() => handleBlur("typeOfArt", typeOfArt)}
               inputRef={refs.typeOfArt}
-              isError={errors.some((error) => error.field === "typeOfArt")}
+              isError={!!getFieldError("typeOfArt")}
               require
             />
+            {getFieldError("typeOfArt") && (
+              <FieldErrorText>{getFieldError("typeOfArt")}</FieldErrorText>
+            )}
+
             <InputOptionTextArea
               title="Ankündigungstext"
               inputText={announcementText}
               inputChange={(value) => setAnnouncementText(value)}
+              onBlur={() => handleBlur("announcementText", announcementText)}
               inputRef={refs.announcementText}
-              isError={errors.some((error) => error.field === "announcementText")}
+              isError={!!getFieldError("announcementText")}
               require
             />
+            {getFieldError("announcementText") && (
+              <FieldErrorText>{getFieldError("announcementText")}</FieldErrorText>
+            )}
+
             <p>
               Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
@@ -504,9 +648,13 @@ export default function Artist() {
               inputRef={refs.image}
               previewUrl={previewUrl}
               file={file}
-              isError={errors.some((error) => error.field === "image")}
+              isError={!!getFieldError("image") || !!fileError}
             />
-            {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
+            {(fileError || getFieldError("image")) && (
+              <ErrorText style={{ textAlign: "center" }}>
+                {fileError || getFieldError("image")}
+              </ErrorText>
+            )}
 
             <RadioButton
               title="Stand Lage"
@@ -515,7 +663,6 @@ export default function Artist() {
               selectedOption={location}
               inputChange={(value) => setLocation(value)}
               inputRef={refs.location}
-              isError={errors.some((error) => error.field === "location")}
               require
             />
 
@@ -525,21 +672,28 @@ export default function Artist() {
               options={ARTIST_STANDSIZE_OPTIONS.map((option) => option.value)}
               selectedOption={standSize}
               inputChange={(value) => setStandSize(value)}
-              inputRef={refs.gender}
-              isError={errors.some((error) => error.field === "standSize")}
+              inputRef={refs.standSize}
+              isError={!!getFieldError("standSize")}
               require
             />
+            {getFieldError("standSize") && (
+              <FieldErrorText>{getFieldError("standSize")}</FieldErrorText>
+            )}
 
             <InputOptionInput
               type="number"
               title={`Zusätzliches Ausstellerticket (je ${TICKET_COST}€)`}
               inputText={additionalExhibitorTicket}
               inputChange={(value) => setAdditionalExhibitorTicket(value)}
+              onBlur={() => handleBlur("additionalExhibitorTicket", additionalExhibitorTicket)}
               inputRef={refs.additionalExhibitorTicket}
-              isError={errors.some((error) => error.field === "additionalExhibitorTicket")}
+              isError={!!getFieldError("additionalExhibitorTicket")}
               min={0}
               max={2}
             />
+            {getFieldError("additionalExhibitorTicket") && (
+              <FieldErrorText>{getFieldError("additionalExhibitorTicket")}</FieldErrorText>
+            )}
 
             <CheckBox
               title="wlan"
@@ -547,15 +701,15 @@ export default function Artist() {
               isChecked={wlan}
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}
-              isError={errors.some((error) => error.field === "wlan")}
             />
             <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
+
             <RadioButton
               title={
                 <>
                   <span>
                     Programmheft{" "}
-                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blanck">
+                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blank">
                       Infoblatt
                     </StyledLink>{" "}
                   </span>
@@ -566,9 +720,12 @@ export default function Artist() {
               selectedOption={programmBooklet}
               inputChange={(value) => setProgrammBooklet(value)}
               inputRef={refs.programmBooklet}
-              isError={errors.some((error) => error.field === "programmBooklet")}
+              isError={!!getFieldError("programmBooklet")}
               require
             />
+            {getFieldError("programmBooklet") && (
+              <FieldErrorText>{getFieldError("programmBooklet")}</FieldErrorText>
+            )}
 
             <h3>Gesamtkosten</h3>
             <ul>
@@ -584,7 +741,7 @@ export default function Artist() {
                 </li>
               )}
               {wlan && <li>W-Lan: {WLAN_COST},00€</li>}
-              {programmBooklet !== "Nein" && (
+              {programmBooklet !== "NO" && (
                 <li>
                   Programmheft:{" "}
                   {
@@ -596,7 +753,7 @@ export default function Artist() {
               )}
             </ul>
 
-            <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl.MWST</h4>
+            <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl. MwSt.</h4>
 
             <Spacer />
             <h2>Allgemeines</h2>
@@ -605,23 +762,37 @@ export default function Artist() {
               title="Website"
               inputText={website}
               inputChange={setWebsite}
+              onBlur={() => handleBlur("website", website)}
               inputRef={refs.website}
-              isError={errors.some((error) => error.field === "website")}
+              isError={!!getFieldError("website")}
             />
+            {getFieldError("website") && (
+              <FieldErrorText>{getFieldError("website")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Instagram"
               inputText={instagram}
               inputChange={setInstagram}
+              onBlur={() => handleBlur("instagram", instagram)}
               inputRef={refs.instagram}
-              isError={errors.some((error) => error.field === "instagram")}
+              isError={!!getFieldError("instagram")}
             />
+            {getFieldError("instagram") && (
+              <FieldErrorText>{getFieldError("instagram")}</FieldErrorText>
+            )}
+
             <InputOptionTextArea
               title="Nachricht"
               inputText={message}
               inputChange={setMessage}
+              onBlur={() => handleBlur("message", message)}
               inputRef={refs.message}
-              isError={errors.some((error) => error.field === "message")}
+              isError={!!getFieldError("message")}
             />
+            {getFieldError("message") && (
+              <FieldErrorText>{getFieldError("message")}</FieldErrorText>
+            )}
 
             <Spacer />
             <h2>Bedingungen</h2>
@@ -641,11 +812,20 @@ export default function Artist() {
                 </p>
               }
               isChecked={privacyPolicy}
-              inputChange={(value) => setPrivacyPolicy(value)}
+              inputChange={(value) => {
+                setPrivacyPolicy(value);
+                if (touchedFields.privacyPolicy) {
+                  handleBlur("privacyPolicy", value);
+                }
+              }}
               inputRef={refs.privacyPolicy}
-              isError={errors.some((error) => error.field === "privacyPolicy")}
+              isError={!!getFieldError("privacyPolicy")}
               require
             />
+            {getFieldError("privacyPolicy") && (
+              <FieldErrorText>{getFieldError("privacyPolicy")}</FieldErrorText>
+            )}
+
             <CheckBox
               title="dataStorage"
               content={
@@ -657,11 +837,20 @@ export default function Artist() {
                 </p>
               }
               isChecked={dataStorage}
-              inputChange={(value) => setDataStorage(value)}
+              inputChange={(value) => {
+                setDataStorage(value);
+                if (touchedFields.dataStorage) {
+                  handleBlur("dataStorage", value);
+                }
+              }}
               inputRef={refs.dataStorage}
-              isError={errors.some((error) => error.field === "dataStorage")}
+              isError={!!getFieldError("dataStorage")}
               require
             />
+            {getFieldError("dataStorage") && (
+              <FieldErrorText>{getFieldError("dataStorage")}</FieldErrorText>
+            )}
+
             <CheckBox
               title="licensedMusic"
               content={
@@ -671,11 +860,20 @@ export default function Artist() {
                 </p>
               }
               isChecked={licensedMusic}
-              inputChange={(value) => setLicensedMusic(value)}
+              inputChange={(value) => {
+                setLicensedMusic(value);
+                if (touchedFields.licensedMusic) {
+                  handleBlur("licensedMusic", value);
+                }
+              }}
               inputRef={refs.licensedMusic}
-              isError={errors.some((error) => error.field === "licensedMusic")}
+              isError={!!getFieldError("licensedMusic")}
               require
             />
+            {getFieldError("licensedMusic") && (
+              <FieldErrorText>{getFieldError("licensedMusic")}</FieldErrorText>
+            )}
+
             <CheckBox
               title="pictureRights"
               content={
@@ -689,13 +887,22 @@ export default function Artist() {
                 </p>
               }
               isChecked={pictureRights}
-              inputChange={(value) => setPictureRights(value)}
+              inputChange={(value) => {
+                setPictureRights(value);
+                if (touchedFields.pictureRights) {
+                  handleBlur("pictureRights", value);
+                }
+              }}
               inputRef={refs.pictureRights}
-              isError={errors.some((error) => error.field === "pictureRights")}
+              isError={!!getFieldError("pictureRights")}
               require
             />
+            {getFieldError("pictureRights") && (
+              <FieldErrorText>{getFieldError("pictureRights")}</FieldErrorText>
+            )}
+
             <CheckBox
-              title="artistConditions"
+              title="conditions"
               content={
                 <p>
                   Ich habe die{" "}
@@ -709,11 +916,19 @@ export default function Artist() {
                 </p>
               }
               isChecked={conditions}
-              inputChange={(value) => setConditions(value)}
-              inputRef={refs.artistConditions}
-              isError={errors.some((error) => error.field === "artistConditions")}
+              inputChange={(value) => {
+                setConditions(value);
+                if (touchedFields.conditions) {
+                  handleBlur("conditions", value);
+                }
+              }}
+              inputRef={refs.conditions}
+              isError={!!getFieldError("conditions")}
               require
             />
+            {getFieldError("conditions") && (
+              <FieldErrorText>{getFieldError("conditions")}</FieldErrorText>
+            )}
 
             <CheckBox
               title="registrationReminder"
@@ -728,14 +943,10 @@ export default function Artist() {
               inputRef={refs.registrationReminder}
             />
 
-            {errors && (
-              <ul>
-                {errors.map((error, index) => (
-                  <li key={index} style={{ color: "red" }}>
-                    {error.message}
-                  </li>
-                ))}
-              </ul>
+            {fieldErrors.general && (
+              <ErrorText style={{ marginTop: "1rem", textAlign: "center" }}>
+                {fieldErrors.general}
+              </ErrorText>
             )}
 
             <StyledButton type="submit">Anmelden</StyledButton>
@@ -744,11 +955,9 @@ export default function Artist() {
       )}
       {success && <SuccessText>{success}</SuccessText>}
       {loading && (
-        <>
-          <ModalOverlay>
-            <LoadingAnimation />
-          </ModalOverlay>
-        </>
+        <ModalOverlay>
+          <LoadingAnimation />
+        </ModalOverlay>
       )}
     </>
   );
