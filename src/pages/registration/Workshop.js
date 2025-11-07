@@ -793,7 +793,7 @@ export default function Workshop() {
             )}
 
             <InputOptionInput
-              title="Teilnehmer*innen"
+              title="max. Workshop Teilnehmer*innen"
               inputText={participants}
               inputChange={setParticipants}
               onBlur={() => handleBlur("participants", participants)}
