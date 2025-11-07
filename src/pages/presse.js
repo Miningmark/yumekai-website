@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useState, useRef } from "react";
 import validateString, { validateField } from "@/util/inputCheck";
 
@@ -6,6 +7,7 @@ import { InputOptionTextArea, InputOptionInput } from "@/components/elements/Inp
 import {
   StyledButton,
   StyledForm,
+  ErrorText,
   Spacer,
   StyledLink,
   ModalOverlay,
@@ -17,8 +19,14 @@ import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import AddressFields from "@/components/registrations/AddressFields";
 import { EVENT_ID } from "@/util/registration_options";
 
+const FieldErrorText = styled(ErrorText)`
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+`;
+
 export default function Presse() {
-  const [eventId, setEventId] = useState(EVENT_ID); //TODO: Event ID anpassen
+  const [eventId, setEventId] = useState(EVENT_ID);
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -37,11 +45,11 @@ export default function Presse() {
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
 
-  const [errors, setErrors] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+  const [touchedFields, setTouchedFields] = useState({});
 
-  // Refs for form fields
   const refs = {
     name: useRef(null),
     lastName: useRef(null),
@@ -59,86 +67,158 @@ export default function Presse() {
     dataStorage: useRef(null),
   };
 
-  // Handler für Adressdaten
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Zentrale Validierungsfunktion
+  const validateSingleField = (field, value, additionalData = {}) => {
+    let error = null;
+
+    switch (field) {
+      case "name":
+        const nameValidation = validateString(value, "Vorname", 2, 100, true);
+        if (!nameValidation.check) error = nameValidation.description;
+        break;
+
+      case "lastName":
+        const lastNameValidation = validateString(value, "Nachname", 2, 100, true);
+        if (!lastNameValidation.check) error = lastNameValidation.description;
+        break;
+
+      case "email":
+        const emailValidation = validateString(value, "E-Mail", 2, 100, true, true);
+        if (!emailValidation.check) error = emailValidation.description;
+        break;
+
+      case "street":
+        const streetError = validateField(value, "Straße", 3, 50, true);
+        if (streetError) error = streetError.message;
+        break;
+
+      case "postalCode":
+        const postalCodeError = validateField(value, "PLZ", 2, 10, true);
+        if (postalCodeError) error = postalCodeError.message;
+        break;
+
+      case "city":
+        const cityError = validateField(value, "Ort", 2, 50, true);
+        if (cityError) error = cityError.message;
+        break;
+
+      case "country":
+        const countryError = validateField(value, "Land", 2, 50, true);
+        if (countryError) error = countryError.message;
+        break;
+
+      case "workFunction":
+        const workFunctionValidation = validateString(value, "Funktion", 3, 50, true);
+        if (!workFunctionValidation.check) error = workFunctionValidation.description;
+        break;
+
+      case "medium":
+        const mediumValidation = validateString(value, "Medium", 3, 100, true);
+        if (!mediumValidation.check) error = mediumValidation.description;
+        break;
+
+      case "verification":
+        const verificationValidation = validateString(value, "Nachweis", 3, 500, true);
+        if (!verificationValidation.check) error = verificationValidation.description;
+        break;
+
+      case "website":
+        const websiteValidation = validateString(value, "Website", 0, 100);
+        if (!websiteValidation.check) error = websiteValidation.description;
+        break;
+
+      case "message":
+        const messageValidation = validateString(value, "Nachricht", 5, 2500, true);
+        if (!messageValidation.check) error = messageValidation.description;
+        break;
+
+      case "privacyPolicy":
+        if (!value) error = "Datenschutzerklärung muss akzeptiert werden";
+        break;
+
+      case "dataStorage":
+        if (!value) error = "Datenspeicherung muss akzeptiert werden";
+        break;
+    }
+
+    return error;
+  };
+
+  // onBlur Handler für Echtzeit-Validierung
+  const handleBlur = (field, value, additionalData = {}) => {
+    setTouchedFields((prev) => ({ ...prev, [field]: true }));
+
+    const error = validateSingleField(field, value, additionalData);
+    setFieldErrors((prev) => ({
+      ...prev,
+      [field]: error,
+    }));
+  };
+
+  // Fehler für ein bestimmtes Feld abrufen
+  const getFieldError = (field) => {
+    return touchedFields[field] ? fieldErrors[field] : null;
+  };
+
+  // Alle Felder validieren
+  const validateAllFields = () => {
+    const errors = {};
+
+    // Persönliche Angaben
+    errors.name = validateSingleField("name", name);
+    errors.lastName = validateSingleField("lastName", lastName);
+    errors.email = validateSingleField("email", email);
+
+    // Adresse
+    errors.street = validateSingleField("street", addressData.street);
+    errors.postalCode = validateSingleField("postalCode", addressData.postalCode);
+    errors.city = validateSingleField("city", addressData.city);
+    errors.country = validateSingleField("country", addressData.country);
+
+    // Presseangaben
+    errors.workFunction = validateSingleField("workFunction", workFunction);
+    errors.medium = validateSingleField("medium", medium);
+    errors.verification = validateSingleField("verification", verification);
+    errors.website = validateSingleField("website", website);
+    errors.message = validateSingleField("message", message);
+
+    // Bedingungen
+    errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
+    errors.dataStorage = validateSingleField("dataStorage", dataStorage);
+
+    // Filtere null-Werte heraus
+    Object.keys(errors).forEach((key) => {
+      if (errors[key] === null) delete errors[key];
+    });
+
+    return errors;
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const newErrors = [];
-    setErrors([]);
+    setSuccess("");
 
-    // Validierungslogik mit validateString
-    // Name Validierung
-    const nameValidation = validateString(name, "Vorname", 2, 100, true);
-    if (!nameValidation.check)
-      newErrors.push({ field: "name", message: nameValidation.description });
+    // Alle Felder als "touched" markieren
+    const allFields = Object.keys(refs);
+    const touched = {};
+    allFields.forEach((field) => (touched[field] = true));
+    setTouchedFields(touched);
 
-    // Nachname Validierung
-    if (lastName) {
-      const lastNameValidation = validateString(lastName, "Nachname", 2, 100, true);
-      if (!lastNameValidation.check)
-        newErrors.push({ field: "lastName", message: lastNameValidation.description });
-    }
+    // Validierung durchführen
+    const errors = validateAllFields();
+    setFieldErrors(errors);
 
-    // Email Validierung
-    const emailValidation = validateString(email, "E-Mail", 2, 100, true, true);
-    if (!emailValidation.check)
-      newErrors.push({ field: "email", message: emailValidation.description });
-
-    // Validierung Adressdaten
-    const streetError = validateField(addressData.street, "Straße", 3, 50, true);
-    if (streetError) newErrors.push(streetError);
-
-    const postalCodeError = validateField(addressData.postalCode, "PLZ", 2, 10, true);
-    if (postalCodeError) newErrors.push(postalCodeError);
-
-    const cityError = validateField(addressData.city, "Ort", 2, 50, true);
-    if (cityError) newErrors.push(cityError);
-
-    const countryError = validateField(addressData.country, "Land", 2, 50, true);
-    if (countryError) newErrors.push(countryError);
-
-    if (workFunction.length < 3)
-      newErrors.push({ field: "workFunction", message: "Berufsbezeichnung ist zu kurz" });
-    if (workFunction.length > 50)
-      newErrors.push({ field: "workFunction", message: "Berufsbezeichnung ist zu lang" });
-
-    if (medium.length < 3) newErrors.push({ field: "medium", message: "Medium ist zu kurz" });
-    if (medium.length > 100) newErrors.push({ field: "medium", message: "Medium ist zu lang" });
-
-    if (!verification.trim())
-      newErrors.push({ field: "verification", message: "Nachweis ist ein Pflichtfeld" });
-    if (verification.length < 3)
-      newErrors.push({ field: "verification", message: "Nachweis ist zu kurz" });
-    if (verification.length > 500)
-      newErrors.push({ field: "verification", message: "Nachweis ist zu lang" });
-
-    //Website Validierung
-    const websiteValidation = validateString(website, "Website", 0, 100);
-    if (!websiteValidation.check)
-      newErrors.push({ field: "website", message: websiteValidation.description });
-
-    if (message.length < 5) newErrors.push({ field: "message", message: "Nachricht ist zu kurz" });
-    if (message.length > 2500)
-      newErrors.push({ field: "message", message: "Nachricht ist zu lang" });
-
-    //Datenschutzerklärung
-    if (!privacyPolicy)
-      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung nicht akzeptiert" });
-
-    //Datenspeicherung
-    if (!dataStorage)
-      newErrors.push({ field: "dataStorage", message: "Datenspeicherung muss akzeptiert werden" });
-
-    if (newErrors.length > 0) {
-      setErrors(newErrors);
-      const firstError = newErrors[0];
-      if (refs[firstError.field]?.current) {
-        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
-        refs[firstError.field].current.focus();
+    // Wenn Fehler vorhanden sind, zum ersten Fehler scrollen
+    if (Object.keys(errors).length > 0) {
+      const firstErrorField = Object.keys(errors)[0];
+      if (refs[firstErrorField]?.current) {
+        refs[firstErrorField].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstErrorField].current.focus();
       }
       return;
     }
@@ -173,6 +253,7 @@ export default function Presse() {
 
       if (response.ok) {
         setSuccess("Presse Akkreditierung erfolgreich abgeschickt");
+        // Reset form
         setName("");
         setLastName("");
         setEmail("");
@@ -183,21 +264,18 @@ export default function Presse() {
         setWebsite("");
         setMessage("");
         setPrivacyPolicy(false);
+        setDataStorage(false);
+        setFieldErrors({});
+        setTouchedFields({});
       } else {
-        setErrors([
-          {
-            field: "general",
-            message: "Fehler beim Absenden der Anfrage, Bitte versuche es später nochmal.",
-          },
-        ]);
+        setFieldErrors({
+          general: "Fehler beim Absenden der Anfrage. Bitte versuche es später nochmal.",
+        });
       }
     } catch (error) {
-      setErrors([
-        {
-          field: "general",
-          message: "Fehler beim Absenden der Anfrage, Bitte versuche es später nochmal.",
-        },
-      ]);
+      setFieldErrors({
+        general: "Fehler beim Absenden der Anfrage. Bitte versuche es später nochmal.",
+      });
     }
     setLoading(false);
   }
@@ -212,7 +290,7 @@ export default function Presse() {
       <strong>
         Eine Akkreditierung vor Ort ist nicht möglich. <br />
         <br />
-        Inhaltverzeichnis
+        Inhaltsverzeichnis
       </strong>
       <ul>
         <li>
@@ -231,7 +309,7 @@ export default function Presse() {
 
       <p>
         Das YumeKai-Presseteam erreichen Sie unter{" "}
-        <StyledLink href="mailto:info@yumekai.de.">info@yumekai.de.</StyledLink>
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink>
       </p>
 
       <Spacer id="richtlinien" />
@@ -271,15 +349,15 @@ export default function Presse() {
         </li>
       </ul>
       <p>
-        Falls Sie mehr als ein Ticket für Ihr Team benötigst, beschreiben Sie bitte genau, wer noch
+        Falls Sie mehr als ein Ticket für Ihr Team benötigen, beschreiben Sie bitte genau, wer noch
         mitkommt und aus welchem Grund diese Person relevant für die Berichterstattung ist.
-        <br /> Bitte schickten Sie uns nach der Berichterstattung die Links oder Scans zum Bericht
+        <br /> Bitte schicken Sie uns nach der Berichterstattung die Links oder Scans zum Bericht
         per E-Mail, sodass wir sie in unserer Bibliothek aufnehmen und für zukünftige
         Akkreditierungsanfragen einbeziehen können.
         <br />
         <br /> Wir haben nur ein begrenztes Kontingent an Presse-Badges. Daher können wir nicht jede
         Anfrage annehmen. Eine Anfrage wird bei uns nach Relevanz bearbeitet: Das heißt, es könnten
-        auch kleinere Projekte angenommen werden, obwohl wir vereinzelnd größeren Projekten absagen.{" "}
+        auch kleinere Projekte angenommen werden, obwohl wir vereinzelt größeren Projekten absagen.{" "}
         <br />
         <br />
         Wir halten uns vor, Akkreditierungsanfragen ohne Nennung von Gründen abzusagen. Mögliche
@@ -292,37 +370,47 @@ export default function Presse() {
       <h2>Online Akkreditierung</h2>
       {!success && (
         <>
-          {" "}
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
+
           <StyledForm onSubmit={handleSubmit}>
             <h2>Persönliche Angaben</h2>
             <InputOptionInput
               title="Name"
               inputText={name}
               inputChange={(value) => setName(value)}
+              onBlur={() => handleBlur("name", name)}
               inputRef={refs.name}
-              isError={errors.some((error) => error.field === "name")}
+              isError={!!getFieldError("name")}
               require
             />
+            {getFieldError("name") && <FieldErrorText>{getFieldError("name")}</FieldErrorText>}
+
             <InputOptionInput
               title="Nachname"
               inputText={lastName}
               inputChange={(value) => setLastName(value)}
+              onBlur={() => handleBlur("lastName", lastName)}
               inputRef={refs.lastName}
-              isError={errors.some((error) => error.field === "lastName")}
+              isError={!!getFieldError("lastName")}
               require
             />
+            {getFieldError("lastName") && (
+              <FieldErrorText>{getFieldError("lastName")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="E-Mail"
               type="email"
               inputText={email}
               inputChange={(value) => setEmail(value)}
-              require
+              onBlur={() => handleBlur("email", email)}
               inputRef={refs.email}
-              isError={errors.some((error) => error.field === "email")}
+              isError={!!getFieldError("email")}
+              require
             />
+            {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
 
             <Spacer />
             <h2>Adresse</h2>
@@ -330,8 +418,10 @@ export default function Presse() {
             <AddressFields
               data={addressData}
               onChange={handleAddressDataChange}
+              onBlur={handleBlur}
               refs={refs}
-              errors={errors}
+              errors={fieldErrors}
+              touchedFields={touchedFields}
             />
 
             <Spacer />
@@ -341,49 +431,74 @@ export default function Presse() {
               title="Funktion"
               inputText={workFunction}
               inputChange={(value) => setWorkFunction(value)}
+              onBlur={() => handleBlur("workFunction", workFunction)}
               inputRef={refs.workFunction}
-              isError={errors.some((error) => error.field === "workFunction")}
+              isError={!!getFieldError("workFunction")}
               require
             />
+            {getFieldError("workFunction") && (
+              <FieldErrorText>{getFieldError("workFunction")}</FieldErrorText>
+            )}
+
             <InputOptionInput
               title="Medium"
               inputText={medium}
               inputChange={(value) => setMedium(value)}
+              onBlur={() => handleBlur("medium", medium)}
               inputRef={refs.medium}
-              isError={errors.some((error) => error.field === "medium")}
+              isError={!!getFieldError("medium")}
               require
             />
+            {getFieldError("medium") && <FieldErrorText>{getFieldError("medium")}</FieldErrorText>}
+
             <InputOptionTextArea
-              title="Nachweis "
+              title="Nachweis"
               inputText={verification}
               inputChange={(value) => setVerification(value)}
-              require
+              onBlur={() => handleBlur("verification", verification)}
               inputRef={refs.verification}
-              isError={errors.some((error) => error.field === "verification")}
+              isError={!!getFieldError("verification")}
+              require
             />
-            <p style={{ marginTop: "-5px" }}>
+            {getFieldError("verification") && (
+              <FieldErrorText>{getFieldError("verification")}</FieldErrorText>
+            )}
+            <p style={{ marginTop: "-10px", fontSize: "0.9rem", color: "#666" }}>
               (Pressenachweis, einen schriftlichen Auftrag deines Chefredakteurs oder einen Nachweis
               über Fanprojekte, über welche du schreibst)
             </p>
 
             <InputOptionTextArea
-              title="Nachricht "
+              title="Nachricht"
               inputText={message}
               inputChange={(value) => setMessage(value)}
-              require
+              onBlur={() => handleBlur("message", message)}
               inputRef={refs.message}
-              isError={errors.some((error) => error.field === "message")}
+              isError={!!getFieldError("message")}
+              require
             />
+            {getFieldError("message") && (
+              <FieldErrorText>{getFieldError("message")}</FieldErrorText>
+            )}
 
             <InputOptionInput
               title="Website"
               inputText={website}
               inputChange={setWebsite}
+              onBlur={() => handleBlur("website", website)}
               inputRef={refs.website}
-              isError={errors.some((error) => error.field === "website")}
+              isError={!!getFieldError("website")}
             />
+            {getFieldError("website") && (
+              <FieldErrorText>{getFieldError("website")}</FieldErrorText>
+            )}
+
+            <Spacer />
+            <h2>Bedingungen</h2>
+
             <CheckBox
-              title={
+              title="privacyPolicy"
+              content={
                 <p>
                   Ich habe die{" "}
                   <StyledLink href="/datenschutz" target="_blank">
@@ -396,11 +511,20 @@ export default function Presse() {
                 </p>
               }
               isChecked={privacyPolicy}
-              inputChange={(value) => setPrivacyPolicy(value)}
+              inputChange={(value) => {
+                setPrivacyPolicy(value);
+                if (touchedFields.privacyPolicy) {
+                  handleBlur("privacyPolicy", value);
+                }
+              }}
               inputRef={refs.privacyPolicy}
-              isError={errors.some((error) => error.field === "privacyPolicy")}
+              isError={!!getFieldError("privacyPolicy")}
               require
             />
+            {getFieldError("privacyPolicy") && (
+              <FieldErrorText>{getFieldError("privacyPolicy")}</FieldErrorText>
+            )}
+
             <CheckBox
               title="dataStorage"
               content={
@@ -412,21 +536,26 @@ export default function Presse() {
                 </p>
               }
               isChecked={dataStorage}
-              inputChange={(value) => setDataStorage(value)}
+              inputChange={(value) => {
+                setDataStorage(value);
+                if (touchedFields.dataStorage) {
+                  handleBlur("dataStorage", value);
+                }
+              }}
               inputRef={refs.dataStorage}
-              isError={errors.some((error) => error.field === "dataStorage")}
+              isError={!!getFieldError("dataStorage")}
               require
             />
-
-            {errors.length > 0 && (
-              <ul>
-                {errors.map((error, index) => (
-                  <li key={index} style={{ color: "red" }}>
-                    {error.message}
-                  </li>
-                ))}
-              </ul>
+            {getFieldError("dataStorage") && (
+              <FieldErrorText>{getFieldError("dataStorage")}</FieldErrorText>
             )}
+
+            {fieldErrors.general && (
+              <ErrorText style={{ marginTop: "1rem", textAlign: "center" }}>
+                {fieldErrors.general}
+              </ErrorText>
+            )}
+
             <StyledButton type="submit">Absenden</StyledButton>
           </StyledForm>
         </>
@@ -434,11 +563,9 @@ export default function Presse() {
 
       {success && <SuccessText>{success}</SuccessText>}
       {loading && (
-        <>
-          <ModalOverlay>
-            <LoadingAnimation />
-          </ModalOverlay>
-        </>
+        <ModalOverlay>
+          <LoadingAnimation />
+        </ModalOverlay>
       )}
     </>
   );
