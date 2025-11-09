@@ -42,8 +42,6 @@ const TimeslotsContainer = styled.div`
   gap: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
-  max-width: 100%; // ← NEU
-  box-sizing: border-box; // ← NEU
   ${({ $iserror }) => $iserror && `border: solid 2px red;`}
   ${({ $iserror }) => $iserror && `padding: 10px;`}
 `;
