@@ -340,7 +340,9 @@ export default function PageHeader({ toggleTheme, theme }) {
   return (
     <StyledHeader>
       <MenuLogoBackground>
-        <YumeKaiLogo className="logo" />
+        <Link href="/">
+          <YumeKaiLogo className="logo" />
+        </Link>
         <SocialMediaContainerHeader />
       </MenuLogoBackground>
 
