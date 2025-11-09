@@ -3,7 +3,11 @@ import { useEffect, useState, useRef } from "react";
 import validateString, { validateField } from "@/util/inputCheck";
 
 //Components
-import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
+import {
+  InputOptionTextArea,
+  InputOptionInput,
+  InputOptionSelect,
+} from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -28,6 +32,7 @@ import {
   LOCATION_OPTIONS,
   PROGRAMM_BOOKLET_OPTIONS,
   ARTIST_STANDSIZE_OPTIONS,
+  GENDER_OPTIONS,
 } from "@/util/registration_options";
 import AddressFields from "@/components/registrations/AddressFields";
 

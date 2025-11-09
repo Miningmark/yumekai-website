@@ -28,6 +28,7 @@ import {
   checkRegistrationPeriod,
   EVENT_ID,
   SHOWACT_ACCOMODATION_OPTIONS,
+  GENDER_OPTIONS,
 } from "@/util/registration_options";
 import AddressFields from "@/components/registrations/AddressFields";
 

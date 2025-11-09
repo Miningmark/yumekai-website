@@ -2,7 +2,11 @@ import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 
 //Components
-import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
+import {
+  InputOptionTextArea,
+  InputOptionInput,
+  InputOptionSelect,
+} from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -29,6 +33,7 @@ import {
   LOCATION_OPTIONS,
   PROGRAMM_BOOKLET_OPTIONS,
   VENDOR_STANDSIZE_OPTIONS,
+  GENDER_OPTIONS,
 } from "@/util/registration_options";
 import AddressFields from "@/components/registrations/AddressFields";
 
@@ -728,6 +733,7 @@ export default function Vendor() {
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}
             />
+            <p>Der Wlan-Zugang wird von einem YumeKai-Helfer auf den Geräten eingerichtet.</p>
 
             <RadioButton
               title={
@@ -747,7 +753,6 @@ export default function Vendor() {
               inputRef={refs.programmBooklet}
               require
             />
-            <p>Der Zugang wird von einem YumeKai-Helfer auf dem ausgewählten Gerät eingerichtet.</p>
 
             <RadioButton
               title="Tische - (inklusive)"

@@ -2,7 +2,11 @@ import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 
 //Components
-import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
+import {
+  InputOptionTextArea,
+  InputOptionInput,
+  InputOptionSelect,
+} from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -22,6 +26,7 @@ import {
   REGISTRATION_END_EXHIBITOR,
   checkRegistrationPeriod,
   EVENT_ID,
+  GENDER_OPTIONS,
 } from "@/util/registration_options";
 import AddressFields from "@/components/registrations/AddressFields";
 

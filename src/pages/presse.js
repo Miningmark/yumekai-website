@@ -3,7 +3,11 @@ import { useState, useRef } from "react";
 import validateString, { validateField } from "@/util/inputCheck";
 
 //Components
-import { InputOptionTextArea, InputOptionInput } from "@/components/elements/InputComponents";
+import {
+  InputOptionTextArea,
+  InputOptionInput,
+  InputOptionSelect,
+} from "@/components/elements/InputComponents";
 import {
   StyledButton,
   StyledForm,
@@ -17,7 +21,7 @@ import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import AddressFields from "@/components/registrations/AddressFields";
-import { EVENT_ID } from "@/util/registration_options";
+import { EVENT_ID, GENDER_OPTIONS } from "@/util/registration_options";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
