@@ -42,6 +42,8 @@ const TimeslotsContainer = styled.div`
   gap: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
+  max-width: 100%; // ← NEU
+  box-sizing: border-box; // ← NEU
   ${({ $iserror }) => $iserror && `border: solid 2px red;`}
   ${({ $iserror }) => $iserror && `padding: 10px;`}
 `;
@@ -155,6 +157,7 @@ export default function Workshop() {
           error = "Geschlecht ist ein Pflichtfeld";
         }
         break;
+
       case "name":
         const nameValidation = validateString(value, "Vorname", 2, 50, true);
         if (!nameValidation.check) error = nameValidation.description;
@@ -814,7 +817,7 @@ export default function Workshop() {
             )}
 
             <InputOptionTextArea
-              title="Anforderungen für den Workshop (z.B. Material, Technik, etc.)"
+              title={`Anforderungen`}
               inputText={workshopRequirements}
               inputChange={setWorkshopRequirements}
               onBlur={() => handleBlur("workshopRequirements", workshopRequirements)}
@@ -824,6 +827,9 @@ export default function Workshop() {
             {getFieldError("workshopRequirements") && (
               <FieldErrorText>{getFieldError("workshopRequirements")}</FieldErrorText>
             )}
+            <p style={{ paddingTop: "0px", marginTop: "0px" }}>
+              Anforderungen für den Workshop (z.B. Material, Technik, etc.)
+            </p>
 
             <InputOptionInput
               title="max. Workshop Teilnehmer*innen"

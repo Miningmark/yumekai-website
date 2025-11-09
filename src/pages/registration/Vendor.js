@@ -638,7 +638,7 @@ export default function Vendor() {
             <h2>Stand</h2>
 
             <InputOptionTextArea
-              title="Warensortiment"
+              title="Produktsortiment"
               inputText={typeOfAssortment}
               inputChange={(value) => setTypeOfAssortment(value)}
               onBlur={() => handleBlur("typeOfAssortment", typeOfAssortment)}
