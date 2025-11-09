@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
@@ -59,67 +59,66 @@ const images = [
   hiruSupport2Image,
   hiruSupport25Image,
 ];
+const CardWrapper = styled.div`
+  width: 60px;
+  height: 60px;
+  border: 2px solid
+    ${({ $isflipped }) => ($isflipped ? "var(--primary-color)" : "var(--secondary-color)")};
+  border-radius: 6px;
+  background-color: ${({ $ismatched }) => ($ismatched ? "#a0a0a0" : "#fff")};
 
-// Styled Components - Bootstrap-inspired Layout
-const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  perspective: 1000px; /* Wichtig für die 3D-Ansicht */
+  transform-style: preserve-3d;
+  position: relative;
+  transform: ${({ $isflipped }) => ($isflipped ? "rotateY(180deg)" : "rotateY(0deg)")};
+  transition: transform 1s;
+
+  @media (min-width: 600px) {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
+const CardInner = styled.div`
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-
-  @media (min-width: 576px) {
-    max-width: 540px;
-  }
-
-  @media (min-width: 768px) {
-    max-width: 720px;
-  }
-
-  @media (min-width: 992px) {
-    max-width: 960px;
-  }
-
-  @media (min-width: 1200px) {
-    max-width: 1140px;
-  }
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 1.2s cubic-bezier(0.7, -0.3, 0.3, 1.8);
+  position: relative;
+  transform-origin: center;
+  border-radius: 5px;
 `;
 
-const Title = styled.h1`
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: #212529;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
+const CardFront = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  transform: rotateY(0deg); /* Wichtig für die Vorderseite */
+  border-radius: 5px;
 `;
 
-const InfoSection = styled.div`
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
-const SubText = styled.p`
-  color: #6c757d;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-`;
-
-const ScoreText = styled.h2`
-  color: #0d6efd;
-  font-size: 2rem;
-  font-weight: 400;
-  margin: 0;
-`;
-
-const ButtonSection = styled.div`
-  text-align: center;
-  margin-top: 2rem;
+const CardBack = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //background-color: #fff;
+  background-color: ${({ $ismatched }) => ($ismatched ? "#a0a0a0" : "#fff")};
+  color: #fff;
+  transform: rotateY(180deg); /* Wichtig für die Rückseite */
+  border-radius: 5px;
 `;
 
 const Button = styled.button`
@@ -167,87 +166,6 @@ const SuccessButton = styled(Button)`
   &:hover {
     background-color: #218838;
     border-color: #1e7e34;
-  }
-`;
-
-const GameGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto 2rem;
-
-  @media (max-width: 768px) {
-    gap: 4px;
-    max-width: 100%;
-    padding: 0 10px;
-  }
-
-  @media (max-width: 480px) {
-    gap: 2px;
-    padding: 0 5px;
-  }
-`;
-
-const MemoryCard = styled.div`
-  aspect-ratio: 1;
-  perspective: 1000px;
-  cursor: pointer;
-  min-height: 60px;
-  opacity: ${(props) => (props.$isMatched ? "0.6" : "1")};
-  pointer-events: ${(props) => (props.$isMatched ? "none" : "auto")};
-`;
-
-const CardInner = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  transform: ${(props) => (props.$isFlipped ? "rotateY(180deg)" : "rotateY(0)")};
-`;
-
-const CardFace = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 576px) {
-    border-radius: 4px;
-  }
-`;
-
-const CardFront = styled(CardFace)`
-  background: #4a90e2;
-`;
-
-const CardBack = styled(CardFace)`
-  background: white;
-  transform: rotateY(180deg);
-`;
-
-const CardImageWrapper = styled.div`
-  position: relative;
-  width: 90%;
-  height: 90%;
-  border-radius: 4px;
-  overflow: hidden;
-
-  @media (max-width: 576px) {
-    width: 95%;
-    height: 95%;
-  }
-
-  img {
-    object-fit: cover;
   }
 `;
 
@@ -308,43 +226,50 @@ const ModalFooter = styled.div`
   justify-content: center;
 `;
 
-// Card Component
 const Card = ({ image, isFlipped, isMatched, onClick }) => {
   return (
-    <MemoryCard $isMatched={isMatched} onClick={onClick}>
-      <CardInner $isFlipped={isFlipped || isMatched}>
+    <CardWrapper $isflipped={isFlipped ? 1 : 0} $ismatched={isMatched ? 1 : 0} onClick={onClick}>
+      <CardInner>
         <CardFront>
-          <CardImageWrapper>
-            <Image
-              src={yumekaiLogoImage}
-              alt="Card Back"
-              fill
-              sizes="(max-width: 480px) 15vw, (max-width: 768px) 12vw, 100px"
-            />
-          </CardImageWrapper>
+          <Image
+            src={yumekaiLogoImage}
+            alt="Card Image"
+            width={300}
+            height={300}
+            style={{
+              width: "80%",
+              height: "80%",
+            }}
+          />
         </CardFront>
-        <CardBack>
-          <CardImageWrapper>
-            <Image
-              src={image}
-              alt="Card Front"
-              fill
-              sizes="(max-width: 480px) 15vw, (max-width: 768px) 12vw, 100px"
-            />
-          </CardImageWrapper>
+        <CardBack $ismatched={isMatched ? 1 : 0}>
+          <Image
+            src={image}
+            alt="Card Image"
+            width={300}
+            height={300}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
         </CardBack>
       </CardInner>
-    </MemoryCard>
+    </CardWrapper>
   );
 };
 
-// Funktion zum zufälligen Auswählen von 18 Bildern
-const getRandomImages = (allImages, count = 18) => {
-  const shuffled = [...allImages].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
-};
+const GameWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+`;
 
-// Main Component
+const Text = styled.p`
+  color: ${({ theme }) => theme.textColor};
+`;
 
 export default function Memory() {
   const [cards, setCards] = useState([]);
@@ -353,32 +278,24 @@ export default function Memory() {
   const [tries, setTries] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
-  console.log(
-    "Cards:",
-    cards.map((card) => card.image.src)
-  );
+  console.log(cards);
+  console.log(flippedCards);
+  console.log(matchedCards);
 
-  // Karten initialisieren
-  const initializeCards = () => {
-    // Wähle zufällig 18 Bilder aus
-    const selectedImages = getRandomImages(images, 18);
-
-    // Verdopple die Bilder für Memory-Paare
-    const shuffledCards = [...selectedImages, ...selectedImages]
-      .sort(() => Math.random() - 0.5)
-      .map((image, index) => ({
-        id: index,
-        image,
-        isFlipped: false,
-        isMatched: false,
-      }));
-
-    setCards(shuffledCards);
-  };
+  // Hilfsfunktion: Wähle 18 zufällige Bilder aus
+  const getRandomImages = useCallback(() => {
+    const shuffled = [...images].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 18);
+  }, []);
 
   useEffect(() => {
-    initializeCards();
-  }, []);
+    const selectedImages = getRandomImages();
+    const shuffledCards = [...selectedImages, ...selectedImages]
+      .sort(() => Math.random() - 0.5)
+      .map((image, index) => ({ id: index, image, isFlipped: false, isMatched: false }));
+
+    setCards(shuffledCards);
+  }, [getRandomImages]);
 
   // Check for a match
   useEffect(() => {
@@ -407,13 +324,6 @@ export default function Memory() {
     }
   }, [flippedCards]);
 
-  // Check for win condition
-  useEffect(() => {
-    if (cards.length > 0 && matchedCards.length === cards.length) {
-      setShowModal(true);
-    }
-  }, [matchedCards, cards]);
-
   const handleCardClick = (id) => {
     if (flippedCards.length === 2 || matchedCards.includes(id)) return;
 
@@ -431,57 +341,52 @@ export default function Memory() {
   };
 
   function handleReset() {
-    initializeCards();
+    const selectedImages = getRandomImages();
+    const shuffledCards = [...selectedImages, ...selectedImages]
+      .sort(() => Math.random() - 0.5)
+      .map((image, index) => ({ id: index, image, isFlipped: false, isMatched: false }));
+
+    setCards(shuffledCards);
     setFlippedCards([]);
     setMatchedCards([]);
     setTries(0);
-    setShowModal(false);
   }
 
   return (
-    <Container>
+    <>
       <h1>Memory Game</h1>
-
-      <InfoSection>
-        <SubText>Wie viele Versuche brauchst du um alle Hirus zuzuordnen?</SubText>
+      <div style={{ textAlign: "center", padding: "20px" }}>
         <h2>Züge: {tries}</h2>
-      </InfoSection>
-
-      <GameGrid>
-        {cards.map((card) => (
-          <Card
-            key={card.id}
-            image={card.image}
-            isFlipped={card.isFlipped}
-            isMatched={card.isMatched}
-            onClick={() => handleCardClick(card.id)}
-          />
-        ))}
-      </GameGrid>
-
-      <ButtonSection>
-        <SecondaryButton onClick={handleReset}>Neues Spiel starten</SecondaryButton>
-      </ButtonSection>
-
-      {/* Custom Modal mit styled-components */}
-      {showModal && (
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>
-              <ModalTitle>Herzlichen Glückwunsch!</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
-              <ModalHeading>Du hast das Spiel gewonnen! 🎉</ModalHeading>
-              <ModalText>
-                Benötigte Züge: <strong>{tries}</strong>
-              </ModalText>
-            </ModalBody>
-            <ModalFooter>
-              <SuccessButton onClick={handleReset}>Neues Spiel starten</SuccessButton>
-            </ModalFooter>
-          </ModalContent>
-        </ModalOverlay>
-      )}
-    </Container>
+        <GameWrapper>
+          {cards.map((card) => (
+            <Card
+              key={card.id}
+              image={card.image}
+              isFlipped={card.isFlipped}
+              isMatched={card.isMatched}
+              onClick={() => handleCardClick(card.id)}
+            />
+          ))}
+        </GameWrapper>
+        {showModal && (
+          <ModalOverlay>
+            <ModalContent>
+              <ModalHeader>
+                <ModalTitle>Herzlichen Glückwunsch!</ModalTitle>
+              </ModalHeader>
+              <ModalBody>
+                <ModalHeading>Du hast das Spiel gewonnen! 🎉</ModalHeading>
+                <ModalText>
+                  Benötigte Züge: <strong>{tries}</strong>
+                </ModalText>
+              </ModalBody>
+              <ModalFooter>
+                <SuccessButton onClick={handleReset}>Neues Spiel starten</SuccessButton>
+              </ModalFooter>
+            </ModalContent>
+          </ModalOverlay>
+        )}
+      </div>
+    </>
   );
 }
