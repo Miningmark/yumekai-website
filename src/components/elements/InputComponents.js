@@ -111,12 +111,14 @@ export function InputOptionCheckbox({
 export function InputOptionSelect({
   title,
   options,
+  names,
   inputText,
   inputChange,
   inputRef,
   require = false,
   isError,
 }) {
+  const nameOptions = names || options;
   return (
     <>
       <InputWrapper>
@@ -131,7 +133,7 @@ export function InputOptionSelect({
           </option>
           {options.map((option, index) => (
             <option key={index} value={option}>
-              {option}
+              {nameOptions[index]}
             </option>
           ))}
         </StyledSelect>

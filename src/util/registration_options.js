@@ -80,6 +80,12 @@ export const COUNTRIES = [
   "Cyprus",
 ];
 
+export const GENDER_OPTIONS = [
+  { value: "m", label: "Männlich" },
+  { value: "w", label: "Weiblich" },
+  { value: "d", label: "Divers" },
+];
+
 export const SHOWACT_ACCOMODATION_OPTIONS = [
   "Nicht benötigt",
   "wäre gut, aber nicht notwendig",

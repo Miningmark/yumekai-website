@@ -63,12 +63,14 @@ export default function Showact() {
     checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
   );
 
+  const [gender, setGender] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [addressData, setAddressData] = useState({
     street: "",
+    houseNumber: "",
     postalCode: "",
     city: "",
     country: "",
@@ -111,11 +113,13 @@ export default function Showact() {
   const [touchedFields, setTouchedFields] = useState({});
 
   const refs = {
+    gender: useRef(null),
     name: useRef(null),
     lastName: useRef(null),
     email: useRef(null),
     confirmEmail: useRef(null),
     street: useRef(null),
+    houseNumber: useRef(null),
     postalCode: useRef(null),
     city: useRef(null),
     country: useRef(null),
@@ -160,6 +164,10 @@ export default function Showact() {
     let error = null;
 
     switch (field) {
+      case "gender":
+        if (!value) error = "Anrede ist ein Pflichtfeld";
+        break;
+
       case "name":
         const nameValidation = validateString(value, "Vorname", 2, 50, true);
         if (!nameValidation.check) error = nameValidation.description;
@@ -186,6 +194,11 @@ export default function Showact() {
       case "street":
         const streetError = validateField(value, "Straße", 3, 50, true);
         if (streetError) error = streetError.message;
+        break;
+
+      case "houseNumber":
+        const houseNumberError = validateField(value, "Hausnummer", 1, 10, true);
+        if (houseNumberError) error = houseNumberError.message;
         break;
 
       case "postalCode":
@@ -326,6 +339,7 @@ export default function Showact() {
     const errors = {};
 
     // Persönliche Angaben
+    errors.gender = validateSingleField("gender", gender);
     errors.name = validateSingleField("name", name);
     errors.lastName = validateSingleField("lastName", lastName);
     errors.email = validateSingleField("email", email);
@@ -333,6 +347,7 @@ export default function Showact() {
 
     // Adresse
     errors.street = validateSingleField("street", addressData.street);
+    errors.houseNumber = validateSingleField("houseNumber", addressData.houseNumber);
     errors.postalCode = validateSingleField("postalCode", addressData.postalCode);
     errors.city = validateSingleField("city", addressData.city);
     errors.country = validateSingleField("country", addressData.country);
@@ -413,10 +428,12 @@ export default function Showact() {
 
     const formData = new FormData();
     formData.append("eventId", eventId);
+    formData.append("gender", gender);
     formData.append("firstName", name.trim());
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("street", addressData.street.trim());
+    formData.append("houseNumber", addressData.houseNumber.trim());
     formData.append("postalCode", addressData.postalCode.trim());
     formData.append("city", addressData.city.trim());
     formData.append("country", addressData.country.trim());
@@ -459,11 +476,12 @@ export default function Showact() {
           "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
         );
         // Reset form
+        setGender("");
         setName("");
         setLastName("");
         setEmail("");
         setConfirmEmail("");
-        setAddressData({ street: "", postalCode: "", city: "", country: "" });
+        setAddressData({ street: "", houseNumber: "", postalCode: "", city: "", country: "" });
         setGroupName("");
         setGroupMembers(1);
         setAnnouncementText("");
@@ -584,6 +602,18 @@ export default function Showact() {
 
           <StyledForm onSubmit={submit}>
             <h2>Persönliche Angaben</h2>
+            <InputOptionSelect
+              title="Anrede"
+              options={GENDER_OPTIONS.map((option) => option.value)}
+              names={GENDER_OPTIONS.map((option) => option.label)}
+              inputText={gender}
+              inputChange={(value) => setGender(value)}
+              onBlur={() => handleBlur("gender", gender)}
+              inputRef={refs.gender}
+              isError={!!getFieldError("gender")}
+              require
+            />
+
             <InputOptionInput
               title="Name"
               inputText={name}

@@ -30,7 +30,7 @@ export default function AddressFields({
   return (
     <>
       <InputOptionInput
-        title="Straße und Hausnummer"
+        title="Straße"
         inputText={data.street}
         inputChange={(value) => onChange("street", value)}
         onBlur={() => handleFieldBlur("street", data.street)}
@@ -39,6 +39,19 @@ export default function AddressFields({
         require
       />
       {getFieldError("street") && <FieldErrorText>{getFieldError("street")}</FieldErrorText>}
+
+      <InputOptionInput
+        title="Hausnummer"
+        inputText={data.houseNumber}
+        inputChange={(value) => onChange("houseNumber", value)}
+        onBlur={() => handleFieldBlur("shouseNumber", data.houseNumber)}
+        inputRef={refs.houseNumber}
+        isError={!!getFieldError("houseNumber")}
+        require
+      />
+      {getFieldError("houseNumber") && (
+        <FieldErrorText>{getFieldError("houseNumber")}</FieldErrorText>
+      )}
 
       <InputOptionInput
         title="PLZ"
