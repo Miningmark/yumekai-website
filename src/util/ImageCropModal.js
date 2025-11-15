@@ -17,8 +17,8 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: white;
-  border-radius: 8px;
+  background: ${({ theme }) => theme.backgroundColor2};
+  border-radius: var(--border-radius-large);
   padding: 20px;
   max-width: 90vw;
   max-height: 90vh;
@@ -26,17 +26,27 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 `;
 
 const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid ${({ theme }) => theme.backgroundColor3};
+  padding-bottom: 10px;
 `;
 
 const ModalTitle = styled.h2`
   margin: 0;
   font-size: 1.5rem;
+  color: ${({ theme }) => theme.primaryColor};
+  font-family: Tahoma;
+  font-weight: 600;
+
+  @media (max-width: 500px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -45,10 +55,17 @@ const CloseButton = styled.button`
   font-size: 1.5rem;
   cursor: pointer;
   padding: 5px 10px;
-  color: #666;
+  color: ${({ theme }) => theme.text};
+  opacity: 0.7;
+  transition: opacity 0.2s;
 
   &:hover {
-    color: #000;
+    opacity: 1;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 `;
 
@@ -56,8 +73,13 @@ const CropContainer = styled.div`
   position: relative;
   width: 100%;
   height: 400px;
-  background: #f0f0f0;
-  border-radius: 4px;
+  background: ${({ theme }) => theme.backgroundColor3};
+  border-radius: var(--border-radius-small);
+  overflow: hidden;
+
+  @media (max-width: 500px) {
+    height: 300px;
+  }
 `;
 
 const ControlsContainer = styled.div`
@@ -76,6 +98,7 @@ const ZoomLabel = styled.label`
   font-size: 0.9rem;
   font-weight: 500;
   min-width: 60px;
+  color: ${({ theme }) => theme.text};
 `;
 
 const ZoomSlider = styled.input`
@@ -83,6 +106,9 @@ const ZoomSlider = styled.input`
   height: 6px;
   border-radius: 3px;
   outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: ${({ theme }) => theme.backgroundColor3};
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -90,17 +116,27 @@ const ZoomSlider = styled.input`
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: #007bff;
+    background: ${({ theme }) => theme.primaryColor};
     cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   &::-moz-range-thumb {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: #007bff;
+    background: ${({ theme }) => theme.primaryColor};
     cursor: pointer;
     border: none;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
@@ -113,41 +149,54 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius-small);
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-family: Helvetica, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s;
 
   ${(props) =>
     props.$primary
       ? `
-    background-color: #007bff;
+    background-color: ${props.theme.primaryColor};
     color: white;
     
-    &:hover {
-      background-color: #0056b3;
+    &:hover:not(:disabled) {
+      filter: brightness(0.9);
+      transform: translateY(-1px);
     }
   `
       : `
-    background-color: #6c757d;
-    color: white;
+    background-color: ${props.theme.backgroundColor3};
+    color: ${props.theme.text};
     
-    &:hover {
-      background-color: #545b62;
+    &:hover:not(:disabled) {
+      background-color: ${props.theme.backgroundColor4};
     }
   `}
 
   &:disabled {
-    background-color: #cccccc;
+    opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 `;
 
 const InfoText = styled.p`
   margin: 0;
   font-size: 0.85rem;
-  color: #666;
+  color: ${({ theme }) => theme.text};
+  opacity: 0.8;
   text-align: center;
+
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 /**
@@ -201,15 +250,6 @@ const createImage = (url) =>
     image.src = url;
   });
 
-/**
- * ImageCropModal Komponente
- *
- * @param {Object} props
- * @param {string} props.imageUrl - URL des zu croppenden Bildes
- * @param {Function} props.onCropComplete - Callback mit dem gecroppten Bild (Blob und File)
- * @param {Function} props.onCancel - Callback beim Abbrechen
- * @param {string} props.fileName - Ursprünglicher Dateiname (optional)
- */
 const ImageCropModal = ({ imageUrl, onCropComplete, onCancel, fileName = "cropped-image.png" }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -262,7 +302,7 @@ const ImageCropModal = ({ imageUrl, onCropComplete, onCancel, fileName = "croppe
         <ModalHeader>
           <ModalTitle>Bild zuschneiden</ModalTitle>
           <CloseButton onClick={onCancel} disabled={isProcessing}>
-            ×
+            x
           </CloseButton>
         </ModalHeader>
 
