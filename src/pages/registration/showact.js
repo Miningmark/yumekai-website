@@ -87,7 +87,7 @@ export default function Showact() {
   const [constructionTime, setConstructionTime] = useState("");
   const [performanceTime, setPerformanceTime] = useState("");
   const [deconstructionTime, setDeconstructionTime] = useState("");
-  const [accomodation, setAccomodation] = useState("");
+  const [accommodation, setAccommodation] = useState("");
   const [requiredEquipment, setRequiredEquipment] = useState("");
   const [broughtEquipment, setBroughtEquipment] = useState("");
 
@@ -366,7 +366,7 @@ export default function Showact() {
     errors.constructionTime = validateSingleField("constructionTime", constructionTime);
     errors.performanceTime = validateSingleField("performanceTime", performanceTime);
     errors.deconstructionTime = validateSingleField("deconstructionTime", deconstructionTime);
-    errors.accomodation = validateSingleField("accomodation", accomodation);
+    errors.accomodation = validateSingleField("accomodation", accommodation);
     errors.requiredEquipment = validateSingleField("requiredEquipment", requiredEquipment);
     errors.broughtEquipment = validateSingleField("broughtEquipment", broughtEquipment);
 
@@ -445,7 +445,7 @@ export default function Showact() {
     formData.append("constructionTime", constructionTime);
     formData.append("performanceTime", performanceTime);
     formData.append("deconstructionTime", deconstructionTime);
-    formData.append("accomodation", accomodation);
+    formData.append("accommodation", accommodation);
     formData.append("requiredEquipment", requiredEquipment.trim());
     formData.append("broughtEquipment", broughtEquipment.trim());
     formData.append("website", website.trim());
@@ -493,7 +493,7 @@ export default function Showact() {
         setConstructionTime("");
         setPerformanceTime("");
         setDeconstructionTime("");
-        setAccomodation("");
+        setAccommodation("");
         setRequiredEquipment("");
         setBroughtEquipment("");
         setWebsite("");
@@ -877,9 +877,9 @@ export default function Showact() {
             <InputOptionSelect
               title="Unterkunft"
               options={SHOWACT_ACCOMODATION_OPTIONS}
-              inputText={accomodation}
-              inputChange={(value) => setAccomodation(value)}
-              onBlur={() => handleBlur("accomodation", accomodation)}
+              inputText={accommodation}
+              inputChange={(value) => setAccommodation(value)}
+              onBlur={() => handleBlur("accomodation", accommodation)}
               inputRef={refs.accomodation}
               isError={!!getFieldError("accomodation")}
               require
