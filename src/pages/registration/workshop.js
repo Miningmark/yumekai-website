@@ -592,7 +592,7 @@ export default function Workshop() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-      <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.</h2>
+      <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.(TEST-Modus)</h2>
 
       {!registrationStatus.isActive && (
         <h2>
