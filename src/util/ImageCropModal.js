@@ -332,7 +332,7 @@ const ImageCropModal = ({ imageUrl, onCropComplete, onCancel, fileName = "croppe
           </ZoomControl>
 
           <InfoText>
-            Verschiebe das Bild und passe den Zoom an. Das Bild wird im 5:4 Format zugeschnitten.
+            Verschiebe das Bild und passe den Zoom an. Das Bild wird im 4:5 Format zugeschnitten.
           </InfoText>
         </ControlsContainer>
 
