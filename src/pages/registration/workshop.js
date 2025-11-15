@@ -29,6 +29,7 @@ import {
   GENDER_OPTIONS,
 } from "@/util/registration_options";
 import AddressFields from "@/components/registrations/AddressFields";
+import ImageCropModal from "@/util/ImageCropModal";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -101,6 +102,10 @@ export default function Workshop() {
   const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
+
+  const [showCropModal, setShowCropModal] = useState(false);
+  const [tempImageUrl, setTempImageUrl] = useState(null);
+  const [tempFile, setTempFile] = useState(null);
 
   const refs = {
     gender: useRef(null),
@@ -492,14 +497,16 @@ export default function Workshop() {
     const selectedFile = e.target.files[0];
     const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-    if (selectedFile && selectedFile.size > maxFileSize) {
+    if (!selectedFile) return;
+
+    if (selectedFile.size > maxFileSize) {
       setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
       setFile(null);
       setPreviewUrl(null);
       return;
     }
 
-    if (selectedFile && !isImageFile(selectedFile.name)) {
+    if (!isImageFile(selectedFile.name)) {
       setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
       setFile(null);
       setPreviewUrl(null);
@@ -507,25 +514,54 @@ export default function Workshop() {
     }
 
     setFileError("");
-    setFile(selectedFile);
 
-    if (selectedFile && isImageFile(selectedFile.name)) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
+    // Erstelle eine temporäre URL für das Crop-Modal
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setTempImageUrl(reader.result);
+      setTempFile(selectedFile);
+      setShowCropModal(true); // Öffne das Crop-Modal
+    };
+    reader.readAsDataURL(selectedFile);
+  }
+
+  const handleCropComplete = ({ blob, file, previewUrl }) => {
+    setFile(file);
+    setPreviewUrl(previewUrl);
+    setShowCropModal(false);
+
+    // Cleanup
+    if (tempImageUrl) {
+      URL.revokeObjectURL(tempImageUrl);
     }
+    setTempImageUrl(null);
+    setTempFile(null);
 
     // Validierung triggern wenn Feld bereits berührt wurde
     if (touchedFields.image) {
-      const error = validateSingleField("image", null, { file: selectedFile });
+      const error = validateSingleField("image", null, { file: file });
       setFieldErrors((prev) => ({
         ...prev,
         image: error,
       }));
     }
-  }
+  };
+
+  const handleCropCancel = () => {
+    setShowCropModal(false);
+
+    // Cleanup
+    if (tempImageUrl) {
+      URL.revokeObjectURL(tempImageUrl);
+    }
+    setTempImageUrl(null);
+    setTempFile(null);
+
+    // Reset file input
+    if (refs.image?.current) {
+      refs.image.current.value = "";
+    }
+  };
 
   return (
     <>
@@ -998,6 +1034,15 @@ export default function Workshop() {
         <ModalOverlay>
           <LoadingAnimation />
         </ModalOverlay>
+      )}
+
+      {showCropModal && tempImageUrl && (
+        <ImageCropModal
+          imageUrl={tempImageUrl}
+          onCropComplete={handleCropComplete}
+          onCancel={handleCropCancel}
+          fileName={tempFile?.name || "workshop-image.png"}
+        />
       )}
     </>
   );
