@@ -305,10 +305,13 @@ export default function CosplayPerformance() {
     }
 
     try {
-      const response = await fetch("/api/registrationCosplayPerformance", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createCosplayContestPerformance",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         setSuccess(

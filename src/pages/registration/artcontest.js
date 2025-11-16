@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import validateString from "@/util/inputCheck";
 
 //Components
 import {
@@ -18,12 +19,12 @@ import {
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
+import FileUpload from "@/components/styled/FileUpload";
 import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
-import validateString from "@/util/inputCheck";
 import {
-  REGISTRATION_START_COSPLAY_CRAFTING,
-  REGISTRATION_END_COSPLAY_CRAFTING,
+  REGISTRATION_START_ART_CONTEST,
+  REGISTRATION_END_ART_CONTEST,
   checkRegistrationPeriod,
   EVENT_ID,
   GENDER_OPTIONS,
@@ -35,14 +36,14 @@ const FieldErrorText = styled(ErrorText)`
   font-size: 0.9rem;
 `;
 
-const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
+const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const MAX_FILE_SIZE_MB = 10;
 
-export default function CosplayCrafting() {
+export default function ArtContest() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
-    checkRegistrationPeriod(REGISTRATION_START_COSPLAY_CRAFTING, REGISTRATION_END_COSPLAY_CRAFTING)
+    checkRegistrationPeriod(REGISTRATION_START_ART_CONTEST, REGISTRATION_END_ART_CONTEST)
   );
 
   const [gender, setGender] = useState("");
@@ -50,18 +51,17 @@ export default function CosplayCrafting() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-
   const [artistName, setArtistName] = useState("");
-  const [characterName, setCharacterName] = useState("");
-
+  const [imageTitle, setImageTitle] = useState("");
+  const [website, setWebsite] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [file, setFile] = useState([]);
   const [previewUrl, setPreviewUrl] = useState([]);
-
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [catwalkConditions, setCatwalkConditions] = useState(false);
+  const [artistConditions, setArtistConditions] = useState(false);
 
   const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
@@ -76,13 +76,15 @@ export default function CosplayCrafting() {
     email: useRef(null),
     confirmEmail: useRef(null),
     artistName: useRef(null),
-    characterName: useRef(null),
+    imageTitle: useRef(null),
+    website: useRef(null),
+    instagram: useRef(null),
     file: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
     pictureRights: useRef(null),
-    catwalkConditions: useRef(null),
+    artistConditions: useRef(null),
   };
 
   // Zentrale Validierungsfunktion
@@ -124,9 +126,19 @@ export default function CosplayCrafting() {
         }
         break;
 
-      case "characterName":
-        const characterNameValidation = validateString(value, "Charakter", 2, 50, true);
-        if (!characterNameValidation.check) error = characterNameValidation.description;
+      case "imageTitle":
+        const imageTitleValidation = validateString(value, "Bildtitel", 2, 100, true);
+        if (!imageTitleValidation.check) error = imageTitleValidation.description;
+        break;
+
+      case "website":
+        const websiteValidation = validateString(value, "Website", 0, 100);
+        if (!websiteValidation.check) error = websiteValidation.description;
+        break;
+
+      case "instagram":
+        const instagramValidation = validateString(value, "Instagram", 0, 100);
+        if (!instagramValidation.check) error = instagramValidation.description;
         break;
 
       case "message":
@@ -135,8 +147,8 @@ export default function CosplayCrafting() {
         break;
 
       case "file":
-        if (!additionalData.files || additionalData.files.length === 0) {
-          error = "Crafting Tagebuch ist ein Pflichtfeld";
+        if (!additionalData.file || additionalData.file.length === 0) {
+          error = "Bild ist ein Pflichtfeld";
         }
         break;
 
@@ -152,7 +164,7 @@ export default function CosplayCrafting() {
         if (!value) error = "Bildrechte müssen bestätigt werden";
         break;
 
-      case "catwalkConditions":
+      case "artistConditions":
         if (!value) error = "Teilnahmebedingungen müssen akzeptiert werden";
         break;
     }
@@ -180,26 +192,21 @@ export default function CosplayCrafting() {
   const validateAllFields = () => {
     const errors = {};
 
-    // Persönliche Angaben
     errors.gender = validateSingleField("gender", gender);
     errors.name = validateSingleField("name", name);
     errors.lastName = validateSingleField("lastName", lastName);
     errors.email = validateSingleField("email", email);
     errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
     errors.artistName = validateSingleField("artistName", artistName);
-    errors.characterName = validateSingleField("characterName", characterName);
-
-    // Dateien
-    errors.file = validateSingleField("file", null, { files: file });
-
-    // Nachricht
+    errors.imageTitle = validateSingleField("imageTitle", imageTitle);
+    errors.website = validateSingleField("website", website);
+    errors.instagram = validateSingleField("instagram", instagram);
     errors.message = validateSingleField("message", message);
-
-    // Bedingungen
+    errors.file = validateSingleField("file", null, { file });
     errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
     errors.dataStorage = validateSingleField("dataStorage", dataStorage);
     errors.pictureRights = validateSingleField("pictureRights", pictureRights);
-    errors.catwalkConditions = validateSingleField("catwalkConditions", catwalkConditions);
+    errors.artistConditions = validateSingleField("artistConditions", artistConditions);
 
     // Filtere null-Werte heraus
     Object.keys(errors).forEach((key) => {
@@ -243,22 +250,19 @@ export default function CosplayCrafting() {
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("artistName", artistName.trim());
-    formData.append("characterName", characterName.trim());
+    formData.append("imageTitle", imageTitle.trim());
+    formData.append("website", website.trim());
+    formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
-    formData.append("catwalkConditions", catwalkConditions);
-
-    if (file && Array.isArray(file)) {
-      file.forEach((singleFile, index) => {
-        formData.append(`file[${index}]`, singleFile);
-      });
-    }
+    formData.append("artistConditions", artistConditions);
+    formData.append("file", file[0]);
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createCosplayContestCrafting",
+        "https://node.miningmark.de/api/v1/event/application/createDrawingContest",
         {
           method: "POST",
           body: formData,
@@ -276,12 +280,14 @@ export default function CosplayCrafting() {
         setEmail("");
         setConfirmEmail("");
         setArtistName("");
-        setCharacterName("");
+        setImageTitle("");
+        setWebsite("");
+        setInstagram("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
         setPictureRights(false);
-        setCatwalkConditions(false);
+        setArtistConditions(false);
         setFile([]);
         setPreviewUrl([]);
         setFieldErrors({});
@@ -296,23 +302,22 @@ export default function CosplayCrafting() {
         general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
       });
     }
-
     setLoading(false);
   }
 
   return (
     <>
-      <h1>Anmeldung für Cosplay Crafting Wettbewerb</h1>
+      <h1>Anmeldung zum Zeichenwettbewerb</h1>
       <p>
-        Sichert euch euren Platz auf der YumeKai 2026!
+        Du möchtest am Zeichenwettbewerb auf der YumeKai 2026 teilnehmen!
         <br />
         <br />
-        Bitte beachtet die{" "}
+        Bitte beachte die{" "}
         <StyledLink
-          href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+          href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
           target="_blank"
         >
-          Teilnahmebedingungen für den Cosplay Crafting Wettbewerb
+          Teilnahme- und Auswahlbedingungen für den Zeichenwettbewerb
         </StyledLink>
         .
         <br />
@@ -322,7 +327,7 @@ export default function CosplayCrafting() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-      <h2>Die Anmeldung für den Cosplay Crafting Wettbewerb ist bereits geschlossen.</h2>
+      <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
 
       {!registrationStatus.isActive && (
         <h2>
@@ -392,7 +397,7 @@ export default function CosplayCrafting() {
             {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
 
             <InputOptionInput
-              title="E-Mail Bestätigen"
+              title="E-Mail bestätigen"
               inputText={confirmEmail}
               inputChange={setConfirmEmail}
               onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
@@ -416,23 +421,23 @@ export default function CosplayCrafting() {
               <FieldErrorText>{getFieldError("artistName")}</FieldErrorText>
             )}
 
-            <h2>Cosplay Angaben</h2>
             <InputOptionInput
-              title="Charakter"
-              inputText={characterName}
-              inputChange={(value) => setCharacterName(value)}
-              onBlur={() => handleBlur("characterName", characterName)}
-              inputRef={refs.characterName}
-              isError={!!getFieldError("characterName")}
+              title="Bildtitel"
+              inputText={imageTitle}
+              inputChange={(value) => setImageTitle(value)}
+              onBlur={() => handleBlur("imageTitle", imageTitle)}
+              inputRef={refs.imageTitle}
+              isError={!!getFieldError("imageTitle")}
               require
             />
-            {getFieldError("characterName") && (
-              <FieldErrorText>{getFieldError("characterName")}</FieldErrorText>
+            {getFieldError("imageTitle") && (
+              <FieldErrorText>{getFieldError("imageTitle")}</FieldErrorText>
             )}
 
+            <Spacer />
+
             <p>
-              Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) und Bild des Cosplays (max. 3 Dateien
-              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf){" "}
+              Bild für Teilnahme (max. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp){" "}
               <RequiredNote>*</RequiredNote>
             </p>
             <MultiFileUpload
@@ -443,8 +448,8 @@ export default function CosplayCrafting() {
               previewUrls={previewUrl}
               setPreviewUrls={setPreviewUrl}
               maxFileSize={MAX_FILE_SIZE_MB}
-              maxFiles={3}
-              acceptedExtensions={ACCEPTED_FILE_EXTENSIONS}
+              maxFiles={1}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
               isError={!!getFieldError("file") || !!fileError}
               setFileError={setFileError}
             />
@@ -452,6 +457,33 @@ export default function CosplayCrafting() {
               <ErrorText style={{ textAlign: "center" }}>
                 {fileError || getFieldError("file")}
               </ErrorText>
+            )}
+
+            <Spacer />
+            <h2>Allgemeines</h2>
+
+            <InputOptionInput
+              title="Website"
+              inputText={website}
+              inputChange={setWebsite}
+              onBlur={() => handleBlur("website", website)}
+              inputRef={refs.website}
+              isError={!!getFieldError("website")}
+            />
+            {getFieldError("website") && (
+              <FieldErrorText>{getFieldError("website")}</FieldErrorText>
+            )}
+
+            <InputOptionInput
+              title="Instagram"
+              inputText={instagram}
+              inputChange={setInstagram}
+              onBlur={() => handleBlur("instagram", instagram)}
+              inputRef={refs.instagram}
+              isError={!!getFieldError("instagram")}
+            />
+            {getFieldError("instagram") && (
+              <FieldErrorText>{getFieldError("instagram")}</FieldErrorText>
             )}
 
             <InputOptionTextArea
@@ -527,7 +559,7 @@ export default function CosplayCrafting() {
               title="pictureRights"
               content={
                 <p>
-                  Hiermit bestätige ich, dass die Bildrechte der hochgeladenen Bilder bei mir
+                  Hiermit bestätige ich, dass die Bildrechte des hochgeladenen Bildes bei mir
                   liegen. Ich bin damit einverstanden und genehmige der Dreamfly-Events UG das hier
                   eingereichte Bildmaterial zu ihren Zwecken sowohl digital als auch in gedruckter
                   Form (z.B. Werbung, Social Media, Programmheft, Webseite, etc.) nutzen zu dürfen.
@@ -551,12 +583,12 @@ export default function CosplayCrafting() {
             )}
 
             <CheckBox
-              title="catwalkConditions"
+              title="artistConditions"
               content={
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+                    href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen
@@ -564,19 +596,19 @@ export default function CosplayCrafting() {
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
                 </p>
               }
-              isChecked={catwalkConditions}
+              isChecked={artistConditions}
               inputChange={(value) => {
-                setCatwalkConditions(value);
-                if (touchedFields.catwalkConditions) {
-                  handleBlur("catwalkConditions", value);
+                setArtistConditions(value);
+                if (touchedFields.artistConditions) {
+                  handleBlur("artistConditions", value);
                 }
               }}
-              inputRef={refs.catwalkConditions}
-              isError={!!getFieldError("catwalkConditions")}
+              inputRef={refs.artistConditions}
+              isError={!!getFieldError("artistConditions")}
               require
             />
-            {getFieldError("catwalkConditions") && (
-              <FieldErrorText>{getFieldError("catwalkConditions")}</FieldErrorText>
+            {getFieldError("artistConditions") && (
+              <FieldErrorText>{getFieldError("artistConditions")}</FieldErrorText>
             )}
 
             {fieldErrors.general && (
