@@ -250,15 +250,15 @@ export default function ArtContest() {
     formData.append("lastName", lastName.trim());
     formData.append("email", email.trim().toLowerCase());
     formData.append("artistName", artistName.trim());
-    formData.append("imageTitle", imageTitle.trim());
+    formData.append("drawingTitle", imageTitle.trim());
     formData.append("website", website.trim());
     formData.append("instagram", instagram.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("pictureRights", pictureRights);
-    formData.append("artistConditions", artistConditions);
-    formData.append("file", file[0]);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("pictureRightsPolicy", pictureRights);
+    formData.append("conditionsPolicy", artistConditions);
+    formData.append("drawingImage", file[0]);
 
     try {
       const response = await fetch(

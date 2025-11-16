@@ -284,23 +284,23 @@ export default function CosplayPerformance() {
     formData.append("characterOrigin", characterOrigin.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("pictureRights", pictureRights);
-    formData.append("performanceConditions", performanceConditions);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("pictureRightsPolicy", pictureRights);
+    formData.append("conditionsPolicy", performanceConditions);
 
     if (file && Array.isArray(file)) {
       file.forEach((singleFile, index) => {
-        formData.append(`file1[${index}]`, singleFile);
+        formData.append(`characterReferenceFiles`, singleFile);
       });
     }
     if (file2 && Array.isArray(file2)) {
       file2.forEach((singleFile, index) => {
-        formData.append(`file2[${index}]`, singleFile);
+        formData.append(`cosplayPictureFiles`, singleFile);
       });
     }
     if (file3 && Array.isArray(file3)) {
       file3.forEach((singleFile, index) => {
-        formData.append(`file3[${index}]`, singleFile);
+        formData.append(`backgroundAppearanceFiles`, singleFile);
       });
     }
 

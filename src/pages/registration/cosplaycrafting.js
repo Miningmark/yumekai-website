@@ -246,13 +246,13 @@ export default function CosplayCrafting() {
     formData.append("characterName", characterName.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("dataStorage", dataStorage);
-    formData.append("pictureRights", pictureRights);
-    formData.append("catwalkConditions", catwalkConditions);
+    formData.append("dataStoragePolicy", dataStorage);
+    formData.append("pictureRightsPolicy", pictureRights);
+    formData.append("conditionsPolicy", catwalkConditions);
 
     if (file && Array.isArray(file)) {
       file.forEach((singleFile, index) => {
-        formData.append(`file[${index}]`, singleFile);
+        formData.append(`craftingDiaryFiles`, singleFile);
       });
     }
 
