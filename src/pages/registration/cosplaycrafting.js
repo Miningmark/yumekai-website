@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 //Components
 import {
@@ -84,6 +84,19 @@ export default function CosplayCrafting() {
     pictureRights: useRef(null),
     catwalkConditions: useRef(null),
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(
+          REGISTRATION_START_COSPLAY_CRAFTING,
+          REGISTRATION_END_COSPLAY_CRAFTING
+        )
+      );
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {

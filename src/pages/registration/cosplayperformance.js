@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
 //Components
@@ -102,6 +102,19 @@ export default function CosplayPerformance() {
     pictureRights: useRef(null),
     performanceConditions: useRef(null),
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(
+          REGISTRATION_START_COSPLAY_PERFORMANCE,
+          REGISTRATION_END_COSPLAY_PERFORMANCE
+        )
+      );
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {

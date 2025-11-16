@@ -87,6 +87,16 @@ export default function ArtContest() {
     artistConditions: useRef(null),
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(REGISTRATION_START_ART_CONTEST, REGISTRATION_END_ART_CONTEST)
+      );
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {
     let error = null;
