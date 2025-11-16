@@ -409,7 +409,7 @@ export default function Presse() {
               require
             />
             <InputOptionInput
-              title="Name"
+              title="Vorname"
               inputText={name}
               inputChange={(value) => setName(value)}
               onBlur={() => handleBlur("name", name)}

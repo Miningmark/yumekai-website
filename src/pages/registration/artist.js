@@ -598,7 +598,7 @@ export default function Artist() {
             />
 
             <InputOptionInput
-              title="Name"
+              title="Vorname"
               inputText={name}
               inputChange={(value) => setName(value)}
               onBlur={() => handleBlur("name", name)}
@@ -633,7 +633,7 @@ export default function Artist() {
             {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
 
             <InputOptionInput
-              title="E-Mail Bestätigen"
+              title="E-Mail bestätigen"
               inputText={confirmEmail}
               inputChange={setConfirmEmail}
               onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}

@@ -651,7 +651,7 @@ export default function Showact() {
             />
 
             <InputOptionInput
-              title="Name"
+              title="Vorame"
               inputText={name}
               inputChange={(value) => setName(value)}
               onBlur={() => handleBlur("name", name)}
@@ -686,7 +686,7 @@ export default function Showact() {
             {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
 
             <InputOptionInput
-              title="E-Mail Bestätigen"
+              title="E-Mail bestätigen"
               inputText={confirmEmail}
               inputChange={setConfirmEmail}
               onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
