@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
 import styled from "styled-components";
+import { useState, useRef } from "react";
 
 //Components
 import {
@@ -22,8 +22,8 @@ import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString from "@/util/inputCheck";
 import {
-  REGISTRATION_START_COSPLAY_PERFORMANCE,
-  REGISTRATION_END_COSPLAY_PERFORMANCE,
+  REGISTRATION_START_COSPLAY_CRAFTING,
+  REGISTRATION_END_COSPLAY_CRAFTING,
   checkRegistrationPeriod,
   EVENT_ID,
   GENDER_OPTIONS,
@@ -36,19 +36,13 @@ const FieldErrorText = styled(ErrorText)`
 `;
 
 const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
-const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
-const ACCEPTED_SOUND_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".mp3", "wav", ".mp4"];
 const MAX_FILE_SIZE_MB = 10;
-const MAX_FILE_SIZE_MB_2 = 50;
 
-export default function CosplayPerformance() {
+export default function CosplayCrafting() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
-    checkRegistrationPeriod(
-      REGISTRATION_START_COSPLAY_PERFORMANCE,
-      REGISTRATION_END_COSPLAY_PERFORMANCE
-    )
+    checkRegistrationPeriod(REGISTRATION_START_COSPLAY_CRAFTING, REGISTRATION_END_COSPLAY_CRAFTING)
   );
 
   const [gender, setGender] = useState("");
@@ -59,28 +53,19 @@ export default function CosplayPerformance() {
 
   const [artistName, setArtistName] = useState("");
   const [characterName, setCharacterName] = useState("");
-  const [characterOrigin, setCharacterOrigin] = useState("");
 
   const [file, setFile] = useState([]);
   const [previewUrl, setPreviewUrl] = useState([]);
-
-  const [file2, setFile2] = useState([]);
-  const [previewUrl2, setPreviewUrl2] = useState([]);
-
-  const [file3, setFile3] = useState([]);
-  const [previewUrl3, setPreviewUrl3] = useState([]);
 
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [dataStorage, setDataStorage] = useState(false);
   const [pictureRights, setPictureRights] = useState(false);
-  const [performanceConditions, setPerformanceConditions] = useState(false);
+  const [catwalkConditions, setCatwalkConditions] = useState(false);
 
   const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
-  const [fileError2, setFileError2] = useState("");
-  const [fileError3, setFileError3] = useState("");
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
 
@@ -92,15 +77,12 @@ export default function CosplayPerformance() {
     confirmEmail: useRef(null),
     artistName: useRef(null),
     characterName: useRef(null),
-    characterOrigin: useRef(null),
     file: useRef(null),
-    file2: useRef(null),
-    file3: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
     pictureRights: useRef(null),
-    performanceConditions: useRef(null),
+    catwalkConditions: useRef(null),
   };
 
   // Zentrale Validierungsfunktion
@@ -143,13 +125,8 @@ export default function CosplayPerformance() {
         break;
 
       case "characterName":
-        const characterNameValidation = validateString(value, "Charakter Name", 2, 50, true);
+        const characterNameValidation = validateString(value, "Charakter", 2, 50, true);
         if (!characterNameValidation.check) error = characterNameValidation.description;
-        break;
-
-      case "characterOrigin":
-        const characterOriginValidation = validateString(value, "Charakter Ursprung", 2, 50, true);
-        if (!characterOriginValidation.check) error = characterOriginValidation.description;
         break;
 
       case "message":
@@ -159,13 +136,7 @@ export default function CosplayPerformance() {
 
       case "file":
         if (!additionalData.files || additionalData.files.length === 0) {
-          error = "Charakterreferenz ist ein Pflichtfeld";
-        }
-        break;
-
-      case "file2":
-        if (!additionalData.files || additionalData.files.length === 0) {
-          error = "Charakterbild ist ein Pflichtfeld";
+          error = "Crafting Tagebuch ist ein Pflichtfeld";
         }
         break;
 
@@ -181,7 +152,7 @@ export default function CosplayPerformance() {
         if (!value) error = "Bildrechte müssen bestätigt werden";
         break;
 
-      case "performanceConditions":
+      case "catwalkConditions":
         if (!value) error = "Teilnahmebedingungen müssen akzeptiert werden";
         break;
     }
@@ -217,11 +188,9 @@ export default function CosplayPerformance() {
     errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
     errors.artistName = validateSingleField("artistName", artistName);
     errors.characterName = validateSingleField("characterName", characterName);
-    errors.characterOrigin = validateSingleField("characterOrigin", characterOrigin);
 
     // Dateien
     errors.file = validateSingleField("file", null, { files: file });
-    errors.file2 = validateSingleField("file2", null, { files: file2 });
 
     // Nachricht
     errors.message = validateSingleField("message", message);
@@ -230,10 +199,7 @@ export default function CosplayPerformance() {
     errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
     errors.dataStorage = validateSingleField("dataStorage", dataStorage);
     errors.pictureRights = validateSingleField("pictureRights", pictureRights);
-    errors.performanceConditions = validateSingleField(
-      "performanceConditions",
-      performanceConditions
-    );
+    errors.catwalkConditions = validateSingleField("catwalkConditions", catwalkConditions);
 
     // Filtere null-Werte heraus
     Object.keys(errors).forEach((key) => {
@@ -262,10 +228,7 @@ export default function CosplayPerformance() {
     if (Object.keys(errors).length > 0) {
       const firstErrorField = Object.keys(errors)[0];
       if (refs[firstErrorField]?.current) {
-        refs[firstErrorField].current.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
+        refs[firstErrorField].current.scrollIntoView({ behavior: "smooth", block: "center" });
         refs[firstErrorField].current.focus();
       }
       return;
@@ -281,31 +244,20 @@ export default function CosplayPerformance() {
     formData.append("email", email.trim().toLowerCase());
     formData.append("artistName", artistName.trim());
     formData.append("characterName", characterName.trim());
-    formData.append("characterOrigin", characterOrigin.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStorage", dataStorage);
     formData.append("pictureRights", pictureRights);
-    formData.append("performanceConditions", performanceConditions);
+    formData.append("catwalkConditions", catwalkConditions);
 
     if (file && Array.isArray(file)) {
       file.forEach((singleFile, index) => {
-        formData.append(`file1[${index}]`, singleFile);
-      });
-    }
-    if (file2 && Array.isArray(file2)) {
-      file2.forEach((singleFile, index) => {
-        formData.append(`file2[${index}]`, singleFile);
-      });
-    }
-    if (file3 && Array.isArray(file3)) {
-      file3.forEach((singleFile, index) => {
-        formData.append(`file3[${index}]`, singleFile);
+        formData.append(`file[${index}]`, singleFile);
       });
     }
 
     try {
-      const response = await fetch("/api/registrationCosplayPerformance", {
+      const response = await fetch("/api/registrationCosplayCatwalk", {
         method: "POST",
         body: formData,
       });
@@ -322,18 +274,13 @@ export default function CosplayPerformance() {
         setConfirmEmail("");
         setArtistName("");
         setCharacterName("");
-        setCharacterOrigin("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
         setPictureRights(false);
-        setPerformanceConditions(false);
+        setCatwalkConditions(false);
         setFile([]);
-        setFile2([]);
-        setFile3([]);
         setPreviewUrl([]);
-        setPreviewUrl2([]);
-        setPreviewUrl3([]);
         setFieldErrors({});
         setTouchedFields({});
       } else {
@@ -352,17 +299,17 @@ export default function CosplayPerformance() {
 
   return (
     <>
-      <h1>Anmeldung für den Cosplay Performance Wettbewerb</h1>
+      <h1>Anmeldung für Cosplay Crafting Wettbewerb</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!
         <br />
         <br />
         Bitte beachtet die{" "}
         <StyledLink
-          href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+          href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
           target="_blank"
         >
-          Teilnahmebedingungen für den Cosplay Performance Wettbewerb
+          Teilnahmebedingungen für den Cosplay Crafting Wettbewerb
         </StyledLink>
         .
         <br />
@@ -371,6 +318,8 @@ export default function CosplayPerformance() {
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutze unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
+
+      <h2>Die Anmeldung für den Cosplay Crafting Wettbewerb ist bereits geschlossen.</h2>
 
       {!registrationStatus.isActive && (
         <h2>
@@ -403,8 +352,9 @@ export default function CosplayPerformance() {
               isError={!!getFieldError("gender")}
               require
             />
+
             <InputOptionInput
-              title="Name"
+              title="Vorname"
               inputText={name}
               inputChange={(value) => setName(value)}
               onBlur={() => handleBlur("name", name)}
@@ -464,9 +414,8 @@ export default function CosplayPerformance() {
             )}
 
             <h2>Cosplay Angaben</h2>
-
             <InputOptionInput
-              title="Charakter Name"
+              title="Charakter"
               inputText={characterName}
               inputChange={(value) => setCharacterName(value)}
               onBlur={() => handleBlur("characterName", characterName)}
@@ -478,25 +427,12 @@ export default function CosplayPerformance() {
               <FieldErrorText>{getFieldError("characterName")}</FieldErrorText>
             )}
 
-            <InputOptionInput
-              title="Charakter Ursprung"
-              inputText={characterOrigin}
-              inputChange={(value) => setCharacterOrigin(value)}
-              onBlur={() => handleBlur("characterOrigin", characterOrigin)}
-              inputRef={refs.characterOrigin}
-              isError={!!getFieldError("characterOrigin")}
-              require
-            />
-            {getFieldError("characterOrigin") && (
-              <FieldErrorText>{getFieldError("characterOrigin")}</FieldErrorText>
-            )}
-
             <p>
-              Charakter Vorlage/Referenz des Cosplays (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}MB,
-              jpg, jpeg, png, webp, pdf) <RequiredNote>*</RequiredNote>
+              Abgabe Crafting Tagebuch (PDF 2-6 DIN A4 Seiten) und Bild des Cosplays (max. 3 Dateien
+              mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp, pdf){" "}
+              <RequiredNote>*</RequiredNote>
             </p>
             <MultiFileUpload
-              name="referenz"
               inputRef={refs.file}
               previewUrl={previewUrl}
               files={file}
@@ -514,50 +450,6 @@ export default function CosplayPerformance() {
                 {fileError || getFieldError("file")}
               </ErrorText>
             )}
-
-            <p>
-              Bild des Cosplays (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp){" "}
-              <RequiredNote>*</RequiredNote>
-            </p>
-            <MultiFileUpload
-              name="image"
-              inputRef={refs.file2}
-              previewUrl={previewUrl2}
-              files={file2}
-              setFiles={setFile2}
-              previewUrls={previewUrl2}
-              setPreviewUrls={setPreviewUrl2}
-              maxFileSize={MAX_FILE_SIZE_MB}
-              maxFiles={3}
-              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
-              isError={!!getFieldError("file2") || !!fileError2}
-              setFileError={setFileError2}
-            />
-            {(fileError2 || getFieldError("file2")) && (
-              <ErrorText style={{ textAlign: "center" }}>
-                {fileError2 || getFieldError("file2")}
-              </ErrorText>
-            )}
-
-            <p>
-              Hintergrund für den Auftritt Bild, Ton oder Video (max. 4 Dateien mit je.{" "}
-              {MAX_FILE_SIZE_MB_2}MB, jpg, jpeg, png, webp, mp3, wav, mp4)
-            </p>
-            <MultiFileUpload
-              name="background"
-              inputRef={refs.file3}
-              previewUrl={previewUrl3}
-              files={file3}
-              setFiles={setFile3}
-              previewUrls={previewUrl3}
-              setPreviewUrls={setPreviewUrl3}
-              maxFileSize={MAX_FILE_SIZE_MB_2}
-              maxFiles={4}
-              acceptedExtensions={ACCEPTED_SOUND_IMAGE_EXTENSIONS}
-              isError={!!fileError3}
-              setFileError={setFileError3}
-            />
-            {fileError3 && <ErrorText style={{ textAlign: "center" }}>{fileError3}</ErrorText>}
 
             <InputOptionTextArea
               title="Nachricht"
@@ -656,12 +548,12 @@ export default function CosplayPerformance() {
             )}
 
             <CheckBox
-              title="performanceConditions"
+              title="catwalkConditions"
               content={
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+                    href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen
@@ -669,19 +561,19 @@ export default function CosplayPerformance() {
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
                 </p>
               }
-              isChecked={performanceConditions}
+              isChecked={catwalkConditions}
               inputChange={(value) => {
-                setPerformanceConditions(value);
-                if (touchedFields.performanceConditions) {
-                  handleBlur("performanceConditions", value);
+                setCatwalkConditions(value);
+                if (touchedFields.catwalkConditions) {
+                  handleBlur("catwalkConditions", value);
                 }
               }}
-              inputRef={refs.performanceConditions}
-              isError={!!getFieldError("performanceConditions")}
+              inputRef={refs.catwalkConditions}
+              isError={!!getFieldError("catwalkConditions")}
               require
             />
-            {getFieldError("performanceConditions") && (
-              <FieldErrorText>{getFieldError("performanceConditions")}</FieldErrorText>
+            {getFieldError("catwalkConditions") && (
+              <FieldErrorText>{getFieldError("catwalkConditions")}</FieldErrorText>
             )}
 
             {fieldErrors.general && (
