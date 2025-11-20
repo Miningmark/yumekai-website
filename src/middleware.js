@@ -3,6 +3,11 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   const pathname = request.nextUrl.pathname;
 
+  // Downloads behalten ihre Großbuchstaben
+  if (pathname.startsWith("/downloads/")) {
+    return NextResponse.next();
+  }
+
   // Prüfe ob der Pfad Großbuchstaben enthält
   if (pathname !== pathname.toLowerCase()) {
     // Erstelle neue URL mit lowercase pathname

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useState, useRef } from "react";
+import validateString, { validateField } from "@/util/inputCheck";
 import {
   InputOptionTextArea,
   InputOptionInput,
@@ -20,37 +21,37 @@ import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
 import FileUpload from "@/components/styled/FileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
+import {
+  GENDER_OPTIONS,
+  COUNTRIES,
+  CLOTHES_SIZE_OPTIONS,
+  ARRIVAL_OPTIONS,
+  FOOD_PREFERENCE_OPTIONS,
+  EVENT_ID,
+} from "@/util/registration_options";
 
-const EU_COUNTRIES = [
-  "Deutschland",
-  "Österreich",
-  "Schweiz",
-  "Belgien",
-  "Frankreich",
-  "Italien",
-  "Spanien",
-  "Niederlande",
-  "Polen",
-  "Tschechien",
-  "Dänemark",
-  "Schweden",
-  "Norwegen",
-  "Finnland",
-  "Irland",
-  "Portugal",
-  "Griechenland",
-  "Ungarn",
-  "Rumänien",
-  "Bulgarien",
-];
+const FieldErrorText = styled(ErrorText)`
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+`;
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+const MAX_IMAGE_SIZE_MB = 10;
+
+const PREFERRED_WORKTIME_OPTIONS = [
+  { value: "Schicht 1", label: "Schicht 1" },
+  { value: "Schicht 2", label: "Schicht 2" },
+];
 
 const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
 };
 
 export default function HelferForm() {
+  const [eventId, setEventId] = useState(EVENT_ID);
+
+  const [gender, setGender] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nickname, setNickname] = useState("");
@@ -67,8 +68,8 @@ export default function HelferForm() {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const [gender, setGender] = useState("");
   const [clothesSize, setClothesSize] = useState("");
+  const [additionalShirt, setAdditionalShirt] = useState(false);
   const [arrival, setArrival] = useState("");
   const [requiresParkingTicket, setRequiresParkingTicket] = useState(false);
   const [assemblyFriday, setAssemblyFriday] = useState(false);
@@ -90,18 +91,21 @@ export default function HelferForm() {
   const [departmentSpecialGuest, setDepartmentSpecialGuest] = useState(false);
   const [other, setOther] = useState("");
 
-  const [workTimeSaturday, setWorkTimeSaturday] = useState("");
-  const [workTimeSunday, setWorkTimeSunday] = useState("");
+  const [workingOnSaturday, setWorkingOnSaturday] = useState(false);
+  const [workingOnSunday, setWorkingOnSunday] = useState(false);
+  const [preferredWorktime, setPreferredWorktime] = useState("");
 
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [contactForwarding, setContactForwarding] = useState(false);
 
-  const [errors, setErrors] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
   const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [touchedFields, setTouchedFields] = useState({});
 
   const refs = {
+    gender: useRef(null),
     name: useRef(null),
     lastName: useRef(null),
     nickname: useRef(null),
@@ -112,7 +116,6 @@ export default function HelferForm() {
     country: useRef(null),
     email: useRef(null),
     confirmEmail: useRef(null),
-    gender: useRef(null),
     birthdate: useRef(null),
     discordName: useRef(null),
     phone: useRef(null),
@@ -125,98 +128,257 @@ export default function HelferForm() {
     occupation: useRef(null),
     strengths: useRef(null),
     other: useRef(null),
-    workTimeSaturday: useRef(null),
-    workTimeSunday: useRef(null),
+    workingOnSaturday: useRef(null),
+    workingOnSunday: useRef(null),
+    preferredWorktime: useRef(null),
     image: useRef(null),
+  };
+
+  // Zentrale Validierungsfunktion
+  const validateSingleField = (field, value, additionalData = {}) => {
+    let error = null;
+
+    switch (field) {
+      case "gender":
+        if (!value) error = "Anrede ist ein Pflichtfeld";
+        break;
+
+      case "name":
+        const nameValidation = validateString(value, "Vorname", 2, 50, true);
+        if (!nameValidation.check) error = nameValidation.description;
+        break;
+
+      case "lastName":
+        const lastNameValidation = validateString(value, "Nachname", 2, 50, true);
+        if (!lastNameValidation.check) error = lastNameValidation.description;
+        break;
+
+      case "nickname":
+        if (value && value.trim().length > 0) {
+          const nicknameValidation = validateString(value, "Rufname", 2, 50);
+          if (!nicknameValidation.check) error = nicknameValidation.description;
+        }
+        break;
+
+      case "email":
+        const emailValidation = validateString(value, "E-Mail", 2, 100, true, true);
+        if (!emailValidation.check) error = emailValidation.description;
+        break;
+
+      case "confirmEmail":
+        if (!value || value.trim() === "") {
+          error = "E-Mail-Bestätigung ist erforderlich";
+        } else if (value.trim().toLowerCase() !== additionalData.email?.trim().toLowerCase()) {
+          error = "E-Mail-Adressen stimmen nicht überein";
+        }
+        break;
+
+      case "birthdate":
+        if (!value || value.trim() === "") {
+          error = "Geburtsdatum ist ein Pflichtfeld";
+        } else {
+          const birthDateObject = new Date(value);
+          const today = new Date();
+          const age = today.getFullYear() - birthDateObject.getFullYear();
+          const isBirthdayPassedThisYear =
+            today.getMonth() > birthDateObject.getMonth() ||
+            (today.getMonth() === birthDateObject.getMonth() &&
+              today.getDate() >= birthDateObject.getDate());
+
+          const actualAge = isBirthdayPassedThisYear ? age : age - 1;
+
+          if (actualAge < 18) {
+            error = "Du musst mindestens 18 Jahre alt sein";
+          }
+        }
+        break;
+
+      case "discordName":
+        const discordValidation = validateString(value, "Discord Name", 2, 100, true);
+        if (!discordValidation.check) error = discordValidation.description;
+        break;
+
+      case "phone":
+        const phoneValidation = validateString(value, "Telefonnummer", 5, 25, true);
+        if (!phoneValidation.check) error = phoneValidation.description;
+        break;
+
+      case "street":
+        const streetError = validateField(value, "Straße", 2, 50, true);
+        if (streetError) error = streetError.message;
+        break;
+
+      case "postalCode":
+        const postalCodeError = validateField(value, "PLZ", 2, 10, true);
+        if (postalCodeError) error = postalCodeError.message;
+        break;
+
+      case "city":
+        const cityError = validateField(value, "Ort", 2, 50, true);
+        if (cityError) error = cityError.message;
+        break;
+
+      case "country":
+        const countryError = validateField(value, "Land", 2, 50, true);
+        if (countryError) error = countryError.message;
+        break;
+
+      case "clothesSize":
+        if (!value) error = "T-Shirt Größe ist ein Pflichtfeld";
+        break;
+
+      case "arrival":
+        if (!value) error = "Anreise ist ein Pflichtfeld";
+        break;
+
+      case "foodPreference":
+        if (!value) error = "Essensauswahl ist ein Pflichtfeld";
+        break;
+
+      case "foodDetails":
+        if (value && value.trim().length > 0) {
+          const foodDetailsValidation = validateString(
+            value,
+            "Allergien/Unverträglichkeiten",
+            3,
+            500
+          );
+          if (!foodDetailsValidation.check) error = foodDetailsValidation.description;
+        }
+        break;
+
+      case "occupation":
+        if (value && value.trim().length > 0) {
+          const occupationValidation = validateString(value, "Beruf/Qualifikationen", 2, 100);
+          if (!occupationValidation.check) error = occupationValidation.description;
+        }
+        break;
+
+      case "strengths":
+        if (value && value.trim().length > 0) {
+          const strengthsValidation = validateString(value, "Stärken", 3, 500);
+          if (!strengthsValidation.check) error = strengthsValidation.description;
+        }
+        break;
+
+      case "other":
+        if (value && value.trim().length > 0) {
+          const otherValidation = validateString(value, "Sonstiges", 3, 1000);
+          if (!otherValidation.check) error = otherValidation.description;
+        }
+        break;
+
+      case "preferredWorktime":
+        if (value && value.trim().length > 0) {
+          const worktimeValidation = validateString(value, "Bevorzugte Schicht", 1, 50);
+          if (!worktimeValidation.check) error = worktimeValidation.description;
+        }
+        break;
+
+      case "image":
+        if (!additionalData.file) error = "Bild ist ein Pflichtfeld";
+        break;
+
+      case "privacyPolicy":
+        if (!value) error = "Datenschutzerklärung muss akzeptiert werden";
+        break;
+
+      case "contactForwarding":
+        if (!value) error = "Kontaktweitergabe muss akzeptiert werden";
+        break;
+    }
+
+    return error;
+  };
+
+  // onBlur Handler für Echtzeit-Validierung
+  const handleBlur = (field, value, additionalData = {}) => {
+    setTouchedFields((prev) => ({ ...prev, [field]: true }));
+
+    const error = validateSingleField(field, value, additionalData);
+    setFieldErrors((prev) => ({
+      ...prev,
+      [field]: error,
+    }));
+  };
+
+  // Fehler für ein bestimmtes Feld abrufen
+  const getFieldError = (field) => {
+    return touchedFields[field] ? fieldErrors[field] : null;
+  };
+
+  // Alle Felder validieren
+  const validateAllFields = () => {
+    const errors = {};
+
+    // Persönliche Angaben
+    errors.gender = validateSingleField("gender", gender);
+    errors.name = validateSingleField("name", name);
+    errors.lastName = validateSingleField("lastName", lastName);
+    errors.nickname = validateSingleField("nickname", nickname);
+    errors.email = validateSingleField("email", email);
+    errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
+    errors.gender = validateSingleField("gender", gender);
+    errors.birthdate = validateSingleField("birthdate", birthdate);
+    errors.discordName = validateSingleField("discordName", discordName);
+    errors.phone = validateSingleField("phone", phone);
+
+    // Adresse
+    errors.street = validateSingleField("street", street);
+    errors.postalCode = validateSingleField("postalCode", postalCode);
+    errors.city = validateSingleField("city", city);
+    errors.country = validateSingleField("country", country);
+
+    // Allgemeines
+    errors.clothesSize = validateSingleField("clothesSize", clothesSize);
+    errors.arrival = validateSingleField("arrival", arrival);
+    errors.foodPreference = validateSingleField("foodPreference", foodPreference);
+    errors.foodDetails = validateSingleField("foodDetails", foodDetails);
+
+    // Interessen
+    errors.occupation = validateSingleField("occupation", occupation);
+    errors.strengths = validateSingleField("strengths", strengths);
+    errors.other = validateSingleField("other", other);
+
+    // Einsatzzeiten
+    errors.preferredWorktime = validateSingleField("preferredWorktime", preferredWorktime);
+
+    // Bild
+    errors.image = validateSingleField("image", null, { file });
+
+    // Bedingungen
+    errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
+    errors.contactForwarding = validateSingleField("contactForwarding", contactForwarding);
+
+    // Filtere null-Werte heraus
+    Object.keys(errors).forEach((key) => {
+      if (errors[key] === null) delete errors[key];
+    });
+
+    return errors;
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const newErrors = [];
-    setErrors([]);
     setSuccess("");
 
-    const validateField = (value, fieldName, title, min, max, required = false) => {
-      if (required && !value.trim())
-        newErrors.push({ field: fieldName, message: `${title} ist ein Pflichtfeld` });
-      if (value && value.length < min)
-        newErrors.push({ field: fieldName, message: `${title} ist zu kurz` });
-      if (value.length > max) newErrors.push({ field: fieldName, message: `${title} ist zu lang` });
-      return null;
-    };
+    // Alle Felder als "touched" markieren
+    const allFields = Object.keys(refs);
+    const touched = {};
+    allFields.forEach((field) => (touched[field] = true));
+    setTouchedFields(touched);
 
-    validateField(name, "name", "Vorname", 3, 50, true);
-    validateField(lastName, "lastName", "Nachname", 3, 50, true);
-    if (nickname && nickname.length < 3)
-      newErrors.push({ field: "nickname", message: "Rufname ist zu kurz" });
-    if (nickname.length > 50) newErrors.push({ field: "nickname", message: "Rufname ist zu lang" });
-    if (!email.trim()) newErrors.push({ field: "email", message: "E-Mail ist ein Pflichtfeld" });
-    if (!email.includes("@"))
-      newErrors.push({ field: "email", message: "E-Mail-Adresse ist ungültig" });
-    if (email.length > 100)
-      newErrors.push({
-        field: "email",
-        message: "E-Mail-Adresse darf maximal 100 Zeichen lang sein",
-      });
-    if (confirmEmail.trim() !== email.trim())
-      newErrors.push({ field: "confirmEmail", message: "E-Mail stimmt nicht überein" });
-    validateField(gender, "gender", "Geschlecht", 3, 50, true);
-    validateField(discordName, "discordName", "Discord Name", 3, 100, true);
-    validateField(phone, "phone", "Telefonnummer", 5, 25, true);
-    validateField(street, "street", "Straße", 3, 50, true);
-    validateField(postalCode, "postalCode", "PLZ", 3, 6, true);
-    validateField(city, "city", "Ort", 3, 50, true);
-    validateField(country, "country", "Land", 3, 50, true);
-    validateField(occupation, "occupation", "Beruf/Ausbildung", 3, 100);
-    validateField(strengths, "strengths", "Stärken", 3, 255);
-    validateField(other, "other", "Sonstiges", 3, 500);
-    validateField(workTimeSaturday, "workTimeSaturday", "Samstag", 0, 255);
-    validateField(workTimeSunday, "workTimeSunday", "Sonntag", 0, 255);
-    validateField(foodPreference, "foodPreference", "Essen", 0, 32, true);
-    validateField(foodDetails, "foodDetails", "Allergien/Unverträglichkeiten", 3, 500);
-    validateField(clothesSize, "clothesSize", "T-Shirt Größe", 1, 5, true);
-    validateField(arrival, "arrival", "Anreise", 3, 50, true);
+    // Validierung durchführen
+    const errors = validateAllFields();
+    setFieldErrors(errors);
 
-    //Geburtsdatum
-    if (!birthdate.trim()) {
-      newErrors.push({ field: "birthdate", message: "Geburtsdatum ist ein Pflichtfeld" });
-    } else {
-      const birthDateObject = new Date(birthdate);
-      const today = new Date();
-      const age = today.getFullYear() - birthDateObject.getFullYear();
-      const isBirthdayPassedThisYear =
-        today.getMonth() > birthDateObject.getMonth() ||
-        (today.getMonth() === birthDateObject.getMonth() &&
-          today.getDate() >= birthDateObject.getDate());
-
-      const actualAge = isBirthdayPassedThisYear ? age : age - 1; // Alter korrigieren, falls Geburtstag dieses Jahr noch nicht war
-
-      if (actualAge < 18) {
-        newErrors.push({ field: "birthdate", message: "Du musst mindestens 18 Jahre alt sein" });
-      }
-    }
-
-    //Bild
-    if (!file) newErrors.push({ field: "image", message: "Bild ist ein Pflichtfeld" });
-
-    //Datenschutzerklärung
-    if (!privacyPolicy)
-      newErrors.push({ field: "privacyPolicy", message: "Datenschutzerklärung zustimmen" });
-
-    //Kontaktweitergabe
-    if (!contactForwarding)
-      newErrors.push({ field: "contactForwarding", message: "Kontaktweitergabe zustimmen" });
-
-    //Check if there are any errors
-    if (newErrors.length > 0) {
-      setErrors(newErrors);
-
-      // Scroll to the first error
-      const firstError = newErrors[0];
-      if (refs[firstError.field]?.current) {
-        refs[firstError.field].current.scrollIntoView({ behavior: "smooth", block: "center" });
-        refs[firstError.field].current.focus();
+    // Wenn Fehler vorhanden sind, zum ersten Fehler scrollen
+    if (Object.keys(errors).length > 0) {
+      const firstErrorField = Object.keys(errors)[0];
+      if (refs[firstErrorField]?.current) {
+        refs[firstErrorField].current.scrollIntoView({ behavior: "smooth", block: "center" });
+        refs[firstErrorField].current.focus();
       }
       return;
     }
@@ -239,34 +401,37 @@ export default function HelferForm() {
         .trim() || "Kein Wunschteam";
 
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("lastName", lastName);
-    formData.append("nickname", nickname);
+    formData.append("eventId", eventId);
     formData.append("gender", gender);
-    formData.append("discordName", discordName);
+    formData.append("firstName", name.trim());
+    formData.append("lastName", lastName.trim());
+    formData.append("nickname", nickname.trim());
+    formData.append("discordName", discordName.trim());
     formData.append("birthdate", birthdate);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("street", street);
-    formData.append("postalCode", postalCode);
-    formData.append("city", city);
+    formData.append("email", email.trim().toLowerCase());
+    formData.append("phone", phone.trim());
+    formData.append("street", street.trim());
+    formData.append("postalCode", postalCode.trim());
+    formData.append("city", city.trim());
     formData.append("country", country);
-    formData.append("occupation", occupation);
+    formData.append("occupation", occupation.trim());
     formData.append("clothesSize", clothesSize);
+    formData.append("additionalShirt", additionalShirt);
     formData.append("arrival", arrival);
     formData.append("requiresParkingTicket", requiresParkingTicket);
     formData.append("foodPreference", foodPreference);
-    formData.append("foodDetails", foodDetails);
-    formData.append("strengths", strengths);
+    formData.append("foodDetails", foodDetails.trim());
+    formData.append("strengths", strengths.trim());
     formData.append("desiredTeam", desiredTeam);
-    formData.append("other", other);
+    formData.append("other", other.trim());
     formData.append("assemblyFriday", assemblyFriday);
     formData.append("assembly", assembly);
     formData.append("deconstruction", deconstruction);
+    formData.append("workingOnSaturday", workingOnSaturday);
+    formData.append("workingOnSunday", workingOnSunday);
+    formData.append("preferredWorktime", preferredWorktime);
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("contactForwarding", contactForwarding);
-    formData.append("workTimeSaturday", workTimeSaturday);
-    formData.append("workTimeSunday", workTimeSunday);
     formData.append("file", file);
 
     try {
@@ -277,14 +442,14 @@ export default function HelferForm() {
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhälst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
         );
 
-        setErrors([]);
+        // Reset form
+        setGender("");
         setName("");
         setLastName("");
         setNickname("");
-        setGender(null);
         setDiscordName("");
         setBirthdate("");
         setEmail("");
@@ -296,6 +461,7 @@ export default function HelferForm() {
         setCountry("");
         setOccupation("");
         setClothesSize("");
+        setAdditionalShirt(false);
         setArrival("");
         setRequiresParkingTicket(false);
         setFoodPreference("");
@@ -313,52 +479,64 @@ export default function HelferForm() {
         setAssembly(false);
         setDeconstruction(false);
         setAssemblyFriday(false);
-        setWorkTimeSaturday("");
-        setWorkTimeSunday("");
+        setWorkingOnSaturday(false);
+        setWorkingOnSunday(false);
+        setPreferredWorktime("");
         setPrivacyPolicy(false);
         setContactForwarding(false);
         setFile(null);
         setPreviewUrl(null);
+        setFieldErrors({});
+        setTouchedFields({});
       } else {
-        setErrors([
-          {
-            field: "general",
-            message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
-          },
-        ]);
+        setFieldErrors({
+          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+        });
       }
     } catch (error) {
-      setErrors([
-        {
-          field: "general",
-          message: "Fehler beim Absenden der Anmeldung, Bitte versuche es später nochmal.",
-        },
-      ]);
+      setFieldErrors({
+        general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+      });
     }
     setLoading(false);
   }
 
   function handleFileChange(e) {
-    const file = e.target.files[0];
-    const maxFileSize = 10 * 1024 * 1024; // 10MB in Bytes
+    const selectedFile = e.target.files[0];
+    const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-    if (file && file.size > maxFileSize) {
-      setFileError("Die Datei darf maximal 10MB groß sein.");
+    if (!selectedFile) return;
+
+    if (selectedFile.size > maxFileSize) {
+      setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
+      setFile(null);
+      setPreviewUrl(null);
       return;
     }
-    setFileError("");
-    setFile(file);
 
-    if (isImageFile(file.name)) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setPreviewUrl(null);
-      setFile(null);
+    if (!isImageFile(selectedFile.name)) {
       setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
+      setFile(null);
+      setPreviewUrl(null);
+      return;
+    }
+
+    setFileError("");
+    setFile(selectedFile);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewUrl(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
+
+    // Validierung triggern wenn Feld bereits berührt wurde
+    if (touchedFields.image) {
+      const error = validateSingleField("image", null, { file: selectedFile });
+      setFieldErrors((prev) => ({
+        ...prev,
+        image: error,
+      }));
     }
   }
 
@@ -369,114 +547,136 @@ export default function HelferForm() {
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
           </p>
+
           <h3>Persönliche Angaben</h3>
-          <InputOptionInput
-            title="Name"
-            inputText={name}
-            inputChange={(value) => setName(value)}
-            inputRef={refs.name}
-            isError={errors.some((error) => error.field === "name")}
+
+          <InputOptionSelect
+            title="Anrede"
+            options={GENDER_OPTIONS.map((option) => option.value)}
+            names={GENDER_OPTIONS.map((option) => option.label)}
+            inputText={gender}
+            inputChange={(value) => setGender(value)}
+            onBlur={() => handleBlur("gender", gender)}
+            inputRef={refs.gender}
+            isError={!!getFieldError("gender")}
             require
           />
+
+          <InputOptionInput
+            title="Vorname"
+            inputText={name}
+            inputChange={(value) => setName(value)}
+            onBlur={() => handleBlur("name", name)}
+            inputRef={refs.name}
+            isError={!!getFieldError("name")}
+            require
+          />
+          {getFieldError("name") && <FieldErrorText>{getFieldError("name")}</FieldErrorText>}
+
           <InputOptionInput
             title="Nachname"
             inputText={lastName}
             inputChange={(value) => setLastName(value)}
+            onBlur={() => handleBlur("lastName", lastName)}
             inputRef={refs.lastName}
-            isError={errors.some((error) => error.field === "lastName")}
+            isError={!!getFieldError("lastName")}
             require
           />
+          {getFieldError("lastName") && (
+            <FieldErrorText>{getFieldError("lastName")}</FieldErrorText>
+          )}
+
           <InputOptionInput
             title="Rufname"
             inputText={nickname}
             inputChange={(value) => setNickname(value)}
+            onBlur={() => handleBlur("nickname", nickname)}
             inputRef={refs.nickname}
-            isError={errors.some((error) => error.field === "nickname")}
+            isError={!!getFieldError("nickname")}
           />
+          {getFieldError("nickname") && (
+            <FieldErrorText>{getFieldError("nickname")}</FieldErrorText>
+          )}
+
           <InputOptionInput
             title="E-Mail"
             inputText={email}
             inputChange={(value) => setEmail(value)}
+            onBlur={() => handleBlur("email", email)}
             inputRef={refs.email}
-            isError={errors.some((error) => error.field === "email")}
+            isError={!!getFieldError("email")}
             require
           />
+          {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
+
           <InputOptionInput
-            title="E-Mail Bestätigen"
+            title="E-Mail bestätigen"
             inputText={confirmEmail}
             inputChange={setConfirmEmail}
-            inputRef={refs.emailConfirm}
-            isError={errors.some((error) => error.field === "confirmEmail")}
+            onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
+            inputRef={refs.confirmEmail}
+            isError={!!getFieldError("confirmEmail")}
             require
           />
-          <RadioButton
-            title="Geschlecht"
-            options={["Männlich", "Weiblich", "Divers"]}
-            selectedOption={gender}
-            inputChange={(value) => setGender(value)}
-            inputRef={refs.gender}
-            isError={errors.some((error) => error.field === "gender")}
-            require
-          />
+          {getFieldError("confirmEmail") && (
+            <FieldErrorText>{getFieldError("confirmEmail")}</FieldErrorText>
+          )}
+
           <InputOptionInput
             title="Geburtsdatum"
             inputText={birthdate}
             inputChange={(value) => setBirthdate(value)}
+            onBlur={() => handleBlur("birthdate", birthdate)}
             type="date"
             inputRef={refs.birthdate}
-            isError={errors.some((error) => error.field === "birthdate")}
+            isError={!!getFieldError("birthdate")}
             require
           />
+          {getFieldError("birthdate") && (
+            <FieldErrorText>{getFieldError("birthdate")}</FieldErrorText>
+          )}
 
           <InputOptionInput
             title="Telefonnummer"
             inputText={phone}
             inputChange={(value) => setPhone(value)}
+            onBlur={() => handleBlur("phone", phone)}
             inputRef={refs.phone}
-            isError={errors.some((error) => error.field === "phone")}
+            isError={!!getFieldError("phone")}
             require
           />
+          {getFieldError("phone") && <FieldErrorText>{getFieldError("phone")}</FieldErrorText>}
+
           <InputOptionInput
             title="Discord Name"
             inputText={discordName}
             inputChange={(value) => setDiscordName(value)}
+            onBlur={() => handleBlur("discordName", discordName)}
             inputRef={refs.discordName}
-            isError={errors.some((error) => error.field === "discordName")}
+            isError={!!getFieldError("discordName")}
             require
           />
+          {getFieldError("discordName") && (
+            <FieldErrorText>{getFieldError("discordName")}</FieldErrorText>
+          )}
 
           <p>
             Foto hochladen, dies sollte ein gut ausgeleuchtetes Farbbild vor neutralem Hintergrund
             sein, auf dem du gut zu erkennen bist. <br />
-            (max. 10MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+            (max. {MAX_IMAGE_SIZE_MB}MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
           </p>
           <FileUpload
             handleFileChange={handleFileChange}
             inputRef={refs.image}
             previewUrl={previewUrl}
             file={file}
-            isError={errors.some((error) => error.field === "image")}
+            isError={!!getFieldError("image") || !!fileError}
           />
-
-          {fileError && <ErrorText style={{ textAlign: "center" }}>{fileError}</ErrorText>}
-          {/*
-      {previewUrl && (
-        <UploadInfo>
-          <p>{file.name}</p>
-          <Image
-            src={previewUrl}
-            alt="Hochgeladenes Bild"
-            width={200}
-            height={200}
-            style={{
-              width: "auto",
-              maxHeight: "150px",
-              borderRadius: "5px",
-            }}
-          />
-        </UploadInfo>
-      )}
-        */}
+          {(fileError || getFieldError("image")) && (
+            <ErrorText style={{ textAlign: "center" }}>
+              {fileError || getFieldError("image")}
+            </ErrorText>
+          )}
 
           <Spacer />
           <h3>Adresse</h3>
@@ -485,57 +685,86 @@ export default function HelferForm() {
             title="Straße"
             inputText={street}
             inputChange={setStreet}
+            onBlur={() => handleBlur("street", street)}
             inputRef={refs.street}
-            isError={errors.some((error) => error.field === "street")}
+            isError={!!getFieldError("street")}
             require
           />
+          {getFieldError("street") && <FieldErrorText>{getFieldError("street")}</FieldErrorText>}
+
           <InputOptionInput
             title="PLZ"
             inputText={postalCode}
             inputChange={setPostalCode}
+            onBlur={() => handleBlur("postalCode", postalCode)}
             inputRef={refs.postalCode}
-            isError={errors.some((error) => error.field === "postalCode")}
+            isError={!!getFieldError("postalCode")}
             require
           />
+          {getFieldError("postalCode") && (
+            <FieldErrorText>{getFieldError("postalCode")}</FieldErrorText>
+          )}
+
           <InputOptionInput
             title="Ort"
             inputText={city}
             inputChange={setCity}
+            onBlur={() => handleBlur("city", city)}
             inputRef={refs.city}
-            isError={errors.some((error) => error.field === "city")}
+            isError={!!getFieldError("city")}
             require
           />
+          {getFieldError("city") && <FieldErrorText>{getFieldError("city")}</FieldErrorText>}
+
           <InputOptionSelect
             title="Land"
-            options={EU_COUNTRIES}
+            options={COUNTRIES}
             inputText={country}
             inputChange={(value) => setCountry(value)}
+            onBlur={() => handleBlur("country", country)}
             inputRef={refs.country}
-            isError={errors.some((error) => error.field === "country")}
+            isError={!!getFieldError("country")}
             require
           />
+          {getFieldError("country") && <FieldErrorText>{getFieldError("country")}</FieldErrorText>}
 
           <Spacer />
           <h3>Allgemeines</h3>
 
           <InputOptionSelect
             title="T-Shirt Größe"
-            options={["S", "M", "L", "XL", "XXL", "XXXL"]}
+            options={CLOTHES_SIZE_OPTIONS.map((option) => option.value)}
+            names={CLOTHES_SIZE_OPTIONS.map((option) => option.label)}
             inputText={clothesSize}
             inputChange={setClothesSize}
+            onBlur={() => handleBlur("clothesSize", clothesSize)}
             inputRef={refs.clothesSize}
-            isError={errors.some((error) => error.field === "clothesSize")}
+            isError={!!getFieldError("clothesSize")}
             require
           />
+          {getFieldError("clothesSize") && (
+            <FieldErrorText>{getFieldError("clothesSize")}</FieldErrorText>
+          )}
+
+          <CheckBox
+            title="Zusätzliches T-Shirt gewünscht"
+            isChecked={additionalShirt}
+            inputChange={setAdditionalShirt}
+          />
+
           <RadioButton
             title="Anreise"
-            options={["Auto", "ÖPNV", "Sonstige"]}
+            names={ARRIVAL_OPTIONS.map((option) => option.label)}
+            options={ARRIVAL_OPTIONS.map((option) => option.value)}
             selectedOption={arrival}
             inputChange={setArrival}
+            onBlur={() => handleBlur("arrival", arrival)}
             inputRef={refs.arrival}
-            isError={errors.some((error) => error.field === "arrival")}
+            isError={!!getFieldError("arrival")}
             require
           />
+          {getFieldError("arrival") && <FieldErrorText>{getFieldError("arrival")}</FieldErrorText>}
+
           {arrival === "Auto" && (
             <CheckBox
               title="Parkticket benötigt"
@@ -543,6 +772,7 @@ export default function HelferForm() {
               inputChange={setRequiresParkingTicket}
             />
           )}
+
           <CheckBox
             title={
               "Aufbau Freitag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
@@ -570,20 +800,30 @@ export default function HelferForm() {
 
           <RadioButton
             title="Essen"
-            options={["normal", "vegetarisch", "vegan"]}
+            names={FOOD_PREFERENCE_OPTIONS.map((option) => option.label)}
+            options={FOOD_PREFERENCE_OPTIONS.map((option) => option.value)}
             selectedOption={foodPreference}
             inputChange={setFoodPreference}
+            onBlur={() => handleBlur("foodPreference", foodPreference)}
             inputRef={refs.foodPreference}
-            isError={errors.some((error) => error.field === "foodPreference")}
+            isError={!!getFieldError("foodPreference")}
             require
           />
+          {getFieldError("foodPreference") && (
+            <FieldErrorText>{getFieldError("foodPreference")}</FieldErrorText>
+          )}
+
           <InputOptionTextArea
             title="Allergien/Unverträglichkeiten"
             inputText={foodDetails}
             inputChange={setFoodDetails}
+            onBlur={() => handleBlur("foodDetails", foodDetails)}
             inputRef={refs.foodDetails}
-            isError={errors.some((error) => error.field === "foodDetails")}
+            isError={!!getFieldError("foodDetails")}
           />
+          {getFieldError("foodDetails") && (
+            <FieldErrorText>{getFieldError("foodDetails")}</FieldErrorText>
+          )}
 
           <Spacer />
           <h3>Interessen/Aufgaben/Erfahrungen</h3>
@@ -592,16 +832,26 @@ export default function HelferForm() {
             title="Beruf/Qualifikationen"
             inputText={occupation}
             inputChange={setOccupation}
+            onBlur={() => handleBlur("occupation", occupation)}
             inputRef={refs.occupation}
-            isError={errors.some((error) => error.field === "occupation")}
+            isError={!!getFieldError("occupation")}
           />
+          {getFieldError("occupation") && (
+            <FieldErrorText>{getFieldError("occupation")}</FieldErrorText>
+          )}
+
           <InputOptionTextArea
             title="Stärken"
             inputText={strengths}
             inputChange={(value) => setStrengths(value)}
+            onBlur={() => handleBlur("strengths", strengths)}
             inputRef={refs.strengths}
-            isError={errors.some((error) => error.field === "strengths")}
+            isError={!!getFieldError("strengths")}
           />
+          {getFieldError("strengths") && (
+            <FieldErrorText>{getFieldError("strengths")}</FieldErrorText>
+          )}
+
           <h4>Wunschteam (kann nicht garantiert werden)</h4>
           <CheckBox
             title={"Einlasskontrolle"}
@@ -643,31 +893,40 @@ export default function HelferForm() {
             title="Sonstiges"
             inputText={other}
             inputChange={(value) => setOther(value)}
+            onBlur={() => handleBlur("other", other)}
             inputRef={refs.other}
-            isError={errors.some((error) => error.field === "other")}
+            isError={!!getFieldError("other")}
           />
+          {getFieldError("other") && <FieldErrorText>{getFieldError("other")}</FieldErrorText>}
 
           <Spacer />
           <h3>Einsatzzeiten</h3>
 
-          <p>
-            Bitte gib hier an, wie viele Stunden du am jeweiligen Tag Helfen möchtest (min. 5
-            Stunden).
-          </p>
-          <InputOptionInput
-            title="Samstag"
-            inputText={workTimeSaturday}
-            inputChange={setWorkTimeSaturday}
-            inputRef={refs.workTimeSaturday}
-            isError={errors.some((error) => error.field === "workTimeSaturday")}
+          <CheckBox
+            title="Ich möchte am Samstag arbeiten"
+            isChecked={workingOnSaturday}
+            inputChange={setWorkingOnSaturday}
           />
-          <InputOptionInput
-            title="Sonntag"
-            inputText={workTimeSunday}
-            inputChange={setWorkTimeSunday}
-            inputRef={refs.workTimeSunday}
-            isError={errors.some((error) => error.field === "workTimeSunday")}
+
+          <CheckBox
+            title="Ich möchte am Sonntag arbeiten"
+            isChecked={workingOnSunday}
+            inputChange={setWorkingOnSunday}
           />
+
+          <RadioButton
+            title="Bevorzugte Schicht"
+            names={PREFERRED_WORKTIME_OPTIONS.map((option) => option.label)}
+            options={PREFERRED_WORKTIME_OPTIONS.map((option) => option.value)}
+            selectedOption={preferredWorktime}
+            inputChange={setPreferredWorktime}
+            onBlur={() => handleBlur("preferredWorktime", preferredWorktime)}
+            inputRef={refs.preferredWorktime}
+            isError={!!getFieldError("preferredWorktime")}
+          />
+          {getFieldError("preferredWorktime") && (
+            <FieldErrorText>{getFieldError("preferredWorktime")}</FieldErrorText>
+          )}
 
           <Spacer />
           <h3>Richtlinien</h3>
@@ -687,11 +946,19 @@ export default function HelferForm() {
               </p>
             }
             isChecked={privacyPolicy}
-            inputChange={(value) => setPrivacyPolicy(value)}
+            inputChange={(value) => {
+              setPrivacyPolicy(value);
+              if (touchedFields.privacyPolicy) {
+                handleBlur("privacyPolicy", value);
+              }
+            }}
             inputRef={refs.privacyPolicy}
-            isError={errors.some((error) => error.field === "privacyPolicy")}
+            isError={!!getFieldError("privacyPolicy")}
             require
           />
+          {getFieldError("privacyPolicy") && (
+            <FieldErrorText>{getFieldError("privacyPolicy")}</FieldErrorText>
+          )}
 
           <CheckBox
             title="contactForwarding"
@@ -702,32 +969,36 @@ export default function HelferForm() {
               </p>
             }
             isChecked={contactForwarding}
-            inputChange={(value) => setContactForwarding(value)}
+            inputChange={(value) => {
+              setContactForwarding(value);
+              if (touchedFields.contactForwarding) {
+                handleBlur("contactForwarding", value);
+              }
+            }}
             inputRef={refs.contactForwarding}
-            isError={errors.some((error) => error.field === "contactForwarding")}
+            isError={!!getFieldError("contactForwarding")}
             require
           />
+          {getFieldError("contactForwarding") && (
+            <FieldErrorText>{getFieldError("contactForwarding")}</FieldErrorText>
+          )}
 
-          {errors && (
-            <ul>
-              {errors.map((error, index) => (
-                <li key={index} style={{ color: "red" }}>
-                  {error.message}
-                </li>
-              ))}
-            </ul>
+          {fieldErrors.general && (
+            <ErrorText style={{ marginTop: "1rem", textAlign: "center" }}>
+              {fieldErrors.general}
+            </ErrorText>
           )}
 
           <StyledButton type="submit">Anmelden</StyledButton>
         </StyledForm>
       )}
+
       {success && <SuccessText>{success}</SuccessText>}
+
       {loading && (
-        <>
-          <ModalOverlay>
-            <LoadingAnimation />
-          </ModalOverlay>
-        </>
+        <ModalOverlay>
+          <LoadingAnimation />
+        </ModalOverlay>
       )}
     </>
   );

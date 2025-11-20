@@ -101,6 +101,28 @@ export const SHOWACT_ACCOMODATION_OPTIONS = [
   "zwingend benötigt",
 ];
 
+export const CLOTHES_SIZE_OPTIONS = [
+  { value: "XS", label: "XS" },
+  { value: "S", label: "S" },
+  { value: "M", label: "M" },
+  { value: "L", label: "L" },
+  { value: "XL", label: "XL" },
+  { value: "XXL", label: "XXL" },
+  { value: "XXXL", label: "XXXL" },
+];
+
+export const ARRIVAL_OPTIONS = [
+  { value: "car", label: "Auto" },
+  { value: "öpnv", label: "ÖPNV" },
+  { value: "others", label: "Sonstige" },
+];
+
+export const FOOD_PREFERENCE_OPTIONS = [
+  { value: "normal", label: "Normal" },
+  { value: "vegetarisch", label: "Vegetarisch" },
+  { value: "vegan", label: "Vegan" },
+];
+
 export function checkRegistrationPeriod(startDate, endDate) {
   const now = new Date();
 
