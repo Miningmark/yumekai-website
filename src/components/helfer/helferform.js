@@ -40,8 +40,8 @@ const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const MAX_IMAGE_SIZE_MB = 10;
 
 const PREFERRED_WORKTIME_OPTIONS = [
-  { value: "Schicht 1", label: "Schicht 1" },
-  { value: "Schicht 2", label: "Schicht 2" },
+  { value: "Schicht 1", label: "Morgens - früher Nachmittag" },
+  { value: "Schicht 2", label: "früher Nachmittag - Abends" },
 ];
 
 const isImageFile = (fileName) => {
@@ -52,35 +52,37 @@ export default function HelferForm() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [gender, setGender] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [discordName, setDiscordName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
   const [street, setStreet] = useState("");
+  const [houseNumber, setHouseNumber] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const [clothesSize, setClothesSize] = useState("");
+  const [clothSize, setClothSize] = useState("");
   const [additionalShirt, setAdditionalShirt] = useState(false);
   const [arrival, setArrival] = useState("");
-  const [requiresParkingTicket, setRequiresParkingTicket] = useState(false);
-  const [assemblyFriday, setAssemblyFriday] = useState(false);
-  const [assembly, setAssembly] = useState(false);
-  const [deconstruction, setDeconstruction] = useState(false);
+  const [parkingTicketRequired, setParkingTicketRequired] = useState(false);
+  const [fridayConstruction, setFridayConstruction] = useState(false);
+  const [saturdayConstruction, setSaturdayConstruction] = useState(false);
+  const [sundayDeconstruction, setSundayDeconstruction] = useState(false);
 
-  const [foodPreference, setFoodPreference] = useState("");
+  const [foodPreferences, setFoodPreferences] = useState("");
   const [foodDetails, setFoodDetails] = useState("");
 
-  const [occupation, setOccupation] = useState("");
-  const [strengths, setStrengths] = useState("");
+  const [qualificationsWorkExperience, setQualificationsWorkExperience] = useState("");
+  const [myStrengths, setMyStrengths] = useState("");
+  const [talents, setTalents] = useState("");
   const [departmentAdmission, setDepartmentAdmission] = useState(false);
   const [departmentWeaponsCheck, setDepartmentWeaponsCheck] = useState(false);
   const [departmentStage, setDepartmentStage] = useState(false);
@@ -106,11 +108,11 @@ export default function HelferForm() {
 
   const refs = {
     gender: useRef(null),
-    name: useRef(null),
+    firstName: useRef(null),
     lastName: useRef(null),
-    nickname: useRef(null),
-    gender: useRef(null),
+    nickName: useRef(null),
     street: useRef(null),
+    houseNumber: useRef(null),
     postalCode: useRef(null),
     city: useRef(null),
     country: useRef(null),
@@ -118,15 +120,16 @@ export default function HelferForm() {
     confirmEmail: useRef(null),
     birthdate: useRef(null),
     discordName: useRef(null),
-    phone: useRef(null),
+    phoneNumber: useRef(null),
     privacyPolicy: useRef(null),
     contactForwarding: useRef(null),
-    clothesSize: useRef(null),
+    clothSize: useRef(null),
     arrival: useRef(null),
-    foodPreference: useRef(null),
+    foodPreferences: useRef(null),
     foodDetails: useRef(null),
-    occupation: useRef(null),
-    strengths: useRef(null),
+    qualificationsWorkExperience: useRef(null),
+    myStrengths: useRef(null),
+    talents: useRef(null),
     other: useRef(null),
     workingOnSaturday: useRef(null),
     workingOnSunday: useRef(null),
@@ -143,9 +146,9 @@ export default function HelferForm() {
         if (!value) error = "Anrede ist ein Pflichtfeld";
         break;
 
-      case "name":
-        const nameValidation = validateString(value, "Vorname", 2, 50, true);
-        if (!nameValidation.check) error = nameValidation.description;
+      case "firstName":
+        const firstNameValidation = validateString(value, "Vorname", 2, 50, true);
+        if (!firstNameValidation.check) error = firstNameValidation.description;
         break;
 
       case "lastName":
@@ -153,7 +156,7 @@ export default function HelferForm() {
         if (!lastNameValidation.check) error = lastNameValidation.description;
         break;
 
-      case "nickname":
+      case "nickName":
         if (value && value.trim().length > 0) {
           const nicknameValidation = validateString(value, "Rufname", 2, 50);
           if (!nicknameValidation.check) error = nicknameValidation.description;
@@ -198,7 +201,7 @@ export default function HelferForm() {
         if (!discordValidation.check) error = discordValidation.description;
         break;
 
-      case "phone":
+      case "phoneNumber":
         const phoneValidation = validateString(value, "Telefonnummer", 5, 25, true);
         if (!phoneValidation.check) error = phoneValidation.description;
         break;
@@ -206,6 +209,11 @@ export default function HelferForm() {
       case "street":
         const streetError = validateField(value, "Straße", 2, 50, true);
         if (streetError) error = streetError.message;
+        break;
+
+      case "houseNumber":
+        const houseNumberError = validateField(value, "Hausnummer", 1, 10, true);
+        if (houseNumberError) error = houseNumberError.message;
         break;
 
       case "postalCode":
@@ -223,7 +231,7 @@ export default function HelferForm() {
         if (countryError) error = countryError.message;
         break;
 
-      case "clothesSize":
+      case "clothSize":
         if (!value) error = "T-Shirt Größe ist ein Pflichtfeld";
         break;
 
@@ -231,7 +239,7 @@ export default function HelferForm() {
         if (!value) error = "Anreise ist ein Pflichtfeld";
         break;
 
-      case "foodPreference":
+      case "foodPreferences":
         if (!value) error = "Essensauswahl ist ein Pflichtfeld";
         break;
 
@@ -247,17 +255,24 @@ export default function HelferForm() {
         }
         break;
 
-      case "occupation":
+      case "qualificationsWorkExperience":
         if (value && value.trim().length > 0) {
           const occupationValidation = validateString(value, "Beruf/Qualifikationen", 2, 100);
           if (!occupationValidation.check) error = occupationValidation.description;
         }
         break;
 
-      case "strengths":
+      case "myStrengths":
         if (value && value.trim().length > 0) {
           const strengthsValidation = validateString(value, "Stärken", 3, 500);
           if (!strengthsValidation.check) error = strengthsValidation.description;
+        }
+        break;
+
+      case "talents":
+        if (value && value.trim().length > 0) {
+          const talentsValidation = validateString(value, "Talente", 3, 500);
+          if (!talentsValidation.check) error = talentsValidation.description;
         }
         break;
 
@@ -313,31 +328,35 @@ export default function HelferForm() {
 
     // Persönliche Angaben
     errors.gender = validateSingleField("gender", gender);
-    errors.name = validateSingleField("name", name);
+    errors.firstName = validateSingleField("firstName", firstName);
     errors.lastName = validateSingleField("lastName", lastName);
-    errors.nickname = validateSingleField("nickname", nickname);
+    errors.nickName = validateSingleField("nickName", nickName);
     errors.email = validateSingleField("email", email);
     errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
-    errors.gender = validateSingleField("gender", gender);
     errors.birthdate = validateSingleField("birthdate", birthdate);
     errors.discordName = validateSingleField("discordName", discordName);
-    errors.phone = validateSingleField("phone", phone);
+    errors.phoneNumber = validateSingleField("phoneNumber", phoneNumber);
 
     // Adresse
     errors.street = validateSingleField("street", street);
+    errors.houseNumber = validateSingleField("houseNumber", houseNumber);
     errors.postalCode = validateSingleField("postalCode", postalCode);
     errors.city = validateSingleField("city", city);
     errors.country = validateSingleField("country", country);
 
     // Allgemeines
-    errors.clothesSize = validateSingleField("clothesSize", clothesSize);
+    errors.clothSize = validateSingleField("clothSize", clothSize);
     errors.arrival = validateSingleField("arrival", arrival);
-    errors.foodPreference = validateSingleField("foodPreference", foodPreference);
+    errors.foodPreferences = validateSingleField("foodPreferences", foodPreferences);
     errors.foodDetails = validateSingleField("foodDetails", foodDetails);
 
     // Interessen
-    errors.occupation = validateSingleField("occupation", occupation);
-    errors.strengths = validateSingleField("strengths", strengths);
+    errors.qualificationsWorkExperience = validateSingleField(
+      "qualificationsWorkExperience",
+      qualificationsWorkExperience
+    );
+    errors.myStrengths = validateSingleField("myStrengths", myStrengths);
+    errors.talents = validateSingleField("talents", talents);
     errors.other = validateSingleField("other", other);
 
     // Einsatzzeiten
@@ -385,7 +404,7 @@ export default function HelferForm() {
 
     setLoading(true);
 
-    const desiredTeam =
+    const desiredAreas =
       [
         departmentAdmission && "Einlasskontrolle",
         departmentWeaponsCheck && "Waffencheck",
@@ -403,42 +422,47 @@ export default function HelferForm() {
     const formData = new FormData();
     formData.append("eventId", eventId);
     formData.append("gender", gender);
-    formData.append("firstName", name.trim());
+    formData.append("firstName", firstName.trim());
     formData.append("lastName", lastName.trim());
-    formData.append("nickname", nickname.trim());
+    formData.append("nickName", nickName.trim());
     formData.append("discordName", discordName.trim());
     formData.append("birthdate", birthdate);
     formData.append("email", email.trim().toLowerCase());
-    formData.append("phone", phone.trim());
+    formData.append("phoneNumber", phoneNumber.trim());
     formData.append("street", street.trim());
+    formData.append("houseNumber", houseNumber.trim());
     formData.append("postalCode", postalCode.trim());
     formData.append("city", city.trim());
     formData.append("country", country);
-    formData.append("occupation", occupation.trim());
-    formData.append("clothesSize", clothesSize);
+    formData.append("qualificationsWorkExperience", qualificationsWorkExperience.trim());
+    formData.append("clothSize", clothSize);
     formData.append("additionalShirt", additionalShirt);
     formData.append("arrival", arrival);
-    formData.append("requiresParkingTicket", requiresParkingTicket);
-    formData.append("foodPreference", foodPreference);
+    formData.append("parkingTicketRequired", parkingTicketRequired);
+    formData.append("foodPreferences", foodPreferences);
     formData.append("foodDetails", foodDetails.trim());
-    formData.append("strengths", strengths.trim());
-    formData.append("desiredTeam", desiredTeam);
+    formData.append("myStrengths", myStrengths.trim());
+    formData.append("talents", talents.trim());
+    formData.append("desiredAreas", desiredAreas);
     formData.append("other", other.trim());
-    formData.append("assemblyFriday", assemblyFriday);
-    formData.append("assembly", assembly);
-    formData.append("deconstruction", deconstruction);
+    formData.append("fridayConstruction", fridayConstruction);
+    formData.append("saturdayConstruction", saturdayConstruction);
+    formData.append("sundayDeconstruction", sundayDeconstruction);
     formData.append("workingOnSaturday", workingOnSaturday);
     formData.append("workingOnSunday", workingOnSunday);
     formData.append("preferredWorktime", preferredWorktime);
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("contactForwarding", contactForwarding);
-    formData.append("file", file);
+    formData.append("helperImage", file);
 
     try {
-      const response = await fetch("/api/helferRegistration", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://node.miningmark.de/api/v1/event/application/createHelper",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         setSuccess(
@@ -447,26 +471,28 @@ export default function HelferForm() {
 
         // Reset form
         setGender("");
-        setName("");
+        setFirstName("");
         setLastName("");
-        setNickname("");
+        setNickName("");
         setDiscordName("");
         setBirthdate("");
         setEmail("");
         setConfirmEmail("");
-        setPhone("");
+        setPhoneNumber("");
         setStreet("");
+        setHouseNumber("");
         setPostalCode("");
         setCity("");
         setCountry("");
-        setOccupation("");
-        setClothesSize("");
+        setQualificationsWorkExperience("");
+        setClothSize("");
         setAdditionalShirt(false);
         setArrival("");
-        setRequiresParkingTicket(false);
-        setFoodPreference("");
+        setParkingTicketRequired(false);
+        setFoodPreferences("");
         setFoodDetails("");
-        setStrengths("");
+        setMyStrengths("");
+        setTalents("");
         setDepartmentAdmission(false);
         setDepartmentWeaponsCheck(false);
         setDepartmentStage(false);
@@ -476,9 +502,9 @@ export default function HelferForm() {
         setDepartmentWorkshop(false);
         setDepartmentSpecialGuest(false);
         setOther("");
-        setAssembly(false);
-        setDeconstruction(false);
-        setAssemblyFriday(false);
+        setSaturdayConstruction(false);
+        setSundayDeconstruction(false);
+        setFridayConstruction(false);
         setWorkingOnSaturday(false);
         setWorkingOnSunday(false);
         setPreferredWorktime("");
@@ -561,17 +587,20 @@ export default function HelferForm() {
             isError={!!getFieldError("gender")}
             require
           />
+          {getFieldError("gender") && <FieldErrorText>{getFieldError("gender")}</FieldErrorText>}
 
           <InputOptionInput
             title="Vorname"
-            inputText={name}
-            inputChange={(value) => setName(value)}
-            onBlur={() => handleBlur("name", name)}
-            inputRef={refs.name}
-            isError={!!getFieldError("name")}
+            inputText={firstName}
+            inputChange={(value) => setFirstName(value)}
+            onBlur={() => handleBlur("firstName", firstName)}
+            inputRef={refs.firstName}
+            isError={!!getFieldError("firstName")}
             require
           />
-          {getFieldError("name") && <FieldErrorText>{getFieldError("name")}</FieldErrorText>}
+          {getFieldError("firstName") && (
+            <FieldErrorText>{getFieldError("firstName")}</FieldErrorText>
+          )}
 
           <InputOptionInput
             title="Nachname"
@@ -588,14 +617,14 @@ export default function HelferForm() {
 
           <InputOptionInput
             title="Rufname"
-            inputText={nickname}
-            inputChange={(value) => setNickname(value)}
-            onBlur={() => handleBlur("nickname", nickname)}
-            inputRef={refs.nickname}
-            isError={!!getFieldError("nickname")}
+            inputText={nickName}
+            inputChange={(value) => setNickName(value)}
+            onBlur={() => handleBlur("nickName", nickName)}
+            inputRef={refs.nickName}
+            isError={!!getFieldError("nickName")}
           />
-          {getFieldError("nickname") && (
-            <FieldErrorText>{getFieldError("nickname")}</FieldErrorText>
+          {getFieldError("nickName") && (
+            <FieldErrorText>{getFieldError("nickName")}</FieldErrorText>
           )}
 
           <InputOptionInput
@@ -638,14 +667,16 @@ export default function HelferForm() {
 
           <InputOptionInput
             title="Telefonnummer"
-            inputText={phone}
-            inputChange={(value) => setPhone(value)}
-            onBlur={() => handleBlur("phone", phone)}
-            inputRef={refs.phone}
-            isError={!!getFieldError("phone")}
+            inputText={phoneNumber}
+            inputChange={(value) => setPhoneNumber(value)}
+            onBlur={() => handleBlur("phoneNumber", phoneNumber)}
+            inputRef={refs.phoneNumber}
+            isError={!!getFieldError("phoneNumber")}
             require
           />
-          {getFieldError("phone") && <FieldErrorText>{getFieldError("phone")}</FieldErrorText>}
+          {getFieldError("phoneNumber") && (
+            <FieldErrorText>{getFieldError("phoneNumber")}</FieldErrorText>
+          )}
 
           <InputOptionInput
             title="Discord Name"
@@ -693,6 +724,19 @@ export default function HelferForm() {
           {getFieldError("street") && <FieldErrorText>{getFieldError("street")}</FieldErrorText>}
 
           <InputOptionInput
+            title="Hausnummer"
+            inputText={houseNumber}
+            inputChange={setHouseNumber}
+            onBlur={() => handleBlur("houseNumber", houseNumber)}
+            inputRef={refs.houseNumber}
+            isError={!!getFieldError("houseNumber")}
+            require
+          />
+          {getFieldError("houseNumber") && (
+            <FieldErrorText>{getFieldError("houseNumber")}</FieldErrorText>
+          )}
+
+          <InputOptionInput
             title="PLZ"
             inputText={postalCode}
             inputChange={setPostalCode}
@@ -735,15 +779,15 @@ export default function HelferForm() {
             title="T-Shirt Größe"
             options={CLOTHES_SIZE_OPTIONS.map((option) => option.value)}
             names={CLOTHES_SIZE_OPTIONS.map((option) => option.label)}
-            inputText={clothesSize}
-            inputChange={setClothesSize}
-            onBlur={() => handleBlur("clothesSize", clothesSize)}
-            inputRef={refs.clothesSize}
-            isError={!!getFieldError("clothesSize")}
+            inputText={clothSize}
+            inputChange={setClothSize}
+            onBlur={() => handleBlur("clothSize", clothSize)}
+            inputRef={refs.clothSize}
+            isError={!!getFieldError("clothSize")}
             require
           />
-          {getFieldError("clothesSize") && (
-            <FieldErrorText>{getFieldError("clothesSize")}</FieldErrorText>
+          {getFieldError("clothSize") && (
+            <FieldErrorText>{getFieldError("clothSize")}</FieldErrorText>
           )}
 
           <CheckBox
@@ -768,8 +812,8 @@ export default function HelferForm() {
           {arrival === "Auto" && (
             <CheckBox
               title="Parkticket benötigt"
-              isChecked={requiresParkingTicket}
-              inputChange={setRequiresParkingTicket}
+              isChecked={parkingTicketRequired}
+              inputChange={setParkingTicketRequired}
             />
           )}
 
@@ -777,22 +821,22 @@ export default function HelferForm() {
             title={
               "Aufbau Freitag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
             }
-            isChecked={assemblyFriday}
-            inputChange={(value) => setAssemblyFriday(value)}
+            isChecked={fridayConstruction}
+            inputChange={(value) => setFridayConstruction(value)}
           />
           <CheckBox
             title={
               "Aufbau Samstag (06:00 - 09:30) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
             }
-            isChecked={assembly}
-            inputChange={(value) => setAssembly(value)}
+            isChecked={saturdayConstruction}
+            inputChange={(value) => setSaturdayConstruction(value)}
           />
           <CheckBox
             title={
               "Abbau Sonntag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
             }
-            isChecked={deconstruction}
-            inputChange={(value) => setDeconstruction(value)}
+            isChecked={sundayDeconstruction}
+            inputChange={(value) => setSundayDeconstruction(value)}
           />
 
           <Spacer />
@@ -802,15 +846,15 @@ export default function HelferForm() {
             title="Essen"
             names={FOOD_PREFERENCE_OPTIONS.map((option) => option.label)}
             options={FOOD_PREFERENCE_OPTIONS.map((option) => option.value)}
-            selectedOption={foodPreference}
-            inputChange={setFoodPreference}
-            onBlur={() => handleBlur("foodPreference", foodPreference)}
-            inputRef={refs.foodPreference}
-            isError={!!getFieldError("foodPreference")}
+            selectedOption={foodPreferences}
+            inputChange={setFoodPreferences}
+            onBlur={() => handleBlur("foodPreferences", foodPreferences)}
+            inputRef={refs.foodPreferences}
+            isError={!!getFieldError("foodPreferences")}
             require
           />
-          {getFieldError("foodPreference") && (
-            <FieldErrorText>{getFieldError("foodPreference")}</FieldErrorText>
+          {getFieldError("foodPreferences") && (
+            <FieldErrorText>{getFieldError("foodPreferences")}</FieldErrorText>
           )}
 
           <InputOptionTextArea
@@ -830,27 +874,37 @@ export default function HelferForm() {
 
           <InputOptionInput
             title="Beruf/Qualifikationen"
-            inputText={occupation}
-            inputChange={setOccupation}
-            onBlur={() => handleBlur("occupation", occupation)}
-            inputRef={refs.occupation}
-            isError={!!getFieldError("occupation")}
+            inputText={qualificationsWorkExperience}
+            inputChange={setQualificationsWorkExperience}
+            onBlur={() => handleBlur("qualificationsWorkExperience", qualificationsWorkExperience)}
+            inputRef={refs.qualificationsWorkExperience}
+            isError={!!getFieldError("qualificationsWorkExperience")}
           />
-          {getFieldError("occupation") && (
-            <FieldErrorText>{getFieldError("occupation")}</FieldErrorText>
+          {getFieldError("qualificationsWorkExperience") && (
+            <FieldErrorText>{getFieldError("qualificationsWorkExperience")}</FieldErrorText>
           )}
 
           <InputOptionTextArea
             title="Stärken"
-            inputText={strengths}
-            inputChange={(value) => setStrengths(value)}
-            onBlur={() => handleBlur("strengths", strengths)}
-            inputRef={refs.strengths}
-            isError={!!getFieldError("strengths")}
+            inputText={myStrengths}
+            inputChange={(value) => setMyStrengths(value)}
+            onBlur={() => handleBlur("myStrengths", myStrengths)}
+            inputRef={refs.myStrengths}
+            isError={!!getFieldError("myStrengths")}
           />
-          {getFieldError("strengths") && (
-            <FieldErrorText>{getFieldError("strengths")}</FieldErrorText>
+          {getFieldError("myStrengths") && (
+            <FieldErrorText>{getFieldError("myStrengths")}</FieldErrorText>
           )}
+
+          <InputOptionTextArea
+            title="Talente"
+            inputText={talents}
+            inputChange={(value) => setTalents(value)}
+            onBlur={() => handleBlur("talents", talents)}
+            inputRef={refs.talents}
+            isError={!!getFieldError("talents")}
+          />
+          {getFieldError("talents") && <FieldErrorText>{getFieldError("talents")}</FieldErrorText>}
 
           <h4>Wunschteam (kann nicht garantiert werden)</h4>
           <CheckBox
@@ -888,6 +942,11 @@ export default function HelferForm() {
             isChecked={departmentWorkshop}
             inputChange={(value) => setDepartmentWorkshop(value)}
           />
+          <CheckBox
+            title={"Ehrengast Betreuung"}
+            isChecked={departmentSpecialGuest}
+            inputChange={(value) => setDepartmentSpecialGuest(value)}
+          />
 
           <InputOptionTextArea
             title="Sonstiges"
@@ -903,13 +962,13 @@ export default function HelferForm() {
           <h3>Einsatzzeiten</h3>
 
           <CheckBox
-            title="Ich möchte am Samstag arbeiten"
+            title="Ich möchte am Samstag helfen"
             isChecked={workingOnSaturday}
             inputChange={setWorkingOnSaturday}
           />
 
           <CheckBox
-            title="Ich möchte am Sonntag arbeiten"
+            title="Ich möchte am Sonntag helfen"
             isChecked={workingOnSunday}
             inputChange={setWorkingOnSunday}
           />
@@ -927,6 +986,7 @@ export default function HelferForm() {
           {getFieldError("preferredWorktime") && (
             <FieldErrorText>{getFieldError("preferredWorktime")}</FieldErrorText>
           )}
+          <p>Die genauen Zeiten geben wir wenige Wochen vor der YumeKai bekannt.</p>
 
           <Spacer />
           <h3>Richtlinien</h3>
