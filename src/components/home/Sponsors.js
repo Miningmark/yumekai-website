@@ -22,6 +22,7 @@ import crunchyrollImage from "/public/assets/images/sponsors/Crunchyroll_Orange_
 import paperToonsImage from "/public/assets/images/sponsors/Papertoons_logo.png";
 import cosplayConstelationsImage from "/public/assets/images/sponsors/Cosplay_Constellations.png";
 import cosmicMoonlightImage from "/public/assets/images/sponsors/cosmicmoonlight.jpg";
+import comicConDornbirnImage from "/public/assets/images/sponsors/CCD_Logo_V1.jpg";
 
 const sponsorList = [
   { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
@@ -47,6 +48,11 @@ const sponsorList = [
     image: cosmicMoonlightImage,
     alt: "Cosmic Moonlight",
     link: "https://www.cosmicmoonlight.com/i/links",
+  },
+  {
+    image: comicConDornbirnImage,
+    alt: "Comic Con Dornbirn",
+    link: "https://www.comiccondornbirn.at/",
   },
 ];
 
