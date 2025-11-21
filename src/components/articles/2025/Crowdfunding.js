@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {DynamicContent } from "@/components/styledComponents";
+import { DynamicContent } from "@/components/styledComponents";
 import { StyledLink } from "@/components/styledComponents";
 
 //Images
@@ -19,11 +19,7 @@ export default function Crowdfunding() {
           marginBottom: "20px",
         }}
       >
-        <DynamicContent
-          $widthpercent={25}
-          $align="center"
-          $justify="center"
-        >
+        <DynamicContent $widthpercent={25} $align="center" $justify="center">
           <Image
             src={HiruImage}
             alt="Crowdfunding Hiru"
@@ -37,14 +33,21 @@ export default function Crowdfunding() {
 
         <DynamicContent $widthpercent={75}>
           <h3>Hilf mit, die YumeKai 2026 Wirklichkeit werden zu lassen!</h3>
-         <p>Die YumeKai 2026 braucht deine Unterstützung! Wir sind auf einem spannenden Crowdfunding-Trip, um dieses einzigartige Event zu realisieren.
-        <br/><br/>
-            Bis zum 31. Dezember 2025 kannst du uns auf  <StyledLink href="/shop" target="_blank">
+          <p>
+            Die YumeKai 2026 braucht deine Unterstützung! Wir sind auf einem spannenden
+            Crowdfunding-Trip, um dieses einzigartige Event zu realisieren.
+            <br />
+            <br />
+            Bis zum 31. Dezember 2025 kannst du uns auf{" "}
+            <StyledLink href="/crowdfunding" target="_blank">
               YumeKai-Crowdfunding
-            </StyledLink> unterstützen und dafür tolle Belohnungen erhalten.
-            <br/><br/>
-            Jede Spende, egal wie klein, bringt uns näher an unser Ziel. Werde Teil der YumeKai-Community und hilf uns, ein unvergessliches Erlebnis zu schaffen!</p>
-
+            </StyledLink>{" "}
+            unterstützen und dafür tolle Belohnungen erhalten.
+            <br />
+            <br />
+            Jede Spende, egal wie klein, bringt uns näher an unser Ziel. Werde Teil der
+            YumeKai-Community und hilf uns, ein unvergessliches Erlebnis zu schaffen!
+          </p>
         </DynamicContent>
       </div>
     </>

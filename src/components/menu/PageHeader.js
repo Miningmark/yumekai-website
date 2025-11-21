@@ -33,7 +33,8 @@ const menuItems = [
       { name: "2025", path: "/review/yumekai-2025" },
     ],
   },
-  { name: "Crowdfunding", path: "/shop" },
+  { name: "Ticketshop", path: "/shop" },
+  { name: "Crowdfunding", path: "/crowdfunding" },
 ];
 
 const StyledHeader = styled.header`
