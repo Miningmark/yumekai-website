@@ -490,9 +490,9 @@ export default function CosplayCrafting() {
                   <StyledLink href="/datenschutz" target="_blank">
                     Datenschutzerklärung
                   </StyledLink>{" "}
-                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
-                  Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
-                  habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                  gelesen, verstanden. Ich stimme ihr zu und weiß, dass ich meine Einwilligung
+                  jederzeit widerrufen kann. Die entsprechenden Hinweise zum Widerruf habe ich
+                  ebenfalls zur Kenntnis genommen.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }

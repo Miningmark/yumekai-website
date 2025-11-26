@@ -540,7 +540,7 @@ export default function Exhibitor() {
             />
 
             <InputOptionInput
-              title="Name"
+              title="Vorname"
               inputText={name}
               inputChange={(value) => setName(value)}
               onBlur={() => handleBlur("name", name)}
@@ -723,9 +723,9 @@ export default function Exhibitor() {
                   <StyledLink href="/datenschutz" target="_blank">
                     Datenschutzerklärung
                   </StyledLink>{" "}
-                  gelesen, verstanden und akzeptiere diese. Ich habe verstanden, dass ich die
-                  Zustimmung zur Datenschutzerklärung jederzeit widerrufen kann. Über den Widerruf
-                  habe ich die Passage in der Datenschutzerklärung gelesen und verstanden.
+                  gelesen, verstanden. Ich stimme ihr zu und weiß, dass ich meine Einwilligung
+                  jederzeit widerrufen kann. Die entsprechenden Hinweise zum Widerruf habe ich
+                  ebenfalls zur Kenntnis genommen.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }
