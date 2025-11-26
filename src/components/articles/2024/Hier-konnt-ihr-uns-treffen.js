@@ -22,7 +22,7 @@ export default function HierKonntIhrUnsTreffen() {
                   <ul>
                     <li>29.11 - 30.11 ComicCon in Stuttgart</li>
                     <li>24.01 Manganacht in Memmingen</li>
-                    <li>14.02 - 15.02 ComicCon Dornbirn in Dornbirn</li>
+                    <li>14.02 - 15.02 ComicCon in Dornbirn</li>
                     <li>06.06 - 07.06 PopCon in Lindau</li>
                   </ul>
                 </>

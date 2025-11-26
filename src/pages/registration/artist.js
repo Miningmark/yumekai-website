@@ -728,7 +728,7 @@ export default function Artist() {
             )}
 
             <RadioButton
-              title="Stand Lage"
+              title="Standlage"
               names={LOCATION_OPTIONS.map((option) => option.label)}
               options={LOCATION_OPTIONS.map((option) => option.value)}
               selectedOption={location}
@@ -804,29 +804,33 @@ export default function Artist() {
             <ul>
               <li>
                 Standgröße:{" "}
-                {ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).label} (
-                {selectedStandCost.toFixed(2)}€)
+                {ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).label}{" "}
+                {selectedStandCost}€
               </li>
               {additionalExhibitorTicket > 0 && (
                 <li>
-                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST},00€ ={" "}
-                  {totalTicketCost.toFixed(2)}€
+                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST}€ ={" "}
+                  {totalTicketCost}€
                 </li>
               )}
-              {wlan && <li>W-Lan: {WLAN_COST},00€</li>}
+              {wlan && <li>WLAN: {WLAN_COST}€</li>}
               {programmBooklet !== "NO" && (
                 <li>
                   Programmheft:{" "}
                   {
                     PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet)
                       .label
-                  }{" "}
-                  ({totalProgrammBookletCost.toFixed(2)}€)
+                  }
                 </li>
               )}
             </ul>
 
-            <h4>Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl. MwSt.</h4>
+            <h4>
+              Gesamtbetrag: {totalCost}€ zzgl. MwSt.
+              <span style={{ fontSize: "0.9rem", display: "block", fontWeight: "normal" }}>
+                (Die finalen Standkosten können abweichen.)
+              </span>
+            </h4>
 
             <Spacer />
             <h2>Allgemeines</h2>

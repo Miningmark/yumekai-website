@@ -716,7 +716,7 @@ export default function Vendor() {
             )}
 
             <RadioButton
-              title="Stand Lage"
+              title="Standlage"
               names={LOCATION_OPTIONS.map((option) => option.label)}
               options={LOCATION_OPTIONS.map((option) => option.value)}
               selectedOption={location}
@@ -756,7 +756,7 @@ export default function Vendor() {
 
             <CheckBox
               title="strom"
-              content={`Strom - (${POWER_COST}€)`}
+              content={`Strom (${POWER_COST}€)`}
               isChecked={power}
               inputChange={(value) => setPower(value)}
               inputRef={refs.power}
@@ -764,7 +764,7 @@ export default function Vendor() {
 
             <CheckBox
               title="WLAN"
-              content={`WLAN für ein EC-Karten-/Kreditkartengerät - (${WLAN_COST}€)`}
+              content={`WLAN für ein EC-Karten-/Kreditkartengerät (${WLAN_COST}€)`}
               isChecked={wlan}
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}
@@ -812,24 +812,23 @@ export default function Vendor() {
               <li>
                 Standgröße:{" "}
                 {VENDOR_STANDSIZE_OPTIONS.find((option) => option.value === standSize).label}
-                {standSize !== "INDIVIDUAL" ? ` (${selectedStandCost.toFixed(2)} €)` : ""}
+                {standSize !== "INDIVIDUAL" ? ` ${selectedStandCost} €` : ""}
               </li>
               {additionalExhibitorTicket > 0 && (
                 <li>
                   Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST},00€ ={" "}
-                  {totalTicketCost.toFixed(2)}€
+                  {totalTicketCost}€
                 </li>
               )}
-              {power && <li>Strom: {POWER_COST},00€</li>}
-              {wlan && <li>W-Lan: {WLAN_COST},00€</li>}
+              {power && <li>Strom: {POWER_COST}€</li>}
+              {wlan && <li>WLAN: {WLAN_COST}€</li>}
               {programmBooklet !== "NO" && (
                 <li>
                   Programmheft:{" "}
                   {
                     PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet)
                       .label
-                  }{" "}
-                  ({totalProgrammBookletCost.toFixed(2)}€)
+                  }
                 </li>
               )}
             </ul>
@@ -837,6 +836,9 @@ export default function Vendor() {
             <h4>
               Gesamtbetrag: {totalCost.toFixed(2)}€ zzgl. MwSt.
               {standSize === "INDIVIDUAL" && " und Standkosten"}
+              <span style={{ fontSize: "0.9rem", display: "block", fontWeight: "normal" }}>
+                (Die finalen Standkosten können abweichen.)
+              </span>
             </h4>
 
             <Spacer />

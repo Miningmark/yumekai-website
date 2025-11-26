@@ -38,9 +38,9 @@ export const LOCATION_OPTIONS = [
 
 export const PROGRAMM_BOOKLET_OPTIONS = [
   { label: "Nein", value: "NO", price: 0 },
-  { label: "Viertel Seite (35€)", value: "QUARTER_SITE", price: 35 },
-  { label: "Halbe Seite (50€)", value: "HALF_SITE", price: 50 },
-  { label: "Ganze Seite (85€)", value: "FULL_SITE", price: 85 },
+  { label: "Viertel Seite 35€", value: "QUARTER_SITE", price: 35 },
+  { label: "Halbe Seite 50€", value: "HALF_SITE", price: 50 },
+  { label: "Ganze Seite 85€", value: "FULL_SITE", price: 85 },
 ];
 
 export const VENDOR_STANDSIZE_OPTIONS = [
