@@ -429,7 +429,7 @@ export default function HelferForm() {
     formData.append("foodDetails", foodDetails.trim());
     formData.append("myStrengths", myStrengths.trim());
     formData.append("talents", talents.trim());
-    formData.append("desiredAreas", desiredAreas);
+    formData.append("desiredAreas", JSON.stringify(desiredAreas));
     formData.append("message", other.trim());
     formData.append("fridayConstruction", fridayConstruction);
     formData.append("saturdayConstruction", saturdayConstruction);

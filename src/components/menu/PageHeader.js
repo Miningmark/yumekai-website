@@ -29,7 +29,7 @@ const menuItems = [
     //path: "/review/yumekai-2024",
     subItems: [
       { name: "2024", path: "/review/yumekai-2024" },
-      { name: "Night-II", path: "/review/yumekai-night-II-2024" },
+      { name: "Night-II", path: "/review/yumekai-night-ii-2024" },
       { name: "2025", path: "/review/yumekai-2025" },
     ],
   },
