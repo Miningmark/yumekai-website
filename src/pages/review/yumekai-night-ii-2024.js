@@ -1,12 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 
 //Components
 import { Spacer, SpacerEmpty, StyledLink } from "@/components/styledComponents";
-import Columns2 from "@/components/elements/Columns2";
-import ImageCarousel from "@/components/elements/ImageCarousel";
 
 //Images
 import yumekainight21Image from "/public/assets/images/yumekai-night-2-2024/yumekai-night-2-1.jpg";
@@ -20,8 +17,6 @@ import yumekainight26Image from "/public/assets/images/yumekai-night-2-2024/yume
 import yumekainight27Image from "/public/assets/images/yumekai-night-2-2024/yumekai-night-2-7.jpg";
 import yumekainight28Image from "/public/assets/images/yumekai-night-2-2024/yumekai-night-2-8.jpg";
 import yumekainight29Image from "/public/assets/images/yumekai-night-2-2024/yumekai-night-2-9.jpg";
-
-import yumekainight2cosplaywettbewerbImage from "/public/assets/images/yumekai-night-2-2024/yumekai-night-2-cosplaywettbewerb.jpg";
 
 import evelynImage from "/public/assets/images/yumekai-night-2-2024/Evelyn.jpg";
 import palelittledragonImage from "/public/assets/images/yumekai-night-2-2024/PaleLittleDragon.jpg";
