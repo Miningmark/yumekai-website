@@ -23,9 +23,9 @@ export default function validateString(
   } else {
     if (value || value.trim()) {
       if (value.length < minLength)
-        return { check: false, description: `${fieldName} ist zu kurz min. ${minLength} Zeichen` };
+        return { check: false, description: `${fieldName} ist zu kurz, min. ${minLength} Zeichen` };
       if (value.length > maxLength)
-        return { check: false, description: `${fieldName} ist zu lang max. ${maxLength} Zeichen` };
+        return { check: false, description: `${fieldName} ist zu lang, max. ${maxLength} Zeichen` };
     }
   }
   return { check: true, description: "" };

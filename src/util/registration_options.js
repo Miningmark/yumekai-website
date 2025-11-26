@@ -129,6 +129,17 @@ export const PREFERRED_WORKTIME_OPTIONS = [
   { value: 3, label: "Kein besonderer wunsch" },
 ];
 
+export const DEPARTMENT_OPTIONS = [
+  { value: "admissionControl", label: "Einlasskontrolle" },
+  { value: "weaponCheck", label: "Waffencheck" },
+  { value: "stage", label: "Bühne" },
+  { value: "jumper", label: "Springer" },
+  { value: "karaoke", label: "Karaoke" },
+  { value: "basar", label: "Bring & Buy" },
+  { value: "workshop", label: "Workshop" },
+  { value: "others", label: "Egal, mir gefällt alles" },
+];
+
 export function checkRegistrationPeriod(startDate, endDate) {
   const now = new Date();
 

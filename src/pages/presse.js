@@ -497,11 +497,11 @@ export default function Presse() {
             )}
             <p style={{ marginTop: "-10px", fontSize: "0.9rem", color: "#666" }}>
               (Pressenachweis, einen schriftlichen Auftrag deines Chefredakteurs oder einen Nachweis
-              über Fanprojekte, über welche du schreibst)
+              über Fanprojekte, über welche Sie schreiben)
             </p>
 
             <InputOptionTextArea
-              title="Möchtest du uns noch etwas mitteilen?"
+              title="Möchten Sie uns noch etwas mitteilen?"
               inputText={message}
               inputChange={(value) => setMessage(value)}
               onBlur={() => handleBlur("message", message)}

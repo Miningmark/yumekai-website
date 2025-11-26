@@ -29,6 +29,7 @@ import {
   FOOD_PREFERENCE_OPTIONS,
   EVENT_ID,
   PREFERRED_WORKTIME_OPTIONS,
+  DEPARTMENT_OPTIONS,
 } from "@/util/registration_options";
 
 const FieldErrorText = styled(ErrorText)`
@@ -79,14 +80,7 @@ export default function HelferForm() {
   const [qualificationsWorkExperience, setQualificationsWorkExperience] = useState("");
   const [myStrengths, setMyStrengths] = useState("");
   const [talents, setTalents] = useState("");
-  const [departmentAdmission, setDepartmentAdmission] = useState(false);
-  const [departmentWeaponsCheck, setDepartmentWeaponsCheck] = useState(false);
-  const [departmentStage, setDepartmentStage] = useState(false);
-  const [departmentSpringer, setDepartmentSpringer] = useState(false);
-  const [departmentKaraoke, setDepartmentKaraoke] = useState(false);
-  const [departmentBringAndBay, setDepartmentBringAndBay] = useState(false);
-  const [departmentWorkshop, setDepartmentWorkshop] = useState(false);
-  const [departmentSpecialGuest, setDepartmentSpecialGuest] = useState(false);
+  const [selectedDepartments, setSelectedDepartments] = useState([]);
   const [other, setOther] = useState("");
 
   const [workingOnSaturday, setWorkingOnSaturday] = useState(false);
@@ -409,20 +403,7 @@ export default function HelferForm() {
 
     setLoading(true);
 
-    const desiredAreas =
-      [
-        departmentAdmission && "Einlasskontrolle",
-        departmentWeaponsCheck && "Waffencheck",
-        departmentStage && "Bühne",
-        departmentSpringer && "Springer",
-        departmentKaraoke && "Karaoke",
-        departmentBringAndBay && "Bring & Buy",
-        departmentWorkshop && "Workshop",
-        departmentSpecialGuest && "Ehrengast betreuung",
-      ]
-        .filter(Boolean)
-        .join(", ")
-        .trim() || "Kein Wunschteam";
+    const desiredAreas = selectedDepartments;
 
     const formData = new FormData();
     formData.append("eventId", eventId);
@@ -500,14 +481,7 @@ export default function HelferForm() {
         setFoodDetails("");
         setMyStrengths("");
         setTalents("");
-        setDepartmentAdmission(false);
-        setDepartmentWeaponsCheck(false);
-        setDepartmentStage(false);
-        setDepartmentSpringer(false);
-        setDepartmentKaraoke(false);
-        setDepartmentBringAndBay(false);
-        setDepartmentWorkshop(false);
-        setDepartmentSpecialGuest(false);
+        setSelectedDepartments([]);
         setOther("");
         setSaturdayConstruction(false);
         setSundayDeconstruction(false);
@@ -574,6 +548,14 @@ export default function HelferForm() {
       }));
     }
   }
+
+  const handleDepartmentChange = (value, isChecked) => {
+    if (isChecked) {
+      setSelectedDepartments((prev) => [...prev, value]);
+    } else {
+      setSelectedDepartments((prev) => prev.filter((dept) => dept !== value));
+    }
+  };
 
   return (
     <>
@@ -916,46 +898,14 @@ export default function HelferForm() {
           {getFieldError("talents") && <FieldErrorText>{getFieldError("talents")}</FieldErrorText>}
 
           <h4>Wunschteam (kann nicht garantiert werden)</h4>
-          <CheckBox
-            title={"Einlasskontrolle"}
-            isChecked={departmentAdmission}
-            inputChange={(value) => setDepartmentAdmission(value)}
-          />
-          <CheckBox
-            title={"Waffencheck"}
-            isChecked={departmentWeaponsCheck}
-            inputChange={(value) => setDepartmentWeaponsCheck(value)}
-          />
-          <CheckBox
-            title={"Bühne"}
-            isChecked={departmentStage}
-            inputChange={(value) => setDepartmentStage(value)}
-          />
-          <CheckBox
-            title={"Springer"}
-            isChecked={departmentSpringer}
-            inputChange={(value) => setDepartmentSpringer(value)}
-          />
-          <CheckBox
-            title={"Karaoke"}
-            isChecked={departmentKaraoke}
-            inputChange={(value) => setDepartmentKaraoke(value)}
-          />
-          <CheckBox
-            title={"Bring & Buy"}
-            isChecked={departmentBringAndBay}
-            inputChange={(value) => setDepartmentBringAndBay(value)}
-          />
-          <CheckBox
-            title={"Workshop"}
-            isChecked={departmentWorkshop}
-            inputChange={(value) => setDepartmentWorkshop(value)}
-          />
-          <CheckBox
-            title={"Ehrengast Betreuung"}
-            isChecked={departmentSpecialGuest}
-            inputChange={(value) => setDepartmentSpecialGuest(value)}
-          />
+          {DEPARTMENT_OPTIONS.map((dept) => (
+            <CheckBox
+              key={dept.value}
+              title={dept.label}
+              isChecked={selectedDepartments.includes(dept.value)}
+              inputChange={(checked) => handleDepartmentChange(dept.value, checked)}
+            />
+          ))}
 
           <InputOptionTextArea
             title="Sonstiges"
