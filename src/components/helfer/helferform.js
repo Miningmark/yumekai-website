@@ -96,7 +96,7 @@ export default function HelferForm() {
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [contactForwarding, setContactForwarding] = useState(false);
   const [dataStoragePolicy, setDataStoragePolicy] = useState(false);
-  const [registrationReminder, setRegistrationReminder] = useState(true);
+  const [registrationReminder, setRegistrationReminder] = useState(false);
 
   const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
