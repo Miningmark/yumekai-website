@@ -50,7 +50,7 @@ export const VENDOR_STANDSIZE_OPTIONS = [
   { label: "2m x 5m", value: "2X5", price: 10 },
   { label: "2m x 6m", value: "2X6", price: 12 },
   { label: "2m x 7m", value: "2X7", price: 14 },
-  { label: "Individuel (Preis auf Anfrage)", value: "INDIVIDUAL", price: 0 },
+  { label: "Individuell (Preis auf Anfrage)", value: "INDIVIDUAL", price: 0 },
 ];
 
 export const ARTIST_STANDSIZE_OPTIONS = [
@@ -121,6 +121,12 @@ export const FOOD_PREFERENCE_OPTIONS = [
   { value: "normal", label: "Normal" },
   { value: "vegetarisch", label: "Vegetarisch" },
   { value: "vegan", label: "Vegan" },
+];
+
+export const PREFERRED_WORKTIME_OPTIONS = [
+  { value: 1, label: "Morgens - früher Nachmittag" },
+  { value: 2, label: "Früher Nachmittag - Abends" },
+  { value: 3, label: "Kein besonderer wunsch" },
 ];
 
 export function checkRegistrationPeriod(startDate, endDate) {

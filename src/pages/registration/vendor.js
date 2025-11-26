@@ -598,7 +598,7 @@ export default function Vendor() {
             />
 
             <InputOptionInput
-              title="Name"
+              title="Vorname"
               inputText={name}
               inputChange={(value) => setName(value)}
               onBlur={() => handleBlur("name", name)}
@@ -633,7 +633,7 @@ export default function Vendor() {
             {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
 
             <InputOptionInput
-              title="E-Mail Bestätigen"
+              title="E-Mail bestätigen"
               inputText={confirmEmail}
               inputChange={setConfirmEmail}
               onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
@@ -741,7 +741,7 @@ export default function Vendor() {
 
             <InputOptionInput
               type="number"
-              title={`Zusätzliches Ausstellerticket (je ${TICKET_COST}€)`}
+              title={`Zusätzliche Ausstellertickets (je ${TICKET_COST}€)`}
               inputText={additionalExhibitorTicket}
               inputChange={(value) => setAdditionalExhibitorTicket(value)}
               onBlur={() => handleBlur("additionalExhibitorTicket", additionalExhibitorTicket)}
@@ -763,13 +763,13 @@ export default function Vendor() {
             />
 
             <CheckBox
-              title="wlan"
-              content={`W-lan für ein EC-Karten-/Kreditkartengerät - (${WLAN_COST}€)`}
+              title="WLAN"
+              content={`WLAN für ein EC-Karten-/Kreditkartengerät - (${WLAN_COST}€)`}
               isChecked={wlan}
               inputChange={(value) => setWlan(value)}
               inputRef={refs.wlan}
             />
-            <p>Der Wlan-Zugang wird von einem YumeKai-Helfer auf den Geräten eingerichtet.</p>
+            <p>Der WLAN-Zugang wird von einem YumeKai-Helfer auf den Geräten eingerichtet.</p>
 
             <RadioButton
               title={
@@ -843,7 +843,7 @@ export default function Vendor() {
             <h2>Allgemeines</h2>
 
             <InputOptionInput
-              title="Website"
+              title="Webseite"
               inputText={website}
               inputChange={setWebsite}
               onBlur={() => handleBlur("website", website)}
@@ -867,7 +867,7 @@ export default function Vendor() {
             )}
 
             <InputOptionTextArea
-              title="Nachricht"
+              title="Möchtest du uns noch etwas mitteilen?"
               inputText={message}
               inputChange={setMessage}
               onBlur={() => handleBlur("message", message)}

@@ -67,7 +67,7 @@ export default function AddressFields({
       )}
 
       <InputOptionInput
-        title="Ort"
+        title="Stadt"
         inputText={data.city}
         inputChange={(value) => onChange("city", value)}
         onBlur={() => handleFieldBlur("city", data.city)}

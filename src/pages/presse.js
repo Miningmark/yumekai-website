@@ -501,7 +501,7 @@ export default function Presse() {
             </p>
 
             <InputOptionTextArea
-              title="Nachricht"
+              title="Möchtest du uns noch etwas mitteilen?"
               inputText={message}
               inputChange={(value) => setMessage(value)}
               onBlur={() => handleBlur("message", message)}
@@ -514,7 +514,7 @@ export default function Presse() {
             )}
 
             <InputOptionInput
-              title="Website"
+              title="Webseite"
               inputText={website}
               inputChange={setWebsite}
               onBlur={() => handleBlur("website", website)}

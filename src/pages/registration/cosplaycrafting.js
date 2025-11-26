@@ -468,7 +468,7 @@ export default function CosplayCrafting() {
             )}
 
             <InputOptionTextArea
-              title="Nachricht"
+              title="Möchtest du uns noch etwas mitteilen?"
               inputText={message}
               inputChange={setMessage}
               onBlur={() => handleBlur("message", message)}

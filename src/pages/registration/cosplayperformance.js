@@ -576,7 +576,7 @@ export default function CosplayPerformance() {
             {fileError3 && <ErrorText style={{ textAlign: "center" }}>{fileError3}</ErrorText>}
 
             <InputOptionTextArea
-              title="Nachricht"
+              title="Möchtest du uns noch etwas mitteilen?"
               inputText={message}
               inputChange={setMessage}
               onBlur={() => handleBlur("message", message)}

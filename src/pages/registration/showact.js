@@ -951,7 +951,7 @@ export default function Showact() {
             <h2>Allgemeines</h2>
 
             <InputOptionInput
-              title="Website"
+              title="Webseite"
               inputText={website}
               inputChange={setWebsite}
               onBlur={() => handleBlur("website", website)}
@@ -975,7 +975,7 @@ export default function Showact() {
             )}
 
             <InputOptionTextArea
-              title="Nachricht"
+              title="Möchtest du uns noch etwas mitteilen?"
               inputText={message}
               inputChange={setMessage}
               onBlur={() => handleBlur("message", message)}

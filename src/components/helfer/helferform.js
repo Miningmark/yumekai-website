@@ -28,6 +28,7 @@ import {
   ARRIVAL_OPTIONS,
   FOOD_PREFERENCE_OPTIONS,
   EVENT_ID,
+  PREFERRED_WORKTIME_OPTIONS,
 } from "@/util/registration_options";
 
 const FieldErrorText = styled(ErrorText)`
@@ -38,11 +39,6 @@ const FieldErrorText = styled(ErrorText)`
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const MAX_IMAGE_SIZE_MB = 10;
-
-const PREFERRED_WORKTIME_OPTIONS = [
-  { value: "Schicht 1", label: "Morgens - früher Nachmittag" },
-  { value: "Schicht 2", label: "früher Nachmittag - Abends" },
-];
 
 const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
@@ -57,7 +53,7 @@ export default function HelferForm() {
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [birthdate, setBirthdate] = useState("");
+  const [birthday, setBirthday] = useState("");
   const [discordName, setDiscordName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [file, setFile] = useState(null);
@@ -99,6 +95,8 @@ export default function HelferForm() {
 
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [contactForwarding, setContactForwarding] = useState(false);
+  const [dataStoragePolicy, setDataStoragePolicy] = useState(false);
+  const [registrationReminder, setRegistrationReminder] = useState(true);
 
   const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
@@ -123,6 +121,8 @@ export default function HelferForm() {
     phoneNumber: useRef(null),
     privacyPolicy: useRef(null),
     contactForwarding: useRef(null),
+    dataStoragePolicy: useRef(null),
+    registrationReminder: useRef(null),
     clothSize: useRef(null),
     arrival: useRef(null),
     foodPreferences: useRef(null),
@@ -301,6 +301,10 @@ export default function HelferForm() {
       case "contactForwarding":
         if (!value) error = "Kontaktweitergabe muss akzeptiert werden";
         break;
+
+      case "dataStoragePolicy":
+        if (!value) error = "Datenaufbewahrung muss akzeptiert werden";
+        break;
     }
 
     return error;
@@ -333,7 +337,7 @@ export default function HelferForm() {
     errors.nickName = validateSingleField("nickName", nickName);
     errors.email = validateSingleField("email", email);
     errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
-    errors.birthdate = validateSingleField("birthdate", birthdate);
+    errors.birthdate = validateSingleField("birthdate", birthday);
     errors.discordName = validateSingleField("discordName", discordName);
     errors.phoneNumber = validateSingleField("phoneNumber", phoneNumber);
 
@@ -368,6 +372,7 @@ export default function HelferForm() {
     // Bedingungen
     errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
     errors.contactForwarding = validateSingleField("contactForwarding", contactForwarding);
+    errors.dataStoragePolicy = validateSingleField("dataStoragePolicy", dataStoragePolicy);
 
     // Filtere null-Werte heraus
     Object.keys(errors).forEach((key) => {
@@ -426,7 +431,7 @@ export default function HelferForm() {
     formData.append("lastName", lastName.trim());
     formData.append("nickName", nickName.trim());
     formData.append("discordName", discordName.trim());
-    formData.append("birthdate", birthdate);
+    formData.append("birthday", birthday);
     formData.append("email", email.trim().toLowerCase());
     formData.append("phoneNumber", phoneNumber.trim());
     formData.append("street", street.trim());
@@ -444,7 +449,7 @@ export default function HelferForm() {
     formData.append("myStrengths", myStrengths.trim());
     formData.append("talents", talents.trim());
     formData.append("desiredAreas", desiredAreas);
-    formData.append("other", other.trim());
+    formData.append("message", other.trim());
     formData.append("fridayConstruction", fridayConstruction);
     formData.append("saturdayConstruction", saturdayConstruction);
     formData.append("sundayDeconstruction", sundayDeconstruction);
@@ -452,7 +457,9 @@ export default function HelferForm() {
     formData.append("workingOnSunday", workingOnSunday);
     formData.append("preferredWorktime", preferredWorktime);
     formData.append("privacyPolicy", privacyPolicy);
-    formData.append("contactForwarding", contactForwarding);
+    formData.append("internalContactForwardingPolicy", contactForwarding);
+    formData.append("dataStoragePolicy", dataStoragePolicy);
+    formData.append("registrationReminder", registrationReminder);
     formData.append("helperImage", file);
 
     try {
@@ -475,7 +482,7 @@ export default function HelferForm() {
         setLastName("");
         setNickName("");
         setDiscordName("");
-        setBirthdate("");
+        setBirthday("");
         setEmail("");
         setConfirmEmail("");
         setPhoneNumber("");
@@ -510,6 +517,8 @@ export default function HelferForm() {
         setPreferredWorktime("");
         setPrivacyPolicy(false);
         setContactForwarding(false);
+        setDataStoragePolicy(false);
+        setRegistrationReminder(false);
         setFile(null);
         setPreviewUrl(null);
         setFieldErrors({});
@@ -653,9 +662,9 @@ export default function HelferForm() {
 
           <InputOptionInput
             title="Geburtsdatum"
-            inputText={birthdate}
-            inputChange={(value) => setBirthdate(value)}
-            onBlur={() => handleBlur("birthdate", birthdate)}
+            inputText={birthday}
+            inputChange={(value) => setBirthday(value)}
+            onBlur={() => handleBlur("birthdate", birthday)}
             type="date"
             inputRef={refs.birthdate}
             isError={!!getFieldError("birthdate")}
@@ -809,7 +818,7 @@ export default function HelferForm() {
           />
           {getFieldError("arrival") && <FieldErrorText>{getFieldError("arrival")}</FieldErrorText>}
 
-          {arrival === "Auto" && (
+          {arrival === "car" && (
             <CheckBox
               title="Parkticket benötigt"
               isChecked={parkingTicketRequired}
@@ -1041,6 +1050,50 @@ export default function HelferForm() {
           />
           {getFieldError("contactForwarding") && (
             <FieldErrorText>{getFieldError("contactForwarding")}</FieldErrorText>
+          )}
+
+          <CheckBox
+            title="dataStoragePolicy"
+            content={
+              <p>
+                Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
+                elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung an
+                die zuständigen Bereiche weitergeleitet werden dürfen.{" "}
+                <RequiredNote>*</RequiredNote>
+              </p>
+            }
+            isChecked={dataStoragePolicy}
+            inputChange={(value) => {
+              setDataStoragePolicy(value);
+              if (touchedFields.dataStoragePolicy) {
+                handleBlur("dataStoragePolicy", value);
+              }
+            }}
+            inputRef={refs.dataStoragePolicy}
+            isError={!!getFieldError("dataStoragePolicy")}
+            require
+          />
+          {getFieldError("dataStoragePolicy") && (
+            <FieldErrorText>{getFieldError("dataStoragePolicy")}</FieldErrorText>
+          )}
+
+          <CheckBox
+            title="registrationReminder"
+            content={
+              <p>
+                Ich möchte eine Erinnerungs-E-Mail erhalten, für die Anmeldungseröffnung der YumeKai
+                2027.
+              </p>
+            }
+            isChecked={registrationReminder}
+            inputChange={(value) => setRegistrationReminder(value)}
+            inputRef={refs.registrationReminder}
+          />
+
+          {fieldErrors.general && (
+            <ErrorText style={{ marginTop: "1rem", textAlign: "center" }}>
+              {fieldErrors.general}
+            </ErrorText>
           )}
 
           {fieldErrors.general && (
