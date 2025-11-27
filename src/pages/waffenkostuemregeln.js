@@ -45,11 +45,12 @@ export default function Waffenkostuemregeln() {
             title: "YumeKai",
             content: <YumeKaiRules />,
           },
-          {
+        ]}
+
+        /* 
             title: "YumeKai - Night",
             content: <YumeKaiNightRules />,
-          },
-        ]}
+          */
       />
     </>
   );

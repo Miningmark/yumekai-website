@@ -63,8 +63,8 @@ export default function Projects() {
           <>
             <h2>YumeKai</h2>
             <p>
-              Die YumeKai ist eine regelmäßige Veranstaltung im Süden Bayerns, die Fans der
-              japanischen und asiatischen Popkultur durch ein breites Programm aus Kultur,
+              Die YumeKai ist eine jährliche Veranstaltung im Süden Bayerns, die Fans der
+              asiatischen und vor allem japanischen Popkultur durch ein breites Programm aus Kultur,
               Bühnenauftritten, Workshops und Händlern zusammenbringt, um gemeinsame Leidenschaften
               zu teilen und kulturelle Begegnungen zu fördern.
             </p>
@@ -77,7 +77,7 @@ export default function Projects() {
           <>
             <h2>YumeKai Night</h2>
             <p>
-              Die YumeKai – Night ist eine abendliche Veranstaltung im Süden Bayerns, die asiatische
+              Die YumeKai - Night ist eine abendliche Veranstaltung im Süden Bayerns, die asiatische
               Musik, Gaming und Cosplay in den Mittelpunkt stellt. Tauche ein in die Popkultur,
               feiere zu J-Pop, K-Pop und deutschen Anime-Openings, und genieße eine unvergessliche
               Nacht mit Gleichgesinnten.
