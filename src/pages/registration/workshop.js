@@ -588,8 +588,8 @@ export default function Workshop() {
       </p>
       <p>
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
-        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutze unser{" "}
-        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> wenden oder unser{" "}
+        <StyledLink href="/kontaktformular">Kontaktformular verwenden.</StyledLink>.
       </p>
 
       <h2>Die Anmeldung als Workshop-Leiter ist momentan geschlossen.(TEST-Modus)</h2>
