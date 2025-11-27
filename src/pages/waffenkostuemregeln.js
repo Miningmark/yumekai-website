@@ -28,7 +28,7 @@ export default function Waffenkostuemregeln() {
       <p>
         Um Diskussionen am Waffencheck vorzubeugen, halten sich unsere Helfer*innen genau an die
         Vorgaben bezüglich der Waffenlänge. Unabhängig davon, ob es sich um 1 cm oder 10 cm
-        Überlänge handelt – Ausnahmen werden keine gemacht. Außerdem kann es vorkommen, dass
+        Überlänge handelt - Ausnahmen werden keine gemacht. Außerdem kann es vorkommen, dass
         ähnliche Waffen, wie z. B. Lichtschwerter, im Einzelfall unterschiedlich beurteilt werden
         (Nicht was die Länge angeht). Diese Entscheidungen erfolgen hauptsächlich aus
         Sicherheitsgründen wegen z. B. scharfen Kanten oder ähnlichem.
