@@ -536,9 +536,8 @@ export default function Presse() {
                   <StyledLink href="/datenschutz" target="_blank">
                     Datenschutzerklärung
                   </StyledLink>{" "}
-                  gelesen, verstanden. Ich stimme ihr zu und weiß, dass ich meine Einwilligung
-                  jederzeit widerrufen kann. Die entsprechenden Hinweise zum Widerruf habe ich
-                  ebenfalls zur Kenntnis genommen.
+                  gelesen, verstanden, und bin mir bewusst, dass ich meine Einwilligung jederzeit
+                  widerrufen kann.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }
@@ -561,9 +560,9 @@ export default function Presse() {
               title="dataStorage"
               content={
                 <p>
-                  Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
-                  elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung
-                  an die zuständigen Bereiche weitergeleitet werden dürfen.
+                  Ich willige ein, dass meine Daten von der Firma Dreamfly-Events UG elektronisch
+                  gespeichert und zum Zweck der Veranstaltungsdurchführung an die zuständigen
+                  Bereiche weitergegeben werden.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }

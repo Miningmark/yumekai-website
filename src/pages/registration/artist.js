@@ -882,9 +882,8 @@ export default function Artist() {
                   <StyledLink href="/datenschutz" target="_blank">
                     Datenschutzerklärung
                   </StyledLink>{" "}
-                  gelesen, verstanden. Ich stimme ihr zu und weiß, dass ich meine Einwilligung
-                  jederzeit widerrufen kann. Die entsprechenden Hinweise zum Widerruf habe ich
-                  ebenfalls zur Kenntnis genommen.
+                  gelesen, verstanden, und bin mir bewusst, dass ich meine Einwilligung jederzeit
+                  widerrufen kann.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }
@@ -907,9 +906,9 @@ export default function Artist() {
               title="dataStorage"
               content={
                 <p>
-                  Ich bin damit einverstanden, dass meine Daten durch die Dreamfly-Events UG
-                  elektronisch gespeichert werden und zum Zweck der Durchführung der Veranstaltung
-                  an die zuständigen Bereiche weitergeleitet werden dürfen.
+                  Ich willige ein, dass meine Daten von der Firma Dreamfly-Events UG elektronisch
+                  gespeichert und zum Zweck der Veranstaltungsdurchführung an die zuständigen
+                  Bereiche weitergegeben werden.
                   <RequiredNote>*</RequiredNote>
                 </p>
               }
@@ -955,12 +954,11 @@ export default function Artist() {
               title="pictureRights"
               content={
                 <p>
-                  Hiermit bestätige ich, dass die Bildrechte der hochgeladenen Bilder bei mir
-                  liegen. Ich bin damit einverstanden und genehmige der Dreamfly-Events UG das hier
-                  eingereichte Bildmaterial zu ihren Zwecken sowohl digital als auch in gedruckter
-                  Form (z.B. Werbung, Social Media, Programmheft, Webseite, etc.) nutzen zu dürfen.
-                  Alternativ - sofern kein Bildmaterial hochgeladen worden ist - dass kein
-                  Bildmaterial eingereicht wurde.<RequiredNote>*</RequiredNote>
+                  Ich versichere, dass ich der alleinige Rechteinhaber des eingereichten
+                  Bildmaterials bin. Ich übertrage der Firma Dreamfly-Events UG das nicht-exklusive
+                  Nutzungsrecht für sämtliche gegenwärtigen und zukünftigen Zwecke, einschließlich,
+                  aber nicht beschränkt auf, Online-Marketing, Social Media, Werbematerialien und
+                  Printpublikationen.<RequiredNote>*</RequiredNote>
                 </p>
               }
               isChecked={pictureRights}
