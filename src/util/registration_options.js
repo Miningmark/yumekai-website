@@ -97,8 +97,8 @@ export const GENDER_OPTIONS = [
 
 export const SHOWACT_ACCOMODATION_OPTIONS = [
   "Nicht benötigt",
-  "wäre gut, aber nicht notwendig",
-  "zwingend benötigt",
+  "Wäre gut, aber nicht notwendig",
+  "Zwingend benötigt",
 ];
 
 export const CLOTHES_SIZE_OPTIONS = [
