@@ -45,7 +45,7 @@ const FieldErrorText = styled(ErrorText)`
 `;
 
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
-const MAX_IMAGE_SIZE_MB = 50;
+const MAX_IMAGE_SIZE_MB = 5;
 
 const isImageFile = (fileName) => {
   return ACCEPTED_IMAGE_EXTENSIONS.some((ext) => fileName.toLowerCase().endsWith(ext));
@@ -449,15 +449,17 @@ export default function Vendor() {
         setPreviewUrl(null);
         setFieldErrors({});
         setTouchedFields({});
+      } else {
+        setFieldErrors({
+          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal. 123",
+        });
       }
     } catch (error) {
       setFieldErrors({
         general:
           error.response?.data?.message ||
-          "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.333",
+          "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
       });
-      console.error("Fehler beim Absenden der Anmeldung:", error);
-      console.error(error.response?.data?.message || "Test Error");
     }
     setLoading(false);
   }
