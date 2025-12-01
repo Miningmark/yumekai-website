@@ -449,10 +449,6 @@ export default function Vendor() {
         setPreviewUrl(null);
         setFieldErrors({});
         setTouchedFields({});
-      } else {
-        setFieldErrors({
-          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal. 123",
-        });
       }
     } catch (error) {
       setFieldErrors({
