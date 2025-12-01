@@ -451,15 +451,14 @@ export default function Vendor() {
         setTouchedFields({});
       } else {
         setFieldErrors({
-          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal. 123",
         });
-        console.error("Fehler beim Absenden der Anmeldung:", error);
       }
     } catch (error) {
       setFieldErrors({
         general:
           error.response?.data?.message ||
-          "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+          "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.333",
       });
       console.error("Fehler beim Absenden der Anmeldung:", error);
       console.error(error.response?.data?.message || "Test Error");
