@@ -200,9 +200,24 @@ const InfoText = styled.p`
 `;
 
 /**
+ * Hilfsfunktion zum Ermitteln des MIME-Types aus dem Dateinamen
+ */
+const getMimeTypeFromFileName = (fileName) => {
+  const extension = fileName.toLowerCase().split(".").pop();
+  const mimeTypes = {
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    png: "image/png",
+    webp: "image/webp",
+    gif: "image/gif",
+  };
+  return mimeTypes[extension] || "image/png";
+};
+
+/**
  * Hilfsfunktion zum Erstellen eines gecroppten Bildes
  */
-const createCroppedImage = async (imageSrc, pixelCrop) => {
+const createCroppedImage = async (imageSrc, pixelCrop, mimeType = "image/png") => {
   const image = await createImage(imageSrc);
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -223,7 +238,10 @@ const createCroppedImage = async (imageSrc, pixelCrop) => {
     pixelCrop.height
   );
 
-  // Konvertiere Canvas zu Blob (PNG)
+  // Qualität: 0.95 für JPEG, wird bei PNG ignoriert
+  const quality = mimeType === "image/jpeg" ? 0.95 : 1;
+
+  // Konvertiere Canvas zu Blob mit dem Original-MIME-Type
   return new Promise((resolve, reject) => {
     canvas.toBlob(
       (blob) => {
@@ -233,8 +251,8 @@ const createCroppedImage = async (imageSrc, pixelCrop) => {
         }
         resolve(blob);
       },
-      "image/png",
-      1
+      mimeType,
+      quality
     );
   });
 };
@@ -274,11 +292,14 @@ const ImageCropModal = ({ imageUrl, onCropComplete, onCancel, fileName = "croppe
     try {
       setIsProcessing(true);
 
-      // Erstelle das gecropte Bild
-      const croppedBlob = await createCroppedImage(imageUrl, croppedAreaPixels);
+      // Ermittle den MIME-Type aus dem Dateinamen
+      const mimeType = getMimeTypeFromFileName(fileName);
 
-      // Erstelle ein File-Objekt aus dem Blob
-      const croppedFile = new File([croppedBlob], fileName, { type: "image/png" });
+      // Erstelle das gecropte Bild mit dem Original-MIME-Type
+      const croppedBlob = await createCroppedImage(imageUrl, croppedAreaPixels, mimeType);
+
+      // Erstelle ein File-Objekt aus dem Blob mit dem Original-Typ
+      const croppedFile = new File([croppedBlob], fileName, { type: mimeType });
 
       // Erstelle eine Vorschau-URL
       const previewUrl = URL.createObjectURL(croppedBlob);
