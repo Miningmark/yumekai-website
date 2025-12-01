@@ -457,9 +457,12 @@ export default function Vendor() {
       }
     } catch (error) {
       setFieldErrors({
-        general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+        general:
+          error.response?.data?.message ||
+          "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
       });
       console.error("Fehler beim Absenden der Anmeldung:", error);
+      console.error(error.response?.data?.message || "Test Error");
     }
     setLoading(false);
   }
