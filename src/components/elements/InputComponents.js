@@ -117,6 +117,7 @@ export function InputOptionSelect({
   inputRef,
   require = false,
   isError,
+  onBlur = () => {},
 }) {
   const nameOptions = names || options;
   return (
@@ -127,6 +128,7 @@ export function InputOptionSelect({
           onChange={(e) => inputChange(e.target.value)}
           ref={inputRef}
           $iserror={isError && "1"}
+          onBlur={onBlur}
         >
           <option value="" disabled>
             Bitte wählen

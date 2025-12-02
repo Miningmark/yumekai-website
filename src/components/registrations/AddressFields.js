@@ -44,7 +44,7 @@ export default function AddressFields({
         title="Hausnummer"
         inputText={data.houseNumber}
         inputChange={(value) => onChange("houseNumber", value)}
-        onBlur={() => handleFieldBlur("shouseNumber", data.houseNumber)}
+        onBlur={() => handleFieldBlur("houseNumber", data.houseNumber)}
         inputRef={refs.houseNumber}
         isError={!!getFieldError("houseNumber")}
         require
