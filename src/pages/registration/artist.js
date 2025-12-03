@@ -410,7 +410,7 @@ export default function Artist() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createArtist",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createArtist",
         {
           method: "POST",
           body: formData,

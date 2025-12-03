@@ -368,7 +368,7 @@ export default function Exhibitor() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createExhibitor",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createExhibitor",
         {
           method: "POST",
           body: formData,

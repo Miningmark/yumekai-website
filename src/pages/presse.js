@@ -264,7 +264,7 @@ export default function Presse() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createPress",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createPress",
         {
           method: "POST",
           body: formData,

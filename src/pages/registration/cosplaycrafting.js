@@ -271,7 +271,7 @@ export default function CosplayCrafting() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createCosplayContestCrafting",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createCosplayContestCrafting",
         {
           method: "POST",
           body: formData,

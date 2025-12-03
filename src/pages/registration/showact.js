@@ -469,7 +469,7 @@ export default function Showact() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createShowact",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createShowact",
         {
           method: "POST",
           body: formData,

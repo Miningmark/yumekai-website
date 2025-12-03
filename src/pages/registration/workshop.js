@@ -440,7 +440,7 @@ export default function Workshop() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createWorkshop",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createWorkshop",
         {
           method: "POST",
           body: formData,

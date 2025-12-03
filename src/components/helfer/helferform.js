@@ -445,7 +445,7 @@ export default function HelferForm() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createHelper",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createHelper",
         {
           method: "POST",
           body: formData,

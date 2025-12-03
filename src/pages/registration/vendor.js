@@ -408,7 +408,7 @@ export default function Vendor() {
 
     try {
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createVendor",
+        "https://orgaboard.yumekai.de/api/v1/event/application/createVendor",
         {
           method: "POST",
           body: formData,
