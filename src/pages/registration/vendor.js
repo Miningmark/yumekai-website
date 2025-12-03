@@ -451,7 +451,7 @@ export default function Vendor() {
         setTouchedFields({});
       } else {
         setFieldErrors({
-          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal. 123",
+          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
         });
       }
     } catch (error) {
@@ -554,7 +554,7 @@ export default function Vendor() {
         <br />
         <br />
         Bitte beachtet die{" "}
-        <StyledLink href="/downloads/Teilnahmebedingungen_Haendler_2025.pdf" target="_blank">
+        <StyledLink href="/downloads/Teilnahmebedingungen_Haendler_2026.pdf" target="_blank">
           Teilnahme- und Auswahlbedingungen für Händler
         </StyledLink>
         .
@@ -993,7 +993,7 @@ export default function Vendor() {
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Teilnahmebedingungen_Haendler_2025.pdf"
+                    href="/downloads/Teilnahmebedingungen_Haendler_2026.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen
