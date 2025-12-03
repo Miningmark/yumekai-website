@@ -22,7 +22,7 @@ export const REGISTRATION_END_COSPLAY_CRAFTING = new Date("2026-05-01T18:00:00")
 export const REGISTRATION_START_ART_CONTEST = new Date("2025-10-05T12:00:00");
 export const REGISTRATION_END_ART_CONTEST = new Date("2026-04-25T18:00:00");
 
-export const EVENT_ID = 2;
+export const EVENT_ID = 1;
 
 export const TICKET_COST = 42;
 
