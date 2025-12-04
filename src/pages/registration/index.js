@@ -169,7 +169,10 @@ export default function Voranmeldungen() {
           minute: "2-digit",
         })} Uhr möglich.`
       )}
-      <p>Hier kannst du dich für die YumeKai 2026 voranmelden. Wir freuen uns auf deinen Besuch!</p>
+      <p>
+        Sei dabei bei der YumeKai 2026! Melde dich jetzt an und gestalte die Convention mit uns
+        gemeinsam.
+      </p>
 
       <ul>
         {/*
