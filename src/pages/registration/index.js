@@ -63,6 +63,11 @@ const hasRegistrationStarted = (startDate) => {
   return now >= startDate;
 };
 
+const hasRegistrationEnded = (endDate) => {
+  const now = new Date();
+  return now > endDate;
+};
+
 export default function Voranmeldungen() {
   const jetzt = new Date();
 
@@ -95,6 +100,61 @@ export default function Voranmeldungen() {
     return null;
   };
 
+  const renderRegistrationPeriodText = (startDate, endDate, category) => {
+    const now = new Date();
+
+    if (now < startDate) {
+      // Anmeldung hat noch nicht begonnen
+      return (
+        <strong>
+          Die Anmeldung für {category} öffnet am{" "}
+          {startDate.toLocaleDateString("de-DE", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}{" "}
+          um{" "}
+          {startDate.toLocaleTimeString("de-DE", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}{" "}
+          Uhr.
+        </strong>
+      );
+    } else if (now >= startDate && now <= endDate) {
+      // Anmeldung läuft
+      return (
+        <strong>
+          Die Anmeldung für {category} läuft bis zum{" "}
+          {endDate.toLocaleDateString("de-DE", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}{" "}
+          um{" "}
+          {endDate.toLocaleTimeString("de-DE", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}{" "}
+          Uhr.
+        </strong>
+      );
+    } else {
+      // Anmeldung ist geschlossen
+      return (
+        <strong>
+          Die Anmeldung für {category} ist seit dem{" "}
+          {endDate.toLocaleDateString("de-DE", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}{" "}
+          geschlossen.
+        </strong>
+      );
+    }
+  };
+
   return (
     <>
       <h1>Voranmeldungen für die YumeKai 2026</h1>
@@ -112,9 +172,10 @@ export default function Voranmeldungen() {
       <p>Hier kannst du dich für die YumeKai 2026 voranmelden. Wir freuen uns auf deinen Besuch!</p>
 
       <ul>
+        {/*
         <li>
           <StyledLink href="#helfer">Helfer</StyledLink>
-        </li>
+        </li> */}
         <li>
           <StyledLink href="#kunstler">Künstler</StyledLink>
         </li>
@@ -131,7 +192,7 @@ export default function Voranmeldungen() {
           <StyledLink href="#workshopleiter">Workshopleiter</StyledLink>
         </li>
       </ul>
-
+      {/*
       <Spacer id="helfer" />
 
       <div
@@ -177,6 +238,8 @@ export default function Voranmeldungen() {
         </DynamicContent>
       </div>
 
+      */}
+
       <Spacer id="kunstler" />
 
       <div
@@ -213,15 +276,11 @@ export default function Voranmeldungen() {
             .
             <br />
             <br />
-            <strong>
-              Die Anmeldung für Künstler läuft bis zum{" "}
-              {REGISTRATION_END_ARTIST.toLocaleDateString("de-DE", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-              .
-            </strong>
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_ARTIST,
+              REGISTRATION_END_ARTIST,
+              "Künstler"
+            )}
             <br />
             <br />
             Wir freuen uns auf eure Bewerbung!
@@ -277,15 +336,11 @@ export default function Voranmeldungen() {
             .
             <br />
             <br />
-            <strong>
-              Die Anmeldung für Händler läuft bis zum{" "}
-              {REGISTRATION_END_VENDOR.toLocaleDateString("de-DE", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-              .
-            </strong>
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_VENDOR,
+              REGISTRATION_END_VENDOR,
+              "Händler"
+            )}
             <br />
             <br />
             Wir freuen uns auf eure Bewerbung!
@@ -345,15 +400,11 @@ export default function Voranmeldungen() {
             .
             <br />
             <br />
-            <strong>
-              Die Anmeldung für Aussteller läuft bis zum{" "}
-              {REGISTRATION_END_EXHIBITOR.toLocaleDateString("de-DE", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-              .
-            </strong>
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_EXHIBITOR,
+              REGISTRATION_END_EXHIBITOR,
+              "Aussteller"
+            )}
             <br />
             <br />
             Wir freuen uns auf eure Bewerbung!
@@ -412,15 +463,11 @@ export default function Voranmeldungen() {
             .
             <br />
             <br />
-            <strong>
-              Die Anmeldung für Showact&apos;s läuft bis zum{" "}
-              {REGISTRATION_END_SHOWACT.toLocaleDateString("de-DE", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-              .
-            </strong>
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_SHOWACT,
+              REGISTRATION_END_SHOWACT,
+              "Showact's"
+            )}
             <br />
             <br />
             Wir freuen uns auf eure Bewerbung!
@@ -476,15 +523,11 @@ export default function Voranmeldungen() {
             unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
             <br />
             <br />
-            <strong>
-              Die Anmeldung für Workshopleiter läuft bis zum{" "}
-              {REGISTRATION_END_WORKSHOP.toLocaleDateString("de-DE", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-              .
-            </strong>
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_WORKSHOP,
+              REGISTRATION_END_WORKSHOP,
+              "Workshopleiter"
+            )}
             <br />
             <br />
             Wir freuen uns auf eure Bewerbung!
