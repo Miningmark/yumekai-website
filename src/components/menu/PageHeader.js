@@ -33,6 +33,7 @@ const menuItems = [
       { name: "2025", path: "/review/yumekai-2025" },
     ],
   },
+  { name: "Anmeldungen", path: "/registration" },
   { name: "Ticketshop", path: "/shop" },
   { name: "Crowdfunding", path: "/crowdfunding" },
 ];
