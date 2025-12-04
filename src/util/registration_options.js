@@ -54,7 +54,7 @@ export const VENDOR_STANDSIZE_OPTIONS = [
 ];
 
 export const ARTIST_STANDSIZE_OPTIONS = [
-  { label: "Halber Tisch", value: "HALF_TABLE", price: 5 },
+  { label: "Halber Tisch", value: "HALF_TABLE", price: 6 },
   { label: "Ganzer Tisch", value: "FULL_TABLE", price: 9 },
 ];
 
