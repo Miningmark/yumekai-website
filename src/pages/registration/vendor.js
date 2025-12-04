@@ -565,8 +565,6 @@ export default function Vendor() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-      <h2>Die Anmeldung als Händler ist momentan geschlossen. (TEST-Modus)</h2>
-
       {!registrationStatus.isActive && (
         <h2>
           <strong>{registrationStatus.message}</strong>

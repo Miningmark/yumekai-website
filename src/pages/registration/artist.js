@@ -563,8 +563,6 @@ export default function Artist() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-      <h2>Die Anmeldung als Künstler ist momentan geschlossen. (TEST-Modus)</h2>
-
       {!registrationStatus.isActive && (
         <h2>
           <strong>{registrationStatus.message}</strong>
