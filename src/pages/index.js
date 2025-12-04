@@ -11,42 +11,45 @@ import CounterClock from "@/components/elements/CounterClock";
 import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 import YumeKaiZeichenwettbewerb25 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb25";
 import Crowdfunding from "@/components/articles/2025/Crowdfunding";
+import EroffnungTicketShop from "@/components/articles/2025/EroffnungTicketShop";
 
 export default function Home() {
   return (
     <>
       <HomeSlider />
       <SpacerEmpty />
-      
+
       {/*UTC Time */}
       <CounterClock
         finalDate="2026-05-09T08:00:00Z"
         headline="Wir freuen uns auf die YumeKai 2026!"
       />
       <SpacerEmpty />
-       
+
       <h1>Aktuelles</h1>
       <p>
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
-      <Crowdfunding/>
+      <EroffnungTicketShop />
+      <Spacer />
+      <Crowdfunding />
       <Spacer />
       <HierKonntIhrUnsTreffen />
       <Spacer />
       <YumeKaiZeichenwettbewerb25 />
       <Spacer />
-     
+
       <AnkundigungMayumiNagashi />
       <Spacer />
       <AnkundigungMion />
-      
+
       {/* 
       <Spacer />
       <HelferPost />
       */}
-      
+
       <Spacer />
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
