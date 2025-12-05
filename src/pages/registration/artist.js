@@ -552,7 +552,7 @@ export default function Artist() {
         <br />
         <br />
         Bitte beachtet die{" "}
-        <StyledLink href="/downloads/Teilnahmebedingungen_Kuenstler_2025.pdf" target="_blank">
+        <StyledLink href="/downloads/Teilnahmebedingungen_Kuenstler_2026.pdf" target="_blank">
           Teilnahme- und Auswahlbedingungen für Künstler
         </StyledLink>
         .
@@ -980,7 +980,7 @@ export default function Artist() {
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Teilnahmebedingungen_Kuenstler_2025.pdf"
+                    href="/downloads/Teilnahmebedingungen_Kuenstler_2026.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen
