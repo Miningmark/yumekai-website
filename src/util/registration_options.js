@@ -1,4 +1,4 @@
-export const REGISTRATION_START_ARTIST = new Date("2025-12-08T12:00:00");
+export const REGISTRATION_START_ARTIST = new Date("2025-12-05T12:00:00");
 export const REGISTRATION_END_ARTIST = new Date("2026-02-12T18:00:00");
 
 export const REGISTRATION_START_VENDOR = new Date("2025-12-04T12:00:00");

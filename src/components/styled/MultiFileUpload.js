@@ -16,6 +16,7 @@ export default function FileUpload({
   acceptedExtensions = [".pdf"],
   maxFiles = 1,
   name = "fileupload",
+  onFileSelect, // ⭐ NEU: Optional callback für custom handling (z.B. Crop)
 }) {
   useEffect(() => {
     return () => {
@@ -54,6 +55,17 @@ export default function FileUpload({
     const selectedFiles = event.target?.files || event.dataTransfer?.files;
     if (!selectedFiles) return;
 
+    // ⭐ NEU: Wenn onFileSelect definiert ist, Custom-Handler verwenden
+    if (onFileSelect) {
+      onFileSelect(Array.from(selectedFiles));
+      // Input zurücksetzen
+      if (event.target) {
+        event.target.value = "";
+      }
+      return;
+    }
+
+    // Standard-Handling (wenn kein onFileSelect)
     const validFiles = [];
     const errors = [];
 
