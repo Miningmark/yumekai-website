@@ -126,7 +126,6 @@ useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const isTestMode = urlParams.get('test') === 'true';
 
-    console.log("Testmodus", isTestMode);
     if(isTestMode){
       setRegistrationTest(true);
     }
@@ -134,7 +133,7 @@ useEffect(() => {
     // Interval nur setzen wenn NICHT im Test-Modus
     if (!isTestMode) {
       const interval = setInterval(() => {
-        setRegistrationTest(
+        setRegistrationStatus(
           checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR)
         );
       }, 60000);
