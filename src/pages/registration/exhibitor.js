@@ -91,15 +91,18 @@ export default function Exhibitor() {
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
 
-  const [registrationStatus, setRegistrationStatus] = useState(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const isTestMode = urlParams.get('test') === 'true';
-    
-    if (isTestMode) {
-      return {
-        isActive: true,
-        message: "TEST-MODUS: Anmeldung ist außerhalb der regulären Zeiten geöffnet"
-      };
+const [registrationTest, setRegistrationTest] = useState(() => {
+    // Prüfe auf URL-Parameter ?test=true (SSR-sicher)
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isTestMode = urlParams.get('test') === 'true';
+      
+      if (isTestMode) {
+        return {
+          isActive: true,
+          message: "TEST-MODUS: Anmeldung ist außerhalb der regulären Zeiten geöffnet"
+        };
+      }
     }
     return checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR);
   });
@@ -139,7 +142,7 @@ useEffect(() => {
     // Interval nur setzen wenn NICHT im Test-Modus
     if (!isTestMode) {
       const interval = setInterval(() => {
-        setRegistrationStatus(
+        setRegistrationTest(
           checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR)
         );
       }, 60000);
