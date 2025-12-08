@@ -108,10 +108,10 @@ export default function Vendor() {
   const [showCropModal, setShowCropModal] = useState(false);
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
-  const [cropTargetType, setCropTargetType] = useState(null); // 'socialMedia' oder null
+  const [cropTargetType, setCropTargetType] = useState(null);
 
   const [registrationTest, setRegistrationTest] = useState(false);
-    
+
   const refs = {
     gender: useRef(null),
     name: useRef(null),
@@ -147,22 +147,22 @@ export default function Vendor() {
   };
 
   useEffect(() => {
-     // Prüfe auf Test-Modus
+    // Prüfe auf Test-Modus
     const urlParams = new URLSearchParams(window.location.search);
-    const isTestMode = urlParams.get('test') === 'true';
+    const isTestMode = urlParams.get("test") === "true";
 
-    if(isTestMode){
+    if (isTestMode) {
       setRegistrationTest(true);
     }
-if (!isTestMode) {
-    const interval = setInterval(() => {
-      setRegistrationStatus(
-        checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR)
-      );
-    }, 60000);
+    if (!isTestMode) {
+      const interval = setInterval(() => {
+        setRegistrationStatus(
+          checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR)
+        );
+      }, 60000);
 
-    return () => clearInterval(interval);
-  }
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const handleAddressDataChange = (field, value) => {
@@ -611,7 +611,7 @@ if (!isTestMode) {
         </SuccessText>
       )}
 
-     {!success && (registrationStatus.isActive || registrationTest) && (
+      {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.

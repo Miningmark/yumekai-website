@@ -117,7 +117,7 @@ export default function Showact() {
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
 
-    const [registrationTest, setRegistrationTest] = useState(false);
+  const [registrationTest, setRegistrationTest] = useState(false);
 
   const refs = {
     gender: useRef(null),
@@ -153,25 +153,24 @@ export default function Showact() {
   };
 
   useEffect(() => {
-     // Prüfe auf Test-Modus
-            const urlParams = new URLSearchParams(window.location.search);
-            const isTestMode = urlParams.get("test") === "true";
-        
-            console.log("Testmodus", isTestMode);
-            if (isTestMode) {
-              setRegistrationTest(true);
-            }
-        
-            // Interval nur setzen wenn NICHT im Test-Modus
-            if (!isTestMode) {
-    const interval = setInterval(() => {
-      setRegistrationStatus(
-        checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
-      );
-    }, 60000);
+    // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get("test") === "true";
 
-    return () => clearInterval(interval);
-  }
+    if (isTestMode) {
+      setRegistrationTest(true);
+    }
+
+    // Interval nur setzen wenn NICHT im Test-Modus
+    if (!isTestMode) {
+      const interval = setInterval(() => {
+        setRegistrationStatus(
+          checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
+        );
+      }, 60000);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const handleAddressDataChange = (field, value) => {
@@ -483,7 +482,7 @@ export default function Showact() {
 
     try {
       const response = await fetch(
-        "https://orgaboard.yumekai.de/api/v1/event/application/createShowact",
+        "https://node.miningmark.de/api/v1/event/application/createShowact",
         {
           method: "POST",
           body: formData,
@@ -907,6 +906,7 @@ export default function Showact() {
               MB, jpg, jpeg, png, webp, pdf, docx, xlsx)
             </p>
             <MultiFileUpload
+              name="techRider"
               inputRef={refs.technicalRider}
               previewUrl={previewUrl2}
               files={file2}

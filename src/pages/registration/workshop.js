@@ -110,7 +110,7 @@ export default function Workshop() {
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
 
-   const [registrationTest, setRegistrationTest] = useState(false);
+  const [registrationTest, setRegistrationTest] = useState(false);
 
   const refs = {
     gender: useRef(null),
@@ -143,25 +143,24 @@ export default function Workshop() {
   };
 
   useEffect(() => {
-     // Prüfe auf Test-Modus
-        const urlParams = new URLSearchParams(window.location.search);
-        const isTestMode = urlParams.get("test") === "true";
-    
-        console.log("Testmodus", isTestMode);
-        if (isTestMode) {
-          setRegistrationTest(true);
-        }
-    
-        // Interval nur setzen wenn NICHT im Test-Modus
-        if (!isTestMode) {
-    const interval = setInterval(() => {
-      setRegistrationStatus(
-        checkRegistrationPeriod(REGISTRATION_START_WORKSHOP, REGISTRATION_END_WORKSHOP)
-      );
-    }, 60000);
+    // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get("test") === "true";
 
-    return () => clearInterval(interval);
-  }
+    if (isTestMode) {
+      setRegistrationTest(true);
+    }
+
+    // Interval nur setzen wenn NICHT im Test-Modus
+    if (!isTestMode) {
+      const interval = setInterval(() => {
+        setRegistrationStatus(
+          checkRegistrationPeriod(REGISTRATION_START_WORKSHOP, REGISTRATION_END_WORKSHOP)
+        );
+      }, 60000);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const handleAddressDataChange = (field, value) => {
@@ -468,7 +467,7 @@ export default function Workshop() {
 
     try {
       const response = await fetch(
-        "https://orgaboard.yumekai.de/api/v1/event/application/createWorkshop",
+        "https://node.miningmark.de/api/v1/event/application/createWorkshop",
         {
           method: "POST",
           body: formData,
@@ -632,7 +631,7 @@ export default function Workshop() {
         </SuccessText>
       )}
 
-       {!success && (registrationStatus.isActive || registrationTest) && (
+      {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -727,7 +726,6 @@ export default function Workshop() {
             {getFieldError("workshopTitle") && (
               <FieldErrorText>{getFieldError("workshopTitle")}</FieldErrorText>
             )}
-
 
             <InputOptionInput
               title="Leiter*innen"
@@ -915,9 +913,9 @@ export default function Workshop() {
                 {imageError || getFieldError("image")}
               </ErrorText>
             )}
-            
-            <br/>
-            
+
+            <br />
+
             <InputOptionTextArea
               title="Ankündigungstext"
               inputText={announcementText}

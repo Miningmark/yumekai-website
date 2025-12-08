@@ -129,7 +129,6 @@ export default function Exhibitor() {
     const urlParams = new URLSearchParams(window.location.search);
     const isTestMode = urlParams.get("test") === "true";
 
-    console.log("Testmodus", isTestMode);
     if (isTestMode) {
       setRegistrationTest(true);
     }
@@ -396,7 +395,7 @@ export default function Exhibitor() {
 
     try {
       const response = await fetch(
-        "https://orgaboard.yumekai.de/api/v1/event/application/createExhibitor",
+        "https://node.miningmark.de/api/v1/event/application/createExhibitor",
         {
           method: "POST",
           body: formData,
@@ -545,7 +544,7 @@ export default function Exhibitor() {
         </SuccessText>
       )}
 
-       {!success && (registrationStatus.isActive || registrationTest) && (
+      {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -657,8 +656,6 @@ export default function Exhibitor() {
               <FieldErrorText>{getFieldError("groupMembers")}</FieldErrorText>
             )}
 
-            
-
             <InputOptionTextArea
               title="Standgröße"
               inputText={standSize}
@@ -693,8 +690,8 @@ export default function Exhibitor() {
                 {imageError || getFieldError("image")}
               </ErrorText>
             )}
-            
-<br />
+
+            <br />
             <InputOptionTextArea
               title="Ankündigungstext"
               inputText={announcementText}

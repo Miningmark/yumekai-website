@@ -278,10 +278,7 @@ export default function HelferForm() {
         break;
 
       case "preferredWorktime":
-        if (value && value.trim().length > 0) {
-          const worktimeValidation = validateString(value, "Bevorzugte Schicht", 1, 50);
-          if (!worktimeValidation.check) error = worktimeValidation.description;
-        }
+        if (!value) error = "Bevorzugte Helferzeit ist ein Pflichtfeld";
         break;
 
       case "image":
@@ -445,7 +442,7 @@ export default function HelferForm() {
 
     try {
       const response = await fetch(
-        "https://orgaboard.yumekai.de/api/v1/event/application/createHelper",
+        "https://node.miningmark.de/api/v1/event/application/createHelper",
         {
           method: "POST",
           body: formData,
@@ -933,7 +930,7 @@ export default function HelferForm() {
           />
 
           <RadioButton
-            title="Bevorzugte Schicht"
+            title="Bevorzugte-Schicht"
             names={PREFERRED_WORKTIME_OPTIONS.map((option) => option.label)}
             options={PREFERRED_WORKTIME_OPTIONS.map((option) => option.value)}
             selectedOption={preferredWorktime}
@@ -941,6 +938,7 @@ export default function HelferForm() {
             onBlur={() => handleBlur("preferredWorktime", preferredWorktime)}
             inputRef={refs.preferredWorktime}
             isError={!!getFieldError("preferredWorktime")}
+            require
           />
           {getFieldError("preferredWorktime") && (
             <FieldErrorText>{getFieldError("preferredWorktime")}</FieldErrorText>

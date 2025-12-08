@@ -104,7 +104,9 @@ export default function Artist() {
   const [showCropModal, setShowCropModal] = useState(false);
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
-  const [cropTargetType, setCropTargetType] = useState(null); // 'socialMedia' oder null
+  const [cropTargetType, setCropTargetType] = useState(null);
+
+  const [registrationTest, setRegistrationTest] = useState(false);
 
   const refs = {
     gender: useRef(null),
@@ -140,13 +142,22 @@ export default function Artist() {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRegistrationStatus(
-        checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
-      );
-    }, 60000);
+    // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get("test") === "true";
 
-    return () => clearInterval(interval);
+    if (isTestMode) {
+      setRegistrationTest(true);
+    }
+    if (!isTestMode) {
+      const interval = setInterval(() => {
+        setRegistrationStatus(
+          checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
+        );
+      }, 60000);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const handleAddressDataChange = (field, value) => {
@@ -646,7 +657,7 @@ export default function Artist() {
         </SuccessText>
       )}
 
-      {!success && registrationStatus.isActive && (
+      {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.

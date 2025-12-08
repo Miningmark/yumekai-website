@@ -124,9 +124,9 @@ export const FOOD_PREFERENCE_OPTIONS = [
 ];
 
 export const PREFERRED_WORKTIME_OPTIONS = [
-  { value: 1, label: "Morgens - früher Nachmittag" },
-  { value: 2, label: "Früher Nachmittag - Abends" },
-  { value: 3, label: "Kein besonderer wunsch" },
+  { value: "1", label: "Morgens - früher Nachmittag" },
+  { value: "2", label: "Früher Nachmittag - Abends" },
+  { value: "3", label: "Kein besonderer wunsch" },
 ];
 
 export const DEPARTMENT_OPTIONS = [
