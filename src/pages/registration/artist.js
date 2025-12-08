@@ -27,7 +27,7 @@ import {
   REGISTRATION_END_ARTIST,
   checkRegistrationPeriod,
   EVENT_ID,
-  TICKET_COST,
+  TICKET_COST_ARTIST,
   WLAN_COST,
   LOCATION_OPTIONS,
   PROGRAMM_BOOKLET_OPTIONS,
@@ -619,7 +619,7 @@ export default function Artist() {
     ARTIST_STANDSIZE_OPTIONS.find((option) => option.value === standSize).price *
       LOCATION_OPTIONS.find((option) => option.value === location).artist || 0;
   const totalTicketCost =
-    additionalExhibitorTicket > 0 ? TICKET_COST * additionalExhibitorTicket : 0;
+    additionalExhibitorTicket > 0 ? TICKET_COST_ARTIST * additionalExhibitorTicket : 0;
   const totalWlanCost = wlan ? WLAN_COST : 0;
   const totalProgrammBookletCost =
     PROGRAMM_BOOKLET_OPTIONS.find((option) => option.value === programmBooklet).price || 0;
@@ -861,7 +861,7 @@ export default function Artist() {
 
             <InputOptionInput
               type="number"
-              title={`Zusätzliches Ausstellerticket (je ${TICKET_COST}€)`}
+              title={`Zusätzliches Ausstellerticket (je ${TICKET_COST_ARTIST}€)`}
               inputText={additionalExhibitorTicket}
               inputChange={(value) => setAdditionalExhibitorTicket(value)}
               onBlur={() => handleBlur("additionalExhibitorTicket", additionalExhibitorTicket)}
@@ -917,8 +917,8 @@ export default function Artist() {
               </li>
               {additionalExhibitorTicket > 0 && (
                 <li>
-                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST}€ ={" "}
-                  {totalTicketCost}€
+                  Zusätzliche Ausstellertickets: {additionalExhibitorTicket} x {TICKET_COST_ARTIST}€
+                  = {totalTicketCost}€
                 </li>
               )}
               {wlan && <li>WLAN: {WLAN_COST}€</li>}

@@ -25,6 +25,7 @@ export const REGISTRATION_END_ART_CONTEST = new Date("2026-04-25T18:00:00");
 export const EVENT_ID = 1;
 
 export const TICKET_COST = 42;
+export const TICKET_COST_ARTIST = 35;
 
 export const POWER_COST = 30;
 
