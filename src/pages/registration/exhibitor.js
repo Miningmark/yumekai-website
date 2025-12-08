@@ -91,6 +91,19 @@ export default function Exhibitor() {
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
 
+  const [registrationStatus, setRegistrationStatus] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get('test') === 'true';
+    
+    if (isTestMode) {
+      return {
+        isActive: true,
+        message: "TEST-MODUS: Anmeldung ist außerhalb der regulären Zeiten geöffnet"
+      };
+    }
+    return checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR);
+  });
+
   const refs = {
     gender: useRef(null),
     name: useRef(null),
@@ -118,14 +131,21 @@ export default function Exhibitor() {
     registrationReminder: useRef(null),
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRegistrationStatus(
-        checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR)
-      );
-    }, 60000);
+useEffect(() => {
+    // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get('test') === 'true';
+    
+    // Interval nur setzen wenn NICHT im Test-Modus
+    if (!isTestMode) {
+      const interval = setInterval(() => {
+        setRegistrationStatus(
+          checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR)
+        );
+      }, 60000);
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const handleAddressDataChange = (field, value) => {
