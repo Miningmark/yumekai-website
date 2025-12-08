@@ -186,7 +186,7 @@ export default function Voranmeldungen() {
           <StyledLink href="#handler">Händler</StyledLink>
         </li>
         <li>
-          <StyledLink href="#aussteller">Aussteller</StyledLink>
+          <StyledLink href="#vereine">Fan-Gruppen/Vereine</StyledLink>
         </li>
         <li>
           <StyledLink href="#showact">Showact</StyledLink>
@@ -366,7 +366,7 @@ export default function Voranmeldungen() {
         </DynamicContent>
       </div>
 
-      <Spacer id="aussteller" />
+      <Spacer id="vereine" />
 
       <div
         style={{
@@ -378,19 +378,19 @@ export default function Voranmeldungen() {
         }}
       >
         <DynamicContent $widthpercent={65}>
-          <h2>Anmeldung als Aussteller</h2>
+          <h2>Anmeldung als Fan-Gruppe/Verein</h2>
           <p>
-            Du möchtest als Aussteller auf der YumeKai 2026 dabei sein? Dann ist dies deine Chance!
+            Du möchtest als Fan-Gruppe/Verein auf der YumeKai 2026 dabei sein? Dann ist dies deine Chance!
             <br />
             <br />
-            Als Aussteller hast du die Möglichkeit, deine Produkte, Dienstleistungen oder Projekte
+            Als Fan-Gruppe/Verein hast du die Möglichkeit, deine Produkte, Dienstleistungen oder Projekte
             einem interessierten Publikum zu präsentieren. Ob Vereine, Organisationen oder
-            kommerzielle Aussteller – wir freuen uns über alle, die die YumeKai mit ihrer Präsenz
+            kommerzielle Fan-Gruppe/Verein – wir freuen uns über alle, die die YumeKai mit ihrer Präsenz
             bereichern möchten.
             <br />
             <br />
             Sobald die Bewerbungsphase vorbei ist, werden wir aus allen Anmeldungen eine Auswahl
-            treffen und allen Ausstellern entsprechend Rückmeldung geben.
+            treffen und allen Fan-Gruppe/Verein entsprechend Rückmeldung geben.
             <br />
             <br />
             Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
@@ -398,7 +398,7 @@ export default function Voranmeldungen() {
             unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
             die{" "}
             <StyledLink href="/downloads/Teilnahmebedingungen_Aussteller_2026.pdf" target="_blank">
-              Teilnahme- und Auswahlbedingungen für Aussteller
+              Teilnahme- und Auswahlbedingungen für Fan-Gruppe/Verein
             </StyledLink>
             .
             <br />
