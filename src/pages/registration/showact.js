@@ -117,6 +117,8 @@ export default function Showact() {
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
 
+    const [registrationTest, setRegistrationTest] = useState(false);
+
   const refs = {
     gender: useRef(null),
     name: useRef(null),
@@ -151,6 +153,17 @@ export default function Showact() {
   };
 
   useEffect(() => {
+     // Prüfe auf Test-Modus
+            const urlParams = new URLSearchParams(window.location.search);
+            const isTestMode = urlParams.get("test") === "true";
+        
+            console.log("Testmodus", isTestMode);
+            if (isTestMode) {
+              setRegistrationTest(true);
+            }
+        
+            // Interval nur setzen wenn NICHT im Test-Modus
+            if (!isTestMode) {
     const interval = setInterval(() => {
       setRegistrationStatus(
         checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT)
@@ -158,6 +171,7 @@ export default function Showact() {
     }, 60000);
 
     return () => clearInterval(interval);
+  }
   }, []);
 
   const handleAddressDataChange = (field, value) => {
@@ -616,8 +630,6 @@ export default function Showact() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-      <h2>Die Anmeldung als Showact ist momentan geschlossen. (TEST-Modus)</h2>
-
       {!registrationStatus.isActive && (
         <h2>
           <strong>{registrationStatus.message}</strong>
@@ -630,7 +642,7 @@ export default function Showact() {
         </SuccessText>
       )}
 
-      {!success && registrationStatus.isActive && (
+      {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
