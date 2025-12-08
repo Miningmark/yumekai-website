@@ -728,18 +728,6 @@ export default function Workshop() {
               <FieldErrorText>{getFieldError("workshopTitle")}</FieldErrorText>
             )}
 
-            <InputOptionTextArea
-              title="Ankündigungstext"
-              inputText={announcementText}
-              inputChange={setAnnouncementText}
-              onBlur={() => handleBlur("announcementText", announcementText)}
-              inputRef={refs.announcementText}
-              isError={!!getFieldError("announcementText")}
-              require
-            />
-            {getFieldError("announcementText") && (
-              <FieldErrorText>{getFieldError("announcementText")}</FieldErrorText>
-            )}
 
             <InputOptionInput
               title="Leiter*innen"
@@ -926,6 +914,21 @@ export default function Workshop() {
               <ErrorText style={{ textAlign: "center" }}>
                 {imageError || getFieldError("image")}
               </ErrorText>
+            )}
+            
+            <br/>
+            
+            <InputOptionTextArea
+              title="Ankündigungstext"
+              inputText={announcementText}
+              inputChange={setAnnouncementText}
+              onBlur={() => handleBlur("announcementText", announcementText)}
+              inputRef={refs.announcementText}
+              isError={!!getFieldError("announcementText")}
+              require
+            />
+            {getFieldError("announcementText") && (
+              <FieldErrorText>{getFieldError("announcementText")}</FieldErrorText>
             )}
 
             <br />
