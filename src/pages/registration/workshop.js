@@ -19,7 +19,7 @@ import {
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
-import FileUpload from "@/components/styled/FileUpload";
+import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import {
   REGISTRATION_START_WORKSHOP,
@@ -89,8 +89,11 @@ export default function Workshop() {
 
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
-  const [file, setFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [imageFile, setImageFile] = useState([]);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
+  const [imageError, setImageError] = useState("");
+  const [socialMediaImageFile, setSocialMediaImageFile] = useState([]);
+  const [socialMediaImagePreviewUrl, setSocialMediaImagePreviewUrl] = useState([]);
 
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
@@ -106,6 +109,8 @@ export default function Workshop() {
   const [showCropModal, setShowCropModal] = useState(false);
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
+
+   const [registrationTest, setRegistrationTest] = useState(false);
 
   const refs = {
     gender: useRef(null),
@@ -130,6 +135,7 @@ export default function Workshop() {
     website: useRef(null),
     instagram: useRef(null),
     image: useRef(null),
+    socialMediaImageFile: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
@@ -137,6 +143,17 @@ export default function Workshop() {
   };
 
   useEffect(() => {
+     // Prüfe auf Test-Modus
+        const urlParams = new URLSearchParams(window.location.search);
+        const isTestMode = urlParams.get("test") === "true";
+    
+        console.log("Testmodus", isTestMode);
+        if (isTestMode) {
+          setRegistrationTest(true);
+        }
+    
+        // Interval nur setzen wenn NICHT im Test-Modus
+        if (!isTestMode) {
     const interval = setInterval(() => {
       setRegistrationStatus(
         checkRegistrationPeriod(REGISTRATION_START_WORKSHOP, REGISTRATION_END_WORKSHOP)
@@ -144,6 +161,7 @@ export default function Workshop() {
     }, 60000);
 
     return () => clearInterval(interval);
+  }
   }, []);
 
   const handleAddressDataChange = (field, value) => {
@@ -285,7 +303,11 @@ export default function Workshop() {
         break;
 
       case "image":
-        if (!additionalData.file) error = "Bild ist ein Pflichtfeld";
+        if (imageFile.length < 1) error = "Bild ist ein Pflichtfeld";
+        break;
+
+      case "socialMediaImage":
+        // optional field, no validation needed
         break;
 
       case "privacyPolicy":
@@ -358,7 +380,10 @@ export default function Workshop() {
     errors.website = validateSingleField("website", website);
     errors.instagram = validateSingleField("instagram", instagram);
     errors.message = validateSingleField("message", message);
-    errors.image = validateSingleField("image", null, { file });
+    errors.image = validateSingleField("image", null, { file: imageFile });
+    errors.socialMediaImageFile = validateSingleField("socialMediaImageFile", null, {
+      file: socialMediaImageFile,
+    });
 
     // Bedingungen
     errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
@@ -436,7 +461,10 @@ export default function Workshop() {
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStoragePolicy", dataStorage);
     formData.append("pictureRightsPolicy", pictureRights);
-    formData.append("image", file);
+    formData.append("image", imageFile[0]);
+    if (socialMediaImageFile[0]) {
+      formData.append("socialMediaImage", socialMediaImageFile[0]);
+    }
 
     try {
       const response = await fetch(
@@ -476,8 +504,10 @@ export default function Workshop() {
         setPrivacyPolicy(false);
         setDataStorage(false);
         setPictureRights(false);
-        setFile(null);
-        setPreviewUrl(null);
+        setImageFile([]);
+        setImagePreviewUrl([]);
+        setSocialMediaImageFile([]);
+        setSocialMediaImagePreviewUrl([]);
         setFieldErrors({});
         setTouchedFields({});
       } else {
@@ -493,41 +523,39 @@ export default function Workshop() {
     setLoading(false);
   }
 
-  function handleFileChange(e) {
-    const selectedFile = e.target.files[0];
+  // Handler für Social Media Bild - öffnet Crop Modal
+  const handleSocialMediaFileSelect = (selectedFiles) => {
+    const selectedFile = selectedFiles[0];
     const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-    if (!selectedFile) return;
+    if (!selectedFile) {
+      return;
+    }
 
     if (selectedFile.size > maxFileSize) {
       setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
-      setFile(null);
-      setPreviewUrl(null);
       return;
     }
 
     if (!isImageFile(selectedFile.name)) {
       setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
-      setFile(null);
-      setPreviewUrl(null);
       return;
     }
 
     setFileError("");
 
-    // Erstelle eine temporäre URL für das Crop-Modal
     const reader = new FileReader();
     reader.onloadend = () => {
       setTempImageUrl(reader.result);
       setTempFile(selectedFile);
-      setShowCropModal(true); // Öffne das Crop-Modal
+      setShowCropModal(true);
     };
     reader.readAsDataURL(selectedFile);
-  }
+  };
 
   const handleCropComplete = ({ blob, file, previewUrl }) => {
-    setFile(file);
-    setPreviewUrl(previewUrl);
+    setSocialMediaImageFile([file]);
+    setSocialMediaImagePreviewUrl([previewUrl]);
     setShowCropModal(false);
 
     // Cleanup
@@ -538,11 +566,11 @@ export default function Workshop() {
     setTempFile(null);
 
     // Validierung triggern wenn Feld bereits berührt wurde
-    if (touchedFields.image) {
-      const error = validateSingleField("image", null, { file: file });
+    if (touchedFields.socialMediaImageFile) {
+      const error = validateSingleField("socialMediaImage", null, { file: file });
       setFieldErrors((prev) => ({
         ...prev,
-        image: error,
+        socialMediaImageFile: error,
       }));
     }
   };
@@ -558,8 +586,8 @@ export default function Workshop() {
     setTempFile(null);
 
     // Reset file input
-    if (refs.image?.current) {
-      refs.image.current.value = "";
+    if (refs.socialMediaImageFile?.current) {
+      refs.socialMediaImageFile.current.value = "";
     }
   };
 
@@ -606,7 +634,7 @@ export default function Workshop() {
         </SuccessText>
       )}
 
-      {!success && registrationStatus.isActive && (
+       {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -881,18 +909,46 @@ export default function Workshop() {
             )}
 
             <p>
-              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+              Logo/Bild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
-            <FileUpload
-              handleFileChange={handleFileChange}
+            <MultiFileUpload
+              name="logo"
               inputRef={refs.image}
-              previewUrl={previewUrl}
-              file={file}
-              isError={!!getFieldError("image") || !!fileError}
+              files={imageFile}
+              setFiles={setImageFile}
+              previewUrls={imagePreviewUrl}
+              setPreviewUrls={setImagePreviewUrl}
+              maxFileSize={MAX_IMAGE_SIZE_MB}
+              maxFiles={1}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
+              isError={!!getFieldError("image") || !!imageError}
+              setFileError={setImageError}
             />
-            {(fileError || getFieldError("image")) && (
+            {(imageError || getFieldError("image")) && (
               <ErrorText style={{ textAlign: "center" }}>
-                {fileError || getFieldError("image")}
+                {imageError || getFieldError("image")}
+              </ErrorText>
+            )}
+
+            <br />
+            <p>Social-Media Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp)</p>
+            <MultiFileUpload
+              name="socialmedia"
+              inputRef={refs.socialMediaImageFile}
+              files={socialMediaImageFile}
+              setFiles={setSocialMediaImageFile}
+              previewUrls={socialMediaImagePreviewUrl}
+              setPreviewUrls={setSocialMediaImagePreviewUrl}
+              maxFileSize={MAX_IMAGE_SIZE_MB}
+              maxFiles={1}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
+              isError={!!getFieldError("socialMediaImageFile") || !!fileError}
+              setFileError={setFileError}
+              onFileSelect={handleSocialMediaFileSelect}
+            />
+            {(fileError || getFieldError("socialMediaImageFile")) && (
+              <ErrorText style={{ textAlign: "center" }}>
+                {fileError || getFieldError("socialMediaImageFile")}
               </ErrorText>
             )}
 
@@ -1039,7 +1095,7 @@ export default function Workshop() {
           imageUrl={tempImageUrl}
           onCropComplete={handleCropComplete}
           onCancel={handleCropCancel}
-          fileName={tempFile?.name || "workshop-image.png"}
+          fileName={tempFile?.name || "workshop-social-media-image.png"}
         />
       )}
     </>
