@@ -91,21 +91,14 @@ export default function Exhibitor() {
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
 
-const [registrationTest, setRegistrationTest] = useState(() => {
-    // Prüfe auf URL-Parameter ?test=true (SSR-sicher)
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const isTestMode = urlParams.get('test') === 'true';
-      
-      if (isTestMode) {
-        return {
-          isActive: true,
-          message: "TEST-MODUS: Anmeldung ist außerhalb der regulären Zeiten geöffnet"
-        };
-      }
-    }
-    return checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR);
-  });
+const [registrationTest, setRegistrationTest] = useState(false);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const isTestMode = urlParams.get('test') === 'true';
+  if(isTestMode){
+    setRegistrationTest(true);
+  }
+  
 
   const refs = {
     gender: useRef(null),
@@ -542,7 +535,7 @@ useEffect(() => {
         </SuccessText>
       )}
 
-      {!success && registrationStatus.isActive && (
+      {(!success && registrationStatus.isActive )|| registrationTest && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
