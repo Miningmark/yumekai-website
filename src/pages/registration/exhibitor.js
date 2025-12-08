@@ -657,18 +657,7 @@ export default function Exhibitor() {
               <FieldErrorText>{getFieldError("groupMembers")}</FieldErrorText>
             )}
 
-            <InputOptionTextArea
-              title="Ankündigungstext"
-              inputText={announcementText}
-              inputChange={(value) => setAnnouncementText(value)}
-              onBlur={() => handleBlur("announcementText", announcementText)}
-              inputRef={refs.announcementText}
-              isError={!!getFieldError("announcementText")}
-              require
-            />
-            {getFieldError("announcementText") && (
-              <FieldErrorText>{getFieldError("announcementText")}</FieldErrorText>
-            )}
+            
 
             <InputOptionTextArea
               title="Standgröße"
@@ -703,6 +692,20 @@ export default function Exhibitor() {
               <ErrorText style={{ textAlign: "center" }}>
                 {imageError || getFieldError("image")}
               </ErrorText>
+            )}
+            
+<br />
+            <InputOptionTextArea
+              title="Ankündigungstext"
+              inputText={announcementText}
+              inputChange={(value) => setAnnouncementText(value)}
+              onBlur={() => handleBlur("announcementText", announcementText)}
+              inputRef={refs.announcementText}
+              isError={!!getFieldError("announcementText")}
+              require
+            />
+            {getFieldError("announcementText") && (
+              <FieldErrorText>{getFieldError("announcementText")}</FieldErrorText>
             )}
 
             <br />

@@ -419,7 +419,7 @@ export default function Voranmeldungen() {
           style={{ justifyContent: "center", alignContent: "center" }}
         >
           <Infobox>
-            <p>Anmeldung als Aussteller</p>
+            <p>Anmeldung als Fan-Gruppe/Verein</p>
             {renderButton(
               REGISTRATION_START_EXHIBITOR,
               REGISTRATION_END_EXHIBITOR,
