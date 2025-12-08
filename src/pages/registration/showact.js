@@ -18,7 +18,6 @@ import {
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
-import FileUpload from "@/components/styled/FileUpload";
 import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString, { validateField } from "@/util/inputCheck";
@@ -94,8 +93,11 @@ export default function Showact() {
 
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
-  const [file, setFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [imageFile, setImageFile] = useState([]);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
+  const [imageError, setImageError] = useState("");
+  const [socialMediaImageFile, setSocialMediaImageFile] = useState([]);
+  const [socialMediaImagePreviewUrl, setSocialMediaImagePreviewUrl] = useState([]);
 
   const [file2, setFile2] = useState([]);
   const [previewUrl2, setPreviewUrl2] = useState([]);
@@ -142,7 +144,8 @@ export default function Showact() {
     broughtEquipment: useRef(null),
     website: useRef(null),
     instagram: useRef(null),
-    file: useRef(null),
+    image: useRef(null),
+    socialMediaImageFile: useRef(null),
     file2: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
@@ -312,7 +315,11 @@ export default function Showact() {
         break;
 
       case "image":
-        if (!additionalData.file) error = "Bild ist ein Pflichtfeld";
+        if (imageFile.length < 1) error = "Bild ist ein Pflichtfeld";
+        break;
+
+      case "socialMediaImage":
+        // optional field, no validation needed
         break;
 
       case "privacyPolicy":
@@ -391,7 +398,10 @@ export default function Showact() {
     errors.website = validateSingleField("website", website);
     errors.instagram = validateSingleField("instagram", instagram);
     errors.message = validateSingleField("message", message);
-    errors.image = validateSingleField("image", null, { file });
+    errors.image = validateSingleField("image", null, { file: imageFile });
+    errors.socialMediaImageFile = validateSingleField("socialMediaImageFile", null, {
+      file: socialMediaImageFile,
+    });
 
     // Bedingungen
     errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
@@ -473,7 +483,10 @@ export default function Showact() {
     formData.append("pictureRightsPolicy", pictureRights);
     formData.append("conditionsPolicy", conditions);
     formData.append("registrationReminder", registrationReminder);
-    formData.append("image", file);
+    formData.append("image", imageFile[0]);
+    if (socialMediaImageFile[0]) {
+      formData.append("socialMediaImage", socialMediaImageFile[0]);
+    }
     if (file2 && Array.isArray(file2)) {
       file2.forEach((singleFile) => {
         formData.append(`documents`, singleFile);
@@ -521,9 +534,11 @@ export default function Showact() {
         setPictureRights(false);
         setConditions(false);
         setRegistrationReminder(false);
-        setFile(null);
+        setImageFile([]);
+        setImagePreviewUrl([]);
+        setSocialMediaImageFile([]);
+        setSocialMediaImagePreviewUrl([]);
         setFile2([]);
-        setPreviewUrl(null);
         setPreviewUrl2([]);
         setFieldErrors({});
         setTouchedFields({});
@@ -540,41 +555,39 @@ export default function Showact() {
     setLoading(false);
   }
 
-  function handleFileChange(e) {
-    const selectedFile = e.target.files[0];
+  // Handler für Social Media Bild - öffnet Crop Modal
+  const handleSocialMediaFileSelect = (selectedFiles) => {
+    const selectedFile = selectedFiles[0];
     const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-    if (!selectedFile) return;
+    if (!selectedFile) {
+      return;
+    }
 
     if (selectedFile.size > maxFileSize) {
       setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
-      setFile(null);
-      setPreviewUrl(null);
       return;
     }
 
     if (!isImageFile(selectedFile.name)) {
       setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
-      setFile(null);
-      setPreviewUrl(null);
       return;
     }
 
     setFileError("");
 
-    // Erstelle eine temporäre URL für das Crop-Modal
     const reader = new FileReader();
     reader.onloadend = () => {
       setTempImageUrl(reader.result);
       setTempFile(selectedFile);
-      setShowCropModal(true); // Öffne das Crop-Modal
+      setShowCropModal(true);
     };
     reader.readAsDataURL(selectedFile);
-  }
+  };
 
   const handleCropComplete = ({ blob, file, previewUrl }) => {
-    setFile(file);
-    setPreviewUrl(previewUrl);
+    setSocialMediaImageFile([file]);
+    setSocialMediaImagePreviewUrl([previewUrl]);
     setShowCropModal(false);
 
     // Cleanup
@@ -585,11 +598,11 @@ export default function Showact() {
     setTempFile(null);
 
     // Validierung triggern wenn Feld bereits berührt wurde
-    if (touchedFields.image) {
-      const error = validateSingleField("image", null, { file: file });
+    if (touchedFields.socialMediaImageFile) {
+      const error = validateSingleField("socialMediaImage", null, { file: file });
       setFieldErrors((prev) => ({
         ...prev,
-        image: error,
+        socialMediaImageFile: error,
       }));
     }
   };
@@ -605,8 +618,8 @@ export default function Showact() {
     setTempFile(null);
 
     // Reset file input
-    if (refs.image?.current) {
-      refs.image.current.value = "";
+    if (refs.socialMediaImageFile?.current) {
+      refs.socialMediaImageFile.current.value = "";
     }
   };
 
@@ -662,7 +675,7 @@ export default function Showact() {
             />
 
             <InputOptionInput
-              title="Vorame"
+              title="Vorname"
               inputText={name}
               inputChange={(value) => setName(value)}
               onBlur={() => handleBlur("name", name)}
@@ -753,6 +766,29 @@ export default function Showact() {
               <FieldErrorText>{getFieldError("groupMembers")}</FieldErrorText>
             )}
 
+            <p>
+              Logo/Bild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+            </p>
+            <MultiFileUpload
+              name="logo"
+              inputRef={refs.image}
+              files={imageFile}
+              setFiles={setImageFile}
+              previewUrls={imagePreviewUrl}
+              setPreviewUrls={setImagePreviewUrl}
+              maxFileSize={MAX_IMAGE_SIZE_MB}
+              maxFiles={1}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
+              isError={!!getFieldError("image") || !!imageError}
+              setFileError={setImageError}
+            />
+            {(imageError || getFieldError("image")) && (
+              <ErrorText style={{ textAlign: "center" }}>
+                {imageError || getFieldError("image")}
+              </ErrorText>
+            )}
+
+            <br />
             <InputOptionTextArea
               title="Ankündigungstext"
               inputText={announcementText}
@@ -766,19 +802,25 @@ export default function Showact() {
               <FieldErrorText>{getFieldError("announcementText")}</FieldErrorText>
             )}
 
-            <p>
-              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
-            </p>
-            <FileUpload
-              handleFileChange={handleFileChange}
-              inputRef={refs.image}
-              previewUrl={previewUrl}
-              file={file}
-              isError={!!getFieldError("image") || !!fileError}
+            <br />
+            <p>Social-Media Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp)</p>
+            <MultiFileUpload
+              name="socialmedia"
+              inputRef={refs.socialMediaImageFile}
+              files={socialMediaImageFile}
+              setFiles={setSocialMediaImageFile}
+              previewUrls={socialMediaImagePreviewUrl}
+              setPreviewUrls={setSocialMediaImagePreviewUrl}
+              maxFileSize={MAX_IMAGE_SIZE_MB}
+              maxFiles={1}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
+              isError={!!getFieldError("socialMediaImageFile") || !!fileError}
+              setFileError={setFileError}
+              onFileSelect={handleSocialMediaFileSelect}
             />
-            {(fileError || getFieldError("image")) && (
+            {(fileError || getFieldError("socialMediaImageFile")) && (
               <ErrorText style={{ textAlign: "center" }}>
-                {fileError || getFieldError("image")}
+                {fileError || getFieldError("socialMediaImageFile")}
               </ErrorText>
             )}
 
@@ -907,8 +949,7 @@ export default function Showact() {
             </p>
             <MultiFileUpload
               name="techRider"
-              inputRef={refs.technicalRider}
-              previewUrl={previewUrl2}
+              inputRef={refs.file2}
               files={file2}
               setFiles={setFile2}
               previewUrls={previewUrl2}
@@ -1142,7 +1183,7 @@ export default function Showact() {
           imageUrl={tempImageUrl}
           onCropComplete={handleCropComplete}
           onCancel={handleCropCancel}
-          fileName={tempFile?.name || "workshop-image.png"}
+          fileName={tempFile?.name || "showact-social-media-image.png"}
         />
       )}
     </>
