@@ -406,7 +406,7 @@ export default function Voranmeldungen() {
             {renderRegistrationPeriodText(
               REGISTRATION_START_EXHIBITOR,
               REGISTRATION_END_EXHIBITOR,
-              "Aussteller"
+              "Fan-Gruppe/Verein"
             )}
             <br />
             <br />

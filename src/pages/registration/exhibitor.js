@@ -73,6 +73,8 @@ export default function Exhibitor() {
   const [imageFile, setImageFile] = useState([]);
   const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
   const [imageError, setImageError] = useState("");
+  const [socialMediaImageFile, setSocialMediaImageFile] = useState([]);
+  const [socialMediaImagePreviewUrl, setSocialMediaImagePreviewUrl] = useState([]);
 
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
@@ -84,6 +86,7 @@ export default function Exhibitor() {
 
   const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
+  const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
 
@@ -111,6 +114,7 @@ export default function Exhibitor() {
     website: useRef(null),
     instagram: useRef(null),
     image: useRef(null),
+    socialMediaImageFile: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
@@ -242,6 +246,10 @@ export default function Exhibitor() {
         if (imageFile.length < 1) error = "Bild ist ein Pflichtfeld";
         break;
 
+      case "socialMediaImage":
+        // optional field, no validation needed
+        break;
+
       case "privacyPolicy":
         if (!value) error = "Datenschutzerklärung muss akzeptiert werden";
         break;
@@ -311,6 +319,9 @@ export default function Exhibitor() {
     errors.instagram = validateSingleField("instagram", instagram);
     errors.message = validateSingleField("message", message);
     errors.image = validateSingleField("image", null, { file: imageFile });
+    errors.socialMediaImageFile = validateSingleField("socialMediaImageFile", null, {
+      file: socialMediaImageFile,
+    });
 
     // Bedingungen
     errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
@@ -379,6 +390,9 @@ export default function Exhibitor() {
     formData.append("conditionsPolicy", conditions);
     formData.append("registrationReminder", registrationReminder);
     formData.append("image", imageFile[0]);
+    if (socialMediaImageFile[0]) {
+      formData.append("socialMediaImage", socialMediaImageFile[0]);
+    }
 
     try {
       const response = await fetch(
@@ -415,6 +429,8 @@ export default function Exhibitor() {
         setRegistrationReminder(false);
         setImageFile([]);
         setImagePreviewUrl([]);
+        setSocialMediaImageFile([]);
+        setSocialMediaImagePreviewUrl([]);
         setFieldErrors({});
         setTouchedFields({});
       } else {
@@ -430,7 +446,8 @@ export default function Exhibitor() {
     setLoading(false);
   }
 
-  const handleImageFileSelect = (selectedFiles) => {
+  // Handler für Social Media Bild - öffnet Crop Modal
+  const handleSocialMediaFileSelect = (selectedFiles) => {
     const selectedFile = selectedFiles[0];
     const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
@@ -439,16 +456,16 @@ export default function Exhibitor() {
     }
 
     if (selectedFile.size > maxFileSize) {
-      setImageError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
+      setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
       return;
     }
 
     if (!isImageFile(selectedFile.name)) {
-      setImageError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
+      setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
       return;
     }
 
-    setImageError("");
+    setFileError("");
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -460,8 +477,8 @@ export default function Exhibitor() {
   };
 
   const handleCropComplete = ({ blob, file, previewUrl }) => {
-    setImageFile([file]);
-    setImagePreviewUrl([previewUrl]);
+    setSocialMediaImageFile([file]);
+    setSocialMediaImagePreviewUrl([previewUrl]);
     setShowCropModal(false);
 
     // Cleanup
@@ -472,11 +489,11 @@ export default function Exhibitor() {
     setTempFile(null);
 
     // Validierung triggern wenn Feld bereits berührt wurde
-    if (touchedFields.image) {
-      const error = validateSingleField("image", null, { file: file });
+    if (touchedFields.socialMediaImageFile) {
+      const error = validateSingleField("socialMediaImage", null, { file: file });
       setFieldErrors((prev) => ({
         ...prev,
-        image: error,
+        socialMediaImageFile: error,
       }));
     }
   };
@@ -492,8 +509,8 @@ export default function Exhibitor() {
     setTempFile(null);
 
     // Reset file input
-    if (refs.image?.current) {
-      refs.image.current.value = "";
+    if (refs.socialMediaImageFile?.current) {
+      refs.socialMediaImageFile.current.value = "";
     }
   };
 
@@ -528,7 +545,7 @@ export default function Exhibitor() {
         </SuccessText>
       )}
 
-     {!success && (registrationStatus.isActive || registrationTest) && (
+       {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -667,7 +684,7 @@ export default function Exhibitor() {
             )}
 
             <p>
-              Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
+              Logo/Bild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
             <MultiFileUpload
               name="logo"
@@ -681,11 +698,32 @@ export default function Exhibitor() {
               acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
               isError={!!getFieldError("image") || !!imageError}
               setFileError={setImageError}
-              onFileSelect={handleImageFileSelect}
             />
             {(imageError || getFieldError("image")) && (
               <ErrorText style={{ textAlign: "center" }}>
                 {imageError || getFieldError("image")}
+              </ErrorText>
+            )}
+
+            <br />
+            <p>Social-Media Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp)</p>
+            <MultiFileUpload
+              name="socialmedia"
+              inputRef={refs.socialMediaImageFile}
+              files={socialMediaImageFile}
+              setFiles={setSocialMediaImageFile}
+              previewUrls={socialMediaImagePreviewUrl}
+              setPreviewUrls={setSocialMediaImagePreviewUrl}
+              maxFileSize={MAX_IMAGE_SIZE_MB}
+              maxFiles={1}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
+              isError={!!getFieldError("socialMediaImageFile") || !!fileError}
+              setFileError={setFileError}
+              onFileSelect={handleSocialMediaFileSelect}
+            />
+            {(fileError || getFieldError("socialMediaImageFile")) && (
+              <ErrorText style={{ textAlign: "center" }}>
+                {fileError || getFieldError("socialMediaImageFile")}
               </ErrorText>
             )}
 
@@ -894,7 +932,7 @@ export default function Exhibitor() {
           imageUrl={tempImageUrl}
           onCropComplete={handleCropComplete}
           onCancel={handleCropCancel}
-          fileName={tempFile?.name || "exhibitor-image.png"}
+          fileName={tempFile?.name || "exhibitor-social-media-image.png"}
         />
       )}
     </>
