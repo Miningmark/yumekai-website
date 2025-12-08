@@ -92,12 +92,6 @@ export default function Exhibitor() {
   const [tempFile, setTempFile] = useState(null);
 
 const [registrationTest, setRegistrationTest] = useState(false);
-
-  //const urlParams = new URLSearchParams(window.location.search);
-  const isTestMode = false;//urlParams.get('test') === 'true';
-  if(isTestMode){
-    setRegistrationTest(true);
-  }
   
 
   const refs = {
@@ -133,6 +127,9 @@ useEffect(() => {
     const isTestMode = urlParams.get('test') === 'true';
 
     console.log("Testmodus", isTestMode);
+    if(isTestMode){
+      setRegistrationTest(true);
+    }
     
     // Interval nur setzen wenn NICHT im Test-Modus
     if (!isTestMode) {
