@@ -611,7 +611,7 @@ if (!isTestMode) {
         </SuccessText>
       )}
 
-      {(!success && registrationStatus.isActive)|| registrationTest && (
+     {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
