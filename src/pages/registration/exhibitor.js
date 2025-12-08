@@ -138,6 +138,8 @@ useEffect(() => {
     // Prüfe auf Test-Modus
     const urlParams = new URLSearchParams(window.location.search);
     const isTestMode = urlParams.get('test') === 'true';
+
+    console.log("Testmodus", isTestMode);
     
     // Interval nur setzen wenn NICHT im Test-Modus
     if (!isTestMode) {
@@ -527,8 +529,6 @@ useEffect(() => {
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutze unser{" "}
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
-
-      <h2>Die Anmeldung für einen Gruppen/Fan stand ist momentan geschlossen. (TEST-Modus)</h2>
 
       {!registrationStatus.isActive && (
         <h2>
