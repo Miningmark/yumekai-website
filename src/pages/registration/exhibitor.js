@@ -93,8 +93,8 @@ export default function Exhibitor() {
 
 const [registrationTest, setRegistrationTest] = useState(false);
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const isTestMode = urlParams.get('test') === 'true';
+  //const urlParams = new URLSearchParams(window.location.search);
+  const isTestMode = false;//urlParams.get('test') === 'true';
   if(isTestMode){
     setRegistrationTest(true);
   }
