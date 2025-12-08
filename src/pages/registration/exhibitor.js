@@ -18,7 +18,7 @@ import {
 } from "@/components/styledComponents";
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
-import FileUpload from "@/components/styled/FileUpload";
+import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString, { validateField } from "@/util/inputCheck";
 import {
@@ -70,8 +70,9 @@ export default function Exhibitor() {
   const [standSize, setStandSize] = useState("");
   const [website, setWebsite] = useState("");
   const [instagram, setInstagram] = useState("");
-  const [file, setFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [imageFile, setImageFile] = useState([]);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState([]);
+  const [imageError, setImageError] = useState("");
 
   const [message, setMessage] = useState("");
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
@@ -83,7 +84,6 @@ export default function Exhibitor() {
 
   const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
-  const [fileError, setFileError] = useState("");
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
 
@@ -91,8 +91,7 @@ export default function Exhibitor() {
   const [tempImageUrl, setTempImageUrl] = useState(null);
   const [tempFile, setTempFile] = useState(null);
 
-const [registrationTest, setRegistrationTest] = useState(false);
-  
+  const [registrationTest, setRegistrationTest] = useState(false);
 
   const refs = {
     gender: useRef(null),
@@ -121,15 +120,16 @@ const [registrationTest, setRegistrationTest] = useState(false);
     registrationReminder: useRef(null),
   };
 
-useEffect(() => {
+  useEffect(() => {
     // Prüfe auf Test-Modus
     const urlParams = new URLSearchParams(window.location.search);
-    const isTestMode = urlParams.get('test') === 'true';
+    const isTestMode = urlParams.get("test") === "true";
 
-    if(isTestMode){
+    console.log("Testmodus", isTestMode);
+    if (isTestMode) {
       setRegistrationTest(true);
     }
-    
+
     // Interval nur setzen wenn NICHT im Test-Modus
     if (!isTestMode) {
       const interval = setInterval(() => {
@@ -239,7 +239,7 @@ useEffect(() => {
         break;
 
       case "image":
-        if (!additionalData.file) error = "Bild ist ein Pflichtfeld";
+        if (imageFile.length < 1) error = "Bild ist ein Pflichtfeld";
         break;
 
       case "privacyPolicy":
@@ -310,7 +310,7 @@ useEffect(() => {
     errors.website = validateSingleField("website", website);
     errors.instagram = validateSingleField("instagram", instagram);
     errors.message = validateSingleField("message", message);
-    errors.image = validateSingleField("image", null, { file });
+    errors.image = validateSingleField("image", null, { file: imageFile });
 
     // Bedingungen
     errors.privacyPolicy = validateSingleField("privacyPolicy", privacyPolicy);
@@ -378,7 +378,7 @@ useEffect(() => {
     formData.append("pictureRightsPolicy", pictureRights);
     formData.append("conditionsPolicy", conditions);
     formData.append("registrationReminder", registrationReminder);
-    formData.append("image", file);
+    formData.append("image", imageFile[0]);
 
     try {
       const response = await fetch(
@@ -413,8 +413,8 @@ useEffect(() => {
         setPictureRights(false);
         setConditions(false);
         setRegistrationReminder(false);
-        setFile(null);
-        setPreviewUrl(null);
+        setImageFile([]);
+        setImagePreviewUrl([]);
         setFieldErrors({});
         setTouchedFields({});
       } else {
@@ -430,41 +430,38 @@ useEffect(() => {
     setLoading(false);
   }
 
-  function handleFileChange(e) {
-    const selectedFile = e.target.files[0];
+  const handleImageFileSelect = (selectedFiles) => {
+    const selectedFile = selectedFiles[0];
     const maxFileSize = MAX_IMAGE_SIZE_MB * 1024 * 1024;
 
-    if (!selectedFile) return;
+    if (!selectedFile) {
+      return;
+    }
 
     if (selectedFile.size > maxFileSize) {
-      setFileError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
-      setFile(null);
-      setPreviewUrl(null);
+      setImageError(`Die Datei darf maximal ${MAX_IMAGE_SIZE_MB}MB groß sein.`);
       return;
     }
 
     if (!isImageFile(selectedFile.name)) {
-      setFileError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
-      setFile(null);
-      setPreviewUrl(null);
+      setImageError("Bitte wähle ein gültiges Bild aus. (jpg, jpeg, png, webp)");
       return;
     }
 
-    setFileError("");
+    setImageError("");
 
-    // Erstelle eine temporäre URL für das Crop-Modal
     const reader = new FileReader();
     reader.onloadend = () => {
       setTempImageUrl(reader.result);
       setTempFile(selectedFile);
-      setShowCropModal(true); // Öffne das Crop-Modal
+      setShowCropModal(true);
     };
     reader.readAsDataURL(selectedFile);
-  }
+  };
 
   const handleCropComplete = ({ blob, file, previewUrl }) => {
-    setFile(file);
-    setPreviewUrl(previewUrl);
+    setImageFile([file]);
+    setImagePreviewUrl([previewUrl]);
     setShowCropModal(false);
 
     // Cleanup
@@ -531,7 +528,7 @@ useEffect(() => {
         </SuccessText>
       )}
 
-      {!success && (registrationStatus.isActive || registrationTest) && (
+     {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -672,16 +669,23 @@ useEffect(() => {
             <p>
               Logo/Ankündigungsbild (max. 5MB, jpg, jpeg, png, webp) <RequiredNote>*</RequiredNote>
             </p>
-            <FileUpload
-              handleFileChange={handleFileChange}
+            <MultiFileUpload
+              name="logo"
               inputRef={refs.image}
-              previewUrl={previewUrl}
-              file={file}
-              isError={!!getFieldError("image") || !!fileError}
+              files={imageFile}
+              setFiles={setImageFile}
+              previewUrls={imagePreviewUrl}
+              setPreviewUrls={setImagePreviewUrl}
+              maxFileSize={MAX_IMAGE_SIZE_MB}
+              maxFiles={1}
+              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
+              isError={!!getFieldError("image") || !!imageError}
+              setFileError={setImageError}
+              onFileSelect={handleImageFileSelect}
             />
-            {(fileError || getFieldError("image")) && (
+            {(imageError || getFieldError("image")) && (
               <ErrorText style={{ textAlign: "center" }}>
-                {fileError || getFieldError("image")}
+                {imageError || getFieldError("image")}
               </ErrorText>
             )}
 
@@ -890,7 +894,7 @@ useEffect(() => {
           imageUrl={tempImageUrl}
           onCropComplete={handleCropComplete}
           onCancel={handleCropCancel}
-          fileName={tempFile?.name || "workshop-image.png"}
+          fileName={tempFile?.name || "exhibitor-image.png"}
         />
       )}
     </>
