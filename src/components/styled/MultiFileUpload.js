@@ -17,8 +17,6 @@ export default function FileUpload({
   maxFiles = 1,
   name = "fileupload",
   onFileSelect,
-  onBlur,
-  onFocus,
 }) {
   useEffect(() => {
     return () => {
@@ -152,8 +150,6 @@ export default function FileUpload({
             multiple={maxFiles > 1}
             accept={acceptedExtensions.join(",")}
             onChange={handleFileChange}
-            onBlur={onBlur}
-            onFocus={onFocus}
             aria-label="Datei hochladen"
           />
         </Label>

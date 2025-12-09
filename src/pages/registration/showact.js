@@ -176,6 +176,17 @@ export default function Showact() {
     }
   }, []);
 
+  useEffect(() => {
+    // Validierung triggern wenn imageFile sich ändert UND das Feld bereits berührt wurde
+    if (touchedFields.image) {
+      const error = validateSingleField("image", null, { file: imageFile });
+      setFieldErrors((prev) => ({
+        ...prev,
+        image: error,
+      }));
+    }
+  }, [imageFile, touchedFields.image]);
+
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
   };
@@ -637,9 +648,9 @@ export default function Showact() {
         .
         <br />
         <br />
-        Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
-        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutze unser{" "}
-        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
+        Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an{" "}
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> wenden oder benutze
+        unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
       {!registrationStatus.isActive && (
@@ -775,7 +786,10 @@ export default function Showact() {
               name="logo"
               inputRef={refs.image}
               files={imageFile}
-              setFiles={setImageFile}
+              setFiles={(files) => {
+                setImageFile(files);
+                setTouchedFields((prev) => ({ ...prev, image: true })); // ⭐ Touched setzen
+              }}
               previewUrls={imagePreviewUrl}
               setPreviewUrls={setImagePreviewUrl}
               maxFileSize={MAX_IMAGE_SIZE_MB}

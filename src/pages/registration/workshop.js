@@ -167,6 +167,17 @@ export default function Workshop() {
     setAddressData((prev) => ({ ...prev, [field]: value }));
   };
 
+  useEffect(() => {
+    // Validierung triggern wenn imageFile sich ändert UND das Feld bereits berührt wurde
+    if (touchedFields.image) {
+      const error = validateSingleField("image", null, { file: imageFile });
+      setFieldErrors((prev) => ({
+        ...prev,
+        image: error,
+      }));
+    }
+  }, [imageFile, touchedFields.image]);
+
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {
     let error = null;
@@ -303,6 +314,7 @@ export default function Workshop() {
 
       case "image":
         if (imageFile.length < 1) error = "Bild ist ein Pflichtfeld";
+        console.log("Validating image file:", imageFile.length);
         break;
 
       case "socialMediaImage":
@@ -901,7 +913,10 @@ export default function Workshop() {
               name="logo"
               inputRef={refs.image}
               files={imageFile}
-              setFiles={setImageFile}
+              setFiles={(files) => {
+                setImageFile(files);
+                setTouchedFields((prev) => ({ ...prev, image: true })); // ⭐ Touched setzen
+              }}
               previewUrls={imagePreviewUrl}
               setPreviewUrls={setImagePreviewUrl}
               maxFileSize={MAX_IMAGE_SIZE_MB}
@@ -909,7 +924,6 @@ export default function Workshop() {
               acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
               isError={!!getFieldError("image") || !!imageError}
               setFileError={setImageError}
-              onBlur={() => handleBlur("image", imageFile)}
             />
             {(imageError || getFieldError("image")) && (
               <ErrorText style={{ textAlign: "center" }}>

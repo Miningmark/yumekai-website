@@ -145,6 +145,17 @@ export default function Exhibitor() {
     }
   }, []);
 
+  useEffect(() => {
+    // Validierung triggern wenn imageFile sich ändert UND das Feld bereits berührt wurde
+    if (touchedFields.image) {
+      const error = validateSingleField("image", null, { file: imageFile });
+      setFieldErrors((prev) => ({
+        ...prev,
+        image: error,
+      }));
+    }
+  }, [imageFile, touchedFields.image]);
+
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
   };
@@ -678,7 +689,10 @@ export default function Exhibitor() {
               name="logo"
               inputRef={refs.image}
               files={imageFile}
-              setFiles={setImageFile}
+              setFiles={(files) => {
+                setImageFile(files);
+                setTouchedFields((prev) => ({ ...prev, image: true })); // ⭐ Touched setzen
+              }}
               previewUrls={imagePreviewUrl}
               setPreviewUrls={setImagePreviewUrl}
               maxFileSize={MAX_IMAGE_SIZE_MB}
