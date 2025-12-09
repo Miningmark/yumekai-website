@@ -909,6 +909,7 @@ export default function Workshop() {
               acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
               isError={!!getFieldError("image") || !!imageError}
               setFileError={setImageError}
+              onBlur={() => handleBlur("image", imageFile)}
             />
             {(imageError || getFieldError("image")) && (
               <ErrorText style={{ textAlign: "center" }}>
