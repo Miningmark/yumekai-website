@@ -813,7 +813,7 @@ export default function HelferForm() {
 
           {arrival === "car" && (
             <CheckBox
-              title="Parkticket benötigt"
+              title="Parkticket benötigt (wird gestellt)"
               isChecked={parkingTicketRequired}
               inputChange={setParkingTicketRequired}
             />
@@ -821,21 +821,21 @@ export default function HelferForm() {
 
           <CheckBox
             title={
-              "Aufbau Freitag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+              "Aufbau Freitag (18:00 - 22:00); falls andere Zeiten möglich sind bitte angeben im Feld Sonstiges."
             }
             isChecked={fridayConstruction}
             inputChange={(value) => setFridayConstruction(value)}
           />
           <CheckBox
             title={
-              "Aufbau Samstag (06:00 - 09:30) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+              "Aufbau Samstag (06:00 - 09:30); falls andere Zeiten möglich sind bitte angeben im Feld Sonstiges."
             }
             isChecked={saturdayConstruction}
             inputChange={(value) => setSaturdayConstruction(value)}
           />
           <CheckBox
             title={
-              "Abbau Sonntag (18:00 - 22:00) falls andere Zeiten möglich sind bitte angeben bei Sonstiges."
+              "Abbau Sonntag (18:00 - 22:00); falls andere Zeiten möglich sind bitte angeben im Feld Sonstiges."
             }
             isChecked={sundayDeconstruction}
             inputChange={(value) => setSundayDeconstruction(value)}
@@ -944,7 +944,7 @@ export default function HelferForm() {
           />
 
           <RadioButton
-            title="Bevorzugte-Schicht"
+            title="Bevorzugte Helferzeit"
             names={PREFERRED_WORKTIME_OPTIONS.map((option) => option.label)}
             options={PREFERRED_WORKTIME_OPTIONS.map((option) => option.value)}
             selectedOption={preferredWorktime}

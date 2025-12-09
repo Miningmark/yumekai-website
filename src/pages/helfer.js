@@ -7,17 +7,17 @@ export default function Helfer() {
     <>
       <h1>Werde Teil des YumeKai-Teams!</h1>
       <p>
-        Egal, ob bei der YumeKai oder der YumeKai – Night, ohne Helfer und ehrenamtliche
-        Teammitglieder wäre eine Convention nicht möglich. Wir freuen uns über alle, die die
-        Projekte von YumeKai unterstützen möchten. Hast du Lust, Teil unseres Teams zu werden und
-        gemeinsam mit uns Events auf die Beine zu stellen? Bei uns hast du die Möglichkeit dazu!
+        Ohne Helfer und ehrenamtliche Teammitglieder wäre eine Convention nicht möglich. Wir freuen
+        uns über alle, die die Projekte von YumeKai unterstützen möchten. Hast du Lust, Teil unseres
+        Teams zu werden und gemeinsam mit uns Events auf die Beine zu stellen? Bei uns hast du die
+        Möglichkeit dazu!
       </p>
       <p>
         Da wir selbst Erfahrung als Helfer auf Conventions gesammelt haben, wissen wir genau, wie es
-        auf beiden Seiten aussieht. Wir wissen, wie wertvoll und unverzichtbar engagierte und
-        enthusiastische Helfer sind, um eine erfolgreiche Veranstaltung zu realisieren. Deshalb
-        legen wir großen Wert auf ein starkes und harmonisches Team, in dem jeder seine Fähigkeiten
-        und Leidenschaften einbringen kann.
+        auf beiden Seiten aussieht. Uns ist bewusst, wie wertvoll und unverzichtbar engagierte und
+        enthusiastische Helfer sind, um eine erfolgreiche Veranstaltung zu realisieren. Daher legen
+        wir großen Wert auf ein starkes und harmonisches Team, in dem jeder seine Fähigkeiten und
+        Leidenschaften einbringen kann.
       </p>
       <p>
         Als Teil des YumeKai-Teams wirst du die Möglichkeit haben, hinter die Kulissen einer
@@ -33,7 +33,7 @@ export default function Helfer() {
       </p>
       <TabTitle
         title="Gibt es ein Mindestalter?"
-        content={"Um uns bei der YumeKai zu unterstützen, musst du 18 Jahre alt sein."}
+        content={"Um uns bei der YumeKai zu unterstützen, musst du mindestens 18 Jahre alt sein."}
       />
       <TabTitle
         title="Was hat man im Team für Aufgaben?"
@@ -44,7 +44,7 @@ export default function Helfer() {
       <TabTitle
         title="Kann ich mir aussuchen, wo ich eingesetzt werde?"
         content={
-          "Bei der Anmeldung kann natürlich das Event auf welchem ihr Helfen wollt UND der bzw. die Wunschbereiche angeben werden. Bitte beachtet aber, dass wir nicht jedem Wunsch nachkommen können und es vorkommen könnte, dass wir euch in anderer Bereiche zuteilen müssen."
+          "Bei der Anmeldung kannst du natürlich die Wunschbereiche auswählen, beim denen du helfen möchtest. Bitte beachte aber, dass wir nicht jedem Wunsch nachkommen können und es vorkommen könnte, dass wir dich in anderen Bereichen zuteilen müssen."
         }
       />
       <TabTitle
@@ -54,19 +54,19 @@ export default function Helfer() {
             <p>
               Die uneingeschränkte Dankbarkeit aller Organisatoren, Teammitglieder und der Besucher
               ist dir sicher. Die YumeKai wird zum großen Teil ehrenamtlich organisiert. Dennoch
-              wollen wir versuchen euch als Helfern auch etwas zurück zu geben. Auf jeden fall
-              wollen wir das ihr auch etwas von den Events auf denen ihr helft habt.
+              wollen wir versuchen euch als Helfern auch etwas zurück zu geben. Auf jeden Fall
+              wollen wir, dass ihr auch etwas von den Events auf denen ihr helft habt.
             </p>
             <p>Für eure Unterstützung bekommt ihr von uns:</p>
             <ul>
               <li>
                 Verpflegung (je nach Veranstaltung und Tag z.B. eine Mahlzeit sowie verschiedene
-                Snacks und Getränken)
+                Snacks und Getränke)
               </li>
               <li>
-                Ein Helfer T-Shirt, das euch als Helfer ausweist und im anschluss behalten darfst
+                Ein Helfer-T-Shirt, das euch als Helfer ausweist und ihr im Anschluss behalten dürft
               </li>
-              <li>Und weiteres je nach Veranstalltung</li>
+              <li>Und vieles mehr</li>
             </ul>
           </>
         }
