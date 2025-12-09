@@ -466,14 +466,13 @@ export default function Workshop() {
     }
 
     try {
-      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
-      const response = await fetch(
-        `${fetchURL}/api/v1/event/application/createWorkshop`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const fetchURL = registrationTest
+        ? "https://node.miningmark.de"
+        : "https://orgaboard.yumekai.de";
+      const response = await fetch(`${fetchURL}/api/v1/event/application/createWorkshop`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         setSuccess(

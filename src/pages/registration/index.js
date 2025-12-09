@@ -380,13 +380,14 @@ export default function Voranmeldungen() {
         <DynamicContent $widthpercent={65}>
           <h2>Anmeldung als Fan-Gruppe/Verein</h2>
           <p>
-            Du möchtest als Fan-Gruppe/Verein auf der YumeKai 2026 dabei sein? Dann ist dies deine Chance!
+            Du möchtest als Fan-Gruppe/Verein auf der YumeKai 2026 dabei sein? Dann ist dies deine
+            Chance!
             <br />
             <br />
-            Als Fan-Gruppe/Verein hast du die Möglichkeit, deine Produkte, Dienstleistungen oder Projekte
-            einem interessierten Publikum zu präsentieren. Ob Vereine, Organisationen oder
-            kommerzielle Fan-Gruppe/Verein – wir freuen uns über alle, die die YumeKai mit ihrer Präsenz
-            bereichern möchten.
+            Als Fan-Gruppe/Verein hast du die Möglichkeit, deine Produkte, Dienstleistungen oder
+            Projekte einem interessierten Publikum zu präsentieren. Ob Vereine, Organisationen oder
+            kommerzielle Fan-Gruppe/Verein – wir freuen uns über alle, die die YumeKai mit ihrer
+            Präsenz bereichern möchten.
             <br />
             <br />
             Sobald die Bewerbungsphase vorbei ist, werden wir aus allen Anmeldungen eine Auswahl

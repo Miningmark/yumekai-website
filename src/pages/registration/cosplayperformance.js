@@ -106,7 +106,7 @@ export default function CosplayPerformance() {
   };
 
   useEffect(() => {
-     // Prüfe auf Test-Modus
+    // Prüfe auf Test-Modus
     const urlParams = new URLSearchParams(window.location.search);
     const isTestMode = urlParams.get("test") === "true";
 
@@ -114,17 +114,17 @@ export default function CosplayPerformance() {
       setRegistrationTest(true);
     }
     if (!isTestMode) {
-    const interval = setInterval(() => {
-      setRegistrationStatus(
-        checkRegistrationPeriod(
-          REGISTRATION_START_COSPLAY_PERFORMANCE,
-          REGISTRATION_END_COSPLAY_PERFORMANCE
-        )
-      );
-    }, 60000);
+      const interval = setInterval(() => {
+        setRegistrationStatus(
+          checkRegistrationPeriod(
+            REGISTRATION_START_COSPLAY_PERFORMANCE,
+            REGISTRATION_END_COSPLAY_PERFORMANCE
+          )
+        );
+      }, 60000);
 
-    return () => clearInterval(interval);
-  }
+      return () => clearInterval(interval);
+    }
   }, []);
 
   // Zentrale Validierungsfunktion
@@ -329,7 +329,9 @@ export default function CosplayPerformance() {
     }
 
     try {
-      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
+      const fetchURL = registrationTest
+        ? "https://node.miningmark.de"
+        : "https://orgaboard.yumekai.de";
       const response = await fetch(
         `${fetchURL}/api/v1/event/application/createCosplayContestPerformance`,
         {
@@ -414,7 +416,7 @@ export default function CosplayPerformance() {
         </SuccessText>
       )}
 
-       {!success && (registrationStatus.isActive || registrationTest) && (
+      {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.

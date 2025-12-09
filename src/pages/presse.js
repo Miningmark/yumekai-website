@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import validateString, { validateField } from "@/util/inputCheck";
 
 //Components
@@ -56,6 +56,8 @@ export default function Presse() {
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
 
+  const [registrationTest, setRegistrationTest] = useState(false);
+
   const refs = {
     gender: useRef(null),
     name: useRef(null),
@@ -74,6 +76,16 @@ export default function Presse() {
     privacyPolicy: useRef(null),
     dataStorage: useRef(null),
   };
+
+  useEffect(() => {
+    // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get("test") === "true";
+
+    if (isTestMode) {
+      setRegistrationTest(true);
+    }
+  }, []);
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
@@ -263,13 +275,13 @@ export default function Presse() {
     formData.append("dataStoragePolicy", dataStorage);
 
     try {
-      const response = await fetch(
-        "https://orgaboard.yumekai.de/api/v1/event/application/createPress",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const fetchURL = registrationTest
+        ? "https://node.miningmark.de"
+        : "https://orgaboard.yumekai.de";
+      const response = await fetch(`${fetchURL}/api/v1/event/application/createPress`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         setSuccess("Presse Akkreditierung erfolgreich abgeschickt");
@@ -389,6 +401,9 @@ export default function Presse() {
 
       <Spacer id="akkreditierung" />
       <h2>Online Akkreditierung</h2>
+
+      {registrationTest && <h2>Testmodus Aktiv!</h2>}
+
       {!success && (
         <>
           <p>

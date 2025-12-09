@@ -89,7 +89,7 @@ export default function ArtContest() {
   };
 
   useEffect(() => {
-     // Prüfe auf Test-Modus
+    // Prüfe auf Test-Modus
     const urlParams = new URLSearchParams(window.location.search);
     const isTestMode = urlParams.get("test") === "true";
 
@@ -97,14 +97,14 @@ export default function ArtContest() {
       setRegistrationTest(true);
     }
     if (!isTestMode) {
-    const interval = setInterval(() => {
-      setRegistrationStatus(
-        checkRegistrationPeriod(REGISTRATION_START_ART_CONTEST, REGISTRATION_END_ART_CONTEST)
-      );
-    }, 60000);
+      const interval = setInterval(() => {
+        setRegistrationStatus(
+          checkRegistrationPeriod(REGISTRATION_START_ART_CONTEST, REGISTRATION_END_ART_CONTEST)
+        );
+      }, 60000);
 
-    return () => clearInterval(interval);
-  }
+      return () => clearInterval(interval);
+    }
   }, []);
 
   // Zentrale Validierungsfunktion
@@ -281,14 +281,13 @@ export default function ArtContest() {
     formData.append("drawingImage", file[0]);
 
     try {
-      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
-      const response = await fetch(
-        `${fetchURL}/api/v1/event/application/createDrawingContest`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const fetchURL = registrationTest
+        ? "https://node.miningmark.de"
+        : "https://orgaboard.yumekai.de";
+      const response = await fetch(`${fetchURL}/api/v1/event/application/createDrawingContest`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         setSuccess(
@@ -362,7 +361,7 @@ export default function ArtContest() {
         </SuccessText>
       )}
 
-       {!success && (registrationStatus.isActive || registrationTest) && (
+      {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.

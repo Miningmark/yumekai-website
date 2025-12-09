@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import validateString, { validateField } from "@/util/inputCheck";
 import {
   InputOptionTextArea,
@@ -98,6 +98,8 @@ export default function HelferForm() {
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
 
+  const [registrationTest, setRegistrationTest] = useState(false);
+
   const refs = {
     gender: useRef(null),
     firstName: useRef(null),
@@ -130,6 +132,16 @@ export default function HelferForm() {
     preferredWorktime: useRef(null),
     image: useRef(null),
   };
+
+  useEffect(() => {
+    // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get("test") === "true";
+
+    if (isTestMode) {
+      setRegistrationTest(true);
+    }
+  }, []);
 
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {
@@ -441,13 +453,13 @@ export default function HelferForm() {
     formData.append("helperImage", file);
 
     try {
-      const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createHelper",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const fetchURL = registrationTest
+        ? "https://node.miningmark.de"
+        : "https://orgaboard.yumekai.de";
+      const response = await fetch(`${fetchURL}/api/v1/event/application/createHelper`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         setSuccess(
@@ -556,6 +568,8 @@ export default function HelferForm() {
 
   return (
     <>
+      {registrationTest && <h2>Testmodus Aktiv!</h2>}
+
       {!success && (
         <StyledForm onSubmit={handleSubmit}>
           <p>
