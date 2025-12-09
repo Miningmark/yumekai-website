@@ -435,8 +435,9 @@ export default function Vendor() {
     }
 
     try {
+      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
       const response = await fetch(
-        "https://orgaboard.yumekai.de/api/v1/event/application/createVendor",
+        `${fetchURL}/api/v1/event/application/createVendor`,
         {
           method: "POST",
           body: formData,
@@ -604,6 +605,8 @@ export default function Vendor() {
           <strong>{registrationStatus.message}</strong>
         </h2>
       )}
+
+      {registrationTest && <h2>Testmodus Aktiv!</h2>}
 
       {registrationStatus.isActive && !success && (
         <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>

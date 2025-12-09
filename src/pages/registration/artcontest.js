@@ -68,6 +68,8 @@ export default function ArtContest() {
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
 
+  const [registrationTest, setRegistrationTest] = useState(false);
+
   const refs = {
     gender: useRef(null),
     name: useRef(null),
@@ -87,6 +89,14 @@ export default function ArtContest() {
   };
 
   useEffect(() => {
+     // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get("test") === "true";
+
+    if (isTestMode) {
+      setRegistrationTest(true);
+    }
+    if (!isTestMode) {
     const interval = setInterval(() => {
       setRegistrationStatus(
         checkRegistrationPeriod(REGISTRATION_START_ART_CONTEST, REGISTRATION_END_ART_CONTEST)
@@ -94,6 +104,7 @@ export default function ArtContest() {
     }, 60000);
 
     return () => clearInterval(interval);
+  }
   }, []);
 
   // Zentrale Validierungsfunktion
@@ -270,8 +281,9 @@ export default function ArtContest() {
     formData.append("drawingImage", file[0]);
 
     try {
+      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createDrawingContest",
+        `${fetchURL}/api/v1/event/application/createDrawingContest`,
         {
           method: "POST",
           body: formData,
@@ -336,13 +348,13 @@ export default function ArtContest() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-      <h2>Die Anmeldung zum Zeichenwettbewerb ist seit dem 17.05.2025 geschlossen.</h2>
-
       {!registrationStatus.isActive && (
         <h2>
           <strong>{registrationStatus.message}</strong>
         </h2>
       )}
+
+      {registrationTest && <h2>Testmodus Aktiv!</h2>}
 
       {registrationStatus.isActive && !success && (
         <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>
@@ -350,7 +362,7 @@ export default function ArtContest() {
         </SuccessText>
       )}
 
-      {!success && registrationStatus.isActive && (
+       {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.

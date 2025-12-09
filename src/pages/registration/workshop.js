@@ -617,7 +617,7 @@ export default function Workshop() {
       <p>
         Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an{" "}
         <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> wenden oder unser{" "}
-        <StyledLink href="/kontaktformular">Kontaktformular verwenden.</StyledLink>.
+        <StyledLink href="/kontaktformular">Kontaktformular </StyledLink>verwenden.
       </p>
 
       {!registrationStatus.isActive && (

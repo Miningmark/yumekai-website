@@ -394,8 +394,9 @@ export default function Exhibitor() {
     }
 
     try {
+      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createExhibitor",
+        `${fetchURL}/api/v1/event/application/createExhibitor`,
         {
           method: "POST",
           body: formData,
@@ -537,6 +538,8 @@ export default function Exhibitor() {
           <strong>{registrationStatus.message}</strong>
         </h2>
       )}
+
+      {registrationTest && <h2>Testmodus Aktiv!</h2>}
 
       {registrationStatus.isActive && !success && (
         <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>

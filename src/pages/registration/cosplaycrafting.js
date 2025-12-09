@@ -69,6 +69,8 @@ export default function CosplayCrafting() {
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
 
+  const [registrationTest, setRegistrationTest] = useState(false);
+
   const refs = {
     gender: useRef(null),
     name: useRef(null),
@@ -86,6 +88,14 @@ export default function CosplayCrafting() {
   };
 
   useEffect(() => {
+     // Prüfe auf Test-Modus
+    const urlParams = new URLSearchParams(window.location.search);
+    const isTestMode = urlParams.get("test") === "true";
+
+    if (isTestMode) {
+      setRegistrationTest(true);
+    }
+    if (!isTestMode) {
     const interval = setInterval(() => {
       setRegistrationStatus(
         checkRegistrationPeriod(
@@ -96,6 +106,7 @@ export default function CosplayCrafting() {
     }, 60000);
 
     return () => clearInterval(interval);
+  }
   }, []);
 
   // Zentrale Validierungsfunktion
@@ -270,8 +281,9 @@ export default function CosplayCrafting() {
     }
 
     try {
+      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createCosplayContestCrafting",
+        `${fetchURL}/api/v1/event/application/createCosplayContestCrafting`,
         {
           method: "POST",
           body: formData,
@@ -335,13 +347,13 @@ export default function CosplayCrafting() {
         <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
-      <h2>Die Anmeldung für den Cosplay Crafting Wettbewerb ist bereits geschlossen.</h2>
-
       {!registrationStatus.isActive && (
         <h2>
           <strong>{registrationStatus.message}</strong>
         </h2>
       )}
+
+      {registrationTest && <h2>Testmodus Aktiv!</h2>}
 
       {registrationStatus.isActive && !success && (
         <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>
@@ -349,7 +361,7 @@ export default function CosplayCrafting() {
         </SuccessText>
       )}
 
-      {!success && registrationStatus.isActive && (
+       {!success && (registrationStatus.isActive || registrationTest) && (
         <>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
