@@ -466,8 +466,9 @@ export default function Workshop() {
     }
 
     try {
+      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
       const response = await fetch(
-        "https://node.miningmark.de/api/v1/event/application/createWorkshop",
+        `${fetchURL}/api/v1/event/application/createWorkshop`,
         {
           method: "POST",
           body: formData,
@@ -624,6 +625,8 @@ export default function Workshop() {
           <strong>{registrationStatus.message}</strong>
         </h2>
       )}
+
+      {registrationTest && <h2>Testmodus Aktiv!</h2>}
 
       {registrationStatus.isActive && !success && (
         <SuccessText style={{ fontSize: "1rem", marginTop: "1rem" }}>
