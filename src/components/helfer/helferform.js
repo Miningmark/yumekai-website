@@ -559,13 +559,12 @@ export default function HelferForm() {
   }
 
 const handleDepartmentChange = (value, isChecked) => {
-  const EGAL_VALUE = "egal";
   
-  if (value === EGAL_VALUE && isChecked) {
+  if (value === "others" && isChecked) {
     // Alle Bereiche auswählen
     const allDepartments = DEPARTMENT_OPTIONS.map((dept) => dept.value);
     setSelectedDepartments(allDepartments);
-  } else if (value === EGAL_VALUE && !isChecked) {
+  } else if (value === "others" && !isChecked) {
     // Alle Bereiche abwählen
     setSelectedDepartments([]);
   } else if (isChecked) {
@@ -574,7 +573,7 @@ const handleDepartmentChange = (value, isChecked) => {
   } else {
     // Bereich entfernen und auch "Egal" entfernen falls vorhanden
     setSelectedDepartments((prev) => 
-      prev.filter((dept) => dept !== value && dept !== EGAL_VALUE)
+      prev.filter((dept) => dept !== value && dept !== "others")
     );
   }
 };
