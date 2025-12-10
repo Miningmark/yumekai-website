@@ -195,7 +195,7 @@ export default function Voranmeldungen() {
           <StyledLink href="#workshopleiter">Workshopleiter</StyledLink>
         </li>
       </ul>
-      {/*
+
       <Spacer id="helfer" />
 
       <div
@@ -224,9 +224,9 @@ export default function Voranmeldungen() {
             Events!
             <br />
             <br />
-            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
-            <StyledLink href="mailto:helfer@yumekai.de">helfer@yumekai.de</StyledLink> oder benutzt
-            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
+            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an{" "}
+            <StyledLink href="mailto:helfer@yumekai.de">helfer@yumekai.de</StyledLink> wenden oder
+            benutzt unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
           </p>
         </DynamicContent>
         <DynamicContent
@@ -240,8 +240,6 @@ export default function Voranmeldungen() {
           </Infobox>
         </DynamicContent>
       </div>
-
-      */}
 
       <Spacer id="kunstler" />
 
