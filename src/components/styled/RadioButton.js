@@ -11,6 +11,7 @@ export default function RadioButton({
   inputRef,
   require = false,
   isError,
+  onBlur=()=>{},
 }) {
   return (
     <StyledWrapper $iserror={isError && "1"}>
@@ -30,6 +31,7 @@ export default function RadioButton({
               checked={selectedOption === option}
               onChange={(e) => inputChange(e.target.value)}
               ref={inputRef}
+              onBlur={onBlur}
             />
             {names[index]}
           </label>

@@ -558,13 +558,26 @@ export default function HelferForm() {
     }
   }
 
-  const handleDepartmentChange = (value, isChecked) => {
-    if (isChecked) {
-      setSelectedDepartments((prev) => [...prev, value]);
-    } else {
-      setSelectedDepartments((prev) => prev.filter((dept) => dept !== value));
-    }
-  };
+const handleDepartmentChange = (value, isChecked) => {
+  const EGAL_VALUE = "egal";
+  
+  if (value === EGAL_VALUE && isChecked) {
+    // Alle Bereiche auswählen
+    const allDepartments = DEPARTMENT_OPTIONS.map((dept) => dept.value);
+    setSelectedDepartments(allDepartments);
+  } else if (value === EGAL_VALUE && !isChecked) {
+    // Alle Bereiche abwählen
+    setSelectedDepartments([]);
+  } else if (isChecked) {
+    // Bereich hinzufügen
+    setSelectedDepartments((prev) => [...prev, value]);
+  } else {
+    // Bereich entfernen und auch "Egal" entfernen falls vorhanden
+    setSelectedDepartments((prev) => 
+      prev.filter((dept) => dept !== value && dept !== EGAL_VALUE)
+    );
+  }
+};
 
   return (
     <>
@@ -803,7 +816,7 @@ export default function HelferForm() {
             names={ARRIVAL_OPTIONS.map((option) => option.label)}
             options={ARRIVAL_OPTIONS.map((option) => option.value)}
             selectedOption={arrival}
-            inputChange={setArrival}
+            inputChange={(e)=>{setArrival(e);e !== "car" && setParkingTicketRequired(false)}}
             onBlur={() => handleBlur("arrival", arrival)}
             inputRef={refs.arrival}
             isError={!!getFieldError("arrival")}
