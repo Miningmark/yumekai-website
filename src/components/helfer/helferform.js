@@ -38,6 +38,13 @@ const FieldErrorText = styled(ErrorText)`
   font-size: 0.9rem;
 `;
 
+const CheckBoxGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 10px;
+`;
+
 const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const MAX_IMAGE_SIZE_MB = 10;
 
@@ -972,6 +979,7 @@ export default function HelferForm() {
           </h4>
           <div
             ref={refs.departments}
+            style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "10px" }}
             onBlur={() => {
               setTouchedFields((prev) => ({ ...prev, departments: true }));
               handleBlur("departments", null, { selectedDepartments });
