@@ -892,7 +892,7 @@ export default function Artist() {
                 <>
                   <span>
                     Programmheft{" "}
-                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blank">
+                    <StyledLink href="/downloads/Infoblatt_Programmheft_2026.pdf" target="_blank">
                       Infoblatt
                     </StyledLink>{" "}
                   </span>

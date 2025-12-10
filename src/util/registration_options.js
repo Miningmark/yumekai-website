@@ -120,7 +120,7 @@ export const ARRIVAL_OPTIONS = [
 
 export const FOOD_PREFERENCE_OPTIONS = [
   { value: "normal", label: "Normal" },
-  { value: "vegetarisch", label: "Vegetarisch" },
+  { value: "vegetarian", label: "Vegetarisch" },
   { value: "vegan", label: "Vegan" },
 ];
 

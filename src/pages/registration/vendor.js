@@ -435,14 +435,13 @@ export default function Vendor() {
     }
 
     try {
-      const fetchURL = registrationTest ? "https://node.miningmark.de" : "https://orgaboard.yumekai.de"
-      const response = await fetch(
-        `${fetchURL}/api/v1/event/application/createVendor`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const fetchURL = registrationTest
+        ? "https://node.miningmark.de"
+        : "https://orgaboard.yumekai.de";
+      const response = await fetch(`${fetchURL}/api/v1/event/application/createVendor`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         setSuccess(
@@ -842,7 +841,7 @@ export default function Vendor() {
                 <>
                   <span>
                     Programmheft{" "}
-                    <StyledLink href="/downloads/Programmheft-Infoblatt.pdf" target="_blank">
+                    <StyledLink href="/downloads/Infoblatt_Programmheft_2026.pdf" target="_blank">
                       Infoblatt
                     </StyledLink>{" "}
                   </span>
