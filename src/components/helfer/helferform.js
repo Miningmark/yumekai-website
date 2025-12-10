@@ -126,6 +126,7 @@ export default function HelferForm() {
     qualificationsWorkExperience: useRef(null),
     myStrengths: useRef(null),
     talents: useRef(null),
+    departments: useRef(null),
     other: useRef(null),
     workingDays: useRef(null),
     workingOnSaturday: useRef(null),
@@ -244,6 +245,15 @@ export default function HelferForm() {
 
       case "arrival":
         if (!value) error = "Anreise ist ein Pflichtfeld";
+        break;
+
+      case "departments":
+        if (
+          !additionalData.selectedDepartments ||
+          additionalData.selectedDepartments.length === 0
+        ) {
+          error = "Bitte wähle mindestens ein Wunschteam aus";
+        }
         break;
 
       case "foodPreferences":
@@ -371,6 +381,7 @@ export default function HelferForm() {
     );
     errors.myStrengths = validateSingleField("myStrengths", myStrengths);
     errors.talents = validateSingleField("talents", talents);
+    errors.departments = validateSingleField("departments", null, { selectedDepartments });
     errors.other = validateSingleField("other", other);
 
     // Einsatzzeiten
@@ -570,19 +581,44 @@ export default function HelferForm() {
   }
 
   const handleDepartmentChange = (value, isChecked) => {
+    let newSelection;
+
     if (value === "others" && isChecked) {
       // Alle Bereiche auswählen
       const allDepartments = DEPARTMENT_OPTIONS.map((dept) => dept.value);
-      setSelectedDepartments(allDepartments);
+      newSelection = allDepartments;
     } else if (value === "others" && !isChecked) {
       // Alle Bereiche abwählen
-      setSelectedDepartments([]);
+      newSelection = [];
     } else if (isChecked) {
       // Bereich hinzufügen
-      setSelectedDepartments((prev) => [...prev, value]);
+      newSelection = [...selectedDepartments, value];
+
+      // Prüfen ob jetzt alle Bereiche (außer "others") ausgewählt sind
+      const allDepartmentsExceptOthers = DEPARTMENT_OPTIONS.filter(
+        (dept) => dept.value !== "others"
+      ).map((dept) => dept.value);
+
+      const allSelected = allDepartmentsExceptOthers.every((dept) => newSelection.includes(dept));
+
+      // Wenn alle ausgewählt sind, "others" automatisch hinzufügen
+      if (allSelected && !newSelection.includes("others")) {
+        newSelection = [...newSelection, "others"];
+      }
     } else {
       // Bereich entfernen und auch "Egal" entfernen falls vorhanden
-      setSelectedDepartments((prev) => prev.filter((dept) => dept !== value && dept !== "others"));
+      newSelection = selectedDepartments.filter((dept) => dept !== value && dept !== "others");
+    }
+
+    setSelectedDepartments(newSelection);
+
+    // Validierung triggern wenn Feld bereits berührt wurde
+    if (touchedFields.departments) {
+      const error = validateSingleField("departments", null, { selectedDepartments: newSelection });
+      setFieldErrors((prev) => ({
+        ...prev,
+        departments: error,
+      }));
     }
   };
 
@@ -931,15 +967,29 @@ export default function HelferForm() {
           />
           {getFieldError("talents") && <FieldErrorText>{getFieldError("talents")}</FieldErrorText>}
 
-          <h4>Wunschteam (kann nicht garantiert werden)</h4>
-          {DEPARTMENT_OPTIONS.map((dept) => (
-            <CheckBox
-              key={dept.value}
-              title={dept.label}
-              isChecked={selectedDepartments.includes(dept.value)}
-              inputChange={(checked) => handleDepartmentChange(dept.value, checked)}
-            />
-          ))}
+          <h4>
+            Wunschteam (kann nicht garantiert werden)<RequiredNote>*</RequiredNote>
+          </h4>
+          <div
+            ref={refs.departments}
+            onBlur={() => {
+              setTouchedFields((prev) => ({ ...prev, departments: true }));
+              handleBlur("departments", null, { selectedDepartments });
+            }}
+          >
+            {DEPARTMENT_OPTIONS.map((dept) => (
+              <CheckBox
+                key={dept.value}
+                title={dept.label}
+                isChecked={selectedDepartments.includes(dept.value)}
+                inputChange={(checked) => handleDepartmentChange(dept.value, checked)}
+                isError={!!getFieldError("departments")}
+              />
+            ))}
+          </div>
+          {getFieldError("departments") && (
+            <FieldErrorText>{getFieldError("departments")}</FieldErrorText>
+          )}
 
           <InputOptionTextArea
             title="Sonstiges"
