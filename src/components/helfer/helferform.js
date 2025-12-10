@@ -127,6 +127,7 @@ export default function HelferForm() {
     myStrengths: useRef(null),
     talents: useRef(null),
     other: useRef(null),
+    workingDays: useRef(null),
     workingOnSaturday: useRef(null),
     workingOnSunday: useRef(null),
     preferredWorktime: useRef(null),
@@ -289,6 +290,12 @@ export default function HelferForm() {
         }
         break;
 
+      case "workingDays":
+        if (!additionalData.workingOnSaturday && !additionalData.workingOnSunday) {
+          error = "Bitte wähle mindestens einen Helfertag aus";
+        }
+        break;
+
       case "preferredWorktime":
         if (!value) error = "Bevorzugte Helferzeit ist ein Pflichtfeld";
         break;
@@ -367,6 +374,10 @@ export default function HelferForm() {
     errors.other = validateSingleField("other", other);
 
     // Einsatzzeiten
+    errors.workingDays = validateSingleField("workingDays", null, {
+      workingOnSaturday,
+      workingOnSunday,
+    });
     errors.preferredWorktime = validateSingleField("preferredWorktime", preferredWorktime);
 
     // Bild
@@ -558,25 +569,22 @@ export default function HelferForm() {
     }
   }
 
-const handleDepartmentChange = (value, isChecked) => {
-  
-  if (value === "others" && isChecked) {
-    // Alle Bereiche auswählen
-    const allDepartments = DEPARTMENT_OPTIONS.map((dept) => dept.value);
-    setSelectedDepartments(allDepartments);
-  } else if (value === "others" && !isChecked) {
-    // Alle Bereiche abwählen
-    setSelectedDepartments([]);
-  } else if (isChecked) {
-    // Bereich hinzufügen
-    setSelectedDepartments((prev) => [...prev, value]);
-  } else {
-    // Bereich entfernen und auch "Egal" entfernen falls vorhanden
-    setSelectedDepartments((prev) => 
-      prev.filter((dept) => dept !== value && dept !== "others")
-    );
-  }
-};
+  const handleDepartmentChange = (value, isChecked) => {
+    if (value === "others" && isChecked) {
+      // Alle Bereiche auswählen
+      const allDepartments = DEPARTMENT_OPTIONS.map((dept) => dept.value);
+      setSelectedDepartments(allDepartments);
+    } else if (value === "others" && !isChecked) {
+      // Alle Bereiche abwählen
+      setSelectedDepartments([]);
+    } else if (isChecked) {
+      // Bereich hinzufügen
+      setSelectedDepartments((prev) => [...prev, value]);
+    } else {
+      // Bereich entfernen und auch "Egal" entfernen falls vorhanden
+      setSelectedDepartments((prev) => prev.filter((dept) => dept !== value && dept !== "others"));
+    }
+  };
 
   return (
     <>
@@ -815,7 +823,10 @@ const handleDepartmentChange = (value, isChecked) => {
             names={ARRIVAL_OPTIONS.map((option) => option.label)}
             options={ARRIVAL_OPTIONS.map((option) => option.value)}
             selectedOption={arrival}
-            inputChange={(e)=>{setArrival(e);e !== "car" && setParkingTicketRequired(false)}}
+            inputChange={(e) => {
+              setArrival(e);
+              e !== "car" && setParkingTicketRequired(false);
+            }}
             onBlur={() => handleBlur("arrival", arrival)}
             inputRef={refs.arrival}
             isError={!!getFieldError("arrival")}
@@ -941,19 +952,39 @@ const handleDepartmentChange = (value, isChecked) => {
           {getFieldError("other") && <FieldErrorText>{getFieldError("other")}</FieldErrorText>}
 
           <Spacer />
-          <h3>Einsatzzeiten</h3>
+          <h3>
+            Einsatzzeiten<RequiredNote>*</RequiredNote>
+          </h3>
 
-          <CheckBox
-            title="Ich möchte am Samstag helfen"
-            isChecked={workingOnSaturday}
-            inputChange={setWorkingOnSaturday}
-          />
+          <div ref={refs.workingDays}>
+            <CheckBox
+              title="Ich möchte am Samstag helfen"
+              isChecked={workingOnSaturday}
+              inputChange={(value) => {
+                setWorkingOnSaturday(value);
+                if (touchedFields.workingDays) {
+                  handleBlur("workingDays", null, { workingOnSaturday: value, workingOnSunday });
+                }
+              }}
+              isError={!!getFieldError("workingDays")}
+            />
 
-          <CheckBox
-            title="Ich möchte am Sonntag helfen"
-            isChecked={workingOnSunday}
-            inputChange={setWorkingOnSunday}
-          />
+            <CheckBox
+              title="Ich möchte am Sonntag helfen"
+              isChecked={workingOnSunday}
+              inputChange={(value) => {
+                setWorkingOnSunday(value);
+                if (touchedFields.workingDays) {
+                  handleBlur("workingDays", null, { workingOnSaturday, workingOnSunday: value });
+                }
+              }}
+              isError={!!getFieldError("workingDays")}
+            />
+          </div>
+
+          {getFieldError("workingDays") && (
+            <FieldErrorText>{getFieldError("workingDays")}</FieldErrorText>
+          )}
 
           <RadioButton
             title="Bevorzugte Helferzeit"
