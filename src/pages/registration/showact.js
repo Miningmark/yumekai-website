@@ -642,7 +642,7 @@ export default function Showact() {
         <br />
         <br />
         Bitte beachtet die{" "}
-        <StyledLink href="/downloads/Infoblatt_Showacts_2025.pdf" target="_blank">
+        <StyledLink href="/downloads/Infoblatt_Showacts_2026.pdf" target="_blank">
           Teilnahme- und Auswahlbedingungen für Showacts
         </StyledLink>
         .
@@ -1143,7 +1143,7 @@ export default function Showact() {
               content={
                 <p>
                   Ich habe die{" "}
-                  <StyledLink href="/downloads/Infoblatt_Showacts_2025.pdf" target="_blank">
+                  <StyledLink href="/downloads/Infoblatt_Showacts_2026.pdf" target="_blank">
                     Teilnahmebedingungen
                   </StyledLink>{" "}
                   gelesen und akzeptiere diese.<RequiredNote>*</RequiredNote>
