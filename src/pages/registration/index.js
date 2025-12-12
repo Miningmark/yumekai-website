@@ -394,12 +394,7 @@ export default function Voranmeldungen() {
             <br />
             Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
             <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
-            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
-            die{" "}
-            <StyledLink href="/downloads/Teilnahmebedingungen_Aussteller_2026.pdf" target="_blank">
-              Teilnahme- und Auswahlbedingungen für Fan-Gruppe/Verein
-            </StyledLink>
-            .
+            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
             <br />
             <br />
             {renderRegistrationPeriodText(

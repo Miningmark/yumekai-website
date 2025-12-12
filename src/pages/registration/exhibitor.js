@@ -531,16 +531,9 @@ export default function Exhibitor() {
         Sichert euch euren Platz auf der YumeKai 2026!
         <br />
         <br />
-        Bitte beachtet die{" "}
-        <StyledLink href="/" target="_blank">
-          Teilnahme- und Auswahlbedingungen
-        </StyledLink>
-        .
-        <br />
-        <br />
-        Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an:{" "}
-        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutze unser{" "}
-        <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
+        Bei Fragen oder eventuellen Unklarheiten kannst du dich gerne per E-Mail an{" "}
+        <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> wenden oder benutze
+        unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>.
       </p>
 
       {!registrationStatus.isActive && (
