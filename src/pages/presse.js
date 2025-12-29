@@ -36,6 +36,7 @@ export default function Presse() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
   const [addressData, setAddressData] = useState({
     street: "",
     houseNumber: "",
@@ -63,6 +64,7 @@ export default function Presse() {
     name: useRef(null),
     lastName: useRef(null),
     email: useRef(null),
+    confirmEmail: useRef(null),
     street: useRef(null),
     houseNumber: useRef(null),
     postalCode: useRef(null),
@@ -112,6 +114,14 @@ export default function Presse() {
       case "email":
         const emailValidation = validateString(value, "E-Mail", 2, 100, true, true);
         if (!emailValidation.check) error = emailValidation.description;
+        break;
+
+      case "confirmEmail":
+        if (!value || value.trim() === "") {
+          error = "E-Mail-Bestätigung ist erforderlich";
+        } else if (value.trim().toLowerCase() !== additionalData.email?.trim().toLowerCase()) {
+          error = "E-Mail-Adressen stimmen nicht überein";
+        }
         break;
 
       case "street":
@@ -201,6 +211,7 @@ export default function Presse() {
     errors.name = validateSingleField("name", name);
     errors.lastName = validateSingleField("lastName", lastName);
     errors.email = validateSingleField("email", email);
+    errors.confirmEmail = validateSingleField("confirmEmail", confirmEmail, { email });
 
     // Adresse
     errors.street = validateSingleField("street", addressData.street);
@@ -290,6 +301,7 @@ export default function Presse() {
         setName("");
         setLastName("");
         setEmail("");
+        setConfirmEmail("");
         setAddressData({ street: "", houseNumber: "", postalCode: "", city: "", country: "" });
         setWorkFunction("");
         setMedium("");
@@ -458,6 +470,19 @@ export default function Presse() {
               require
             />
             {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
+
+            <InputOptionInput
+              title="E-Mail bestätigen"
+              inputText={confirmEmail}
+              inputChange={setConfirmEmail}
+              onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
+              inputRef={refs.confirmEmail}
+              isError={!!getFieldError("confirmEmail")}
+              require
+            />
+            {getFieldError("confirmEmail") && (
+              <FieldErrorText>{getFieldError("confirmEmail")}</FieldErrorText>
+            )}
 
             <Spacer />
             <h2>Adresse</h2>

@@ -208,7 +208,7 @@ export default function Voranmeldungen() {
         }}
       >
         <DynamicContent $widthpercent={65}>
-          <h2>Helfer Anmeldung</h2>
+          <h2>Anmeldung als Helfer</h2>
           <p>
             Du wolltest schon immer wissen, wie eine Convention hinter den Kulissen abläuft? Als
             Helfer der YumeKai hast du die einzigartige Chance, spannende Einblicke zu gewinnen,
