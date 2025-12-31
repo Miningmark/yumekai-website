@@ -14,6 +14,8 @@ import {
   REGISTRATION_END_WORKSHOP,
   REGISTRATION_START_EXHIBITOR,
   REGISTRATION_END_EXHIBITOR,
+  REGISTRATION_START_ART_CONTEST,
+  REGISTRATION_END_ART_CONTEST,
 } from "@/util/registration_options";
 
 const DynamicContent = styled.div`
@@ -175,10 +177,9 @@ export default function Voranmeldungen() {
       </p>
 
       <ul>
-        {/*
         <li>
           <StyledLink href="#helfer">Helfer</StyledLink>
-        </li> */}
+        </li>
         <li>
           <StyledLink href="#kunstler">Künstler</StyledLink>
         </li>
@@ -193,6 +194,9 @@ export default function Voranmeldungen() {
         </li>
         <li>
           <StyledLink href="#workshopleiter">Workshopleiter</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#artcontest">Zeichenwettbewerb</StyledLink>
         </li>
       </ul>
 
@@ -541,6 +545,77 @@ export default function Voranmeldungen() {
               REGISTRATION_START_WORKSHOP,
               REGISTRATION_END_WORKSHOP,
               "/registration/workshop",
+              "Anmeldung"
+            )}
+          </Infobox>
+        </DynamicContent>
+      </div>
+
+      <Spacer id="artcontest" />
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <DynamicContent $widthpercent={65}>
+          <h2>Anmeldung Zeichenwettbewerb - Yumeko Worldwide</h2>
+          <p>
+            Hey, du hast diese unglaubliche Kreativität in dir? Perfekt! Wie wäre es, wenn du unser
+            Maskottchen Yumeko in deiner Nationalität neu zum leben erweckst?
+            <br />
+            <br />
+            Lass deiner Fantasie freien Lauf! Ob du Yumeko als Genderbend darstellst, in
+            alternativen Stilen experimentierst oder in einem völlig anderen Genre platzierst -
+            alles ist erlaubt, solange Yumeko immer noch erkennbar ist. Wir sind super gespannt
+            darauf, was du zauberst! Also schnapp dir deine Lieblingsstifte oder öffne dein
+            Grafiktablett - und lass Yumeko in deiner Kreativität neu erstrahlen!
+            <br />
+            <br />
+            Mehr Informationen zu Yumeko findest du unter folgendem Link:{" "}
+            <StyledLink href="https://yumekai.de/maskottchen">
+              https://yumekai.de/maskottchen
+            </StyledLink>
+            <br />
+            <br />
+            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+            <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
+            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
+            die{" "}
+            <StyledLink
+              href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2026.pdf"
+              target="_blank"
+            >
+              Teilnahmebedingungen für den Zeichenwettbewerb
+            </StyledLink>
+            .
+            <br />
+            <br />
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_ART_CONTEST,
+              REGISTRATION_END_ART_CONTEST,
+              "Zeichenwettbewerb"
+            )}
+            <br />
+            <br />
+            Wir freuen uns auf eure Bewerbung!
+          </p>
+        </DynamicContent>
+        <DynamicContent
+          $widthpercent={35}
+          $maxwidth={300}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Infobox>
+            <p>Anmeldung Zeichenwettbewerb</p>
+            {renderButton(
+              REGISTRATION_START_ART_CONTEST,
+              REGISTRATION_END_ART_CONTEST,
+              "/registration/artcontest",
               "Anmeldung"
             )}
           </Infobox>

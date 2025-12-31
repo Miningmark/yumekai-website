@@ -111,74 +111,77 @@ export default function ArtContest() {
   }, []);
 
   const createFileFromImage = async (imageImport, fileName) => {
-  try {
-    // In Next.js ist imageImport ein Objekt mit .src Property
-    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
-    
-    console.log("Lade Bild von:", imageUrl);
+    try {
+      // In Next.js ist imageImport ein Objekt mit .src Property
+      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
 
-    const response = await fetch(imageUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      console.log("Lade Bild von:", imageUrl);
+
+      const response = await fetch(imageUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      console.log("Blob geladen:", blob.type, blob.size, "bytes");
+
+      // Erstelle File mit korrektem Type
+      const file = new File([blob], fileName, {
+        type: "image/png",
+        lastModified: Date.now(),
+      });
+
+      // Erstelle Preview-URL
+      const previewUrl = URL.createObjectURL(blob);
+
+      console.log("File erstellt:", {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+      });
+
+      return { file, previewUrl };
+    } catch (error) {
+      console.error("Fehler beim Laden des Demo-Bildes:", error);
+      return null;
     }
-    
-    const blob = await response.blob();
-    console.log("Blob geladen:", blob.type, blob.size, "bytes");
-    
-    // Erstelle File mit korrektem Type
-    const file = new File([blob], fileName, { 
-      type: 'image/png',
-      lastModified: Date.now()
-    });
+  };
 
-    // Erstelle Preview-URL
-    const previewUrl = URL.createObjectURL(blob);
+  // Füge diese Funktion nach den State-Deklarationen hinzu
+  const fillDemoData = async () => {
+    setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+    setName("Yuki");
+    setLastName("Sakura");
+    setEmail("yuki.sakura@example.com");
+    setConfirmEmail("yuki.sakura@example.com");
+    setArtistName("SakuraArt_Yuki"); // Optional
+    setImageTitle("Kirschblüten im Mondlicht");
+    setWebsite("https://www.sakuraart-portfolio.com");
+    setInstagram("@sakuraart_yuki");
+    setMessage(
+      "Ich freue mich sehr, an diesem Wettbewerb teilzunehmen! Das Bild ist eine digitale " +
+        "Illustration, die ich mit Clip Studio Paint erstellt habe. Es zeigt eine traditionelle " +
+        "japanische Landschaft mit Kirschblüten bei Vollmond. Ich hoffe, es gefällt euch!"
+    );
+    setPrivacyPolicy(true);
+    setDataStorage(true);
+    setPictureRights(true);
+    setArtistConditions(true);
 
-    console.log("File erstellt:", {
-      name: file.name,
-      size: file.size,
-      type: file.type
-    });
-
-    return { file, previewUrl };
-  } catch (error) {
-    console.error("Fehler beim Laden des Demo-Bildes:", error);
-    return null;
-  }
-};
-
-// Füge diese Funktion nach den State-Deklarationen hinzu
-const fillDemoData = async () => {
-  setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
-  setName("Yuki");
-  setLastName("Sakura");
-  setEmail("yuki.sakura@example.com");
-  setConfirmEmail("yuki.sakura@example.com");
-  setArtistName("SakuraArt_Yuki"); // Optional
-  setImageTitle("Kirschblüten im Mondlicht");
-  setWebsite("https://www.sakuraart-portfolio.com");
-  setInstagram("@sakuraart_yuki");
-  setMessage(
-    "Ich freue mich sehr, an diesem Wettbewerb teilzunehmen! Das Bild ist eine digitale " +
-    "Illustration, die ich mit Clip Studio Paint erstellt habe. Es zeigt eine traditionelle " +
-    "japanische Landschaft mit Kirschblüten bei Vollmond. Ich hoffe, es gefällt euch!"
-  );
-  setPrivacyPolicy(true);
-  setDataStorage(true);
-  setPictureRights(true);
-  setArtistConditions(true);
-
-  // Demo-Bild laden
-  console.log("Starte Laden des Demo-Bildes...");
-  const demoImage = await createFileFromImage(hiruKunstlerImage, "Kirschblueten-im-Mondlicht.png");
-  if (demoImage) {
-    setFile([demoImage.file]);
-    setPreviewUrl([demoImage.previewUrl]);
-    console.log("✓ Demo-Bild erfolgreich gesetzt");
-  } else {
-    console.error("✗ Demo-Bild konnte nicht geladen werden");
-  }
-};
+    // Demo-Bild laden
+    console.log("Starte Laden des Demo-Bildes...");
+    const demoImage = await createFileFromImage(
+      hiruKunstlerImage,
+      "Kirschblueten-im-Mondlicht.png"
+    );
+    if (demoImage) {
+      setFile([demoImage.file]);
+      setPreviewUrl([demoImage.previewUrl]);
+      console.log("✓ Demo-Bild erfolgreich gesetzt");
+    } else {
+      console.error("✗ Demo-Bild konnte nicht geladen werden");
+    }
+  };
 
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {
@@ -407,7 +410,7 @@ const fillDemoData = async () => {
         <br />
         Bitte beachte die{" "}
         <StyledLink
-          href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
+          href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2026.pdf"
           target="_blank"
         >
           Teilnahme- und Auswahlbedingungen für den Zeichenwettbewerb
@@ -681,7 +684,7 @@ const fillDemoData = async () => {
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2025.pdf"
+                    href="/downloads/Teilnahmebedingungen_Zeichenwettbewerb_2026.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen

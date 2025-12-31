@@ -151,7 +151,7 @@ export default function Maskottchen() {
             </p>
             <br />
             <small>
-              Yumeko wurde von{" "}
+              Hiru wurde von{" "}
               <StyledLink href="https://www.instagram.com/wynrayzero/" target="_blank">
                 wynrayzero
               </StyledLink>{" "}
