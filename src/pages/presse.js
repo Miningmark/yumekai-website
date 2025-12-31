@@ -86,8 +86,43 @@ export default function Presse() {
 
     if (isTestMode) {
       setRegistrationTest(true);
+      fillDemoData();
     }
   }, []);
+
+  const fillDemoData = () => {
+  setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+  setName("Sarah");
+  setLastName("Journalist");
+  setEmail("sarah.journalist@anime-magazin.de");
+  setConfirmEmail("sarah.journalist@anime-magazin.de");
+  setAddressData({
+    street: "Pressestraße",
+    houseNumber: "23",
+    postalCode: "10115",
+    city: "Berlin",
+    country: "Deutschland",
+  });
+  setWorkFunction("Redakteurin");
+  setMedium("Anime & Manga Magazin Deutschland");
+  setVerification(
+    "Hiermit bestätige ich, Sarah Journalist, dass ich als festangestellte Redakteurin für " +
+    "das Anime & Manga Magazin Deutschland tätig bin. Ich werde über die YumeKai 2026 " +
+    "einen ausführlichen Messebericht für unsere Print- und Online-Ausgabe verfassen. " +
+    "Als Nachweis füge ich meinen Presseausweis des DJV (Deutscher Journalisten-Verband) bei, " +
+    "Ausweisnummer: DJ-2024-12345. Unser Magazin erreicht monatlich über 50.000 Leser im " +
+    "deutschsprachigen Raum und berichtet regelmäßig über Anime-Conventions und Japan-Events."
+  );
+  setWebsite("https://www.anime-magazin.de");
+  setMessage(
+    "Ich würde gerne zusätzlich Interviews mit Ausstellern und Besuchern führen. " +
+    "Gibt es die Möglichkeit, einen separaten Interview-Bereich zu nutzen? " +
+    "Außerdem bräuchte ich für meinen Fotografen ein zweites Presse-Badge. " +
+    "Vielen Dank!"
+  );
+  setPrivacyPolicy(true);
+  setDataStorage(true);
+};
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
