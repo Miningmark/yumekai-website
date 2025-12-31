@@ -166,34 +166,48 @@ export default function Workshop() {
     }
   }, []);
 
-// Verbesserte Hilfsfunktion mit explizitem MIME-Type
-const createFileFromImage = async (imageUrl, fileName) => {
+
+// Next.js-spezifische Funktion
+const createFileFromImage = async (imageImport, fileName) => {
   try {
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
+    // In Next.js ist imageImport ein Objekt mit .src Property
+    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
     
-    // Bestimme den korrekten MIME-Type basierend auf der Dateiendung
-    let mimeType = 'image/png';
-    if (fileName.toLowerCase().endsWith('.jpg') || fileName.toLowerCase().endsWith('.jpeg')) {
-      mimeType = 'image/jpeg';
-    } else if (fileName.toLowerCase().endsWith('.webp')) {
-      mimeType = 'image/webp';
+    console.log("Lade Bild von:", imageUrl);
+
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
     
-    // Erstelle neuen Blob mit korrektem MIME-Type
-    const typedBlob = new Blob([blob], { type: mimeType });
-    const file = new File([typedBlob], fileName, { type: mimeType });
+    const blob = await response.blob();
+    console.log("Blob geladen:", blob.type, blob.size, "bytes");
     
-    return file;
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'image/png',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
   } catch (error) {
     console.error("Fehler beim Laden des Demo-Bildes:", error);
     return null;
   }
 };
 
-// Und passe fillDemoData an mit .png Endung:
+// Deine fillDemoData Funktion bleibt gleich
 const fillDemoData = async () => {
-  setGender("Herr");
+  setGender("m");
   setName("Max");
   setLastName("Mustermann");
   setEmail("max.mustermann@example.com");
@@ -229,20 +243,25 @@ const fillDemoData = async () => {
   setDataStorage(true);
   setPictureRights(true);
 
-  // Demo-Bild laden - stelle sicher, dass die Endung .png ist
-  const demoImageFile = await createFileFromImage(hiruKunstlerImage, "demo-workshop-bild.png");
-  if (demoImageFile) {
-    setImageFile([demoImageFile]);
-    setImagePreviewUrl([hiruKunstlerImage]);
-    console.log("Demo-Bild geladen:", demoImageFile.type, demoImageFile.name); // Debug
+  // Demo-Bild laden
+  console.log("Starte Laden des Demo-Bildes...");
+  const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-workshop-bild.png");
+  if (demoImage) {
+    setImageFile([demoImage.file]);
+    setImagePreviewUrl([demoImage.previewUrl]);
+    console.log("✓ Demo-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo-Bild konnte nicht geladen werden");
   }
 
-  // Optional: Auch für Social Media Bild
-  const demoSocialMediaFile = await createFileFromImage(hiruKunstlerImage, "demo-social-media.png");
-  if (demoSocialMediaFile) {
-    setSocialMediaImageFile([demoSocialMediaFile]);
-    setSocialMediaImagePreviewUrl([hiruKunstlerImage]);
-    console.log("Demo Social-Media-Bild geladen:", demoSocialMediaFile.type, demoSocialMediaFile.name); // Debug
+  // Demo Social Media Bild
+  const demoSocialImage = await createFileFromImage(hiruKunstlerImage, "demo-social-media.png");
+  if (demoSocialImage) {
+    setSocialMediaImageFile([demoSocialImage.file]);
+    setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
+    console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
   }
 };
 
