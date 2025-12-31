@@ -29,6 +29,8 @@ import {
   GENDER_OPTIONS,
 } from "@/util/registration_options";
 
+import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
   margin-bottom: 10px;
@@ -112,7 +114,9 @@ export default function CosplayPerformance() {
 
     if (isTestMode) {
       setRegistrationTest(true);
+      fillDemoData();
     }
+
     if (!isTestMode) {
       const interval = setInterval(() => {
         setRegistrationStatus(
@@ -126,6 +130,94 @@ export default function CosplayPerformance() {
       return () => clearInterval(interval);
     }
   }, []);
+
+  const createFileFromImage = async (imageImport, fileName) => {
+  try {
+    // In Next.js ist imageImport ein Objekt mit .src Property
+    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
+    
+    console.log("Lade Bild von:", imageUrl);
+
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const blob = await response.blob();
+    console.log("Blob geladen:", blob.type, blob.size, "bytes");
+    
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'image/png',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-Bildes:", error);
+    return null;
+  }
+};
+
+// Füge diese Funktion nach den State-Deklarationen hinzu
+const fillDemoData = async () => {
+  setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+  setName("Luna");
+  setLastName("Moonlight");
+  setEmail("luna.moonlight@example.com");
+  setConfirmEmail("luna.moonlight@example.com");
+  setArtistName("LunaCosplay"); // Optional
+  setCharacterName("Sailor Moon");
+  setCharacterOrigin("Sailor Moon (Anime/Manga)");
+  setMessage(
+    "Ich plane eine dynamische Performance mit Verwandlungssequenz und charakteristischen Posen. " +
+    "Die Musik ist bereits ausgewählt (Moonlight Densetsu) und ich habe das Kostüm selbst angefertigt. " +
+    "Ich freue mich sehr auf diesen Wettbewerb und hoffe, die Essenz von Sailor Moon auf die Bühne zu bringen!"
+  );
+  setPrivacyPolicy(true);
+  setDataStorage(true);
+  setPictureRights(true);
+  setPerformanceConditions(true);
+
+  // Demo-Charakter-Referenz-Bilder laden (max 3)
+  console.log("Starte Laden der Demo-Referenzbilder...");
+  const demoRef1 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Reference-1.png");
+  const demoRef2 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Reference-2.png");
+  
+  if (demoRef1 && demoRef2) {
+    setFile([demoRef1.file, demoRef2.file]);
+    setPreviewUrl([demoRef1.previewUrl, demoRef2.previewUrl]);
+    console.log("✓ Demo-Referenzbilder erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo-Referenzbilder konnten nicht geladen werden");
+  }
+
+  // Demo-Cosplay-Bilder laden (max 3)
+  console.log("Starte Laden der Demo-Cosplay-Bilder...");
+  const demoCosplay1 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Cosplay-1.png");
+  const demoCosplay2 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Cosplay-2.png");
+  const demoCosplay3 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Cosplay-3.png");
+  
+  if (demoCosplay1 && demoCosplay2 && demoCosplay3) {
+    setFile2([demoCosplay1.file, demoCosplay2.file, demoCosplay3.file]);
+    setPreviewUrl2([demoCosplay1.previewUrl, demoCosplay2.previewUrl, demoCosplay3.previewUrl]);
+    console.log("✓ Demo-Cosplay-Bilder erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo-Cosplay-Bilder konnten nicht geladen werden");
+  }
+
+  // file3 (Hintergrund Audio/Video) bleibt leer, da schwierig zu simulieren
+  console.log("ℹ Hintergrund-Dateien (Audio/Video) werden nicht automatisch gefüllt");
+};
 
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {
