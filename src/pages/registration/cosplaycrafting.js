@@ -29,6 +29,8 @@ import {
   GENDER_OPTIONS,
 } from "@/util/registration_options";
 
+import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
   margin-bottom: 10px;
@@ -94,7 +96,9 @@ export default function CosplayCrafting() {
 
     if (isTestMode) {
       setRegistrationTest(true);
+      fillDemoData();
     }
+
     if (!isTestMode) {
       const interval = setInterval(() => {
         setRegistrationStatus(
@@ -108,6 +112,140 @@ export default function CosplayCrafting() {
       return () => clearInterval(interval);
     }
   }, []);
+
+const createFileFromImage = async (imageImport, fileName) => {
+  try {
+    // In Next.js ist imageImport ein Objekt mit .src Property
+    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
+    
+    console.log("Lade Bild von:", imageUrl);
+
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const blob = await response.blob();
+    console.log("Blob geladen:", blob.type, blob.size, "bytes");
+    
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'image/png',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-Bildes:", error);
+    return null;
+  }
+};
+
+const createFileFromPDF = async (pdfUrl, fileName) => {
+  try {
+    console.log("Lade PDF von:", pdfUrl);
+
+    const response = await fetch(pdfUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const blob = await response.blob();
+    console.log("PDF Blob geladen:", blob.type, blob.size, "bytes");
+    
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'application/pdf',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL (für PDFs zeigt das nur das Icon)
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("PDF File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-PDFs:", error);
+    return null;
+  }
+};
+
+// Füge diese Funktion nach den State-Deklarationen hinzu
+const fillDemoData = async () => {
+  setGender("m"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+  setName("Kaito");
+  setLastName("Craftmaster");
+  setEmail("kaito.craftmaster@example.com");
+  setConfirmEmail("kaito.craftmaster@example.com");
+  setArtistName("KaitoCosplay_Crafts"); // Optional
+  setCharacterName("Cloud Strife (Final Fantasy VII)");
+  setMessage(
+    "Mein Cloud Strife Cosplay wurde komplett selbst hergestellt. Das Buster Sword habe ich aus " +
+    "EVA-Foam gefertigt und mit Worbla verstärkt. Die Rüstung besteht aus thermoplastischem Material, " +
+    "das ich individuell geformt und bemalt habe. Alle Details inklusive der Nieten und Schnallen " +
+    "wurden selbst angefertigt. Das Crafting-Tagebuch dokumentiert den kompletten Herstellungsprozess " +
+    "über 4 Monate mit Fortschrittsbildern, verwendeten Materialien und Techniken. Ich freue mich sehr, " +
+    "meine Handwerkskunst präsentieren zu dürfen!"
+  );
+  setPrivacyPolicy(true);
+  setDataStorage(true);
+  setPictureRights(true);
+  setCatwalkConditions(true);
+
+  // Demo-Crafting-Tagebuch PDF laden
+  console.log("Starte Laden des Demo-Crafting-Tagebuchs (PDF)...");
+  const demoPDF = await createFileFromPDF(
+    "/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf",
+    "Cloud-Cosplay-Crafting-Tagebuch.pdf"
+  );
+
+  // Demo-Cosplay-Bilder laden
+  console.log("Starte Laden der Demo-Cosplay-Bilder...");
+  const demoCrafting1 = await createFileFromImage(hiruKunstlerImage, "Cloud-Cosplay-Progress-1.png");
+  const demoCrafting2 = await createFileFromImage(hiruKunstlerImage, "Cloud-Cosplay-Final.png");
+  
+  // Kombiniere PDF und Bilder (max 3 Dateien insgesamt)
+  const files = [];
+  const previews = [];
+
+  if (demoPDF) {
+    files.push(demoPDF.file);
+    previews.push(demoPDF.previewUrl);
+    console.log("✓ Demo-Crafting-Tagebuch PDF erfolgreich gesetzt");
+  }
+
+  if (demoCrafting1) {
+    files.push(demoCrafting1.file);
+    previews.push(demoCrafting1.previewUrl);
+  }
+
+  if (demoCrafting2) {
+    files.push(demoCrafting2.file);
+    previews.push(demoCrafting2.previewUrl);
+  }
+
+  if (files.length > 0) {
+    setFile(files);
+    setPreviewUrl(previews);
+    console.log(`✓ ${files.length} Demo-Dateien erfolgreich gesetzt`);
+  } else {
+    console.error("✗ Demo-Dateien konnten nicht geladen werden");
+  }
+  };
 
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {
