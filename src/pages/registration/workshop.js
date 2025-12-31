@@ -166,12 +166,24 @@ export default function Workshop() {
     }
   }, []);
 
-// Füge diese Hilfsfunktion hinzu (z.B. nach den imports, vor der Komponente)
+// Verbesserte Hilfsfunktion mit explizitem MIME-Type
 const createFileFromImage = async (imageUrl, fileName) => {
   try {
     const response = await fetch(imageUrl);
     const blob = await response.blob();
-    const file = new File([blob], fileName, { type: blob.type });
+    
+    // Bestimme den korrekten MIME-Type basierend auf der Dateiendung
+    let mimeType = 'image/png';
+    if (fileName.toLowerCase().endsWith('.jpg') || fileName.toLowerCase().endsWith('.jpeg')) {
+      mimeType = 'image/jpeg';
+    } else if (fileName.toLowerCase().endsWith('.webp')) {
+      mimeType = 'image/webp';
+    }
+    
+    // Erstelle neuen Blob mit korrektem MIME-Type
+    const typedBlob = new Blob([blob], { type: mimeType });
+    const file = new File([typedBlob], fileName, { type: mimeType });
+    
     return file;
   } catch (error) {
     console.error("Fehler beim Laden des Demo-Bildes:", error);
@@ -179,7 +191,7 @@ const createFileFromImage = async (imageUrl, fileName) => {
   }
 };
 
-// Dann ändere die fillDemoData Funktion zu einer async Funktion:
+// Und passe fillDemoData an mit .png Endung:
 const fillDemoData = async () => {
   setGender("Herr");
   setName("Max");
@@ -217,11 +229,12 @@ const fillDemoData = async () => {
   setDataStorage(true);
   setPictureRights(true);
 
-  // Demo-Bild laden
+  // Demo-Bild laden - stelle sicher, dass die Endung .png ist
   const demoImageFile = await createFileFromImage(hiruKunstlerImage, "demo-workshop-bild.png");
   if (demoImageFile) {
     setImageFile([demoImageFile]);
     setImagePreviewUrl([hiruKunstlerImage]);
+    console.log("Demo-Bild geladen:", demoImageFile.type, demoImageFile.name); // Debug
   }
 
   // Optional: Auch für Social Media Bild
@@ -229,6 +242,7 @@ const fillDemoData = async () => {
   if (demoSocialMediaFile) {
     setSocialMediaImageFile([demoSocialMediaFile]);
     setSocialMediaImagePreviewUrl([hiruKunstlerImage]);
+    console.log("Demo Social-Media-Bild geladen:", demoSocialMediaFile.type, demoSocialMediaFile.name); // Debug
   }
 };
 
