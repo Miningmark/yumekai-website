@@ -106,9 +106,6 @@ export default function Presse() {
   setWorkFunction("Redakteurin");
   setMedium("Anime & Manga Magazin Deutschland");
   setVerification(
-    "Hiermit bestätige ich, Sarah Journalist, dass ich als festangestellte Redakteurin für " +
-    "das Anime & Manga Magazin Deutschland tätig bin. Ich werde über die YumeKai 2026 " +
-    "einen ausführlichen Messebericht für unsere Print- und Online-Ausgabe verfassen. " +
     "Als Nachweis füge ich meinen Presseausweis des DJV (Deutscher Journalisten-Verband) bei, " +
     "Ausweisnummer: DJ-2024-12345. Unser Magazin erreicht monatlich über 50.000 Leser im " +
     "deutschsprachigen Raum und berichtet regelmäßig über Anime-Conventions und Japan-Events."
