@@ -842,7 +842,7 @@ export default function Showact() {
             )}
 
             <TimeslotsContainer $iserror={!!getFieldError("timeSlots")} ref={refs.timeSlots}>
-              <h3>Bevorzugter Tag/Uhrzeit (mindestens eine Option wählen)<RequiredNote>*</RequiredNote></h3>
+              <h3>Bevorzugter Tag/Uhrzeit (mindestens eine Option wählen)</h3>
               <CheckBox
                 title="timeSlot1"
                 content="Samstag 11:00-14:00 Uhr"

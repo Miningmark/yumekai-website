@@ -8,6 +8,7 @@ import {
   InputOptionInput,
   InputOptionSelect,
 } from "@/components/elements/InputComponents";
+import {RequiredNote} from "@/components/styledInputComponents";
 import {
   StyledButton,
   StyledForm,
