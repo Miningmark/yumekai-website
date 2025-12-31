@@ -31,6 +31,8 @@ import {
 import AddressFields from "@/components/registrations/AddressFields";
 import ImageCropModal from "@/util/ImageCropModal";
 
+import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
   margin-bottom: 10px;
@@ -149,6 +151,7 @@ export default function Workshop() {
 
     if (isTestMode) {
       setRegistrationTest(true);
+      fillDemoData();
     }
 
     // Interval nur setzen wenn NICHT im Test-Modus
@@ -162,6 +165,72 @@ export default function Workshop() {
       return () => clearInterval(interval);
     }
   }, []);
+
+// Füge diese Hilfsfunktion hinzu (z.B. nach den imports, vor der Komponente)
+const createFileFromImage = async (imageUrl, fileName) => {
+  try {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const file = new File([blob], fileName, { type: blob.type });
+    return file;
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-Bildes:", error);
+    return null;
+  }
+};
+
+// Dann ändere die fillDemoData Funktion zu einer async Funktion:
+const fillDemoData = async () => {
+  setGender("Herr");
+  setName("Max");
+  setLastName("Mustermann");
+  setEmail("max.mustermann@example.com");
+  setConfirmEmail("max.mustermann@example.com");
+  setAddressData({
+    street: "Musterstraße",
+    houseNumber: "42",
+    postalCode: "12345",
+    city: "Musterstadt",
+    country: "Deutschland",
+  });
+  setWorkshopTitle("Origami für Anfänger");
+  setAnnouncementText(
+    "In diesem Workshop lernt ihr die Grundlagen der japanischen Papierfaltkunst. " +
+    "Wir erstellen gemeinsam verschiedene Figuren wie Kraniche, Blumen und andere schöne Objekte. " +
+    "Keine Vorkenntnisse erforderlich! Alle Materialien werden gestellt. " +
+    "Dieser Workshop ist perfekt für alle, die eine entspannende kreative Aktivität suchen."
+  );
+  setLeaders(2);
+  setTimeSlot1(true);
+  setTimeSlot3(true);
+  setConstructionTime(15);
+  setWorkshopTime(90);
+  setDeconstructionTime(10);
+  setWorkshopRequirements(
+    "Tische und Stühle für die Teilnehmer, gute Beleuchtung, Stromanschluss"
+  );
+  setParticipants(20);
+  setWebsite("https://www.beispiel-workshop.de");
+  setInstagram("@workshopleiter");
+  setMessage("Freue mich sehr auf die YumeKai 2026!");
+  setPrivacyPolicy(true);
+  setDataStorage(true);
+  setPictureRights(true);
+
+  // Demo-Bild laden
+  const demoImageFile = await createFileFromImage(hiruKunstlerImage, "demo-workshop-bild.png");
+  if (demoImageFile) {
+    setImageFile([demoImageFile]);
+    setImagePreviewUrl([hiruKunstlerImage]);
+  }
+
+  // Optional: Auch für Social Media Bild
+  const demoSocialMediaFile = await createFileFromImage(hiruKunstlerImage, "demo-social-media.png");
+  if (demoSocialMediaFile) {
+    setSocialMediaImageFile([demoSocialMediaFile]);
+    setSocialMediaImagePreviewUrl([hiruKunstlerImage]);
+  }
+};
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
