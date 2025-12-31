@@ -32,6 +32,8 @@ import {
 import AddressFields from "@/components/registrations/AddressFields";
 import ImageCropModal from "@/util/ImageCropModal";
 
+import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+
 const TimeslotsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -162,6 +164,7 @@ export default function Showact() {
 
     if (isTestMode) {
       setRegistrationTest(true);
+      fillDemoData();
     }
 
     // Interval nur setzen wenn NICHT im Test-Modus
@@ -186,6 +189,167 @@ export default function Showact() {
       }));
     }
   }, [imageFile, touchedFields.image]);
+
+  const createFileFromImage = async (imageImport, fileName) => {
+  try {
+    // In Next.js ist imageImport ein Objekt mit .src Property
+    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
+    
+    console.log("Lade Bild von:", imageUrl);
+
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const blob = await response.blob();
+    console.log("Blob geladen:", blob.type, blob.size, "bytes");
+    
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'image/png',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-Bildes:", error);
+    return null;
+  }
+};
+
+const createFileFromPDF = async (pdfUrl, fileName) => {
+  try {
+    console.log("Lade PDF von:", pdfUrl);
+
+    const response = await fetch(pdfUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const blob = await response.blob();
+    console.log("PDF Blob geladen:", blob.type, blob.size, "bytes");
+    
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'application/pdf',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL (für PDFs zeigt das nur das Icon)
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("PDF File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-PDFs:", error);
+    return null;
+  }
+};
+
+// Füge diese Funktion nach den State-Deklarationen hinzu
+const fillDemoData = async () => {
+  setGender("m"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+  setName("Takeshi");
+  setLastName("Performer");
+  setEmail("takeshi.performer@example.com");
+  setConfirmEmail("takeshi.performer@example.com");
+  setAddressData({
+    street: "Bühnenstraße",
+    houseNumber: "99",
+    postalCode: "20095",
+    city: "Hamburg",
+    country: "Deutschland",
+  });
+  setGroupName("Tokyo Taiko Warriors");
+  setGroupMembers(6);
+  setAnnouncementText(
+    "Erlebt die kraftvolle Performance der Tokyo Taiko Warriors! Wir präsentieren traditionelle " +
+    "japanische Trommelkunst vereint mit modernen Elementen. Unsere energiegeladene Show " +
+    "verbindet rhythmische Präzision mit spektakulären Choreografien. Lasst euch mitreißen " +
+    "von den donnernden Klängen der Taiko-Trommeln und taucht ein in die Welt japanischer " +
+    "Performance-Kunst. Ein unvergessliches Erlebnis für alle Sinne!"
+  );
+  setTimeSlot1(true);
+  setTimeSlot3(true);
+  setConstructionTime(45);
+  setPerformanceTime(60);
+  setDeconstructionTime(30);
+  setAccommodation("Zwingend benötigt"); // SHOWACT_ACCOMODATION_OPTIONS
+  setRequiredEquipment(
+    "Wir benötigen:\n" +
+    "- Bühnenfläche mindestens 8x6 Meter\n" +
+    "- 6x Mikrofonständer für Trommeln\n" +
+    "- Bühnenlicht: Spots und Fluter, DMX-steuerbar\n" +
+    "- PA-Anlage mit Subwoofer\n" +
+    "- Nebelmaschine (optional)\n" +
+    "- 4x Stromanschlüsse 230V"
+  );
+  setBroughtEquipment(
+    "Wir bringen mit:\n" +
+    "- 6x Taiko-Trommeln (verschiedene Größen)\n" +
+    "- Trommelständer und Befestigungsmaterial\n" +
+    "- Traditionelle Kostüme\n" +
+    "- Eigene Schlagstöcke (Bachi)"
+  );
+  setWebsite("https://www.tokyo-taiko-warriors.com");
+  setInstagram("@tokyotaikowarriors");
+  setMessage(
+    "Wir würden uns sehr über einen Backstage-Bereich zum Umziehen freuen. " +
+    "Außerdem wäre es toll, wenn wir kurz vor unserem Auftritt noch eine 15-minütige " +
+    "Soundcheck-Möglichkeit hätten. Vielen Dank!"
+  );
+  setPrivacyPolicy(true);
+  setDataStorage(true);
+  setPictureRights(true);
+  setConditions(true);
+  setRegistrationReminder(true);
+
+  // Demo-Bild laden
+  console.log("Starte Laden des Demo-Bildes...");
+  const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-showact-logo.png");
+  if (demoImage) {
+    setImageFile([demoImage.file]);
+    setImagePreviewUrl([demoImage.previewUrl]);
+    console.log("✓ Demo-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo-Bild konnte nicht geladen werden");
+  }
+
+  // Demo Social Media Bild
+  const demoSocialImage = await createFileFromImage(hiruKunstlerImage, "demo-showact-social-media.png");
+  if (demoSocialImage) {
+    setSocialMediaImageFile([demoSocialImage.file]);
+    setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
+    console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
+  }
+
+  // Demo Tech-Rider PDF laden
+  const demoPDF = await createFileFromPDF("/downloads/Infoblatt_Showacts_2026.pdf", "Tech-Rider-Tokyo-Taiko-Warriors.pdf");
+  if (demoPDF) {
+    setFile2([demoPDF.file]);
+    setPreviewUrl2([demoPDF.previewUrl]);
+    console.log("✓ Demo Tech-Rider PDF erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo Tech-Rider PDF konnte nicht geladen werden");
+  }
+};
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
