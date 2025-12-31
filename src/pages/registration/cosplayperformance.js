@@ -276,8 +276,18 @@ const fillDemoData = async () => {
     console.error("✗ Demo-Cosplay-Bilder konnten nicht geladen werden");
   }
 
-  // file3 (Hintergrund Audio/Video) bleibt leer, da schwierig zu simulieren
-  console.log("ℹ Hintergrund-Dateien (Audio/Video) werden nicht automatisch gefüllt");
+  // Demo-Hintergrund-Bild laden (max 4)
+  console.log("Starte Laden der Demo-Hintergrund-Bilder...");
+  const demoBackground1 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Background-Moon.png");
+  const demoBackground2 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Background-Stars.png");
+  
+  if (demoBackground1 && demoBackground2) {
+    setFile3([demoBackground1.file, demoBackground2.file]);
+    setPreviewUrl3([demoBackground1.previewUrl, demoBackground2.previewUrl]);
+    console.log("✓ Demo-Hintergrund-Bilder erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo-Hintergrund-Bilder konnten nicht geladen werden");
+  }
 };
 
   // Zentrale Validierungsfunktion
