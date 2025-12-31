@@ -37,6 +37,8 @@ import {
 import AddressFields from "@/components/registrations/AddressFields";
 import ImageCropModal from "@/util/ImageCropModal";
 
+import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
   margin-bottom: 10px;
@@ -148,6 +150,7 @@ export default function Artist() {
 
     if (isTestMode) {
       setRegistrationTest(true);
+      fillDemoData();
     }
     if (!isTestMode) {
       const interval = setInterval(() => {
@@ -159,6 +162,108 @@ export default function Artist() {
       return () => clearInterval(interval);
     }
   }, []);
+
+  const createFileFromImage = async (imageImport, fileName) => {
+  try {
+    // In Next.js ist imageImport ein Objekt mit .src Property
+    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
+    
+    console.log("Lade Bild von:", imageUrl);
+
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const blob = await response.blob();
+    console.log("Blob geladen:", blob.type, blob.size, "bytes");
+    
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'image/png',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-Bildes:", error);
+    return null;
+  }
+};
+
+// Füge diese Funktion nach den State-Deklarationen hinzu
+const fillDemoData = async () => {
+  setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+  setName("Anna");
+  setLastName("Künstler");
+  setEmail("anna.kuenstler@example.com");
+  setConfirmEmail("anna.kuenstler@example.com");
+  setVendorName(""); // Optional, leer lassen
+  setArtistName("ArtByAnna");
+  setAddressData({
+    street: "Künstlerstraße",
+    houseNumber: "7",
+    postalCode: "54321",
+    city: "Kreativstadt",
+    country: "Deutschland",
+  });
+  setTypeOfArt(
+    "Ich biete handgezeichnete Illustrationen, digitale Artworks, Characterdesigns und " +
+    "personalisierte Commissions an. Mein Stil ist inspiriert von Anime und Manga mit einem " +
+    "besonderen Fokus auf detailreiche Charakterporträts und Fantasy-Szenen. " +
+    "Zusätzlich verkaufe ich Prints, Sticker, Postkarten und Kunstdrucke meiner beliebtesten Werke."
+  );
+  setAnnouncementText(
+    "Besucht meinen Stand und entdeckt einzigartige handgezeichnete Kunstwerke! " +
+    "Ich fertige auch vor Ort Sketch-Commissions an und ihr könnt mir bei meiner Arbeit zuschauen. " +
+    "Von Fantasy-Charakteren bis zu niedlichen Chibis - für jeden Geschmack ist etwas dabei. " +
+    "Lasst euch inspirieren und nehmt ein Stück Kunst mit nach Hause!"
+  );
+  setStandSize("FULL_TABLE"); // ARTIST_STANDSIZE_OPTIONS: "HALF_TABLE", "FULL_TABLE"
+  setLocation("STADTHALLE"); // LOCATION_OPTIONS: "STADTHALLE", "KOLBEHAUS", "WHEREEVER"
+  setAdditionalExhibitorTicket(1);
+  setWlan(false);
+  setProgrammBooklet("HALF_SITE"); // PROGRAMM_BOOKLET_OPTIONS: "NO", "QUARTER_SITE", "HALF_SITE", "FULL_SITE"
+  setWebsite("https://www.artbyanna.de");
+  setInstagram("@artbyanna");
+  setMessage("Ich freue mich riesig auf die YumeKai 2026 und darauf, meine Kunst zu präsentieren!");
+  setPrivacyPolicy(true);
+  setDataStorage(true);
+  setLicensedMusic(true);
+  setPictureRights(true);
+  setConditions(true);
+  setRegistrationReminder(true);
+
+  // Demo-Bild laden
+  console.log("Starte Laden des Demo-Bildes...");
+  const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-artist-logo.png");
+  if (demoImage) {
+    setImageFile([demoImage.file]);
+    setImagePreviewUrl([demoImage.previewUrl]);
+    console.log("✓ Demo-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo-Bild konnte nicht geladen werden");
+  }
+
+  // Demo Social Media Bild
+  const demoSocialImage = await createFileFromImage(hiruKunstlerImage, "demo-artist-social-media.png");
+  if (demoSocialImage) {
+    setSocialMediaImageFile([demoSocialImage.file]);
+    setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
+    console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
+  }
+};
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
