@@ -19,7 +19,6 @@ import {
 import { RequiredNote } from "@/components/styledInputComponents";
 import RadioButton from "@/components/styled/RadioButton";
 import CheckBox from "@/components/styled/CheckBox";
-import FileUpload from "@/components/styled/FileUpload";
 import MultiFileUpload from "@/components/styled/MultiFileUpload";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import validateString, { validateField } from "@/util/inputCheck";
@@ -38,6 +37,8 @@ import {
 } from "@/util/registration_options";
 import AddressFields from "@/components/registrations/AddressFields";
 import ImageCropModal from "@/util/ImageCropModal";
+
+import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -153,6 +154,7 @@ export default function Vendor() {
 
     if (isTestMode) {
       setRegistrationTest(true);
+      fillDemoData();
     }
     if (!isTestMode) {
       const interval = setInterval(() => {
@@ -164,6 +166,110 @@ export default function Vendor() {
       return () => clearInterval(interval);
     }
   }, []);
+
+  // Füge diese Funktion nach den imports hinzu
+const createFileFromImage = async (imageImport, fileName) => {
+  try {
+    // In Next.js ist imageImport ein Objekt mit .src Property
+    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
+    
+    console.log("Lade Bild von:", imageUrl);
+
+    const response = await fetch(imageUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const blob = await response.blob();
+    console.log("Blob geladen:", blob.type, blob.size, "bytes");
+    
+    // Erstelle File mit korrektem Type
+    const file = new File([blob], fileName, { 
+      type: 'image/png',
+      lastModified: Date.now()
+    });
+
+    // Erstelle Preview-URL
+    const previewUrl = URL.createObjectURL(blob);
+
+    console.log("File erstellt:", {
+      name: file.name,
+      size: file.size,
+      type: file.type
+    });
+
+    return { file, previewUrl };
+  } catch (error) {
+    console.error("Fehler beim Laden des Demo-Bildes:", error);
+    return null;
+  }
+};
+
+// Füge diese Funktion nach den State-Deklarationen hinzu
+const fillDemoData = async () => {
+  setGender("m"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+  setName("Max");
+  setLastName("Mustermann");
+  setEmail("max.mustermann@example.com");
+  setConfirmEmail("max.mustermann@example.com");
+  setVendorName("Manga & Anime Paradies GmbH");
+  setAddressData({
+    street: "Musterstraße",
+    houseNumber: "42",
+    postalCode: "12345",
+    city: "Musterstadt",
+    country: "Deutschland",
+  });
+  setTypeOfAssortment(
+    "Wir bieten ein breites Sortiment an Manga, Anime-Merchandise, Figuren, Plüschtiere, " +
+    "Poster, Schlüsselanhänger und japanische Snacks. Unser Sortiment umfasst beliebte " +
+    "Serien wie One Piece, Demon Slayer, My Hero Academia und viele mehr. " +
+    "Außerdem führen wir exklusive Import-Artikel aus Japan."
+  );
+  setAnnouncement_text(
+    "Besucht unseren Stand und entdeckt die neuesten Manga-Bände, exklusive Figuren " +
+    "und einzigartiges Merchandise! Wir haben eine große Auswahl an Artikeln eurer " +
+    "Lieblings-Anime und bieten auch Sonderangebote und limitierte Editionen. " +
+    "Lasst euch die Gelegenheit nicht entgehen!"
+  );
+  setStandSize("2X3"); // VENDOR_STANDSIZE_OPTIONS: "2X2", "2X3", "2X4", "2X5", "2X6", "2X7", "INDIVIDUAL"
+  setLocation("STADTHALLE"); // LOCATION_OPTIONS: "STADTHALLE", "KOLBEHAUS", "WHEREEVER"
+  setAdditionalExhibitorTicket(2);
+  setPower(true);
+  setWlan(true);
+  setProgrammBooklet("QUARTER_SITE"); // PROGRAMM_BOOKLET_OPTIONS: "NO", "QUARTER_SITE", "HALF_SITE", "FULL_SITE"
+  setTable("Ja");
+  setWebsite("https://www.manga-paradies.de");
+  setInstagram("@mangaparadies");
+  setMessage("Wir freuen uns sehr auf die YumeKai 2026 und darauf, unsere Produkte zu präsentieren!");
+  setPrivacyPolicy(true);
+  setDataStorage(true);
+  setLicensedMusic(true);
+  setPictureRights(true);
+  setConditions(true);
+  setRegistrationReminder(true);
+
+  // Demo-Bild laden
+  console.log("Starte Laden des Demo-Bildes...");
+  const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-vendor-logo.png");
+  if (demoImage) {
+    setImageFile([demoImage.file]);
+    setImagePreviewUrl([demoImage.previewUrl]);
+    console.log("✓ Demo-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo-Bild konnte nicht geladen werden");
+  }
+
+  // Demo Social Media Bild
+  const demoSocialImage = await createFileFromImage(hiruKunstlerImage, "demo-vendor-social-media.png");
+  if (demoSocialImage) {
+    setSocialMediaImageFile([demoSocialImage.file]);
+    setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
+    console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
+  } else {
+    console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
+  }
+};
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
