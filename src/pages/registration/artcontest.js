@@ -401,7 +401,7 @@ export default function ArtContest() {
 
   return (
     <>
-      <h1>Anmeldung zum Zeichenwettbewerb</h1>
+      <h1>Anmeldung für den Zeichenwettbewerb</h1>
       <p>
         Du möchtest am Zeichenwettbewerb auf der YumeKai 2026 teilnehmen!
         <br />

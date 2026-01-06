@@ -159,9 +159,9 @@ export default function Kontaktformular() {
       {!success && (
         <>
           <p>
-            In nachfolgendem Formular kannst Du Kontakt zu uns aufnehmen. Egal, ob Du nun eine
-            Presse- oder Händleranfrage hast oder Helfer werden magst oder einfach nur etwas anderes
-            wissen möchtest, hier bist Du richtig!
+            Mithilfe des nachfolgenden Formulars kannst du Kontakt zu uns aufnehmen. Unabhängig
+            davon, ob du nun eine Presse- oder Händleranfrage hast oder einfach nur etwas anderes
+            wissen möchtest, hier bist du richtig!
           </p>
           <p>
             Felder mit <RequiredNote>*</RequiredNote> sind Pflichtfelder.
@@ -200,8 +200,8 @@ export default function Kontaktformular() {
                 "Aussteller/Händler",
                 "Tickets",
                 "Presse",
-                "Sonstiges",
                 "Workshops/Vorträge",
+                "Sonstiges",
               ]}
               inputText={area}
               inputChange={(value) => setArea(value)}

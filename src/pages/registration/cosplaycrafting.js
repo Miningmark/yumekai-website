@@ -468,7 +468,7 @@ export default function CosplayCrafting() {
 
   return (
     <>
-      <h1>Anmeldung für Cosplay Crafting Wettbewerb</h1>
+      <h1>Anmeldung für den Cosplay Crafting Wettbewerb</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!
         <br />
@@ -558,7 +558,7 @@ export default function CosplayCrafting() {
             {getFieldError("email") && <FieldErrorText>{getFieldError("email")}</FieldErrorText>}
 
             <InputOptionInput
-              title="E-Mail Bestätigen"
+              title="E-Mail bestätigen"
               inputText={confirmEmail}
               inputChange={setConfirmEmail}
               onBlur={() => handleBlur("confirmEmail", confirmEmail, { email })}
