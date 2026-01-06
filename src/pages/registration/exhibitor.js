@@ -160,102 +160,103 @@ export default function Exhibitor() {
   }, [imageFile, touchedFields.image]);
 
   const createFileFromImage = async (imageImport, fileName) => {
-  try {
-    // In Next.js ist imageImport ein Objekt mit .src Property
-    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
-    
-    console.log("Lade Bild von:", imageUrl);
+    try {
+      // In Next.js ist imageImport ein Objekt mit .src Property
+      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
 
-    const response = await fetch(imageUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      console.log("Lade Bild von:", imageUrl);
+
+      const response = await fetch(imageUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      console.log("Blob geladen:", blob.type, blob.size, "bytes");
+
+      // Erstelle File mit korrektem Type
+      const file = new File([blob], fileName, {
+        type: "image/png",
+        lastModified: Date.now(),
+      });
+
+      // Erstelle Preview-URL
+      const previewUrl = URL.createObjectURL(blob);
+
+      console.log("File erstellt:", {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+      });
+
+      return { file, previewUrl };
+    } catch (error) {
+      console.error("Fehler beim Laden des Demo-Bildes:", error);
+      return null;
     }
-    
-    const blob = await response.blob();
-    console.log("Blob geladen:", blob.type, blob.size, "bytes");
-    
-    // Erstelle File mit korrektem Type
-    const file = new File([blob], fileName, { 
-      type: 'image/png',
-      lastModified: Date.now()
+  };
+
+  // Füge diese Funktion nach den State-Deklarationen hinzu
+  const fillDemoData = async () => {
+    setGender("d"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+    setName("Alex");
+    setLastName("Müller");
+    setAddressData({
+      street: "Fanstraße",
+      houseNumber: "15",
+      postalCode: "98765",
+      city: "Anime-Stadt",
+      country: "Deutschland",
     });
+    setGroupName("Demon Slayer Fanclub Deutschland");
+    setGroupMembers(8);
+    setStandSize(
+      "Wir benötigen ca. 3x2 Meter Standfläche für unsere Ausstellung und Merchandise-Präsentation. " +
+        "Ideal wäre eine Ecke oder ein Platz mit guter Sichtbarkeit."
+    );
+    setAnnouncementText(
+      "Besucht den Stand des Demon Slayer Fanclubs Deutschland! Wir präsentieren exklusive " +
+        "Fan-Art, selbstgemachte Cosplay-Accessoires und haben viele Infos rund um die Serie. " +
+        "Tauscht euch mit anderen Fans aus, macht Fotos mit unseren Requisiten und gewinnt " +
+        "tolle Fanclub-Merchandise-Artikel bei unserem Quiz! Wir freuen uns auf euren Besuch!"
+    );
+    setWebsite("https://www.demonslayer-fanclub.de");
+    setInstagram("@dsfanclub_de");
+    setMessage(
+      "Wir würden gerne eine kleine Leinwand für eine Fotowand mitbringen. " +
+        "Ist das in Ordnung? Danke für die Organisation!"
+    );
+    setPrivacyPolicy(true);
+    setDataStorage(true);
+    setLicensedMusic(true);
+    setPictureRights(true);
+    setConditions(true);
+    setRegistrationReminder(true);
 
-    // Erstelle Preview-URL
-    const previewUrl = URL.createObjectURL(blob);
+    // Demo-Bild laden
+    console.log("Starte Laden des Demo-Bildes...");
+    const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-exhibitor-logo.png");
+    if (demoImage) {
+      setImageFile([demoImage.file]);
+      setImagePreviewUrl([demoImage.previewUrl]);
+      console.log("✓ Demo-Bild erfolgreich gesetzt");
+    } else {
+      console.error("✗ Demo-Bild konnte nicht geladen werden");
+    }
 
-    console.log("File erstellt:", {
-      name: file.name,
-      size: file.size,
-      type: file.type
-    });
-
-    return { file, previewUrl };
-  } catch (error) {
-    console.error("Fehler beim Laden des Demo-Bildes:", error);
-    return null;
-  }
-};
-
-// Füge diese Funktion nach den State-Deklarationen hinzu
-const fillDemoData = async () => {
-  setGender("d"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
-  setName("Alex");
-  setLastName("Müller");
-  setEmail("alex.mueller@example.com");
-  setConfirmEmail("alex.mueller@example.com");
-  setAddressData({
-    street: "Fanstraße",
-    houseNumber: "15",
-    postalCode: "98765",
-    city: "Anime-Stadt",
-    country: "Deutschland",
-  });
-  setGroupName("Demon Slayer Fanclub Deutschland");
-  setGroupMembers(8);
-  setStandSize(
-    "Wir benötigen ca. 3x2 Meter Standfläche für unsere Ausstellung und Merchandise-Präsentation. " +
-    "Ideal wäre eine Ecke oder ein Platz mit guter Sichtbarkeit."
-  );
-  setAnnouncementText(
-    "Besucht den Stand des Demon Slayer Fanclubs Deutschland! Wir präsentieren exklusive " +
-    "Fan-Art, selbstgemachte Cosplay-Accessoires und haben viele Infos rund um die Serie. " +
-    "Tauscht euch mit anderen Fans aus, macht Fotos mit unseren Requisiten und gewinnt " +
-    "tolle Fanclub-Merchandise-Artikel bei unserem Quiz! Wir freuen uns auf euren Besuch!"
-  );
-  setWebsite("https://www.demonslayer-fanclub.de");
-  setInstagram("@dsfanclub_de");
-  setMessage(
-    "Wir würden gerne eine kleine Leinwand für eine Fotowand mitbringen. " +
-    "Ist das in Ordnung? Danke für die Organisation!"
-  );
-  setPrivacyPolicy(true);
-  setDataStorage(true);
-  setLicensedMusic(true);
-  setPictureRights(true);
-  setConditions(true);
-  setRegistrationReminder(true);
-
-  // Demo-Bild laden
-  console.log("Starte Laden des Demo-Bildes...");
-  const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-exhibitor-logo.png");
-  if (demoImage) {
-    setImageFile([demoImage.file]);
-    setImagePreviewUrl([demoImage.previewUrl]);
-    console.log("✓ Demo-Bild erfolgreich gesetzt");
-  } else {
-    console.error("✗ Demo-Bild konnte nicht geladen werden");
-  }
-
-  // Demo Social Media Bild
-  const demoSocialImage = await createFileFromImage(hiruKunstlerImage, "demo-exhibitor-social-media.png");
-  if (demoSocialImage) {
-    setSocialMediaImageFile([demoSocialImage.file]);
-    setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
-    console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
-  } else {
-    console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
-  }
-};
+    // Demo Social Media Bild
+    const demoSocialImage = await createFileFromImage(
+      hiruKunstlerImage,
+      "demo-exhibitor-social-media.png"
+    );
+    if (demoSocialImage) {
+      setSocialMediaImageFile([demoSocialImage.file]);
+      setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
+      console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
+    } else {
+      console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
+    }
+  };
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));

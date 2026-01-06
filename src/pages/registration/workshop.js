@@ -166,104 +166,101 @@ export default function Workshop() {
     }
   }, []);
 
+  // Next.js-spezifische Funktion
+  const createFileFromImage = async (imageImport, fileName) => {
+    try {
+      // In Next.js ist imageImport ein Objekt mit .src Property
+      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
 
-// Next.js-spezifische Funktion
-const createFileFromImage = async (imageImport, fileName) => {
-  try {
-    // In Next.js ist imageImport ein Objekt mit .src Property
-    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
-    
-    console.log("Lade Bild von:", imageUrl);
+      console.log("Lade Bild von:", imageUrl);
 
-    const response = await fetch(imageUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const response = await fetch(imageUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      console.log("Blob geladen:", blob.type, blob.size, "bytes");
+
+      // Erstelle File mit korrektem Type
+      const file = new File([blob], fileName, {
+        type: "image/png",
+        lastModified: Date.now(),
+      });
+
+      // Erstelle Preview-URL
+      const previewUrl = URL.createObjectURL(blob);
+
+      console.log("File erstellt:", {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+      });
+
+      return { file, previewUrl };
+    } catch (error) {
+      console.error("Fehler beim Laden des Demo-Bildes:", error);
+      return null;
     }
-    
-    const blob = await response.blob();
-    console.log("Blob geladen:", blob.type, blob.size, "bytes");
-    
-    // Erstelle File mit korrektem Type
-    const file = new File([blob], fileName, { 
-      type: 'image/png',
-      lastModified: Date.now()
+  };
+
+  // Deine fillDemoData Funktion bleibt gleich
+  const fillDemoData = async () => {
+    setGender("m");
+    setName("Max");
+    setLastName("Mustermann");
+    setAddressData({
+      street: "Musterstraße",
+      houseNumber: "42",
+      postalCode: "12345",
+      city: "Musterstadt",
+      country: "Deutschland",
     });
+    setWorkshopTitle("Origami für Anfänger");
+    setAnnouncementText(
+      "In diesem Workshop lernt ihr die Grundlagen der japanischen Papierfaltkunst. " +
+        "Wir erstellen gemeinsam verschiedene Figuren wie Kraniche, Blumen und andere schöne Objekte. " +
+        "Keine Vorkenntnisse erforderlich! Alle Materialien werden gestellt. " +
+        "Dieser Workshop ist perfekt für alle, die eine entspannende kreative Aktivität suchen."
+    );
+    setLeaders(2);
+    setTimeSlot1(true);
+    setTimeSlot3(true);
+    setConstructionTime(15);
+    setWorkshopTime(90);
+    setDeconstructionTime(10);
+    setWorkshopRequirements(
+      "Tische und Stühle für die Teilnehmer, gute Beleuchtung, Stromanschluss"
+    );
+    setParticipants(20);
+    setWebsite("https://www.beispiel-workshop.de");
+    setInstagram("@workshopleiter");
+    setMessage("Freue mich sehr auf die YumeKai 2026!");
+    setPrivacyPolicy(true);
+    setDataStorage(true);
+    setPictureRights(true);
 
-    // Erstelle Preview-URL
-    const previewUrl = URL.createObjectURL(blob);
+    // Demo-Bild laden
+    console.log("Starte Laden des Demo-Bildes...");
+    const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-workshop-bild.png");
+    if (demoImage) {
+      setImageFile([demoImage.file]);
+      setImagePreviewUrl([demoImage.previewUrl]);
+      console.log("✓ Demo-Bild erfolgreich gesetzt");
+    } else {
+      console.error("✗ Demo-Bild konnte nicht geladen werden");
+    }
 
-    console.log("File erstellt:", {
-      name: file.name,
-      size: file.size,
-      type: file.type
-    });
-
-    return { file, previewUrl };
-  } catch (error) {
-    console.error("Fehler beim Laden des Demo-Bildes:", error);
-    return null;
-  }
-};
-
-// Deine fillDemoData Funktion bleibt gleich
-const fillDemoData = async () => {
-  setGender("m");
-  setName("Max");
-  setLastName("Mustermann");
-  setEmail("max.mustermann@example.com");
-  setConfirmEmail("max.mustermann@example.com");
-  setAddressData({
-    street: "Musterstraße",
-    houseNumber: "42",
-    postalCode: "12345",
-    city: "Musterstadt",
-    country: "Deutschland",
-  });
-  setWorkshopTitle("Origami für Anfänger");
-  setAnnouncementText(
-    "In diesem Workshop lernt ihr die Grundlagen der japanischen Papierfaltkunst. " +
-    "Wir erstellen gemeinsam verschiedene Figuren wie Kraniche, Blumen und andere schöne Objekte. " +
-    "Keine Vorkenntnisse erforderlich! Alle Materialien werden gestellt. " +
-    "Dieser Workshop ist perfekt für alle, die eine entspannende kreative Aktivität suchen."
-  );
-  setLeaders(2);
-  setTimeSlot1(true);
-  setTimeSlot3(true);
-  setConstructionTime(15);
-  setWorkshopTime(90);
-  setDeconstructionTime(10);
-  setWorkshopRequirements(
-    "Tische und Stühle für die Teilnehmer, gute Beleuchtung, Stromanschluss"
-  );
-  setParticipants(20);
-  setWebsite("https://www.beispiel-workshop.de");
-  setInstagram("@workshopleiter");
-  setMessage("Freue mich sehr auf die YumeKai 2026!");
-  setPrivacyPolicy(true);
-  setDataStorage(true);
-  setPictureRights(true);
-
-  // Demo-Bild laden
-  console.log("Starte Laden des Demo-Bildes...");
-  const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-workshop-bild.png");
-  if (demoImage) {
-    setImageFile([demoImage.file]);
-    setImagePreviewUrl([demoImage.previewUrl]);
-    console.log("✓ Demo-Bild erfolgreich gesetzt");
-  } else {
-    console.error("✗ Demo-Bild konnte nicht geladen werden");
-  }
-
-  // Demo Social Media Bild
-  const demoSocialImage = await createFileFromImage(hiruKunstlerImage, "demo-social-media.png");
-  if (demoSocialImage) {
-    setSocialMediaImageFile([demoSocialImage.file]);
-    setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
-    console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
-  } else {
-    console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
-  }
-};
+    // Demo Social Media Bild
+    const demoSocialImage = await createFileFromImage(hiruKunstlerImage, "demo-social-media.png");
+    if (demoSocialImage) {
+      setSocialMediaImageFile([demoSocialImage.file]);
+      setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
+      console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
+    } else {
+      console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
+    }
+  };
 
   const handleAddressDataChange = (field, value) => {
     setAddressData((prev) => ({ ...prev, [field]: value }));
@@ -860,7 +857,10 @@ const fillDemoData = async () => {
             )}
 
             <TimeslotsContainer $iserror={!!getFieldError("timeSlots")} ref={refs.timeSlots}>
-              <h3>Bevorzugter Tag/Uhrzeit (mindestens eine Option wählen)<RequiredNote>*</RequiredNote></h3>
+              <h3>
+                Bevorzugter Tag/Uhrzeit (mindestens eine Option wählen)
+                <RequiredNote>*</RequiredNote>
+              </h3>
               <CheckBox
                 title="timeSlot1"
                 content="Samstag 11:00-15:00 Uhr"

@@ -152,8 +152,6 @@ export default function ArtContest() {
     setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
     setName("Yuki");
     setLastName("Sakura");
-    setEmail("yuki.sakura@example.com");
-    setConfirmEmail("yuki.sakura@example.com");
     setArtistName("SakuraArt_Yuki"); // Optional
     setImageTitle("Kirschblüten im Mondlicht");
     setWebsite("https://www.sakuraart-portfolio.com");

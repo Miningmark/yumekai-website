@@ -156,115 +156,113 @@ export default function HelferForm() {
   }, []);
 
   const createFileFromImage = async (imageImport, fileName) => {
-  try {
-    // In Next.js ist imageImport ein Objekt mit .src Property
-    const imageUrl = typeof imageImport === 'object' ? imageImport.src : imageImport;
-    
-    console.log("Lade Bild von:", imageUrl);
+    try {
+      // In Next.js ist imageImport ein Objekt mit .src Property
+      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
 
-    const response = await fetch(imageUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      console.log("Lade Bild von:", imageUrl);
+
+      const response = await fetch(imageUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      console.log("Blob geladen:", blob.type, blob.size, "bytes");
+
+      // Erstelle File mit korrektem Type
+      const file = new File([blob], fileName, {
+        type: "image/png",
+        lastModified: Date.now(),
+      });
+
+      // Erstelle Preview-URL
+      const previewUrl = URL.createObjectURL(blob);
+
+      console.log("File erstellt:", {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+      });
+
+      return { file, previewUrl };
+    } catch (error) {
+      console.error("Fehler beim Laden des Demo-Bildes:", error);
+      return null;
     }
-    
-    const blob = await response.blob();
-    console.log("Blob geladen:", blob.type, blob.size, "bytes");
-    
-    // Erstelle File mit korrektem Type
-    const file = new File([blob], fileName, { 
-      type: 'image/png',
-      lastModified: Date.now()
-    });
+  };
 
-    // Erstelle Preview-URL
-    const previewUrl = URL.createObjectURL(blob);
+  // Füge diese Funktion nach den State-Deklarationen hinzu
+  const fillDemoData = async () => {
+    setGender("d"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
+    setFirstName("Kim");
+    setLastName("Helfer");
+    setNickName("Kimi");
 
-    console.log("File erstellt:", {
-      name: file.name,
-      size: file.size,
-      type: file.type
-    });
+    // Geburtsdatum: 25 Jahre alt (muss über 18 sein)
+    const birthDate = new Date();
+    birthDate.setFullYear(birthDate.getFullYear() - 25);
+    setBirthday(birthDate.toISOString().split("T")[0]);
 
-    return { file, previewUrl };
-  } catch (error) {
-    console.error("Fehler beim Laden des Demo-Bildes:", error);
-    return null;
-  }
-};
+    setDiscordName("kimi_helfer#1234");
+    setPhoneNumber("+49 160 12345678");
+    setStreet("Helferstraße");
+    setHouseNumber("42");
+    setPostalCode("20095");
+    setCity("Hamburg");
+    setCountry("Germany");
 
-// Füge diese Funktion nach den State-Deklarationen hinzu
-const fillDemoData = async () => {
-  setGender("d"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
-  setFirstName("Kim");
-  setLastName("Helfer");
-  setNickName("Kimi");
-  setEmail("kim.helfer@example.com");
-  setConfirmEmail("kim.helfer@example.com");
-  
-  // Geburtsdatum: 25 Jahre alt (muss über 18 sein)
-  const birthDate = new Date();
-  birthDate.setFullYear(birthDate.getFullYear() - 25);
-  setBirthday(birthDate.toISOString().split('T')[0]);
-  
-  setDiscordName("kimi_helfer#1234");
-  setPhoneNumber("+49 160 12345678");
-  setStreet("Helferstraße");
-  setHouseNumber("42");
-  setPostalCode("20095");
-  setCity("Hamburg");
-  setCountry("Germany");
-  
-  setClothSize("M"); // CLOTHES_SIZE_OPTIONS: "XS", "S", "M", "L", "XL", "XXL", "XXXL"
-  setAdditionalShirt(true);
-  setArrival("öpnv"); // ARRIVAL_OPTIONS: "car", "öpnv", "others"
-  setParkingTicketRequired(false); // Nur relevant wenn arrival === "car"
-  
-  setFridayConstruction(true);
-  setSaturdayConstruction(false);
-  setSundayDeconstruction(true);
-  
-  setFoodPreferences("vegetarian"); // FOOD_PREFERENCE_OPTIONS: "normal", "vegetarian", "vegan"
-  setFoodDetails("Leichte Laktoseintoleranz, bitte keine Milchprodukte in großen Mengen");
-  
-  setQualificationsWorkExperience("Eventmanagement-Student*in, Erfahrung in Kundenbetreuung");
-  setMyStrengths(
-    "Kommunikationsstark, teamfähig, flexibel, belastbar und freundlich im Umgang mit Menschen. " +
-    "Ich arbeite gerne im Team und behalte auch in stressigen Situationen einen kühlen Kopf."
-  );
-  setTalents(
-    "Ich spreche fließend Deutsch, Englisch und Japanisch. Außerdem habe ich Erfahrung " +
-    "mit Social Media und kann gut fotografieren."
-  );
-  
-  // DEPARTMENT_OPTIONS Werte: "admissionControl", "weaponCheck", "stage", "jumper", "karaoke", "basar", "workshop", "others"
-  setSelectedDepartments(["admissionControl", "jumper", "basar"]);
-  
-  setOther(
-    "Ich war letztes Jahr bereits als Helfer dabei und würde mich freuen, wieder Teil des Teams zu sein! " +
-    "Falls möglich, würde ich gerne mit meiner Freundin Lisa zusammen eingeteilt werden, " +
-    "die sich auch als Helferin anmeldet."
-  );
-  
-  setWorkingOnSaturday(true);
-  setWorkingOnSunday(true);
-  setPreferredWorktime("3"); // PREFERRED_WORKTIME_OPTIONS: "1", "2", "3"
-  
-  setPrivacyPolicy(true);
-  setContactForwarding(true);
-  setDataStoragePolicy(true);
-  setRegistrationReminder(true);
+    setClothSize("M"); // CLOTHES_SIZE_OPTIONS: "XS", "S", "M", "L", "XL", "XXL", "XXXL"
+    setAdditionalShirt(true);
+    setArrival("öpnv"); // ARRIVAL_OPTIONS: "car", "öpnv", "others"
+    setParkingTicketRequired(false); // Nur relevant wenn arrival === "car"
 
-  // Demo-Foto laden
-  console.log("Starte Laden des Demo-Fotos...");
-  const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-helfer-foto.png");
-  if (demoImage) {
-    setFile(demoImage.file);
-    setPreviewUrl(demoImage.previewUrl);
-    console.log("✓ Demo-Foto erfolgreich gesetzt");
-  } else {
-    console.error("✗ Demo-Foto konnte nicht geladen werden");
-  }
-};
+    setFridayConstruction(true);
+    setSaturdayConstruction(false);
+    setSundayDeconstruction(true);
+
+    setFoodPreferences("vegetarian"); // FOOD_PREFERENCE_OPTIONS: "normal", "vegetarian", "vegan"
+    setFoodDetails("Leichte Laktoseintoleranz, bitte keine Milchprodukte in großen Mengen");
+
+    setQualificationsWorkExperience("Eventmanagement-Student*in, Erfahrung in Kundenbetreuung");
+    setMyStrengths(
+      "Kommunikationsstark, teamfähig, flexibel, belastbar und freundlich im Umgang mit Menschen. " +
+        "Ich arbeite gerne im Team und behalte auch in stressigen Situationen einen kühlen Kopf."
+    );
+    setTalents(
+      "Ich spreche fließend Deutsch, Englisch und Japanisch. Außerdem habe ich Erfahrung " +
+        "mit Social Media und kann gut fotografieren."
+    );
+
+    // DEPARTMENT_OPTIONS Werte: "admissionControl", "weaponCheck", "stage", "jumper", "karaoke", "basar", "workshop", "others"
+    setSelectedDepartments(["admissionControl", "jumper", "basar"]);
+
+    setOther(
+      "Ich war letztes Jahr bereits als Helfer dabei und würde mich freuen, wieder Teil des Teams zu sein! " +
+        "Falls möglich, würde ich gerne mit meiner Freundin Lisa zusammen eingeteilt werden, " +
+        "die sich auch als Helferin anmeldet."
+    );
+
+    setWorkingOnSaturday(true);
+    setWorkingOnSunday(true);
+    setPreferredWorktime("3"); // PREFERRED_WORKTIME_OPTIONS: "1", "2", "3"
+
+    setPrivacyPolicy(true);
+    setContactForwarding(true);
+    setDataStoragePolicy(true);
+    setRegistrationReminder(true);
+
+    // Demo-Foto laden
+    console.log("Starte Laden des Demo-Fotos...");
+    const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-helfer-foto.png");
+    if (demoImage) {
+      setFile(demoImage.file);
+      setPreviewUrl(demoImage.previewUrl);
+      console.log("✓ Demo-Foto erfolgreich gesetzt");
+    } else {
+      console.error("✗ Demo-Foto konnte nicht geladen werden");
+    }
+  };
 
   // Zentrale Validierungsfunktion
   const validateSingleField = (field, value, additionalData = {}) => {
