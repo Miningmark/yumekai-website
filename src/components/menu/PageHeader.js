@@ -35,7 +35,6 @@ const menuItems = [
   },
   { name: "Anmeldungen", path: "/registration" },
   { name: "Ticketshop", path: "/shop" },
-  { name: "Crowdfunding", path: "/crowdfunding" },
 ];
 
 const StyledHeader = styled.header`
