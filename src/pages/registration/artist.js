@@ -56,7 +56,7 @@ export default function Artist() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
-    checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
+    checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST),
   );
 
   const [gender, setGender] = useState("");
@@ -155,7 +155,7 @@ export default function Artist() {
     if (!isTestMode) {
       const interval = setInterval(() => {
         setRegistrationStatus(
-          checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST)
+          checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST),
         );
       }, 60000);
 
@@ -212,19 +212,19 @@ export default function Artist() {
       houseNumber: "7",
       postalCode: "54321",
       city: "Kreativstadt",
-      country: "Deutschland",
+      country: "DE",
     });
     setTypeOfArt(
       "Ich biete handgezeichnete Illustrationen, digitale Artworks, Characterdesigns und " +
         "personalisierte Commissions an. Mein Stil ist inspiriert von Anime und Manga mit einem " +
         "besonderen Fokus auf detailreiche Charakterporträts und Fantasy-Szenen. " +
-        "Zusätzlich verkaufe ich Prints, Sticker, Postkarten und Kunstdrucke meiner beliebtesten Werke."
+        "Zusätzlich verkaufe ich Prints, Sticker, Postkarten und Kunstdrucke meiner beliebtesten Werke.",
     );
     setAnnouncementText(
       "Besucht meinen Stand und entdeckt einzigartige handgezeichnete Kunstwerke! " +
         "Ich fertige auch vor Ort Sketch-Commissions an und ihr könnt mir bei meiner Arbeit zuschauen. " +
         "Von Fantasy-Charakteren bis zu niedlichen Chibis - für jeden Geschmack ist etwas dabei. " +
-        "Lasst euch inspirieren und nehmt ein Stück Kunst mit nach Hause!"
+        "Lasst euch inspirieren und nehmt ein Stück Kunst mit nach Hause!",
     );
     setStandSize("FULL_TABLE"); // ARTIST_STANDSIZE_OPTIONS: "HALF_TABLE", "FULL_TABLE"
     setLocation("STADTHALLE"); // LOCATION_OPTIONS: "STADTHALLE", "KOLBEHAUS", "WHEREEVER"
@@ -234,7 +234,7 @@ export default function Artist() {
     setWebsite("https://www.artbyanna.de");
     setInstagram("@artbyanna");
     setMessage(
-      "Ich freue mich riesig auf die YumeKai 2026 und darauf, meine Kunst zu präsentieren!"
+      "Ich freue mich riesig auf die YumeKai 2026 und darauf, meine Kunst zu präsentieren!",
     );
     setPrivacyPolicy(true);
     setDataStorage(true);
@@ -257,7 +257,7 @@ export default function Artist() {
     // Demo Social Media Bild
     const demoSocialImage = await createFileFromImage(
       hiruKunstlerImage,
-      "demo-artist-social-media.png"
+      "demo-artist-social-media.png",
     );
     if (demoSocialImage) {
       setSocialMediaImageFile([demoSocialImage.file]);
@@ -453,7 +453,7 @@ export default function Artist() {
     errors.standSize = validateSingleField("standSize", standSize);
     errors.additionalExhibitorTicket = validateSingleField(
       "additionalExhibitorTicket",
-      additionalExhibitorTicket
+      additionalExhibitorTicket,
     );
     errors.programmBooklet = validateSingleField("programmBooklet", programmBooklet);
 
@@ -553,7 +553,7 @@ export default function Artist() {
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail.",
         );
         // Reset form
         setGender("");

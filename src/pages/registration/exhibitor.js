@@ -50,7 +50,7 @@ export default function Exhibitor() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
-    checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR)
+    checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR),
   );
 
   const [gender, setGender] = useState("");
@@ -140,7 +140,7 @@ export default function Exhibitor() {
     if (!isTestMode) {
       const interval = setInterval(() => {
         setRegistrationStatus(
-          checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR)
+          checkRegistrationPeriod(REGISTRATION_START_EXHIBITOR, REGISTRATION_END_EXHIBITOR),
         );
       }, 60000);
 
@@ -206,25 +206,25 @@ export default function Exhibitor() {
       houseNumber: "15",
       postalCode: "98765",
       city: "Anime-Stadt",
-      country: "Deutschland",
+      country: "DE",
     });
     setGroupName("Demon Slayer Fanclub Deutschland");
     setGroupMembers(8);
     setStandSize(
       "Wir benötigen ca. 3x2 Meter Standfläche für unsere Ausstellung und Merchandise-Präsentation. " +
-        "Ideal wäre eine Ecke oder ein Platz mit guter Sichtbarkeit."
+        "Ideal wäre eine Ecke oder ein Platz mit guter Sichtbarkeit.",
     );
     setAnnouncementText(
       "Besucht den Stand des Demon Slayer Fanclubs Deutschland! Wir präsentieren exklusive " +
         "Fan-Art, selbstgemachte Cosplay-Accessoires und haben viele Infos rund um die Serie. " +
         "Tauscht euch mit anderen Fans aus, macht Fotos mit unseren Requisiten und gewinnt " +
-        "tolle Fanclub-Merchandise-Artikel bei unserem Quiz! Wir freuen uns auf euren Besuch!"
+        "tolle Fanclub-Merchandise-Artikel bei unserem Quiz! Wir freuen uns auf euren Besuch!",
     );
     setWebsite("https://www.demonslayer-fanclub.de");
     setInstagram("@dsfanclub_de");
     setMessage(
       "Wir würden gerne eine kleine Leinwand für eine Fotowand mitbringen. " +
-        "Ist das in Ordnung? Danke für die Organisation!"
+        "Ist das in Ordnung? Danke für die Organisation!",
     );
     setPrivacyPolicy(true);
     setDataStorage(true);
@@ -247,7 +247,7 @@ export default function Exhibitor() {
     // Demo Social Media Bild
     const demoSocialImage = await createFileFromImage(
       hiruKunstlerImage,
-      "demo-exhibitor-social-media.png"
+      "demo-exhibitor-social-media.png",
     );
     if (demoSocialImage) {
       setSocialMediaImageFile([demoSocialImage.file]);
@@ -517,7 +517,7 @@ export default function Exhibitor() {
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail.",
         );
         // Reset form
         setGender("");

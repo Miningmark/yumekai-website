@@ -60,7 +60,7 @@ export default function Workshop() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
-    checkRegistrationPeriod(REGISTRATION_START_WORKSHOP, REGISTRATION_END_WORKSHOP)
+    checkRegistrationPeriod(REGISTRATION_START_WORKSHOP, REGISTRATION_END_WORKSHOP),
   );
 
   const [gender, setGender] = useState("");
@@ -158,7 +158,7 @@ export default function Workshop() {
     if (!isTestMode) {
       const interval = setInterval(() => {
         setRegistrationStatus(
-          checkRegistrationPeriod(REGISTRATION_START_WORKSHOP, REGISTRATION_END_WORKSHOP)
+          checkRegistrationPeriod(REGISTRATION_START_WORKSHOP, REGISTRATION_END_WORKSHOP),
         );
       }, 60000);
 
@@ -214,14 +214,14 @@ export default function Workshop() {
       houseNumber: "42",
       postalCode: "12345",
       city: "Musterstadt",
-      country: "Deutschland",
+      country: "DE",
     });
     setWorkshopTitle("Origami für Anfänger");
     setAnnouncementText(
       "In diesem Workshop lernt ihr die Grundlagen der japanischen Papierfaltkunst. " +
         "Wir erstellen gemeinsam verschiedene Figuren wie Kraniche, Blumen und andere schöne Objekte. " +
         "Keine Vorkenntnisse erforderlich! Alle Materialien werden gestellt. " +
-        "Dieser Workshop ist perfekt für alle, die eine entspannende kreative Aktivität suchen."
+        "Dieser Workshop ist perfekt für alle, die eine entspannende kreative Aktivität suchen.",
     );
     setLeaders(2);
     setTimeSlot1(true);
@@ -230,7 +230,7 @@ export default function Workshop() {
     setWorkshopTime(90);
     setDeconstructionTime(10);
     setWorkshopRequirements(
-      "Tische und Stühle für die Teilnehmer, gute Beleuchtung, Stromanschluss"
+      "Tische und Stühle für die Teilnehmer, gute Beleuchtung, Stromanschluss",
     );
     setParticipants(20);
     setWebsite("https://www.beispiel-workshop.de");
@@ -383,7 +383,7 @@ export default function Workshop() {
             value,
             "Anforderungen für den Workshop",
             5,
-            2500
+            2500,
           );
           if (!requirementsValidation.check) error = requirementsValidation.description;
         }
@@ -587,7 +587,7 @@ export default function Workshop() {
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail.",
         );
         // Reset form
         setGender("");

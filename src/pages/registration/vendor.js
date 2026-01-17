@@ -57,7 +57,7 @@ export default function Vendor() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
-    checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR)
+    checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR),
   );
 
   const [gender, setGender] = useState("");
@@ -159,7 +159,7 @@ export default function Vendor() {
     if (!isTestMode) {
       const interval = setInterval(() => {
         setRegistrationStatus(
-          checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR)
+          checkRegistrationPeriod(REGISTRATION_START_VENDOR, REGISTRATION_END_VENDOR),
         );
       }, 60000);
 
@@ -216,19 +216,19 @@ export default function Vendor() {
       houseNumber: "42",
       postalCode: "12345",
       city: "Musterstadt",
-      country: "Deutschland",
+      country: "DE",
     });
     setTypeOfAssortment(
       "Wir bieten ein breites Sortiment an Manga, Anime-Merchandise, Figuren, Plüschtiere, " +
         "Poster, Schlüsselanhänger und japanische Snacks. Unser Sortiment umfasst beliebte " +
         "Serien wie One Piece, Demon Slayer, My Hero Academia und viele mehr. " +
-        "Außerdem führen wir exklusive Import-Artikel aus Japan."
+        "Außerdem führen wir exklusive Import-Artikel aus Japan.",
     );
     setAnnouncement_text(
       "Besucht unseren Stand und entdeckt die neuesten Manga-Bände, exklusive Figuren " +
         "und einzigartiges Merchandise! Wir haben eine große Auswahl an Artikeln eurer " +
         "Lieblings-Anime und bieten auch Sonderangebote und limitierte Editionen. " +
-        "Lasst euch die Gelegenheit nicht entgehen!"
+        "Lasst euch die Gelegenheit nicht entgehen!",
     );
     setStandSize("2X3"); // VENDOR_STANDSIZE_OPTIONS: "2X2", "2X3", "2X4", "2X5", "2X6", "2X7", "INDIVIDUAL"
     setLocation("STADTHALLE"); // LOCATION_OPTIONS: "STADTHALLE", "KOLBEHAUS", "WHEREEVER"
@@ -240,7 +240,7 @@ export default function Vendor() {
     setWebsite("https://www.manga-paradies.de");
     setInstagram("@mangaparadies");
     setMessage(
-      "Wir freuen uns sehr auf die YumeKai 2026 und darauf, unsere Produkte zu präsentieren!"
+      "Wir freuen uns sehr auf die YumeKai 2026 und darauf, unsere Produkte zu präsentieren!",
     );
     setPrivacyPolicy(true);
     setDataStorage(true);
@@ -263,7 +263,7 @@ export default function Vendor() {
     // Demo Social Media Bild
     const demoSocialImage = await createFileFromImage(
       hiruKunstlerImage,
-      "demo-vendor-social-media.png"
+      "demo-vendor-social-media.png",
     );
     if (demoSocialImage) {
       setSocialMediaImageFile([demoSocialImage.file]);
@@ -453,7 +453,7 @@ export default function Vendor() {
     errors.standSize = validateSingleField("standSize", standSize);
     errors.additionalExhibitorTicket = validateSingleField(
       "additionalExhibitorTicket",
-      additionalExhibitorTicket
+      additionalExhibitorTicket,
     );
     errors.table = validateSingleField("table", table);
 
@@ -554,7 +554,7 @@ export default function Vendor() {
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail.",
         );
         // Reset form
         setGender("");

@@ -210,7 +210,7 @@ export default function HelferForm() {
     setHouseNumber("42");
     setPostalCode("20095");
     setCity("Hamburg");
-    setCountry("Germany");
+    setCountry("DE");
 
     setClothSize("M"); // CLOTHES_SIZE_OPTIONS: "XS", "S", "M", "L", "XL", "XXL", "XXXL"
     setAdditionalShirt(true);
@@ -227,11 +227,11 @@ export default function HelferForm() {
     setQualificationsWorkExperience("Eventmanagement-Student*in, Erfahrung in Kundenbetreuung");
     setMyStrengths(
       "Kommunikationsstark, teamfähig, flexibel, belastbar und freundlich im Umgang mit Menschen. " +
-        "Ich arbeite gerne im Team und behalte auch in stressigen Situationen einen kühlen Kopf."
+        "Ich arbeite gerne im Team und behalte auch in stressigen Situationen einen kühlen Kopf.",
     );
     setTalents(
       "Ich spreche fließend Deutsch, Englisch und Japanisch. Außerdem habe ich Erfahrung " +
-        "mit Social Media und kann gut fotografieren."
+        "mit Social Media und kann gut fotografieren.",
     );
 
     // DEPARTMENT_OPTIONS Werte: "admissionControl", "weaponCheck", "stage", "jumper", "karaoke", "basar", "workshop", "others"
@@ -240,7 +240,7 @@ export default function HelferForm() {
     setOther(
       "Ich war letztes Jahr bereits als Helfer dabei und würde mich freuen, wieder Teil des Teams zu sein! " +
         "Falls möglich, würde ich gerne mit meiner Freundin Lisa zusammen eingeteilt werden, " +
-        "die sich auch als Helferin anmeldet."
+        "die sich auch als Helferin anmeldet.",
     );
 
     setWorkingOnSaturday(true);
@@ -385,7 +385,7 @@ export default function HelferForm() {
             value,
             "Allergien/Unverträglichkeiten",
             3,
-            500
+            500,
           );
           if (!foodDetailsValidation.check) error = foodDetailsValidation.description;
         }
@@ -496,7 +496,7 @@ export default function HelferForm() {
     // Interessen
     errors.qualificationsWorkExperience = validateSingleField(
       "qualificationsWorkExperience",
-      qualificationsWorkExperience
+      qualificationsWorkExperience,
     );
     errors.myStrengths = validateSingleField("myStrengths", myStrengths);
     errors.talents = validateSingleField("talents", talents);
@@ -604,7 +604,7 @@ export default function HelferForm() {
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail.",
         );
 
         // Reset form
@@ -715,7 +715,7 @@ export default function HelferForm() {
 
       // Prüfen ob jetzt alle Bereiche (außer "others") ausgewählt sind
       const allDepartmentsExceptOthers = DEPARTMENT_OPTIONS.filter(
-        (dept) => dept.value !== "others"
+        (dept) => dept.value !== "others",
       ).map((dept) => dept.value);
 
       const allSelected = allDepartmentsExceptOthers.every((dept) => newSelection.includes(dept));
