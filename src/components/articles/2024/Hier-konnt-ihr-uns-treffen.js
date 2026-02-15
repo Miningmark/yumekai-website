@@ -20,9 +20,10 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>24.01 Manganacht in Memmingen</li>
-                    <li>14.02 - 15.02 ComicCon in Dornbirn</li>
+                    <li>14.03 Gamesvention in Kempten</li>
+                    <li>23.05 - 24.05 Hana & Spring in Königsbrunn</li>
                     <li>06.06 - 07.06 PopCon in Lindau</li>
+                    <li>18.09 - 20.09 Gamesvention in Kempten</li>
                   </ul>
                 </>
               }
@@ -30,8 +31,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>Animuc in Fürstenfeldbruck</li>
-                    <li>Kitsucon in Thayngen/Reiat</li>
                     <li>Mini Con in Lustenau</li>
                     <li>Hana und Spring in Königsbrunn</li>
                     <li>NonkiCon in Speyer</li>
@@ -42,6 +41,8 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Cosplay & Game in Bludenz</li>
                     <li>Yayuco in Dachau</li>
                     <li>ComicCon in Stuttgart</li>
+                    <li>Manganacht in Memmingen</li>
+                    <li>ComicCon in Dornbirn</li>
                   </ul>
                 </>
               }
