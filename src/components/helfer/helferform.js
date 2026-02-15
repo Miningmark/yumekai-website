@@ -968,7 +968,7 @@ export default function HelferForm() {
           )}
 
           <CheckBox
-            title="Zusätzliches T-Shirt gewünscht"
+            title="Zusätzliches T-Shirt für 10€"
             isChecked={additionalShirt}
             inputChange={setAdditionalShirt}
           />
