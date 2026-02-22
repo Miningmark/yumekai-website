@@ -943,7 +943,7 @@ export default function HelferForm() {
             inputText={COUNTRIES.find((c) => c.value === country)?.label ?? country}
             inputChange={(label) => {
               const country = COUNTRIES.find((c) => c.label === label);
-              onChange("country", country ? country.value : label);
+              setCountry(country ? country.value : label);
             }}
             onBlur={() => handleBlur("country", country)}
             inputRef={refs.country}
