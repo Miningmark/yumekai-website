@@ -940,12 +940,12 @@ export default function HelferForm() {
           <InputOptionSelect
             title="Land"
             options={COUNTRIES.map((c) => c.label)}
-            inputText={COUNTRIES.find((c) => c.value === data.country)?.label ?? data.country}
+            inputText={COUNTRIES.find((c) => c.value === country)?.label ?? country}
             inputChange={(label) => {
               const country = COUNTRIES.find((c) => c.label === label);
               onChange("country", country ? country.value : label);
             }}
-            onBlur={() => handleFieldBlur("country", data.country)}
+            onBlur={() => handleBlur("country", country)}
             inputRef={refs.country}
             isError={!!getFieldError("country")}
             require
