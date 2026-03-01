@@ -16,6 +16,8 @@ import {
   REGISTRATION_END_EXHIBITOR,
   REGISTRATION_START_ART_CONTEST,
   REGISTRATION_END_ART_CONTEST,
+  REGISTRATION_START_COSPLAY_CRAFTING,
+  REGISTRATION_END_COSPLAY_CRAFTING,
 } from "@/util/registration_options";
 
 const DynamicContent = styled.div`
@@ -80,8 +82,8 @@ export default function Voranmeldungen() {
       REGISTRATION_START_VENDOR,
       REGISTRATION_START_EXHIBITOR,
       REGISTRATION_START_SHOWACT,
-      REGISTRATION_START_WORKSHOP
-    )
+      REGISTRATION_START_WORKSHOP,
+    ),
   );
 
   const renderButton = (startDate, endDate, link, text) => {
@@ -169,7 +171,7 @@ export default function Voranmeldungen() {
         })} um ${earliestStart.toLocaleTimeString("de-DE", {
           hour: "2-digit",
           minute: "2-digit",
-        })} Uhr möglich.`
+        })} Uhr möglich.`,
       )}
       <p>
         Sei dabei bei der YumeKai 2026! Melde dich jetzt an und gestalte die Convention mit uns
@@ -181,22 +183,19 @@ export default function Voranmeldungen() {
           <StyledLink href="#helfer">Helfer</StyledLink>
         </li>
         <li>
-          <StyledLink href="#kunstler">Künstler</StyledLink>
-        </li>
-        <li>
           <StyledLink href="#handler">Händler</StyledLink>
         </li>
         <li>
           <StyledLink href="#vereine">Fan-Gruppen/Vereine</StyledLink>
         </li>
         <li>
-          <StyledLink href="#showact">Showact</StyledLink>
-        </li>
-        <li>
           <StyledLink href="#workshopleiter">Workshopleiter</StyledLink>
         </li>
         <li>
           <StyledLink href="#artcontest">Zeichenwettbewerb</StyledLink>
+        </li>
+        <li>
+          <StyledLink href="#cosplaycrafting">Cosplay-Crafting Wettbewerb</StyledLink>
         </li>
       </ul>
 
@@ -245,69 +244,6 @@ export default function Voranmeldungen() {
         </DynamicContent>
       </div>
 
-      <Spacer id="kunstler" />
-
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "20px",
-          marginBottom: "20px",
-        }}
-      >
-        <DynamicContent $widthpercent={65}>
-          <h2>Anmeldung als Künstler</h2>
-          <p>
-            Du möchtest deine Werke auf der YumeKai 2026 ausstellen? Dann ist unsere Künstlerecke
-            genau der richtige Ort für dich!
-            <br />
-            <br />
-            Wenn das dein Interesse geweckt hat, fülle das Anmeldeformular für Künstler aus. Sobald
-            wir deine Anmeldung erhalten haben, erhältst du von uns eine Bestätigung.
-            <br />
-            <br />
-            Sobald die Bewerbungsphase vorbei ist, werden wir aus allen Anmeldungen eine Auswahl
-            treffen und allen Künstlern entsprechend Rückmeldung geben.
-            <br />
-            <br />
-            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
-            <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
-            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
-            die{" "}
-            <StyledLink href="/downloads/Teilnahmebedingungen_Kuenstler_2026.pdf" target="_blank">
-              Teilnahme- und Auswahlbedingungen für Künstler
-            </StyledLink>
-            .
-            <br />
-            <br />
-            {renderRegistrationPeriodText(
-              REGISTRATION_START_ARTIST,
-              REGISTRATION_END_ARTIST,
-              "Künstler"
-            )}
-            <br />
-            <br />
-            Wir freuen uns auf eure Bewerbung!
-          </p>
-        </DynamicContent>
-        <DynamicContent
-          $widthpercent={35}
-          $maxwidth={300}
-          style={{ justifyContent: "center", alignContent: "center" }}
-        >
-          <Infobox>
-            <p>Anmeldung als Künstler</p>
-            {renderButton(
-              REGISTRATION_START_ARTIST,
-              REGISTRATION_END_ARTIST,
-              "/registration/artist",
-              "Anmeldung"
-            )}
-          </Infobox>
-        </DynamicContent>
-      </div>
-
       <Spacer id="handler" />
 
       <div
@@ -344,7 +280,7 @@ export default function Voranmeldungen() {
             {renderRegistrationPeriodText(
               REGISTRATION_START_VENDOR,
               REGISTRATION_END_VENDOR,
-              "Händler"
+              "Händler",
             )}
             <br />
             <br />
@@ -362,7 +298,7 @@ export default function Voranmeldungen() {
               REGISTRATION_START_VENDOR,
               REGISTRATION_END_VENDOR,
               "/registration/vendor",
-              "Anmeldung"
+              "Anmeldung",
             )}
           </Infobox>
         </DynamicContent>
@@ -404,7 +340,7 @@ export default function Voranmeldungen() {
             {renderRegistrationPeriodText(
               REGISTRATION_START_EXHIBITOR,
               REGISTRATION_END_EXHIBITOR,
-              "Fan-Gruppe/Verein"
+              "Fan-Gruppe/Verein",
             )}
             <br />
             <br />
@@ -422,70 +358,7 @@ export default function Voranmeldungen() {
               REGISTRATION_START_EXHIBITOR,
               REGISTRATION_END_EXHIBITOR,
               "/registration/exhibitor",
-              "Anmeldung"
-            )}
-          </Infobox>
-        </DynamicContent>
-      </div>
-
-      <Spacer id="showact" />
-
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "20px",
-          marginBottom: "20px",
-        }}
-      >
-        <DynamicContent $widthpercent={65}>
-          <h2>Anmeldung als Showact</h2>
-          <p>
-            Zeigt euer Können auf der großen Bühne vor einem Live-Publikum und begeistert die
-            Massen!
-            <br />
-            <br />
-            Ihr seid bereit unsere Besucher vom 09.-10. Mai 2026 mit eurem Showact mitzureißen und
-            wollt Teil der Veranstaltung werden?
-            <br />
-            <br />
-            Sobald die Bewerbungsphase vorbei ist, werden wir aus allen Anmeldungen eine Auswahl
-            treffen und allen Showacts entsprechend Rückmeldung geben.
-            <br />
-            <br />
-            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
-            <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
-            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
-            die{" "}
-            <StyledLink href="/downloads/Infoblatt_Showacts_2026.pdf" target="_blank">
-              Teilnahme- und Auswahlbedingungen für Showacts
-            </StyledLink>
-            .
-            <br />
-            <br />
-            {renderRegistrationPeriodText(
-              REGISTRATION_START_SHOWACT,
-              REGISTRATION_END_SHOWACT,
-              "Showact's"
-            )}
-            <br />
-            <br />
-            Wir freuen uns auf eure Bewerbung!
-          </p>
-        </DynamicContent>
-        <DynamicContent
-          $widthpercent={35}
-          $maxwidth={300}
-          style={{ justifyContent: "center", alignContent: "center" }}
-        >
-          <Infobox>
-            <p>Anmeldung als Showact</p>
-            {renderButton(
-              REGISTRATION_START_SHOWACT,
-              REGISTRATION_END_SHOWACT,
-              "/registration/showact",
-              "Anmeldung"
+              "Anmeldung",
             )}
           </Infobox>
         </DynamicContent>
@@ -527,7 +400,7 @@ export default function Voranmeldungen() {
             {renderRegistrationPeriodText(
               REGISTRATION_START_WORKSHOP,
               REGISTRATION_END_WORKSHOP,
-              "Workshopleiter"
+              "Workshopleiter",
             )}
             <br />
             <br />
@@ -545,7 +418,7 @@ export default function Voranmeldungen() {
               REGISTRATION_START_WORKSHOP,
               REGISTRATION_END_WORKSHOP,
               "/registration/workshop",
-              "Anmeldung"
+              "Anmeldung",
             )}
           </Infobox>
         </DynamicContent>
@@ -598,7 +471,7 @@ export default function Voranmeldungen() {
             {renderRegistrationPeriodText(
               REGISTRATION_START_ART_CONTEST,
               REGISTRATION_END_ART_CONTEST,
-              "Zeichenwettbewerb"
+              "Zeichenwettbewerb",
             )}
             <br />
             <br />
@@ -616,13 +489,203 @@ export default function Voranmeldungen() {
               REGISTRATION_START_ART_CONTEST,
               REGISTRATION_END_ART_CONTEST,
               "/registration/artcontest",
-              "Anmeldung"
+              "Anmeldung",
+            )}
+          </Infobox>
+        </DynamicContent>
+      </div>
+
+      <Spacer id="cosplaycrafting" />
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <DynamicContent $widthpercent={65}>
+          <h2>Anmeldung Cosplay-Crafting Wettbewerb</h2>
+          <p>
+            Du nähst, bastelst oder baust deine Cosplays selbst? Dann ist der YumeKai
+            Cosplay-Crafting Wettbewerb genau das Richtige für dich! Zeig der Jury dein
+            handgefertigtes Cosplay und beweise dein handwerkliches Können.
+            <br />
+            <br />
+            Ob Einzelperson oder Duo - teilnehmen können alle, die mindestens 50 % ihres Cosplays
+            selbst gefertigt haben. Charaktere aus allen Medien sind willkommen, sogar OCs! Ein
+            Crafting-Tagebuch (2-6 Seiten, PDF) mit Bildern und kurzen Beschreibungen deines
+            Erstellungsprozesses ist Pflicht und muss zusammen mit mindestens einem Foto des
+            fertigen Cosplays bei der Anmeldung eingereicht werden.
+            <br />
+            <br />
+            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+            <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
+            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
+            die{" "}
+            <StyledLink
+              href="/downloads/Cosplay_Crafting_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2026.pdf"
+              target="_blank"
+            >
+              Teilnahmebedingungen für den Cosplay-Crafting Wettbewerb
+            </StyledLink>
+            .
+            <br />
+            <br />
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_COSPLAY_CRAFTING,
+              REGISTRATION_END_COSPLAY_CRAFTING,
+              "Cosplay-Crafting Wettbewerb",
+            )}
+            <br />
+            <br />
+            Wir freuen uns auf eure Bewerbung!
+          </p>
+        </DynamicContent>
+        <DynamicContent
+          $widthpercent={35}
+          $maxwidth={300}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Infobox>
+            <p>Anmeldung Cosplay-Crafting Wettbewerb</p>
+            {renderButton(
+              REGISTRATION_START_COSPLAY_CRAFTING,
+              REGISTRATION_END_COSPLAY_CRAFTING,
+              "/registration/cosplaycrafting",
+              "Anmeldung",
+            )}
+          </Infobox>
+        </DynamicContent>
+      </div>
+
+      <Spacer id="closed" />
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <DynamicContent $widthpercent={65}>
+          <h2>Anmeldung als Künstler</h2>
+          <p>
+            Du möchtest deine Werke auf der YumeKai 2026 ausstellen? Dann ist unsere Künstlerecke
+            genau der richtige Ort für dich!
+            <br />
+            <br />
+            Wenn das dein Interesse geweckt hat, fülle das Anmeldeformular für Künstler aus. Sobald
+            wir deine Anmeldung erhalten haben, erhältst du von uns eine Bestätigung.
+            <br />
+            <br />
+            Sobald die Bewerbungsphase vorbei ist, werden wir aus allen Anmeldungen eine Auswahl
+            treffen und allen Künstlern entsprechend Rückmeldung geben.
+            <br />
+            <br />
+            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+            <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
+            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
+            die{" "}
+            <StyledLink href="/downloads/Teilnahmebedingungen_Kuenstler_2026.pdf" target="_blank">
+              Teilnahme- und Auswahlbedingungen für Künstler
+            </StyledLink>
+            .
+            <br />
+            <br />
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_ARTIST,
+              REGISTRATION_END_ARTIST,
+              "Künstler",
+            )}
+            <br />
+            <br />
+            Wir freuen uns auf eure Bewerbung!
+          </p>
+        </DynamicContent>
+        <DynamicContent
+          $widthpercent={35}
+          $maxwidth={300}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Infobox>
+            <p>Anmeldung als Künstler</p>
+            {renderButton(
+              REGISTRATION_START_ARTIST,
+              REGISTRATION_END_ARTIST,
+              "/registration/artist",
+              "Anmeldung",
             )}
           </Infobox>
         </DynamicContent>
       </div>
 
       <Spacer />
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <DynamicContent $widthpercent={65}>
+          <h2>Anmeldung als Showact</h2>
+          <p>
+            Zeigt euer Können auf der großen Bühne vor einem Live-Publikum und begeistert die
+            Massen!
+            <br />
+            <br />
+            Ihr seid bereit unsere Besucher vom 09.-10. Mai 2026 mit eurem Showact mitzureißen und
+            wollt Teil der Veranstaltung werden?
+            <br />
+            <br />
+            Sobald die Bewerbungsphase vorbei ist, werden wir aus allen Anmeldungen eine Auswahl
+            treffen und allen Showacts entsprechend Rückmeldung geben.
+            <br />
+            <br />
+            Bei sonstigen Fragen oder eventuellen Unklarheiten wendest du dich per E-Mail an:{" "}
+            <StyledLink href="mailto:info@yumekai.de">info@yumekai.de</StyledLink> oder benutzt
+            unser <StyledLink href="/kontaktformular">Kontaktformular</StyledLink>. Bitte beachtet
+            die{" "}
+            <StyledLink href="/downloads/Infoblatt_Showacts_2026.pdf" target="_blank">
+              Teilnahme- und Auswahlbedingungen für Showacts
+            </StyledLink>
+            .
+            <br />
+            <br />
+            {renderRegistrationPeriodText(
+              REGISTRATION_START_SHOWACT,
+              REGISTRATION_END_SHOWACT,
+              "Showact's",
+            )}
+            <br />
+            <br />
+            Wir freuen uns auf eure Bewerbung!
+          </p>
+        </DynamicContent>
+        <DynamicContent
+          $widthpercent={35}
+          $maxwidth={300}
+          style={{ justifyContent: "center", alignContent: "center" }}
+        >
+          <Infobox>
+            <p>Anmeldung als Showact</p>
+            {renderButton(
+              REGISTRATION_START_SHOWACT,
+              REGISTRATION_END_SHOWACT,
+              "/registration/showact",
+              "Anmeldung",
+            )}
+          </Infobox>
+        </DynamicContent>
+      </div>
     </>
   );
 }

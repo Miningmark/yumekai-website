@@ -44,7 +44,7 @@ export default function CosplayCrafting() {
   const [eventId, setEventId] = useState(EVENT_ID);
 
   const [registrationStatus, setRegistrationStatus] = useState(() =>
-    checkRegistrationPeriod(REGISTRATION_START_COSPLAY_CRAFTING, REGISTRATION_END_COSPLAY_CRAFTING)
+    checkRegistrationPeriod(REGISTRATION_START_COSPLAY_CRAFTING, REGISTRATION_END_COSPLAY_CRAFTING),
   );
 
   const [gender, setGender] = useState("");
@@ -104,8 +104,8 @@ export default function CosplayCrafting() {
         setRegistrationStatus(
           checkRegistrationPeriod(
             REGISTRATION_START_COSPLAY_CRAFTING,
-            REGISTRATION_END_COSPLAY_CRAFTING
-          )
+            REGISTRATION_END_COSPLAY_CRAFTING,
+          ),
         );
       }, 60000);
 
@@ -197,7 +197,7 @@ export default function CosplayCrafting() {
         "das ich individuell geformt und bemalt habe. Alle Details inklusive der Nieten und Schnallen " +
         "wurden selbst angefertigt. Das Crafting-Tagebuch dokumentiert den kompletten Herstellungsprozess " +
         "über 4 Monate mit Fortschrittsbildern, verwendeten Materialien und Techniken. Ich freue mich sehr, " +
-        "meine Handwerkskunst präsentieren zu dürfen!"
+        "meine Handwerkskunst präsentieren zu dürfen!",
     );
     setPrivacyPolicy(true);
     setDataStorage(true);
@@ -208,14 +208,14 @@ export default function CosplayCrafting() {
     console.log("Starte Laden des Demo-Crafting-Tagebuchs (PDF)...");
     const demoPDF = await createFileFromPDF(
       "/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf",
-      "Cloud-Cosplay-Crafting-Tagebuch.pdf"
+      "Cloud-Cosplay-Crafting-Tagebuch.pdf",
     );
 
     // Demo-Cosplay-Bilder laden
     console.log("Starte Laden der Demo-Cosplay-Bilder...");
     const demoCrafting1 = await createFileFromImage(
       hiruKunstlerImage,
-      "Cloud-Cosplay-Progress-1.png"
+      "Cloud-Cosplay-Progress-1.png",
     );
     const demoCrafting2 = await createFileFromImage(hiruKunstlerImage, "Cloud-Cosplay-Final.png");
 
@@ -428,12 +428,12 @@ export default function CosplayCrafting() {
         {
           method: "POST",
           body: formData,
-        }
+        },
       );
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail.",
         );
         // Reset form
         setGender("");
@@ -475,7 +475,7 @@ export default function CosplayCrafting() {
         <br />
         Bitte beachtet die{" "}
         <StyledLink
-          href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+          href="/downloads/Cosplay_Crafting_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2026.pdf"
           target="_blank"
         >
           Teilnahmebedingungen für den Cosplay Crafting Wettbewerb
@@ -720,7 +720,7 @@ export default function CosplayCrafting() {
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf"
+                    href="/downloads/Cosplay_Crafting_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2026.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen

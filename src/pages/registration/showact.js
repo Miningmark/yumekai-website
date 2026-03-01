@@ -266,8 +266,8 @@ export default function Showact() {
     setGender("m"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
     setName("Takeshi");
     setLastName("Performer");
-    setEmail("takeshi.performer@example.com");
-    setConfirmEmail("takeshi.performer@example.com");
+    setEmail("");
+    setConfirmEmail("");
     setAddressData({
       street: "Bühnenstraße",
       houseNumber: "99",
