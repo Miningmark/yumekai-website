@@ -197,6 +197,9 @@ export default function Voranmeldungen() {
         <li>
           <StyledLink href="#cosplaycrafting">Cosplay-Crafting Wettbewerb</StyledLink>
         </li>
+        <li>
+          <StyledLink href="#closed">geschlossene Anmeldungen</StyledLink>
+        </li>
       </ul>
 
       <Spacer id="helfer" />

@@ -94,8 +94,6 @@ export default function Presse() {
     setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
     setName("Sarah");
     setLastName("Journalist");
-    setEmail("sarah.journalist@anime-magazin.de");
-    setConfirmEmail("sarah.journalist@anime-magazin.de");
     setAddressData({
       street: "Pressestraße",
       houseNumber: "23",
