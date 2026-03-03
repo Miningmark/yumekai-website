@@ -148,7 +148,7 @@ useEffect(() => {
   const urlParams = new URLSearchParams(window.location.search);
   const isTestMode = urlParams.get("test") === "true";
   const bypassCode = urlParams.get("bypass");
-  const BYPASS_SECRET = "yumekai-2026"; // 🔑 Geheimcode hier ändern
+  const BYPASS_SECRET = "yumekai-2026";
   const isBypassMode = bypassCode === BYPASS_SECRET;
 
   if (isTestMode) {
