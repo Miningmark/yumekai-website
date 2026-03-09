@@ -143,25 +143,34 @@ export default function Artist() {
     registrationReminder: useRef(null),
   };
 
-  useEffect(() => {
-    // Prüfe auf Test-Modus
-    const urlParams = new URLSearchParams(window.location.search);
-    const isTestMode = urlParams.get("test") === "true";
+useEffect(() => {
+  // Prüfe auf Test-Modus und Bypass-Modus
+  const urlParams = new URLSearchParams(window.location.search);
+  const isTestMode = urlParams.get("test") === "true";
+  const bypassCode = urlParams.get("bypass");
+  const BYPASS_SECRET = "yumekai-2026";
+  const isBypassMode = bypassCode === BYPASS_SECRET;
 
-    if (isTestMode) {
-      setRegistrationTest(true);
-      fillDemoData();
-    }
-    if (!isTestMode) {
-      const interval = setInterval(() => {
-        setRegistrationStatus(
-          checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST),
-        );
-      }, 60000);
+  if (isTestMode) {
+    setRegistrationTest(true);
+    fillDemoData();
+  }
 
-      return () => clearInterval(interval);
-    }
-  }, []);
+  // Bypass: Anmeldung außerhalb des Anmeldezeitraums ermöglichen
+  if (isBypassMode) {
+    setRegistrationStatus({ isActive: true, message: "Zugang aktiv" });
+  }
+
+  if (!isTestMode && !isBypassMode) {
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST),
+      );
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }
+}, []);
 
   const createFileFromImage = async (imageImport, fileName) => {
     try {

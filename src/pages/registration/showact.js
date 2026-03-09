@@ -157,27 +157,34 @@ export default function Showact() {
     registrationReminder: useRef(null),
   };
 
-  useEffect(() => {
-    // Prüfe auf Test-Modus
-    const urlParams = new URLSearchParams(window.location.search);
-    const isTestMode = urlParams.get("test") === "true";
+useEffect(() => {
+  // Prüfe auf Test-Modus und Bypass-Modus
+  const urlParams = new URLSearchParams(window.location.search);
+  const isTestMode = urlParams.get("test") === "true";
+  const bypassCode = urlParams.get("bypass");
+  const BYPASS_SECRET = "yumekai-2026";
+  const isBypassMode = bypassCode === BYPASS_SECRET;
 
-    if (isTestMode) {
-      setRegistrationTest(true);
-      fillDemoData();
-    }
+  if (isTestMode) {
+    setRegistrationTest(true);
+    fillDemoData();
+  }
 
-    // Interval nur setzen wenn NICHT im Test-Modus
-    if (!isTestMode) {
-      const interval = setInterval(() => {
-        setRegistrationStatus(
-          checkRegistrationPeriod(REGISTRATION_START_SHOWACT, REGISTRATION_END_SHOWACT),
-        );
-      }, 60000);
+  // Bypass: Anmeldung außerhalb des Anmeldezeitraums ermöglichen
+  if (isBypassMode) {
+    setRegistrationStatus({ isActive: true, message: "Zugang aktiv" });
+  }
 
-      return () => clearInterval(interval);
-    }
-  }, []);
+  if (!isTestMode && !isBypassMode) {
+    const interval = setInterval(() => {
+      setRegistrationStatus(
+        checkRegistrationPeriod(REGISTRATION_START_ARTIST, REGISTRATION_END_ARTIST),
+      );
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }
+}, []);
 
   useEffect(() => {
     // Validierung triggern wenn imageFile sich ändert UND das Feld bereits berührt wurde
