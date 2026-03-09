@@ -41,6 +41,22 @@ ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4 
 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE spam_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_ip VARCHAR(50) NOT NULL,
+    name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100),
+    area VARCHAR(50),
+    subject VARCHAR(100),
+    message TEXT,
+    spam_reason VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
  */
 
 const connection = mysql.createPool({
@@ -218,6 +234,28 @@ async function logUnusualActivity(ip, email, reason) {
   }
 }
 
+async function saveSpamToContactRequests(clientIp, data, spamReason) {
+  try {
+    const messageWithReason = `[SPAM: ${spamReason}]\n\n${data.message || ""}`;
+    const query = `
+      INSERT INTO contact_requests (client_ip, name, last_name, email, area, subject, message, privacy_policy)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    await connection.query(query, [
+      clientIp,
+      data.name || "unbekannt",
+      data.lastName || null,
+      data.email || "unbekannt",
+      data.area || "unbekannt",
+      data.subject || "unbekannt",
+      messageWithReason,
+      data.privacyPolicy ?? false,
+    ]);
+  } catch (err) {
+    console.error("Fehler beim Speichern der Spam-Anfrage:", err.message);
+  }
+}
+
 // ─── API Handler ──────────────────────────────────────────────────────────────
 
 export default async function handler(req, res) {
@@ -236,16 +274,21 @@ export default async function handler(req, res) {
     message,
     privacyPolicy,
     // Honeypot-Feld: Bots füllen dieses aus, echte User sehen es nicht
-    hp,
+    _hp,
     // Zeitstempel vom Frontend (wann das Formular geladen wurde)
-    loadedAt,
+    _loadedAt,
   } = req.body;
 
   // ── Honeypot-Check ──────────────────────────────────────────────────────────
   // Wenn das versteckte Feld ausgefüllt ist → definitiv ein Bot
-  if (hp && hp.trim() !== "") {
-    await logUnusualActivity(clientIp, email || "unbekannt", "Honeypot ausgelöst");
-    // Dem Bot eine Erfolgsantwort geben, damit er nicht erneut versucht
+  if (_hp && _hp.trim() !== "") {
+    const spamReason = "Honeypot ausgelöst";
+    await logUnusualActivity(clientIp, email || "unbekannt", spamReason);
+    await saveSpamToContactRequests(
+      clientIp,
+      { name, lastName, email, area, subject, message, privacyPolicy },
+      spamReason,
+    );
     return res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   }
 
@@ -304,13 +347,16 @@ export default async function handler(req, res) {
     email,
     subject,
     message,
-    submittedAt: loadedAt ? parseInt(loadedAt, 10) : null,
+    submittedAt: _loadedAt ? parseInt(_loadedAt, 10) : null,
   });
 
   if (spamResult.isSpam) {
     await logUnusualActivity(clientIp, email, `Spam erkannt: ${spamResult.reason}`);
-    // Dem Bot eine Erfolgsantwort geben → er versucht es nicht erneut
-    // (kein Hinweis dass wir ihn erkannt haben)
+    await saveSpamToContactRequests(
+      clientIp,
+      { name, lastName, email, area, subject, message, privacyPolicy },
+      spamResult.reason,
+    );
     return res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   }
 
