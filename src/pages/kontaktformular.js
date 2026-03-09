@@ -32,6 +32,8 @@ export default function Kontaktformular() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [loadedAt] = useState(() => Date.now());
+
   // Refs for form fields
   const refs = {
     name: useRef(null),
@@ -118,6 +120,8 @@ export default function Kontaktformular() {
           subject: subject.trim(),
           message: message.trim(),
           privacyPolicy,
+          hp: "",
+          loadedAt: loadedAt,
         }),
       });
 
@@ -226,6 +230,10 @@ export default function Kontaktformular() {
               inputRef={refs.message}
               isError={errors.some((error) => error.field === "message")}
             />
+            <div aria-hidden="true" style={{ display: "none" }}>
+              <label htmlFor="hp">Lass dieses Feld leer</label>
+              <input type="text" id="hp" name="hp" tabIndex={-1} autoComplete="off" />
+            </div>
             <CheckBox
               title={
                 <p>
