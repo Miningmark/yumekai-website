@@ -30,7 +30,7 @@ async function logError(
   clientIp = "000.000.000.000",
   form = "unbekannt",
   email = "unbekannt",
-  errorDetails = "unbekannt"
+  errorDetails = "unbekannt",
 ) {
   try {
     const query = `
@@ -44,7 +44,9 @@ async function logError(
 }
 
 export default async function handler(req, res) {
+  /* 
   if (req.method == "POST") {
+    
     const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
     const { name, email, privacyPolicy } = req.body;
@@ -182,6 +184,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: "Interner Serverfehler" });
     }
   }
+    */
 
   return res.status(405).json({ message: "Methode nicht erlaubt" });
 }

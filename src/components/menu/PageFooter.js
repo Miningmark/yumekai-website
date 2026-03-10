@@ -123,12 +123,6 @@ export default function PageFooter() {
             </li>
           </ul>
         </FooterContainer>
-        <FooterContainer>
-          <h3>Newsletter</h3>
-          <StyledLinkAsButton href={"/newsletter/register"} style={{ textAlign: "center" }}>
-            Anmelden
-          </StyledLinkAsButton>
-        </FooterContainer>
       </FooterContainerWrapper>
       <FooterLine>
         <p>© 2025 Dreamfly-Events UG</p>
