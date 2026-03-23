@@ -68,8 +68,9 @@ export default function AnkundigungBall() {
             </StyledLink>
             <br />
             <br />
-            Beginn: 19:00 Uhr<br />
-            Ende: 23:30 Uhr<br />
+            Beginn: 19:00 Uhr
+            <br />
+            Ende: 23:30 Uhr
             <br />
             <br />
             Bitte achtet auf unseren Dresscode, damit wir gemeinsam eine stimmige und angenehme Atmosphäre für den Ball schaffen können.
@@ -84,7 +85,7 @@ export default function AnkundigungBall() {
 
             <br />
             <br />
-            <span style={{ fontSize: "0.8em", color: "inherit" }}>
+            <span style={{ fontSize: "0.7rem", color: "inherit" }}>
             *Für alle Austeller/Künstler/Händler und Helfenden der YumeKai gibt es zudem die Möglichekit auf ein reduziertes Ballticket (5€) an der Tageskasse!
             </span>
           </p>
