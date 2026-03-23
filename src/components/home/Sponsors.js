@@ -27,28 +27,29 @@ import comicConDornbirnImage from "/public/assets/images/sponsors/CCD_Logo.jpg";
 const sponsorList = [
   { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
   { image: cohekiImage, alt: "CoHeKi", link: "https://coheki.de/" },
-  { image: foamlordImage, alt: "Foamlord", link: "https://www.foamlord.de/" },
-  { image: fuyukoImage, alt: "Fuyuko", link: "https://fuyuko.de/" },
+  //{ image: foamlordImage, alt: "Foamlord", link: "https://www.foamlord.de/" },
+  //{ image: fuyukoImage, alt: "Fuyuko", link: "https://fuyuko.de/" },
   { image: heldenschmiedeImage, alt: "Heldenschmiede", link: "https://www.heldenschmiede.eu/" },
   //{ image: japandigestImage, alt: "Japandigest", link: "https://www.japandigest.de/" },
-  { image: mangaMerchImage, alt: "Manga Merch", link: "https://manga-merch.com/" },
+  //{ image: mangaMerchImage, alt: "Manga Merch", link: "https://manga-merch.com/" },
   //{ image: sndrbrImage, alt: "Sndrbr", link: "https://sndrbr.de/" },
   { image: squiggzImage, alt: "Squiggz", link: "https://www.squiggz.com/" },
-  { image: zauberfederImage, alt: "Zauberfeder", link: "https://zauberfeder.de/" },
+  //{ image: zauberfederImage, alt: "Zauberfeder", link: "https://zauberfeder.de/" },
   { image: stadtMM, alt: "Stadt Memmingen", link: "https://www.memmingen.de/" },
   { image: mrVeranstaltung, alt: "M&R Veranstaltung", link: "https://mr-veranstaltung.de/" },
-  { image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
-  { image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
+  //{ image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
+  //{ image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
   {
     image: cosplayConstelationsImage,
     alt: "Cosplay Constellations",
     link: "https://www.instagram.com/cosplay.constellations/",
   },
-  {
+  /*{
     image: cosmicMoonlightImage,
     alt: "Cosmic Moonlight",
     link: "https://www.cosmicmoonlight.com/i/links",
   },
+  */
   {
     image: comicConDornbirnImage,
     alt: "Comic Con Dornbirn",
