@@ -51,12 +51,12 @@ export default function AnkundigungBall() {
             <br />
             Taucht mit uns ein in eine festliche Nacht, in der beeindruckende Cosplays auf eleganten Ballflair treffen. Ob prachtvolles Ballkleid, detailverliebtes Cosplay oder eine kreative Mischung aus beidem, hier stehen Spaß und Gemeinschaft im Mittelpunkt.
 
+ <br />
+            <br />
             Freut euch auch in diesem Jahr auf ganz besondere Highlights: Ein Live-Konzert mit dem Cellotic Duets, welche den Ballabend musikalisch begleiten und für eine einzigartige Atmosphäre sorgen! Im Anschluss übernimmt ein DJ und verwandelt den Ball in eine Disco, um den Abend perfekt ausklingen zu lassen.
 
             <br />
             <br />
-            Damit ihr bestens vorbereitet seid, bieten wir euch außerdem einen Tanzkurs als Workshop an. Egal ob Anfänger oder erfahren, hier könnt ihr eure Moves auffrischen und euch auf den Abend einstimmen!
-
             Natürlich wird es auch wieder einen Fotopoint geben, an dem ihr eure unvergesslichen Momente festhalten könnt.
 
             <br />
@@ -70,9 +70,6 @@ export default function AnkundigungBall() {
             <br />
             Beginn: 19:00 Uhr<br />
             Ende: 23:30 Uhr<br />
-            Der Abend ist in zwei Teile gegliedert:<br />
-            Klassischer Ball mit Live-Musik<br />
-            Disco mit DJ
             <br />
             <br />
             Bitte achtet auf unseren Dresscode, damit wir gemeinsam eine stimmige und angenehme Atmosphäre für den Ball schaffen können.
