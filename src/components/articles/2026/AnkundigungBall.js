@@ -84,9 +84,9 @@ export default function AnkundigungBall() {
 
             <br />
             <br />
-            <small>
+            <span style={{ fontSize: "0.8em", color: "inherit" }}>
             *Für alle Austeller/Künstler/Händler und Helfenden der YumeKai gibt es zudem die Möglichekit auf ein reduziertes Ballticket (5€) an der Tageskasse!
-            </small>
+            </span>
           </p>
         </DynamicContent>
       </div>
