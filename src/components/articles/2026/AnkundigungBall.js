@@ -19,7 +19,7 @@ const DynamicContent = styled.div`
 export default function AnkundigungBall() {
   return (
     <>
-      <h2>⭐️ Einladung zum YumeKai-Cosplay-Ball ⭐️</h2>
+     
       <div
         style={{
           display: "flex",
@@ -45,6 +45,7 @@ export default function AnkundigungBall() {
           />
         </DynamicContent>
         <DynamicContent $widthpercent={60}>
+           <h2>⭐️ Einladung zum YumeKai-Cosplay-Ball ⭐️</h2>
           <p>
             Am 09.05.2026 ist es wieder so weit: Unser Cosplayball geht in die nächste Runde!
             <br />
@@ -84,7 +85,7 @@ export default function AnkundigungBall() {
             <br />
             Wir freuen uns auf einen unvergesslichen Abend mit euch!
 
-
+            <br />
             *Für alle Austeller/Künstler/Händler und Helfenden der YumeKai gibt es zudem die Möglichekit auf ein reduziertes Ballticket (5€) an der Tageskasse!
             
           </p>
