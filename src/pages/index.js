@@ -42,7 +42,7 @@ export default function Home() {
       <Spacer />
       <Crowdfunding />
       <Spacer />
-      
+      <HierKonntIhrUnsTreffen/>
       {/*
       <YumeKaiZeichenwettbewerb25 />
       <Spacer />

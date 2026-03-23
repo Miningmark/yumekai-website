@@ -20,9 +20,11 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>14.03 Gamesvention in Kempten</li>
+                    <li>28.03 Mishiro</li>
                     <li>23.05 - 24.05 Hana & Spring in Königsbrunn</li>
                     <li>06.06 - 07.06 PopCon in Lindau</li>
+                    <li>13.06 - 14.06 Wie.Mai.Kai in Flörsheim</li>
+                    <li>04.07 - 05.07 ConUtopisch in Seefeld in Tirol</li>
                     <li>18.09 - 20.09 Gamesvention in Kempten</li>
                   </ul>
                 </>
@@ -43,6 +45,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>ComicCon in Stuttgart</li>
                     <li>Manganacht in Memmingen</li>
                     <li>ComicCon in Dornbirn</li>
+                    <li>Gamesvention in Kempten</li>
                   </ul>
                 </>
               }
