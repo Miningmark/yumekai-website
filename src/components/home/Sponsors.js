@@ -21,7 +21,7 @@ import mrVeranstaltung from "/public/assets/images/sponsors/MR_Veranstaltung.png
 import crunchyrollImage from "/public/assets/images/sponsors/Crunchyroll_Orange_Logo.png";
 import paperToonsImage from "/public/assets/images/sponsors/Papertoons_logo.png";
 import cosplayConstelationsImage from "/public/assets/images/sponsors/Cosplay_Constellations.png";
-import cosplayConstelationsImage2 from "/public/assets/images/sponsors/Cosplay_Constellations.png";
+import cosplayConstelationsImage2 from "/public/assets/images/sponsors/Cosplay_Constellations_black.png";
 import cosmicMoonlightImage from "/public/assets/images/sponsors/cosmicmoonlight.jpg";
 import comicConDornbirnImage from "/public/assets/images/sponsors/CCD_Logo.jpg";
 
