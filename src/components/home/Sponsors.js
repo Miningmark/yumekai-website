@@ -83,7 +83,7 @@ export default function SponsorsComponent() {
   //{ image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
   //{ image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
   {
-    image: theme.mode === "dark" ? cosplayConstelationsImage2 : cosplayConstelationsImage, 
+    image: theme.mode === "dark" ? cosplayConstelationsImage : cosplayConstelationsImage2, 
     alt: "Cosplay Constellations",
     link: "https://www.instagram.com/cosplay.constellations/",
   },
