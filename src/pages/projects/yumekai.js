@@ -4,22 +4,22 @@ import { useRef, useEffect, useState } from "react";
 
 //Components
 import Columns2 from "@/components/elements/Columns2";
-import Columns3 from "@/components/elements/Columns3";
+//import Columns3 from "@/components/elements/Columns3";
 import RectangleContainer from "@/components/elements/RectangleContainer";
 import MovingContentWrapper from "@/components/elements/MovingContent";
 import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
 
 //Images
 //import yumeKaiHeaderSmall from "/public/assets/logo/YumeKai-Header-Small.png";
-import yumeKaiHeaderSmall from "/public/assets/logo/yumekai-Header-Large.jpg";
-import yumeKaiHeaderLarge from "/public/assets/logo/yumekai-Header-Large.jpg";
+//import yumeKaiHeaderSmall from "/public/assets/logo/yumekai-Header-Large.jpg";
+//import yumeKaiHeaderLarge from "/public/assets/logo/yumekai-Header-Large.jpg";
 
 //Icons
 import ScheduleIcon from "/public/assets/icons/schedule.svg";
 import YumeKaiLogo from "/public/assets/logo/yumekai_color_font.svg";
-import cosplayerCollageImage from "/public/assets/images/yumekai2024/Cosplayer-Collage-2024.jpg";
-import haendlerCollageImage from "/public/assets/images/yumekai2024/Handler-Collage-2024.jpg";
-import kuenstlerCollageImage from "/public/assets/images/yumekai2024/Kunstler-Collage-2024.jpg";
+//import cosplayerCollageImage from "/public/assets/images/yumekai2024/Cosplayer-Collage-2024.jpg";
+//import haendlerCollageImage from "/public/assets/images/yumekai2024/Handler-Collage-2024.jpg";
+//import kuenstlerCollageImage from "/public/assets/images/yumekai2024/Kunstler-Collage-2024.jpg";
 
 const ScheduleIconWrapper = styled.div`
   margin-bottom: 10px;
@@ -58,10 +58,11 @@ const LinkContent = styled.div`
 `;
 
 export default function Projects() {
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const headerRef = useRef(null);
+  //const [headerHeight, setHeaderHeight] = useState(0);
+  //const [isMobile, setIsMobile] = useState(false);
+  //const headerRef = useRef(null);
 
+  /* 
   useEffect(() => {
     function updateDimensions() {
       setHeaderHeight(headerRef.current.clientHeight);
@@ -75,12 +76,15 @@ export default function Projects() {
   }, []);
 
   const headerImage = isMobile ? yumeKaiHeaderSmall : yumeKaiHeaderLarge;
+*/
 
   return (
     <>
+      {/* 
       <HeaderContainer height={headerHeight}>
         <YumekaiHeaderWrapper ref={headerRef}>
           <SpacerEmpty />
+          
           <Image
             src={headerImage}
             alt="YumeKai Projekt"
@@ -89,8 +93,10 @@ export default function Projects() {
               height: "auto",
             }}
           />
+          
         </YumekaiHeaderWrapper>
       </HeaderContainer>
+      */}
       <SpacerEmpty />
       <h1>YumeKai</h1>
       <Columns2
@@ -128,8 +134,8 @@ export default function Projects() {
               <ScheduleIconWrapper>
                 <ScheduleIcon />
               </ScheduleIconWrapper>
-              <p>Wo: ???</p>
-              <p>Wann: ???</p>
+              <p>Wo: Stadthalle Memmingen</p>
+              <p>Wann: 09.05 - 10.05.2026</p>
             </RectangleContainer>
             <MovingContentWrapper content={<YumeKaiLogo />}></MovingContentWrapper>
           </>
@@ -138,12 +144,11 @@ export default function Projects() {
       <SpacerEmpty />
       <h2>YumeKai Rückblicke</h2>
       <p>
-        Schon im letzten Jahr hat die YumeKai viele Besucher begeistert - das komplette Programm von
+        Schon im ersten Jahr hat die YumeKai viele Besucher begeistert - das komplette Programm von
         2024 könnt ihr euch weiterhin
         <StyledLink href={"/review/yumekai-2024"}> hier</StyledLink> ansehen.
-        <br /> Auch in diesem Jahr gab es wieder ein ganzes Wochenende voller spannender
-        Programmpunkte, Künstler, Händler und Special Guests. Einen Rückblick auf das, was euch 2025
-        erwartet hat, findet ihr
+        <br /> Auch 2025 gab es wieder ein ganzes Wochenende voller spannender Programmpunkte,
+        Künstler, Händler und Special Guests. Einen Rückblick auf 2025 findet ihr
         <StyledLink href={"/review/yumekai-2025"}> hier</StyledLink>.
       </p>
 
