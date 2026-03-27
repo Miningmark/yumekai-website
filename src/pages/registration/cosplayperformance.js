@@ -49,8 +49,8 @@ export default function CosplayPerformance() {
   const [registrationStatus, setRegistrationStatus] = useState(() =>
     checkRegistrationPeriod(
       REGISTRATION_START_COSPLAY_PERFORMANCE,
-      REGISTRATION_END_COSPLAY_PERFORMANCE
-    )
+      REGISTRATION_END_COSPLAY_PERFORMANCE,
+    ),
   );
 
   const [gender, setGender] = useState("");
@@ -62,12 +62,6 @@ export default function CosplayPerformance() {
   const [artistName, setArtistName] = useState("");
   const [characterName, setCharacterName] = useState("");
   const [characterOrigin, setCharacterOrigin] = useState("");
-
-  const [file, setFile] = useState([]);
-  const [previewUrl, setPreviewUrl] = useState([]);
-
-  const [file2, setFile2] = useState([]);
-  const [previewUrl2, setPreviewUrl2] = useState([]);
 
   const [file3, setFile3] = useState([]);
   const [previewUrl3, setPreviewUrl3] = useState([]);
@@ -97,8 +91,6 @@ export default function CosplayPerformance() {
     artistName: useRef(null),
     characterName: useRef(null),
     characterOrigin: useRef(null),
-    file: useRef(null),
-    file2: useRef(null),
     file3: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
@@ -122,8 +114,8 @@ export default function CosplayPerformance() {
         setRegistrationStatus(
           checkRegistrationPeriod(
             REGISTRATION_START_COSPLAY_PERFORMANCE,
-            REGISTRATION_END_COSPLAY_PERFORMANCE
-          )
+            REGISTRATION_END_COSPLAY_PERFORMANCE,
+          ),
         );
       }, 60000);
 
@@ -213,7 +205,7 @@ export default function CosplayPerformance() {
     setMessage(
       "Ich plane eine dynamische Performance mit Verwandlungssequenz und charakteristischen Posen. " +
         "Die Musik ist bereits ausgewählt (Moonlight Densetsu) und ich habe das Kostüm selbst angefertigt. " +
-        "Ich freue mich sehr auf diesen Wettbewerb und hoffe, die Essenz von Sailor Moon auf die Bühne zu bringen!"
+        "Ich freue mich sehr auf diesen Wettbewerb und hoffe, die Essenz von Sailor Moon auf die Bühne zu bringen!",
     );
     setPrivacyPolicy(true);
     setDataStorage(true);
@@ -224,7 +216,7 @@ export default function CosplayPerformance() {
     console.log("Starte Laden der Demo-Referenz-PDF...");
     const demoPDF = await createFileFromPDF(
       "/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf",
-      "Sailor-Moon-Character-Reference.pdf"
+      "Sailor-Moon-Character-Reference.pdf",
     );
 
     // Demo-Charakter-Referenz-Bilder laden (max 3 insgesamt inkl. PDF)
@@ -252,37 +244,15 @@ export default function CosplayPerformance() {
       referencePreviews.push(demoRef2.previewUrl);
     }
 
-    if (referenceFiles.length > 0) {
-      setFile(referenceFiles);
-      setPreviewUrl(referencePreviews);
-      console.log(`✓ ${referenceFiles.length} Demo-Referenzdateien erfolgreich gesetzt`);
-    } else {
-      console.error("✗ Demo-Referenzdateien konnten nicht geladen werden");
-    }
-
-    // Demo-Cosplay-Bilder laden (max 3)
-    console.log("Starte Laden der Demo-Cosplay-Bilder...");
-    const demoCosplay1 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Cosplay-1.png");
-    const demoCosplay2 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Cosplay-2.png");
-    const demoCosplay3 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Cosplay-3.png");
-
-    if (demoCosplay1 && demoCosplay2 && demoCosplay3) {
-      setFile2([demoCosplay1.file, demoCosplay2.file, demoCosplay3.file]);
-      setPreviewUrl2([demoCosplay1.previewUrl, demoCosplay2.previewUrl, demoCosplay3.previewUrl]);
-      console.log("✓ Demo-Cosplay-Bilder erfolgreich gesetzt");
-    } else {
-      console.error("✗ Demo-Cosplay-Bilder konnten nicht geladen werden");
-    }
-
     // Demo-Hintergrund-Bild laden (max 4)
     console.log("Starte Laden der Demo-Hintergrund-Bilder...");
     const demoBackground1 = await createFileFromImage(
       hiruKunstlerImage,
-      "Sailor-Moon-Background-Moon.png"
+      "Sailor-Moon-Background-Moon.png",
     );
     const demoBackground2 = await createFileFromImage(
       hiruKunstlerImage,
-      "Sailor-Moon-Background-Stars.png"
+      "Sailor-Moon-Background-Stars.png",
     );
 
     if (demoBackground1 && demoBackground2) {
@@ -348,18 +318,6 @@ export default function CosplayPerformance() {
         if (!messageValidation.check) error = messageValidation.description;
         break;
 
-      case "file":
-        if (!additionalData.files || additionalData.files.length === 0) {
-          error = "Charakterreferenz ist ein Pflichtfeld";
-        }
-        break;
-
-      case "file2":
-        if (!additionalData.files || additionalData.files.length === 0) {
-          error = "Charakterbild ist ein Pflichtfeld";
-        }
-        break;
-
       case "privacyPolicy":
         if (!value) error = "Datenschutzerklärung muss akzeptiert werden";
         break;
@@ -410,10 +368,6 @@ export default function CosplayPerformance() {
     errors.characterName = validateSingleField("characterName", characterName);
     errors.characterOrigin = validateSingleField("characterOrigin", characterOrigin);
 
-    // Dateien
-    errors.file = validateSingleField("file", null, { files: file });
-    errors.file2 = validateSingleField("file2", null, { files: file2 });
-
     // Nachricht
     errors.message = validateSingleField("message", message);
 
@@ -423,7 +377,7 @@ export default function CosplayPerformance() {
     errors.pictureRights = validateSingleField("pictureRights", pictureRights);
     errors.performanceConditions = validateSingleField(
       "performanceConditions",
-      performanceConditions
+      performanceConditions,
     );
 
     // Filtere null-Werte heraus
@@ -479,16 +433,6 @@ export default function CosplayPerformance() {
     formData.append("pictureRightsPolicy", pictureRights);
     formData.append("conditionsPolicy", performanceConditions);
 
-    if (file && Array.isArray(file)) {
-      file.forEach((singleFile, index) => {
-        formData.append(`characterReferenceFiles`, singleFile);
-      });
-    }
-    if (file2 && Array.isArray(file2)) {
-      file2.forEach((singleFile, index) => {
-        formData.append(`cosplayPictureFiles`, singleFile);
-      });
-    }
     if (file3 && Array.isArray(file3)) {
       file3.forEach((singleFile, index) => {
         formData.append(`backgroundAppearanceFiles`, singleFile);
@@ -504,12 +448,12 @@ export default function CosplayPerformance() {
         {
           method: "POST",
           body: formData,
-        }
+        },
       );
 
       if (response.ok) {
         setSuccess(
-          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail."
+          "Deine Anmeldung war erfolgreich. Du erhältst in Kürze eine Bestätigung per E-Mail.",
         );
         // Reset form
         setGender("");
@@ -525,11 +469,7 @@ export default function CosplayPerformance() {
         setDataStorage(false);
         setPictureRights(false);
         setPerformanceConditions(false);
-        setFile([]);
-        setFile2([]);
         setFile3([]);
-        setPreviewUrl([]);
-        setPreviewUrl2([]);
         setPreviewUrl3([]);
         setFieldErrors({});
         setTouchedFields({});
@@ -688,54 +628,6 @@ export default function CosplayPerformance() {
             />
             {getFieldError("characterOrigin") && (
               <FieldErrorText>{getFieldError("characterOrigin")}</FieldErrorText>
-            )}
-
-            <p>
-              Charakter Vorlage/Referenz des Cosplays (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}MB,
-              jpg, jpeg, png, webp, pdf) <RequiredNote>*</RequiredNote>
-            </p>
-            <MultiFileUpload
-              name="referenz"
-              inputRef={refs.file}
-              previewUrl={previewUrl}
-              files={file}
-              setFiles={setFile}
-              previewUrls={previewUrl}
-              setPreviewUrls={setPreviewUrl}
-              maxFileSize={MAX_FILE_SIZE_MB}
-              maxFiles={3}
-              acceptedExtensions={ACCEPTED_FILE_EXTENSIONS}
-              isError={!!getFieldError("file") || !!fileError}
-              setFileError={setFileError}
-            />
-            {(fileError || getFieldError("file")) && (
-              <ErrorText style={{ textAlign: "center" }}>
-                {fileError || getFieldError("file")}
-              </ErrorText>
-            )}
-
-            <p>
-              Bild des Cosplays (max. 3 Dateien mit je. {MAX_FILE_SIZE_MB}MB, jpg, jpeg, png, webp){" "}
-              <RequiredNote>*</RequiredNote>
-            </p>
-            <MultiFileUpload
-              name="image"
-              inputRef={refs.file2}
-              previewUrl={previewUrl2}
-              files={file2}
-              setFiles={setFile2}
-              previewUrls={previewUrl2}
-              setPreviewUrls={setPreviewUrl2}
-              maxFileSize={MAX_FILE_SIZE_MB}
-              maxFiles={3}
-              acceptedExtensions={ACCEPTED_IMAGE_EXTENSIONS}
-              isError={!!getFieldError("file2") || !!fileError2}
-              setFileError={setFileError2}
-            />
-            {(fileError2 || getFieldError("file2")) && (
-              <ErrorText style={{ textAlign: "center" }}>
-                {fileError2 || getFieldError("file2")}
-              </ErrorText>
             )}
 
             <p>
