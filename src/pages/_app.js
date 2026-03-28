@@ -150,7 +150,7 @@ export default function App({ Component, pageProps }) {
         <PageFooter />
       </SiteWrapper>
       {isVisible && (
-        <ScrollToTopButton onClick={scrollToTop} aria-label="nach oben Srollen" role="button">
+        <ScrollToTopButton onClick={scrollToTop} aria-label="nach oben Scrollen" role="button">
           <IconUp />
           <span>nach oben</span>
         </ScrollToTopButton>

@@ -32,6 +32,7 @@ import AddressFields from "@/components/registrations/AddressFields";
 import ImageCropModal from "@/util/ImageCropModal";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+import { createFileFromImage } from "@/util/demoDataHelpers";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -166,43 +167,6 @@ useEffect(() => {
     }
   }, [imageFile, touchedFields.image]);
 
-  const createFileFromImage = async (imageImport, fileName) => {
-    try {
-      // In Next.js ist imageImport ein Objekt mit .src Property
-      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
-
-      console.log("Lade Bild von:", imageUrl);
-
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "image/png",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-Bildes:", error);
-      return null;
-    }
-  };
-
   // Füge diese Funktion nach den State-Deklarationen hinzu
   const fillDemoData = async () => {
     setGender("d"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
@@ -241,12 +205,10 @@ useEffect(() => {
     setRegistrationReminder(true);
 
     // Demo-Bild laden
-    console.log("Starte Laden des Demo-Bildes...");
     const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-exhibitor-logo.png");
     if (demoImage) {
       setImageFile([demoImage.file]);
       setImagePreviewUrl([demoImage.previewUrl]);
-      console.log("✓ Demo-Bild erfolgreich gesetzt");
     } else {
       console.error("✗ Demo-Bild konnte nicht geladen werden");
     }
@@ -259,7 +221,6 @@ useEffect(() => {
     if (demoSocialImage) {
       setSocialMediaImageFile([demoSocialImage.file]);
       setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
-      console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
     } else {
       console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
     }

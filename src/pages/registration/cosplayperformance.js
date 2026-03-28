@@ -30,6 +30,7 @@ import {
 } from "@/util/registration_options";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+import { createFileFromImage, createFileFromPDF } from "@/util/demoDataHelpers";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -123,77 +124,6 @@ export default function CosplayPerformance() {
     }
   }, []);
 
-  const createFileFromImage = async (imageImport, fileName) => {
-    try {
-      // In Next.js ist imageImport ein Objekt mit .src Property
-      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
-
-      console.log("Lade Bild von:", imageUrl);
-
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "image/png",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-Bildes:", error);
-      return null;
-    }
-  };
-
-  const createFileFromPDF = async (pdfUrl, fileName) => {
-    try {
-      console.log("Lade PDF von:", pdfUrl);
-
-      const response = await fetch(pdfUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("PDF Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "application/pdf",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL (für PDFs zeigt das nur das Icon)
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("PDF File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-PDFs:", error);
-      return null;
-    }
-  };
-
   // Füge diese Funktion nach den State-Deklarationen hinzu
   const fillDemoData = async () => {
     setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
@@ -213,14 +143,12 @@ export default function CosplayPerformance() {
     setPerformanceConditions(true);
 
     // Demo-Charakter-Referenz-PDF laden
-    console.log("Starte Laden der Demo-Referenz-PDF...");
     const demoPDF = await createFileFromPDF(
       "/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf",
       "Sailor-Moon-Character-Reference.pdf",
     );
 
     // Demo-Charakter-Referenz-Bilder laden (max 3 insgesamt inkl. PDF)
-    console.log("Starte Laden der Demo-Referenzbilder...");
     const demoRef1 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Reference-1.png");
     const demoRef2 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Reference-2.png");
 
@@ -231,7 +159,6 @@ export default function CosplayPerformance() {
     if (demoPDF) {
       referenceFiles.push(demoPDF.file);
       referencePreviews.push(demoPDF.previewUrl);
-      console.log("✓ Demo-Referenz-PDF erfolgreich gesetzt");
     }
 
     if (demoRef1) {
@@ -245,7 +172,6 @@ export default function CosplayPerformance() {
     }
 
     // Demo-Hintergrund-Bild laden (max 4)
-    console.log("Starte Laden der Demo-Hintergrund-Bilder...");
     const demoBackground1 = await createFileFromImage(
       hiruKunstlerImage,
       "Sailor-Moon-Background-Moon.png",
@@ -258,7 +184,6 @@ export default function CosplayPerformance() {
     if (demoBackground1 && demoBackground2) {
       setFile3([demoBackground1.file, demoBackground2.file]);
       setPreviewUrl3([demoBackground1.previewUrl, demoBackground2.previewUrl]);
-      console.log("✓ Demo-Hintergrund-Bilder erfolgreich gesetzt");
     } else {
       console.error("✗ Demo-Hintergrund-Bilder konnten nicht geladen werden");
     }

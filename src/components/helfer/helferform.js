@@ -33,6 +33,7 @@ import {
 } from "@/util/registration_options";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+import { createFileFromImage } from "@/util/demoDataHelpers";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -155,43 +156,6 @@ export default function HelferForm() {
     }
   }, []);
 
-  const createFileFromImage = async (imageImport, fileName) => {
-    try {
-      // In Next.js ist imageImport ein Objekt mit .src Property
-      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
-
-      console.log("Lade Bild von:", imageUrl);
-
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "image/png",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-Bildes:", error);
-      return null;
-    }
-  };
-
   // Füge diese Funktion nach den State-Deklarationen hinzu
   const fillDemoData = async () => {
     setGender("d"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
@@ -253,12 +217,10 @@ export default function HelferForm() {
     setRegistrationReminder(true);
 
     // Demo-Foto laden
-    console.log("Starte Laden des Demo-Fotos...");
     const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-helfer-foto.png");
     if (demoImage) {
       setFile(demoImage.file);
       setPreviewUrl(demoImage.previewUrl);
-      console.log("✓ Demo-Foto erfolgreich gesetzt");
     } else {
       console.error("✗ Demo-Foto konnte nicht geladen werden");
     }
