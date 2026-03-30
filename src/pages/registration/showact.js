@@ -33,6 +33,7 @@ import AddressFields from "@/components/registrations/AddressFields";
 import ImageCropModal from "@/util/ImageCropModal";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+import { createFileFromImage, createFileFromPDF } from "@/util/demoDataHelpers";
 
 const TimeslotsContainer = styled.div`
   display: flex;
@@ -197,77 +198,6 @@ useEffect(() => {
     }
   }, [imageFile, touchedFields.image]);
 
-  const createFileFromImage = async (imageImport, fileName) => {
-    try {
-      // In Next.js ist imageImport ein Objekt mit .src Property
-      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
-
-      console.log("Lade Bild von:", imageUrl);
-
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "image/png",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-Bildes:", error);
-      return null;
-    }
-  };
-
-  const createFileFromPDF = async (pdfUrl, fileName) => {
-    try {
-      console.log("Lade PDF von:", pdfUrl);
-
-      const response = await fetch(pdfUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("PDF Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "application/pdf",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL (für PDFs zeigt das nur das Icon)
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("PDF File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-PDFs:", error);
-      return null;
-    }
-  };
-
   // Füge diese Funktion nach den State-Deklarationen hinzu
   const fillDemoData = async () => {
     setGender("m"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
@@ -325,12 +255,10 @@ useEffect(() => {
     setRegistrationReminder(true);
 
     // Demo-Bild laden
-    console.log("Starte Laden des Demo-Bildes...");
     const demoImage = await createFileFromImage(hiruKunstlerImage, "demo-showact-logo.png");
     if (demoImage) {
       setImageFile([demoImage.file]);
       setImagePreviewUrl([demoImage.previewUrl]);
-      console.log("✓ Demo-Bild erfolgreich gesetzt");
     } else {
       console.error("✗ Demo-Bild konnte nicht geladen werden");
     }
@@ -343,7 +271,6 @@ useEffect(() => {
     if (demoSocialImage) {
       setSocialMediaImageFile([demoSocialImage.file]);
       setSocialMediaImagePreviewUrl([demoSocialImage.previewUrl]);
-      console.log("✓ Demo Social-Media-Bild erfolgreich gesetzt");
     } else {
       console.error("✗ Demo Social-Media-Bild konnte nicht geladen werden");
     }
@@ -356,7 +283,6 @@ useEffect(() => {
     if (demoPDF) {
       setFile2([demoPDF.file]);
       setPreviewUrl2([demoPDF.previewUrl]);
-      console.log("✓ Demo Tech-Rider PDF erfolgreich gesetzt");
     } else {
       console.error("✗ Demo Tech-Rider PDF konnte nicht geladen werden");
     }
@@ -530,7 +456,6 @@ useEffect(() => {
 
   // onBlur Handler für Echtzeit-Validierung
   const handleBlur = (field, value, additionalData = {}) => {
-    console.log("Blur field:", field, "value:", value, "additionalData:", additionalData);
     setTouchedFields((prev) => ({ ...prev, [field]: true }));
 
     const error = validateSingleField(field, value, additionalData);

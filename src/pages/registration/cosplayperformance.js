@@ -30,6 +30,7 @@ import {
 } from "@/util/registration_options";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+import { createFileFromImage, createFileFromPDF } from "@/util/demoDataHelpers";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -63,6 +64,8 @@ export default function CosplayPerformance() {
   const [characterName, setCharacterName] = useState("");
   const [characterOrigin, setCharacterOrigin] = useState("");
 
+  const [performanceDescription, setPerformanceDescription] = useState("");
+
   const [file3, setFile3] = useState([]);
   const [previewUrl3, setPreviewUrl3] = useState([]);
 
@@ -91,6 +94,7 @@ export default function CosplayPerformance() {
     artistName: useRef(null),
     characterName: useRef(null),
     characterOrigin: useRef(null),
+    performanceConditions: useRef(null),
     file3: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
@@ -123,77 +127,6 @@ export default function CosplayPerformance() {
     }
   }, []);
 
-  const createFileFromImage = async (imageImport, fileName) => {
-    try {
-      // In Next.js ist imageImport ein Objekt mit .src Property
-      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
-
-      console.log("Lade Bild von:", imageUrl);
-
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "image/png",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-Bildes:", error);
-      return null;
-    }
-  };
-
-  const createFileFromPDF = async (pdfUrl, fileName) => {
-    try {
-      console.log("Lade PDF von:", pdfUrl);
-
-      const response = await fetch(pdfUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("PDF Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "application/pdf",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL (für PDFs zeigt das nur das Icon)
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("PDF File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-PDFs:", error);
-      return null;
-    }
-  };
-
   // Füge diese Funktion nach den State-Deklarationen hinzu
   const fillDemoData = async () => {
     setGender("w"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
@@ -202,6 +135,7 @@ export default function CosplayPerformance() {
     setArtistName("LunaCosplay"); // Optional
     setCharacterName("Sailor Moon");
     setCharacterOrigin("Sailor Moon (Anime/Manga)");
+    setPerformanceDescription("Hallo mein Auftritt ist so toll!");
     setMessage(
       "Ich plane eine dynamische Performance mit Verwandlungssequenz und charakteristischen Posen. " +
         "Die Musik ist bereits ausgewählt (Moonlight Densetsu) und ich habe das Kostüm selbst angefertigt. " +
@@ -213,14 +147,12 @@ export default function CosplayPerformance() {
     setPerformanceConditions(true);
 
     // Demo-Charakter-Referenz-PDF laden
-    console.log("Starte Laden der Demo-Referenz-PDF...");
     const demoPDF = await createFileFromPDF(
       "/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf",
       "Sailor-Moon-Character-Reference.pdf",
     );
 
     // Demo-Charakter-Referenz-Bilder laden (max 3 insgesamt inkl. PDF)
-    console.log("Starte Laden der Demo-Referenzbilder...");
     const demoRef1 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Reference-1.png");
     const demoRef2 = await createFileFromImage(hiruKunstlerImage, "Sailor-Moon-Reference-2.png");
 
@@ -231,7 +163,6 @@ export default function CosplayPerformance() {
     if (demoPDF) {
       referenceFiles.push(demoPDF.file);
       referencePreviews.push(demoPDF.previewUrl);
-      console.log("✓ Demo-Referenz-PDF erfolgreich gesetzt");
     }
 
     if (demoRef1) {
@@ -245,7 +176,6 @@ export default function CosplayPerformance() {
     }
 
     // Demo-Hintergrund-Bild laden (max 4)
-    console.log("Starte Laden der Demo-Hintergrund-Bilder...");
     const demoBackground1 = await createFileFromImage(
       hiruKunstlerImage,
       "Sailor-Moon-Background-Moon.png",
@@ -258,7 +188,6 @@ export default function CosplayPerformance() {
     if (demoBackground1 && demoBackground2) {
       setFile3([demoBackground1.file, demoBackground2.file]);
       setPreviewUrl3([demoBackground1.previewUrl, demoBackground2.previewUrl]);
-      console.log("✓ Demo-Hintergrund-Bilder erfolgreich gesetzt");
     } else {
       console.error("✗ Demo-Hintergrund-Bilder konnten nicht geladen werden");
     }
@@ -313,8 +242,13 @@ export default function CosplayPerformance() {
         if (!characterOriginValidation.check) error = characterOriginValidation.description;
         break;
 
+      case "performanceDescription":
+        const performanceDescriptionValidation = validateString(value, "PerformanceDescription", 0, 2000);
+        if (!performanceDescriptionValidation.check) error = performanceDescriptionValidation.description;
+        break;
+
       case "message":
-        const messageValidation = validateString(value, "Nachricht", 0, 2500);
+        const messageValidation = validateString(value, "Nachricht", 0, 2000);
         if (!messageValidation.check) error = messageValidation.description;
         break;
 
@@ -367,6 +301,7 @@ export default function CosplayPerformance() {
     errors.artistName = validateSingleField("artistName", artistName);
     errors.characterName = validateSingleField("characterName", characterName);
     errors.characterOrigin = validateSingleField("characterOrigin", characterOrigin);
+    errors.performanceDescription = validateSingleField("performanceDescription", performanceDescription);
 
     // Nachricht
     errors.message = validateSingleField("message", message);
@@ -427,6 +362,7 @@ export default function CosplayPerformance() {
     formData.append("artistName", artistName.trim());
     formData.append("characterName", characterName.trim());
     formData.append("characterOrigin", characterOrigin.trim());
+    formData.append("performanceDescription", performanceDescription.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStoragePolicy", dataStorage);
@@ -464,6 +400,7 @@ export default function CosplayPerformance() {
         setArtistName("");
         setCharacterName("");
         setCharacterOrigin("");
+        setPerformanceDescription("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
@@ -496,7 +433,7 @@ export default function CosplayPerformance() {
         <br />
         Bitte beachtet die{" "}
         <StyledLink
-          href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+          href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen_2026.pdf"
           target="_blank"
         >
           Teilnahmebedingungen für den Cosplay Performance Wettbewerb
@@ -630,6 +567,19 @@ export default function CosplayPerformance() {
               <FieldErrorText>{getFieldError("characterOrigin")}</FieldErrorText>
             )}
 
+            <InputOptionTextArea
+              title="Beschreibung des Charakters (grundelegende Charakterzüge und -eigenschaften)?"
+              inputText={performanceDescription}
+              inputChange={setPerformanceDescription}
+              onBlur={() => handleBlur("performanceDescription", performanceDescription)}
+              inputRef={refs.performanceDescription}
+              isError={!!getFieldError("performanceDescription")}
+              require
+            />
+            {getFieldError("performanceDescription") && (
+              <FieldErrorText>{getFieldError("performanceDescription")}</FieldErrorText>
+            )}
+
             <p>
               Hintergrund für den Auftritt Bild, Ton oder Video (max. 4 Dateien mit je.{" "}
               {MAX_FILE_SIZE_MB_2}MB, jpg, jpeg, png, webp, mp3, wav, mp4)
@@ -750,7 +700,7 @@ export default function CosplayPerformance() {
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+                    href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen_2026.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen

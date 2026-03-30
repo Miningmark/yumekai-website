@@ -21,7 +21,7 @@ export default function validateString(
       return { check: false, description: `Ungültige Email-Adresse` };
     }
   } else {
-    if (value || value.trim()) {
+    if (value && value.trim()) {
       if (value.length < minLength)
         return { check: false, description: `${fieldName} ist zu kurz, min. ${minLength} Zeichen` };
       if (value.length > maxLength)

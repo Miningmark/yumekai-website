@@ -28,10 +28,8 @@ const connection = mysql.createPool({
 
 export async function sendMail(mail, mailOptions) {
   const { from = "info@yumekai.de", to, subject, text } = mail;
-  console.log("E-MAIL Send: ", subject);
 
   if (!from || !to || !subject || !text) {
-    console.log("ERROR: E-MAIL send to ", to);
     return { message: "Alle Felder müssen ausgefüllt sein", status: 400 };
   }
   let emailPassword = "";
@@ -62,10 +60,8 @@ export async function sendMail(mail, mailOptions) {
     );
 
     if (result.affectedRows > 0) {
-      console.log("E-MAIL send to ", to);
       return { message: "E-Mail erfolgreich gesendet und gespeichert", status: 200 };
     } else {
-      console.log("ERROR: E-MAIL send to ", to);
       return { message: "Fehler beim Speichern der E-Mail", status: 500 };
     }
   } catch (error) {

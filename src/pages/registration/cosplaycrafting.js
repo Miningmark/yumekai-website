@@ -30,6 +30,7 @@ import {
 } from "@/util/registration_options";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
+import { createFileFromImage, createFileFromPDF } from "@/util/demoDataHelpers";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -113,77 +114,6 @@ export default function CosplayCrafting() {
     }
   }, []);
 
-  const createFileFromImage = async (imageImport, fileName) => {
-    try {
-      // In Next.js ist imageImport ein Objekt mit .src Property
-      const imageUrl = typeof imageImport === "object" ? imageImport.src : imageImport;
-
-      console.log("Lade Bild von:", imageUrl);
-
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "image/png",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-Bildes:", error);
-      return null;
-    }
-  };
-
-  const createFileFromPDF = async (pdfUrl, fileName) => {
-    try {
-      console.log("Lade PDF von:", pdfUrl);
-
-      const response = await fetch(pdfUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const blob = await response.blob();
-      console.log("PDF Blob geladen:", blob.type, blob.size, "bytes");
-
-      // Erstelle File mit korrektem Type
-      const file = new File([blob], fileName, {
-        type: "application/pdf",
-        lastModified: Date.now(),
-      });
-
-      // Erstelle Preview-URL (für PDFs zeigt das nur das Icon)
-      const previewUrl = URL.createObjectURL(blob);
-
-      console.log("PDF File erstellt:", {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      });
-
-      return { file, previewUrl };
-    } catch (error) {
-      console.error("Fehler beim Laden des Demo-PDFs:", error);
-      return null;
-    }
-  };
-
   // Füge diese Funktion nach den State-Deklarationen hinzu
   const fillDemoData = async () => {
     setGender("m"); // Verwende die korrekten GENDER_OPTIONS Werte: "m", "w", "d"
@@ -205,14 +135,12 @@ export default function CosplayCrafting() {
     setCatwalkConditions(true);
 
     // Demo-Crafting-Tagebuch PDF laden
-    console.log("Starte Laden des Demo-Crafting-Tagebuchs (PDF)...");
     const demoPDF = await createFileFromPDF(
       "/downloads/Cosplay_Catwalk_Wettbewerb_Regeln_und_Teilnahmevorraussetzungen_2025.pdf",
       "Cloud-Cosplay-Crafting-Tagebuch.pdf",
     );
 
     // Demo-Cosplay-Bilder laden
-    console.log("Starte Laden der Demo-Cosplay-Bilder...");
     const demoCrafting1 = await createFileFromImage(
       hiruKunstlerImage,
       "Cloud-Cosplay-Progress-1.png",
@@ -226,7 +154,6 @@ export default function CosplayCrafting() {
     if (demoPDF) {
       files.push(demoPDF.file);
       previews.push(demoPDF.previewUrl);
-      console.log("✓ Demo-Crafting-Tagebuch PDF erfolgreich gesetzt");
     }
 
     if (demoCrafting1) {
@@ -242,7 +169,6 @@ export default function CosplayCrafting() {
     if (files.length > 0) {
       setFile(files);
       setPreviewUrl(previews);
-      console.log(`✓ ${files.length} Demo-Dateien erfolgreich gesetzt`);
     } else {
       console.error("✗ Demo-Dateien konnten nicht geladen werden");
     }
