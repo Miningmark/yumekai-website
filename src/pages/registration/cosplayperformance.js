@@ -433,7 +433,7 @@ export default function CosplayPerformance() {
         <br />
         Bitte beachtet die{" "}
         <StyledLink
-          href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+          href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen_2026.pdf"
           target="_blank"
         >
           Teilnahmebedingungen für den Cosplay Performance Wettbewerb
@@ -700,7 +700,7 @@ export default function CosplayPerformance() {
                 <p>
                   Ich habe die{" "}
                   <StyledLink
-                    href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen.pdf"
+                    href="/downloads/Cosplay_Performance_Wettbewerb_Teilnahmevorraussetzungen_2026.pdf"
                     target="_blank"
                   >
                     Teilnahmebedingungen
