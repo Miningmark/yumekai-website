@@ -64,6 +64,8 @@ export default function CosplayPerformance() {
   const [characterName, setCharacterName] = useState("");
   const [characterOrigin, setCharacterOrigin] = useState("");
 
+  const [performanceDescription, setPerformanceDescription] = useState("");
+
   const [file3, setFile3] = useState([]);
   const [previewUrl3, setPreviewUrl3] = useState([]);
 
@@ -92,6 +94,7 @@ export default function CosplayPerformance() {
     artistName: useRef(null),
     characterName: useRef(null),
     characterOrigin: useRef(null),
+    performanceConditions: useRef(null),
     file3: useRef(null),
     message: useRef(null),
     privacyPolicy: useRef(null),
@@ -132,6 +135,7 @@ export default function CosplayPerformance() {
     setArtistName("LunaCosplay"); // Optional
     setCharacterName("Sailor Moon");
     setCharacterOrigin("Sailor Moon (Anime/Manga)");
+    setPerformanceDescription("Hallo mein Auftritt ist so toll!");
     setMessage(
       "Ich plane eine dynamische Performance mit Verwandlungssequenz und charakteristischen Posen. " +
         "Die Musik ist bereits ausgewählt (Moonlight Densetsu) und ich habe das Kostüm selbst angefertigt. " +
@@ -238,8 +242,13 @@ export default function CosplayPerformance() {
         if (!characterOriginValidation.check) error = characterOriginValidation.description;
         break;
 
+      case "performanceDescription":
+        const performanceDescriptionValidation = validateString(value, "PerformanceDescription", 0, 2000);
+        if (!performanceDescriptionValidation.check) error = performanceDescriptionValidation.description;
+        break;
+
       case "message":
-        const messageValidation = validateString(value, "Nachricht", 0, 2500);
+        const messageValidation = validateString(value, "Nachricht", 0, 2000);
         if (!messageValidation.check) error = messageValidation.description;
         break;
 
@@ -292,6 +301,7 @@ export default function CosplayPerformance() {
     errors.artistName = validateSingleField("artistName", artistName);
     errors.characterName = validateSingleField("characterName", characterName);
     errors.characterOrigin = validateSingleField("characterOrigin", characterOrigin);
+    errors.performanceDescription = validateSingleField("performanceDescription", performanceDescription);
 
     // Nachricht
     errors.message = validateSingleField("message", message);
@@ -352,6 +362,7 @@ export default function CosplayPerformance() {
     formData.append("artistName", artistName.trim());
     formData.append("characterName", characterName.trim());
     formData.append("characterOrigin", characterOrigin.trim());
+    formData.append("performanceDescription", performanceDescription.trim());
     formData.append("message", message.trim());
     formData.append("privacyPolicy", privacyPolicy);
     formData.append("dataStoragePolicy", dataStorage);
@@ -389,6 +400,7 @@ export default function CosplayPerformance() {
         setArtistName("");
         setCharacterName("");
         setCharacterOrigin("");
+        setPerformanceDescription("");
         setMessage("");
         setPrivacyPolicy(false);
         setDataStorage(false);
@@ -553,6 +565,19 @@ export default function CosplayPerformance() {
             />
             {getFieldError("characterOrigin") && (
               <FieldErrorText>{getFieldError("characterOrigin")}</FieldErrorText>
+            )}
+
+            <InputOptionTextArea
+              title="Beschreibung des Charakters (grundelegende Charakterzüge und -eigenschaften)?"
+              inputText={performanceDescription}
+              inputChange={setPerformanceDescription}
+              onBlur={() => handleBlur("performanceDescription", performanceDescription)}
+              inputRef={refs.performanceDescription}
+              isError={!!getFieldError("performanceDescription")}
+              require
+            />
+            {getFieldError("performanceDescription") && (
+              <FieldErrorText>{getFieldError("performanceDescription")}</FieldErrorText>
             )}
 
             <p>
