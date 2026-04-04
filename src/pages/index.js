@@ -14,6 +14,7 @@ import Crowdfunding from "@/components/articles/2025/Crowdfunding";
 import EroffnungTicketShop from "@/components/articles/2025/EroffnungTicketShop";
 import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb26";
 import AnkundigungBall from "@/components/articles/2026/AnkundigungBall";
+import AnkundigungAnmeldungCosplay from "@/components/articles/2026/AnkundigungAnmeldungCosplay";
 
 export default function Home() {
   return (
@@ -34,6 +35,8 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <SpacerEmpty />
+      <AnkundigungAnmeldungCosplay />
+      <Spacer/>
       <AnkundigungBall/>
       <Spacer/>
       <YumeKaiZeichenwettbewerb26 />
