@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
 import { Spacer, StyledButton, StyledLink } from "@/components/styledComponents";
 import { renderRegistrationPeriodText } from "@/util/renderRegistrationPeriodText";
+import { renderRegistrationButton } from "@/util/renderRegistrationPeriodText";
 import {
   REGISTRATION_START_ARTIST,
   REGISTRATION_END_ARTIST,
@@ -89,16 +90,7 @@ export default function Voranmeldungen() {
     ),
   );
 
-  const renderButton = (startDate, endDate, link, text) => {
-    if (isRegistrationOpen(startDate, endDate)) {
-      return (
-        <StyledLinkAsButton href={link} target="_blank">
-          {text}
-        </StyledLinkAsButton>
-      );
-    }
-    return <DisabledButton disabled>{text}</DisabledButton>;
-  };
+
 
   const renderInfoText = (startDate, infoText) => {
     if (!hasRegistrationStarted(startDate)) {
