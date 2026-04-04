@@ -1,6 +1,5 @@
 import React from "react";
-import { DynamicContent, StyledLink } from "../../styledComponents";
-import { RegistrationInfobox as Infobox } from "../../styled/RegistrationInfobox";
+import { DynamicContent, StyledLink, RegistrationInfobox as Infobox } from "../../styledComponents";
 import {
   REGISTRATION_END_COSPLAY_PERFORMANCE,
   REGISTRATION_START_COSPLAY_PERFORMANCE,
