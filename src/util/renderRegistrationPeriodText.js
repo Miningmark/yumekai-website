@@ -1,3 +1,13 @@
+import styled from "styled-components";
+import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
+import { StyledButton } from "@/components/styledComponents";
+
+const DisabledButton = styled(StyledButton)`
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+`;
+
 const toValidDate = (value) => {
   if (value instanceof Date && !Number.isNaN(value.getTime())) {
     return value;
@@ -65,4 +75,20 @@ export const renderRegistrationPeriodText = (startDate, endDate, category) => {
       </strong>
     );
   }
+};
+
+const isRegistrationOpen = (startDate, endDate) => {
+  const now = new Date();
+  return now >= startDate && now <= endDate;
+};
+
+export const renderRegistrationButton = (startDate, endDate, link, text) => {
+  if (isRegistrationOpen(startDate, endDate)) {
+    return (
+      <StyledLinkAsButton href={link} target="_blank">
+        {text}
+      </StyledLinkAsButton>
+    );
+  }
+  return <DisabledButton disabled>{text}</DisabledButton>;
 };

@@ -4,8 +4,10 @@ import {
   REGISTRATION_END_COSPLAY_PERFORMANCE,
   REGISTRATION_START_COSPLAY_PERFORMANCE,
 } from "@/util/registration_options";
-import { renderRegistrationButton } from "@/util/renderRegistrationButton";
-import { renderRegistrationPeriodText } from "@/util/renderRegistrationPeriodText";
+import {
+  renderRegistrationButton,
+  renderRegistrationPeriodText,
+} from "@/util/renderRegistrationPeriodText";
 
 export default function AnkundigungAnmeldungCosplay() {
     return (
