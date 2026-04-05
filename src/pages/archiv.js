@@ -8,8 +8,6 @@ import YumeKaiNightInBildern from "@/components/articles/2024/YumeKai-Night-in-B
 import ConventionsTippsFurElternCA from "@/components/articles/2024/Conventions-Tipps-fur-Eltern-CA";
 import YumeKaiZeichenwettbewerb from "@/components/articles/2024/YumeKai-Zeichenwettbewerb";
 import GewinnerPerformanceWettbewerb from "@/components/articles/2024/Gewinner-Performance-Wettbewerb";
-//import AnkundigungYumeKai2025 from "@/components/articles/2024/Ankundigung-YumeKai2025";
-//import EroffnungTicketShop from "@/components/articles/2024/EroffnungTicketShop";
 import Spendenubergabe from "@/components/articles/2024/Spendenubergabe";
 import AnkundigungJuliaMeyen from "@/components/articles/2024/AnkundigungJuliaMeyen";
 import AnkundigungPetraScheeser from "@/components/articles/2025/AnkundigungPetraScheeser";
@@ -22,12 +20,21 @@ import AnkundigungSebastianFitzner from "@/components/articles/2025/AnkundigungS
 import AnkundigungBall from "@/components/articles/2025/AnkundigungBall";
 import AnkundigungCUG from "@/components/articles/2025/AkundigungCUG";
 import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
+import Crowdfunding from "@/components/articles/2025/Crowdfunding";
+import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
+import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 
 export default function Archiv() {
   return (
     <>
       <h1>Archiv</h1>
       <p>Hier findet ihr alle älteren Beiträge von der Startseite (Aktuelles).</p>
+      <Spacer />
+      <Crowdfunding />
+      <Spacer />
+      <AnkundigungMayumiNagashi />
+      <Spacer />
+      <AnkundigungMion />
       <Spacer />
       <AnkundigungCoheki />
       <Spacer />
