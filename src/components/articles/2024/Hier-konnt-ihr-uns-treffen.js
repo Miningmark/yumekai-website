@@ -20,6 +20,7 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
+                    <li>09.05 - 10.05 YumeKai in Memmingen</li>
                     <li>16.05 - 17.05 NonkiCon in Speyer</li>
                     <li>23.05 - 24.05 Hana & Spring in Königsbrunn</li>
                     <li>06.06 - 07.06 PopCon in Lindau</li>
