@@ -6,10 +6,7 @@ import HomeSlider from "@/components/home/HomeSlider";
 //Articles
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";
 import HelferPost from "@/components/articles/2025/HelferPost";
-import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 import CounterClock from "@/components/elements/CounterClock";
-import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
-import YumeKaiZeichenwettbewerb25 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb25";
 import Crowdfunding from "@/components/articles/2025/Crowdfunding";
 import EroffnungTicketShop from "@/components/articles/2025/EroffnungTicketShop";
 import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb26";
@@ -36,26 +33,18 @@ export default function Home() {
       </p>
       <SpacerEmpty />
       <AnkundigungAnmeldungCosplay />
-      <Spacer/>
-      <AnkundigungBall/>
-      <Spacer/>
+      <Spacer />
+      <AnkundigungBall />
+      <Spacer />
       <YumeKaiZeichenwettbewerb26 />
       <Spacer />
       <EroffnungTicketShop />
       <Spacer />
       <Crowdfunding />
       <Spacer />
-      <HierKonntIhrUnsTreffen/>
-      {/*
-      <YumeKaiZeichenwettbewerb25 />
-      <Spacer />
-      <AnkundigungMayumiNagashi />
-      <Spacer />
-      <AnkundigungMion />
-*/}
+      <HierKonntIhrUnsTreffen />
       <Spacer />
       <HelferPost />
-      
 
       <Spacer />
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>

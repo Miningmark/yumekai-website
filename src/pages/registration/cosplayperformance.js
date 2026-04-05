@@ -38,10 +38,8 @@ const FieldErrorText = styled(ErrorText)`
   font-size: 0.9rem;
 `;
 
-const ACCEPTED_FILE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".pdf"];
-const ACCEPTED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
 const ACCEPTED_SOUND_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".mp3", "wav", ".mp4"];
-const MAX_FILE_SIZE_MB = 10;
+
 const MAX_FILE_SIZE_MB_2 = 50;
 
 export default function CosplayPerformance() {
@@ -77,8 +75,6 @@ export default function CosplayPerformance() {
 
   const [fieldErrors, setFieldErrors] = useState({});
   const [success, setSuccess] = useState("");
-  const [fileError, setFileError] = useState("");
-  const [fileError2, setFileError2] = useState("");
   const [fileError3, setFileError3] = useState("");
   const [loading, setLoading] = useState(false);
   const [touchedFields, setTouchedFields] = useState({});
@@ -243,8 +239,15 @@ export default function CosplayPerformance() {
         break;
 
       case "performanceDescription":
-        const performanceDescriptionValidation = validateString(value, "PerformanceDescription", 0, 2000);
-        if (!performanceDescriptionValidation.check) error = performanceDescriptionValidation.description;
+        const performanceDescriptionValidation = validateString(
+          value,
+          "PerformanceDescription",
+          0,
+          2000,
+          true,
+        );
+        if (!performanceDescriptionValidation.check)
+          error = performanceDescriptionValidation.description;
         break;
 
       case "message":
@@ -301,7 +304,10 @@ export default function CosplayPerformance() {
     errors.artistName = validateSingleField("artistName", artistName);
     errors.characterName = validateSingleField("characterName", characterName);
     errors.characterOrigin = validateSingleField("characterOrigin", characterOrigin);
-    errors.performanceDescription = validateSingleField("performanceDescription", performanceDescription);
+    errors.performanceDescription = validateSingleField(
+      "performanceDescription",
+      performanceDescription,
+    );
 
     // Nachricht
     errors.message = validateSingleField("message", message);

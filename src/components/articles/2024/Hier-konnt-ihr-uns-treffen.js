@@ -20,7 +20,7 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>28.03 Mishiro in Augsburg</li>
+                    <li>16.05 - 17.05 NonkiCon in Speyer</li>
                     <li>23.05 - 24.05 Hana & Spring in Königsbrunn</li>
                     <li>06.06 - 07.06 PopCon in Lindau</li>
                     <li>13.06 - 14.06 Wie.Mai.Kai in Flörsheim</li>
@@ -46,6 +46,7 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Manganacht in Memmingen</li>
                     <li>ComicCon in Dornbirn</li>
                     <li>Gamesvention in Kempten</li>
+                    <li>Mishiro in Augsburg</li>
                   </ul>
                 </>
               }
