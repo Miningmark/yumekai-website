@@ -3,6 +3,8 @@ import styled from "styled-components";
 //Components
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
 import { Spacer, StyledButton, StyledLink } from "@/components/styledComponents";
+import { renderRegistrationPeriodText } from "@/util/renderRegistrationPeriodText";
+import { renderRegistrationButton } from "@/util/renderRegistrationPeriodText";
 import {
   REGISTRATION_START_ARTIST,
   REGISTRATION_END_ARTIST,
@@ -88,16 +90,7 @@ export default function Voranmeldungen() {
     ),
   );
 
-  const renderButton = (startDate, endDate, link, text) => {
-    if (isRegistrationOpen(startDate, endDate)) {
-      return (
-        <StyledLinkAsButton href={link} target="_blank">
-          {text}
-        </StyledLinkAsButton>
-      );
-    }
-    return <DisabledButton disabled>{text}</DisabledButton>;
-  };
+
 
   const renderInfoText = (startDate, infoText) => {
     if (!hasRegistrationStarted(startDate)) {
@@ -106,60 +99,7 @@ export default function Voranmeldungen() {
     return null;
   };
 
-  const renderRegistrationPeriodText = (startDate, endDate, category) => {
-    const now = new Date();
 
-    if (now < startDate) {
-      // Anmeldung hat noch nicht begonnen
-      return (
-        <strong>
-          Die Anmeldung für {category} öffnet am{" "}
-          {startDate.toLocaleDateString("de-DE", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}{" "}
-          um{" "}
-          {startDate.toLocaleTimeString("de-DE", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}{" "}
-          Uhr.
-        </strong>
-      );
-    } else if (now >= startDate && now <= endDate) {
-      // Anmeldung läuft
-      return (
-        <strong>
-          Die Anmeldung für {category} läuft bis zum{" "}
-          {endDate.toLocaleDateString("de-DE", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}{" "}
-          um{" "}
-          {endDate.toLocaleTimeString("de-DE", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}{" "}
-          Uhr.
-        </strong>
-      );
-    } else {
-      // Anmeldung ist geschlossen
-      return (
-        <strong>
-          Die Anmeldung für {category} ist seit dem{" "}
-          {endDate.toLocaleDateString("de-DE", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}{" "}
-          geschlossen.
-        </strong>
-      );
-    }
-  };
 
   return (
     <>
@@ -304,7 +244,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung Zeichenwettbewerb</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_ART_CONTEST,
               REGISTRATION_END_ART_CONTEST,
               "/registration/artcontest",
@@ -370,7 +310,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung Cosplay-Crafting Wettbewerb</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_COSPLAY_CRAFTING,
               REGISTRATION_END_COSPLAY_CRAFTING,
               "/registration/cosplaycrafting",
@@ -440,7 +380,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung Cosplay-Performance Wettbewerb</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_COSPLAY_PERFORMANCE,
               REGISTRATION_END_COSPLAY_PERFORMANCE,
               "/registration/cosplayperformance",
@@ -504,7 +444,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Künstler</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_ARTIST,
               REGISTRATION_END_ARTIST,
               "/registration/artist",
@@ -564,7 +504,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Händler</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_VENDOR,
               REGISTRATION_END_VENDOR,
               "/registration/vendor",
@@ -624,7 +564,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Fan-Gruppe/Verein</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_EXHIBITOR,
               REGISTRATION_END_EXHIBITOR,
               "/registration/exhibitor",
@@ -684,7 +624,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Workshopleiter</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_WORKSHOP,
               REGISTRATION_END_WORKSHOP,
               "/registration/workshop",
@@ -747,7 +687,7 @@ export default function Voranmeldungen() {
         >
           <Infobox>
             <p>Anmeldung als Showact</p>
-            {renderButton(
+            {renderRegistrationButton(
               REGISTRATION_START_SHOWACT,
               REGISTRATION_END_SHOWACT,
               "/registration/showact",

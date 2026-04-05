@@ -119,3 +119,23 @@ export const DynamicContent = styled.div`
     width: 100%;
   }
 `;
+
+export const RegistrationInfobox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  padding: 35px;
+
+  p {
+    color: #363537;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+`;
