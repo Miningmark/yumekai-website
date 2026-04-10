@@ -188,17 +188,17 @@ export default function ArtContest() {
         break;
 
       case "website":
-        const websiteValidation = validateString(value, "Website", 0, 100);
+        const websiteValidation = validateString(value, "Website", 5, 100);
         if (!websiteValidation.check) error = websiteValidation.description;
         break;
 
       case "instagram":
-        const instagramValidation = validateString(value, "Instagram", 0, 100);
+        const instagramValidation = validateString(value, "Instagram", 5, 100);
         if (!instagramValidation.check) error = instagramValidation.description;
         break;
 
       case "message":
-        const messageValidation = validateString(value, "Nachricht", 0, 2500);
+        const messageValidation = validateString(value, "Nachricht", 5, 2500);
         if (!messageValidation.check) error = messageValidation.description;
         break;
 
