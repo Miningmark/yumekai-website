@@ -219,7 +219,7 @@ export default function CosplayCrafting() {
         break;
 
       case "message":
-        const messageValidation = validateString(value, "Nachricht", 0, 2500);
+        const messageValidation = validateString(value, "Nachricht", 5, 2500);
         if (!messageValidation.check) error = messageValidation.description;
         break;
 

@@ -242,7 +242,7 @@ export default function CosplayPerformance() {
         const performanceDescriptionValidation = validateString(
           value,
           "PerformanceDescription",
-          0,
+          5,
           2000,
           true,
         );
@@ -251,7 +251,7 @@ export default function CosplayPerformance() {
         break;
 
       case "message":
-        const messageValidation = validateString(value, "Nachricht", 0, 2000);
+        const messageValidation = validateString(value, "Nachricht", 5, 2000);
         if (!messageValidation.check) error = messageValidation.description;
         break;
 
