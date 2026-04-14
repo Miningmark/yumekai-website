@@ -19,7 +19,6 @@ const DynamicContent = styled.div`
 export default function AnkundigungBall() {
   return (
     <>
-     
       <div
         style={{
           display: "flex",
@@ -45,24 +44,28 @@ export default function AnkundigungBall() {
           />
         </DynamicContent>
         <DynamicContent $widthpercent={60}>
-           <h2>⭐️ Einladung zum YumeKai-Cosplay-Ball ⭐️</h2>
+          <h2>⭐️ Einladung zum YumeKai-Cosplay-Ball ⭐️</h2>
           <p>
             Am 09.05.2026 ist es wieder so weit: Unser Cosplayball geht in die nächste Runde!
             <br />
-            Taucht mit uns ein in eine festliche Nacht, in der beeindruckende Cosplays auf eleganten Ballflair treffen. Ob prachtvolles Ballkleid, detailverliebtes Cosplay oder eine kreative Mischung aus beidem, hier stehen Spaß und Gemeinschaft im Mittelpunkt.
-
- <br />
-            <br />
-            Freut euch auch in diesem Jahr auf ganz besondere Highlights: Ein Live-Konzert mit dem Cellotic Duets, welche den Ballabend musikalisch begleiten und für eine einzigartige Atmosphäre sorgen! Im Anschluss übernimmt ein DJ und verwandelt den Ball in eine Disco, um den Abend perfekt ausklingen zu lassen.
-
+            Taucht mit uns ein in eine festliche Nacht, in der beeindruckende Cosplays auf eleganten
+            Ballflair treffen. Ob prachtvolles Ballkleid, detailverliebtes Cosplay oder eine
+            kreative Mischung aus beidem, hier stehen Spaß und Gemeinschaft im Mittelpunkt.
             <br />
             <br />
-            Natürlich wird es auch wieder einen Fotopoint geben, an dem ihr eure unvergesslichen Momente festhalten könnt.
-
+            Freut euch auch in diesem Jahr auf ganz besondere Highlights: Ein Live-Konzert mit dem
+            Cellotic Duets, welche den Ballabend musikalisch begleiten und für eine einzigartige
+            Atmosphäre sorgen! Im Anschluss übernimmt ein DJ und verwandelt den Ball in eine Disco,
+            um den Abend perfekt ausklingen zu lassen.
             <br />
             <br />
-            Für den Ball wird ein separates Ticket benötigt, welches 10€ kostet und sowohl online, als auch Tageskasse gekauft werden kann.*
-            <br/>
+            Natürlich wird es auch wieder einen Fotopoint geben, an dem ihr eure unvergesslichen
+            Momente festhalten könnt.
+            <br />
+            <br />
+            Für den Ball wird ein separates Ticket benötigt, welches 10€ kostet und sowohl online,
+            als auch Tageskasse gekauft werden kann.*
+            <br />
             <StyledLink href="/shop" target="_blank">
               zum Ticketshop
             </StyledLink>
@@ -72,21 +75,23 @@ export default function AnkundigungBall() {
             <br />
             Ende: 23:30 Uhr
             <br />
+            Ort: Großer Saal in der Stadthalle
             <br />
-            Bitte achtet auf unseren Dresscode, damit wir gemeinsam eine stimmige und angenehme Atmosphäre für den Ball schaffen können.
-            Die genauen Vorgaben für euer Ballgewand findet ihr hier:{" "}
+            <br />
+            Bitte achtet auf unseren Dresscode, damit wir gemeinsam eine stimmige und angenehme
+            Atmosphäre für den Ball schaffen können. Die genauen Vorgaben für euer Ballgewand findet
+            ihr hier:{" "}
             <StyledLink href="/downloads/Cosplay_Ball_Dresscode_2026.pdf" target="_blank">
               Ballregeln
             </StyledLink>
-
             <br />
             <br />
             Wir freuen uns auf einen unvergesslichen Abend mit euch!
-
             <br />
             <br />
             <span style={{ fontSize: "0.7rem", color: "inherit" }}>
-            *Für alle Austeller/Künstler/Händler und Helfenden der YumeKai gibt es zudem die Möglichekit auf ein reduziertes Ballticket (5€) an der Tageskasse!
+              *Für alle Austeller/Künstler/Händler und Helfenden der YumeKai gibt es zudem die
+              Möglichekit auf ein reduziertes Ballticket (5€) an der Tageskasse!
             </span>
           </p>
         </DynamicContent>

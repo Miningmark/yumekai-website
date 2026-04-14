@@ -11,6 +11,7 @@ import EroffnungTicketShop from "@/components/articles/2025/EroffnungTicketShop"
 import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb26";
 import AnkundigungBall from "@/components/articles/2026/AnkundigungBall";
 import AnkundigungAnmeldungCosplay from "@/components/articles/2026/AnkundigungAnmeldungCosplay";
+import Oeffnungszeiten2026 from "@/components/articles/2026/Oeffnungszeiten2026";
 
 export default function Home() {
   return (
@@ -30,10 +31,11 @@ export default function Home() {
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
-      <SpacerEmpty />
-      <AnkundigungAnmeldungCosplay />
+      <Oeffnungszeiten2026 />
       <Spacer />
       <AnkundigungBall />
+      <Spacer />
+      <AnkundigungAnmeldungCosplay />
       <Spacer />
       <YumeKaiZeichenwettbewerb26 />
       <Spacer />

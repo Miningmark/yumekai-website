@@ -10,8 +10,9 @@ import ImageCarousel from "@/components/elements/ImageCarousel";
 import Slide1 from "@/components/home/homeSliderPages/slide1";
 import Slide2 from "@/components/home/homeSliderPages/slide2";
 import Slide3 from "@/components/home/homeSliderPages/slide3";
+import Slide4 from "@/components/home/homeSliderPages/slide4";
 
-const slideList = [Slide1, Slide2, Slide3];
+const slideList = [Slide1, Slide2, Slide4, Slide3];
 
 const Embla = styled.section`
   max-width: 100%;
@@ -92,7 +93,7 @@ export default function HomeSlider() {
   }, []);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: sliderAlign, loop: true }, [
-    Autoplay({ delay: duration * 1000 }),
+    Autoplay({ delay: duration * 1000, stopOnInteraction: false }),
   ]);
 
   return (
