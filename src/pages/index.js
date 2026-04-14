@@ -39,9 +39,6 @@ export default function Home() {
       <Spacer />
       <YumeKaiZeichenwettbewerb26 />
       <Spacer />
-      <EroffnungTicketShop />
-
-      <Spacer />
       <HierKonntIhrUnsTreffen />
       <Spacer />
       <HelferPost />
