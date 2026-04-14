@@ -28,11 +28,11 @@ export default function FAQ() {
       />
       <TabTitle
         title="Wann ist die YumeKai?"
-        content="Die YumeKai 2025 findet vom 31.05 bis zum 01.06 in Memmingen statt."
+        content="Die YumeKai 2026 findet vom 09.05 bis zum 10.05 in Memmingen statt."
       />
       <TabTitle
         title="Wo ist die YumeKai?"
-        content="Die YumeKai 2025 wird in der Stadthalle Memmingen und im Maximilian Kolbe Haus stattfinden."
+        content="Die YumeKai 2026 wird in der Stadthalle Memmingen und im Maximilian Kolbe Haus stattfinden."
       />
       <TabTitle
         title="Infos für Eltern"
