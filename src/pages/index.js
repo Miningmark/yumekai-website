@@ -12,6 +12,7 @@ import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeich
 import AnkundigungBall from "@/components/articles/2026/AnkundigungBall";
 import AnkundigungAnmeldungCosplay from "@/components/articles/2026/AnkundigungAnmeldungCosplay";
 import Oeffnungszeiten2026 from "@/components/articles/2026/Oeffnungszeiten2026";
+import StellariaPaletteOfDreams from "@/components/articles/2026/StellariaPaletteOfDreams";
 
 export default function Home() {
   return (
@@ -32,6 +33,8 @@ export default function Home() {
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
       <Oeffnungszeiten2026 />
+      <Spacer />
+      <StellariaPaletteOfDreams />
       <Spacer />
       <AnkundigungBall />
       <Spacer />
