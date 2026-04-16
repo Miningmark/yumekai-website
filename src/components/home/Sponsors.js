@@ -24,8 +24,7 @@ import cosplayConstelationsImage from "/public/assets/images/sponsors/Cosplay_Co
 import cosplayConstelationsImage2 from "/public/assets/images/sponsors/Cosplay_Constellations_black.png";
 import cosmicMoonlightImage from "/public/assets/images/sponsors/cosmicmoonlight.jpg";
 import comicConDornbirnImage from "/public/assets/images/sponsors/CCD_Logo.jpg";
-
-
+import craftingShopImage from "/public/assets/images/sponsors/CraftingShop.png";
 
 const SponsorsComponentWrapper = styled.section`
   position: relative;
@@ -67,85 +66,53 @@ export default function SponsorsComponent() {
   const contentRef = useRef(null);
   const theme = useTheme();
 
-  const sponsorList = useMemo(() => [
-  { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
-  { image: cohekiImage, alt: "CoHeKi", link: "https://coheki.de/" },
-  //{ image: foamlordImage, alt: "Foamlord", link: "https://www.foamlord.de/" },
-  //{ image: fuyukoImage, alt: "Fuyuko", link: "https://fuyuko.de/" },
-  { image: heldenschmiedeImage, alt: "Heldenschmiede", link: "https://www.heldenschmiede.eu/" },
-  //{ image: japandigestImage, alt: "Japandigest", link: "https://www.japandigest.de/" },
-  //{ image: mangaMerchImage, alt: "Manga Merch", link: "https://manga-merch.com/" },
-  //{ image: sndrbrImage, alt: "Sndrbr", link: "https://sndrbr.de/" },
-  { image: squiggzImage, alt: "Squiggz", link: "https://www.squiggz.com/" },
-  //{ image: zauberfederImage, alt: "Zauberfeder", link: "https://zauberfeder.de/" },
-  { image: stadtMM, alt: "Stadt Memmingen", link: "https://www.memmingen.de/" },
-  { image: mrVeranstaltung, alt: "M&R Veranstaltung", link: "https://mr-veranstaltung.de/" },
-  //{ image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
-  //{ image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
-  {
-    image: theme.mode === "dark" ? cosplayConstelationsImage : cosplayConstelationsImage2, 
-    alt: "Cosplay Constellations",
-    link: "https://www.instagram.com/cosplay.constellations/",
-  },
-  /* 
+  const sponsorList = useMemo(
+    () => [
+      { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
+      { image: cohekiImage, alt: "CoHeKi", link: "https://coheki.de/" },
+      { image: foamlordImage, alt: "Foamlord", link: "https://www.foamlord.de/" },
+      //{ image: fuyukoImage, alt: "Fuyuko", link: "https://fuyuko.de/" },
+      { image: heldenschmiedeImage, alt: "Heldenschmiede", link: "https://www.heldenschmiede.eu/" },
+      //{ image: japandigestImage, alt: "Japandigest", link: "https://www.japandigest.de/" },
+      //{ image: mangaMerchImage, alt: "Manga Merch", link: "https://manga-merch.com/" },
+      //{ image: sndrbrImage, alt: "Sndrbr", link: "https://sndrbr.de/" },
+      { image: squiggzImage, alt: "Squiggz", link: "https://www.squiggz.com/" },
+      //{ image: zauberfederImage, alt: "Zauberfeder", link: "https://zauberfeder.de/" },
+      { image: stadtMM, alt: "Stadt Memmingen", link: "https://www.memmingen.de/" },
+      { image: mrVeranstaltung, alt: "M&R Veranstaltung", link: "https://mr-veranstaltung.de/" },
+      //{ image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
+      //{ image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
+      {
+        image: theme.mode === "dark" ? cosplayConstelationsImage : cosplayConstelationsImage2,
+        alt: "Cosplay Constellations",
+        link: "https://www.instagram.com/cosplay.constellations/",
+      },
+      /* 
   {
     image: cosplayConstelationsImage,
     alt: "Cosplay Constellations",
     link: "https://www.instagram.com/cosplay.constellations/",
   },
   */
-  /*{
+      /*{
     image: cosmicMoonlightImage,
     alt: "Cosmic Moonlight",
     link: "https://www.cosmicmoonlight.com/i/links",
   },
   */
-  {
-    image: comicConDornbirnImage,
-    alt: "Comic Con Dornbirn",
-    link: "https://www.comiccondornbirn.at/",
-  },
-], [theme.mode]);
-
-/* 
-  const sponsorList = [
-  { image: cineplexImage, alt: "Cineplex", link: "https://www.cineplex.de/memmingen/" },
-  { image: cohekiImage, alt: "CoHeKi", link: "https://coheki.de/" },
-  //{ image: foamlordImage, alt: "Foamlord", link: "https://www.foamlord.de/" },
-  //{ image: fuyukoImage, alt: "Fuyuko", link: "https://fuyuko.de/" },
-  { image: heldenschmiedeImage, alt: "Heldenschmiede", link: "https://www.heldenschmiede.eu/" },
-  //{ image: japandigestImage, alt: "Japandigest", link: "https://www.japandigest.de/" },
-  //{ image: mangaMerchImage, alt: "Manga Merch", link: "https://manga-merch.com/" },
-  //{ image: sndrbrImage, alt: "Sndrbr", link: "https://sndrbr.de/" },
-  { image: squiggzImage, alt: "Squiggz", link: "https://www.squiggz.com/" },
-  //{ image: zauberfederImage, alt: "Zauberfeder", link: "https://zauberfeder.de/" },
-  { image: stadtMM, alt: "Stadt Memmingen", link: "https://www.memmingen.de/" },
-  { image: mrVeranstaltung, alt: "M&R Veranstaltung", link: "https://mr-veranstaltung.de/" },
-  //{ image: crunchyrollImage, alt: "Crunchyroll", link: "https://www.crunchyroll.com/" },
-  //{ image: paperToonsImage, alt: "Papertoons", link: "https://www.papertoons.de/" },
-  {
-    image: theme.mode === "dark" ? cosplayConstelationsImage2 : cosplayConstelationsImage, 
-    alt: "Cosplay Constellations",
-    link: "https://www.instagram.com/cosplay.constellations/",
-  },
-  
- // {
- //   image: cosplayConstelationsImage,
- //   alt: "Cosplay Constellations",
- //   link: "https://www.instagram.com/cosplay.constellations/",
- // },
- // {
- //   image: cosmicMoonlightImage,
- //   alt: "Cosmic Moonlight",
- //   link: "https://www.cosmicmoonlight.com/i/links",
- // },
-  {
-    image: comicConDornbirnImage,
-    alt: "Comic Con Dornbirn",
-    link: "https://www.comiccondornbirn.at/",
-  },
-];
-*/
+      {
+        image: comicConDornbirnImage,
+        alt: "Comic Con Dornbirn",
+        link: "https://www.comiccondornbirn.at/",
+      },
+      {
+        image: craftingShopImage,
+        alt: "Crafting Shop",
+        link: "https://www.craftingshop.ch",
+      },
+    ],
+    [theme.mode],
+  );
 
   useEffect(() => {
     function updateHeight() {
