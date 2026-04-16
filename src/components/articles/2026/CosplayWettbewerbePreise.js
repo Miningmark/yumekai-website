@@ -64,12 +64,12 @@ export default function CosplayWettbewerbePreise() {
           <ul style={{ marginLeft: "20px", marginTop: "5px" }}>
             <li>
               <strong>1. Platz:</strong> 50€ Gutschein von{" "}
-              <StyledLink href="https://www.foamlord.com/" target="_blank" rel="noopener noreferrer">
+              <StyledLink href="https://www.foamlord.de/" target="_blank" rel="noopener noreferrer">
                 Foamlord
               </StyledLink>{" "}
               + 1x2 Weekendtickets{" "}
               <StyledLink
-                href="https://comiccon-dornbirn.at/"
+                href="https://comiccondornbirn.at/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -107,7 +107,7 @@ export default function CosplayWettbewerbePreise() {
             <li>
               <strong>1. Platz:</strong> <strong>Nintendo Switch Lite</strong> – gesponsert von{" "}
               <StyledLink
-                href="https://comiccon-dornbirn.at/"
+                href="https://comiccondornbirn.at/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -117,7 +117,7 @@ export default function CosplayWettbewerbePreise() {
             <li>
               <strong>2. Platz:</strong> 1x2 Weekendtickets{" "}
               <StyledLink
-                href="https://comiccon-dornbirn.at/"
+                href="https://comiccondornbirn.at/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
