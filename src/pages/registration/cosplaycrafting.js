@@ -379,15 +379,17 @@ export default function CosplayCrafting() {
         setFieldErrors({});
         setTouchedFields({});
       } else {
-        setFieldErrors({
-          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
-        });
+        let message = "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.";
+        try {
+          const data = await response.json();
+          if (data?.message) message = data.message;
+        } catch {}
+        setFieldErrors({ general: message });
       }
     } catch (error) {
       setFieldErrors({
         general:
-          error.response?.data?.message ||
-          "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+          error.message || "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
       });
     }
 
