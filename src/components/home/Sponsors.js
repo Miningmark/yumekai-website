@@ -129,8 +129,14 @@ export default function SponsorsComponent() {
 
     updateHeight();
 
+    const observer = new ResizeObserver(updateHeight);
+    if (contentRef.current) observer.observe(contentRef.current);
+
     window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
   }, []);
 
   return (

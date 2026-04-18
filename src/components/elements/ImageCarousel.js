@@ -105,6 +105,11 @@ const Embla_Slide = styled.div`
   display: flex;
   align-items: center;
 
+  a,
+  .embla__slide__number {
+    width: 100%;
+  }
+
   @media (max-width: 800px) {
     flex: 0 0 calc(100% / ${({ $visiblecount }) => $visiblecount / 2});
     padding-left: 20px;
