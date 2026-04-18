@@ -25,6 +25,7 @@ import cosplayConstelationsImage2 from "/public/assets/images/sponsors/Cosplay_C
 import cosmicMoonlightImage from "/public/assets/images/sponsors/cosmicmoonlight.jpg";
 import comicConDornbirnImage from "/public/assets/images/sponsors/CCD_Logo.jpg";
 import craftingShopImage from "/public/assets/images/sponsors/CraftingShop.png";
+import cosplayForumImage from "/public/assets/images/sponsors/CosplayForum_Logo.png";
 
 const SponsorsComponentWrapper = styled.section`
   position: relative;
@@ -109,6 +110,11 @@ export default function SponsorsComponent() {
         image: craftingShopImage,
         alt: "Crafting Shop",
         link: "https://www.craftingshop.ch",
+      },
+      {
+        image: cosplayForumImage,
+        alt: "Cosplay Forum",
+        link: "https://www.cosplayforum.net/",
       },
     ],
     [theme.mode],
