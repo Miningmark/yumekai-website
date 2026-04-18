@@ -102,6 +102,8 @@ const Embla_Slide = styled.div`
   min-width: 0;
   padding-left: ${({ $space }) => $space};
   flex: 0 0 calc(100% / ${({ $visiblecount }) => $visiblecount});
+  display: flex;
+  align-items: center;
 
   @media (max-width: 800px) {
     flex: 0 0 calc(100% / ${({ $visiblecount }) => $visiblecount / 2});
