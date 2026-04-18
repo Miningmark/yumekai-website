@@ -74,6 +74,14 @@ export default function CosplayWettbewerbePreise() {
                 rel="noopener noreferrer"
               >
                 ComicCon Dornbirn
+              </StyledLink>{" "}
+              + 40€ Steamgutschein{" "}
+              <StyledLink
+                href="https://Cosplayforum.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Cosplayforum.net
               </StyledLink>
             </li>
             <li>
@@ -105,7 +113,7 @@ export default function CosplayWettbewerbePreise() {
           </p>
           <ul style={{ marginLeft: "20px", marginTop: "5px" }}>
             <li>
-              <strong>1. Platz:</strong> <strong>Nintendo Switch Lite</strong> – gesponsert von{" "}
+              <strong>1. Platz:</strong> Nintendo Switch Lite{" "}
               <StyledLink
                 href="https://comiccondornbirn.at/"
                 target="_blank"
