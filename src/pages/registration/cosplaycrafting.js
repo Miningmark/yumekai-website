@@ -226,6 +226,8 @@ export default function CosplayCrafting() {
       case "file":
         if (!additionalData.files || additionalData.files.length === 0) {
           error = "Crafting Tagebuch ist ein Pflichtfeld";
+        } else if (additionalData.files.length < 2) {
+          error = "Bitte lade mindestens 2 Dateien hoch";
         }
         break;
 

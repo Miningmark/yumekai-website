@@ -349,13 +349,17 @@ export default function ArtContest() {
         setFieldErrors({});
         setTouchedFields({});
       } else {
-        setFieldErrors({
-          general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
-        });
+        let message = "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.";
+        try {
+          const data = await response.json();
+          if (data?.message) message = data.message;
+        } catch {}
+        setFieldErrors({ general: message });
       }
     } catch (error) {
       setFieldErrors({
-        general: "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
+        general:
+          error.message || "Fehler beim Absenden der Anmeldung. Bitte versuche es später nochmal.",
       });
     }
     setLoading(false);
