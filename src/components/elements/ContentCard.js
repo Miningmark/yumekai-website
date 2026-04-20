@@ -140,6 +140,7 @@ export default function ContentCard({
   webLink = null,
   webLinkText = null,
   maxWidth = 290,
+  imageMaxHeight = null,
 }) {
   return (
     <CardWrapper $maxwidth={maxWidth}>
@@ -155,6 +156,7 @@ export default function ContentCard({
               style={{
                 width: "100%",
                 height: "auto",
+                ...(imageMaxHeight ? { maxHeight: imageMaxHeight, objectFit: "contain" } : {}),
               }}
             />
           ) : null}
