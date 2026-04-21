@@ -13,6 +13,7 @@ import AnkundigungBall from "@/components/articles/2026/AnkundigungBall";
 import AnkundigungAnmeldungCosplay from "@/components/articles/2026/AnkundigungAnmeldungCosplay";
 import CosplayWettbewerbePreise from "@/components/articles/2026/CosplayWettbewerbePreise";
 import Oeffnungszeiten2026 from "@/components/articles/2026/Oeffnungszeiten2026";
+import StellariaPaletteOfDreams from "@/components/articles/2026/StellariaPaletteOfDreams";
 
 export default function Home() {
   return (
@@ -35,6 +36,8 @@ export default function Home() {
       <CosplayWettbewerbePreise />
       <Spacer />
       <Oeffnungszeiten2026 />
+      <Spacer />
+      <StellariaPaletteOfDreams />
       <Spacer />
       <AnkundigungBall />
       <Spacer />
