@@ -682,10 +682,9 @@ export default function CosplayPerformance() {
               title="pictureRights"
               content={
                 <p>
-                  Ich versichere, dass ich der alleinige Rechteinhaber des eingereichten
-                  Bildmaterials bin. Ich übertrage der Firma Dreamfly-Events UG das nicht-exklusive
-                  Nutzungsrecht für sämtliche gegenwärtigen und zukünftigen Zwecke, einschließlich,
-                  aber nicht beschränkt auf, Online-Marketing, Social Media, Werbematerialien und
+                  Ich übertrage der Firma Dreamfly-Events UG das nicht-exklusive Nutzungsrecht für
+                  sämtliche gegenwärtigen und zukünftigen Zwecke, einschließlich, aber nicht
+                  beschränkt auf, Online-Marketing, Social Media, Werbematerialien und
                   Printpublikationen.<RequiredNote>*</RequiredNote>
                 </p>
               }
