@@ -7,6 +7,7 @@ import ContentCard from "@/components/elements/ContentCard";
 //Images
 import HiruBall from "/public/assets/hirus/Hiru_Ball.png";
 import HiruShowact from "/public/assets/hirus/Hiru_Showact.png";
+import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.png";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -54,7 +55,7 @@ export default function Cosplayball() {
 
         <ContentCard
           title="Cellotic Duets"
-          imageSrc={HiruShowact}
+          imageSrc={CelloticDuetsBild}
           altText="Cellotic Duets"
           text={
             <p>

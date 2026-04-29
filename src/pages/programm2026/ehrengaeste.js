@@ -15,6 +15,8 @@ import NiloBild from "/public/assets/images/yumekai2026/Nilo.jpg";
 import LyriaBild from "/public/assets/images/yumekai2026/Lyria.png";
 import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.png";
 import Lucky13Bild from "/public/assets/images/yumekai2026/Lucky13.jpg";
+import NicolleGonsiorBild from "/public/assets/images/yumekai2026/Nicolle Gonsior.jpeg";
+import MarieJeanneWideraBild from "/public/assets/images/yumekai2026/Marie-Jeanne Widera.jpeg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -248,7 +250,7 @@ export default function Ehrengaeste() {
         <ContentCard
           title="Nicolle Gonsior &amp; Marie-Jeanne Widera"
           subtitle="Sonntag Q&amp;A 12:05 Uhr"
-          imageSrc={HiruWorkshop}
+          imageSrc={NicolleGonsiorBild}
           altText="Synchronsprecher"
           text={
             <>
@@ -278,7 +280,7 @@ export default function Ehrengaeste() {
         <ContentCard
           title="PinkStarke"
           subtitle="Sonntag Q&amp;A 12:05 Uhr"
-          imageSrc={HiruWorkshop}
+          imageSrc={MarieJeanneWideraBild}
           altText="PinkStarke"
           text={
             <p>

@@ -8,6 +8,10 @@ import ContentCard from "@/components/elements/ContentCard";
 import HiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
 import XeniaBild from "/public/assets/images/yumekai2026/Xenia.jpg";
 import KermiBild from "/public/assets/images/yumekai2026/Kermi.jpg";
+import EraliasBild from "/public/assets/images/yumekai2026/Eralias.png";
+import NekodanshiBild from "/public/assets/images/yumekai2026/Nekodanshi.jpg";
+import BarbieBallkleidBild from "/public/assets/images/yumekai2026/Barbie_TigaPhotography_WolfusCosplay.png";
+import ScarlettBild from "/public/assets/images/yumekai2026/scarlet.jpg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -47,8 +51,9 @@ export default function Cosplayer() {
 
         <ContentCard
           title="Wolfus"
-          imageSrc={HiruCosplay}
+          imageSrc={BarbieBallkleidBild}
           altText="Wolfus"
+          imageCaption="Barbie (Ballkleid) - Fotocredit: @tiga.photography"
           text={
             <p>
               Wolfus ist eine preisgekrönte Cosplayerin aus Österreich, die ihre Cosplays mit viel
@@ -66,8 +71,9 @@ export default function Cosplayer() {
 
         <ContentCard
           title="Scarlett Sirene"
-          imageSrc={HiruCosplay}
+          imageSrc={ScarlettBild}
           altText="Scarlett Sirene"
+          imageCaption="Fotocredit: @_novashot_"
           text={
             <p>
               Scarlett Sirene ist seit 2018 als Cosplayerin aktiv und betreibt ihr Hobby nebenbei
@@ -101,7 +107,7 @@ export default function Cosplayer() {
 
         <ContentCard
           title="Eralia"
-          imageSrc={HiruCosplay}
+          imageSrc={EraliasBild}
           altText="Eralia"
           text={
             <p>
@@ -120,7 +126,7 @@ export default function Cosplayer() {
 
         <ContentCard
           title="Nekodanshi"
-          imageSrc={HiruCosplay}
+          imageSrc={NekodanshiBild}
           altText="Nekodanshi"
           text={
             <p>

@@ -16,6 +16,7 @@ import KermiWorkshopBild from "/public/assets/images/yumekai2026/Kermi Workshop.
 import WolfusWorkshopBild from "/public/assets/images/yumekai2026/Wolfus Workshop.png";
 import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.png";
 import HokushinWorkshopBild from "/public/assets/images/yumekai2026/Hokushin Ittō-ryū Hyōhō.png";
+import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ export default function Workshops() {
         <ContentCard
           title="Stellaria: Japanische Idol-Kultur – Cheering und Fanchants"
           subtitle="12:05 Uhr | Raum 1"
-          imageSrc={HiruWorkshop}
+          imageSrc={StellariaBild}
           altText="Workshop Hiru"
           text={
             <p>
@@ -212,7 +213,7 @@ export default function Workshops() {
         <ContentCard
           title="Stellaria: J-Pop und K-Pop Random Play Dance"
           subtitle="12:20 Uhr | Raum 2"
-          imageSrc={HiruWorkshop}
+          imageSrc={StellariaBild}
           altText="Workshop Hiru"
           text={
             <p>

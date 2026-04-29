@@ -135,6 +135,7 @@ export default function ContentCard({
   text = null,
   imageSrc = null,
   altText = null,
+  imageCaption = null,
   instaLink = null,
   instaLinkText = null,
   webLink = null,
@@ -150,15 +151,18 @@ export default function ContentCard({
           {subtitle ? <CardSubtitle>{subtitle}</CardSubtitle> : null}
           {text ? <>{text}</> : null}
           {imageSrc && altText ? (
-            <Image
-              src={imageSrc}
-              alt={altText}
-              style={{
-                width: "100%",
-                height: "auto",
-                ...(imageMaxHeight ? { maxHeight: imageMaxHeight, objectFit: "contain" } : {}),
-              }}
-            />
+            <>
+              <Image
+                src={imageSrc}
+                alt={altText}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  ...(imageMaxHeight ? { maxHeight: imageMaxHeight, objectFit: "contain" } : {}),
+                }}
+              />
+              {imageCaption ? <p style={{ marginTop: "6px", marginBottom: "0px", fontSize: "0.9rem" }}>{imageCaption}</p> : null}
+            </>
           ) : null}
 
           {instaLink && instaLinkText && (
