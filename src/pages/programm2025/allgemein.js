@@ -60,7 +60,7 @@ export default function Allgemein() {
         <br />
         Samstag: 10:00 - 21:00 Uhr
         <br />
-        Sonntag: 10:00 - 17:30 Uhr
+        Sonntag: 10:00 - 18:00 Uhr
         <br />
         <br />
         Besucher mit einem Goldticket dürfen bereits 30 Minuten früher auf die Convention und haben
@@ -73,14 +73,14 @@ export default function Allgemein() {
         <br />
         Samstag bis 19:00 Uhr
         <br />
-        Sonntag bis 17:30 Uhr
+        Sonntag bis 18:00 Uhr
         <br />
         <br />
         <strong>Händlerbereich:</strong>
         <br />
         Samstag bis 19:00 Uhr
         <br />
-        Sonntag bis 17:30 Uhr
+        Sonntag bis 18:00 Uhr
         <br />
         <br />
         <strong>Vivid Arise Maid Café:</strong>
@@ -92,7 +92,7 @@ export default function Allgemein() {
         <br />
         <strong>Cosplayball:</strong>
         <br />
-        Samstag bis 23:00 Uhr
+        Samstag bis 23:30 Uhr
       </p>
       <Spacer />
 
