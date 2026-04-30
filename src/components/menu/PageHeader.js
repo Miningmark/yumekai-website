@@ -35,7 +35,20 @@ const menuItems = [
       { name: "2025", path: "/review/yumekai-2025" },
     ],
   },
-  {name: "Programm", path: "/programm2026"},
+  {name: "Programm", path: "/programm2026",
+    subItems: [
+    { name: "Allgemein", path: "/programm2026/allgemein" },
+    { name: "Aussteller", path: "/programm2026/aussteller" },
+    { name: "Cosplayball", path: "/programm2026/cosplayball" },
+    { name: "Cosplayer", path: "/programm2026/cosplayer" },
+    { name: "Ehrengäste", path: "/programm2026/ehrengaeste" },
+    { name: "Essen", path: "/programm2026/essen" },
+    { name: "Händler", path: "/programm2026/haendler" },
+    { name: "Künstler", path: "/programm2026/kuenstler" },
+    { name: "Wettbewerbe", path: "/programm2026/wettbewerbe" },
+    { name: "Workshops", path: "/programm2026/workshops" },
+  ],
+  },
   { name: "Anmeldungen", path: "/registration" },
   { name: "Ticketshop", path: "/shop" },
 ];
@@ -357,7 +370,7 @@ export default function PageHeader({ toggleTheme, theme }) {
             onMouseEnter={() => openSubMenu(index)}
             onMouseMove={() => openSubMenu(index)}
           >
-            {!item.subItems ? (
+            {!item.subItems || item.path ? (
               <MenuLink
                 href={item.path}
                 $active={pathname === item.path ? 1 : 0}
@@ -406,7 +419,7 @@ export default function PageHeader({ toggleTheme, theme }) {
             {menuItems.map((item, index) => (
               <div key={`${item.name}mobile`}>
                 <MenuItemWrapper>
-                  {!item.subItems ? (
+                  {!item.subItems || item.path ? (
                     <MenuLink
                       href={item.path}
                       $active={pathname === item.path ? 1 : 0}
