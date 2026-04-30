@@ -35,6 +35,14 @@ const InfoBox = styled.div`
   p {
     margin: 6px 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .timeValue {
+    white-space: nowrap;
   }
 `;
 
@@ -68,25 +76,30 @@ export default function Allgemein() {
           <InfoBox>
             <h3>Convention</h3>
             <p>
-              <strong>Samstag:</strong> 10:00 – 21:00 Uhr
+              <strong>Samstag:</strong>
+              <span className="timeValue">10:00 – 21:00 Uhr</span>
             </p>
             <p>
-              <strong>Sonntag:</strong> 10:00 – 18:00 Uhr
+              <strong>Sonntag:</strong>
+              <span className="timeValue">10:00 – 18:00 Uhr</span>
             </p>
           </InfoBox>
           <InfoBox>
             <h3>Programm</h3>
             <p>
-              <strong>Samstag:</strong> 11:00 – 18:30 Uhr
+              <strong>Samstag:</strong>
+              <span className="timeValue">11:00 – 18:30 Uhr</span>
             </p>
             <p>
-              <strong>Sonntag:</strong> 11:00 – 18:00 Uhr
+              <strong>Sonntag:</strong>
+              <span className="timeValue">11:00 – 18:00 Uhr</span>
             </p>
           </InfoBox>
           <InfoBox>
             <h3>Cosplayball</h3>
             <p>
-              <strong>Samstag:</strong> 19:00 – 23:30 Uhr
+              <strong>Samstag:</strong>
+              <span className="timeValue">19:00 – 23:30 Uhr</span>
             </p>
           </InfoBox>
         </InfoGrid>
