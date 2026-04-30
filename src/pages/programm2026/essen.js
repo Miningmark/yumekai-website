@@ -6,6 +6,9 @@ import ContentCard from "@/components/elements/ContentCard";
 
 //Images
 import HiruEssen from "/public/assets/hirus/Hiru_Essen.png";
+import BecherBistroImage from "/public/assets/images/yumekai2026/Becher Bistro.png";
+import BrauhausLeppleImage from "/public/assets/images/yumekai2026/Brauhaus Lepple.png";
+import MaidCafeDreamGardenImage from "/public/assets/images/yumekai2026/Dreamgarden.jpeg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -26,7 +29,7 @@ export default function Essen() {
       <ContentContainer>
         <ContentCard
           title="Becher Bistro"
-          imageSrc={HiruEssen}
+          imageSrc={BecherBistroImage}
           altText="Becher Bistro"
           text={
             <>
@@ -52,7 +55,7 @@ export default function Essen() {
 
         <ContentCard
           title="Maid-Café DreamGarden"
-          imageSrc={HiruEssen}
+          imageSrc={MaidCafeDreamGardenImage}
           altText="Maid-Café DreamGarden"
           text={
             <>
@@ -77,6 +80,32 @@ export default function Essen() {
                   Das Maid-Café ist im VHS-Gebäude an Samstag und Sonntag geöffnet.
                 </em>
               </p>
+            </>
+          }
+          maxWidth={550}
+        />
+        <ContentCard
+          title="Gasthof Bräuhaus Lepple"
+          imageSrc={BrauhausLeppleImage}
+          altText="Gasthof Bräuhaus Lepple"
+          text={
+            <>
+              <p>
+                Genieße leckere Käsespätzle, Krautkrapfen, Maultaschen, Linsen, Schnitzel und
+                hausgemachten Kartoffelsalat u.v.m.
+              </p>
+              <p>
+                <strong>Angebot:</strong>
+              </p>
+              <ul>
+                <li>Käsespätzle</li>
+                <li>Hot Dogs</li>
+                <li>Krautkrapfen</li>
+                <li>Maultaschen</li>
+                <li>Linsen</li>
+                <li>Schnitzel</li>
+                <li>Hausgemachter Kartoffelsalat</li>
+              </ul>
             </>
           }
           maxWidth={550}
