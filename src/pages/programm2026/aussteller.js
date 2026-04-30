@@ -17,6 +17,7 @@ import HokushinBild from "/public/assets/images/yumekai2026/Hokushin Ittō-ryū 
 import CosplayAlpinBild from "/public/assets/images/yumekai2026/cosplay Alpin.png";
 import Regiment405thBild from "/public/assets/images/yumekai2026/405th European Regiment.png";
 import CoHeKiBild from "/public/assets/images/yumekai2026/CoHeKi e.V..png";
+import CCDBild from "/public/assets/images/yumekai2026/CCD_Logo.jpg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -207,7 +208,7 @@ export default function Aussteller() {
 
         <ContentCard
           title="Comiccon Dornbirn"
-          imageSrc={HiruNormal}
+          imageSrc={CCDBild}
           altText="Comiccon Dornbirn"
           text={
             <p>
