@@ -60,7 +60,7 @@ export default function Allgemein() {
         <br />
         Samstag: 10:00 - 21:00 Uhr
         <br />
-        Sonntag: 10:00 - 17:30 Uhr
+        Sonntag: 10:00 - 18:00 Uhr
         <br />
         <br />
         Besucher mit einem Goldticket dürfen bereits 30 Minuten früher auf die Convention und haben
@@ -73,14 +73,14 @@ export default function Allgemein() {
         <br />
         Samstag bis 19:00 Uhr
         <br />
-        Sonntag bis 17:30 Uhr
+        Sonntag bis 18:00 Uhr
         <br />
         <br />
         <strong>Händlerbereich:</strong>
         <br />
         Samstag bis 19:00 Uhr
         <br />
-        Sonntag bis 17:30 Uhr
+        Sonntag bis 18:00 Uhr
         <br />
         <br />
         <strong>Vivid Arise Maid Café:</strong>
@@ -92,17 +92,32 @@ export default function Allgemein() {
         <br />
         <strong>Cosplayball:</strong>
         <br />
-        Samstag bis 23:00 Uhr
+        Samstag bis 23:30 Uhr
       </p>
       <Spacer />
 
       <h3>Tageskasse</h3>
-      <p>An den Veranstaltungstagen können vor Ort noch Tickets gekauft werden, leider ist hier keine Barzahlung möglich.<br />
-      Der <StyledLink href="/shop" target="_blank">Online Ticketshop</StyledLink> wird auch während der Convention noch erreichbar sein, wir empfehlen euch hier euer Ticket zu kaufen, um Wartezeiten an der Kasse zu vermeiden.</p>
+      <p>
+        An den Veranstaltungstagen können vor Ort noch Tickets gekauft werden, leider ist hier keine
+        Barzahlung möglich.
+        <br />
+        Der{" "}
+        <StyledLink href="/shop" target="_blank">
+          Online Ticketshop
+        </StyledLink>{" "}
+        wird auch während der Convention noch erreichbar sein, wir empfehlen euch hier euer Ticket
+        zu kaufen, um Wartezeiten an der Kasse zu vermeiden.
+      </p>
       <Spacer />
 
       <h3>Wichtiger Hinweis zur Veranstaltung</h3>
-      <p>Bitte habt Verständnis dafür, dass wir unter Umständen nicht allen den Eintritt gewähren können, wenn ein Gebäude voll ist. Laut Hausordnung dürfen wir nur eine bestimmte Anzahl an Leuten reinlassen, ist die Kapazität erreicht, müssen wir den Einlass vorübergehend stoppen.<br />Wir bitten um euer Verständnis. Eure Sicherheit steht für uns an erster Stelle.</p>
+      <p>
+        Bitte habt Verständnis dafür, dass wir unter Umständen nicht allen den Eintritt gewähren
+        können, wenn ein Gebäude voll ist. Laut Hausordnung dürfen wir nur eine bestimmte Anzahl an
+        Leuten reinlassen, ist die Kapazität erreicht, müssen wir den Einlass vorübergehend stoppen.
+        <br />
+        Wir bitten um euer Verständnis. Eure Sicherheit steht für uns an erster Stelle.
+      </p>
       <Spacer />
 
       <h3>Programmheft</h3>
@@ -145,7 +160,11 @@ export default function Allgemein() {
       </ul>
       <p style={{ marginTop: "5px" }}>
         Weitere Informationen bezüglich Parkmöglichkeiten entnehmen Sie bitte folgender Seite:{" "}
-        <StyledLink href={"https://stadtwerke-memmingen.de/parkhaeuser"} target="_blank" rel="noopener noreferrer">
+        <StyledLink
+          href={"https://stadtwerke-memmingen.de/parkhaeuser"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           https://stadtwerke-memmingen.de/parkhaeuser
         </StyledLink>
         .
@@ -175,7 +194,11 @@ export default function Allgemein() {
         www.geoportal.bayern.de
       </small>
       <div style={{ margin: "20px 0" }}>
-        <StyledLinkAsButton href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"} target="_blank"  rel="noopener noreferrer">
+        <StyledLinkAsButton
+          href={"https://maps.app.goo.gl/o7RvbkgHpFvpPAjZ7"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           zu Google Maps
         </StyledLinkAsButton>
       </div>
