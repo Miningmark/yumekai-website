@@ -1,8 +1,19 @@
 import styled from "styled-components";
+import Image from "next/image";
+import { useState } from "react";
 
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import { Spacer, SpacerEmpty } from "@/components/styledComponents";
+import DataViewer from "@/components/DataViewer";
+
+//Images
+import lageplanKolbehausImage from "/public/assets/images/yumekai2025/Lageplan_Kolbe-VHS.png";
+import lageplanSatdthalleEGImage from "/public/assets/images/yumekai2025/Lageplan_Stadthalle_EG.png";
+import lageplanSatdthalleOGImage from "/public/assets/images/yumekai2025/Lageplan_Stadthalle_OG.png";
+import ortImage from "/public/assets/images/yumekai2026/Map_Stathalle_zu_kolbe.jpg";
+import zeitplanSamstagImage from "/public/assets/images/yumekai2026/Zeitplan_Samstag.png";
+import zeitplanSonntagImage from "/public/assets/images/yumekai2026/Zeitplan_Sonntag.png";
 
 const Section = styled.div`
   max-width: 900px;
@@ -64,6 +75,8 @@ const ListSection = styled.div`
 `;
 
 export default function Allgemein() {
+  const [viewFile, setViewFile] = useState(null);
+
   return (
     <>
       <ReturnButton link="/programm2026" />
@@ -152,8 +165,8 @@ export default function Allgemein() {
           <h3>Cosplay-Repair</h3>
           <p>
             Für (fast) jede kleine Panne steht euch der Cosplay-Repairstand mit Rat, Tat und
-            Werkzeug zur Seite. Ob ein paar Stiche hier und dort oder einmal Knoten ausbürsten –
-            wir sind bestens dafür ausgestattet.
+            Werkzeug zur Seite. Ob ein paar Stiche hier und dort oder einmal Knoten ausbürsten – wir
+            sind bestens dafür ausgestattet.
           </p>
         </ListSection>
 
@@ -170,9 +183,27 @@ export default function Allgemein() {
         </p>
         <p>
           <strong>Wichtig:</strong> In der VHS und im Maximilian-Kolbe-Haus gibt es keine
-          Möglichkeit, Cosplay-Waffen zu lagern. Falls ihr eine Prop oder Waffe dabeihabt, müsst
-          ihr sie vorher am Waffencheck in der Stadthalle abgeben.
+          Möglichkeit, Cosplay-Waffen zu lagern. Falls ihr eine Prop oder Waffe dabeihabt, müsst ihr
+          sie vorher am Waffencheck in der Stadthalle abgeben.
         </p>
+        <Image
+          src={ortImage}
+          alt="Wegbeschreibung zu den Gebüuden der VHS und des Maximilian-Kolbe-Hauses"
+          style={{
+            width: "50%",
+            height: "auto",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setViewFile("/assets/images/yumekai2026/Map_Stathalle_zu_kolbe.jpg");
+          }}
+        />
+        <br />
+        <small style={{ fontSize: "0.5em", marginTop: "5px" }}>
+          Hintergrundkarte: © Bayerische Vermessungsverwaltung (2025), Datenquelle: Geoportal Bayern
+          www.geoportal.bayern.de
+        </small>
 
         <Spacer />
 
@@ -301,6 +332,39 @@ export default function Allgemein() {
         </InfoGrid>
 
         <Spacer />
+        <h3>Zeitplan</h3>
+
+        <Image
+          src={zeitplanSamstagImage}
+          alt="Zeitplan Samstag"
+          style={{
+            width: "50vw",
+            maxWidth: "1200px",
+            height: "auto",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setViewFile("/assets/images/yumekai2026/Zeitplan_Samstag.png");
+          }}
+        />
+        <SpacerEmpty />
+        <Image
+          src={zeitplanSonntagImage}
+          alt="Zeitplan Sonntag"
+          style={{
+            width: "50vw",
+            maxWidth: "1200px",
+            height: "auto",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setViewFile("/assets/images/yumekai2026/Zeitplan_Sonntag.png");
+          }}
+        />
+
+        <Spacer />
 
         <h2 style={{ textAlign: "center" }}>Anfahrt</h2>
         <p style={{ textAlign: "center" }}>
@@ -314,6 +378,15 @@ export default function Allgemein() {
           Memmingen sind es ca. 10–15 Gehminuten bis zur Stadthalle.
         </p>
       </Section>
+
+      {viewFile ? (
+        <DataViewer
+          file={viewFile}
+          handleClose={() => {
+            setViewFile(null);
+          }}
+        />
+      ) : null}
     </>
   );
 }

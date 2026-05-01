@@ -117,7 +117,7 @@ export default function ShowFullSizeURIData({ file, handleClose }) {
                 alignItems: "center",
               }}
             >
-              <Image
+              <img
                 src={normalizedFile}
                 alt={fileName}
                 width={1200}

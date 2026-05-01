@@ -34,9 +34,9 @@ export default function Essen() {
           text={
             <>
               <p>
-                Der Becher Bistro bringt euch japanisches Streetfood auf die YumeKai! Freut euch
-                auf frisch zubereitete Köstlichkeiten – authentisch, lecker und perfekt für eine
-                kleine Japan-Auszeit auf der Convention.
+                Der Becher Bistro bringt euch japanisches Streetfood auf die YumeKai! Freut euch auf
+                frisch zubereitete Köstlichkeiten – authentisch, lecker und perfekt für eine kleine
+                Japan-Auszeit auf der Convention.
               </p>
               <p>
                 <strong>Angebot:</strong>
@@ -60,13 +60,13 @@ export default function Essen() {
           text={
             <>
               <p>
-                Konnichiwa minna-san! Müde vom Laufen? Lust auf etwas Süßes? Schaut bei uns
-                vorbei! Wir sind das Maid-Café DreamGarden und verzaubern seit 2018 eure
+                Konnichiwa minna-san! Müde vom Laufen? Lust auf etwas Süßes? Schaut bei uns vorbei!
+                Wir sind das Maid-Café DreamGarden und verzaubern seit 2018 eure
                 Convention-Experience.
               </p>
               <p>
-                Dieses Mal werden wir euch an der YumeKai mit Leckereien und Erfrischungen die
-                Zeit versüßen. Unsere Maids und Butlers helfen euch gerne bei der Entscheidung.
+                Dieses Mal werden wir euch an der YumeKai mit Leckereien und Erfrischungen die Zeit
+                versüßen. Unsere Maids und Butlers helfen euch gerne bei der Entscheidung.
               </p>
               <p>
                 <strong>Angebot:</strong>
@@ -76,9 +76,7 @@ export default function Essen() {
                 <li>Melon-Soda</li>
               </ul>
               <p>
-                <em>
-                  Das Maid-Café ist im VHS-Gebäude an Samstag und Sonntag geöffnet.
-                </em>
+                <em>Das Maid-Café ist im VHS-Gebäude an Samstag und Sonntag geöffnet.</em>
               </p>
             </>
           }
@@ -91,20 +89,15 @@ export default function Essen() {
           text={
             <>
               <p>
-                Genieße leckere Käsespätzle, Krautkrapfen, Maultaschen, Linsen, Schnitzel und
-                hausgemachten Kartoffelsalat u.v.m.
+                Genieße an unserem schwäbischen Foodwagen unsere leckeren Kässpätzle und andere
+                schwäbische Leckereien.
               </p>
               <p>
                 <strong>Angebot:</strong>
               </p>
               <ul>
                 <li>Käsespätzle</li>
-                <li>Hot Dogs</li>
-                <li>Krautkrapfen</li>
-                <li>Maultaschen</li>
-                <li>Linsen</li>
-                <li>Schnitzel</li>
-                <li>Hausgemachter Kartoffelsalat</li>
+                <li>schwäbische Leckereien</li>
               </ul>
             </>
           }
