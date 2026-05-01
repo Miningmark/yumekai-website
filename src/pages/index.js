@@ -7,7 +7,6 @@ import HomeSlider from "@/components/home/HomeSlider";
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";
 import HelferPost from "@/components/articles/2025/HelferPost";
 import CounterClock from "@/components/elements/CounterClock";
-import EroffnungTicketShop from "@/components/articles/2025/EroffnungTicketShop";
 import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb26";
 import AnkundigungBall from "@/components/articles/2026/AnkundigungBall";
 import AnkundigungAnmeldungCosplay from "@/components/articles/2026/AnkundigungAnmeldungCosplay";

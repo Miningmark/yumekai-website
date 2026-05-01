@@ -17,6 +17,7 @@ import WolfusWorkshopBild from "/public/assets/images/yumekai2026/Wolfus Worksho
 import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.png";
 import HokushinWorkshopBild from "/public/assets/images/yumekai2026/Hokushin Ittō-ryū Hyōhō.png";
 import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
+import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.png";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -123,12 +124,12 @@ export default function Workshops() {
           altText="Workshop Hiru"
           text={
             <p>
-              Hokushin Ittō-ryū Hyōhō – eine über 200 Jahre ungebrochen überlieferte
-              Samurai-Schule der Kriegskunst, Strategie, Philosophie und Etikette. Erlebt mehrere
-              Vorführungen einer der bekanntesten Samurai-Schulen des feudalen Japans direkt auf
-              der YumeKai – mit täglichen Vorführungen, spannenden Vorträgen und der Möglichkeit,
-              eure Fragen direkt an zertifizierte Meister und Lehrer zu stellen. Informiert euch
-              über Techniken, Geschichte, Philosophie und Traditionen der Samurai.
+              Hokushin Ittō-ryū Hyōhō – eine über 200 Jahre ungebrochen überlieferte Samurai-Schule
+              der Kriegskunst, Strategie, Philosophie und Etikette. Erlebt mehrere Vorführungen
+              einer der bekanntesten Samurai-Schulen des feudalen Japans direkt auf der YumeKai –
+              mit täglichen Vorführungen, spannenden Vorträgen und der Möglichkeit, eure Fragen
+              direkt an zertifizierte Meister und Lehrer zu stellen. Informiert euch über Techniken,
+              Geschichte, Philosophie und Traditionen der Samurai.
             </p>
           }
           maxWidth={500}
@@ -162,8 +163,8 @@ export default function Workshops() {
           text={
             <p>
               Hier werden die Grundlagen von Glued Wigs durchgegangen. Wie man überhaupt die Wefts
-              formt und wie man Ansätze und Ponytails klebt. Auch wie man Ahoge und spezielle
-              Shapes macht wird kurz besprochen.
+              formt und wie man Ansätze und Ponytails klebt. Auch wie man Ahoge und spezielle Shapes
+              macht wird kurz besprochen.
             </p>
           }
           instaLink="https://www.instagram.com/akunyaah/"
@@ -174,7 +175,7 @@ export default function Workshops() {
         <ContentCard
           title="N.G.E. &amp; Xenia: Itashas"
           subtitle="15:35 Uhr | Raum 1"
-          imageSrc={HiruSpielen}
+          imageSrc={NGEItashaBild}
           altText="Workshop Hiru"
           text={
             <p>
