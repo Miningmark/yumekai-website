@@ -22,7 +22,14 @@ import ImgKirianYume from "/public/assets/images/yumekai2026/@kirianyume.png";
 import ImgMyuchiisu from "/public/assets/images/yumekai2026/@myuchiisu.png";
 import ImgArtOfTheValley from "/public/assets/images/yumekai2026/@art.of.the.valley.png";
 import ImgChristalShadow from "/public/assets/images/yumekai2026/@christal.shad0w0.png";
-import ImgTeiSyokumoku from "/public/assets/images/yumekai2026/@tei_syokumoku.png";
+import ImgJeyCreates from "/public/assets/images/yumekai2026/@jey.creates.png";
+import ImgColortoglas from "/public/assets/images/yumekai2026/@colortoglas.png";
+import ImgSaseiArt from "/public/assets/images/yumekai2026/@sasei.art.png";
+import ImgCelezius from "/public/assets/images/yumekai2026/@celezius.png";
+import ImgMissMalevolent from "/public/assets/images/yumekai2026/@miss_malevolent_.png";
+import ImgStarsAndTrinkets from "/public/assets/images/yumekai2026/@starsandtrinketsshop.png";
+import ImgFylyDraws from "/public/assets/images/yumekai2026/@fyly_draws.jpg";
+
 import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.png";
 import ImgNaomiHuber from "/public/assets/images/yumekai2026/@naomihuber_.png";
 import ImgDelphoxsart from "/public/assets/images/yumekai2026/@delphoxsart.png";
@@ -92,11 +99,6 @@ export default function Kuenstler() {
       img: ImgArtOfTheValley,
     },
     { name: "Kirian Yume", insta: "https://www.instagram.com/kirianyume/", img: ImgKirianYume },
-    {
-      name: "Tei Syokumoku",
-      insta: "https://www.instagram.com/tei_syokumoku/",
-      img: ImgTeiSyokumoku,
-    },
     { name: "Animalixu", insta: "https://www.instagram.com/animalixu/", img: ImgAnimalixu },
 
     { name: "Kitsu Kami", insta: "https://www.instagram.com/kitsu_kami/", img: ImgKitsuKami },
@@ -119,17 +121,21 @@ export default function Kuenstler() {
       insta: "https://www.instagram.com/just_design_creation/",
       img: ImgJustDesign,
     },
-    { name: "Jey.Creates", insta: "https://www.instagram.com/jey.creates/", img: null },
-    { name: "Fyly Draws", insta: "https://www.instagram.com/fyly_draws/", img: null },
-    { name: "Miss_Malevolent_", insta: "https://www.instagram.com/miss_malevolent_/", img: null },
+    { name: "Jey.Creates", insta: "https://www.instagram.com/jey.creates/", img: ImgJeyCreates },
+    { name: "Fyly Draws", insta: "https://www.instagram.com/fyly_draws/", img: ImgFylyDraws },
+    {
+      name: "Miss_Malevolent_",
+      insta: "https://www.instagram.com/miss_malevolent_/",
+      img: ImgMissMalevolent,
+    },
     {
       name: "Stars and Trinkets",
       insta: "https://www.instagram.com/starsandtrinketsshop/",
-      img: null,
+      img: ImgStarsAndTrinkets,
     },
-    { name: "Colortoglas", insta: "https://www.instagram.com/colortoglas/", img: null },
-    { name: "Sasei Art", insta: "https://www.instagram.com/sasei.art/", img: null },
-    { name: "Celezius", insta: "https://www.instagram.com/celezius/", img: null },
+    { name: "Colortoglas", insta: "https://www.instagram.com/colortoglas/", img: ImgColortoglas },
+    { name: "Sasei Art", insta: "https://www.instagram.com/sasei.art/", img: ImgSaseiArt },
+    { name: "Celezius", insta: "https://www.instagram.com/celezius/", img: ImgCelezius },
   ];
 
   const autoren = [
