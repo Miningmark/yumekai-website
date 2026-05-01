@@ -31,7 +31,7 @@ export default function Wettbewerbe() {
         <ContentCard
           title="Cosplay Performance Wettbewerb"
           subtitle="Samstag, 09. Mai | 14:00 Uhr"
-          imageSrc={HiruCosplay}
+          imageSrc={null}
           altText="Cosplay Performance"
           text={
             <>
@@ -58,7 +58,7 @@ export default function Wettbewerbe() {
         <ContentCard
           title="Karavision Song Contest"
           subtitle="Samstag, 09. Mai | 17:00 Uhr"
-          imageSrc={HiruWorkshop}
+          imageSrc={null}
           altText="Karavision"
           text={
             <>
@@ -81,7 +81,7 @@ export default function Wettbewerbe() {
         <ContentCard
           title="Zeichenwettbewerb"
           subtitle="Gesamtes Wochenende"
-          imageSrc={HiruKunstler}
+          imageSrc={null}
           altText="Zeichenwettbewerb"
           text={
             <p>
@@ -97,7 +97,7 @@ export default function Wettbewerbe() {
         <ContentCard
           title="One Piece Card Game Turnier"
           subtitle="Samstag, 09. Mai | 13:30 Uhr"
-          imageSrc={HiruSpielen}
+          imageSrc={null}
           altText="One Piece Turnier"
           text={
             <>
@@ -118,15 +118,15 @@ export default function Wettbewerbe() {
         <ContentCard
           title="YU-GI-OH! Turnier"
           subtitle="Sonntag, 10. Mai | 13:30 Uhr"
-          imageSrc={HiruSpielen}
+          imageSrc={null}
           altText="Yu-Gi-Oh Turnier"
           text={
             <>
               <p>
-                Es ist Zeit für ein D-D-D-Duell! An alle Duellanten auf der YumeKai. Turnieranmeldung
-                am Infostand auf der YumeKai. Gespielt wird nach den Regeln für Local-Turnier. Das
-                Deck für das Turnier muss den zum Zeitpunkt der YumeKai aktiven Banlisten
-                entsprechen. Jeder Teilnehmer bekommt 2 OTS Booster.
+                Es ist Zeit für ein D-D-D-Duell! An alle Duellanten auf der YumeKai.
+                Turnieranmeldung am Infostand auf der YumeKai. Gespielt wird nach den Regeln für
+                Local-Turnier. Das Deck für das Turnier muss den zum Zeitpunkt der YumeKai aktiven
+                Banlisten entsprechen. Jeder Teilnehmer bekommt 2 OTS Booster.
               </p>
               <p>
                 <strong>Anmeldung:</strong> Am Infostand auf der YumeKai
@@ -139,7 +139,7 @@ export default function Wettbewerbe() {
         <ContentCard
           title="Cosplay Crafting Wettbewerb"
           subtitle="Sonntag, 10. Mai | 14:30 Uhr"
-          imageSrc={HiruCosplay}
+          imageSrc={null}
           altText="Cosplay Crafting"
           text={
             <>
@@ -165,7 +165,7 @@ export default function Wettbewerbe() {
         <ContentCard
           title="Brettspiel- und Tabletopecke"
           subtitle="Samstag 9:30 – 19:00 Uhr | Sonntag 9:30 – 18:00 Uhr"
-          imageSrc={HiruSpielen}
+          imageSrc={null}
           altText="Brettspiele"
           text={
             <p>
