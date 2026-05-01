@@ -5,7 +5,6 @@ import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 
 //Images
-import HiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
 import XeniaBild from "/public/assets/images/yumekai2026/Xenia.jpg";
 import KermiBild from "/public/assets/images/yumekai2026/Kermi.jpg";
 import EraliasBild from "/public/assets/images/yumekai2026/Eralias.png";
@@ -39,10 +38,10 @@ export default function Cosplayer() {
               Heya! Ich bin Xenia und habe 2016 mit Cosplay angefangen. 2024 habe ich mir einen
               großen Traum erfüllt und Cosplay zu meinem Beruf gemacht. Ursprünglich komme ich aus
               Deutschland, bin aber Anfang 2026 in die Schweiz ausgewandert. Am meisten liebe ich
-              es, Rüstungen und Waffen zu craften – seit einiger Zeit habe ich jedoch auch das
-              Nähen für mich entdeckt. Besonders gerne setze ich Charaktere aus League of Legends
-              um. Daneben entstehen bei mir aber auch immer wieder Anime-Cosplays, wobei Fate
-              definitiv mein Lieblingsfandom ist.
+              es, Rüstungen und Waffen zu craften – seit einiger Zeit habe ich jedoch auch das Nähen
+              für mich entdeckt. Besonders gerne setze ich Charaktere aus League of Legends um.
+              Daneben entstehen bei mir aber auch immer wieder Anime-Cosplays, wobei Fate definitiv
+              mein Lieblingsfandom ist.
             </p>
           }
           instaLink="https://www.instagram.com/xenia.cos/"
@@ -96,9 +95,9 @@ export default function Cosplayer() {
             <p>
               Hey, ich bin Kermi! Ich cosplaye seit über 5 Jahren und habe meine Leidenschaft im
               Rüstungsbauen und Nähen gefunden. Für mich bedeutet Cosplay, der Kreativität freien
-              Lauf zu lassen und Charaktere zum Leben zu erwecken. Außerdem freue ich mich sehr,
-              auf der YumeKai einen Vortrag über das Thema &bdquo;Einstieg ins Cosplay
-              Crafting&rdquo; zu halten.
+              Lauf zu lassen und Charaktere zum Leben zu erwecken. Außerdem freue ich mich sehr, auf
+              der YumeKai einen Vortrag über das Thema &bdquo;Einstieg ins Cosplay Crafting&rdquo;
+              zu halten.
             </p>
           }
           instaLink="https://www.instagram.com/kermi.cos/"
@@ -116,8 +115,8 @@ export default function Cosplayer() {
               handwerklichen Bereich und beherrscht ein breites Spektrum an Fertigkeiten wie
               Lederverarbeitung, Schaumstoffbearbeitung, die Arbeit mit Thermoplasten, Nähen und
               vieles mehr. Eralia hat die Niederlande bei zahlreichen internationalen
-              Cosplay-Wettbewerben vertreten und ist auf einigen der weltweit größten
-              Cosplay-Bühnen aufgetreten.
+              Cosplay-Wettbewerben vertreten und ist auf einigen der weltweit größten Cosplay-Bühnen
+              aufgetreten.
             </p>
           }
           instaLink="https://www.instagram.com/eralia_iwahana/"
@@ -133,8 +132,8 @@ export default function Cosplayer() {
               Wir sind @harukyucosplay &amp; @serina.violetcosplay – seit knapp 8 Jahren
               leidenschaftliche Cosplayer mit fast 70 Cosplays im Repertoire. Während Harukyu
               Experte für Crafting, Content und Technik ist, ist Serina als gelernte Schneiderin
-              Expertin für Crafting, Nähen und teilt im Workshop &bdquo;Ars Metamorphosis&rdquo;
-              ihr Wissen über Perücken-Styling und Makeup. Ihr könnt uns auch an unserem Stand von
+              Expertin für Crafting, Nähen und teilt im Workshop &bdquo;Ars Metamorphosis&rdquo; ihr
+              Wissen über Perücken-Styling und Makeup. Ihr könnt uns auch an unserem Stand von
               @nekodanshi.de, unserer Cosplay Agentur &amp; Community Plattform finden.
             </p>
           }

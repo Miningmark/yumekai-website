@@ -8,7 +8,6 @@ import ContentCard from "@/components/elements/ContentCard";
 import HiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
 import HiruKunstler from "/public/assets/hirus/Hiru_Kunstler.png";
 import HiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
-import HiruSpielen from "/public/assets/hirus/Hiru_Spielen.png";
 import YunuyeiBild from "/public/assets/images/yumekai2026/Yunuyei.png";
 import NevadaBild from "/public/assets/images/yumekai2026/Nevada.png";
 import AkunyaahWorkshopBild from "/public/assets/images/yumekai2026/Akunyaah Workshop.png";

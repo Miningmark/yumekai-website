@@ -5,10 +5,9 @@ import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 
 //Images
-import HiruEssen from "/public/assets/hirus/Hiru_Essen.png";
 import BecherBistroImage from "/public/assets/images/yumekai2026/Becher Bistro.png";
 import BrauhausLeppleImage from "/public/assets/images/yumekai2026/Brauhaus Lepple.png";
-import MaidCafeDreamGardenImage from "/public/assets/images/yumekai2026/Dreamgarden.jpeg";
+import MaidCafeDreamGardenImage from "/public/assets/images/yumekai2026/Dreamgarden.jpg";
 
 const ContentContainer = styled.div`
   display: flex;
