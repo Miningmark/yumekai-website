@@ -122,9 +122,9 @@ export default function Haendler() {
         />
 
         <ContentCard
-          title="Jenny Grams – Tenity Designs"
+          title="Tenity Designs"
           imageSrc={JennyGramsBild}
-          altText="Jenny Grams / Tenity Designs"
+          altText="Tenity Designs"
           text={
             <p>
               Tenity_Design streamt als Vtuberin auf Twitch. Dort spielt sie nicht nur comfy Games,
