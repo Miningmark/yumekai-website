@@ -22,7 +22,8 @@ const SecondaryText = styled.span`
 
 const GENERAL_TICKET_DAYS = ["Sa", "So", "We", "Go", "Ha", "Ku", "Au"];
 
-const SURVEY_START = new Date("2026-05-11T00:00:00Z");
+//TODO: Datum ändern auf 11.05.2026
+const SURVEY_START = new Date("2026-04-11T00:00:00Z");
 const SURVEY_DEADLINE = new Date("2026-05-25T21:59:00Z"); // UTC = 23:59 CEST
 
 const nullToDefault = (val, fallback = 99) => val ?? fallback;
