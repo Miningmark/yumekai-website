@@ -55,11 +55,7 @@ export default function Haendler() {
           title="Euphony GmbH"
           imageSrc={EuphonyBild}
           altText="Euphony"
-          text={
-            <p>
-              Euer Händler für Anime-Figuren, Plüschtiere und Cosplay-Schaumstoffwaffen.
-            </p>
-          }
+          text={<p>Euer Händler für Anime-Figuren, Plüschtiere und Cosplay-Schaumstoffwaffen.</p>}
           maxWidth={500}
         />
 
@@ -84,9 +80,9 @@ export default function Haendler() {
           altText="Squiggz"
           text={
             <p>
-              Fans von Warhammer 40k oder Yu-Gi-Oh!, aufgepasst: Dies ist der perfekte Ort für
-              euch! Bei Squiggz, dem städtischen Laden für TCG und TTG, findet ihr alles, was das
-              Herz begehrt.
+              Fans von Warhammer 40k oder Yu-Gi-Oh!, aufgepasst: Dies ist der perfekte Ort für euch!
+              Bei Squiggz, dem städtischen Laden für TCG und TTG, findet ihr alles, was das Herz
+              begehrt.
             </p>
           }
           maxWidth={500}
@@ -114,17 +110,15 @@ export default function Haendler() {
           imageSrc={AkumuBild}
           altText="Akumu"
           text={
-            <p>
-              Hallo ich bin Akumu und bei mir findet ihr handgemachten Schmuck und vieles mehr.
-            </p>
+            <p>Hallo ich bin Akumu und bei mir findet ihr handgemachten Schmuck und vieles mehr.</p>
           }
           maxWidth={500}
         />
 
         <ContentCard
-          title="Jenny Grams – Tenity Designs"
+          title="Tenity Designs"
           imageSrc={JennyGramsBild}
-          altText="Jenny Grams / Tenity Designs"
+          altText="Tenity Designs"
           text={
             <p>
               Tenity_Design streamt als Vtuberin auf Twitch. Dort spielt sie nicht nur comfy Games,
@@ -188,8 +182,8 @@ export default function Haendler() {
           text={
             <p>
               Shiga Food freut sich, bei YumeKai dabei zu sein! Wir sind ein junges Unternehmen und
-              importieren originale Snacks, Süßwaren, Miso, Sojasauce, Grüntee und Matcha direkt
-              aus Japan. Unser Ziel ist es, echte japanische Produkte so erschwinglich wie möglich
+              importieren originale Snacks, Süßwaren, Miso, Sojasauce, Grüntee und Matcha direkt aus
+              Japan. Unser Ziel ist es, echte japanische Produkte so erschwinglich wie möglich
               anzubieten. Qualität und Herkunft stehen an erster Stelle – alles Made in Japan.
             </p>
           }
