@@ -29,6 +29,7 @@ import ImgCelezius from "/public/assets/images/yumekai2026/@celezius.png";
 import ImgMissMalevolent from "/public/assets/images/yumekai2026/@miss_malevolent_.png";
 import ImgStarsAndTrinkets from "/public/assets/images/yumekai2026/@starsandtrinketsshop.png";
 import ImgFylyDraws from "/public/assets/images/yumekai2026/@fyly_draws.jpg";
+import ImgTrashelsArt from "/public/assets/images/yumekai2026/@trashelsArt.png";
 
 import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.png";
 import ImgNaomiHuber from "/public/assets/images/yumekai2026/@naomihuber_.png";
@@ -136,6 +137,7 @@ export default function Kuenstler() {
     { name: "Colortoglas", insta: "https://www.instagram.com/colortoglas/", img: ImgColortoglas },
     { name: "Sasei Art", insta: "https://www.instagram.com/sasei.art/", img: ImgSaseiArt },
     { name: "Celezius", insta: "https://www.instagram.com/celezius/", img: ImgCelezius },
+    { name: "TrashelsArt", insta: "https://www.instagram.com/trashels_drawing", img: ImgTrashelsArt },
   ];
 
   const autoren = [
