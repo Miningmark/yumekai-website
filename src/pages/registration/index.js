@@ -251,7 +251,6 @@ export default function Voranmeldungen() {
       <Spacer id="closed" />
       <h2>Bereits Geschlossene Anmeldungen</h2>
 
-      <Spacer id="artcontest" />
 
       <div
         style={{
@@ -387,6 +386,8 @@ export default function Voranmeldungen() {
           </Infobox>
         </DynamicContent>
       </div>
+
+      <Spacer id="artist" />
 
       <div
         style={{
