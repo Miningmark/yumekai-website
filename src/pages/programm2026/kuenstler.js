@@ -5,8 +5,8 @@ import styled from "styled-components";
 import ReturnButton from "@/components/menu/ReturnButton";
 
 //Images
-import ImgAkunyaah from "/public/assets/images/yumekai2026/KÅnstler Akunyaah - KEIN INSTA.png";
-import ImgGlueblade from "/public/assets/images/yumekai2026/KÅnstler Glueblade - KEIN INSTA.png";
+import ImgAkunyaah from "/public/assets/images/yumekai2026/Akunyaah - KEIN INSTA.png";
+import ImgGlueblade from "/public/assets/images/yumekai2026/Glueblade - KEIN INSTA.png";
 import ImgJustDesign from "/public/assets/images/yumekai2026/@just_design_creation.png";
 import ImgAnaratwice from "/public/assets/images/yumekai2026/@anaratwice.png";
 import ImgYunuyei from "/public/assets/images/yumekai2026/@yunuyei.png";
