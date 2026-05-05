@@ -129,7 +129,7 @@ export default function Voranmeldungen() {
         </li>
       </ul>
 
-/*
+{/*
       <Spacer id="helfer" />
 
       <div
@@ -174,7 +174,7 @@ export default function Voranmeldungen() {
           </Infobox>
         </DynamicContent>
       </div>
-      */
+      */}
 
       
 
