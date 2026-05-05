@@ -6,6 +6,7 @@ import { useState } from "react";
 import ReturnButton from "@/components/menu/ReturnButton";
 import { Spacer, SpacerEmpty } from "@/components/styledComponents";
 import DataViewer from "@/components/DataViewer";
+import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
 
 //Images
 import lageplanKolbehausImage from "/public/assets/images/yumekai2025/Lageplan_Kolbe-VHS.png";
@@ -128,6 +129,17 @@ export default function Allgemein() {
             euch auch für die Workshops und Wettbewerbe anmelden.
           </p>
         </ListSection>
+        <ListSection>
+        <h3>Programmheft</h3>
+              <p>
+                Lust auf mehr Infos? Unser digitales Programmheft gibt&apos;s hier als PDF zum Mitnehmen.
+              </p>
+              <div style={{ margin: "20px 0" }}>
+                <StyledLinkAsButton href={"/downloads/YumeKai_2026_Programmheft.pdf"} target="_blank">
+                  Programmheft 2026
+                </StyledLinkAsButton>
+              </div>
+              </ListSection>
 
         <ListSection>
           <h3>Tickets und Einlass</h3>
