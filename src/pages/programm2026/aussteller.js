@@ -11,8 +11,8 @@ import CosplayUnionBild from "/public/assets/images/yumekai2026/Cosplay-Union-Ge
 import ConUtopischBild from "/public/assets/images/yumekai2026/ConUtopisch Events.png";
 import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V..png";
 import NuclearBastardsBild from "/public/assets/images/yumekai2026/Nuclear Bastards.png";
-import HanaSpringBild from "/public/assets/images/yumekai2026/Hana & Spring Verein.png";
-import HokushinBild from "/public/assets/images/yumekai2026/Hokushin Ittō-ryū Hyōhō.png";
+import HanaSpringBild from "/public/assets/images/yumekai2026/HanaSpringVerein.png";
+import HokushinBild from "/public/assets/images/yumekai2026/Hokushin.png";
 import CosplayAlpinBild from "/public/assets/images/yumekai2026/cosplay Alpin.png";
 import Regiment405thBild from "/public/assets/images/yumekai2026/405th European Regiment.png";
 import CoHeKiBild from "/public/assets/images/yumekai2026/CoHeKi e.V..png";
