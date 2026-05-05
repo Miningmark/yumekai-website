@@ -96,7 +96,7 @@ export default function Workshops() {
         />
 
         <ContentCard
-          title="Nevada: Waffen gegen den Art Block!"
+          title="Franci Nevada: Waffen gegen den Art Block!"
           subtitle="14:20 Uhr | Raum 1"
           imageSrc={NevadaBild}
           altText="Workshop Hiru"
