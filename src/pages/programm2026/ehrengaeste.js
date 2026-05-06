@@ -249,7 +249,7 @@ export default function Ehrengaeste() {
       <ContentContainer>
         <ContentCard
           title="Nicolle Gonsior &amp; Marie-Jeanne Widera"
-          subtitle="Sonntag Q&amp;A 12:05 Uhr"
+          subtitle="Sammstag &amp; Sonnatg am Synchronsprecherstand sowie Sonntag Q&amp;A 12:05 Uhr"
           imageSrc={NicolleGonsiorBild}
           altText="Synchronsprecher"
           text={
@@ -279,7 +279,7 @@ export default function Ehrengaeste() {
 
         <ContentCard
           title="PinkStarke"
-          subtitle="Sonntag Q&amp;A 12:05 Uhr"
+          subtitle="Sammstag &amp; Sonnatg am Synchronsprecherstand sowie Sonntag Q&amp;A 12:05 Uhr"
           imageSrc={MarieJeanneWideraBild}
           altText="PinkStarke"
           text={
