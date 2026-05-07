@@ -100,7 +100,7 @@ export default function Survey2026() {
         if (response.ok) {
           const data = await response.json();
           if (data) {
-            setAlreadyParticipated(data.alreadyUsed ?? null);
+            setAlreadyParticipated(data.message !== "Ticket gültig");
             const ticketDays = data.ticketCategories[0].split(",");
             const cleanedTicketDay = ticketDays.map((day) => day.trim());
             setTicketDay(Array.isArray(cleanedTicketDay) ? cleanedTicketDay : null);
