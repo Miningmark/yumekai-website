@@ -5,7 +5,6 @@ import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 
 //Images
-import HiruShowact from "/public/assets/hirus/Hiru_Showact.png";
 import HiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
 import HiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
 import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
@@ -17,6 +16,7 @@ import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.
 import Lucky13Bild from "/public/assets/images/yumekai2026/Lucky13.jpg";
 import NicolleGonsiorBild from "/public/assets/images/yumekai2026/Nicolle Gonsior.jpeg";
 import MarieJeanneWideraBild from "/public/assets/images/yumekai2026/Marie-Jeanne Widera.jpeg";
+import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.png";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ export default function Ehrengaeste() {
       <ContentContainer>
         <ContentCard
           title="Yuri Hirano"
-          subtitle="Samstag 13:15 Uhr &amp; Sonntag 15:30 Uhr"
+          subtitle="Samstag 13:15 Uhr &amp; Sonntag 16:00 Uhr"
           imageSrc={YuriHiranoBild}
           altText="Yuri Hirano"
           text={
@@ -58,7 +58,7 @@ export default function Ehrengaeste() {
 
         <ContentCard
           title="MION"
-          subtitle="Samstag 17:15 Uhr &amp; Sonntag 14:30 Uhr"
+          subtitle="Samstag 17:15 Uhr &amp; Sonntag 15:30 Uhr"
           imageSrc={MionBild}
           altText="MION"
           text={
@@ -181,8 +181,8 @@ export default function Ehrengaeste() {
 
         <ContentCard
           title="DJ Steve Heng"
-          subtitle="Cosplayball ab 21:30 Uhr"
-          imageSrc={HiruShowact}
+          subtitle="Cosplayball ab 21:15 Uhr"
+          imageSrc={DJSteveHengBild}
           altText="DJ Steve Heng"
           text={
             <p>

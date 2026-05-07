@@ -6,8 +6,8 @@ import ContentCard from "@/components/elements/ContentCard";
 
 //Images
 import HiruBall from "/public/assets/hirus/Hiru_Ball.png";
-import HiruShowact from "/public/assets/hirus/Hiru_Showact.png";
 import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.png";
+import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.png";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ export default function Cosplayball() {
               <p>
                 <strong>Beginn:</strong> Samstag, 19:00 Uhr
                 <br />
-                <strong>Disco ab:</strong> 21:30 Uhr
+                <strong>Disco ab:</strong> 21:15 Uhr
                 <br />
                 <strong>Ende:</strong> 23:30 Uhr
               </p>
@@ -75,11 +75,11 @@ export default function Cosplayball() {
 
         <ContentCard
           title="Disco mit DJ Steve Heng"
-          imageSrc={HiruBall}
-          altText="DJ Hiru"
+          imageSrc={DJSteveHengBild}
+          altText="DJ Steve Heng"
           text={
             <p>
-              Ab 21:30 Uhr verwandelt sich der Ball in eine stimmungsvolle Disco, bei der ihr zu
+              Ab 21:15 Uhr verwandelt sich der Ball in eine stimmungsvolle Disco, bei der ihr zu
               euren Lieblingsbeats ausgelassen tanzen könnt. Hier legt{" "}
               <strong>DJ Steve Heng</strong> (@breakouttv) die Musik auf. Der DJ und Content
               Creator aus München vereint Anime-Openings, kreative Mashups und Geek Electro Techno

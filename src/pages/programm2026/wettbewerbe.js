@@ -138,7 +138,7 @@ export default function Wettbewerbe() {
 
         <ContentCard
           title="Cosplay Crafting Wettbewerb"
-          subtitle="Sonntag, 10. Mai | 14:30 Uhr"
+          subtitle="Sonntag, 10. Mai | 14:50 Uhr"
           imageSrc={null}
           altText="Cosplay Crafting"
           text={

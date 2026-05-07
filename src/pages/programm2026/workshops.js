@@ -56,7 +56,7 @@ export default function Workshops() {
 
         <ContentCard
           title="Stellaria: Japanische Idol-Kultur – Cheering und Fanchants"
-          subtitle="12:05 Uhr | Raum 1"
+          subtitle="12:00 Uhr | Raum 1"
           imageSrc={StellariaBild}
           altText="Workshop Hiru"
           text={
@@ -173,7 +173,7 @@ export default function Workshops() {
 
         <ContentCard
           title="N.G.E. &amp; Xenia: Itashas"
-          subtitle="15:35 Uhr | Raum 1"
+          subtitle="15:50 Uhr | Raum 1"
           imageSrc={NGEItashaBild}
           altText="Workshop Hiru"
           text={
@@ -251,7 +251,7 @@ export default function Workshops() {
 
         <ContentCard
           title="Speedpainting!"
-          subtitle="13:40 Uhr &amp; 14:50 Uhr | Raum 2"
+          subtitle="13:35 Uhr &amp; 14:50 Uhr | Raum 2"
           imageSrc={HiruKunstler}
           altText="Workshop Hiru"
           text={
@@ -260,23 +260,6 @@ export default function Workshops() {
               wir. Vorerfahrung hilft, ist aber kein Muss. Die Figur darfst du am Ende natürlich
               behalten! Mit freundlicher Unterstützung der Heldenschmiede, Games Workshop und The
               Army Painter. Speedpainting Challenge – 1 Stunde für 1 Modell.
-            </p>
-          }
-          maxWidth={500}
-        />
-
-        <ContentCard
-          title="Cori.Rani: Origami auf der YumeKai!"
-          subtitle="14:10 Uhr | Raum 1"
-          imageSrc={HiruKunstler}
-          altText="Workshop Hiru"
-          text={
-            <p>
-              Habt ihr schon mal Origami gesehen und euch gefragt, wie diese komplexen Figuren aus
-              nur einem Papier gefaltet werden? Beim Workshop auf der YumeKai helfe ich euch, diese
-              Kunst etwas einfacher nachzuvollziehen. Ich mache seit über 3 Jahren liebend gerne
-              Origami und teile dieses Hobby sehr gerne. Neulinge sind mit Geduld und Sorgfalt
-              eingewiesen! Erfahrene Origamisten sind ebenso herzlich eingeladen.
             </p>
           }
           maxWidth={500}
@@ -303,7 +286,7 @@ export default function Workshops() {
 
         <ContentCard
           title="Eralia: The Basics of EVA Foam"
-          subtitle="16:15 Uhr | Raum 2"
+          subtitle="14:10 Uhr | Raum 1"
           imageSrc={EraliaWorkshopBild}
           altText="Workshop Hiru"
           text={
