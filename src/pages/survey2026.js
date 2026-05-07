@@ -110,10 +110,10 @@ export default function Survey2026() {
             setTicketDay(Array.isArray(cleanedTicketDay) ? cleanedTicketDay : null);
           }
         } else {
-          setLoadError("Ticket konnte nicht geprüft werden. Bitte versuche es später erneut.");
+          setLoadError("Dieses link ist nicht gültig oder wurde bereits verwendet.");
         }
       } catch {
-        setLoadError("Verbindungsfehler bei der Ticket-Prüfung. Bitte versuche es später erneut.");
+        setLoadError("Verbindungsfehler bei der Prüfung. Bitte versuche es später erneut.");
       }
     }
 
