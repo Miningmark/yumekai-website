@@ -47,7 +47,6 @@ export default function Survey2026() {
     kuSupport: null,
     auStandPlace: null,
     auSupport: null,
-
   });
 
   const [textFields, setTextFields] = useState({
@@ -82,9 +81,7 @@ export default function Survey2026() {
       if (query.ticket && query.ticket.length === 5) {
         setTicketId(query.ticket);
       } else {
-        setLoadError(
-          "Kein gültiger Link gefunden. Bitte verwende den Link aus deiner E-Mail.",
-        );
+        setLoadError("Kein gültiger Link gefunden. Bitte verwende den Link aus deiner E-Mail.");
       }
     }
   }, [router.isReady, router.query]);
@@ -94,7 +91,6 @@ export default function Survey2026() {
 
     async function checkTicket() {
       try {
-
         const response = await fetch("https://node.miningmark.de/api/v1/event/survey/validate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -105,7 +101,7 @@ export default function Survey2026() {
           const data = await response.json();
           if (data) {
             setAlreadyParticipated(data.alreadyUsed ?? null);
-            const ticketDays = data.ticketDay[0].split(",");
+            const ticketDays = data.ticketCategories[0].split(",");
             const cleanedTicketDay = ticketDays.map((day) => day.trim());
             setTicketDay(Array.isArray(cleanedTicketDay) ? cleanedTicketDay : null);
           }
