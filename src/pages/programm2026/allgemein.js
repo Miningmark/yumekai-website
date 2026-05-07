@@ -302,7 +302,7 @@ export default function Allgemein() {
               <li>Akumu</li>
               <li>Bavarian Woodfox</li>
               <li>Otaku Art</li>
-              <li>Jenny Grams</li>
+              <li>Tenity Designs</li>
               <li>Estaticanime</li>
             </ul>
           </InfoBox>

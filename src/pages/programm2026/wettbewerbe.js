@@ -57,7 +57,7 @@ export default function Wettbewerbe() {
 
         <ContentCard
           title="Karavision Song Contest"
-          subtitle="Samstag, 09. Mai | 17:00 Uhr"
+          subtitle="Samstag, 09. Mai | 16:00 Uhr"
           imageSrc={null}
           altText="Karavision"
           text={
@@ -138,7 +138,7 @@ export default function Wettbewerbe() {
 
         <ContentCard
           title="Cosplay Crafting Wettbewerb"
-          subtitle="Sonntag, 10. Mai | 14:30 Uhr"
+          subtitle="Sonntag, 10. Mai | 14:50 Uhr"
           imageSrc={null}
           altText="Cosplay Crafting"
           text={
