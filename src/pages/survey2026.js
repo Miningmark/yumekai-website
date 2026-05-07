@@ -79,11 +79,11 @@ export default function Survey2026() {
   useEffect(() => {
     if (router.isReady) {
       const { query } = router;
-      if (query.ticket) {
+      if (query.ticket && query.ticket.length === 5) {
         setTicketId(query.ticket);
       } else {
         setLoadError(
-          "Kein gültiger Ticket-Link gefunden. Bitte verwende den Link aus deiner E-Mail.",
+          "Kein gültiger Link gefunden. Bitte verwende den Link aus deiner E-Mail.",
         );
       }
     }
