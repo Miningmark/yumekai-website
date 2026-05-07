@@ -45,6 +45,9 @@ export default function Survey2026() {
     kuStandPlace: null,
     kuPrice: null,
     kuSupport: null,
+    auStandPlace: null,
+    auSupport: null,
+
   });
 
   const [textFields, setTextFields] = useState({
@@ -52,6 +55,7 @@ export default function Survey2026() {
     improvement: "",
     haImprovement: "",
     kuImprovement: "",
+    auImprovement: "",
   });
 
   const [surveyFinish, setSurveyFinish] = useState(false);
@@ -90,7 +94,8 @@ export default function Survey2026() {
 
     async function checkTicket() {
       try {
-        const response = await fetch("/api/survey/checkTicket", {
+
+        const response = await fetch("https://node.miningmark.de/api/v1/event/survey/validate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ticketId }),
@@ -127,29 +132,32 @@ export default function Survey2026() {
 
     const formData = {
       ticketId,
-      yumeKaiRating: nullToDefault(ratings.yumeKai),
-      stageProgramRating: nullToDefault(ratings.stageProgram),
-      priceRating: nullToDefault(ratings.price),
-      workshopRating: nullToDefault(ratings.workshop),
-      vendorRating: nullToDefault(ratings.vendor),
-      artistRating: nullToDefault(ratings.artist),
-      gameAreaRating: nullToDefault(ratings.gameArea),
-      cosplayBallRating: nullToDefault(ratings.cosplayBall),
-      goldRating: nullToDefault(ratings.gold),
-      haStandPlaceRating: nullToDefault(ratings.haStandPlace),
-      haPriceRating: nullToDefault(ratings.haPrice),
-      haSupportRating: nullToDefault(ratings.haSupport),
-      haImprovement: textFields.haImprovement,
-      kuStandPlaceRating: nullToDefault(ratings.kuStandPlace),
-      kuPriceRating: nullToDefault(ratings.kuPrice),
-      kuSupportRating: nullToDefault(ratings.kuSupport),
-      kuImprovement: textFields.kuImprovement,
+      conventionRating: ratings.yumeKai,
+      stageRating: ratings.stageProgram,
+      priceRating: ratings.price,
+      workshopRating: ratings.workshop,
+      vendorRating: ratings.vendor,
+      artistRating: ratings.artist,
+      gameAreaRating: ratings.gameArea,
+      cosplayBallRating: ratings.cosplayBall,
+      specialTicketRating: ratings.gold,
+      vendorLocationRating: ratings.haStandPlace,
+      vendorPriceRating: ratings.haPrice,
+      vendorSupportRating: ratings.haSupport,
+      vendorImprovement: textFields.haImprovement,
+      artistLocationRating: ratings.kuStandPlace,
+      artistPriceRating: ratings.kuPrice,
+      artistSupportRating: ratings.kuSupport,
+      artistImprovement: textFields.kuImprovement,
+      exhibitorLocationRating: ratings.auStandPlace,
+      exhibitorSupportRating: ratings.auSupport,
+      exhibitorImprovement: textFields.auImprovement,
       bestPart: textFields.bestPart,
-      improvement: textFields.improvement,
+      generalImprovement: textFields.improvement,
     };
 
     try {
-      const response = await fetch("/api/survey/surveyData", {
+      const response = await fetch("https://node.miningmark.de/api/v1/event/survey/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -381,6 +389,27 @@ export default function Survey2026() {
                 question={"Welche Verbesserungen würdest du dir als Künstler wünschen?"}
                 value={textFields.kuImprovement}
                 onChange={setTextField("kuImprovement")}
+              />
+            </>
+          )}
+
+          {ticketDay.includes("Au") && (
+            <>
+              <h2>Ausstellerstand</h2>
+              <QuestionSlider
+                question={"Wie zufrieden warst du mit der Lage deiner Standfläche als Aussteller?"}
+                value={ratings.auStandPlace}
+                onChange={setRating("auStandPlace")}
+              />
+              <QuestionSlider
+                question={"Wie gut war die Organisation und Betreuung für Aussteller?"}
+                value={ratings.auSupport}
+                onChange={setRating("auSupport")}
+              />
+              <QuestionTextField
+                question={"Welche Verbesserungen würdest du dir als Aussteller wünschen?"}
+                value={textFields.auImprovement}
+                onChange={setTextField("auImprovement")}
               />
             </>
           )}
