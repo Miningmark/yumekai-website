@@ -30,7 +30,7 @@ import ImgMissMalevolent from "/public/assets/images/yumekai2026/@miss_malevolen
 import ImgStarsAndTrinkets from "/public/assets/images/yumekai2026/@starsandtrinketsshop.png";
 import ImgFylyDraws from "/public/assets/images/yumekai2026/@fyly_draws.jpg";
 import ImgTrashelsArt from "/public/assets/images/yumekai2026/@trashelsArt.png";
-import ImgMikasMoonbrew from "/public/assets/images/yumekai2026/@mikas_moonbrew.png";
+import ImgMikasMoonbrew from "/public/assets/images/yumekai2026/@MikasMoonbrew.png";
 
 import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.png";
 import ImgNaomiHuber from "/public/assets/images/yumekai2026/@naomihuber_.png";
