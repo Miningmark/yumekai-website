@@ -211,6 +211,24 @@ export default function Workshops() {
       <h2 style={{ textAlign: "center", marginTop: "40px" }}>Sonntag</h2>
       <ContentContainer>
         <ContentCard
+          title="Die Ringe der Macht - Entstehung, Fähigkeiten und Verbleib"
+          subtitle="10:45 Uhr | Raum 2"
+          imageSrc={HiruWorkshop}
+          altText="Workshop Hiru"
+          text={
+            <p>
+              Du hast die &bdquo;Herr der Ringe&bdquo;-Filme und/oder &bdquo;Die Ringe der
+              Macht&bdquo;- Serie gesehen oder kennst die Ringe aus Tolkiens Büchern und möchtest
+              mehr zu zu ihrer Geschichte, Herstellung, Schicksal und Fähigkeiten erfahren? Dann
+              bist du hier genau richtig. Hier werden wir ausführlich auf all dies eingehen und die
+              verschiedenen Aspekte diskutieren. Der Fokus dieses Workshops werden Tolkiens Ideen
+              zum Thema sein, und es wird auch kurz die Darstellung der Ringe in den Filmen und der
+              Serie angesprochen.
+            </p>
+          }
+          maxWidth={500}
+        />
+        <ContentCard
           title="Stellaria: J-Pop und K-Pop Random Play Dance"
           subtitle="12:20 Uhr | Raum 2"
           imageSrc={StellariaBild}
