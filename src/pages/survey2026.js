@@ -20,7 +20,7 @@ const SecondaryText = styled.span`
   color: var(--secondary-color);
 `;
 
-const GENERAL_TICKET_DAYS = ["Sa", "So", "We", "Go", "Ha", "Ku", "Au", "Ba"];
+const GENERAL_TICKET_DAYS = ["Sa", "So", "We", "Go", "Ha", "Ku", "Au"];
 
 //TODO: Datum ändern auf 11.05.2026
 const SURVEY_START = new Date("2026-04-11T00:00:00Z");
