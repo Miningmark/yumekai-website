@@ -120,8 +120,15 @@ export default function Survey2026() {
     event.preventDefault();
     setFormError("");
 
+    /* 
     const isGeneralTicket = GENERAL_TICKET_DAYS.some((d) => ticketDay.includes(d));
     if (isGeneralTicket && ratings.yumeKai === null) {
+      setFormError("Bitte bewerte mindestens die YumeKai 2026 insgesamt.");
+      return;
+    }
+      */
+    const hasGeneralDays = ["Sa", "So", "We", "Go"].some((d) => ticketDay.includes(d));
+    if (hasGeneralDays && ratings.yumeKai === null) {
       setFormError("Bitte bewerte mindestens die YumeKai 2026 insgesamt.");
       return;
     }
@@ -309,17 +316,16 @@ export default function Survey2026() {
             </>
           )}
 
-          {ticketDay.includes("Ba") ||
-            (ticketDay.includes("Go") && (
-              <>
-                <h2>Cosplayball</h2>
-                <QuestionSlider
-                  question={"Wie hat dir der Cosplayball gefallen?"}
-                  value={ratings.cosplayBall}
-                  onChange={setRating("cosplayBall")}
-                />
-              </>
-            ))}
+          {(ticketDay.includes("Ba") || ticketDay.includes("Go")) && (
+            <>
+              <h2>Cosplayball</h2>
+              <QuestionSlider
+                question={"Wie hat dir der Cosplayball gefallen?"}
+                value={ratings.cosplayBall}
+                onChange={setRating("cosplayBall")}
+              />
+            </>
+          )}
 
           {ticketDay.includes("Go") && (
             <>
