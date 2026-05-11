@@ -20,7 +20,7 @@ const SecondaryText = styled.span`
   color: var(--secondary-color);
 `;
 
-const GENERAL_TICKET_DAYS = ["Sa", "So", "We", "Go", "Ha", "Ku", "Au"];
+const GENERAL_TICKET_DAYS = ["Sa", "So", "We", "Go", "Ha", "Ku", "Au", "Ba"];
 
 //TODO: Datum ändern auf 11.05.2026
 const SURVEY_START = new Date("2026-04-11T00:00:00Z");
@@ -106,7 +106,7 @@ export default function Survey2026() {
             setTicketDay(Array.isArray(cleanedTicketDay) ? cleanedTicketDay : null);
           }
         } else {
-          setLoadError("Dieses link ist nicht gültig oder wurde bereits verwendet.");
+          setLoadError("Dieser Link ist nicht gültig oder wurde bereits verwendet.");
         }
       } catch {
         setLoadError("Verbindungsfehler bei der Prüfung. Bitte versuche es später erneut.");
@@ -177,7 +177,7 @@ export default function Survey2026() {
           <PrimaryText>YumeKai</PrimaryText>
           <SecondaryText> Umfrage</SecondaryText>
         </h1>
-        <p>Die Umfrage startet am 11.05.2025.</p>
+        <p>Die Umfrage startet am 11.05.2026.</p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchPriority="high" />
       </>
     );
@@ -190,10 +190,8 @@ export default function Survey2026() {
           <PrimaryText>YumeKai</PrimaryText>
           <SecondaryText> Umfrage</SecondaryText>
         </h1>
-        <p>Die Umfrage lief nur bis zum 25.05.2025 23:59 Uhr.</p>
-        <p>
-          Danke an alle, die teilgenommen haben! Die Gewinner werden am 01.06.2025 bekannt gegeben.
-        </p>
+        <p>Die Umfrage lief nur bis zum 25.05.2026 23:59 Uhr.</p>
+        <p>Danke an alle, die teilgenommen haben!</p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchPriority="high" />
       </>
     );
@@ -236,10 +234,7 @@ export default function Survey2026() {
           <SecondaryText> Umfrage</SecondaryText>
         </h1>
         <p>Du hast bereits an der Umfrage teilgenommen. Vielen Dank für deine Unterstützung! 😀</p>
-        <p>
-          Die Umfrage läuft noch bis zum 25.05.2025, 23:59 Uhr. Die Gewinner benachrichtigen wir am
-          01.06.2025.
-        </p>
+        <p>Die Umfrage läuft noch bis zum 25.05.2026, 23:59 Uhr.</p>
         <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchPriority="high" />
       </>
     );
@@ -259,15 +254,14 @@ export default function Survey2026() {
           <p>
             Du warst bei uns auf der YumeKai und möchtest mithelfen, die YumeKai noch besser zu
             machen? <br />
-            Dann füll doch kurz unsere Umfrage aus! Die Umfrage läuft bis zum 25.05.2025, 23:59 Uhr.
-            Die Gewinner benachrichtigen wir am 01.06.2025.
+            Dann füll doch kurz unsere Umfrage aus! Die Umfrage läuft bis zum 25.05.2026, 23:59 Uhr.
           </p>
 
           {isGeneralTicket && (
             <>
               <h2>Allgemeine Fragen</h2>
               <QuestionSlider
-                question={"Wie gut hat dir die YumeKai 2025 gefallen?"}
+                question={"Wie gut hat dir die YumeKai 2026 gefallen?"}
                 value={ratings.yumeKai}
                 onChange={setRating("yumeKai")}
                 required
@@ -424,10 +418,7 @@ export default function Survey2026() {
             Vielen Dank für deine Teilnahme und Unterstützung bei der YumeKai, wir hoffen, dass wir
             dich auch bei unserer nächsten Veranstaltung begrüßen können! 😀
           </p>
-          <p>
-            Die Umfrage läuft noch bis zum 25.05.2026, 23:59 Uhr. Die Gewinner benachrichtigen wir
-            am 01.06.2026.
-          </p>
+          <p>Die Umfrage läuft noch bis zum 25.05.2026, 23:59 Uhr.</p>
           <Image alt={"Logo"} width={150} height={150} src={hiruHandy} fetchPriority="high" />
         </>
       )}
