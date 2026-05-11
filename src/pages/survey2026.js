@@ -153,7 +153,7 @@ export default function Survey2026() {
     };
 
     try {
-      const response = await fetch("https://node.miningmark.de/api/v1/event/survey/submit", {
+      const response = await fetch("https://orgaboard.yumekai.de/api/v1/event/survey/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
