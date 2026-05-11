@@ -309,16 +309,17 @@ export default function Survey2026() {
             </>
           )}
 
-          {ticketDay.includes("Ba") && (
-            <>
-              <h2>Cosplayball</h2>
-              <QuestionSlider
-                question={"Wie hat dir der Cosplayball gefallen?"}
-                value={ratings.cosplayBall}
-                onChange={setRating("cosplayBall")}
-              />
-            </>
-          )}
+          {ticketDay.includes("Ba") ||
+            (ticketDay.includes("Go") && (
+              <>
+                <h2>Cosplayball</h2>
+                <QuestionSlider
+                  question={"Wie hat dir der Cosplayball gefallen?"}
+                  value={ratings.cosplayBall}
+                  onChange={setRating("cosplayBall")}
+                />
+              </>
+            ))}
 
           {ticketDay.includes("Go") && (
             <>
