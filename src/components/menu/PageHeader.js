@@ -14,8 +14,7 @@ import YumeKaiLogo from "/public/assets/logo/yumekai_color_font.svg";
 
 const menuItems = [
   { name: "Startseite", path: "/" },
-  //{ name: "Programm", path: "/programm2025" },
-  /*
+  
   {
     name: "Projekte",
     //path: "/projects",
@@ -25,7 +24,7 @@ const menuItems = [
       { name: "YumeKai-Night", path: "/projects/yumekai-night" },
     ],
   },
-  */
+  
   {
     name: "Rückblicke",
     //path: "/review/yumekai-2024",
@@ -49,8 +48,10 @@ const menuItems = [
     { name: "Workshops", path: "/programm2026/workshops" },
   ],
   },
+  /*
   { name: "Anmeldungen", path: "/registration" },
   { name: "Ticketshop", path: "/shop" },
+   */
 ];
 
 const StyledHeader = styled.header`
