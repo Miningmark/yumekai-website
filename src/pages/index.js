@@ -20,11 +20,13 @@ export default function Home() {
       <SpacerEmpty />
 
       {/*UTC Time */}
+      {/* 
       <CounterClock
         finalDate="2026-05-09T08:00:00Z"
         headline="Wir freuen uns auf die YumeKai 2026!"
       />
       <SpacerEmpty />
+      */}
 
       <h1>Aktuelles</h1>
       <p>
