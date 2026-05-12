@@ -48,9 +48,10 @@ export default function Home() {
 
       {/* 
       <HelferPost />
+      <Spacer />
       */}
 
-      <Spacer />
+      
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
           <StyledButton>Archiv</StyledButton>
