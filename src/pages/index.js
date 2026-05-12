@@ -33,6 +33,8 @@ export default function Home() {
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
+      <HierKonntIhrUnsTreffen />
+      <Spacer />
       <CosplayWettbewerbePreise />
       <Spacer />
       <Oeffnungszeiten2026 />
@@ -43,9 +45,10 @@ export default function Home() {
       <Spacer />
       <YumeKaiZeichenwettbewerb26 />
       <Spacer />
-      <HierKonntIhrUnsTreffen />
-      <Spacer />
+
+      {/* 
       <HelferPost />
+      */}
 
       <Spacer />
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
