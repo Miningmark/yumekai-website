@@ -20,17 +20,21 @@ export default function Home() {
       <SpacerEmpty />
 
       {/*UTC Time */}
+      {/* 
       <CounterClock
         finalDate="2026-05-09T08:00:00Z"
         headline="Wir freuen uns auf die YumeKai 2026!"
       />
       <SpacerEmpty />
+      */}
 
       <h1>Aktuelles</h1>
       <p>
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
+      <HierKonntIhrUnsTreffen />
+      <Spacer />
       <CosplayWettbewerbePreise />
       <Spacer />
       <Oeffnungszeiten2026 />
@@ -41,11 +45,13 @@ export default function Home() {
       <Spacer />
       <YumeKaiZeichenwettbewerb26 />
       <Spacer />
-      <HierKonntIhrUnsTreffen />
-      <Spacer />
-      <HelferPost />
 
+      {/* 
+      <HelferPost />
       <Spacer />
+      */}
+
+      
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
           <StyledButton>Archiv</StyledButton>
