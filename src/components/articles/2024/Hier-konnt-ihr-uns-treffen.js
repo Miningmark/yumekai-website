@@ -22,6 +22,8 @@ export default function HierKonntIhrUnsTreffen() {
                   <ul>
                     <li>06.06 - 07.06 PopCon in Lindau</li>
                     <li>13.06 - 14.06 Wie.Mai.Kai in Flörsheim</li>
+                    <li>20.06 - 21.06 Gamers Heaven Tirol in Telfs</li>
+                    <li>04.07 - 05.07 Cosday² in Frankfurt</li>
                     <li>04.07 - 05.07 ConUtopisch in Seefeld in Tirol</li>
                     <li>18.09 - 20.09 Gamesvention in Kempten</li>
                   </ul>
