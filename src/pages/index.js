@@ -35,10 +35,12 @@ export default function Home() {
       </p>
       <HierKonntIhrUnsTreffen />
       <Spacer />
+      {/*
       <CosplayWettbewerbePreise />
       <Spacer />
       <Oeffnungszeiten2026 />
       <Spacer />
+      */}
       <StellariaPaletteOfDreams />
       <Spacer />
       <AnkundigungBall />
@@ -51,7 +53,6 @@ export default function Home() {
       <Spacer />
       */}
 
-      
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <UnstyledLink href={"/archiv"}>
           <StyledButton>Archiv</StyledButton>
