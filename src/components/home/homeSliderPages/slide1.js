@@ -125,6 +125,7 @@ export default function Slide1() {
               <Image
                 src={yumekoImage}
                 alt="Maskottchen Yumeko"
+                priority
                 style={{
                   width: "auto",
                   height: "100%",
