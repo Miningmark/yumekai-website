@@ -81,7 +81,7 @@ const LinkContent = styled.div`
   }
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled.div`
   width: 100%;
   height: 100%;
   transition: transform 0.3s ease-in-out;
@@ -184,12 +184,9 @@ export default function Programm2026() {
             <LinkContent>
               <h2>{item.title}</h2>
               <ImageWrapper>
-                <StyledImage
-                  src={item.image}
-                  alt={item.alt}
-                  $animate={hoveredIndex === index ? 1 : 0}
-                  priority
-                />
+                <StyledImage $animate={hoveredIndex === index ? 1 : 0}>
+                  <Image src={item.image} alt={item.alt} priority style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </StyledImage>
               </ImageWrapper>
             </LinkContent>
           </MenuLink>

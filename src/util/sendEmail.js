@@ -26,30 +26,22 @@ const connection = mysql.createPool({
   database: process.env.DB_DATABASE,
 });
 
+const transporter = nodemailer.createTransport({
+  host: "mail.yumekai.de",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.DEFAULT_EMAIL,
+    pass: process.env.DEFAULT_PASS,
+  },
+});
+
 export async function sendMail(mail, mailOptions) {
   const { from = "info@yumekai.de", to, subject, text } = mail;
 
   if (!from || !to || !subject || !text) {
     return { message: "Alle Felder müssen ausgefüllt sein", status: 400 };
   }
-  let emailPassword = "";
-  switch (from) {
-    case "info@yumekai.de":
-      emailPassword = process.env.EMAIL_PASS_INFO;
-      break;
-    default:
-      break;
-  }
-
-  const transporter = nodemailer.createTransport({
-    host: "mail.yumekai.de",
-    port: 587, // oder 465 für SSL
-    secure: false, // true für 465, false für andere Ports
-    auth: {
-      user: process.env.DEFAULT_EMAIL,
-      pass: process.env.DEFAULT_PASS,
-    },
-  });
 
   try {
     await transporter.sendMail(mailOptions);

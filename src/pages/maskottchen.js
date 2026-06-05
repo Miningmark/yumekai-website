@@ -42,7 +42,7 @@ const floatAnimation = keyframes`
   }
 `;
 
-const StyledYumekoImage = styled(Image)`
+const AnimatedImageWrapper = styled.div`
   animation: ${floatAnimation} 5s ease-in-out infinite;
 `;
 
@@ -94,14 +94,16 @@ export default function Maskottchen() {
         right={
           <MaskottchenWrapper>
             <MaskottchenContainer>
-              <StyledYumekoImage
-                src={yumekoImage}
-                alt="Maskottchen Yumeko"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                }}
-              />
+              <AnimatedImageWrapper>
+                <Image
+                  src={yumekoImage}
+                  alt="Maskottchen Yumeko"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                />
+              </AnimatedImageWrapper>
             </MaskottchenContainer>
           </MaskottchenWrapper>
         }
@@ -112,14 +114,16 @@ export default function Maskottchen() {
         left={
           <MaskottchenWrapper>
             <MaskottchenContainer>
-              <StyledYumekoImage
-                src={hiru}
-                alt="Maskottchen Yumeko"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                }}
-              />
+              <AnimatedImageWrapper>
+                <Image
+                  src={hiru}
+                  alt="Maskottchen Hiru"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                />
+              </AnimatedImageWrapper>
             </MaskottchenContainer>
           </MaskottchenWrapper>
         }

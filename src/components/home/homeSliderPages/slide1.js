@@ -58,7 +58,7 @@ const floatAnimation = keyframes`
   }
 `;
 
-const MovingImage = styled(Image)`
+const MovingImage = styled.div`
   animation: ${floatAnimation} 6s ease-in-out infinite;
   position: absolute;
   left: calc(50% - 120px);
@@ -131,14 +131,16 @@ export default function Slide1() {
                 }}
               />
             </div>
-            <MovingImage
-              src={speechBubble}
-              alt="Speech Bubble"
-              style={{
-                width: "auto",
-                height: "50px",
-              }}
-            />
+            <MovingImage>
+              <Image
+                src={speechBubble}
+                alt="Speech Bubble"
+                style={{
+                  width: "auto",
+                  height: "50px",
+                }}
+              />
+            </MovingImage>
             <StyledBox $bgcolor="white" $textcolor="var(--tertiary-color)" $bottomvalue="10">
               {`"Lebe deinen Traum"`}
             </StyledBox>

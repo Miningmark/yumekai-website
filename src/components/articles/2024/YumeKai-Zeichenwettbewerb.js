@@ -26,7 +26,7 @@ const floatAnimation = keyframes`
   }
 `;
 
-const StyledYumekoImage = styled(Image)`
+const StyledYumekoImage = styled.div`
   animation: ${floatAnimation} 5s ease-in-out infinite;
 `;
 
@@ -54,14 +54,9 @@ export default function YumeKaiZeichenwettbewerb() {
             </p>
             <div style={{ justifyContent: "center" }} className="responsive-container">
               <div style={{ width: "60%", height: "auto" }}>
-                <StyledYumekoImage
-                  src={yumekoImage}
-                  alt="Maskottchen Yumeko"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                  }}
-                />
+                <StyledYumekoImage>
+                  <Image src={yumekoImage} alt="Maskottchen Yumeko" style={{ width: "100%", height: "auto" }} />
+                </StyledYumekoImage>
               </div>
             </div>
           </>
