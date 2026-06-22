@@ -20,9 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier könnt ihr uns treffen:</h3>
                   <ul>
-                    <li>06.06 - 07.06 PopCon in Lindau</li>
-                    <li>13.06 - 14.06 Wie.Mai.Kai in Flörsheim</li>
-                    <li>20.06 - 21.06 Gamers Heaven Tirol in Telfs</li>
                     <li>04.07 - 05.07 Cosday² in Frankfurt</li>
                     <li>04.07 - 05.07 ConUtopisch in Seefeld in Tirol</li>
                     <li>18.09 - 20.09 Gamesvention in Kempten</li>
@@ -33,9 +30,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h3>Hier waren wir:</h3>
                   <ul>
-                    <li>NonkiCon in Speyer</li>
-                    <li>WieMaiKai in Flörsheim</li>
-                    <li>Loricon in Seefeld</li>
                     <li>Cosday² in Frankfurt</li>
                     <li>Techniktreffen in Speyer</li>
                     <li>Cosplay & Game in Bludenz</li>
@@ -47,6 +41,9 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Mishiro in Augsburg</li>
                     <li>NonkiCon in Speyer</li>
                     <li>Hana & Spring in Königsbrunn</li>
+                    <li>PopCon in Lindau</li>
+                    <li>Wie.Mai.Kai in Flörsheim</li>
+                    <li>Gamers Heaven Tirol in Telfs</li>
                   </ul>
                 </>
               }
