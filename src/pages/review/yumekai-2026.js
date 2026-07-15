@@ -106,85 +106,32 @@ import BecherBistroBild from "/public/assets/images/yumekai2026/Becher Bistro.pn
 import BrauhausLeppleBild from "/public/assets/images/yumekai2026/Brauhaus Lepple.png";
 import DreamgardenBild from "/public/assets/images/yumekai2026/Dreamgarden.jpg";
 
-// Images – Rückblick Catwalk (Auswahl)
-import rb1Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (1 of 88).jpg";
-import rb4Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (4 of 88).jpg";
-import rb7Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (7 of 88).jpg";
-import rb10Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (10 of 88).jpg";
-import rb13Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (13 of 88).jpg";
-import rb16Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (16 of 88).jpg";
-import rb19Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (19 of 88).jpg";
-import rb22Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (22 of 88).jpg";
-import rb25Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (25 of 88).jpg";
-import rb28Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (28 of 88).jpg";
-import rb31Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (31 of 88).jpg";
-import rb34Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (34 of 88).jpg";
-import rb37Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (37 of 88).jpg";
-import rb40Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (40 of 88).jpg";
-import rb43Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (43 of 88).jpg";
-import rb46Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (46 of 88).jpg";
-import rb49Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (49 of 88).jpg";
-import rb52Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (52 of 88).jpg";
-import rb55Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (55 of 88).jpg";
-import rb58Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (58 of 88).jpg";
-import rb61Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (61 of 88).jpg";
-import rb64Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (64 of 88).jpg";
-import rb67Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (67 of 88).jpg";
-import rb70Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (70 of 88).jpg";
-import rb73Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (73 of 88).jpg";
-import rb76Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (76 of 88).jpg";
-import rb79Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (79 of 88).jpg";
-import rb82Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_1 (82 of 88).jpg";
-import rb2_1Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_2 (1 of 30).jpg";
-import rb2_6Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_2 (6 of 30).jpg";
-import rb2_11Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_2 (11 of 30).jpg";
-import rb2_16Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_2 (16 of 30).jpg";
-import rb2_21Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_2 (21 of 30).jpg";
-import rb2_26Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_2 (26 of 30).jpg";
-import rb2_30Image from "/public/assets/images/yumekai2026/Rueckblick/yumekai_2 (30 of 30).jpg";
+// Images – Performance Teilnehmer
+import performance1 from "/public/assets/images/yumekai2026/cosplayperformance_1.jpg";
+import performance2 from "/public/assets/images/yumekai2026/cosplayperformance_2.jpg";
+import performance3 from "/public/assets/images/yumekai2026/cosplayperformance_3.jpg";
+import performance4 from "/public/assets/images/yumekai2026/cosplayperformance_4.jpg";
+import performance5 from "/public/assets/images/yumekai2026/cosplayperformance_5.jpg";
+import performance6 from "/public/assets/images/yumekai2026/cosplayperformance_6.jpg";
+import performance7 from "/public/assets/images/yumekai2026/cosplayperformance_7.jpg";
+import performance8 from "/public/assets/images/yumekai2026/cosplayperformance_8.jpg";
+import performance9 from "/public/assets/images/yumekai2026/cosplayperformance_9.jpg";
 
-// TODO: Zeichenwettbewerb-Bilder aus der Anmeldung einfügen sobald verfügbar:
-// import queerBunnyImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/QueerBunny.jpg";
-// import leloImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/Lelo.jpg";
-// import evelusikImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/Evelusik.jpg";
-// import lauraskketchesImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/lauraskketches.jpg";
+import queerBunnyImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/QueerBunny.png";
+import leloImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/Lelo.png";
+import evelusikImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/Evelusik.png";
+import lauraskketchesImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/lauraskketches.png";
 
-const catwalkImages = [
-  { image: rb1Image, alt: "Rückblick Bild 1", link: "" },
-  { image: rb4Image, alt: "Rückblick Bild 4", link: "" },
-  { image: rb7Image, alt: "Rückblick Bild 7", link: "" },
-  { image: rb10Image, alt: "Rückblick Bild 10", link: "" },
-  { image: rb13Image, alt: "Rückblick Bild 13", link: "" },
-  { image: rb16Image, alt: "Rückblick Bild 16", link: "" },
-  { image: rb19Image, alt: "Rückblick Bild 19", link: "" },
-  { image: rb22Image, alt: "Rückblick Bild 22", link: "" },
-  { image: rb25Image, alt: "Rückblick Bild 25", link: "" },
-  { image: rb28Image, alt: "Rückblick Bild 28", link: "" },
-  { image: rb31Image, alt: "Rückblick Bild 31", link: "" },
-  { image: rb34Image, alt: "Rückblick Bild 34", link: "" },
-  { image: rb37Image, alt: "Rückblick Bild 37", link: "" },
-  { image: rb40Image, alt: "Rückblick Bild 40", link: "" },
-  { image: rb43Image, alt: "Rückblick Bild 43", link: "" },
-  { image: rb46Image, alt: "Rückblick Bild 46", link: "" },
-  { image: rb49Image, alt: "Rückblick Bild 49", link: "" },
-  { image: rb52Image, alt: "Rückblick Bild 52", link: "" },
-  { image: rb55Image, alt: "Rückblick Bild 55", link: "" },
-  { image: rb58Image, alt: "Rückblick Bild 58", link: "" },
-  { image: rb61Image, alt: "Rückblick Bild 61", link: "" },
-  { image: rb64Image, alt: "Rückblick Bild 64", link: "" },
-  { image: rb67Image, alt: "Rückblick Bild 67", link: "" },
-  { image: rb70Image, alt: "Rückblick Bild 70", link: "" },
-  { image: rb73Image, alt: "Rückblick Bild 73", link: "" },
-  { image: rb76Image, alt: "Rückblick Bild 76", link: "" },
-  { image: rb79Image, alt: "Rückblick Bild 79", link: "" },
-  { image: rb82Image, alt: "Rückblick Bild 82", link: "" },
-  { image: rb2_1Image, alt: "Rückblick Tag 2 Bild 1", link: "" },
-  { image: rb2_6Image, alt: "Rückblick Tag 2 Bild 6", link: "" },
-  { image: rb2_11Image, alt: "Rückblick Tag 2 Bild 11", link: "" },
-  { image: rb2_16Image, alt: "Rückblick Tag 2 Bild 16", link: "" },
-  { image: rb2_21Image, alt: "Rückblick Tag 2 Bild 21", link: "" },
-  { image: rb2_26Image, alt: "Rückblick Tag 2 Bild 26", link: "" },
-  { image: rb2_30Image, alt: "Rückblick Tag 2 Bild 30", link: "" },
+const performanceImages = [
+  { image: performance1, alt: "Performance 1", link: "" },
+  { image: performance2, alt: "Performance 2", link: "" },
+  { image: performance3, alt: "Performance 3", link: "" },
+  { image: performance4, alt: "Performance 4", link: "" },
+  { image: performance5, alt: "Performance 5", link: "" },
+  { image: performance6, alt: "Performance 6", link: "" },
+  { image: performance7, alt: "Performance 7", link: "" },
+  { image: performance8, alt: "Performance 8", link: "" },
+  { image: performance9, alt: "Performance 9", link: "" },
 ];
 
 const ContentWrapper = styled.div`
@@ -304,7 +251,6 @@ export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
   );
 }
 
-
 export default function YumeKai2026() {
   return (
     <>
@@ -353,7 +299,13 @@ export default function YumeKai2026() {
       <Spacer id="showacts" />
       <h2>Showacts &amp; Ehrengäste</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -376,11 +328,7 @@ export default function YumeKai2026() {
           alt="Stellaria"
           link="https://www.instagram.com/stellaria.idols/"
         />
-        <ContentContainer
-          src={LyriaBild}
-          alt="Lyria"
-          link="https://www.instagram.com/lyriavt/"
-        />
+        <ContentContainer src={LyriaBild} alt="Lyria" link="https://www.instagram.com/lyriavt/" />
         <ContentContainer
           src={CelloticDuetsBild}
           alt="Cellotic Duets"
@@ -399,14 +347,16 @@ export default function YumeKai2026() {
       <Spacer id="cosplayer" />
       <h2>Cosplayer</h2>
       <p>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <ContentWrapper>
-        <ContentContainer
-          src={XeniaBild}
-          alt="Xenia"
-          link="https://www.instagram.com/xenia.cos/"
-        />
+        <ContentContainer src={XeniaBild} alt="Xenia" link="https://www.instagram.com/xenia.cos/" />
         <ContentContainer
           src={WolfusBild}
           alt="Wolfus"
@@ -417,11 +367,7 @@ export default function YumeKai2026() {
           alt="Scarlett Sirene"
           link="https://www.instagram.com/scarlett.sirene/"
         />
-        <ContentContainer
-          src={KermiBild}
-          alt="Kermi"
-          link="https://www.instagram.com/kermi.cos/"
-        />
+        <ContentContainer src={KermiBild} alt="Kermi" link="https://www.instagram.com/kermi.cos/" />
         <ContentContainer
           src={EraliasBild}
           alt="Eralia"
@@ -465,7 +411,13 @@ export default function YumeKai2026() {
       <Spacer id="haendler" />
       <h2>Händler</h2>
       <p>
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <ContentWrapper>
         <ContentContainer src={ColorfulMindBild} alt="Colorful Mind Tattoo-Atelier" />
@@ -484,57 +436,211 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
       <Spacer id="kuenstleratelier" />
       <h2>Künstleratelier</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <ContentWrapper>
-        <ContentContainer src={ImgMinervasOwls} alt="MinervasOwls" link="https://www.instagram.com/minervasowls/" />
-        <ContentContainer src={ImgYunuyei} alt="Yunuyei" link="https://www.instagram.com/yunuyei/" />
-        <ContentContainer src={ImgSteamSpirits} alt="SteamSpirits" link="https://www.instagram.com/steamspirits/" />
-        <ContentContainer src={ImgYeikoArt} alt="Yeiko Art" link="https://www.instagram.com/yeiko_art/" />
-        <ContentContainer src={ImgEmytsuu} alt="Emytsuu" link="https://www.instagram.com/emytsuu/" />
-        <ContentContainer src={ImgAliceMySecret} alt="Alice my Secret" link="https://www.instagram.com/alicemysecret/" />
-        <ContentContainer src={ImgMyuchiisu} alt="Myuchiisu" link="https://www.instagram.com/myuchiisu/" />
-        <ContentContainer src={ImgArtOfTheValley} alt="Art of the Valley" link="https://www.instagram.com/art.of.the.valley/" />
-        <ContentContainer src={ImgKirianYume} alt="Kirian Yume" link="https://www.instagram.com/kirianyume/" />
-        <ContentContainer src={ImgAnimalixu} alt="Animalixu" link="https://www.instagram.com/animalixu/" />
-        <ContentContainer src={ImgKitsuKami} alt="Kitsu Kami" link="https://www.instagram.com/kitsu_kami/" />
-        <ContentContainer src={ImgAnaratwice} alt="Anaratwice" link="https://www.instagram.com/anaratwice/" />
-        <ContentContainer src={ImgGlueblade} alt="Glueblade" link="https://www.instagram.com/glueblade/" />
-        <ContentContainer src={ImgNevadaArtShop} alt="Nevada Art Shop" link="https://www.instagram.com/nevada.art.shop/" />
-        <ContentContainer src={ImgAkunyaah} alt="Akunyaah" link="https://www.instagram.com/akunyaah/" />
-        <ContentContainer src={ImgChristalShadow} alt="Christal Shadow" link="https://www.instagram.com/christal.shad0w0/" />
-        <ContentContainer src={ImgJustDesign} alt="Just Design Creation" link="https://www.instagram.com/just_design_creation/" />
-        <ContentContainer src={ImgJeyCreates} alt="Jey.Creates" link="https://www.instagram.com/jey.creates/" />
-        <ContentContainer src={ImgFylyDraws} alt="Fyly Draws" link="https://www.instagram.com/fyly_draws/" />
-        <ContentContainer src={ImgMissMalevolent} alt="Miss_Malevolent_" link="https://www.instagram.com/miss_malevolent_/" />
-        <ContentContainer src={ImgStarsAndTrinkets} alt="Stars and Trinkets" link="https://www.instagram.com/starsandtrinketsshop/" />
-        <ContentContainer src={ImgColortoglas} alt="Colortoglas" link="https://www.instagram.com/colortoglas/" />
-        <ContentContainer src={ImgSaseiArt} alt="Sasei Art" link="https://www.instagram.com/sasei.art/" />
-        <ContentContainer src={ImgCelezius} alt="Celezius" link="https://www.instagram.com/celezius/" />
-        <ContentContainer src={ImgTrashelsArt} alt="TrashelsArt" link="https://www.instagram.com/trashels_drawing/" />
-        <ContentContainer src={ImgMikasMoonbrew} alt="Mikas Moonbrew" link="https://www.instagram.com/mikasmoonbrew/" />
-        <ContentContainer src={ImgKeebokun} alt="Keebokun" link="https://www.instagram.com/keebokun/" />
-        <ContentContainer src={ImgBiggugusu} alt="Biggugusu" link="https://www.instagram.com/biggugusu/" />
-        <ContentContainer src={ImgPingunerddarts} alt="Pingunerddarts" link="https://www.instagram.com/pingunerddarts/" />
-        <ContentContainer src={ImgTeiSyokumoku} alt="Tei Syokumoku" link="https://www.instagram.com/tei_syokumoku/" />
-        <ContentContainer src={ImgYupiistar} alt="Yupiistar" link="https://www.instagram.com/yupiistar/" />
+        <ContentContainer
+          src={ImgMinervasOwls}
+          alt="MinervasOwls"
+          link="https://www.instagram.com/minervasowls/"
+        />
+        <ContentContainer
+          src={ImgYunuyei}
+          alt="Yunuyei"
+          link="https://www.instagram.com/yunuyei/"
+        />
+        <ContentContainer
+          src={ImgSteamSpirits}
+          alt="SteamSpirits"
+          link="https://www.instagram.com/steamspirits/"
+        />
+        <ContentContainer
+          src={ImgYeikoArt}
+          alt="Yeiko Art"
+          link="https://www.instagram.com/yeiko_art/"
+        />
+        <ContentContainer
+          src={ImgEmytsuu}
+          alt="Emytsuu"
+          link="https://www.instagram.com/emytsuu/"
+        />
+        <ContentContainer
+          src={ImgAliceMySecret}
+          alt="Alice my Secret"
+          link="https://www.instagram.com/alicemysecret/"
+        />
+        <ContentContainer
+          src={ImgMyuchiisu}
+          alt="Myuchiisu"
+          link="https://www.instagram.com/myuchiisu/"
+        />
+        <ContentContainer
+          src={ImgArtOfTheValley}
+          alt="Art of the Valley"
+          link="https://www.instagram.com/art.of.the.valley/"
+        />
+        <ContentContainer
+          src={ImgKirianYume}
+          alt="Kirian Yume"
+          link="https://www.instagram.com/kirianyume/"
+        />
+        <ContentContainer
+          src={ImgAnimalixu}
+          alt="Animalixu"
+          link="https://www.instagram.com/animalixu/"
+        />
+        <ContentContainer
+          src={ImgKitsuKami}
+          alt="Kitsu Kami"
+          link="https://www.instagram.com/kitsu_kami/"
+        />
+        <ContentContainer
+          src={ImgAnaratwice}
+          alt="Anaratwice"
+          link="https://www.instagram.com/anaratwice/"
+        />
+        <ContentContainer
+          src={ImgGlueblade}
+          alt="Glueblade"
+          link="https://www.instagram.com/glueblade/"
+        />
+        <ContentContainer
+          src={ImgNevadaArtShop}
+          alt="Nevada Art Shop"
+          link="https://www.instagram.com/nevada.art.shop/"
+        />
+        <ContentContainer
+          src={ImgAkunyaah}
+          alt="Akunyaah"
+          link="https://www.instagram.com/akunyaah/"
+        />
+        <ContentContainer
+          src={ImgChristalShadow}
+          alt="Christal Shadow"
+          link="https://www.instagram.com/christal.shad0w0/"
+        />
+        <ContentContainer
+          src={ImgJustDesign}
+          alt="Just Design Creation"
+          link="https://www.instagram.com/just_design_creation/"
+        />
+        <ContentContainer
+          src={ImgJeyCreates}
+          alt="Jey.Creates"
+          link="https://www.instagram.com/jey.creates/"
+        />
+        <ContentContainer
+          src={ImgFylyDraws}
+          alt="Fyly Draws"
+          link="https://www.instagram.com/fyly_draws/"
+        />
+        <ContentContainer
+          src={ImgMissMalevolent}
+          alt="Miss_Malevolent_"
+          link="https://www.instagram.com/miss_malevolent_/"
+        />
+        <ContentContainer
+          src={ImgStarsAndTrinkets}
+          alt="Stars and Trinkets"
+          link="https://www.instagram.com/starsandtrinketsshop/"
+        />
+        <ContentContainer
+          src={ImgColortoglas}
+          alt="Colortoglas"
+          link="https://www.instagram.com/colortoglas/"
+        />
+        <ContentContainer
+          src={ImgSaseiArt}
+          alt="Sasei Art"
+          link="https://www.instagram.com/sasei.art/"
+        />
+        <ContentContainer
+          src={ImgCelezius}
+          alt="Celezius"
+          link="https://www.instagram.com/celezius/"
+        />
+        <ContentContainer
+          src={ImgTrashelsArt}
+          alt="TrashelsArt"
+          link="https://www.instagram.com/trashels_drawing/"
+        />
+        <ContentContainer
+          src={ImgMikasMoonbrew}
+          alt="Mikas Moonbrew"
+          link="https://www.instagram.com/mikasmoonbrew/"
+        />
+        <ContentContainer
+          src={ImgKeebokun}
+          alt="Keebokun"
+          link="https://www.instagram.com/keebokun/"
+        />
+        <ContentContainer
+          src={ImgBiggugusu}
+          alt="Biggugusu"
+          link="https://www.instagram.com/biggugusu/"
+        />
+        <ContentContainer
+          src={ImgPingunerddarts}
+          alt="Pingunerddarts"
+          link="https://www.instagram.com/pingunerddarts/"
+        />
+        <ContentContainer
+          src={ImgTeiSyokumoku}
+          alt="Tei Syokumoku"
+          link="https://www.instagram.com/tei_syokumoku/"
+        />
+        <ContentContainer
+          src={ImgYupiistar}
+          alt="Yupiistar"
+          link="https://www.instagram.com/yupiistar/"
+        />
       </ContentWrapper>
 
       <Spacer id="autoren" />
       <h2>Autoren</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <ContentWrapper>
-        <ContentContainer src={ImgUlfFildebrandt} alt="Ulf Fildebrandt" link="https://www.instagram.com/ulffildebrandt/" />
-        <ContentContainer src={ImgNaomiHuber} alt="Naomi Huber – Ashturia" link="https://www.instagram.com/naomihuber_/" />
-        <ContentContainer src={ImgDelphoxsart} alt="DelphoxDX" link="https://www.instagram.com/delphoxdx/" />
+        <ContentContainer
+          src={ImgUlfFildebrandt}
+          alt="Ulf Fildebrandt"
+          link="https://www.instagram.com/ulffildebrandt/"
+        />
+        <ContentContainer
+          src={ImgNaomiHuber}
+          alt="Naomi Huber – Ashturia"
+          link="https://www.instagram.com/naomihuber_/"
+        />
+        <ContentContainer
+          src={ImgDelphoxsart}
+          alt="DelphoxDX"
+          link="https://www.instagram.com/delphoxdx/"
+        />
       </ContentWrapper>
 
       <Spacer id="workshops" />
       <h2>Workshops</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -575,7 +681,13 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
       <Spacer id="essen" />
       <h2>Essen</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <ContentWrapper>
         <ContentContainer src={BecherBistroBild} alt="Becher Bistro" />
@@ -587,8 +699,15 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
       <h2>Cosplay Wettbewerbe</h2>
       <h3>Performance:</h3>
       <p>
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         <br />
+        <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
         <br />
         1. Platz:{" "}
         <StyledLink
@@ -647,13 +766,19 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
       <Spacer id="zeichenwettbewerb" />
       <h2>Zeichen Wettbewerb</h2>
       <p>
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
       <Columns2
         left={
           <>
             <p style={{ textAlign: "center", marginBottom: 0 }}>Kreativität</p>
-            {/* TODO: queerBunnyImage einfügen */}
+            <ContentContainer src={queerBunnyImage} alt="QueerBunny" />
             <p style={{ textAlign: "center", marginTop: 0 }}>
               von: <strong>QueerBunny</strong>
             </p>
@@ -662,7 +787,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         right={
           <>
             <p style={{ textAlign: "center", marginBottom: 0 }}>Qualität</p>
-            {/* TODO: leloImage einfügen */}
+            <ContentContainer src={leloImage} alt="Lelo" />
             <p style={{ textAlign: "center", marginTop: 0 }}>
               von: <strong>Lelo</strong>
             </p>
@@ -673,7 +798,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         left={
           <>
             <p style={{ textAlign: "center", marginBottom: 0 }}>Technik</p>
-            {/* TODO: evelusikImage einfügen */}
+            <ContentContainer src={evelusikImage} alt="Evelusik" />
             <p style={{ textAlign: "center", marginTop: 0 }}>
               von: <strong>Evelusik</strong>
             </p>
@@ -682,7 +807,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         right={
           <>
             <p style={{ textAlign: "center", marginBottom: 0 }}>Jury Favorit / 1. Platz</p>
-            {/* TODO: lauraskketchesImage einfügen */}
+            <ContentContainer src={lauraskketchesImage} alt="lauraskketches" />
             <p style={{ textAlign: "center", marginTop: 0 }}>
               von: <strong>lauraskketches</strong>
             </p>
@@ -693,7 +818,13 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
     </>
   );
