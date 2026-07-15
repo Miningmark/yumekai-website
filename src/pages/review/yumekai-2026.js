@@ -410,7 +410,6 @@ export default function YumeKai2026() {
         <ContentContainer
           src={WolfusBild}
           alt="Wolfus"
-          caption="Barbie (Ballkleid) – Fotocredit: @tiga.photography"
           link="https://www.instagram.com/wolfus.cos/"
         />
         <ContentContainer
