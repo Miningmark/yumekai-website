@@ -1,9 +1,11 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
+import Columns3 from "@/components/elements/Columns3";
+import Columns4 from "@/components/elements/Columns4";
 
 // Components
-import { Spacer, SpacerEmpty, StyledLink } from "@/components/styledComponents";
+import { Spacer, StyledLink } from "@/components/styledComponents";
 import Columns2 from "@/components/elements/Columns2";
 import ImageCarousel from "@/components/elements/ImageCarousel";
 
@@ -117,10 +119,10 @@ import performance7 from "/public/assets/images/yumekai2026/cosplayperformance_7
 import performance8 from "/public/assets/images/yumekai2026/cosplayperformance_8.jpg";
 import performance9 from "/public/assets/images/yumekai2026/cosplayperformance_9.jpg";
 
-import queerBunnyImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/QueerBunny.png";
-import leloImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/Lelo.png";
-import evelusikImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/Evelusik.png";
-import lauraskketchesImage from "/public/assets/images/yumekai2026/zeichenwettbewerb/lauraskketches.png";
+import queerBunnyImage from "/public/assets/images/yumekai2026/QueerBunny.png";
+import leloImage from "/public/assets/images/yumekai2026/lelo.png";
+import evelusikImage from "/public/assets/images/yumekai2026/evelusik.png";
+import lauraskketchesImage from "/public/assets/images/yumekai2026/lauraskketches.png";
 
 const performanceImages = [
   { image: performance1, alt: "Performance 1", link: "" },
@@ -134,51 +136,17 @@ const performanceImages = [
   { image: performance9, alt: "Performance 9", link: "" },
 ];
 
+const StyledImageHome = styled(Image)`
+  width: 100%;
+  border-radius: var(--border-radius-large);
+`;
+
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-`;
-
-const ContentContainer2 = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  width: calc((100% - 60px) / 4);
-
-  @media (max-width: 1000px) {
-    width: calc((100% - 40px) / 3);
-  }
-
-  @media (max-width: 800px) {
-    width: calc((100% - 20px) / 2);
-  }
-
-  img {
-    border-radius: 8px;
-  }
-
-  p {
-    font-size: 1.3rem;
-    margin: 20px 0;
-
-    @media (max-width: 800px) {
-      font-size: 1.1rem;
-    }
-  }
-
-  a {
-    font-size: 1.3rem;
-    margin: 20px 0;
-
-    @media (max-width: 800px) {
-      font-size: 1.1rem;
-    }
-  }
 `;
 
 const FigureContainer = styled.figure`
@@ -258,6 +226,15 @@ export default function YumeKai2026() {
       <p>
         Am 09. und 10. Mai 2026 fand die dritte YumeKai in der Stadthalle Memmingen statt. Hier
         könnt ihr nochmal Eindrücke der Convention durch Bilder erleben!
+      </p>
+
+      <p>
+        Werft gerne auch einen Blick in unser{" "}
+        <StyledLink href="/downloads/YumeKai_2026_Programmheft.pdf" target="_blank">
+          Programmheft
+        </StyledLink>{" "}
+        von 2026, um so einen besseren Eindruck von unseren vielzähligen Programmpunkten zu
+        bekommen.
       </p>
 
       <ul>
@@ -707,7 +684,9 @@ export default function YumeKai2026() {
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
         gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         <br />
-        <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
+      </p>
+      <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
+      <p>
         <br />
         1. Platz:{" "}
         <StyledLink
@@ -741,27 +720,74 @@ export default function YumeKai2026() {
         Mit unserem Crafting Wettbewerb wurden ausschließlich die handwerklichen Fähigkeiten der
         Teilnehmer bewertet – Cosplays, Wigs, Accessoires und Make-Up standen im Mittelpunkt.
         <br />
-        <br />
-        1. Platz:{" "}
-        <StyledLink
-          href="https://www.instagram.com/serinua_cosplay/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Serinua Cosplay
-        </StyledLink>
-        <br />
-        2. Platz: Jul
-        <br />
-        3. Platz:{" "}
-        <StyledLink
-          href="https://www.instagram.com/sovncosplay/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Sovncosplay
-        </StyledLink>
       </p>
+      <Columns3
+        left={
+          <>
+            <StyledImageHome
+              src={queerBunnyImage}
+              alt="QueerBunny"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+            <p style={{ textAlign: "center", marginTop: 0 }}>
+              1. Platz
+              <br />
+              <StyledLink
+                href="https://www.instagram.com/serinua_cosplay/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Serinua Cosplay
+              </StyledLink>
+            </p>
+          </>
+        }
+        center={
+          <>
+            <StyledImageHome
+              src={queerBunnyImage}
+              alt="QueerBunny"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+            <p style={{ textAlign: "center", marginTop: 0 }}>
+              2. Platz
+              <br />
+              <StyledLink href="" target="_blank" rel="noopener noreferrer">
+                Jul
+              </StyledLink>
+            </p>
+          </>
+        }
+        right={
+          <>
+            <StyledImageHome
+              src={queerBunnyImage}
+              alt="QueerBunny"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+            <p style={{ textAlign: "center", marginTop: 0 }}>
+              3. Platz
+              <br />
+              <StyledLink
+                href="https://www.instagram.com/sovncosplay/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sovncosplay
+              </StyledLink>
+            </p>
+          </>
+        }
+      />
 
       <Spacer id="zeichenwettbewerb" />
       <h2>Zeichen Wettbewerb</h2>
@@ -774,41 +800,72 @@ export default function YumeKai2026() {
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
         gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
-      <Columns2
-        left={
+
+      <Columns4
+        column1={
           <>
-            <p style={{ textAlign: "center", marginBottom: 0 }}>Kreativität</p>
-            <ContentContainer src={queerBunnyImage} alt="QueerBunny" />
+            <StyledImageHome
+              src={queerBunnyImage}
+              alt="QueerBunny"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
             <p style={{ textAlign: "center", marginTop: 0 }}>
+              Kreativität
+              <br />
               von: <strong>QueerBunny</strong>
             </p>
           </>
         }
-        right={
+        column2={
           <>
-            <p style={{ textAlign: "center", marginBottom: 0 }}>Qualität</p>
-            <ContentContainer src={leloImage} alt="Lelo" />
+            <StyledImageHome
+              src={leloImage}
+              alt="Lelo"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
             <p style={{ textAlign: "center", marginTop: 0 }}>
+              Qualität
+              <br />
               von: <strong>Lelo</strong>
             </p>
           </>
         }
-      />
-      <Columns2
-        left={
+        column3={
           <>
-            <p style={{ textAlign: "center", marginBottom: 0 }}>Technik</p>
-            <ContentContainer src={evelusikImage} alt="Evelusik" />
+            <StyledImageHome
+              src={evelusikImage}
+              alt="Evelusik"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
             <p style={{ textAlign: "center", marginTop: 0 }}>
+              Technik
+              <br />
               von: <strong>Evelusik</strong>
             </p>
           </>
         }
-        right={
+        column4={
           <>
-            <p style={{ textAlign: "center", marginBottom: 0 }}>Jury Favorit / 1. Platz</p>
-            <ContentContainer src={lauraskketchesImage} alt="lauraskketches" />
+            <StyledImageHome
+              src={lauraskketchesImage}
+              alt="lauraskketches"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
             <p style={{ textAlign: "center", marginTop: 0 }}>
+              Jury Favorit / 1. Platz
+              <br />
               von: <strong>lauraskketches</strong>
             </p>
           </>
