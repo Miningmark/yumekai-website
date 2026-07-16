@@ -124,6 +124,21 @@ import leloImage from "/public/assets/images/yumekai2026/lelo.png";
 import evelusikImage from "/public/assets/images/yumekai2026/evelusik.png";
 import lauraskketchesImage from "/public/assets/images/yumekai2026/lauraskketches.png";
 
+import ball01 from "/public/assets/images/yumekai2026/ball_01.jpg";
+import ball02 from "/public/assets/images/yumekai2026/ball_02.jpg";
+import ball03 from "/public/assets/images/yumekai2026/ball_03.jpg";
+import ball04 from "/public/assets/images/yumekai2026/ball_04.jpg";
+import ball05 from "/public/assets/images/yumekai2026/ball_05.jpg";
+import ball06 from "/public/assets/images/yumekai2026/ball_06.jpg";
+import ball07 from "/public/assets/images/yumekai2026/ball_07.jpg";
+import ball08 from "/public/assets/images/yumekai2026/ball_08.jpg";
+import ball09 from "/public/assets/images/yumekai2026/ball_09.jpg";
+import ball10 from "/public/assets/images/yumekai2026/ball_10.jpg";
+import ball11 from "/public/assets/images/yumekai2026/ball_11.jpg";
+import ball12 from "/public/assets/images/yumekai2026/ball_12.jpg";
+import ball13 from "/public/assets/images/yumekai2026/ball_13.jpg";
+import ball14 from "/public/assets/images/yumekai2026/ball_14.jpg";
+
 const performanceImages = [
   { image: performance1, alt: "Performance 1", link: "" },
   { image: performance2, alt: "Performance 2", link: "" },
@@ -134,6 +149,23 @@ const performanceImages = [
   { image: performance7, alt: "Performance 7", link: "" },
   { image: performance8, alt: "Performance 8", link: "" },
   { image: performance9, alt: "Performance 9", link: "" },
+];
+
+const cosplayballImages = [
+  { image: ball01, alt: "Cosplay Ball 1", link: "" },
+  { image: ball02, alt: "Cosplay Ball 2", link: "" },
+  { image: ball03, alt: "Cosplay Ball 3", link: "" },
+  { image: ball04, alt: "Cosplay Ball 4", link: "" },
+  { image: ball05, alt: "Cosplay Ball 5", link: "" },
+  { image: ball06, alt: "Cosplay Ball 6", link: "" },
+  { image: ball07, alt: "Cosplay Ball 7", link: "" },
+  { image: ball08, alt: "Cosplay Ball 8", link: "" },
+  { image: ball09, alt: "Cosplay Ball 9", link: "" },
+  { image: ball10, alt: "Cosplay Ball 10", link: "" },
+  { image: ball11, alt: "Cosplay Ball 11", link: "" },
+  { image: ball12, alt: "Cosplay Ball 12", link: "" },
+  { image: ball13, alt: "Cosplay Ball 13", link: "" },
+  { image:ball14, alt: "Cosplay Ball 14", link: "" },
 ];
 
 const StyledImageHome = styled(Image)`
@@ -267,6 +299,9 @@ export default function YumeKai2026() {
         </li>
         <li>
           <StyledLink href="#zeichenwettbewerb">Zeichen Wettbewerb</StyledLink>
+        </li>
+         <li>
+          <StyledLink href="#cosplayball">Cosplay Ball</StyledLink>
         </li>
         <li>
           <StyledLink href="#danksagung">Danksagung</StyledLink>
@@ -686,9 +721,20 @@ export default function YumeKai2026() {
         <br />
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
-      <p>
-        <br />
-        1. Platz:{" "}
+     
+            <Columns3
+        left={
+          <>
+            <StyledImageHome
+              src={performance3}
+              alt="Tinyfufu"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+            <p style={{ textAlign: "center", marginTop: 0 }}>
+             1. Platz:{" "}
         <StyledLink
           href="https://www.instagram.com/tinyfufu/"
           target="_blank"
@@ -696,8 +742,21 @@ export default function YumeKai2026() {
         >
           Tinyfufu
         </StyledLink>
-        <br />
-        2. Platz: Lia von{" "}
+            </p>
+          </>
+        }
+        center={
+          <>
+            <StyledImageHome
+              src={performance7}
+              alt="Imonee Cosplay"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+            <p style={{ textAlign: "center", marginTop: 0 }}>
+              2. Platz: Lia von{" "}
         <StyledLink
           href="https://www.instagram.com/imoneecosplay/"
           target="_blank"
@@ -705,8 +764,21 @@ export default function YumeKai2026() {
         >
           Imonee Cosplay
         </StyledLink>
-        <br />
-        3. Platz:{" "}
+            </p>
+          </>
+        }
+        right={
+          <>
+            <StyledImageHome
+              src={performance5}
+              alt="Palelittledragon"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+            />
+            <p style={{ textAlign: "center", marginTop: 0 }}>
+             3. Platz:{" "}
         <StyledLink
           href="https://www.instagram.com/palelittledragon/"
           target="_blank"
@@ -714,7 +786,12 @@ export default function YumeKai2026() {
         >
           Palelittledragon
         </StyledLink>
-      </p>
+            </p>
+          </>
+        }
+      />
+
+
       <h3>Crafting:</h3>
       <p>
         Mit unserem Crafting Wettbewerb wurden ausschließlich die handwerklichen Fähigkeiten der
@@ -800,6 +877,7 @@ export default function YumeKai2026() {
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
         gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
+      
 
       <Columns4
         column1={
@@ -871,6 +949,20 @@ export default function YumeKai2026() {
           </>
         }
       />
+
+      <Spacer id="cosplayball" />
+      <h2>Cosplayball</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </p>
+      <ImageCarousel visibleCount={5.5} duration={2.5} images={cosplayballImages} />
+
 
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
