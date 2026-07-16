@@ -83,11 +83,6 @@ import ImgStarsAndTrinkets from "/public/assets/images/yumekai2026/@starsandtrin
 import ImgFylyDraws from "/public/assets/images/yumekai2026/@fyly_draws.jpg";
 import ImgTrashelsArt from "/public/assets/images/yumekai2026/@trashelsArt.png";
 import ImgMikasMoonbrew from "/public/assets/images/yumekai2026/@MikasMoonbrew.png";
-import ImgKeebokun from "/public/assets/images/yumekai2026/@keebokun.png";
-import ImgBiggugusu from "/public/assets/images/yumekai2026/@biggugusu.png";
-import ImgPingunerddarts from "/public/assets/images/yumekai2026/@pingunerddarts.png";
-import ImgTeiSyokumoku from "/public/assets/images/yumekai2026/@tei_syokumoku.png";
-import ImgYupiistar from "/public/assets/images/yumekai2026/@yupiistar.png";
 
 // Images – Autoren
 import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.png";
@@ -586,31 +581,6 @@ export default function YumeKai2026() {
           src={ImgMikasMoonbrew}
           alt="Mikas Moonbrew"
           link="https://www.instagram.com/mikasmoonbrew/"
-        />
-        <ContentContainer
-          src={ImgKeebokun}
-          alt="Keebokun"
-          link="https://www.instagram.com/keebokun/"
-        />
-        <ContentContainer
-          src={ImgBiggugusu}
-          alt="Biggugusu"
-          link="https://www.instagram.com/biggugusu/"
-        />
-        <ContentContainer
-          src={ImgPingunerddarts}
-          alt="Pingunerddarts"
-          link="https://www.instagram.com/pingunerddarts/"
-        />
-        <ContentContainer
-          src={ImgTeiSyokumoku}
-          alt="Tei Syokumoku"
-          link="https://www.instagram.com/tei_syokumoku/"
-        />
-        <ContentContainer
-          src={ImgYupiistar}
-          alt="Yupiistar"
-          link="https://www.instagram.com/yupiistar/"
         />
       </ContentWrapper>
 
