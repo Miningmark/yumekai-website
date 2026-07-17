@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Spacer, SpacerEmpty, StyledLink } from "@/components/styledComponents";
 import Columns2 from "@/components/elements/Columns2";
 import ImageCarousel from "@/components/elements/ImageCarousel";
+import SEO from "@/components/elements/SEO";
 
 //Images
 //Ehrengäste
@@ -320,6 +321,11 @@ export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
 export default function YumeKai2025() {
   return (
     <>
+      <SEO
+        title="Rückblick YumeKai 2025"
+        description="Rückblick auf die YumeKai 2025: Ehrengäste, Cosplayer, Aussteller und Händler im Überblick."
+        path="/review/yumekai-2025"
+      />
       <h1>Rückblick YumeKai 2025</h1>
       <p>
         Am 31.Mai & 1.Juni 2025 hat die zweite YumeKai stattgefunden. Hier könnt ihr nochmal

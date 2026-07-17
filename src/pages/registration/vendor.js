@@ -40,6 +40,7 @@ import ImageCropModal from "@/util/ImageCropModal";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -662,6 +663,11 @@ useEffect(() => {
 
   return (
     <>
+      <SEO
+        title="Anmeldung als Händler"
+        description="Melde dich als Händler für die YumeKai an und sichere dir deinen Standplatz."
+        path="/registration/vendor"
+      />
       <h1>Anmeldung als Händler</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!

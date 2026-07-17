@@ -7,6 +7,7 @@ import Columns3 from "@/components/elements/Columns3";
 import { Spacer, StyledLink } from "@/components/styledComponents";
 import Columns2 from "@/components/elements/Columns2";
 import ImageCarousel from "@/components/elements/ImageCarousel";
+import SEO from "@/components/elements/SEO";
 
 // Images – Showacts & Ehrengäste
 import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
@@ -669,6 +670,11 @@ export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
 export default function YumeKai2026() {
   return (
     <>
+      <SEO
+        title="Rückblick YumeKai 2026"
+        description="Rückblick auf die YumeKai 2026: Showacts, Ehrengäste, Cosplayer und Aussteller im Überblick."
+        path="/review/yumekai-2026"
+      />
       <h1>Rückblick YumeKai 2026</h1>
       <p>
         Am 09. und 10. Mai 2026 fand die dritte YumeKai in der Stadthalle Memmingen statt. Hier

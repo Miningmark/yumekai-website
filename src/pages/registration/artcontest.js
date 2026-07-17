@@ -31,6 +31,7 @@ import {
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -367,6 +368,11 @@ export default function ArtContest() {
 
   return (
     <>
+      <SEO
+        title="Anmeldung Zeichenwettbewerb"
+        description="Melde dich für den YumeKai-Zeichenwettbewerb an und zeige deine Kreativität."
+        path="/registration/artcontest"
+      />
       <h1>Anmeldung für den Zeichenwettbewerb</h1>
       <p>
         Du möchtest am Zeichenwettbewerb auf der YumeKai 2026 teilnehmen!

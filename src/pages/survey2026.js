@@ -8,6 +8,7 @@ import QuestionSlider from "@/components/elements/survey25/QuestionSlider";
 import QuestionTextField from "@/components/elements/survey25/QuestionTextField";
 import StyledForm from "@/components/elements/survey25/StyledForm";
 import { StyledButton } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import hiruHandy from "/public/assets/hirus/Hiru_Handy.png";
@@ -251,6 +252,11 @@ export default function Survey2026() {
 
   return (
     <>
+      <SEO
+        title="Umfrage 2026"
+        description="Nimm an der YumeKai-2026-Umfrage teil und hilf uns, die YumeKai noch besser zu machen."
+        path="/survey2026"
+      />
       <h1>
         <PrimaryText>YumeKai</PrimaryText>
         <SecondaryText> Umfrage</SecondaryText>

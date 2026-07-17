@@ -1,10 +1,16 @@
 import TabTitle from "@/components/elements/TabTitle";
 import { Spacer, StyledLink } from "@/components/styledComponents";
 import Link from "next/link";
+import SEO from "@/components/elements/SEO";
 
 export default function FAQ() {
   return (
     <>
+      <SEO
+        title="FAQ"
+        description="Häufig gestellte Fragen zur YumeKai: Termin, Ort, Tickets, Altersgrenzen und mehr auf einen Blick."
+        path="/faq"
+      />
       <h1>FAQ</h1>
       <p>Inhaltsverzeichnis</p>
       <ul>

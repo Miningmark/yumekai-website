@@ -2,6 +2,7 @@
 import { StyledButton, UnstyledLink, Spacer, SpacerEmpty } from "@/components/styledComponents";
 import SponsorsComponent from "@/components/home/Sponsors";
 import HomeSlider from "@/components/home/HomeSlider";
+import SEO from "@/components/elements/SEO";
 
 //Articles
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";
@@ -16,6 +17,11 @@ import StellariaPaletteOfDreams from "@/components/articles/2026/StellariaPalett
 export default function Home() {
   return (
     <>
+      <SEO
+        title="Startseite"
+        description="YumeKai in Memmingen: Anime- und Cosplay-Convention mit Programm, Ticketshop, Aktuelles und allen Infos rund um die Veranstaltung."
+        path="/"
+      />
       <HomeSlider />
       <SpacerEmpty />
 

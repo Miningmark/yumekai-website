@@ -8,6 +8,7 @@ import { StyledLink, SpacerEmpty, BoldText } from "@/components/styledComponents
 //logos
 import hiru from "/public/assets/logo/Hiru.webp";
 import yumekoImage from "/public/assets/logo/Yumeko.png";
+import SEO from "@/components/elements/SEO";
 
 const MaskottchenWrapper = styled.div`
   display: flex;
@@ -49,6 +50,12 @@ const AnimatedImageWrapper = styled.div`
 export default function Maskottchen() {
   return (
     <>
+      <SEO
+        title="Maskottchen"
+        description="Lerne Yumeko und Hiru kennen, die Maskottchen der YumeKai – mit Steckbrief, Persönlichkeit und Illustrationen."
+        path="/maskottchen"
+        image="https://yumekai.de/assets/logo/Yumeko.png"
+      />
       <h1>Unsere Maskottchen</h1>
       <p>
         Unsere Maskottchen begleiten euch auf der Reise druch die YumeKai. Egal ob hier auf der

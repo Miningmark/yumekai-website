@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import CelloticDuetImage from "/public/assets/images/yumekai2025/25_Cellotic_Duet.jpg";
@@ -34,6 +35,11 @@ const ContentContainer = styled.div`
 export default function Ehrengaeste() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Ehrengäste & Showacts"
+        description="Die Showacts, Ehrengäste und Synchronsprecher der YumeKai 2025: MION, Stellaria, Andy Knote und mehr."
+        path="/programm2025/ehrengaeste"
+      />
       <ReturnButton link="/programm2025" />
       <h1 style={{ textAlign: "center" }}>Showacts</h1>
       <ContentContainer>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import DokyatoImage from "/public/assets/images/yumekai2025/Dokyato_Image.png";
@@ -24,6 +25,11 @@ const ContentContainer = styled.div`
 export default function Cosplayer() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Cosplayer"
+        description="Die Cosplay-Ehrengäste der YumeKai 2025 im Überblick."
+        path="/programm2025/cosplayer"
+      />
       <ReturnButton link="/programm2025" />
 
       <h1 style={{ textAlign: "center" }}>Cosplayer</h1>

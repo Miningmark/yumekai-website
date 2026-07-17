@@ -2,10 +2,16 @@ import styled from "styled-components";
 import Script from "next/script";
 import Banner from "@/components/shop/Banner";
 import { StyledLink } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 export default function Shop() {
   return (
     <>
+      <SEO
+        title="Ticketshop"
+        description="Sichere dir jetzt deine Tickets für die YumeKai 2026 in Memmingen im offiziellen Ticketshop."
+        path="/shop"
+      />
       <Script
         src="https://pretix.eu/widget/v1.de.js"
         strategy="lazyOnload"

@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Workshops() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Workshops"
+        description="Alle Workshops der YumeKai 2026: Cosplay-Crafting, Tanzkurse, Zeichnen und mehr."
+        path="/programm2026/workshops"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Workshops</h1>

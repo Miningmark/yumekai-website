@@ -1,10 +1,16 @@
 import TabTitle from "@/components/elements/TabTitle";
 import HelferForm from "@/components/helfer/helferform";
 import { StyledLink } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 export default function Helfer() {
   return (
     <>
+      <SEO
+        title="Helfer werden"
+        description="Werde Teil des YumeKai-Teams! Informationen zur Helfer-Anmeldung, Aufgabenbereichen und was du als Helfer bekommst."
+        path="/helfer"
+      />
       <h1>Werde Teil des YumeKai-Teams!</h1>
       <p>
         Ohne Helfer und ehrenamtliche Teammitglieder wäre eine Convention nicht möglich. Wir freuen

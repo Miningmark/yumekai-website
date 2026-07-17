@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import XeniaBild from "/public/assets/images/yumekai2026/Xenia.jpg";
@@ -24,6 +25,11 @@ const ContentContainer = styled.div`
 export default function Cosplayer() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Cosplayer"
+        description="Die Cosplay-Ehrengäste der YumeKai 2026 im Überblick."
+        path="/programm2026/cosplayer"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Cosplayer</h1>

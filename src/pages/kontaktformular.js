@@ -18,6 +18,7 @@ import {
 import { RequiredNote } from "@/components/styledInputComponents";
 import CheckBox from "@/components/styled/CheckBox";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
+import SEO from "@/components/elements/SEO";
 
 export default function Kontaktformular() {
   const [name, setName] = useState("");
@@ -159,6 +160,11 @@ export default function Kontaktformular() {
 
   return (
     <>
+      <SEO
+        title="Kontaktformular"
+        description="Kontaktiere das YumeKai-Team bei Fragen zu Presse, Händlern oder anderen Anliegen über unser Kontaktformular."
+        path="/kontaktformular"
+      />
       <h1>Kontaktformular</h1>
       {!success && (
         <>

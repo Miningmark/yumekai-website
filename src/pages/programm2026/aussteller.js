@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import SciFiNarischeBild from "/public/assets/images/yumekai2026/SciFi-Narische.png";
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Aussteller() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Aussteller & Vereine"
+        description="Diese Aussteller und Vereine sind bei der YumeKai 2026 dabei."
+        path="/programm2026/aussteller"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Aussteller &amp; Vereine</h1>

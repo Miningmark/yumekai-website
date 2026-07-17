@@ -39,6 +39,7 @@ import ImageCropModal from "@/util/ImageCropModal";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -710,6 +711,11 @@ useEffect(() => {
 
   return (
     <>
+      <SEO
+        title="Anmeldung als Künstler"
+        description="Melde dich als Künstler für die YumeKai an und präsentiere deine Werke im Künstlerbereich."
+        path="/registration/artist"
+      />
       <h1>Anmeldung als Künstler</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!

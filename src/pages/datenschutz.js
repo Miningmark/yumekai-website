@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import SEO from "@/components/elements/SEO";
 
 const DatenschutzWrapper = styled.div`
   width: 100%;
@@ -26,6 +27,11 @@ const DatenschutzWrapper = styled.div`
 export default function Datenschutz() {
   return (
     <DatenschutzWrapper>
+      <SEO
+        title="Datenschutzerklärung"
+        description="Datenschutzerklärung der YumeKai: Informationen zur Verarbeitung personenbezogener Daten auf yumekai.de."
+        path="/datenschutz"
+      />
       <h1>Datenschutzerklärung</h1>
 
       <h2>Allgemeiner Hinweis und Pflichtinformationen</h2>

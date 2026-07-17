@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import ImgAkunyaah from "/public/assets/images/yumekai2026/Akunyaah - KEIN INSTA.png";
@@ -166,6 +167,11 @@ export default function Kuenstler() {
 
   return (
     <>
+      <SEO
+        title="Programm 2026 – Künstleratelier"
+        description="Diese Künstler und Autoren sind bei der YumeKai 2026 im Künstleratelier vertreten."
+        path="/programm2026/kuenstler"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Künstleratelier</h1>

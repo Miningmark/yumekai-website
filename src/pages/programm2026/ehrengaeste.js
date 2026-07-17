@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Ehrengaeste() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Ehrengäste & Showacts"
+        description="Die Showacts, Ehrengäste und Synchronsprecher der YumeKai 2026: Yuri Hirano, MION, Stellaria und mehr."
+        path="/programm2026/ehrengaeste"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Showacts</h1>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HiruHandler from "/public/assets/hirus/Hiru_Handler.png";
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Haendler() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Händler"
+        description="Diese Händler sind bei der YumeKai 2026 dabei."
+        path="/programm2026/haendler"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Händler</h1>

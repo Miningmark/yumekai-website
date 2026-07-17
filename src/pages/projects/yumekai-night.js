@@ -16,6 +16,7 @@ import yumeKaiNightHeaderLarge from "/public/assets/logo/YumeKai-Night-Header-La
 //Icons
 import ScheduleIcon from "/public/assets/icons/schedule.svg";
 import YumeKaiNightLogo from "/public/assets/logo/yumekai-night-logo.png";
+import SEO from "@/components/elements/SEO";
 
 const ScheduleIconWrapper = styled.div`
   margin-bottom: 10px;
@@ -73,6 +74,11 @@ export default function Projects() {
 
   return (
     <>
+      <SEO
+        title="YumeKai-Night"
+        description="Die YumeKai-Night: Abendveranstaltung mit J-Pop, K-Pop, Anime-Openings, Gaming und Cosplay."
+        path="/projects/yumekai-night"
+      />
       <HeaderContainer height={headerImageHeight}>
         <YumekaiHeaderWrapper>
           <Image

@@ -2,6 +2,7 @@
 
 //Components
 import { Spacer, SpacerEmpty } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 //Articles
 import YumeKaiNightInBildern from "@/components/articles/2024/YumeKai-Night-in-Bildern";
@@ -27,6 +28,11 @@ import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
 export default function Archiv() {
   return (
     <>
+      <SEO
+        title="Archiv"
+        description="Alle älteren Neuigkeiten und Ankündigungen der YumeKai im Archiv nachlesen."
+        path="/archiv"
+      />
       <h1>Archiv</h1>
       <p>Hier findet ihr alle älteren Beiträge von der Startseite (Aktuelles).</p>
       <Spacer />
