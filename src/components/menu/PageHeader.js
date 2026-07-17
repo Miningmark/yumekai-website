@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SocialMediaContainerHeader } from "@/components/menu/SocialMediaContainer";
 import ThemeToggle from "@/components/menu/DarkLightMode";
 
@@ -251,7 +251,6 @@ const SubMenu = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: none;
   border-radius: 0 0 10px 10px;
 `;
 
@@ -260,10 +259,6 @@ const SubMenuWrapper = styled.div`
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.backgroundColor2};
-
-  &:hover ${SubMenu} {
-    display: flex;
-  }
 
   a {
     padding-right: 5px;
@@ -323,9 +318,24 @@ const MobileMenuOverlay = styled.div`
 export default function PageHeader({ toggleTheme, theme }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSubMenus, setOpenSubMenus] = useState({});
+  const desktopMenuRef = useRef(null);
 
   const router = useRouter();
   const { pathname } = router;
+
+  useEffect(() => {
+    function handleOutsideInteraction(e) {
+      if (desktopMenuRef.current && !desktopMenuRef.current.contains(e.target)) {
+        setOpenSubMenus({});
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideInteraction);
+    document.addEventListener("touchstart", handleOutsideInteraction);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideInteraction);
+      document.removeEventListener("touchstart", handleOutsideInteraction);
+    };
+  }, []);
 
   function toggleMobileMenu() {
     setOpenSubMenus((prevState) => {
@@ -353,10 +363,14 @@ export default function PageHeader({ toggleTheme, theme }) {
   }
 
   function openSubMenu(index) {
-    setOpenSubMenus((prevState) => ({
-      ...prevState,
-      [index]: true,
-    }));
+    setOpenSubMenus((prevState) => {
+      const newState = Object.keys(prevState).reduce((acc, key) => {
+        acc[key] = false;
+        return acc;
+      }, {});
+      newState[index] = true;
+      return newState;
+    });
   }
 
   return (
@@ -368,12 +382,13 @@ export default function PageHeader({ toggleTheme, theme }) {
         <SocialMediaContainerHeader />
       </MenuLogoBackground>
 
-      <StyledMenu>
+      <StyledMenu ref={desktopMenuRef}>
         {menuItems.map((item, index) => (
           <SubMenuWrapper
             key={item.name}
             onMouseEnter={() => openSubMenu(index)}
             onMouseMove={() => openSubMenu(index)}
+            onMouseLeave={() => closeSubMenu(index)}
           >
             {!item.subItems || item.path ? (
               <MenuLink
@@ -384,13 +399,13 @@ export default function PageHeader({ toggleTheme, theme }) {
                 {item.name}
               </MenuLink>
             ) : (
-              <MenuNoLink>{item.name}</MenuNoLink>
+              <MenuNoLink onClick={() => openSubMenu(index)}>{item.name}</MenuNoLink>
             )}
             {item.subItems && (
               <>
                 {/*<IconArrowDown style={{ cursor: "pointer" }} />*/}
                 {openSubMenus[index] && (
-                  <SubMenu onMouseLeave={() => closeSubMenu(index)}>
+                  <SubMenu>
                     <br />
                     {item.subItems.map((subItem) => (
                       <SubMenuLink
