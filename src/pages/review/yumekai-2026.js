@@ -1234,14 +1234,84 @@ export default function YumeKai2026() {
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden
+        Programm. Deshalb möchten wir an dieser Stelle ein riesiges Dankeschön aussprechen an alle
+        Unterstützer!
       </p>
+      <p>
+        Unser besonderer Dank gilt unseren fantastischen YumeKai-Helfern! Ohne eure Arbeit, euer
+        Engagement und eure Begeisterung wäre die YumeKai nicht das, was sie ist. Ihr seid das Herz
+        unserer Veranstaltung und wir sind unendlich dankbar für eure Unterstützung!
+      </p>
+      <p>
+        Ein großes Dankeschön geht auch an alle Händler, Autoren und Künstler, die mit ihren
+        einzigartigen Angeboten und kreativen Arbeiten für ein unvergessliches Einkaufserlebnis und
+        Erinnerungsstücke gesorgt haben.
+      </p>
+      <p>
+        Unsere Workshopleiter verdienen ebenfalls Anerkennung – ihr habt euer Wissen über Cosplay,
+        Kunst, Japan und vieles mehr geteilt und unseren Besuchern wertvolle Einblicke ermöglicht.
+        Ein ebenso herzliches Dankeschön geht an alle Aussteller, die mit ihren interaktiven oder
+        informativen Ständen zur Vielfalt der YumeKai beigetragen haben.
+      </p>
+      <p>
+        Auf unserer Bühne haben uns viele talentierte Showacts mit Gesang, Tanz, Musik und
+        beeindruckenden Performances begeistert. Ihr habt die YumeKai mit euren Auftritten zu etwas
+        ganz Besonderem gemacht! Ein großes Dankeschön geht auch an unsere Fotografen, die all die
+        magischen Momente für die Ewigkeit festgehalten haben.
+      </p>
+      <p>
+        Und schließlich möchten wir uns bei euch, unseren Besuchern, bedanken! Ohne euch gäbe es
+        keine YumeKai. Eure Begeisterung, eure Kreativität und euer Engagement machen unsere
+        Veranstaltung zu einem einzigartigen Ort.
+      </p>
+      <p>
+        Ein ganz besonderes Dankeschön geht noch an alle Unterstützer unseres Crowdfundings, durch
+        eure Hilfe konnten wir auch diese YumeKai wieder zu einer fantastischen Convention machen!
+      </p>
+      <p>
+        Danke für ein wundervolles Wochenende und für all die besonderen Momente, die wir gemeinsam
+        erleben durften.
+        <br />
+        Wir freuen uns schon auf die nächste YumeKai mit euch!
+        <br />
+        Euer YumeKai-Team
+      </p>
+
+      <h3>Crowdfunding</h3>
+      <p>
+        Ein besonderer Dank geht an alle Unterstützer:innen unseres Crowdfundings, die die YumeKai
+        2026 mit möglich gemacht haben:
+      </p>
+      <ContentWrapper>
+        <ul>
+          <li>kindsoul.new</li>
+          <li>Kirawitha</li>
+          <li>Naomi Huber</li>
+          <li>Stefanie</li>
+          <li>Claudia</li>
+          <li>AnnaLeiBrandt</li>
+          <li>Joey Jäger</li>
+          <li>Kio derSchwabenotter</li>
+          <li>Synchronevents.de</li>
+          <li>Shinoa Aizawa</li>
+          <li>DelphoxsArt</li>
+          <li>Manuel Beringer</li>
+        </ul>
+        <ul>
+          <li>Sara Hetges</li>
+          <li>Felix Wagner</li>
+          <li>Sandra Wimmer</li>
+          <li>Lordzwiebelback</li>
+          <li>Karokitty</li>
+          <li>Yulj</li>
+          <li>StrifeAlone</li>
+          <li>AkioSensei</li>
+          <li>Lukas</li>
+          <li>Filum Sensei</li>
+          <li>TOWELDAY Austria</li>
+        </ul>
+      </ContentWrapper>
     </>
   );
 }
