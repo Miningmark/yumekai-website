@@ -35,6 +35,7 @@ const menuItems = [
       { name: "2026", path: "/review/yumekai-2026" },
     ],
   },
+  /*
   {name: "Programm", path: "/programm2026",
     subItems: [
     { name: "Allgemein", path: "/programm2026/allgemein" },
@@ -49,6 +50,8 @@ const menuItems = [
     { name: "Workshops", path: "/programm2026/workshops" },
   ],
   },
+  */
+  {name: "das sind wir", path: "/das-sind-wir"}
   /*
   { name: "Anmeldungen", path: "/registration" },
   { name: "Ticketshop", path: "/shop" },
