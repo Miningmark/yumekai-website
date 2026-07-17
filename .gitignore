@@ -40,3 +40,4 @@ next-env.d.ts
 /private
 package-lock.json
 package-lock.json
+.claude/launch.json

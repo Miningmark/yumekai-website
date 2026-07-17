@@ -2,7 +2,6 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import Columns3 from "@/components/elements/Columns3";
-import Columns4 from "@/components/elements/Columns4";
 
 // Components
 import { Spacer, StyledLink } from "@/components/styledComponents";
@@ -114,6 +113,19 @@ import performance7 from "/public/assets/images/yumekai2026/cosplayperformance_7
 import performance8 from "/public/assets/images/yumekai2026/cosplayperformance_8.jpg";
 import performance9 from "/public/assets/images/yumekai2026/cosplayperformance_9.jpg";
 
+
+
+// Images – Zeichenwettbewerb Teilnehmer
+import ZeichenMimic from "/public/assets/images/yumekai2026/zeichenwettbewerb_mimic.png";
+import ZeichenSmurfyTheArtist from "/public/assets/images/yumekai2026/zeichenwettbewerb_smurfy_the_artist.png";
+import ZeichenLina from "/public/assets/images/yumekai2026/zeichenwettbewerb_lina.png";
+import ZeichenLuzyana from "/public/assets/images/yumekai2026/zeichenwettbewerb_luzyana.png";
+import ZeichenOr3oOnPaws from "/public/assets/images/yumekai2026/zeichenwettbewerb_or3o_on_paws.png";
+import ZeichenCarolinTempest from "/public/assets/images/yumekai2026/zeichenwettbewerb_carolin_tempest.png";
+import ZeichenMitsuri from "/public/assets/images/yumekai2026/zeichenwettbewerb_mitsuri.png";
+import ZeichenBelabi from "/public/assets/images/yumekai2026/zeichenwettbewerb_belabi.png";
+import ZeichenFiona from "/public/assets/images/yumekai2026/zeichenwettbewerb_fiona.png";
+import ZeichenFranciNevada from "/public/assets/images/yumekai2026/zeichenwettbewerb_franci_nevada.png";
 import queerBunnyImage from "/public/assets/images/yumekai2026/QueerBunny.png";
 import leloImage from "/public/assets/images/yumekai2026/lelo.png";
 import evelusikImage from "/public/assets/images/yumekai2026/evelusik.png";
@@ -135,15 +147,423 @@ import ball13 from "/public/assets/images/yumekai2026/ball_13.jpg";
 import ball14 from "/public/assets/images/yumekai2026/ball_14.jpg";
 
 const performanceImages = [
-  { image: performance1, alt: "Performance 1", link: "" },
-  { image: performance2, alt: "Performance 2", link: "" },
-  { image: performance3, alt: "Performance 3", link: "" },
-  { image: performance4, alt: "Performance 4", link: "" },
-  { image: performance5, alt: "Performance 5", link: "" },
-  { image: performance6, alt: "Performance 6", link: "" },
-  { image: performance7, alt: "Performance 7", link: "" },
-  { image: performance8, alt: "Performance 8", link: "" },
-  { image: performance9, alt: "Performance 9", link: "" },
+  {
+    image: performance1,
+    alt: "faefire_phoenix",
+    link: "",
+    caption: (
+      <>
+        faefire_phoenix
+        <br />
+        <small>Columbina (Genshin Impact)</small>
+      </>
+    ),
+  },
+  {
+    image: performance2,
+    alt: "Gokuri",
+    link: "",
+    caption: (
+      <>
+        Gokuri
+        <br />
+        <small>Rapunzel (Rapunzel – neu verföhnt)</small>
+      </>
+    ),
+  },
+  {
+    image: performance3,
+    alt: "Tinyfufu",
+    link: "https://www.instagram.com/tinyfufu/",
+    caption: (
+      <>
+        Tinyfufu
+        <br />
+        <small>Miorine Rembran (Mobile Suit Gundam: The Witch from Mercury)</small>
+      </>
+    ),
+  },
+  {
+    image: performance4,
+    alt: "Saito",
+    link: "",
+    caption: (
+      <>
+        Saito
+        <br />
+        <small>Tanjiro Kamado (Demon Slayer)</small>
+      </>
+    ),
+  },
+  {
+    image: performance5,
+    alt: "Palelittledragon",
+    link: "https://www.instagram.com/palelittledragon/",
+    caption: (
+      <>
+        Palelittledragon
+        <br />
+        <small>Uraume (Jujutsu Kaisen)</small>
+      </>
+    ),
+  },
+  {
+    image: performance6,
+    alt: "lady.krul",
+    link: "",
+    caption: (
+      <>
+        lady.krul
+        <br />
+        <small>Shinobu Kocho (Demon Slayer)</small>
+      </>
+    ),
+  },
+  {
+    image: performance7,
+    alt: "Imonee Cosplay",
+    link: "https://www.instagram.com/imoneecosplay/",
+    caption: (
+      <>
+        Lia von Imonee Cosplay
+        <br />
+        <small>Minto Aizawa (Tokyo Mew Mew (Remake))</small>
+      </>
+    ),
+  },
+  {
+    image: performance8,
+    alt: "Shinoa_Kitsune",
+    link: "",
+    caption: (
+      <>
+        Shinoa_Kitsune
+        <br />
+        <small>Ruby Hoshino (Oshi No Ko)</small>
+      </>
+    ),
+  },
+  {
+    image: performance9,
+    alt: "Akunyaah",
+    link: "",
+    caption: (
+      <>
+        Akunyaah
+        <br />
+        <small>Till (Alien Stage)</small>
+      </>
+    ),
+  },
+];
+
+// TODO: Sobald die Fotos vom Crafting Wettbewerb vorliegen, jeweils als
+// craftingXX importieren (z. B. "/public/assets/images/yumekai2026/cosplaycrafting_01.jpg")
+// und unten bei "image" statt null einsetzen.
+const craftingImages = [
+  {
+    image: null,
+    alt: "Yulj",
+    link: "",
+    caption: (
+      <>
+        Yulj
+        <br />
+        <small>Jack Frost</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "ellaenra",
+    link: "",
+    caption: (
+      <>
+        ellaenra
+        <br />
+        <small>Syl (Oblivion Shivering Isles)</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Sovncosplay",
+    link: "https://www.instagram.com/sovncosplay/",
+    caption: (
+      <>
+        Sovncosplay
+        <br />
+        <small>Silverwind Nargacuga Rüstung (Monster Hunter)</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Nasuka",
+    link: "",
+    caption: (
+      <>
+        Nasuka
+        <br />
+        <small>Astrid Hofferson</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Serinua_cosplay",
+    link: "https://www.instagram.com/serinua_cosplay/",
+    caption: (
+      <>
+        Serinua_cosplay
+        <br />
+        <small>Tragosso</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Gokuri",
+    link: "",
+    caption: (
+      <>
+        Gokuri
+        <br />
+        <small>Tardis</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Mechatroxcosplay",
+    link: "",
+    caption: (
+      <>
+        Mechatroxcosplay
+        <br />
+        <small>Bonearmor-Rüstung (Monster Hunter Wilds)</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Jami",
+    link: "",
+    caption: (
+      <>
+        Jami
+        <br />
+        <small>Rouran (The Apothecary Diaries)</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Spacekatcos",
+    link: "",
+    caption: (
+      <>
+        Spacekatcos
+        <br />
+        <small>Zinogre Rüstungsset (Monster Hunter World)</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "Jul",
+    link: "",
+    caption: (
+      <>
+        Jul
+        <br />
+        <small>Fern (Frieren: Beyond Journey&apos;s End)</small>
+      </>
+    ),
+  },
+  {
+    image: null,
+    alt: "faefire_phoenix",
+    link: "",
+    caption: (
+      <>
+        faefire_phoenix
+        <br />
+        <small>Columbina (Genshin Impact)</small>
+      </>
+    ),
+  },
+];
+
+const zeichenwettbewerbImages = [
+  {
+    image: ZeichenMimic,
+    alt: "Mimic",
+    link: "",
+    caption: (
+      <>
+        Mimic
+        <br />
+        <small>Socken und Birkenstock</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenSmurfyTheArtist,
+    alt: "Smurfy-The-Artist",
+    link: "",
+    caption: (
+      <>
+        Smurfy-The-Artist
+        <br />
+        <small>Yumeko als osmanische Prinzessin</small>
+      </>
+    ),
+  },
+  {
+    image: evelusikImage,
+    alt: "evelusik",
+    link: "",
+    caption: (
+      <>
+        evelusik
+        <br />
+        <small>Tanz der Heimat</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenLina,
+    alt: "Lina",
+    link: "",
+    caption: (
+      <>
+        Lina
+        <br />
+        <small>Die Tagebücher der Yumeko</small>
+      </>
+    ),
+  },
+  {
+    image: queerBunnyImage,
+    alt: "QueerBunny",
+    link: "",
+    caption: (
+      <>
+        QueerBunny (Connor)
+        <br />
+        <small>Yumeko als Wolpertinger</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenLuzyana,
+    alt: "Luzyana",
+    link: "",
+    caption: (
+      <>
+        Luzyana
+        <br />
+        <small>Yumeko in Deutschland</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenOr3oOnPaws,
+    alt: "or3o_on_paws",
+    link: "",
+    caption: (
+      <>
+        or3o_on_paws
+        <br />
+        <small>Yumeko im Dirndl</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenCarolinTempest,
+    alt: "Carolin Tempest",
+    link: "",
+    caption: (
+      <>
+        Carolin Tempest
+        <br />
+        <small>Ruhlaer Tracht</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenMitsuri,
+    alt: "Mitsuri",
+    link: "",
+    caption: (
+      <>
+        Mitsuri
+        <br />
+        <small>Yumeko goes Bavaria (Genderbend)</small>
+      </>
+    ),
+  },
+  {
+    image: leloImage,
+    alt: "Lelo",
+    link: "",
+    caption: (
+      <>
+        Lelo
+        <br />
+        <small>Anno 1500 – Memminger Yumeko</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenBelabi,
+    alt: "Belabi",
+    link: "",
+    caption: (
+      <>
+        Belabi
+        <br />
+        <small>Yumekai 2026 belabi (Melanie)</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenFiona,
+    alt: "Fiona",
+    link: "",
+    caption: (
+      <>
+        Fiona
+        <br />
+        <small>Yumeko in ungarischer Tracht</small>
+      </>
+    ),
+  },
+  {
+    image: lauraskketchesImage,
+    alt: "lauraskketches",
+    link: "",
+    caption: (
+      <>
+        lauraskketches
+        <br />
+        <small>Ein Lebkuchenherz für Yumeko 💗</small>
+      </>
+    ),
+  },
+  {
+    image: ZeichenFranciNevada,
+    alt: "Franci Nevada",
+    link: "",
+    caption: (
+      <>
+        Franci Nevada
+        <br />
+        <small>La Figlia del Nord e del Sole</small>
+      </>
+    ),
+  },
 ];
 
 const cosplayballImages = [
@@ -691,75 +1111,42 @@ export default function YumeKai2026() {
         <br />
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
-     
-            <Columns3
-        left={
-          <>
-            <StyledImageHome
-              src={performance3}
-              alt="Tinyfufu"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-             1. Platz:{" "}
-        <StyledLink
-          href="https://www.instagram.com/tinyfufu/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Tinyfufu
-        </StyledLink>
-            </p>
-          </>
-        }
-        center={
-          <>
-            <StyledImageHome
-              src={performance7}
-              alt="Imonee Cosplay"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              2. Platz: Lia von{" "}
-        <StyledLink
-          href="https://www.instagram.com/imoneecosplay/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Imonee Cosplay
-        </StyledLink>
-            </p>
-          </>
-        }
-        right={
-          <>
-            <StyledImageHome
-              src={performance5}
-              alt="Palelittledragon"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-             3. Platz:{" "}
-        <StyledLink
-          href="https://www.instagram.com/palelittledragon/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Palelittledragon
-        </StyledLink>
-            </p>
-          </>
-        }
-      />
+
+      <ul>
+        <li>
+          1. Platz:{" "}
+          <StyledLink
+            href="https://www.instagram.com/tinyfufu/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Tinyfufu
+          </StyledLink>{" "}
+          als Miorine Rembran (Mobile Suit Gundam: The Witch from Mercury)
+        </li>
+        <li>
+          2. Platz: Lia von{" "}
+          <StyledLink
+            href="https://www.instagram.com/imoneecosplay/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Imonee Cosplay
+          </StyledLink>{" "}
+          als Minto Aizawa (Tokyo Mew Mew (Remake))
+        </li>
+        <li>
+          3. Platz:{" "}
+          <StyledLink
+            href="https://www.instagram.com/palelittledragon/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Palelittledragon
+          </StyledLink>{" "}
+          als Uraume (Jujutsu Kaisen)
+        </li>
+      </ul>
 
 
       <h3>Crafting:</h3>
@@ -768,73 +1155,37 @@ export default function YumeKai2026() {
         Teilnehmer bewertet – Cosplays, Wigs, Accessoires und Make-Up standen im Mittelpunkt.
         <br />
       </p>
-      <Columns3
-        left={
-          <>
-            <StyledImageHome
-              src={queerBunnyImage}
-              alt="QueerBunny"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              1. Platz
-              <br />
-              <StyledLink
-                href="https://www.instagram.com/serinua_cosplay/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Serinua Cosplay
-              </StyledLink>
-            </p>
-          </>
-        }
-        center={
-          <>
-            <StyledImageHome
-              src={queerBunnyImage}
-              alt="QueerBunny"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              2. Platz
-              <br />
-              <StyledLink href="" target="_blank" rel="noopener noreferrer">
-                Jul
-              </StyledLink>
-            </p>
-          </>
-        }
-        right={
-          <>
-            <StyledImageHome
-              src={queerBunnyImage}
-              alt="QueerBunny"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              3. Platz
-              <br />
-              <StyledLink
-                href="https://www.instagram.com/sovncosplay/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sovncosplay
-              </StyledLink>
-            </p>
-          </>
-        }
-      />
+      {/* TODO: Sobald die Crafting-Fotos vorliegen, hier den ImageCarousel einbinden:
+          <ImageCarousel visibleCount={5.5} duration={2.5} images={craftingImages} /> */}
+
+      <ul>
+        <li>
+          1. Platz:{" "}
+          <StyledLink
+            href="https://www.instagram.com/serinua_cosplay/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Serinua_cosplay
+          </StyledLink>{" "}
+          als Tragosso
+        </li>
+        <li>
+          2. Platz: <StyledLink href="" target="_blank" rel="noopener noreferrer">Jul</StyledLink>{" "}
+          als Fern (Frieren: Beyond Journey&apos;s End)
+        </li>
+        <li>
+          3. Platz:{" "}
+          <StyledLink
+            href="https://www.instagram.com/sovncosplay/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Sovncosplay
+          </StyledLink>{" "}
+          als Silverwind Nargacuga Rüstung (Monster Hunter)
+        </li>
+      </ul>
 
       <Spacer id="zeichenwettbewerb" />
       <h2>Zeichen Wettbewerb</h2>
@@ -849,76 +1200,22 @@ export default function YumeKai2026() {
       </p>
       
 
-      <Columns4
-        column1={
-          <>
-            <StyledImageHome
-              src={queerBunnyImage}
-              alt="QueerBunny"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              Kreativität
-              <br />
-              von: <strong>QueerBunny</strong>
-            </p>
-          </>
-        }
-        column2={
-          <>
-            <StyledImageHome
-              src={leloImage}
-              alt="Lelo"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              Qualität
-              <br />
-              von: <strong>Lelo</strong>
-            </p>
-          </>
-        }
-        column3={
-          <>
-            <StyledImageHome
-              src={evelusikImage}
-              alt="Evelusik"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              Technik
-              <br />
-              von: <strong>Evelusik</strong>
-            </p>
-          </>
-        }
-        column4={
-          <>
-            <StyledImageHome
-              src={lauraskketchesImage}
-              alt="lauraskketches"
-              style={{
-                width: "100%",
-                height: "auto",
-              }}
-            />
-            <p style={{ textAlign: "center", marginTop: 0 }}>
-              Jury Favorit / 1. Platz
-              <br />
-              von: <strong>lauraskketches</strong>
-            </p>
-          </>
-        }
-      />
+      <ImageCarousel visibleCount={5.5} duration={2.5} images={zeichenwettbewerbImages} />
+
+      <ul>
+        <li>
+          Beste Kreativität: <strong>QueerBunny (Connor)</strong> – Yumeko als Wolpertinger
+        </li>
+        <li>
+          Beste Qualität: <strong>Lelo</strong> – Anno 1500 – Memminger Yumeko
+        </li>
+        <li>
+          Beste Technik: <strong>evelusik</strong> – Tanz der Heimat
+        </li>
+        <li>
+          Jury Favorit / 1. Platz: <strong>lauraskketches</strong> – Ein Lebkuchenherz für Yumeko 💗
+        </li>
+      </ul>
 
       <Spacer id="cosplayball" />
       <h2>Cosplayball</h2>

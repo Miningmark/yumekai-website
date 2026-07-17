@@ -103,7 +103,7 @@ const Embla_Slide = styled.div`
   padding-left: ${({ $space }) => $space};
   flex: 0 0 calc(100% / ${({ $visiblecount }) => $visiblecount});
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
   a,
   .embla__slide__number {
@@ -114,6 +114,12 @@ const Embla_Slide = styled.div`
     flex: 0 0 calc(100% / ${({ $visiblecount }) => $visiblecount / 2});
     padding-left: 20px;
   }
+`;
+
+const SlideCaption = styled.p`
+  text-align: center;
+  font-weight: bold;
+  margin: 8px 0 0;
 `;
 
 export default function ImageSlider({
@@ -149,6 +155,7 @@ export default function ImageSlider({
             const isObject = typeof imageObj === "object" && imageObj !== null;
             const imageUrl = isObject ? imageObj.image : imageObj;
             const imageLink = isObject ? imageObj.link : null;
+            const caption = isObject ? imageObj.caption : null;
 
             const imageElement = (
               <div className="embla__slide__number">
@@ -165,6 +172,7 @@ export default function ImageSlider({
                 ) : (
                   imageElement
                 )}
+                {caption && <SlideCaption>{caption}</SlideCaption>}
               </Embla_Slide>
             );
           })}
