@@ -19,7 +19,7 @@ import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.
 import Lucky13Bild from "/public/assets/images/yumekai2026/Lucky13.jpg";
 import NicolleGonsiorBild from "/public/assets/images/yumekai2026/Nicolle Gonsior.jpeg";
 import MarieJeanneWideraBild from "/public/assets/images/yumekai2026/Marie-Jeanne Widera.jpeg";
-import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.png";
+import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.jpg";
 
 // Images – Cosplayer
 import XeniaBild from "/public/assets/images/yumekai2026/Xenia.jpg";
