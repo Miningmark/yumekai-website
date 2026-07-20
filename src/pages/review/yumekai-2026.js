@@ -123,7 +123,7 @@ import ZeichenLina from "/public/assets/images/yumekai2026/zeichenwettbewerb_lin
 import ZeichenLuzyana from "/public/assets/images/yumekai2026/zeichenwettbewerb_luzyana.jpg";
 import ZeichenOr3oOnPaws from "/public/assets/images/yumekai2026/zeichenwettbewerb_or3o_on_paws.jpg";
 import ZeichenCarolinTempest from "/public/assets/images/yumekai2026/zeichenwettbewerb_carolin_tempest.jpg";
-import ZeichenMitsuri from "/public/assets/images/yumekai2026/zeichenwettbewerb_mitsuri.png";
+import ZeichenMitsuri from "/public/assets/images/yumekai2026/zeichenwettbewerb_mitsuri.jpg";
 import ZeichenBelabi from "/public/assets/images/yumekai2026/zeichenwettbewerb_belabi.jpg";
 import ZeichenFiona from "/public/assets/images/yumekai2026/zeichenwettbewerb_fiona.jpg";
 import ZeichenFranciNevada from "/public/assets/images/yumekai2026/zeichenwettbewerb_franci_nevada.png";
