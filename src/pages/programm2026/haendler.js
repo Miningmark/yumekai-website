@@ -11,11 +11,11 @@ import OtakuArtBild from "/public/assets/images/yumekai2026/Otaku Art.png";
 import SquiggzBild from "/public/assets/images/yumekai2026/Squiggz.png";
 import HeldenschmiedeBild from "/public/assets/images/yumekai2026/Heldenschmiede.png";
 import OtakuwonderlandBild from "/public/assets/images/yumekai2026/Otakuwonderland.png";
-import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.png";
+import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.jpg";
 import ColorfulMindBild from "/public/assets/images/yumekai2026/Colorful Mind.png";
 import EuphonyBild from "/public/assets/images/yumekai2026/Euphony GmbH.png";
 import AnimiBild from "/public/assets/images/yumekai2026/Animi.png";
-import JennyGramsBild from "/public/assets/images/yumekai2026/Jenny Grams.png";
+import JennyGramsBild from "/public/assets/images/yumekai2026/Jenny Grams.jpg";
 import ShigaFoodBild from "/public/assets/images/yumekai2026/Shiga Food GmbH.png";
 import AkumuBild from "/public/assets/images/yumekai2026/Akumu.png";
 

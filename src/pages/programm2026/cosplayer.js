@@ -8,9 +8,9 @@ import SEO from "@/components/elements/SEO";
 //Images
 import XeniaBild from "/public/assets/images/yumekai2026/Xenia.jpg";
 import KermiBild from "/public/assets/images/yumekai2026/Kermi.jpg";
-import EraliasBild from "/public/assets/images/yumekai2026/Eralias.png";
+import EraliasBild from "/public/assets/images/yumekai2026/Eralias.jpg";
 import NekodanshiBild from "/public/assets/images/yumekai2026/Nekodanshi.jpg";
-import BarbieBallkleidBild from "/public/assets/images/yumekai2026/Barbie_TigaPhotography_WolfusCosplay.png";
+import BarbieBallkleidBild from "/public/assets/images/yumekai2026/Barbie_TigaPhotography_WolfusCosplay.jpg";
 import ScarlettBild from "/public/assets/images/yumekai2026/scarlet.jpg";
 
 const ContentContainer = styled.div`

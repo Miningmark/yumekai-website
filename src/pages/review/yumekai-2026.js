@@ -11,11 +11,11 @@ import SEO from "@/components/elements/SEO";
 
 // Images – Showacts & Ehrengäste
 import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
-import YuriHiranoBild from "/public/assets/images/yumekai2026/Yuri Hirano.png";
+import YuriHiranoBild from "/public/assets/images/yumekai2026/Yuri Hirano.jpg";
 import MionBild from "/public/assets/images/yumekai2026/MION.png";
 import NiloBild from "/public/assets/images/yumekai2026/Nilo.jpg";
-import LyriaBild from "/public/assets/images/yumekai2026/Lyria.png";
-import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.png";
+import LyriaBild from "/public/assets/images/yumekai2026/Lyria.jpg";
+import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.jpg";
 import Lucky13Bild from "/public/assets/images/yumekai2026/Lucky13.jpg";
 import NicolleGonsiorBild from "/public/assets/images/yumekai2026/Nicolle Gonsior.jpeg";
 import MarieJeanneWideraBild from "/public/assets/images/yumekai2026/Marie-Jeanne Widera.jpeg";
@@ -24,14 +24,14 @@ import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_
 // Images – Cosplayer
 import XeniaBild from "/public/assets/images/yumekai2026/Xenia.jpg";
 import KermiBild from "/public/assets/images/yumekai2026/Kermi.jpg";
-import EraliasBild from "/public/assets/images/yumekai2026/Eralias.png";
+import EraliasBild from "/public/assets/images/yumekai2026/Eralias.jpg";
 import NekodanshiBild from "/public/assets/images/yumekai2026/Nekodanshi.jpg";
-import WolfusBild from "/public/assets/images/yumekai2026/Barbie_TigaPhotography_WolfusCosplay.png";
+import WolfusBild from "/public/assets/images/yumekai2026/Barbie_TigaPhotography_WolfusCosplay.jpg";
 import ScarlettBild from "/public/assets/images/yumekai2026/scarlet.jpg";
 
 // Images – Aussteller
-import SciFiNarischeBild from "/public/assets/images/yumekai2026/SciFi-Narische.png";
-import ToweldayBild from "/public/assets/images/yumekai2026/Internationaler Handtuchtag.png";
+import SciFiNarischeBild from "/public/assets/images/yumekai2026/SciFi-Narische.jpg";
+import ToweldayBild from "/public/assets/images/yumekai2026/Internationaler Handtuchtag.jpg";
 import CosplayUnionBild from "/public/assets/images/yumekai2026/Cosplay-Union-Germany e.V..png";
 import ConUtopischBild from "/public/assets/images/yumekai2026/ConUtopisch Events.png";
 import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V..png";
@@ -48,30 +48,30 @@ import OtakuArtBild from "/public/assets/images/yumekai2026/Otaku Art.png";
 import SquiggzBild from "/public/assets/images/yumekai2026/Squiggz.png";
 import HeldenschmiedeBild from "/public/assets/images/yumekai2026/Heldenschmiede.png";
 import OtakuwonderlandBild from "/public/assets/images/yumekai2026/Otakuwonderland.png";
-import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.png";
+import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.jpg";
 import ColorfulMindBild from "/public/assets/images/yumekai2026/Colorful Mind.png";
 import EuphonyBild from "/public/assets/images/yumekai2026/Euphony GmbH.png";
 import AnimiBild from "/public/assets/images/yumekai2026/Animi.png";
-import JennyGramsBild from "/public/assets/images/yumekai2026/Jenny Grams.png";
+import JennyGramsBild from "/public/assets/images/yumekai2026/Jenny Grams.jpg";
 import ShigaFoodBild from "/public/assets/images/yumekai2026/Shiga Food GmbH.png";
 import AkumuBild from "/public/assets/images/yumekai2026/Akumu.png";
 
 // Images – Künstleratelier
 import ImgAkunyaah from "/public/assets/images/yumekai2026/Akunyaah - KEIN INSTA.png";
-import ImgGlueblade from "/public/assets/images/yumekai2026/Glueblade - KEIN INSTA.png";
+import ImgGlueblade from "/public/assets/images/yumekai2026/Glueblade - KEIN INSTA.jpg";
 import ImgJustDesign from "/public/assets/images/yumekai2026/@just_design_creation.png";
 import ImgAnaratwice from "/public/assets/images/yumekai2026/@anaratwice.png";
 import ImgYunuyei from "/public/assets/images/yumekai2026/@yunuyei.png";
 import ImgYeikoArt from "/public/assets/images/yumekai2026/@yeiko_art.png";
 import ImgNevadaArtShop from "/public/assets/images/yumekai2026/@nevada.art.shop.png";
-import ImgAnimalixu from "/public/assets/images/yumekai2026/@animalixu.png";
+import ImgAnimalixu from "/public/assets/images/yumekai2026/@animalixu.jpg";
 import ImgKitsuKami from "/public/assets/images/yumekai2026/@kitsu_kami.png";
 import ImgAliceMySecret from "/public/assets/images/yumekai2026/@alicemysecret.png";
 import ImgEmytsuu from "/public/assets/images/yumekai2026/@emytsuu.png";
 import ImgMinervasOwls from "/public/assets/images/yumekai2026/@minervasowls.png";
 import ImgSteamSpirits from "/public/assets/images/yumekai2026/@steamspirits.png";
 import ImgKirianYume from "/public/assets/images/yumekai2026/@kirianyume.png";
-import ImgMyuchiisu from "/public/assets/images/yumekai2026/@myuchiisu.png";
+import ImgMyuchiisu from "/public/assets/images/yumekai2026/@myuchiisu.jpg";
 import ImgArtOfTheValley from "/public/assets/images/yumekai2026/@art.of.the.valley.png";
 import ImgChristalShadow from "/public/assets/images/yumekai2026/@christal.shad0w0.png";
 import ImgJeyCreates from "/public/assets/images/yumekai2026/@jey.creates.png";
@@ -85,7 +85,7 @@ import ImgTrashelsArt from "/public/assets/images/yumekai2026/@trashelsArt.png";
 import ImgMikasMoonbrew from "/public/assets/images/yumekai2026/@MikasMoonbrew.png";
 
 // Images – Autoren
-import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.png";
+import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.jpg";
 import ImgNaomiHuber from "/public/assets/images/yumekai2026/@naomihuber_.png";
 import ImgDelphoxsart from "/public/assets/images/yumekai2026/@delphoxsart.png";
 
@@ -93,8 +93,8 @@ import ImgDelphoxsart from "/public/assets/images/yumekai2026/@delphoxsart.png";
 import AkunyaahWorkshopBild from "/public/assets/images/yumekai2026/Akunyaah Workshop.png";
 import KermiWorkshopBild from "/public/assets/images/yumekai2026/Kermi Workshop.jpg";
 import WolfusWorkshopBild from "/public/assets/images/yumekai2026/Wolfus Workshop.png";
-import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.png";
-import NGEItashaWorkshopBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.png";
+import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.jpg";
+import NGEItashaWorkshopBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.jpg";
 import YunuyeiBild from "/public/assets/images/yumekai2026/Yunuyei.png";
 import NevadaBild from "/public/assets/images/yumekai2026/Nevada.png";
 
@@ -119,18 +119,18 @@ import performance9 from "/public/assets/images/yumekai2026/cosplayperformance_9
 // Images – Zeichenwettbewerb Teilnehmer
 import ZeichenMimic from "/public/assets/images/yumekai2026/zeichenwettbewerb_mimic.png";
 import ZeichenSmurfyTheArtist from "/public/assets/images/yumekai2026/zeichenwettbewerb_smurfy_the_artist.png";
-import ZeichenLina from "/public/assets/images/yumekai2026/zeichenwettbewerb_lina.png";
-import ZeichenLuzyana from "/public/assets/images/yumekai2026/zeichenwettbewerb_luzyana.png";
-import ZeichenOr3oOnPaws from "/public/assets/images/yumekai2026/zeichenwettbewerb_or3o_on_paws.png";
-import ZeichenCarolinTempest from "/public/assets/images/yumekai2026/zeichenwettbewerb_carolin_tempest.png";
+import ZeichenLina from "/public/assets/images/yumekai2026/zeichenwettbewerb_lina.jpg";
+import ZeichenLuzyana from "/public/assets/images/yumekai2026/zeichenwettbewerb_luzyana.jpg";
+import ZeichenOr3oOnPaws from "/public/assets/images/yumekai2026/zeichenwettbewerb_or3o_on_paws.jpg";
+import ZeichenCarolinTempest from "/public/assets/images/yumekai2026/zeichenwettbewerb_carolin_tempest.jpg";
 import ZeichenMitsuri from "/public/assets/images/yumekai2026/zeichenwettbewerb_mitsuri.png";
-import ZeichenBelabi from "/public/assets/images/yumekai2026/zeichenwettbewerb_belabi.png";
-import ZeichenFiona from "/public/assets/images/yumekai2026/zeichenwettbewerb_fiona.png";
+import ZeichenBelabi from "/public/assets/images/yumekai2026/zeichenwettbewerb_belabi.jpg";
+import ZeichenFiona from "/public/assets/images/yumekai2026/zeichenwettbewerb_fiona.jpg";
 import ZeichenFranciNevada from "/public/assets/images/yumekai2026/zeichenwettbewerb_franci_nevada.png";
-import queerBunnyImage from "/public/assets/images/yumekai2026/QueerBunny.png";
-import leloImage from "/public/assets/images/yumekai2026/lelo.png";
+import queerBunnyImage from "/public/assets/images/yumekai2026/QueerBunny.jpg";
+import leloImage from "/public/assets/images/yumekai2026/lelo.jpg";
 import evelusikImage from "/public/assets/images/yumekai2026/evelusik.png";
-import lauraskketchesImage from "/public/assets/images/yumekai2026/lauraskketches.png";
+import lauraskketchesImage from "/public/assets/images/yumekai2026/lauraskketches.jpg";
 
 import ball01 from "/public/assets/images/yumekai2026/ball_01.jpg";
 import ball02 from "/public/assets/images/yumekai2026/ball_02.jpg";

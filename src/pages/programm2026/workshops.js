@@ -14,10 +14,10 @@ import NevadaBild from "/public/assets/images/yumekai2026/Nevada.png";
 import AkunyaahWorkshopBild from "/public/assets/images/yumekai2026/Akunyaah Workshop.png";
 import KermiWorkshopBild from "/public/assets/images/yumekai2026/Kermi Workshop.jpg";
 import WolfusWorkshopBild from "/public/assets/images/yumekai2026/Wolfus Workshop.png";
-import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.png";
+import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.jpg";
 import HokushinWorkshopBild from "/public/assets/images/yumekai2026/Hokushin.png";
 import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
-import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.png";
+import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.jpg";
 
 const ContentContainer = styled.div`
   display: flex;

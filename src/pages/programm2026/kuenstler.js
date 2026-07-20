@@ -7,20 +7,20 @@ import SEO from "@/components/elements/SEO";
 
 //Images
 import ImgAkunyaah from "/public/assets/images/yumekai2026/Akunyaah - KEIN INSTA.png";
-import ImgGlueblade from "/public/assets/images/yumekai2026/Glueblade - KEIN INSTA.png";
+import ImgGlueblade from "/public/assets/images/yumekai2026/Glueblade - KEIN INSTA.jpg";
 import ImgJustDesign from "/public/assets/images/yumekai2026/@just_design_creation.png";
 import ImgAnaratwice from "/public/assets/images/yumekai2026/@anaratwice.png";
 import ImgYunuyei from "/public/assets/images/yumekai2026/@yunuyei.png";
 import ImgYeikoArt from "/public/assets/images/yumekai2026/@yeiko_art.png";
 import ImgNevadaArtShop from "/public/assets/images/yumekai2026/@nevada.art.shop.png";
-import ImgAnimalixu from "/public/assets/images/yumekai2026/@animalixu.png";
+import ImgAnimalixu from "/public/assets/images/yumekai2026/@animalixu.jpg";
 import ImgKitsuKami from "/public/assets/images/yumekai2026/@kitsu_kami.png";
 import ImgAliceMySecret from "/public/assets/images/yumekai2026/@alicemysecret.png";
 import ImgEmytsuu from "/public/assets/images/yumekai2026/@emytsuu.png";
 import ImgMinervasOwls from "/public/assets/images/yumekai2026/@minervasowls.png";
 import ImgSteamSpirits from "/public/assets/images/yumekai2026/@steamspirits.png";
 import ImgKirianYume from "/public/assets/images/yumekai2026/@kirianyume.png";
-import ImgMyuchiisu from "/public/assets/images/yumekai2026/@myuchiisu.png";
+import ImgMyuchiisu from "/public/assets/images/yumekai2026/@myuchiisu.jpg";
 import ImgArtOfTheValley from "/public/assets/images/yumekai2026/@art.of.the.valley.png";
 import ImgChristalShadow from "/public/assets/images/yumekai2026/@christal.shad0w0.png";
 import ImgJeyCreates from "/public/assets/images/yumekai2026/@jey.creates.png";
@@ -33,7 +33,7 @@ import ImgFylyDraws from "/public/assets/images/yumekai2026/@fyly_draws.jpg";
 import ImgTrashelsArt from "/public/assets/images/yumekai2026/@trashelsArt.png";
 import ImgMikasMoonbrew from "/public/assets/images/yumekai2026/@MikasMoonbrew.png";
 
-import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.png";
+import ImgUlfFildebrandt from "/public/assets/images/yumekai2026/@ulffildebrandt.jpg";
 import ImgNaomiHuber from "/public/assets/images/yumekai2026/@naomihuber_.png";
 import ImgDelphoxsart from "/public/assets/images/yumekai2026/@delphoxsart.png";
 
