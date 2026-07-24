@@ -114,8 +114,6 @@ import performance7 from "/public/assets/images/yumekai2026/cosplayperformance_7
 import performance8 from "/public/assets/images/yumekai2026/cosplayperformance_8.jpg";
 import performance9 from "/public/assets/images/yumekai2026/cosplayperformance_9.jpg";
 
-
-
 // Images – Zeichenwettbewerb Teilnehmer
 import ZeichenMimic from "/public/assets/images/yumekai2026/zeichenwettbewerb_mimic.png";
 import ZeichenSmurfyTheArtist from "/public/assets/images/yumekai2026/zeichenwettbewerb_smurfy_the_artist.png";
@@ -173,7 +171,7 @@ const performanceImages = [
     ),
   },
   {
-    image: performance3,
+    image: performance4,
     alt: "Tinyfufu",
     link: "https://www.instagram.com/tinyfufu/",
     caption: (
@@ -185,14 +183,14 @@ const performanceImages = [
     ),
   },
   {
-    image: performance4,
-    alt: "Saito",
+    image: performance3,
+    alt: "meedori",
     link: "",
     caption: (
       <>
-        Saito
+        meedori
         <br />
-        <small>Tanjiro Kamado (Demon Slayer)</small>
+        <small>Special Week (Umamusume)</small>
       </>
     ),
   },
@@ -216,7 +214,7 @@ const performanceImages = [
       <>
         lady.krul
         <br />
-        <small>Shinobu Kocho (Demon Slayer)</small>
+        <small>Shinobu Kocho & Kokushibo (Demon Slayer)</small>
       </>
     ),
   },
@@ -233,7 +231,7 @@ const performanceImages = [
     ),
   },
   {
-    image: performance8,
+    image: performance9,
     alt: "Shinoa_Kitsune",
     link: "",
     caption: (
@@ -245,7 +243,7 @@ const performanceImages = [
     ),
   },
   {
-    image: performance9,
+    image: performance8,
     alt: "Akunyaah",
     link: "",
     caption: (
@@ -451,7 +449,7 @@ const zeichenwettbewerbImages = [
     link: "",
     caption: (
       <>
-        QueerBunny (Connor)
+        QueerBunny
         <br />
         <small>Yumeko als Wolpertinger</small>
       </>
@@ -581,7 +579,7 @@ const cosplayballImages = [
   { image: ball11, alt: "Cosplay Ball 11", link: "" },
   { image: ball12, alt: "Cosplay Ball 12", link: "" },
   { image: ball13, alt: "Cosplay Ball 13", link: "" },
-  { image:ball14, alt: "Cosplay Ball 14", link: "" },
+  { image: ball14, alt: "Cosplay Ball 14", link: "" },
 ];
 
 const StyledImageHome = styled(Image)`
@@ -721,7 +719,7 @@ export default function YumeKai2026() {
         <li>
           <StyledLink href="#zeichenwettbewerb">Zeichen Wettbewerb</StyledLink>
         </li>
-         <li>
+        <li>
           <StyledLink href="#cosplayball">Cosplay Ball</StyledLink>
         </li>
         <li>
@@ -1154,7 +1152,6 @@ export default function YumeKai2026() {
         </li>
       </ul>
 
-
       <h3>Crafting:</h3>
       <p>
         Mit unserem Crafting Wettbewerb wurden ausschließlich die handwerklichen Fähigkeiten der
@@ -1177,7 +1174,10 @@ export default function YumeKai2026() {
           als Tragosso
         </li>
         <li>
-          2. Platz: <StyledLink href="" target="_blank" rel="noopener noreferrer">Jul</StyledLink>{" "}
+          2. Platz:{" "}
+          <StyledLink href="" target="_blank" rel="noopener noreferrer">
+            Jul
+          </StyledLink>{" "}
           als Fern (Frieren: Beyond Journey&apos;s End)
         </li>
         <li>
@@ -1204,7 +1204,6 @@ export default function YumeKai2026() {
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
         gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
-      
 
       <ImageCarousel visibleCount={5.5} duration={2.5} images={zeichenwettbewerbImages} />
 
@@ -1236,12 +1235,11 @@ export default function YumeKai2026() {
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={cosplayballImages} />
 
-
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
       <p>
-        Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden
-        Programm. Deshalb möchten wir an dieser Stelle ein riesiges Dankeschön aussprechen an alle
+        Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden Programm.
+        Deshalb möchten wir an dieser Stelle ein riesiges Dankeschön aussprechen an alle
         Unterstützer!
       </p>
       <p>

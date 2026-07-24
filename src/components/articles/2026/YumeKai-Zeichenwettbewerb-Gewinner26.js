@@ -44,9 +44,9 @@ export default function YumeKaiZeichenwettbewerbGewinner26() {
           <>
             <p>
               Wir freuen uns, die Gewinner unseres Zeichenwettbewerbs bekannt zu geben! Das Thema in
-              diesem Jahr: Yumeko Worldwide - unser Maskottchen Yumeko in eurer eigenen Nationalität.
-              Die Künstler haben mit unglaublicher Kreativität Yumeko in einzigartigen, kulturell
-              inspirierten Interpretationen zum Leben erweckt.
+              diesem Jahr: Yumeko Worldwide - unser Maskottchen Yumeko in eurer eigenen
+              Nationalität. Die Künstler haben mit unglaublicher Kreativität Yumeko in
+              einzigartigen, kulturell inspirierten Interpretationen zum Leben erweckt.
             </p>
             <div style={{ justifyContent: "center" }} className="responsive-container">
               <div style={{ width: "80%", height: "auto" }}>
@@ -93,7 +93,7 @@ export default function YumeKaiZeichenwettbewerbGewinner26() {
                       height: "auto",
                     }}
                   />
-                  <p style={{ textAlign: "center", marginTop: 0 }}>von: QueerBunny (Connor)</p>
+                  <p style={{ textAlign: "center", marginTop: 0 }}>von: QueerBunny</p>
                 </>
               }
             />
