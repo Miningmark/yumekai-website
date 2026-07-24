@@ -155,6 +155,7 @@ export default function ContentCard({
               <Image
                 src={imageSrc}
                 alt={altText}
+                sizes={`(max-width: 500px) 90vw, ${maxWidth}px`}
                 style={{
                   width: "100%",
                   height: "auto",

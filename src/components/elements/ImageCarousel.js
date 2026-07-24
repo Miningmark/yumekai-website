@@ -159,7 +159,11 @@ export default function ImageSlider({
 
             const imageElement = (
               <div className="embla__slide__number">
-                <ImageTest src={imageUrl} alt={isObject ? imageObj.alt : "Bild"} />
+                <ImageTest
+                  src={imageUrl}
+                  alt={isObject ? imageObj.alt : "Bild"}
+                  sizes={`(max-width: 800px) ${Math.round(100 / (visibleCount / 2))}vw, ${Math.round(100 / visibleCount)}vw`}
+                />
               </div>
             );
 

@@ -18,7 +18,7 @@ export default function HierKonntIhrUnsTreffen() {
               cardHeight={400}
               frontContent={
                 <>
-                  <h3>Hier könnt ihr uns treffen:</h3>
+                  <h2>Hier könnt ihr uns treffen:</h2>
                   <ul>
                     <li>04.07 - 05.07 Cosday² in Frankfurt</li>
                     <li>04.07 - 05.07 ConUtopisch in Seefeld in Tirol</li>
@@ -28,7 +28,7 @@ export default function HierKonntIhrUnsTreffen() {
               }
               backContent={
                 <>
-                  <h3>Hier waren wir:</h3>
+                  <h2>Hier waren wir:</h2>
                   <ul>
                     <li>Cosday² in Frankfurt</li>
                     <li>Techniktreffen in Speyer</li>
@@ -57,6 +57,7 @@ export default function HierKonntIhrUnsTreffen() {
                 <Image
                   src={hiruHandy}
                   alt="Maskottchen Hiru"
+                  sizes="(max-width: 800px) 60vw, 300px"
                   style={{
                     width: "100%",
                     height: "auto",

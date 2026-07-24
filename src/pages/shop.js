@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Head from "next/head";
 import Script from "next/script";
 import Banner from "@/components/shop/Banner";
 import { StyledLink } from "@/components/styledComponents";
@@ -12,6 +13,14 @@ export default function Shop() {
         description="Sichere dir jetzt deine Tickets für die YumeKai 2026 in Memmingen im offiziellen Ticketshop."
         path="/shop"
       />
+      <Head>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://pretix.eu/Dreamfly-Events/yumekai-25/widget/v1.css"
+          crossOrigin="anonymous"
+        />
+      </Head>
       <Script
         src="https://pretix.eu/widget/v1.de.js"
         strategy="lazyOnload"

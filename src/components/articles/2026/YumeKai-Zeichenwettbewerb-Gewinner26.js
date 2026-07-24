@@ -54,6 +54,7 @@ export default function YumeKaiZeichenwettbewerbGewinner26() {
                   <Image
                     src={yumekoImage}
                     alt="Maskottchen Yumeko"
+                    sizes="(max-width: 1000px) 60vw, 480px"
                     style={{ width: "100%", height: "auto" }}
                   />
                 </StyledYumekoImage>
@@ -71,6 +72,7 @@ export default function YumeKaiZeichenwettbewerbGewinner26() {
                   <StyledImageHome
                     src={lauraskketchesImage}
                     alt="Ein Lebkuchenherz für Yumeko von lauraskketches"
+                    sizes="(max-width: 800px) 45vw, 290px"
                     style={{
                       width: "100%",
                       height: "auto",
@@ -85,6 +87,7 @@ export default function YumeKaiZeichenwettbewerbGewinner26() {
                   <StyledImageHome
                     src={queerBunnyImage}
                     alt="Yumeko als Wolpertinger von QueerBunny"
+                    sizes="(max-width: 800px) 45vw, 290px"
                     style={{
                       width: "100%",
                       height: "auto",
@@ -102,6 +105,7 @@ export default function YumeKaiZeichenwettbewerbGewinner26() {
                   <StyledImageHome
                     src={leloImage}
                     alt="Anno 1500 - Memminger Yumeko von Lelo"
+                    sizes="(max-width: 800px) 45vw, 290px"
                     style={{
                       width: "100%",
                       height: "auto",
@@ -116,6 +120,7 @@ export default function YumeKaiZeichenwettbewerbGewinner26() {
                   <StyledImageHome
                     src={evelusikImage}
                     alt="Tanz der Heimat von evelusik"
+                    sizes="(max-width: 800px) 45vw, 290px"
                     style={{
                       width: "100%",
                       height: "auto",

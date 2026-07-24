@@ -6,8 +6,8 @@ import ContentCard from "@/components/elements/ContentCard";
 
 //Images
 import HiruBall from "/public/assets/hirus/Hiru_Ball.png";
-import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.png";
-import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.png";
+import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.jpg";
+import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.jpg";
 import SEO from "@/components/elements/SEO";
 
 const ContentContainer = styled.div`

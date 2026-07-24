@@ -24,6 +24,7 @@ export default function RueckblickYumekai2026() {
           <Image
             src={ballBild}
             alt=" Mion YumeKai 2026"
+            sizes="(max-width: 800px) 90vw, 300px"
             style={{
               width: "100%",
               height: "auto",

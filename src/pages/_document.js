@@ -25,14 +25,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="de">
-        <Head>
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://pretix.eu/Dreamfly-Events/yumekai-25/widget/v1.css"
-            crossOrigin="anonymous"
-          />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
