@@ -52,7 +52,7 @@ import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodf
 import ColorfulMindBild from "/public/assets/images/yumekai2026/Colorful Mind.png";
 import EuphonyBild from "/public/assets/images/yumekai2026/Euphony GmbH.png";
 import AnimiBild from "/public/assets/images/yumekai2026/Animi.png";
-import JennyGramsBild from "/public/assets/images/yumekai2026/Jenny Grams.jpg";
+import TenityDesignBild from "/public/assets/images/yumekai2026/Tenity_Design.jpg";
 import ShigaFoodBild from "/public/assets/images/yumekai2026/Shiga Food GmbH.png";
 import AkumuBild from "/public/assets/images/yumekai2026/Akumu.png";
 
@@ -97,6 +97,10 @@ import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Worksho
 import NGEItashaWorkshopBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.jpg";
 import YunuyeiBild from "/public/assets/images/yumekai2026/Yunuyei.png";
 import NevadaBild from "/public/assets/images/yumekai2026/Nevada.png";
+import StellariaDanceWorkshopBild from "/public/assets/images/yumekai2026/Stellaria_Random_Play_Dance.png";
+import TanzkursBild from "/public/assets/images/yumekai2026/Tanzkurs_square.jpg";
+import HarukyuWorkshopBild from "/public/assets/images/yumekai2026/Harukyu_Duo_Workshop.jpg";
+import ScarlettWorkshopBild from "/public/assets/images/yumekai2026/Scarlett_Workshop.jpg";
 
 // Images – Essen
 import BecherBistroBild from "/public/assets/images/yumekai2026/Becher Bistro.png";
@@ -114,6 +118,9 @@ import performance7 from "/public/assets/images/yumekai2026/cosplayperformance_7
 import performance8 from "/public/assets/images/yumekai2026/cosplayperformance_8.jpg";
 import performance9 from "/public/assets/images/yumekai2026/cosplayperformance_9.jpg";
 
+// Images – Crafting Wettbewerb Teilnehmer
+import crafting1 from "/public/assets/images/yumekai2026/CosplayCrafting.jpg";
+
 // Images – Zeichenwettbewerb Teilnehmer
 import ZeichenMimic from "/public/assets/images/yumekai2026/zeichenwettbewerb_mimic.png";
 import ZeichenSmurfyTheArtist from "/public/assets/images/yumekai2026/zeichenwettbewerb_smurfy_the_artist.png";
@@ -130,6 +137,7 @@ import leloImage from "/public/assets/images/yumekai2026/lelo.jpg";
 import evelusikImage from "/public/assets/images/yumekai2026/evelusik.png";
 import lauraskketchesImage from "/public/assets/images/yumekai2026/lauraskketches.jpg";
 
+// Images – Cosplay Ball
 import ball01 from "/public/assets/images/yumekai2026/ball_01.jpg";
 import ball02 from "/public/assets/images/yumekai2026/ball_02.jpg";
 import ball03 from "/public/assets/images/yumekai2026/ball_03.jpg";
@@ -836,7 +844,7 @@ export default function YumeKai2026() {
         <ContentContainer src={CosplayAlpinBild} alt="Cosplay Alpin" />
         <ContentContainer src={Regiment405thBild} alt="405th European Regiment" />
         <ContentContainer src={CoHeKiBild} alt="CoHeKi e.V." />
-        <ContentContainer src={CCDBild} alt="CCD" />
+        <ContentContainer src={CCDBild} alt="Comic Con Dornbirn" />
       </ContentWrapper>
 
       <Spacer id="haendler" />
@@ -859,7 +867,7 @@ export default function YumeKai2026() {
         <ContentContainer src={OtakuwonderlandBild} alt="Otakuwonderland" />
         <ContentContainer src={BavarianWoodfoxBild} alt="BavarianWoodfox" />
         <ContentContainer src={AnimiBild} alt="Animi" />
-        <ContentContainer src={JennyGramsBild} alt="Jenny Grams" />
+        <ContentContainer src={TenityDesignBild} alt="Tenity Design" />
         <ContentContainer src={ShigaFoodBild} alt="Shiga Food GmbH" />
         <ContentContainer src={AkumuBild} alt="Akumu" />
       </ContentWrapper>
@@ -1055,6 +1063,11 @@ export default function YumeKai2026() {
           link="https://www.instagram.com/stellaria.idols/"
         />
         <ContentContainer
+          src={StellariaDanceWorkshopBild}
+          alt="Stellaria – Random Play Dance"
+          link="https://www.instagram.com/stellaria.idols/"
+        />
+        <ContentContainer
           src={YunuyeiBild}
           alt="Yunuyei – Kreativ Selbstständig"
           link="https://www.instagram.com/yunuyei/"
@@ -1080,8 +1093,15 @@ export default function YumeKai2026() {
           alt="Eralia Workshop"
           link="https://www.instagram.com/eralia_iwahana/"
         />
+        <ContentContainer
+          src={ScarlettWorkshopBild}
+          alt="Cosplay Safety 101"
+          link="https://www.instagram.com/scarlett_cos/"
+        />
         <ContentContainer src={HokushinBild} alt="Hokushin – Samurai Vorführung" />
         <ContentContainer src={NGEItashaWorkshopBild} alt="N.G.E.-Itasha Workshop" />
+        <ContentContainer src={HarukyuWorkshopBild} alt="Ars Metamorphosis - Wigs & Makeup" />
+        <ContentContainer src={TanzkursBild} alt="Tanzkurs" />
       </ContentWrapper>
 
       <Spacer id="essen" />
