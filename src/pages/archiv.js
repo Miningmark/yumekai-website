@@ -24,6 +24,7 @@ import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 import Crowdfunding from "@/components/articles/2025/Crowdfunding";
 import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
+import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb26";
 
 export default function Archiv() {
   return (
@@ -35,6 +36,8 @@ export default function Archiv() {
       />
       <h1>Archiv</h1>
       <p>Hier findet ihr alle älteren Beiträge von der Startseite (Aktuelles).</p>
+      <Spacer />
+      <YumeKaiZeichenwettbewerb26 />
       <Spacer />
       <Crowdfunding />
       <Spacer />
