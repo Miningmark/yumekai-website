@@ -683,17 +683,17 @@ export default function YumeKai2026() {
       />
       <h1>Rückblick YumeKai 2026</h1>
       <p>
-        Am 09. und 10. Mai 2026 fand die dritte YumeKai in der Stadthalle Memmingen statt. Hier
-        könnt ihr nochmal Eindrücke der Convention durch Bilder erleben!
+        Am 09. und 10. Mai fand in diesem Jahr unsere dritte YumeKai statt. Hier könnt ihr die schönsten 
+Momente der Convention noch einmal Revue passieren lassen und gemeinsam in Erinnerungen 
+schwelgen. Vielleicht entdeckt ihr euch oder eure Freunde ja sogar auf dem einen oder anderen Bild. 
       </p>
 
       <p>
-        Werft gerne auch einen Blick in unser{" "}
-        <StyledLink href="/downloads/YumeKai_2026_Programmheft.pdf" target="_blank">
+        Außerdem könnt ihr einen Blick in unser {" "}<StyledLink href="/downloads/YumeKai_2026_Programmheft.pdf" target="_blank">
           Programmheft
-        </StyledLink>{" "}
-        von 2026, um so einen besseren Eindruck von unseren vielzähligen Programmpunkten zu
-        bekommen.
+        </StyledLink>{" "} werfen und mehr über unsere zahlreichen 
+Partner, Sponsoren, Händler, Künstler, Aussteller sowie die vielfältigen Programmpunkte erfahren. {" "}
+        
       </p>
 
       <ul>
@@ -786,13 +786,15 @@ export default function YumeKai2026() {
       <Spacer id="cosplayer" />
       <h2>Cosplayer</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Auch in diesem Jahr durften wir wieder zahlreiche talentierte Cosplayer bei uns begrüßen. Neben 
+neuen Gesichtern wie Xenia, Wolfus, Kermi und dem Cosplay-Duo Nekodanshi durften wir auch 
+bekannte Gäste wie Eralia und Scarlett.Sirene erneut bei uns begrüßen.  
+An ihren Ständen in der Stadthalle konntet ihr euch mit ihnen über verschiedene Cosplay-Themen 
+austauschen, Fragen stellen oder gemeinsam Fotos machen. Außerdem unterstützten sie unsere 
+Cosplay Wettbewerbe als Jurymitglieder. 
+In ihren Workshops gaben sie spannende Einblicke in die Welt des Cosplays und teilten ihr Wissen, 
+ihre Erfahrungen sowie viele hilfreiche Tipps und Tricks. Dabei hattet ihr die Gelegenheit, gezielt 
+Fragen zu stellen und euch direkt mit den Cosplayern auszutauschen.   
       </p>
       <ContentWrapper>
         <ContentContainer src={XeniaBild} alt="Xenia" link="https://www.instagram.com/xenia.cos/" />
@@ -822,15 +824,13 @@ export default function YumeKai2026() {
       <Spacer id="aussteller" />
       <h2>Aussteller</h2>
       <p>
-        Unsere Aussteller und Vereine haben euch wieder die unterschiedlichsten Themengebiete
-        nähergebracht. Von Samurai-Vorführungen der Hokushin Ittō-ryū über beeindruckende
-        Halo-Rüstungen des 405th European Regiments bis hin zu den apokalyptischen Kostümen der
-        Nuclear Bastards war für jeden etwas dabei.
+        Auch in diesem Jahr waren wieder zahlreiche Aussteller mit den unterschiedlichsten Themengebieten 
+auf der YumeKai vertreten. An ihren Ständen konntet ihr mehr über ihre Projekte, Vereine und 
+Angebote erfahren sowie mit ihnen ins Gespräch kommen. 
         <br />
         <br />
-        Der CoHeKi e.V. sammelte wieder für Kinder in Not, Cosplay Alpin und die Cosplay-Union
-        vernetzten die Community. Beim N.G.E.-Itasha Stand gab es auch draußen mit den tollen
-        Fahrzeugen viel zu entdecken.
+        Darüber hinaus boten viele Aussteller spannende Workshops und informative Vorträge an, bei denen 
+ihr noch tiefer in die jeweiligen Themen eintauchen und Neues entdecken konntet. 
       </p>
       <ContentWrapper>
         <ContentContainer src={SciFiNarischeBild} alt="SciFi-Narische" />
@@ -850,13 +850,11 @@ export default function YumeKai2026() {
       <Spacer id="haendler" />
       <h2>Händler</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Was wäre eine Convention ohne ihre Händler? Auch in diesem Jahr wartete wieder eine große 
+Auswahl an Verkaufsständen auf euch. Von Mangas und Merchandise über Schmuck und asiatische 
+Snacks bis hin zu einzigartigen handgefertigten Produkten gab es jede Menge zu entdecken. Dies war 
+natürlich auch die perfekte Gelegenheit, dass ein oder andere neue Lieblingsstück mit nach Hause zu 
+nehmen.   
       </p>
       <ContentWrapper>
         <ContentContainer src={ColorfulMindBild} alt="Colorful Mind Tattoo-Atelier" />
@@ -875,13 +873,12 @@ export default function YumeKai2026() {
       <Spacer id="kuenstleratelier" />
       <h2>Künstleratelier</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Eine Artist Alley gehört mittlerweile zu fast jeder Anime-Convention und bei uns gab es in diesem Jahr 
+sogar gleich zwei! Eine befand sich in dem Hauptgebäude, der Stadthalle und eine im Maximilian
+Kolbe-Haus. Hier konntet ihr bei den Artists durchschauen, verschiedenste Kunstgegenstände 
+entdecken, euch in Gespräche vertiefen und viel neues entdecken. Einige Künstler haben ihr Wissen 
+und ihre Expertise auch in Workshops mit euch geteilt und dort nochmal spezifischere Fragen 
+beantwortet.   
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -1019,13 +1016,10 @@ export default function YumeKai2026() {
       <Spacer id="autoren" />
       <h2>Autoren</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+       Auch in diesem Jahr durften unsere Autoren auf der YumeKai natürlich nicht fehlen. An ihren Ständen 
+konntet ihr in ihre Bücher hineinschnuppern, mehr über ihre Geschichten erfahren und ihnen eure 
+Fragen stellen. Außerdem bot sich die Gelegenheit mehr über den kreativen Entstehungsprozess ihrer 
+Werke zu erfahren.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -1048,13 +1042,9 @@ export default function YumeKai2026() {
       <Spacer id="workshops" />
       <h2>Workshops</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene 
+Themenbereiche wurden hier dieses Jahr präsentiert, sei es Cosplay, Itashas, Miniaturen bemalen, 
+kreative Selbstständigkeit oder auch tanzen. Hier gab es wirklich zu allen Themen etwas.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -1107,13 +1097,8 @@ export default function YumeKai2026() {
       <Spacer id="essen" />
       <h2>Essen</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+       Auch für Essen war gesorgt, entweder etwas deftiges beim Becher Bistro oder beim Gasthof Bräuhaus 
+Lepple oder für die süße Entspannung zwischendurch sorgte das Maid Cafe DreamGarden.
       </p>
       <ContentWrapper>
         <ContentContainer src={BecherBistroBild} alt="Becher Bistro" />
@@ -1121,17 +1106,28 @@ export default function YumeKai2026() {
         <ContentContainer src={BrauhausLeppleBild} alt="Gasthof Bräuhaus Lepple" />
       </ContentWrapper>
 
+<Spacer id="gaming" />
+      <h2>Spiele, Gaming, Karaoke</h2>
+      <p>
+        Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der 
+Heldenschmiede und dem Squiggz ein hervorragendes Angebot. Hier konnten nicht nur 
+verschiedenste Spiele gekauft werden, sondern auch Demospiele getestet werden! Für alle Fans von 
+TCG gab es auch Turniere zum Mitspielen. 
+Wer mit Brettspielen, Kartenspielen oder Tabletop nichts anfangen konnte war bei unsererm 
+Gamingbereich gut aufgehoben. Hier gab es die verschiedensten Konsolen und Spiele zum Testen. 
+Auch dieses Jahr war unser Karaoke Raum wieder am Start, hier konntet ihr über das gesamte 
+Wochenende singen. Am Samstagabend gab es dort den zweiten Karavision Song Contest auf der 
+YumeKai!
+      </p>
+
       <Spacer id="cosplay-wettbewerbe" />
       <h2>Cosplay Wettbewerbe</h2>
       <h3>Performance:</h3>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Bei unserem Performance Wettbewerb hatte jeder Teilnehmer bis zu 4 Minuten auf der Bühne Zeit, 
+sich mit einer kurzen Darbietung auf der Bühne zu präsentieren. All unsere Teilnehmer haben hier die 
+Herzen der Zuschauer durch ihre Performances erobert, sodass es unserer Jury nicht einfach viel sich 
+zu entscheiden.
         <br />
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
@@ -1174,8 +1170,10 @@ export default function YumeKai2026() {
 
       <h3>Crafting:</h3>
       <p>
-        Mit unserem Crafting Wettbewerb wurden ausschließlich die handwerklichen Fähigkeiten der
-        Teilnehmer bewertet – Cosplays, Wigs, Accessoires und Make-Up standen im Mittelpunkt.
+       Unserem Crafting Wettbewerb ging dieses Jahr in die zweite Runde. Hier wurden nur die Cosplays, 
+Wigs, Accessoires und Make-Up der Teilnehmenden Bewertet. Der kurze Catwalk auf der Bühne 
+wurde nicht in die Bewertung aufgenommen, sodass es wirklich nur um die Crafting Techniken und 
+die Fähigkeiten der Teilnehmer ging.
         <br />
       </p>
       {/* TODO: Sobald die Crafting-Fotos vorliegen, hier den ImageCarousel einbinden:
@@ -1216,13 +1214,17 @@ export default function YumeKai2026() {
       <Spacer id="zeichenwettbewerb" />
       <h2>Zeichen Wettbewerb</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Wieder mit dabei war auch unser Zeichenwettbewerb, hier konnten im Vorhinein Bilder zum 
+Themenbereich &bdquo;Yumeko Worldwide&ldquo; eingereicht werden. Diese wurden von unserer talentierten 
+Jury, welche aus {" "}
+              <StyledLink href="https://www.instagram.com/wynrayzero/" target="_blank">
+                wynrayzero
+              </StyledLink>{" "} (Schöpfer von unserem Maskottchen Hiru), Matina (Teil unserer 
+Teamleitung) und{" "} <StyledLink href="https://bsky.app/profile/papaapplepie.bsky.social" target="_blank">
+          Papa_ApplePie
+        </StyledLink>{" "} bestand, 
+bewertet. Am Sonntagabend wurden die Gewinner und alle Teilnehmerbilder dann auf der großen 
+Bühne gezeigt. 
       </p>
 
       <ImageCarousel visibleCount={5.5} duration={2.5} images={zeichenwettbewerbImages} />
@@ -1245,13 +1247,13 @@ export default function YumeKai2026() {
       <Spacer id="cosplayball" />
       <h2>Cosplayball</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Auch in diesem Jahr fand zum zweiten Mal unser Cosplay-Ball statt. Für die passende musikalische 
+Atmosphäre sorgte das Cellotic Duets des Cellotic Soundtrack Ensembles. Mit gefühlvollen und 
+zugleich tanzbaren Cover-Versionen bekannter Anime-, Gaming- und Serien-Soundtracks begleiteten 
+sie euch durch den Abend und schafften eine einzigartige Stimmung. 
+Im Anschluss an den Ball ging der Abend nahtlos in eine Disco über. Hier legte DJ Steve Heng 
+(@breakouttv) die Musik auf. Mit seiner einzigartigen Mischung aus Clubsound und Anime- Popkultur 
+kreiert er energiegeladene Sets.
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={cosplayballImages} />
 
