@@ -114,8 +114,6 @@ import performance7 from "/public/assets/images/yumekai2026/cosplayperformance_7
 import performance8 from "/public/assets/images/yumekai2026/cosplayperformance_8.jpg";
 import performance9 from "/public/assets/images/yumekai2026/cosplayperformance_9.jpg";
 
-
-
 // Images – Zeichenwettbewerb Teilnehmer
 import ZeichenMimic from "/public/assets/images/yumekai2026/zeichenwettbewerb_mimic.png";
 import ZeichenSmurfyTheArtist from "/public/assets/images/yumekai2026/zeichenwettbewerb_smurfy_the_artist.png";
@@ -581,7 +579,7 @@ const cosplayballImages = [
   { image: ball11, alt: "Cosplay Ball 11", link: "" },
   { image: ball12, alt: "Cosplay Ball 12", link: "" },
   { image: ball13, alt: "Cosplay Ball 13", link: "" },
-  { image:ball14, alt: "Cosplay Ball 14", link: "" },
+  { image: ball14, alt: "Cosplay Ball 14", link: "" },
 ];
 
 const StyledImageHome = styled(Image)`
@@ -721,7 +719,7 @@ export default function YumeKai2026() {
         <li>
           <StyledLink href="#zeichenwettbewerb">Zeichen Wettbewerb</StyledLink>
         </li>
-         <li>
+        <li>
           <StyledLink href="#cosplayball">Cosplay Ball</StyledLink>
         </li>
         <li>
@@ -732,13 +730,34 @@ export default function YumeKai2026() {
       <Spacer id="showacts" />
       <h2>Showacts &amp; Ehrengäste</h2>
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-        diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Auch in diesem Jahr hatten wir ein ausgewogenes Bühnenprogramm mit alten Bekannten und neuen
+        Gesichtern bieten.
+        <br />
+        MION hatte bereits im letzten Jahr so viel Spaß bei uns, dass sie dieses Jahr direkt ihre
+        Kollegin Yurimaru mitgebracht hat. Für Yurimaru war es dabei etwas ganz Besonderes: Sie
+        feierte bei uns ihren ersten Auftritt in Deutschland! Ihr konntet die beiden sowohl solo als
+        auch gemeinsam auf der Bühne erleben. Bei so viel Idol-Power durfte natürlich auch Stellaria
+        nicht fehlen. Mit ihrem Programm &bdquo;Palette of Dreams&ldquo; brachten sie die Bühne zum
+        Strahlen und standen sogar gemeinsam mit MION und Yurimaru auf der Bühne. <br />
+        Zum ersten Mal mit dabei war außerdem NILO, die mit ihrer Liebe zu japanischem City Pop und
+        Anime-Songs ordentlich Schwung auf die Bühne brachte. Ebenfalls wieder dabei war Lyria, eine
+        Idol- VTuberin mit geballter Stimmenpower. Sie hatte eine bunte Mischung aus beliebten
+        Anime- und Videogame-Songs im Gepäck und sorgte damit für ordentlich Stimmung. <br /> Zum
+        zweiten Mal durften wir auch Cellotic Duets bei uns begrüßen. Sie präsentierten
+        instrumentale Soundtrack-Musik aus Filmen, Serien und Games verschiedenster Genres. Ihre
+        Musik konntet ihr sowohl beim Ball am Samstagabend als auch bei einem regulären Konzert
+        genießen. Für die Disco- Hälfte des Balls war außerdem wieder DJ Steve Heng mit dabei. Er
+        vereinte Anime-Openings, kreative Mashups und Geek-Electro-Techno zu einer ganz besonderen
+        Mischung. <br />
+        Zum ersten Mal durften wir auch Lucky 13, eine Theater-Showgruppe, bei uns begrüßen. Sie
+        führten ihr Stück &bdquo;A Midsummer Night&apos;s Dream!!! On Ice – A Case Study of
+        Shakespeare&ldquo; auf. Darin kombinierten sie eine Vielzahl verschiedener Anime auf
+        kreative und humorvolle Weise und begeisterten damit das Publikum. <br />
+        Bei unseren Synchronsprecherinnen gab es geballte Frauenpower: Wir durften Nicolle Gonsior
+        und Marie-Jeanne Widera bei uns begrüßen, die den Charakteren Yamato und Flambé ihre Stimmen
+        leihen. Gemeinsam mit PinkStarke standen die beiden für ein Q&A auf der Bühne und
+        beantworteten eure Fragen. Anschließend konntet ihr sie auch an ihrem Stand besuchen und
+        euch ein Autogramm sichern.
       </p>
       <ContentWrapper>
         <ContentContainer
@@ -1154,7 +1173,6 @@ export default function YumeKai2026() {
         </li>
       </ul>
 
-
       <h3>Crafting:</h3>
       <p>
         Mit unserem Crafting Wettbewerb wurden ausschließlich die handwerklichen Fähigkeiten der
@@ -1177,7 +1195,10 @@ export default function YumeKai2026() {
           als Tragosso
         </li>
         <li>
-          2. Platz: <StyledLink href="" target="_blank" rel="noopener noreferrer">Jul</StyledLink>{" "}
+          2. Platz:{" "}
+          <StyledLink href="" target="_blank" rel="noopener noreferrer">
+            Jul
+          </StyledLink>{" "}
           als Fern (Frieren: Beyond Journey&apos;s End)
         </li>
         <li>
@@ -1204,7 +1225,6 @@ export default function YumeKai2026() {
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
         gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
-      
 
       <ImageCarousel visibleCount={5.5} duration={2.5} images={zeichenwettbewerbImages} />
 
@@ -1236,12 +1256,11 @@ export default function YumeKai2026() {
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={cosplayballImages} />
 
-
       <Spacer id="danksagung" />
       <h2>Danksagung</h2>
       <p>
-        Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden
-        Programm. Deshalb möchten wir an dieser Stelle ein riesiges Dankeschön aussprechen an alle
+        Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden Programm.
+        Deshalb möchten wir an dieser Stelle ein riesiges Dankeschön aussprechen an alle
         Unterstützer!
       </p>
       <p>
