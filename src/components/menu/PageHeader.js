@@ -106,7 +106,7 @@ const MenuLink = styled(Link)`
   text-decoration: none;
   padding: 5px 15px;
   margin: 0;
-  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
   font-weight: bold;
   font-size: 1.4rem;
   display: flex;
@@ -134,7 +134,7 @@ const MenuLink = styled(Link)`
 const MenuNoLink = styled.p`
   padding: 5px 15px;
   margin: 0;
-  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
   font-weight: bold;
   font-size: 1.4rem;
   display: flex;
@@ -163,7 +163,7 @@ const SubMenuLink = styled(Link)`
   text-decoration: none;
   padding: 5px 5px;
   margin: 0;
-  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
   font-weight: bold;
   font-size: 1.2rem;
   display: flex;
@@ -376,7 +376,7 @@ export default function PageHeader({ toggleTheme, theme }) {
   return (
     <StyledHeader>
       <MenuLogoBackground>
-        <Link href="/">
+        <Link href="/" aria-label="YumeKai Startseite">
           <YumeKaiLogo className="logo" />
         </Link>
         <SocialMediaContainerHeader />

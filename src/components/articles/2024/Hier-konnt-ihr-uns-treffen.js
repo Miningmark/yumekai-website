@@ -18,20 +18,18 @@ export default function HierKonntIhrUnsTreffen() {
               cardHeight={400}
               frontContent={
                 <>
-                  <h3>Hier könnt ihr uns treffen:</h3>
+                  <h2>Hier könnt ihr uns treffen:</h2>
                   <ul>
-                    <li>04.07 - 05.07 Cosday² in Frankfurt</li>
-                    <li>04.07 - 05.07 ConUtopisch in Seefeld in Tirol</li>
                     <li>18.09 - 20.09 Gamesvention in Kempten</li>
+                    <li>19.09 - 20.09 Mini Con in Rankweil</li>
+                    <li>26.09 - 27.09 Techniktreffen in Speyer</li>
                   </ul>
                 </>
               }
               backContent={
                 <>
-                  <h3>Hier waren wir:</h3>
+                  <h2>Hier waren wir:</h2>
                   <ul>
-                    <li>Cosday² in Frankfurt</li>
-                    <li>Techniktreffen in Speyer</li>
                     <li>Cosplay & Game in Bludenz</li>
                     <li>Yayuco in Dachau</li>
                     <li>ComicCon in Stuttgart</li>
@@ -44,6 +42,8 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>PopCon in Lindau</li>
                     <li>Wie.Mai.Kai in Flörsheim</li>
                     <li>Gamers Heaven Tirol in Telfs</li>
+                    <li>Cosday² in Frankfurt</li>
+                    <li>ConUtopisch in Seefeld in Tirol</li>
                   </ul>
                 </>
               }
@@ -57,6 +57,7 @@ export default function HierKonntIhrUnsTreffen() {
                 <Image
                   src={hiruHandy}
                   alt="Maskottchen Hiru"
+                  sizes="(max-width: 800px) 60vw, 300px"
                   style={{
                     width: "100%",
                     height: "auto",

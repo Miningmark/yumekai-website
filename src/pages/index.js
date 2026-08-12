@@ -8,11 +8,12 @@ import SEO from "@/components/elements/SEO";
 import HierKonntIhrUnsTreffen from "@/components/articles/2024/Hier-konnt-ihr-uns-treffen";
 import HelferPost from "@/components/articles/2025/HelferPost";
 import CounterClock from "@/components/elements/CounterClock";
-import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb26";
 import AnkundigungBall from "@/components/articles/2026/AnkundigungBall";
 import CosplayWettbewerbePreise from "@/components/articles/2026/CosplayWettbewerbePreise";
 import Oeffnungszeiten2026 from "@/components/articles/2026/Oeffnungszeiten2026";
 import StellariaPaletteOfDreams from "@/components/articles/2026/StellariaPaletteOfDreams";
+import RueckblickYumekai2026 from "@/components/articles/2026/RueckblickYumekai2026";
+import YumeKaiZeichenwettbewerbGewinner26 from "@/components/articles/2026/YumeKai-Zeichenwettbewerb-Gewinner26";
 
 export default function Home() {
   return (
@@ -39,6 +40,10 @@ export default function Home() {
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
+      <RueckblickYumekai2026 />
+      <Spacer />
+      <YumeKaiZeichenwettbewerbGewinner26 />
+      <Spacer />
       <HierKonntIhrUnsTreffen />
       <Spacer />
       {/*
@@ -51,10 +56,8 @@ export default function Home() {
       <Spacer />
       <AnkundigungBall />
       <Spacer />
-      <YumeKaiZeichenwettbewerb26 />
-      <Spacer />
 
-      {/* 
+      {/*
       <HelferPost />
       <Spacer />
       */}

@@ -70,6 +70,7 @@ export default function Slide3() {
               <Image
                 src={yumekoImage}
                 alt="Maskottchen Yumeko"
+                sizes="250px"
                 style={{
                   width: "auto",
                   height: "100%",
@@ -82,6 +83,7 @@ export default function Slide3() {
               <Image
                 src={hiruImage}
                 alt="Maskottchen Yumeko"
+                sizes="250px"
                 style={{
                   width: "auto",
                   height: "100%",

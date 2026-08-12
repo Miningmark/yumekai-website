@@ -10,6 +10,10 @@ export const lightTheme = {
   primaryColor: "#e9300b",
   secondaryColor: "#ffb01e",
   activeLinkColor: "#388E3C",
+  // darker variants of primary/secondary used for text on light backgrounds (e.g. nav links),
+  // kept separate so they stay WCAG AA contrast-compliant without changing the brand colors used elsewhere
+  navActiveColor: "#c8290a",
+  navInactiveColor: "#a05700",
 };
 
 export const darkTheme = {
@@ -22,6 +26,8 @@ export const darkTheme = {
   primaryColor: "#e9300b",
   secondaryColor: "#ffb01e",
   activeLinkColor: "#388E3C",
+  navActiveColor: "#e9300b",
+  navInactiveColor: "#ffb01e",
 };
 
 export const GlobalStyles = createGlobalStyle`
