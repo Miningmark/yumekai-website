@@ -415,6 +415,9 @@ export default function PageHeader({ toggleTheme, theme }) {
 
   useEffect(() => {
     function handleOutsideInteraction(e) {
+      // the mobile menu manages its own submenu open/close state via taps;
+      // this listener is only for dismissing the desktop hover/click dropdown
+      if (isMobileMenuOpen) return;
       if (desktopMenuRef.current && !desktopMenuRef.current.contains(e.target)) {
         setOpenSubMenus({});
       }
@@ -425,7 +428,7 @@ export default function PageHeader({ toggleTheme, theme }) {
       document.removeEventListener("mousedown", handleOutsideInteraction);
       document.removeEventListener("touchstart", handleOutsideInteraction);
     };
-  }, []);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
