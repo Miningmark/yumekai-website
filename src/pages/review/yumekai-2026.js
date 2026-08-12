@@ -1195,6 +1195,7 @@ export default function YumeKai2026() {
       </ul>
 
       <h3>Crafting:</h3>
+
       <p>
         Unserem Crafting Wettbewerb ging dieses Jahr in die zweite Runde. Hier wurden nur die
         Cosplays, Wigs, Accessoires und Make-Up der Teilnehmenden Bewertet. Der kurze Catwalk auf
