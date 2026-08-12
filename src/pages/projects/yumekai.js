@@ -140,8 +140,8 @@ export default function Projects() {
               <ScheduleIconWrapper>
                 <ScheduleIcon />
               </ScheduleIconWrapper>
-              <p>Wo: Stadthalle Memmingen</p>
-              <p>Wann: 09.05 - 10.05.2026</p>
+              <p>Wo: ???</p>
+              <p>Wann: ???</p>
             </RectangleContainer>
             <MovingContentWrapper content={<YumeKaiLogo />}></MovingContentWrapper>
           </>
