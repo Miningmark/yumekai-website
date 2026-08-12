@@ -20,21 +20,30 @@ export const PageContent = styled.div`
 `;
 
 export const StyledButton = styled.button`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border: none;
   background-color: ${({ theme }) => theme.primaryColor};
   color: #f5f5f5;
-  transition: 0.3s;
-  padding: 10px 20px;
-  border-radius: var(--border-radius-large);
-  font-size: large;
+  transition: var(--transition-base);
+  padding: 12px 26px;
+  min-height: 46px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading), Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
   cursor: pointer;
+  box-shadow: var(--shadow-sm);
 
   &:hover {
     transform: translateY(-3px);
-    transition: 0.3s;
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+  }
+
+  &:active {
+    transform: translateY(-1px);
   }
 `;
 
@@ -45,9 +54,16 @@ export const UnstyledLink = styled(Link)`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.primaryColor};
+  font-weight: 600;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: color var(--transition-fast), background-size var(--transition-base);
 
   &:hover {
     color: ${({ theme }) => theme.activeLinkColor};
+    background-size: 100% 2px;
   }
 `;
 
@@ -127,11 +143,12 @@ export const RegistrationInfobox = styled.div`
   align-items: center;
   gap: 25px;
   background-color: var(--secondary-color);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   padding: 35px;
 
   p {
-    color: #363537;
+    color: var(--on-brand);
     font-weight: bold;
     font-size: 2rem;
     text-align: center;

@@ -29,13 +29,15 @@ Aufruf der Component
 const CardWrapper = styled.div`
   flex: 1 1 ${({$maxwidth}) => $maxwidth}px;
   max-width: ${({$maxwidth}) => $maxwidth}px;
+  transition: transform var(--transition-base);
 
   .card {
     width: 100%;
     height: 100%;
     background-image: linear-gradient(163deg, #e9300b 0%, #ffb01e 100%);
-    border-radius: 20px;
-    transition: all 0.3s;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base);
   }
 
   .card2 {
@@ -43,8 +45,8 @@ const CardWrapper = styled.div`
     height: 100%;
     background-color: ${({ theme }) => theme.backgroundColor4};
     padding: 8px;
-    border-radius: 18px;
-    transition: all 0.2s;
+    border-radius: calc(var(--radius-lg) - 2px);
+    transition: transform var(--transition-fast), border-radius var(--transition-fast);
 
     p,
     h2 {
@@ -54,11 +56,15 @@ const CardWrapper = styled.div`
 
   .card2:hover {
     transform: scale(0.98);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
   }
 
   .card:hover {
-    box-shadow: 0px 0px 30px 1px rgba(255, 176, 30, 0.3);
+    box-shadow: var(--shadow-lg), 0 0 30px 1px rgba(255, 176, 30, 0.3);
+  }
+
+  &:hover {
+    transform: translateY(-4px);
   }
 `;
 

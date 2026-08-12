@@ -10,8 +10,14 @@ const FooterBackground = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 10px 0 20px 0;
+  gap: 16px;
+  padding: 36px 0 24px 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: var(--shadow-lg);
+
+  h3 {
+    margin: 0 0 10px 0;
+  }
 `;
 
 const FooterContainerWrapper = styled.div`
@@ -22,11 +28,13 @@ const FooterContainerWrapper = styled.div`
   justify-content: space-around;
   align-items: start;
   flex-wrap: wrap;
+  gap: 28px 16px;
 
   @media (max-width: 500px) {
     width: 95%;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 `;
 
@@ -38,6 +46,9 @@ const FooterContainer = styled.div`
   ul {
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   li {
@@ -51,6 +62,11 @@ const FooterLine = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
+  width: 90%;
+  max-width: 1600px;
+  margin-top: 8px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(54, 53, 55, 0.18);
 
   p,
   a {
@@ -67,9 +83,13 @@ const FooterLine = styled.div`
 const FooterLink = styled(Link)`
   text-decoration: none;
   color: #363537;
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+  border-radius: var(--radius-sm);
+  display: inline-block;
 
   &:hover {
     color: ${({ theme }) => theme.primaryColor};
+    padding-left: 4px;
   }
 `;
 

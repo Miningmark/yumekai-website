@@ -2,20 +2,29 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const StyledLinkAsButton = styled(Link)`
-  border-radius: 5px;
-  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-md);
+  padding: 12px 26px;
+  min-height: 46px;
   background: ${({ theme }) => theme.primaryColor};
   color: white;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  transform: scale(1);
-  height: 22px;
+  font-family: var(--font-heading), Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
   text-align: center;
-  display: inline-block;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
 
   &:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+  }
+
+  &:active {
+    transform: translateY(-1px);
   }
 `;

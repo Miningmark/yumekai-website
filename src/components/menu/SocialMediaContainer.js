@@ -35,26 +35,26 @@ const SocialMediaFooterSection = styled.section`
 `;
 
 const SocialMediaButton = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: var(--border-radius-small);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
   border: solid 2px ${({ theme }) => theme.primaryColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 5px;
-  transition: 0.3s;
+  transition: var(--transition-base);
 
   &:hover {
-    transition: 0.3s;
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
   }
 
   svg {
     fill: ${({ theme }) => theme.primaryColor};
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     padding: 0;
   }
 `;

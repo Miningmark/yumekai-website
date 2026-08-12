@@ -66,10 +66,10 @@ const StyledWrapper = styled.div`
   }
   /* Create a custom checkbox */
   .checkmark {
-    height: 25px;
-    width: 25px;
+    height: 26px;
+    width: 26px;
     border: 2.5px solid ${({ theme }) => theme.text};
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     transition: 0.2s linear;
     flex-shrink: 0; /* Verhindert, dass die Checkbox skaliert wird */
   }

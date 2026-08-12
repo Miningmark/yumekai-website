@@ -8,19 +8,18 @@ const LinkButton = styled(Link)`
   position: sticky;
   left: 0px;
   top: 80px;
-  z-index: 9999;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #f6f6f9;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background-color: ${({ theme }) => theme.backgroundColor2};
   border: 2px solid ${({ theme }) => theme.primaryColor};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: 0.3s;
-  z-index: 900;
-  opacity: 0.8;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
   margin-top: 10px;
 
   text-decoration: none;
@@ -29,22 +28,18 @@ const LinkButton = styled(Link)`
   @media (max-width: 900px) {
     left: 5px;
     top: 80px;
-
-    width: 35px;
-    height: 35px;
   }
 
   svg {
-    fill: black;
-    width: 40px;
-    height: 40px;
+    fill: ${({ theme }) => theme.primaryColor};
+    width: 24px;
+    height: 24px;
     padding: 0;
   }
 
   &:hover {
-    transform: scale(1.1);
-    transition: 0.3s;
-    opacity: 1;
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
   }
 
   &:hover span {

@@ -22,7 +22,7 @@ const EllipseTop = styled.div`
   width: 100vw;
   height: 80px;
   background-color: ${({ $ellipsecolor, theme }) =>
-    $ellipsecolor == 1 ? theme.secondaryColor : "var(--light-grey)"};
+    $ellipsecolor == 1 ? theme.secondaryColor : theme.surfaceMuted};
   left: 50%;
   top: 0;
   transform: translateX(-50%);
@@ -36,7 +36,7 @@ const MainPart = styled.div`
   transform: translateX(-50%);
   width: 100vw;
   background-color: ${({ $ellipsecolor, theme }) =>
-    $ellipsecolor == 1 ? theme.secondaryColor : "var(--light-grey)"};
+    $ellipsecolor == 1 ? theme.secondaryColor : theme.surfaceMuted};
   z-index: -1;
 `;
 
@@ -45,7 +45,7 @@ const EllipseBottom = styled.div`
   width: 100vw;
   height: 50px;
   background-color: ${({ $ellipsecolor, theme }) =>
-    $ellipsecolor == 1 ? theme.secondaryColor : "var(--light-grey)"};
+    $ellipsecolor == 1 ? theme.secondaryColor : theme.surfaceMuted};
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
@@ -68,12 +68,12 @@ const Content = styled.div`
   position: relative;
   z-index: 1;
   width: 100%;
-  color: #363537;
+  color: ${({ $ellipsecolor, theme }) => ($ellipsecolor == 1 ? "var(--on-brand)" : theme.text)};
 
   h1,
   h2,
   h3 {
-    color: ${({ $ellipsecolor, theme }) => ($ellipsecolor == 1 ? "#363537" : theme.primaryColor)};
+    color: ${({ $ellipsecolor, theme }) => ($ellipsecolor == 1 ? "var(--on-brand)" : theme.primaryColor)};
   }
 `;
 

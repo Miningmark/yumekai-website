@@ -25,7 +25,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="de">
-        <Head></Head>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+          <meta name="theme-color" content="#ffb01e" />
+        </Head>
         <body>
           <Main />
           <NextScript />

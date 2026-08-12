@@ -21,18 +21,18 @@ color:    1 -> theme.secondaryColor
 */
 
 const Container = styled.article`
-  border-radius: var(--border-radius-large);
-  background-color: #f9f9f9;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   width: 100%;
   background-color: ${({ $rectanglecolor, theme }) =>
-    $rectanglecolor == 1 ? theme.secondaryColor : "var(--light-grey)"};
+    $rectanglecolor == 1 ? theme.secondaryColor : theme.surfaceMuted};
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0;
+  padding: 20px 0;
 
   div {
-    width: calc(100% -20px);
+    width: calc(100% - 20px);
     display: flex;
     flex-direction: column;
     align-items: ${({ $rectanglecenter }) => ($rectanglecenter == 1 ? "center" : "flex-start")};
@@ -41,7 +41,7 @@ const Container = styled.article`
   p {
     margin: 0 10px 20px 10px;
     text-align: ${({ $rectanglecenter }) => ($rectanglecenter == 1 ? "center" : "start")};
-    color: #363537;
+    color: ${({ $rectanglecolor, theme }) => ($rectanglecolor == 1 ? "var(--on-brand)" : theme.text)};
   }
 
   h1,
@@ -50,7 +50,7 @@ const Container = styled.article`
     width: 100%;
     text-align: center;
     color: ${({ $rectanglecolor, theme }) =>
-      $rectanglecolor == 1 ? "#363537" : theme.primaryColor};
+      $rectanglecolor == 1 ? "var(--on-brand)" : theme.primaryColor};
   }
 `;
 

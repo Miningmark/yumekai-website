@@ -30,12 +30,14 @@ export const InputField = styled.input`
   box-sizing: border-box;
   display: block;
   width: 100%;
-  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
-  padding: 12px 8px;
+  min-height: 46px;
+  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "var(--danger)" : theme.border)};
+  padding: 12px 10px;
   background: transparent;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   position: relative;
   color: ${({ theme }) => theme.text};
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 
   &:focus + ${InputLabel}, &:not(:placeholder-shown) + ${InputLabel} {
     transform: translate(6px, -100%) scale(0.8);
@@ -45,6 +47,7 @@ export const InputField = styled.input`
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.secondaryColor};
+    box-shadow: 0 0 0 3px rgba(255, 176, 30, 0.25);
   }
 `;
 
@@ -52,13 +55,14 @@ export const InputArea = styled.textarea`
   box-sizing: border-box;
   display: block;
   width: 100%;
-  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
-  padding: 12px 8px;
+  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "var(--danger)" : theme.border)};
+  padding: 12px 10px;
   background: transparent;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   position: relative;
   color: ${({ theme }) => theme.text};
   resize: vertical;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 
   &:focus + ${InputLabel}, &:not(:placeholder-shown) + ${InputLabel} {
     transform: translate(0.25rem, -100%) scale(0.8);
@@ -68,6 +72,7 @@ export const InputArea = styled.textarea`
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.secondaryColor};
+    box-shadow: 0 0 0 3px rgba(255, 176, 30, 0.25);
   }
 `;
 
@@ -107,13 +112,13 @@ export const InputRadioWrapper = styled.div`
 export const RadioButton = styled.input`
   margin-right: 0.5rem;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: 2px solid ${({ theme }) => theme.text};
   border-radius: 50%;
   outline: none;
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition-fast);
 
   &:checked {
     background-color: ${({ theme }) => theme.primaryColor};
@@ -138,15 +143,15 @@ export const RadioLabel = styled.label`
 
 export const StyledSelect = styled.select`
   width: 100%;
-  padding: 12px 4px;
-  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "red" : theme.text)};
-  border-radius: 4px;
+  min-height: 46px;
+  padding: 12px 10px;
+  border: 2px solid ${({ theme, $iserror }) => ($iserror ? "var(--danger)" : theme.border)};
+  border-radius: var(--radius-sm);
   background-color: ${({ theme }) => theme.backgroundColor1};
   color: ${({ theme }) => theme.text};
-  //font-size: 16px;
   font-weight: bold;
-  appearance: auto;
   cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 
   -webkit-appearance: none; /* Safari spezifisch */
   appearance: none; /* Standard */
@@ -154,6 +159,7 @@ export const StyledSelect = styled.select`
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.secondaryColor};
+    box-shadow: 0 0 0 3px rgba(255, 176, 30, 0.25);
   }
 
   option {
