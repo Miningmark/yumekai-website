@@ -2,7 +2,10 @@ import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
-import { SocialMediaContainerHeader } from "@/components/menu/SocialMediaContainer";
+import {
+  SocialMediaContainer,
+  SocialMediaContainerHeader,
+} from "@/components/menu/SocialMediaContainer";
 import ThemeToggle from "@/components/menu/DarkLightMode";
 
 // Import Icons
@@ -105,21 +108,34 @@ const StyledMenu = styled.nav`
   }
 `;
 
-const CompactLogoLink = styled(Link)`
+const CompactLeftGroup = styled.div`
   position: absolute;
-  left: 24px;
+  left: 20px;
   top: 50%;
   display: flex;
   align-items: center;
+  gap: 14px;
   transform: ${({ $visible }) => `translateY(-50%) translateX(${$visible ? "0" : "-12px"})`};
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   pointer-events: ${({ $visible }) => ($visible ? "auto" : "none")};
   transition: transform var(--transition-base), opacity var(--transition-base);
+`;
+
+const CompactLogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
 
   svg {
-    height: 36px;
+    height: 34px;
     width: auto;
   }
+`;
+
+const CompactSocialWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  transform: scale(0.78);
+  transform-origin: left center;
 `;
 
 const navLinkStyles = `
@@ -495,9 +511,14 @@ export default function PageHeader({ toggleTheme, theme }) {
       </MenuLogoBackground>
 
       <StyledMenu ref={desktopMenuRef}>
-        <CompactLogoLink href="/" aria-label="YumeKai Startseite" $visible={isCompact}>
-          <YumeKaiLogo />
-        </CompactLogoLink>
+        <CompactLeftGroup $visible={isCompact}>
+          <CompactLogoLink href="/" aria-label="YumeKai Startseite">
+            <YumeKaiLogo />
+          </CompactLogoLink>
+          <CompactSocialWrapper>
+            <SocialMediaContainer />
+          </CompactSocialWrapper>
+        </CompactLeftGroup>
         {menuItems.map((item, index) => (
           <SubMenuWrapper
             key={item.name}
