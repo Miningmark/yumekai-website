@@ -723,6 +723,9 @@ export default function YumeKai2026() {
           <StyledLink href="#essen">Essen</StyledLink>
         </li>
         <li>
+          <StyledLink href="#gaming">Spiele, Gaming, Karaoke</StyledLink>
+        </li>
+        <li>
           <StyledLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</StyledLink>
         </li>
         <li>
@@ -810,7 +813,7 @@ export default function YumeKai2026() {
       <p>
         Auch in diesem Jahr durften wir wieder zahlreiche talentierte Cosplayer bei uns begrüßen.
         Neben neuen Gesichtern wie Xenia, Wolfus, Kermi und dem Cosplay-Duo Nekodanshi durften wir
-        auch bekannte Gäste wie Eralia und Scarlett.Sirene erneut bei uns begrüßen. An ihren Ständen
+        auch bekannte Gäste wie Eralia und Scarlett Sirene erneut bei uns begrüßen. An ihren Ständen
         in der Stadthalle konntet ihr euch mit ihnen über verschiedene Cosplay-Themen austauschen,
         Fragen stellen oder gemeinsam Fotos machen. Außerdem unterstützten sie unsere Cosplay
         Wettbewerbe als Jurymitglieder. In ihren Workshops gaben sie spannende Einblicke in die Welt
@@ -1199,8 +1202,18 @@ export default function YumeKai2026() {
         Techniken und die Fähigkeiten der Teilnehmer ging.
         <br />
       </p>
-      {/* TODO: Sobald die Crafting-Fotos vorliegen, hier den ImageCarousel einbinden:
-          <ImageCarousel visibleCount={5.5} duration={2.5} images={craftingImages} /> */}
+      <Image
+        src={crafting1}
+        alt="Crafting Wettbewerb"
+        sizes="(max-width: 600px) 90vw, 300px"
+        style={{
+          display: "block",
+          width: "60%",
+          height: "auto",
+          margin: "0 auto",
+          borderRadius: "10px",
+        }}
+      />
 
       <ul>
         <li>

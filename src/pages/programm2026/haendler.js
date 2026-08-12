@@ -15,7 +15,7 @@ import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodf
 import ColorfulMindBild from "/public/assets/images/yumekai2026/Colorful Mind.png";
 import EuphonyBild from "/public/assets/images/yumekai2026/Euphony GmbH.png";
 import AnimiBild from "/public/assets/images/yumekai2026/Animi.png";
-import JennyGramsBild from "/public/assets/images/yumekai2026/Jenny Grams.jpg";
+import TenityDesignBild from "/public/assets/images/yumekai2026/Tenity_Design.jpg";
 import ShigaFoodBild from "/public/assets/images/yumekai2026/Shiga Food GmbH.png";
 import AkumuBild from "/public/assets/images/yumekai2026/Akumu.png";
 
@@ -123,7 +123,7 @@ export default function Haendler() {
 
         <ContentCard
           title="Tenity Designs"
-          imageSrc={JennyGramsBild}
+          imageSrc={TenityDesignBild}
           altText="Tenity Designs"
           text={
             <p>
