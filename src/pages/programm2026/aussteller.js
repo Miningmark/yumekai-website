@@ -3,10 +3,11 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
-import SciFiNarischeBild from "/public/assets/images/yumekai2026/SciFi-Narische.png";
-import ToweldayBild from "/public/assets/images/yumekai2026/Internationaler Handtuchtag.png";
+import SciFiNarischeBild from "/public/assets/images/yumekai2026/SciFi-Narische.jpg";
+import ToweldayBild from "/public/assets/images/yumekai2026/Internationaler Handtuchtag.jpg";
 import CosplayUnionBild from "/public/assets/images/yumekai2026/Cosplay-Union-Germany e.V..png";
 import ConUtopischBild from "/public/assets/images/yumekai2026/ConUtopisch Events.png";
 import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V..png";
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Aussteller() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Aussteller & Vereine"
+        description="Diese Aussteller und Vereine sind bei der YumeKai 2026 dabei."
+        path="/programm2026/aussteller"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Aussteller &amp; Vereine</h1>

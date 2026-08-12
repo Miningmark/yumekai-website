@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import BubbleTimeImage from "/public/assets/images/yumekai2025/BubbleTime_Image.png";
@@ -23,6 +24,11 @@ const ContentContainer = styled.div`
 export default function Essen() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Essen"
+        description="Foodtrucks und kulinarische Angebote auf der YumeKai 2025."
+        path="/programm2025/essen"
+      />
       <ReturnButton link="/programm2025" />
 
       <h1 style={{ textAlign: "center" }}>Essen</h1>

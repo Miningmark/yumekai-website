@@ -17,6 +17,7 @@ import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
 //Icons
 import ScheduleIcon from "/public/assets/icons/schedule.svg";
 import YumeKaiLogo from "/public/assets/logo/yumekai_color_font.svg";
+import SEO from "@/components/elements/SEO";
 //import cosplayerCollageImage from "/public/assets/images/yumekai2024/Cosplayer-Collage-2024.jpg";
 //import haendlerCollageImage from "/public/assets/images/yumekai2024/Handler-Collage-2024.jpg";
 //import kuenstlerCollageImage from "/public/assets/images/yumekai2024/Kunstler-Collage-2024.jpg";
@@ -97,6 +98,11 @@ export default function Projects() {
         </YumekaiHeaderWrapper>
       </HeaderContainer>
       */}
+      <SEO
+        title="YumeKai Convention"
+        description="Die YumeKai: Anime- und Cosplay-Convention in der Stadthalle Memmingen mit Bühnenprogramm, Workshops und Händlern. Nächster Termin: 09.05 - 10.05.2026."
+        path="/projects/yumekai"
+      />
       <SpacerEmpty />
       <h1>YumeKai</h1>
       <Columns2
@@ -150,6 +156,9 @@ export default function Projects() {
         <br /> Auch 2025 gab es wieder ein ganzes Wochenende voller spannender Programmpunkte,
         Künstler, Händler und Special Guests. Einen Rückblick auf 2025 findet ihr
         <StyledLink href={"/review/yumekai-2025"}> hier</StyledLink>.
+        <br />
+        Der Rückblick auf die YumeKai 2026 mit den Wettbewerbs-Gewinnern ist
+        <StyledLink href={"/review/yumekai-2026"}> hier</StyledLink> verfügbar.
       </p>
 
       {/*

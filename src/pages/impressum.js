@@ -1,6 +1,13 @@
+import SEO from "@/components/elements/SEO";
+
 export default function Impressum() {
   return (
     <>
+      <SEO
+        title="Impressum"
+        description="Impressum der Dreamfly-Events UG, Veranstalter der YumeKai."
+        path="/impressum"
+      />
       <h1>Impressum</h1>
       <p>Dreamfly-Events UG (Haftungsbeschränkt)</p>
       <p>Sitz in: Trunkelsberg</p>

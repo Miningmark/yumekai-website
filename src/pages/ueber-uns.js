@@ -8,10 +8,16 @@ import FlippingCard from "@/components/elements/FlippingCard";
 import markusImage from "/public/assets/images/personen/gruender-3.jpg";
 import yannickImage from "/public/assets/images/personen/gruender-2.jpg";
 import alexImage from "/public/assets/images/personen/gruender-1.jpg";
+import SEO from "@/components/elements/SEO";
 
 export default function AboutUS() {
   return (
     <>
+      <SEO
+        title="Über uns"
+        description="Die Dreamfly-Events UG: Wer hinter der YumeKai steht und wofür wir stehen."
+        path="/ueber-uns"
+      />
       <h1>Dreamfly-Events UG</h1>
       <p>
         Die Dreamfly-Events UG konzipiert, plant und führt öffentliche Veranstaltungen durch, die

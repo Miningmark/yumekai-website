@@ -16,6 +16,7 @@ import hiruNormal from "/public/assets/hirus/Hiru.png";
 import hiruEssen from "/public/assets/hirus/Hiru_Essen.png";
 import hiruShowact from "/public/assets/hirus/Hiru_Showact.png";
 import hiruBall from "/public/assets/hirus/Hiru_Ball.png";
+import SEO from "@/components/elements/SEO";
 
 const floatDiagonal = keyframes`
   0% {
@@ -171,6 +172,11 @@ export default function Programm2025() {
 
   return (
     <>
+      <SEO
+        title="Programm 2025"
+        description="Das Programm der YumeKai 2025: Allgemeines, Cosplayball, Workshops, Künstler, Händler, Ehrengäste und mehr."
+        path="/programm2025"
+      />
       <h1 style={{ textAlign: "center" }}>Programm 2025</h1>
 
       <MenuContainer>

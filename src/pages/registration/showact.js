@@ -34,6 +34,7 @@ import ImageCropModal from "@/util/ImageCropModal";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage, createFileFromPDF } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const TimeslotsContainer = styled.div`
   display: flex;
@@ -740,6 +741,11 @@ useEffect(() => {
 
   return (
     <>
+      <SEO
+        title="Anmeldung als Showact"
+        description="Melde dich als Showact für die YumeKai an und tritt auf unserer Bühne auf."
+        path="/registration/showact"
+      />
       <h1>Anmeldung als Showact</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!

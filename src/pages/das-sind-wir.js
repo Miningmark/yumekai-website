@@ -2,10 +2,16 @@ import Columns2 from "@/components/elements/Columns2";
 import ConvexBackground from "@/components/elements/ConvexBackground";
 import RectangleContainer from "@/components/elements/RectangleContainer";
 import { StyledButton, UnstyledLink, SpacerEmpty } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 export default function DasSindWir() {
   return (
     <>
+      <SEO
+        title="Das sind wir"
+        description="Was ist die YumeKai? Erfahre mehr über die Idee, das Motto „Leb deinen Traum“ und das Team hinter der Anime- und Cosplay-Convention."
+        path="/das-sind-wir"
+      />
       <h1>Das sind wir</h1>
       <p>Zunächst einmal natürlich die wichtigste Frage: „Was ist eigentlich die YumeKai?“</p>
       <p>

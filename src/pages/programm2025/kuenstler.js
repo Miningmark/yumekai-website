@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import AliceMySecretImage from "/public/assets/images/yumekai2025/AliceMySecret_Image.png";
@@ -43,6 +44,11 @@ const ContentContainer = styled.div`
 export default function Kuenstler() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Künstler"
+        description="Diese Künstler und Autoren sind bei der YumeKai 2025 im Künstlerbereich vertreten."
+        path="/programm2025/kuenstler"
+      />
       <ReturnButton link="/programm2025" />
 
       <h1 style={{ textAlign: "center" }}>Künstler</h1>

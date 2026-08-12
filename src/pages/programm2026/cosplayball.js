@@ -6,8 +6,9 @@ import ContentCard from "@/components/elements/ContentCard";
 
 //Images
 import HiruBall from "/public/assets/hirus/Hiru_Ball.png";
-import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.png";
-import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.png";
+import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.jpg";
+import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.jpg";
+import SEO from "@/components/elements/SEO";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -21,6 +22,11 @@ const ContentContainer = styled.div`
 export default function Cosplayball() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Cosplayball"
+        description="Der YumeKai-Cosplayball 2026: mit Cellotic Duets und Disco mit DJ Steve Heng."
+        path="/programm2026/cosplayball"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Cosplayball</h1>

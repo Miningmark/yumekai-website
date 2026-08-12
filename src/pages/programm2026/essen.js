@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import BecherBistroImage from "/public/assets/images/yumekai2026/Becher Bistro.png";
@@ -21,6 +22,11 @@ const ContentContainer = styled.div`
 export default function Essen() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Essen & Trinken"
+        description="Foodtrucks, das Maid-Café DreamGarden und kulinarische Angebote auf der YumeKai 2026."
+        path="/programm2026/essen"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Essen &amp; Trinken</h1>

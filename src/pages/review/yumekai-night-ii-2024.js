@@ -4,6 +4,7 @@ import Link from "next/link";
 
 //Components
 import { Spacer, SpacerEmpty, StyledLink } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import yumekainight21Image from "/public/assets/images/yumekai-night-2-2024/yumekai-night-2-1.jpg";
@@ -131,6 +132,11 @@ export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
 export default function YumeKaiNightII2024() {
   return (
     <>
+      <SEO
+        title="Rückblick YumeKai-Night II 2024"
+        description="Rückblick auf die YumeKai-Night II 2024 mit Bildern und Programm."
+        path="/review/yumekai-night-ii-2024"
+      />
       <h1>Rückblick YumeKai - Night II 2024</h1>
 
       <p>

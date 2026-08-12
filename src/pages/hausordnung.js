@@ -1,9 +1,15 @@
 import ConvexBackground from "@/components/elements/ConvexBackground";
 import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 export default function Hausordnung() {
   return (
     <>
+      <SEO
+        title="Hausordnung"
+        description="Die Hausordnung der YumeKai: Regeln zu Sicherheit, Verhalten und Ausweispflicht während der Veranstaltung."
+        path="/hausordnung"
+      />
       <p>
         Um sicherzustellen, dass jeder Besucher ein unvergessliches Erlebnis genießt, bitten wir
         euch, unsere Hausordnung zu beachten. Diese Richtlinien dienen der Sicherheit, dem Komfort

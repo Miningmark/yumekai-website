@@ -24,6 +24,7 @@ export default function StellariaPaletteOfDreams() {
         <Image
           src={stellariaShowactImage}
           alt="Stellaria Logo"
+          sizes="(max-width: 800px) 90vw, 300px"
           style={{
             width: "100%",
             height: "auto",

@@ -2,6 +2,7 @@
 
 //Components
 import { Spacer, SpacerEmpty } from "@/components/styledComponents";
+import SEO from "@/components/elements/SEO";
 
 //Articles
 import YumeKaiNightInBildern from "@/components/articles/2024/YumeKai-Night-in-Bildern";
@@ -23,12 +24,20 @@ import AnkundigungCoheki from "@/components/articles/2025/AnkundigungCoheki";
 import Crowdfunding from "@/components/articles/2025/Crowdfunding";
 import AnkundigungMayumiNagashi from "@/components/articles/2025/AnkundigungMayumiNagashi";
 import AnkundigungMion from "@/components/articles/2025/AnkundigungMion";
+import YumeKaiZeichenwettbewerb26 from "@/components/articles/2025/YumeKai-Zeichenwettbewerb26";
 
 export default function Archiv() {
   return (
     <>
+      <SEO
+        title="Archiv"
+        description="Alle älteren Neuigkeiten und Ankündigungen der YumeKai im Archiv nachlesen."
+        path="/archiv"
+      />
       <h1>Archiv</h1>
       <p>Hier findet ihr alle älteren Beiträge von der Startseite (Aktuelles).</p>
+      <Spacer />
+      <YumeKaiZeichenwettbewerb26 />
       <Spacer />
       <Crowdfunding />
       <Spacer />

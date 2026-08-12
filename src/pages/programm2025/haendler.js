@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HeldenschmiedeImage from "/public/assets/images/yumekai2025/Heldenschmiede_Image.png";
@@ -32,6 +33,11 @@ const ContentContainer = styled.div`
 export default function Haendler() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Händler"
+        description="Diese Händler sind bei der YumeKai 2025 dabei."
+        path="/programm2025/haendler"
+      />
       <ReturnButton link="/programm2025" />
 
       <h1 style={{ textAlign: "center" }}>Händler</h1>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SocialMediaContainerHeader } from "@/components/menu/SocialMediaContainer";
 import ThemeToggle from "@/components/menu/DarkLightMode";
 
@@ -32,8 +32,10 @@ const menuItems = [
       { name: "2024", path: "/review/yumekai-2024" },
       { name: "Night-II", path: "/review/yumekai-night-ii-2024" },
       { name: "2025", path: "/review/yumekai-2025" },
+      { name: "2026", path: "/review/yumekai-2026" },
     ],
   },
+  /*
   {name: "Programm", path: "/programm2026",
     subItems: [
     { name: "Allgemein", path: "/programm2026/allgemein" },
@@ -48,6 +50,8 @@ const menuItems = [
     { name: "Workshops", path: "/programm2026/workshops" },
   ],
   },
+  */
+  {name: "das sind wir", path: "/das-sind-wir"}
   /*
   { name: "Anmeldungen", path: "/registration" },
   { name: "Ticketshop", path: "/shop" },
@@ -102,7 +106,7 @@ const MenuLink = styled(Link)`
   text-decoration: none;
   padding: 5px 15px;
   margin: 0;
-  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
   font-weight: bold;
   font-size: 1.4rem;
   display: flex;
@@ -130,7 +134,7 @@ const MenuLink = styled(Link)`
 const MenuNoLink = styled.p`
   padding: 5px 15px;
   margin: 0;
-  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
   font-weight: bold;
   font-size: 1.4rem;
   display: flex;
@@ -159,7 +163,7 @@ const SubMenuLink = styled(Link)`
   text-decoration: none;
   padding: 5px 5px;
   margin: 0;
-  color: ${({ theme, $active }) => ($active == 1 ? theme.primaryColor : theme.secondaryColor)};
+  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
   font-weight: bold;
   font-size: 1.2rem;
   display: flex;
@@ -247,7 +251,6 @@ const SubMenu = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: none;
   border-radius: 0 0 10px 10px;
 `;
 
@@ -256,10 +259,6 @@ const SubMenuWrapper = styled.div`
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.backgroundColor2};
-
-  &:hover ${SubMenu} {
-    display: flex;
-  }
 
   a {
     padding-right: 5px;
@@ -319,9 +318,24 @@ const MobileMenuOverlay = styled.div`
 export default function PageHeader({ toggleTheme, theme }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSubMenus, setOpenSubMenus] = useState({});
+  const desktopMenuRef = useRef(null);
 
   const router = useRouter();
   const { pathname } = router;
+
+  useEffect(() => {
+    function handleOutsideInteraction(e) {
+      if (desktopMenuRef.current && !desktopMenuRef.current.contains(e.target)) {
+        setOpenSubMenus({});
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideInteraction);
+    document.addEventListener("touchstart", handleOutsideInteraction);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideInteraction);
+      document.removeEventListener("touchstart", handleOutsideInteraction);
+    };
+  }, []);
 
   function toggleMobileMenu() {
     setOpenSubMenus((prevState) => {
@@ -349,27 +363,32 @@ export default function PageHeader({ toggleTheme, theme }) {
   }
 
   function openSubMenu(index) {
-    setOpenSubMenus((prevState) => ({
-      ...prevState,
-      [index]: true,
-    }));
+    setOpenSubMenus((prevState) => {
+      const newState = Object.keys(prevState).reduce((acc, key) => {
+        acc[key] = false;
+        return acc;
+      }, {});
+      newState[index] = true;
+      return newState;
+    });
   }
 
   return (
     <StyledHeader>
       <MenuLogoBackground>
-        <Link href="/">
+        <Link href="/" aria-label="YumeKai Startseite">
           <YumeKaiLogo className="logo" />
         </Link>
         <SocialMediaContainerHeader />
       </MenuLogoBackground>
 
-      <StyledMenu>
+      <StyledMenu ref={desktopMenuRef}>
         {menuItems.map((item, index) => (
           <SubMenuWrapper
             key={item.name}
             onMouseEnter={() => openSubMenu(index)}
             onMouseMove={() => openSubMenu(index)}
+            onMouseLeave={() => closeSubMenu(index)}
           >
             {!item.subItems || item.path ? (
               <MenuLink
@@ -380,13 +399,13 @@ export default function PageHeader({ toggleTheme, theme }) {
                 {item.name}
               </MenuLink>
             ) : (
-              <MenuNoLink>{item.name}</MenuNoLink>
+              <MenuNoLink onClick={() => openSubMenu(index)}>{item.name}</MenuNoLink>
             )}
             {item.subItems && (
               <>
                 {/*<IconArrowDown style={{ cursor: "pointer" }} />*/}
                 {openSubMenus[index] && (
-                  <SubMenu onMouseLeave={() => closeSubMenu(index)}>
+                  <SubMenu>
                     <br />
                     {item.subItems.map((subItem) => (
                       <SubMenuLink

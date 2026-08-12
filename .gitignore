@@ -39,3 +39,5 @@ next-env.d.ts
 #Private dictionary
 /private
 package-lock.json
+package-lock.json
+.claude/launch.json

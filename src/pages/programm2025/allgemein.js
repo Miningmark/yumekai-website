@@ -8,6 +8,7 @@ import { SpacerEmpty, Spacer, StyledLink } from "@/components/styledComponents";
 import ReturnButton from "@/components/menu/ReturnButton";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
 import DataViewer from "@/components/DataViewer";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import mapImage from "/public/assets/images/yumekai2025/map.png";
@@ -52,6 +53,11 @@ export default function Allgemein() {
 
   return (
     <>
+      <SEO
+        title="Programm 2025 – Allgemein"
+        description="Öffnungszeiten, Anfahrt, Lageplan und Programmheft der YumeKai 2025."
+        path="/programm2025/allgemein"
+      />
       <ReturnButton link="/programm2025" />
       <h1>Allgemein</h1>
       <h3>Öffnungszeiten</h3>
