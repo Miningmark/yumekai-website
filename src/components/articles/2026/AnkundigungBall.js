@@ -36,6 +36,7 @@ export default function AnkundigungBall() {
           <Image
             src={hiruBallImage}
             alt="Hiru mit Ballkleid"
+            sizes="(max-width: 800px) 90vw, 300px"
             style={{
               width: "100%",
               height: "auto",

@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HiruHandler from "/public/assets/hirus/Hiru_Handler.png";
@@ -10,11 +11,11 @@ import OtakuArtBild from "/public/assets/images/yumekai2026/Otaku Art.png";
 import SquiggzBild from "/public/assets/images/yumekai2026/Squiggz.png";
 import HeldenschmiedeBild from "/public/assets/images/yumekai2026/Heldenschmiede.png";
 import OtakuwonderlandBild from "/public/assets/images/yumekai2026/Otakuwonderland.png";
-import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.png";
+import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.jpg";
 import ColorfulMindBild from "/public/assets/images/yumekai2026/Colorful Mind.png";
 import EuphonyBild from "/public/assets/images/yumekai2026/Euphony GmbH.png";
 import AnimiBild from "/public/assets/images/yumekai2026/Animi.png";
-import JennyGramsBild from "/public/assets/images/yumekai2026/Jenny Grams.png";
+import TenityDesignBild from "/public/assets/images/yumekai2026/Tenity_Design.jpg";
 import ShigaFoodBild from "/public/assets/images/yumekai2026/Shiga Food GmbH.png";
 import AkumuBild from "/public/assets/images/yumekai2026/Akumu.png";
 
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Haendler() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Händler"
+        description="Diese Händler sind bei der YumeKai 2026 dabei."
+        path="/programm2026/haendler"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Händler</h1>
@@ -117,7 +123,7 @@ export default function Haendler() {
 
         <ContentCard
           title="Tenity Designs"
-          imageSrc={JennyGramsBild}
+          imageSrc={TenityDesignBild}
           altText="Tenity Designs"
           text={
             <p>

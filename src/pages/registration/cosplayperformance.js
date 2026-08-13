@@ -31,6 +31,7 @@ import {
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage, createFileFromPDF } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -436,6 +437,11 @@ export default function CosplayPerformance() {
 
   return (
     <>
+      <SEO
+        title="Anmeldung Cosplay Performance Wettbewerb"
+        description="Melde dich für den Cosplay Performance Wettbewerb der YumeKai an und zeige deinen Bühnenauftritt."
+        path="/registration/cosplayperformance"
+      />
       <h1>Anmeldung für den Cosplay Performance Wettbewerb</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!

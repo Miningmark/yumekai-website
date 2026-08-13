@@ -2,10 +2,16 @@ import TabCard from "@/components/elements/TabCard";
 import { SpacerEmpty, BoldText, StyledLink } from "@/components/styledComponents";
 import YumeKaiRules from "@/components/waffenkostuemregelnComponents/Yumekai-rules";
 import YumeKaiNightRules from "@/components/waffenkostuemregelnComponents/Yumekai-night-rules";
+import SEO from "@/components/elements/SEO";
 
 export default function Waffenkostuemregeln() {
   return (
     <>
+      <SEO
+        title="Waffen- & Kostümregeln"
+        description="Regeln für Cosplay-Waffen und -Requisiten auf der YumeKai: Was erlaubt ist und worauf du beim Waffencheck achten musst."
+        path="/waffenkostuemregeln"
+      />
       <h1>Regeln für Cosplay und Cosplay-Waffen</h1>
       <BoldText>Cosplay-Regeln</BoldText>
       <p>

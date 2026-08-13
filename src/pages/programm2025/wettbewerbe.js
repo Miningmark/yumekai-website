@@ -6,6 +6,7 @@ import ContentCard from "@/components/elements/ContentCard";
 
 //Images
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
+import SEO from "@/components/elements/SEO";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -19,6 +20,11 @@ const ContentContainer = styled.div`
 export default function Wettbewerbe() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Wettbewerbe"
+        description="Alle Wettbewerbe und Turniere der YumeKai 2025: Cosplay, Kartenspiele und mehr."
+        path="/programm2025/wettbewerbe"
+      />
       <ReturnButton link="/programm2025" />
 
       <h1 style={{ textAlign: "center" }}>Wettbewerbe</h1>

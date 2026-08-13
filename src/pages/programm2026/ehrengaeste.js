@@ -3,20 +3,21 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
 import HiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
 import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
-import YuriHiranoBild from "/public/assets/images/yumekai2026/Yuri Hirano.png";
+import YuriHiranoBild from "/public/assets/images/yumekai2026/Yuri Hirano.jpg";
 import MionBild from "/public/assets/images/yumekai2026/MION.png";
 import NiloBild from "/public/assets/images/yumekai2026/Nilo.jpg";
-import LyriaBild from "/public/assets/images/yumekai2026/Lyria.png";
-import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.png";
+import LyriaBild from "/public/assets/images/yumekai2026/Lyria.jpg";
+import CelloticDuetsBild from "/public/assets/images/yumekai2026/Cellotic Duets.jpg";
 import Lucky13Bild from "/public/assets/images/yumekai2026/Lucky13.jpg";
 import NicolleGonsiorBild from "/public/assets/images/yumekai2026/Nicolle Gonsior.jpeg";
 import MarieJeanneWideraBild from "/public/assets/images/yumekai2026/Marie-Jeanne Widera.jpeg";
-import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.png";
+import DJSteveHengBild from "/public/assets/images/yumekai2026/presse_steveheng_00.jpg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Ehrengaeste() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Ehrengäste & Showacts"
+        description="Die Showacts, Ehrengäste und Synchronsprecher der YumeKai 2026: Yuri Hirano, MION, Stellaria und mehr."
+        path="/programm2026/ehrengaeste"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Showacts</h1>

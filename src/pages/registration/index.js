@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 //Components
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
+import SEO from "@/components/elements/SEO";
 import { Spacer, StyledButton, StyledLink } from "@/components/styledComponents";
 import { renderRegistrationPeriodText } from "@/util/renderRegistrationPeriodText";
 import { renderRegistrationButton } from "@/util/renderRegistrationPeriodText";
@@ -103,6 +104,11 @@ export default function Voranmeldungen() {
 
   return (
     <>
+      <SEO
+        title="Voranmeldungen"
+        description="Voranmeldungen für die YumeKai 2026: als Künstler, Händler, Showact, Workshopleiter, Aussteller oder für Wettbewerbe."
+        path="/registration"
+      />
       <h1>Voranmeldungen für die YumeKai 2026</h1>
       {renderInfoText(
         earliestStart,

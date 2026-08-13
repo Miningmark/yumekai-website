@@ -1,63 +1,5 @@
 import mysql from "mysql2/promise";
-import emailContactRequest from "@/util/email_contactRequest";
 import validateString from "@/util/inputCheck";
-
-/*
- 
-CREATE TABLE contact_requests (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_ip VARCHAR(50) NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50),
-    email VARCHAR(100) NOT NULL,
-    area VARCHAR(50) NOT NULL,
-    subject VARCHAR(50) NOT NULL,
-    message TEXT NOT NULL,
-    privacy_policy BOOLEAN NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    processed BOOLEAN DEFAULT FALSE
-)
-ENGINE=InnoDB 
-DEFAULT CHARSET=utf8mb4 
-COLLATE=utf8mb4_unicode_ci 
-
-CREATE TABLE unusual_activity_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_ip VARCHAR(50),
-    email VARCHAR(100),
-    reason VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE registration_errors (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_ip VARCHAR(64),
-    form VARCHAR(100),
-    email VARCHAR(100),
-    error_details JSON NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
-ENGINE=InnoDB 
-DEFAULT CHARSET=utf8mb4 
-COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE spam_requests (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_ip VARCHAR(50) NOT NULL,
-    name VARCHAR(50),
-    last_name VARCHAR(50),
-    email VARCHAR(100),
-    area VARCHAR(50),
-    subject VARCHAR(100),
-    message TEXT,
-    spam_reason VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_unicode_ci;
-
- */
 
 const connection = mysql.createPool({
   host: process.env.DB_HOST,
@@ -385,8 +327,6 @@ export default async function handler(req, res) {
     `;
     const values = [clientIp, name, lastName, email, area, subject, message, privacyPolicy];
     await connection.query(query, values);
-
-    emailContactRequest({ email, name, area, subject, message });
 
     res.status(200).json({ message: "Daten erfolgreich eingefügt." });
   } catch (error) {

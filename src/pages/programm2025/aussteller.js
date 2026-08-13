@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import cohekiImage from "/public/assets/images/yumekai2025/CoHeKi.png";
@@ -31,6 +32,11 @@ const ContentContainer = styled.div`
 export default function Aussteller() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Aussteller"
+        description="Diese Aussteller sind bei der YumeKai 2025 dabei."
+        path="/programm2025/aussteller"
+      />
       <ReturnButton link="/programm2025" />
 
       <h1 style={{ textAlign: "center" }}>Aussteller</h1>

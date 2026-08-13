@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export const PageWrapper = styled.div`
+export const PageWrapper = styled.main`
   position: relative;
   display: flex;
   flex-direction: column;

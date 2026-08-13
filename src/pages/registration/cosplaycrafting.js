@@ -31,6 +31,7 @@ import {
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage, createFileFromPDF } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -400,6 +401,11 @@ export default function CosplayCrafting() {
 
   return (
     <>
+      <SEO
+        title="Anmeldung Cosplay Crafting Wettbewerb"
+        description="Melde dich für den Cosplay Crafting Wettbewerb der YumeKai an und zeige dein selbstgemachtes Kostüm."
+        path="/registration/cosplaycrafting"
+      />
       <h1>Anmeldung für den Cosplay Crafting Wettbewerb</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!

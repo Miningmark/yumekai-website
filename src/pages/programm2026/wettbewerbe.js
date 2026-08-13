@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
 import StyledLinkAsButton from "@/components/elements/StyledLinkAsButton";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HiruCosplay from "/public/assets/hirus/Hiru_Cosplay.png";
@@ -23,6 +24,11 @@ const ContentContainer = styled.div`
 export default function Wettbewerbe() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Wettbewerbe"
+        description="Alle Wettbewerbe und Turniere der YumeKai 2026: Cosplay, Zeichenwettbewerb, Kartenspiele und mehr."
+        path="/programm2026/wettbewerbe"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Wettbewerbe</h1>

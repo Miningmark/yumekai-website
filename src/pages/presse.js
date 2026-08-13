@@ -22,6 +22,7 @@ import CheckBox from "@/components/styled/CheckBox";
 import LoadingAnimation from "@/components/styled/LoadingAnimation";
 import AddressFields from "@/components/registrations/AddressFields";
 import { EVENT_ID, GENDER_OPTIONS } from "@/util/registration_options";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -357,6 +358,11 @@ export default function Presse() {
 
   return (
     <>
+      <SEO
+        title="Presse-Akkreditierung"
+        description="Online-Akkreditierung für Presse-Vertreter der YumeKai: Richtlinien, Ansprechpartner und Anmeldeformular."
+        path="/presse"
+      />
       <h1>Akkreditierung für Presse-Vertreter</h1>
       <p>
         Du möchtest über die <strong>YumeKai</strong> berichten? Dann freuen wir uns über eine

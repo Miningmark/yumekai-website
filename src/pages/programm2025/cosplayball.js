@@ -8,6 +8,7 @@ import ReturnButton from "@/components/menu/ReturnButton";
 //Images
 import hiruBallImage from "/public/assets/hirus/Hiru_Ball.png";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
+import SEO from "@/components/elements/SEO";
 
 const DynamicContent = styled.div`
   display: flex;
@@ -23,6 +24,11 @@ const DynamicContent = styled.div`
 export default function Cosplayball() {
   return (
     <>
+      <SEO
+        title="Programm 2025 – Cosplayball"
+        description="Der YumeKai-Cosplayball 2025: Ein Abend voller Magie und Musik mit Live-Konzert und Disco."
+        path="/programm2025/cosplayball"
+      />
       <ReturnButton link="/programm2025" />
 
       <h1 style={{ textAlign: "center" }}>Cosplayball - Ein Abend voller Magie & Musik </h1>

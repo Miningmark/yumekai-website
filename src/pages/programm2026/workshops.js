@@ -3,6 +3,7 @@ import styled from "styled-components";
 //Components
 import ReturnButton from "@/components/menu/ReturnButton";
 import ContentCard from "@/components/elements/ContentCard";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import HiruWorkshop from "/public/assets/hirus/Hiru_Workshop.png";
@@ -13,10 +14,10 @@ import NevadaBild from "/public/assets/images/yumekai2026/Nevada.png";
 import AkunyaahWorkshopBild from "/public/assets/images/yumekai2026/Akunyaah Workshop.png";
 import KermiWorkshopBild from "/public/assets/images/yumekai2026/Kermi Workshop.jpg";
 import WolfusWorkshopBild from "/public/assets/images/yumekai2026/Wolfus Workshop.png";
-import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.png";
+import EraliaWorkshopBild from "/public/assets/images/yumekai2026/Eralia Workshop.jpg";
 import HokushinWorkshopBild from "/public/assets/images/yumekai2026/Hokushin.png";
 import StellariaBild from "/public/assets/images/yumekai2026/Showact Stellaria - Stellaria Logo mit Aufschrift.png";
-import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.png";
+import NGEItashaBild from "/public/assets/images/yumekai2026/N.G.E. Itasha e.V. workshop.jpg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -30,6 +31,11 @@ const ContentContainer = styled.div`
 export default function Workshops() {
   return (
     <>
+      <SEO
+        title="Programm 2026 – Workshops"
+        description="Alle Workshops der YumeKai 2026: Cosplay-Crafting, Tanzkurse, Zeichnen und mehr."
+        path="/programm2026/workshops"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Workshops</h1>

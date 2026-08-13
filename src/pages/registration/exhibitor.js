@@ -33,6 +33,7 @@ import ImageCropModal from "@/util/ImageCropModal";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -600,6 +601,11 @@ useEffect(() => {
 
   return (
     <>
+      <SEO
+        title="Anmeldung Gruppen-/Fan-Stand"
+        description="Melde deinen Gruppen- oder Fan-Stand für die YumeKai an."
+        path="/registration/exhibitor"
+      />
       <h1>Anmeldung Gruppen/Fan Stand</h1>
       <p>
         Sichert euch euren Platz auf der YumeKai 2026!

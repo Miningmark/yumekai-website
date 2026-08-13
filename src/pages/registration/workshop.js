@@ -33,6 +33,7 @@ import ImageCropModal from "@/util/ImageCropModal";
 
 import hiruKunstlerImage from "/public/assets/hirus/Hiru_Kunstler.png";
 import { createFileFromImage } from "@/util/demoDataHelpers";
+import SEO from "@/components/elements/SEO";
 
 const FieldErrorText = styled(ErrorText)`
   margin-top: -10px;
@@ -673,6 +674,11 @@ useEffect(() => {
 
   return (
     <>
+      <SEO
+        title="Anmeldung als Workshopleiter"
+        description="Melde dich als Workshopleiter für die YumeKai an und teile dein Wissen in einem eigenen Workshop."
+        path="/registration/workshop"
+      />
       <h1>Anmeldung als Workshopleiter</h1>
       <p>Sichert euch euren Platz auf der YumeKai 2026!</p>
       <p>

@@ -4,6 +4,7 @@ import Banner from "@/components/shop/Banner";
 import { StyledLink } from "@/components/styledComponents";
 import { DynamicContent } from "@/components/styledComponents";
 import Image from "next/image";
+import SEO from "@/components/elements/SEO";
 
 import crowdfundingImage_1 from "/public/assets/images/crowdfunding/Yumekai_collage_1.png";
 import crowdfundingImage_2 from "/public/assets/images/crowdfunding/Yumekai_collage_2.png";
@@ -29,6 +30,11 @@ const DynamicContentWrapper = styled.div`
 export default function Shop() {
   return (
     <>
+      <SEO
+        title="Crowdfunding"
+        description="Unterstütze die YumeKai 2026 beim Crowdfunding und sichere dir exklusive Belohnungen wie Sticker, Pins und Sonderausgaben von Hiru."
+        path="/crowdfunding"
+      />
       <Script
         src="https://pretix.eu/widget/v1.de.js"
         strategy="lazyOnload"

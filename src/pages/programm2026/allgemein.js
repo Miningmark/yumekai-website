@@ -7,6 +7,7 @@ import ReturnButton from "@/components/menu/ReturnButton";
 import { Spacer, SpacerEmpty } from "@/components/styledComponents";
 import DataViewer from "@/components/DataViewer";
 import { StyledLinkAsButton } from "@/components/elements/StyledLinkAsButton";
+import SEO from "@/components/elements/SEO";
 
 //Images
 import lageplanKolbehausImage from "/public/assets/images/yumekai2025/Lageplan_Kolbe-VHS.png";
@@ -80,6 +81,11 @@ export default function Allgemein() {
 
   return (
     <>
+      <SEO
+        title="Programm 2026 – Allgemein"
+        description="Öffnungszeiten, Anfahrt, Lageplan und Programmheft der YumeKai 2026."
+        path="/programm2026/allgemein"
+      />
       <ReturnButton link="/programm2026" />
 
       <h1 style={{ textAlign: "center" }}>Allgemein</h1>

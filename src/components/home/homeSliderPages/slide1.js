@@ -126,6 +126,7 @@ export default function Slide1() {
                 src={yumekoImage}
                 alt="Maskottchen Yumeko"
                 priority
+                sizes="300px"
                 style={{
                   width: "auto",
                   height: "100%",
@@ -136,6 +137,7 @@ export default function Slide1() {
               <Image
                 src={speechBubble}
                 alt="Speech Bubble"
+                sizes="100px"
                 style={{
                   width: "auto",
                   height: "50px",

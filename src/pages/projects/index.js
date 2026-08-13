@@ -7,6 +7,7 @@ import styled from "styled-components";
 //logos
 import YumeKaiLogo from "/public/assets/logo/yumekai_color_font.svg";
 import YumeKaiNightLogo from "/public/assets/logo/yumekai-night-logo.png";
+import SEO from "@/components/elements/SEO";
 
 const ProjectLink = styled(Link)`
   width: 60%;
@@ -38,6 +39,11 @@ const ProjectLink = styled(Link)`
 export default function Projects() {
   return (
     <>
+      <SEO
+        title="Projekte"
+        description="Alle Projekte von YumeKai im Überblick: die Convention YumeKai und die Partyveranstaltung YumeKai-Night."
+        path="/projects"
+      />
       <h1>Projekte</h1>
       <p>
         Wir bei YumeKai haben die Vision, mit all unseren Projekten Menschen zu begeistern. Egal ob
