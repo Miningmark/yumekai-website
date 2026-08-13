@@ -158,26 +158,6 @@ export default function Datenschutz() {
         Aufbewahrungsfristen – bleiben unberührt.
       </p>
 
-      <h2>Newsletter-Daten</h2>
-      <p>
-        Zum Versenden unseres Newsletters benötigen wir von Ihnen eine E-Mail-Adresse. Eine
-        Verifizierung der angegebenen E-Mail-Adresse ist notwendig und der Empfang des Newsletters
-        ist einzuwilligen. Ergänzende Daten werden nicht erhoben oder sind freiwillig. Die
-        Verwendung der Daten erfolgt ausschließlich für den Versand des Newsletters.
-      </p>
-      <p>
-        Die bei der Newsletteranmeldung gemachten Daten werden ausschließlich auf Grundlage Ihrer
-        Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) verarbeitet. Ein Widerruf Ihrer bereits erteilten
-        Einwilligung ist jederzeit möglich. Für den Widerruf genügt eine formlose Mitteilung per
-        E-Mail oder Sie melden sich über den „Austragen“-Link im Newsletter ab. Die Rechtmäßigkeit
-        der bereits erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.
-      </p>
-      <p>
-        Zur Einrichtung des Abonnements eingegebene Daten werden im Falle der Abmeldung gelöscht.
-        Sollten diese Daten für andere Zwecke und an anderer Stelle an uns übermittelt worden sein,
-        verbleiben diese weiterhin bei uns.
-      </p>
-
       <h2>Cookies</h2>
       <p>
         Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem
