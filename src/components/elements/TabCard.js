@@ -39,33 +39,42 @@ Aufruf der Component
 
 const TabContainer = styled.div`
   width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 `;
 
 const TabHeader = styled.div`
   display: flex;
+  gap: 2px;
+  padding: 6px;
   background-color: ${({ theme }) => theme.backgroundColor3};
+  overflow-x: auto;
 `;
 
 const TabButton = styled.button`
   flex: 1;
-  padding: 10px;
-  background: ${({ $active }) => ($active ? "#ddd" : "transparent")};
-  color: ${({ theme }) => theme.primaryColor};
+  min-width: max-content;
+  min-height: 44px;
+  padding: 10px 16px;
+  background: ${({ $active, theme }) => ($active ? theme.primaryColor : "transparent")};
+  color: ${({ $active, theme }) => ($active ? "#fff" : theme.primaryColor)};
   border: none;
-  border-bottom: 2px solid #ddd;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 1.2rem;
-  transition: 0.3s;
+  font-family: var(--font-heading), Tahoma, sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: var(--transition-fast);
 
   &:hover {
-    background: #ddd;
+    background: ${({ $active, theme }) => ($active ? theme.primaryColor : theme.surfaceMuted)};
   }
 
-  &:focus {
-    outline: none;
+  &:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: -3px;
   }
 `;
 

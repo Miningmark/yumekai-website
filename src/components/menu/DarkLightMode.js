@@ -10,11 +10,21 @@ const ThemeToggleButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
 
   svg {
+    width: 24px;
+    height: 24px;
     fill: ${({ theme }) => theme.text};
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.surfaceMuted};
+    transform: rotate(-12deg);
   }
 `;
 

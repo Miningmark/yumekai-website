@@ -1,20 +1,22 @@
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
-import { SocialMediaContainerHeader } from "@/components/menu/SocialMediaContainer";
+import {
+  SocialMediaContainer,
+  SocialMediaContainerHeader,
+} from "@/components/menu/SocialMediaContainer";
 import ThemeToggle from "@/components/menu/DarkLightMode";
 
 // Import Icons
 import IconMenu from "/public/assets/icons/menu.svg";
-import IconArrowDown from "/public/assets/icons/arrow_drop_down.svg";
 import IconClose from "/public/assets/icons/close.svg";
 
 import YumeKaiLogo from "/public/assets/logo/yumekai_color_font.svg";
 
 const menuItems = [
   { name: "Startseite", path: "/" },
-  
+
   {
     name: "Projekte",
     //path: "/projects",
@@ -24,7 +26,7 @@ const menuItems = [
       { name: "YumeKai-Night", path: "/projects/yumekai-night" },
     ],
   },
-  
+
   {
     name: "Rückblicke",
     //path: "/review/yumekai-2024",
@@ -60,7 +62,7 @@ const menuItems = [
 
 const StyledHeader = styled.header`
   position: sticky;
-  top: -160px;
+  top: ${({ $offset }) => `-${$offset}px`};
   z-index: 500;
 `;
 
@@ -70,6 +72,7 @@ const MenuLogoBackground = styled.div`
   justify-content: center;
   width: 100vw;
   position: relative;
+  border-bottom: 1px solid ${({ theme }) => theme.border};
 
   .logo {
     height: 120px;
@@ -79,7 +82,7 @@ const MenuLogoBackground = styled.div`
   }
 
   @media (max-width: 800px) {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
   }
 `;
 
@@ -90,8 +93,11 @@ const StyledMenu = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: ${({ theme }) => theme.backgroundColor2};
+  gap: 2px;
+  box-shadow: var(--shadow-sm);
+  background-color: ${({ theme }) => theme.headerSurface};
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   svg {
     fill: ${({ theme }) => theme.text};
@@ -102,84 +108,140 @@ const StyledMenu = styled.nav`
   }
 `;
 
-const MenuLink = styled(Link)`
+const CompactLeftGroup = styled.div`
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transform: ${({ $visible }) => `translateY(-50%) translateX(${$visible ? "0" : "-12px"})`};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  pointer-events: ${({ $visible }) => ($visible ? "auto" : "none")};
+  transition: transform var(--transition-base), opacity var(--transition-base);
+`;
+
+const CompactLogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 34px;
+    width: auto;
+  }
+`;
+
+const CompactSocialWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  transform: scale(0.78);
+  transform-origin: left center;
+`;
+
+const navLinkStyles = `
   text-decoration: none;
-  padding: 5px 15px;
+  position: relative;
+  padding: 8px 16px;
   margin: 0;
-  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
-  font-weight: bold;
-  font-size: 1.4rem;
+  font-weight: 700;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.3s ease-in-out;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 4px;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--secondary-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-base);
+  }
 
   &:hover {
-    color: ${({ theme }) => theme.primaryColor};
-    transform: translateY(-3px);
-    transition: transform 0.3s ease-in-out;
+    color: var(--primary-color);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
   }
 
   @media (max-width: 1000px) {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
   }
 
   @media (max-width: 800px) {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     text-align: center;
-    padding: 12px;
+    justify-content: center;
+    padding: 14px;
+    border-radius: var(--radius-md);
+
+    &::after {
+      display: none;
+    }
+  }
+`;
+
+const MenuLink = styled(Link)`
+  ${navLinkStyles}
+  color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
+
+  &::after {
+    transform: ${({ $active }) => ($active == 1 ? "scaleX(1)" : "scaleX(0)")};
+  }
+
+  @media (max-width: 800px) {
+    background-color: ${({ theme, $active }) => ($active == 1 ? theme.surfaceMuted : "transparent")};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.surfaceMuted};
+    }
   }
 `;
 
 const MenuNoLink = styled.p`
-  padding: 5px 15px;
-  margin: 0;
+  ${navLinkStyles}
   color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
-  font-weight: bold;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: transform 0.3s ease-in-out;
-
-  &:hover {
-    color: ${({ theme }) => theme.primaryColor};
-    transform: translateY(-3px);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  @media (max-width: 1000px) {
-    font-size: 1.2rem;
-  }
 
   @media (max-width: 800px) {
-    font-size: 1.1rem;
-    text-align: center;
-    padding: 12px;
+    background-color: ${({ theme, $active }) => ($active == 1 ? theme.surfaceMuted : "transparent")};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.surfaceMuted};
+    }
   }
 `;
 
 const SubMenuLink = styled(Link)`
   text-decoration: none;
-  padding: 5px 5px;
+  padding: 10px 14px;
   margin: 0;
   color: ${({ theme, $active }) => ($active == 1 ? theme.navActiveColor : theme.navInactiveColor)};
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 1.05rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  transition: transform 0.3s ease-in-out;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
   text-align: center;
 
   &:hover {
-    color: ${({ theme }) => theme.primaryColor};
-    transform: translateY(-3px);
-    transition: transform 0.3s ease-in-out;
+    color: var(--primary-color);
+    background-color: ${({ theme }) => theme.surfaceMuted};
   }
 
   @media (max-width: 1000px) {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   @media (max-width: 800px) {
@@ -191,26 +253,31 @@ const SubMenuLink = styled(Link)`
 
 const HamburgerIcon = styled.div`
   position: fixed;
-  right: 0px;
-  top: 0px;
-  width: 30px;
+  right: 14px;
+  top: 14px;
+  z-index: 950;
 
   display: none;
   flex-direction: column;
   align-items: center;
-  gap: 0px;
+  gap: 2px;
   background-color: ${({ theme }) => theme.backgroundColor2};
-  padding: 10px;
-  border-radius: 0 0 0 10px;
-  opacity: 0.8;
-
-  &hover {
-    opacity: 1;
-  }
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 
   svg {
     cursor: pointer;
     fill: ${({ theme }) => theme.text};
+    width: 26px;
+    height: 26px;
+    padding: 7px;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+  }
+
+  svg:hover {
+    background-color: ${({ theme }) => theme.surfaceMuted};
   }
 
   @media (max-width: 800px) {
@@ -218,20 +285,32 @@ const HamburgerIcon = styled.div`
   }
 `;
 
+const overlayFadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const menuSlideIn = keyframes`
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const MobileMenu = styled.div`
   position: fixed;
-  top: 0; //55px
+  top: 0;
   right: 0;
   width: 100%;
-  //background: ${({ theme }) => theme.backgroundColor2};
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.backgroundColor2};
+  box-shadow: var(--shadow-lg);
   z-index: 600;
   display: flex;
   flex-direction: column;
   font-size: large;
-  //border-radius: 10px 0 0 10px;
-  padding: 20px 0 5px 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 20px 12px 16px 12px;
+  animation: ${menuSlideIn} var(--transition-base);
+  max-height: 100dvh;
+  overflow-y: auto;
 
   @media (min-width: 801px) {
     display: none;
@@ -244,25 +323,26 @@ const SubMenu = styled.div`
   left: 0;
   width: 100%;
   margin-top: 30px;
-  background: ${({ theme }) => theme.backgroundColor2};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.headerSurface};
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-lg);
   z-index: 700;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 10px 10px;
+  gap: 2px;
+  padding: 12px 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  animation: ${overlayFadeIn} var(--transition-fast);
 `;
 
 const SubMenuWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.backgroundColor2};
-
-  a {
-    padding-right: 5px;
-  }
+  background: transparent;
 
   svg {
     cursor: pointer;
@@ -277,11 +357,9 @@ const MobileSubMenu = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //background: ${({ theme }) => theme.backgroundColor2};
-  backdrop-filter: blur(10px);
   z-index: 700;
   display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
-  padding: 5px 0 15px 0;
+  padding: 4px 0 12px 0;
 `;
 
 const MenuItemWrapper = styled.div`
@@ -312,19 +390,75 @@ const MobileMenuOverlay = styled.div`
   top: 0;
   width: 100vw;
   height: 100dvh;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 590;
+  animation: ${overlayFadeIn} var(--transition-fast);
 `;
 
 export default function PageHeader({ toggleTheme, theme }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSubMenus, setOpenSubMenus] = useState({});
+  const [isCompact, setIsCompact] = useState(false);
+  const [logoHeight, setLogoHeight] = useState(160);
   const desktopMenuRef = useRef(null);
+  const logoBarRef = useRef(null);
+  const logoClickCountRef = useRef(0);
+  const logoClickTimer = useRef(null);
 
   const router = useRouter();
   const { pathname } = router;
 
   useEffect(() => {
+    return () => {
+      if (logoClickTimer.current) clearTimeout(logoClickTimer.current);
+    };
+  }, []);
+
+  // Easter egg: 5x schnell aufs Logo klicken öffnet das versteckte Hiru-Memory
+  function handleLogoClick(e) {
+    if (logoClickTimer.current) clearTimeout(logoClickTimer.current);
+
+    logoClickCountRef.current += 1;
+    if (logoClickCountRef.current >= 5) {
+      e.preventDefault();
+      logoClickCountRef.current = 0;
+      router.push("/hiru-memory");
+      return;
+    }
+
+    logoClickTimer.current = setTimeout(() => {
+      logoClickCountRef.current = 0;
+    }, 1500);
+  }
+
+  useEffect(() => {
+    function measureLogoBar() {
+      if (logoBarRef.current) {
+        setLogoHeight(logoBarRef.current.offsetHeight);
+      }
+    }
+
+    measureLogoBar();
+    window.addEventListener("resize", measureLogoBar);
+    return () => window.removeEventListener("resize", measureLogoBar);
+  }, []);
+
+  useEffect(() => {
+    function handleScroll() {
+      setIsCompact(window.scrollY > logoHeight - 8);
+    }
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [logoHeight]);
+
+  useEffect(() => {
     function handleOutsideInteraction(e) {
+      // the mobile menu manages its own submenu open/close state via taps;
+      // this listener is only for dismissing the desktop hover/click dropdown
+      if (isMobileMenuOpen) return;
       if (desktopMenuRef.current && !desktopMenuRef.current.contains(e.target)) {
         setOpenSubMenus({});
       }
@@ -335,7 +469,26 @@ export default function PageHeader({ toggleTheme, theme }) {
       document.removeEventListener("mousedown", handleOutsideInteraction);
       document.removeEventListener("touchstart", handleOutsideInteraction);
     };
-  }, []);
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    function handleKeyDown(e) {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
 
   function toggleMobileMenu() {
     setOpenSubMenus((prevState) => {
@@ -374,15 +527,23 @@ export default function PageHeader({ toggleTheme, theme }) {
   }
 
   return (
-    <StyledHeader>
-      <MenuLogoBackground>
-        <Link href="/" aria-label="YumeKai Startseite">
+    <StyledHeader $offset={logoHeight}>
+      <MenuLogoBackground ref={logoBarRef}>
+        <Link href="/" aria-label="YumeKai Startseite" onClick={handleLogoClick}>
           <YumeKaiLogo className="logo" />
         </Link>
         <SocialMediaContainerHeader />
       </MenuLogoBackground>
 
       <StyledMenu ref={desktopMenuRef}>
+        <CompactLeftGroup $visible={isCompact}>
+          <CompactLogoLink href="/" aria-label="YumeKai Startseite" onClick={handleLogoClick}>
+            <YumeKaiLogo />
+          </CompactLogoLink>
+          <CompactSocialWrapper>
+            <SocialMediaContainer />
+          </CompactSocialWrapper>
+        </CompactLeftGroup>
         {menuItems.map((item, index) => (
           <SubMenuWrapper
             key={item.name}
@@ -403,10 +564,8 @@ export default function PageHeader({ toggleTheme, theme }) {
             )}
             {item.subItems && (
               <>
-                {/*<IconArrowDown style={{ cursor: "pointer" }} />*/}
                 {openSubMenus[index] && (
                   <SubMenu>
-                    <br />
                     {item.subItems.map((subItem) => (
                       <SubMenuLink
                         key={subItem.path}
@@ -429,7 +588,11 @@ export default function PageHeader({ toggleTheme, theme }) {
       </StyledMenu>
 
       <HamburgerIcon>
-        <IconMenu onClick={toggleMobileMenu} />
+        {isMobileMenuOpen ? (
+          <IconClose onClick={toggleMobileMenu} aria-label="Menü schließen" />
+        ) : (
+          <IconMenu onClick={toggleMobileMenu} aria-label="Menü öffnen" />
+        )}
         <ThemeToggle toggleTheme={toggleTheme} theme={theme} />
       </HamburgerIcon>
 
@@ -467,9 +630,6 @@ export default function PageHeader({ toggleTheme, theme }) {
                 )}
               </div>
             ))}
-            <HamburgerIcon style={{ backgroundColor: "transparent" }}>
-              <IconClose onClick={toggleMobileMenu} style={{ fill: "#f5f5f5" }} />
-            </HamburgerIcon>
           </MobileMenu>
         </MobileMenuOverlay>
       )}

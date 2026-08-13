@@ -8,11 +8,12 @@ import Autoplay from "embla-carousel-autoplay";
 
 //Slides
 import Slide1 from "@/components/home/homeSliderPages/slide1";
-import Slide2 from "@/components/home/homeSliderPages/slide2";
+//import Slide2 from "@/components/home/homeSliderPages/slide2";
 import Slide3 from "@/components/home/homeSliderPages/slide3";
 //import Slide4 from "@/components/home/homeSliderPages/slide4";
+import Slide5 from "@/components/home/homeSliderPages/slide5";
 
-const slideList = [Slide1, Slide2, Slide3];
+const slideList = [Slide1, Slide5, Slide3];
 
 const Embla = styled.section`
   max-width: 100%;
