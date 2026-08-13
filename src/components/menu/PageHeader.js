@@ -403,9 +403,34 @@ export default function PageHeader({ toggleTheme, theme }) {
   const [logoHeight, setLogoHeight] = useState(160);
   const desktopMenuRef = useRef(null);
   const logoBarRef = useRef(null);
+  const logoClickCountRef = useRef(0);
+  const logoClickTimer = useRef(null);
 
   const router = useRouter();
   const { pathname } = router;
+
+  useEffect(() => {
+    return () => {
+      if (logoClickTimer.current) clearTimeout(logoClickTimer.current);
+    };
+  }, []);
+
+  // Easter egg: 5x schnell aufs Logo klicken öffnet das versteckte Hiru-Memory
+  function handleLogoClick(e) {
+    if (logoClickTimer.current) clearTimeout(logoClickTimer.current);
+
+    logoClickCountRef.current += 1;
+    if (logoClickCountRef.current >= 5) {
+      e.preventDefault();
+      logoClickCountRef.current = 0;
+      router.push("/hiru-memory");
+      return;
+    }
+
+    logoClickTimer.current = setTimeout(() => {
+      logoClickCountRef.current = 0;
+    }, 1500);
+  }
 
   useEffect(() => {
     function measureLogoBar() {
@@ -504,7 +529,7 @@ export default function PageHeader({ toggleTheme, theme }) {
   return (
     <StyledHeader $offset={logoHeight}>
       <MenuLogoBackground ref={logoBarRef}>
-        <Link href="/" aria-label="YumeKai Startseite">
+        <Link href="/" aria-label="YumeKai Startseite" onClick={handleLogoClick}>
           <YumeKaiLogo className="logo" />
         </Link>
         <SocialMediaContainerHeader />
@@ -512,7 +537,7 @@ export default function PageHeader({ toggleTheme, theme }) {
 
       <StyledMenu ref={desktopMenuRef}>
         <CompactLeftGroup $visible={isCompact}>
-          <CompactLogoLink href="/" aria-label="YumeKai Startseite">
+          <CompactLogoLink href="/" aria-label="YumeKai Startseite" onClick={handleLogoClick}>
             <YumeKaiLogo />
           </CompactLogoLink>
           <CompactSocialWrapper>
