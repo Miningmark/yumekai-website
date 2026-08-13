@@ -4,7 +4,7 @@ import Link from "next/link";
 import Columns3 from "@/components/elements/Columns3";
 
 // Components
-import { Spacer, StyledLink } from "@/components/styledComponents";
+import { StyledLink } from "@/components/styledComponents";
 import Columns2 from "@/components/elements/Columns2";
 import ImageCarousel from "@/components/elements/ImageCarousel";
 import SEO from "@/components/elements/SEO";
@@ -618,8 +618,8 @@ const FigureContainer = styled.figure`
     width: calc((100% - 20px) / 2);
   }
 
-  img {
-    border-radius: 8px;
+  &:hover img {
+    transform: scale(1.06);
   }
 
   figcaption {
@@ -656,10 +656,219 @@ const FigureContainer = styled.figure`
   }
 `;
 
+const ImageFrame = styled.div`
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+
+  img {
+    display: block;
+    transition: transform var(--transition-base);
+  }
+`;
+
+const HeroSection = styled.section`
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(163deg, #e9300b 0%, #ffb01e 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 48px 40px;
+  margin: 10px 0 25px 0;
+  text-align: center;
+
+  h1 {
+    color: #fff;
+    padding: 0;
+    margin: 0 0 16px 0;
+  }
+
+  p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #fff;
+  }
+
+  @media (max-width: 500px) {
+    padding: 32px 20px;
+  }
+`;
+
+const HeroBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  color: #fff;
+  font-family: var(--font-heading), Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+`;
+
+const TocNav = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px 0 10px 0;
+  padding: 0;
+`;
+
+const TocLink = styled(StyledLink)`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: ${({ theme }) => theme.surfaceMuted};
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-size: 0.95rem;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.backgroundColor4};
+    background-size: 0 2px;
+  }
+`;
+
+const SectionDivider = styled.div`
+  position: relative;
+  height: 1px;
+  background-color: ${({ theme }) => theme.border};
+  margin: 40px 0 28px 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background-image: linear-gradient(90deg, #e9300b, #ffb01e);
+  }
+
+  @media (max-width: 500px) {
+    margin: 24px 0 18px 0;
+  }
+`;
+
+const RankList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 16px 0;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const RankBadge = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-family: var(--font-heading), Tahoma, sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #2b2a2c;
+  margin-right: 12px;
+  box-shadow: var(--shadow-sm);
+  background-color: ${({ $place }) =>
+    $place === 1 ? "#FFD700" : $place === 2 ? "#C0C0C0" : "#CD7F32"};
+`;
+
+const AwardList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 16px 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+`;
+
+const AwardTag = styled.span`
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: ${({ $fg }) => $fg || "#fff"};
+  background-color: ${({ $bg }) => $bg};
+`;
+
+const PageBody = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > h2 {
+    align-self: flex-start;
+    padding: 8px 22px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    background-color: #e9300b;
+    color: #fff;
+  }
+`;
+
+const ThanksBox = styled.div`
+  background-color: ${({ theme }) => theme.surfaceMuted};
+  border: 1px solid ${({ theme }) => theme.border};
+  border-left: 4px solid var(--secondary-color);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  margin: 25px 0;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const SupporterList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+
+  li {
+    background-color: ${({ theme }) => theme.surfaceMuted};
+    border: 1px solid ${({ theme }) => theme.border};
+    border-radius: var(--radius-pill);
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+`;
+
 export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
   return (
     <FigureContainer>
-      <Image src={src} alt={`Bild von ${alt}`} style={{ width: "100%", height: "auto" }} priority />
+      <ImageFrame>
+        <Image src={src} alt={`Bild von ${alt}`} style={{ width: "100%", height: "auto" }} priority />
+      </ImageFrame>
       <figcaption>{caption}</figcaption>
       {!link ? (
         <p>{alt}</p>
@@ -680,13 +889,17 @@ export default function YumeKai2026() {
         description="Rückblick auf die YumeKai 2026: Showacts, Ehrengäste, Cosplayer und Aussteller im Überblick."
         path="/review/yumekai-2026"
       />
-      <h1>Rückblick YumeKai 2026</h1>
-      <p>
-        Am 09. und 10. Mai fand in diesem Jahr unsere dritte YumeKai statt. Hier könnt ihr die
-        schönsten Momente der Convention noch einmal Revue passieren lassen und gemeinsam in
-        Erinnerungen schwelgen. Vielleicht entdeckt ihr euch oder eure Freunde ja sogar auf dem
-        einen oder anderen Bild.
-      </p>
+      <PageBody>
+      <HeroSection>
+        <HeroBadge>09.–10. Mai 2026 · Stadthalle Memmingen</HeroBadge>
+        <h1>Rückblick YumeKai 2026</h1>
+        <p>
+          Am 09. und 10. Mai fand in diesem Jahr unsere dritte YumeKai statt. Hier könnt ihr die
+          schönsten Momente der Convention noch einmal Revue passieren lassen und gemeinsam in
+          Erinnerungen schwelgen. Vielleicht entdeckt ihr euch oder eure Freunde ja sogar auf dem
+          einen oder anderen Bild.
+        </p>
+      </HeroSection>
 
       <p>
         Außerdem könnt ihr einen Blick in unser{" "}
@@ -697,49 +910,23 @@ export default function YumeKai2026() {
         sowie die vielfältigen Programmpunkte erfahren.{" "}
       </p>
 
-      <ul>
-        <li>
-          <StyledLink href="#showacts">Showacts &amp; Ehrengäste</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#cosplayer">Cosplayer</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#aussteller">Aussteller</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#haendler">Händler</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#kuenstleratelier">Künstleratelier</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#autoren">Autoren</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#workshops">Workshops</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#essen">Essen</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#gaming">Spiele, Gaming, Karaoke</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#zeichenwettbewerb">Zeichen Wettbewerb</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#cosplayball">Cosplay Ball</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#danksagung">Danksagung</StyledLink>
-        </li>
-      </ul>
+      <TocNav>
+        <TocLink href="#showacts">Showacts &amp; Ehrengäste</TocLink>
+        <TocLink href="#cosplayer">Cosplayer</TocLink>
+        <TocLink href="#aussteller">Aussteller</TocLink>
+        <TocLink href="#haendler">Händler</TocLink>
+        <TocLink href="#kuenstleratelier">Künstleratelier</TocLink>
+        <TocLink href="#autoren">Autoren</TocLink>
+        <TocLink href="#workshops">Workshops</TocLink>
+        <TocLink href="#essen">Essen</TocLink>
+        <TocLink href="#gaming">Spiele, Gaming, Karaoke</TocLink>
+        <TocLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</TocLink>
+        <TocLink href="#zeichenwettbewerb">Zeichen Wettbewerb</TocLink>
+        <TocLink href="#cosplayball">Cosplay Ball</TocLink>
+        <TocLink href="#danksagung">Danksagung</TocLink>
+      </TocNav>
 
-      <Spacer id="showacts" />
+      <SectionDivider id="showacts" />
       <h2>Showacts &amp; Ehrengäste</h2>
       <p>
         Auch in diesem Jahr hatten wir ein ausgewogenes Bühnenprogramm mit alten Bekannten und neuen
@@ -808,7 +995,7 @@ export default function YumeKai2026() {
         />
       </ContentWrapper>
 
-      <Spacer id="cosplayer" />
+      <SectionDivider id="cosplayer" />
       <h2>Cosplayer</h2>
       <p>
         Auch in diesem Jahr durften wir wieder zahlreiche talentierte Cosplayer bei uns begrüßen.
@@ -846,7 +1033,7 @@ export default function YumeKai2026() {
         />
       </ContentWrapper>
 
-      <Spacer id="aussteller" />
+      <SectionDivider id="aussteller" />
       <h2>Aussteller</h2>
       <p>
         Auch in diesem Jahr waren wieder zahlreiche Aussteller mit den unterschiedlichsten
@@ -872,7 +1059,7 @@ export default function YumeKai2026() {
         <ContentContainer src={CCDBild} alt="Comic Con Dornbirn" />
       </ContentWrapper>
 
-      <Spacer id="haendler" />
+      <SectionDivider id="haendler" />
       <h2>Händler</h2>
       <p>
         Was wäre eine Convention ohne ihre Händler? Auch in diesem Jahr wartete wieder eine große
@@ -895,7 +1082,7 @@ export default function YumeKai2026() {
         <ContentContainer src={AkumuBild} alt="Akumu" />
       </ContentWrapper>
 
-      <Spacer id="kuenstleratelier" />
+      <SectionDivider id="kuenstleratelier" />
       <h2>Künstleratelier</h2>
       <p>
         Eine Artist Alley gehört mittlerweile zu fast jeder Anime-Convention und bei uns gab es in
@@ -1038,7 +1225,7 @@ export default function YumeKai2026() {
         />
       </ContentWrapper>
 
-      <Spacer id="autoren" />
+      <SectionDivider id="autoren" />
       <h2>Autoren</h2>
       <p>
         Auch in diesem Jahr durften unsere Autoren auf der YumeKai natürlich nicht fehlen. An ihren
@@ -1064,7 +1251,7 @@ export default function YumeKai2026() {
         />
       </ContentWrapper>
 
-      <Spacer id="workshops" />
+      <SectionDivider id="workshops" />
       <h2>Workshops</h2>
       <p>
         Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene
@@ -1120,7 +1307,7 @@ export default function YumeKai2026() {
         <ContentContainer src={TanzkursBild} alt="Tanzkurs" />
       </ContentWrapper>
 
-      <Spacer id="essen" />
+      <SectionDivider id="essen" />
       <h2>Essen</h2>
       <p>
         Auch für Essen war gesorgt, entweder etwas deftiges beim Becher Bistro oder beim Gasthof
@@ -1133,7 +1320,7 @@ export default function YumeKai2026() {
         <ContentContainer src={BrauhausLeppleBild} alt="Gasthof Bräuhaus Lepple" />
       </ContentWrapper>
 
-      <Spacer id="gaming" />
+      <SectionDivider id="gaming" />
       <h2>Spiele, Gaming, Karaoke</h2>
       <p>
         Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der
@@ -1146,7 +1333,7 @@ export default function YumeKai2026() {
         dort den zweiten Karavision Song Contest auf der YumeKai!
       </p>
 
-      <Spacer id="cosplay-wettbewerbe" />
+      <SectionDivider id="cosplay-wettbewerbe" />
       <h2>Cosplay Wettbewerbe</h2>
       <h3>Performance:</h3>
       <p>
@@ -1158,9 +1345,9 @@ export default function YumeKai2026() {
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
 
-      <ul>
+      <RankList>
         <li>
-          1. Platz:{" "}
+          <RankBadge $place={1}>1</RankBadge>
           <StyledLink
             href="https://www.instagram.com/tinyfufu/"
             target="_blank"
@@ -1171,7 +1358,8 @@ export default function YumeKai2026() {
           als Miorine Rembran (Mobile Suit Gundam: The Witch from Mercury)
         </li>
         <li>
-          2. Platz: Lia von{" "}
+          <RankBadge $place={2}>2</RankBadge>
+          Lia von{" "}
           <StyledLink
             href="https://www.instagram.com/imoneecosplay/"
             target="_blank"
@@ -1182,7 +1370,7 @@ export default function YumeKai2026() {
           als Minto Aizawa (Tokyo Mew Mew (Remake))
         </li>
         <li>
-          3. Platz:{" "}
+          <RankBadge $place={3}>3</RankBadge>
           <StyledLink
             href="https://www.instagram.com/palelittledragon/"
             target="_blank"
@@ -1192,7 +1380,7 @@ export default function YumeKai2026() {
           </StyledLink>{" "}
           als Uraume (Jujutsu Kaisen)
         </li>
-      </ul>
+      </RankList>
 
       <h3>Crafting:</h3>
 
@@ -1216,9 +1404,9 @@ export default function YumeKai2026() {
         }}
       />
 
-      <ul>
+      <RankList>
         <li>
-          1. Platz:{" "}
+          <RankBadge $place={1}>1</RankBadge>
           <StyledLink
             href="https://www.instagram.com/serinua_cosplay/"
             target="_blank"
@@ -1229,14 +1417,14 @@ export default function YumeKai2026() {
           als Tragosso
         </li>
         <li>
-          2. Platz:{" "}
+          <RankBadge $place={2}>2</RankBadge>
           <StyledLink href="" target="_blank" rel="noopener noreferrer">
             Jul
           </StyledLink>{" "}
           als Fern (Frieren: Beyond Journey&apos;s End)
         </li>
         <li>
-          3. Platz:{" "}
+          <RankBadge $place={3}>3</RankBadge>
           <StyledLink
             href="https://www.instagram.com/sovncosplay/"
             target="_blank"
@@ -1246,9 +1434,9 @@ export default function YumeKai2026() {
           </StyledLink>{" "}
           als Silverwind Nargacuga Rüstung (Monster Hunter)
         </li>
-      </ul>
+      </RankList>
 
-      <Spacer id="zeichenwettbewerb" />
+      <SectionDivider id="zeichenwettbewerb" />
       <h2>Zeichen Wettbewerb</h2>
       <p>
         Wieder mit dabei war auch unser Zeichenwettbewerb, hier konnten im Vorhinein Bilder zum
@@ -1267,22 +1455,28 @@ export default function YumeKai2026() {
 
       <ImageCarousel visibleCount={5.5} duration={2.5} images={zeichenwettbewerbImages} />
 
-      <ul>
+      <AwardList>
         <li>
-          Beste Kreativität: <strong>QueerBunny (Connor)</strong> – Yumeko als Wolpertinger
+          <AwardTag $bg="#e9300b">Beste Kreativität</AwardTag>
+          <strong>QueerBunny (Connor)</strong> – Yumeko als Wolpertinger
         </li>
         <li>
-          Beste Qualität: <strong>Lelo</strong> – Anno 1500 – Memminger Yumeko
+          <AwardTag $bg="#ffb01e" $fg="#2b2a2c">
+            Beste Qualität
+          </AwardTag>
+          <strong>Lelo</strong> – Anno 1500 – Memminger Yumeko
         </li>
         <li>
-          Beste Technik: <strong>evelusik</strong> – Tanz der Heimat
+          <AwardTag $bg="#388e3c">Beste Technik</AwardTag>
+          <strong>evelusik</strong> – Tanz der Heimat
         </li>
         <li>
-          Jury Favorit / 1. Platz: <strong>lauraskketches</strong> – Ein Lebkuchenherz für Yumeko 💗
+          <AwardTag $bg="#3b82f6">Jury Favorit / 1. Platz</AwardTag>
+          <strong>lauraskketches</strong> – Ein Lebkuchenherz für Yumeko 💗
         </li>
-      </ul>
+      </AwardList>
 
-      <Spacer id="cosplayball" />
+      <SectionDivider id="cosplayball" />
       <h2>Cosplayball</h2>
       <p>
         Auch in diesem Jahr fand zum zweiten Mal unser Cosplay-Ball statt. Für die passende
@@ -1295,7 +1489,7 @@ export default function YumeKai2026() {
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={cosplayballImages} />
 
-      <Spacer id="danksagung" />
+      <SectionDivider id="danksagung" />
       <h2>Danksagung</h2>
       <p>
         Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden Programm.
@@ -1333,49 +1527,48 @@ export default function YumeKai2026() {
         Ein ganz besonderes Dankeschön geht noch an alle Unterstützer unseres Crowdfundings, durch
         eure Hilfe konnten wir auch diese YumeKai wieder zu einer fantastischen Convention machen!
       </p>
-      <p>
-        Danke für ein wundervolles Wochenende und für all die besonderen Momente, die wir gemeinsam
-        erleben durften.
-        <br />
-        Wir freuen uns schon auf die nächste YumeKai mit euch!
-        <br />
-        Euer YumeKai-Team
-      </p>
+      <ThanksBox>
+        <p>
+          Danke für ein wundervolles Wochenende und für all die besonderen Momente, die wir
+          gemeinsam erleben durften.
+          <br />
+          Wir freuen uns schon auf die nächste YumeKai mit euch!
+          <br />
+          Euer YumeKai-Team
+        </p>
+      </ThanksBox>
 
       <h3>Crowdfunding</h3>
       <p>
         Ein besonderer Dank geht an alle Unterstützer:innen unseres Crowdfundings, die die YumeKai
         2026 mit möglich gemacht haben:
       </p>
-      <ContentWrapper>
-        <ul>
-          <li>Kirawitha</li>
-          <li>Naomi Huber</li>
-          <li>Stefanie</li>
-          <li>Claudia</li>
-          <li>kindsoul.new</li>
-          <li>AnnaLeiBrandt</li>
-          <li>Joey Jäger</li>
-          <li>Kio derSchwabenotter</li>
-          <li>Synchronevents.de</li>
-          <li>Shinoa Aizawa</li>
-          <li>DelphoxsArt</li>
-          <li>Manuel Beringer</li>
-        </ul>
-        <ul>
-          <li>Sara Hetges</li>
-          <li>Felix Wagner</li>
-          <li>Sandra Wimmer</li>
-          <li>Lordzwiebelback</li>
-          <li>Karokitty</li>
-          <li>Yulj</li>
-          <li>StrifeAlone</li>
-          <li>AkioSensei</li>
-          <li>Lukas</li>
-          <li>Filum Sensei</li>
-          <li>TOWELDAY Austria</li>
-        </ul>
-      </ContentWrapper>
+      <SupporterList>
+        <li>Kirawitha</li>
+        <li>Naomi Huber</li>
+        <li>Stefanie</li>
+        <li>Claudia</li>
+        <li>kindsoul.new</li>
+        <li>AnnaLeiBrandt</li>
+        <li>Joey Jäger</li>
+        <li>Kio derSchwabenotter</li>
+        <li>Synchronevents.de</li>
+        <li>Shinoa Aizawa</li>
+        <li>DelphoxsArt</li>
+        <li>Manuel Beringer</li>
+        <li>Sara Hetges</li>
+        <li>Felix Wagner</li>
+        <li>Sandra Wimmer</li>
+        <li>Lordzwiebelback</li>
+        <li>Karokitty</li>
+        <li>Yulj</li>
+        <li>StrifeAlone</li>
+        <li>AkioSensei</li>
+        <li>Lukas</li>
+        <li>Filum Sensei</li>
+        <li>TOWELDAY Austria</li>
+      </SupporterList>
+      </PageBody>
     </>
   );
 }
