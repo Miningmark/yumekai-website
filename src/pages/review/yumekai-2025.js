@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 //Components
-import { Spacer, SpacerEmpty, StyledLink } from "@/components/styledComponents";
+import { SpacerEmpty, StyledLink } from "@/components/styledComponents";
 import Columns2 from "@/components/elements/Columns2";
 import ImageCarousel from "@/components/elements/ImageCarousel";
 import SEO from "@/components/elements/SEO";
@@ -264,8 +264,8 @@ const FigureContainer = styled.figure`
     width: calc((100% - 20px) / 2);
   }
 
-  img {
-    border-radius: 8px;
+  &:hover img {
+    transform: scale(1.06);
   }
 
   figcaption {
@@ -302,10 +302,159 @@ const FigureContainer = styled.figure`
   }
 `;
 
+const ImageFrame = styled.div`
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+
+  img {
+    display: block;
+    transition: transform var(--transition-base);
+  }
+`;
+
+const HeroSection = styled.section`
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(163deg, #e9300b 0%, #ffb01e 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 48px 40px;
+  margin: 10px 0 25px 0;
+  text-align: center;
+
+  h1 {
+    color: #fff;
+    padding: 0;
+    margin: 0 0 16px 0;
+  }
+
+  p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #fff;
+  }
+
+  @media (max-width: 500px) {
+    padding: 32px 20px;
+  }
+`;
+
+const HeroBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  color: #fff;
+  font-family: var(--font-heading), Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+`;
+
+const TocNav = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px 0 10px 0;
+  padding: 0;
+`;
+
+const TocLink = styled(StyledLink)`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: ${({ theme }) => theme.surfaceMuted};
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-size: 0.95rem;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.backgroundColor4};
+    background-size: 0 2px;
+  }
+`;
+
+const SectionDivider = styled.div`
+  position: relative;
+  height: 1px;
+  background-color: ${({ theme }) => theme.border};
+  margin: 40px 0 28px 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background-image: linear-gradient(90deg, #e9300b, #ffb01e);
+  }
+
+  @media (max-width: 500px) {
+    margin: 24px 0 18px 0;
+  }
+`;
+
+const RankList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 16px 0;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const RankBadge = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-family: var(--font-heading), Tahoma, sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #2b2a2c;
+  margin-right: 12px;
+  box-shadow: var(--shadow-sm);
+  background-color: ${({ $place }) =>
+    $place === 1 ? "#FFD700" : $place === 2 ? "#C0C0C0" : "#CD7F32"};
+`;
+
+const PageBody = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > h2 {
+    align-self: flex-start;
+    padding: 8px 22px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    background-color: #e9300b;
+    color: #fff;
+  }
+`;
+
 export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
   return (
     <FigureContainer>
-      <Image src={src} alt={`Bild von ${alt}`} style={{ width: "100%", height: "auto" }} priority />
+      <ImageFrame>
+        <Image src={src} alt={`Bild von ${alt}`} style={{ width: "100%", height: "auto" }} priority />
+      </ImageFrame>
       <figcaption>{caption}</figcaption>
       {!link ? (
         <p>{alt}</p>
@@ -326,11 +475,15 @@ export default function YumeKai2025() {
         description="Rückblick auf die YumeKai 2025: Ehrengäste, Cosplayer, Aussteller und Händler im Überblick."
         path="/review/yumekai-2025"
       />
-      <h1>Rückblick YumeKai 2025</h1>
-      <p>
-        Am 31.Mai & 1.Juni 2025 hat die zweite YumeKai stattgefunden. Hier könnt ihr nochmal
-        Eindrücke der Convention durch Bilder und Videos erleben!
-      </p>
+      <PageBody>
+      <HeroSection>
+        <HeroBadge>31. Mai &amp; 01. Juni 2025 · Stadthalle Memmingen</HeroBadge>
+        <h1>Rückblick YumeKai 2025</h1>
+        <p>
+          Am 31.Mai & 1.Juni 2025 hat die zweite YumeKai stattgefunden. Hier könnt ihr nochmal
+          Eindrücke der Convention durch Bilder und Videos erleben!
+        </p>
+      </HeroSection>
 
       <p>
         Werft gerne auch einen Blick in unser{" "}
@@ -341,43 +494,21 @@ export default function YumeKai2025() {
         bekommen.
       </p>
 
-      <ul>
-        <li>
-          <StyledLink href="#ehrengaeste">Ehrengäste</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#cosplayer">Cosplayer</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#aussteller">Aussteller</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#haendler">Händler</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#kuenstleratelier">Künstleratelier</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#autoren">Autoren</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#workshops">Workshops</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#essen">Essen</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#spiele-gaming">Spiele & Gaming</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</StyledLink>
-        </li>
-        <li>
-          <StyledLink href="#danksagung">Danksagung</StyledLink>
-        </li>
-      </ul>
+      <TocNav>
+        <TocLink href="#ehrengaeste">Ehrengäste</TocLink>
+        <TocLink href="#cosplayer">Cosplayer</TocLink>
+        <TocLink href="#aussteller">Aussteller</TocLink>
+        <TocLink href="#haendler">Händler</TocLink>
+        <TocLink href="#kuenstleratelier">Künstleratelier</TocLink>
+        <TocLink href="#autoren">Autoren</TocLink>
+        <TocLink href="#workshops">Workshops</TocLink>
+        <TocLink href="#essen">Essen</TocLink>
+        <TocLink href="#spiele-gaming">Spiele &amp; Gaming</TocLink>
+        <TocLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</TocLink>
+        <TocLink href="#danksagung">Danksagung</TocLink>
+      </TocNav>
 
-      <Spacer id="ehrengaeste" />
+      <SectionDivider id="ehrengaeste" />
 
       <h2>Ehrengäste</h2>
       <p>
@@ -517,7 +648,7 @@ export default function YumeKai2025() {
         />
       </ContentWrapper>
 
-      <Spacer id="cosplayer" />
+      <SectionDivider id="cosplayer" />
 
       <h2>Cosplayer</h2>
       <p>
@@ -565,7 +696,7 @@ export default function YumeKai2025() {
         />
       </ContentWrapper>
 
-      <Spacer id="aussteller" />
+      <SectionDivider id="aussteller" />
       <h2>Aussteller</h2>
       <p>
         Unsere Austeller haben euch die unterschiedlichsten Themengebiete nähergebracht und
@@ -651,7 +782,7 @@ export default function YumeKai2025() {
         />
       </ContentWrapper>
 
-      <Spacer id="haendler" />
+      <SectionDivider id="haendler" />
       <h2>Händler</h2>
       <p>
         Auch bei der YumeKai 2025 boten unsere Händler ein vielfältiges Shopping-Erlebnis für euch
@@ -722,7 +853,7 @@ export default function YumeKai2025() {
         />
       </ContentWrapper>
 
-      <Spacer id="kuenstleratelier" />
+      <SectionDivider id="kuenstleratelier" />
       <h2>Künstleratelier</h2>
       <p>
         In unserem Künstlerbereich konntet ihr ein paar bekannte Gesichter von letztem Jahr wieder
@@ -845,7 +976,7 @@ export default function YumeKai2025() {
         />
       </ContentWrapper>
 
-      <Spacer id="autoren" />
+      <SectionDivider id="autoren" />
       <h2>Autoren</h2>
       <p>
         In diesem Jahr gab es zusätzlich zu all den tollen Künstlern auch noch einen eigenen
@@ -861,7 +992,7 @@ export default function YumeKai2025() {
         <ContentContainer src={AshturiaImage} alt="Ashturia" link="https://www.naomihuber.com/" />
       </ContentWrapper>
 
-      <Spacer id="workshops" />
+      <SectionDivider id="workshops" />
       <h2>Workshops</h2>
       <p>
         Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene
@@ -944,7 +1075,7 @@ export default function YumeKai2025() {
         />
       </ContentWrapper>
 
-      <Spacer id="essen" />
+      <SectionDivider id="essen" />
       <h2>Essen</h2>
       <p>
         Was wäre eine Convention ohne die richtige Stärkung zwischendurch? Bei unseren Foodtrucks
@@ -959,7 +1090,7 @@ export default function YumeKai2025() {
         <ContentContainer src={MaidCafeImage} alt="Vivid Arise Maid Café" />
       </ContentWrapper>
 
-      <Spacer id="spiele-gaming" />
+      <SectionDivider id="spiele-gaming" />
       <h2>Spiele, Gaming & Karaoke</h2>
       <p>
         Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der
@@ -979,7 +1110,7 @@ export default function YumeKai2025() {
         singen konntet. Am Samstagabend gab es dort sogar einen Karavision Song Contest!
       </p>
 
-      <Spacer id="cosplay-wettbewerbe" />
+      <SectionDivider id="cosplay-wettbewerbe" />
       <h2>Cosplay Wettbewerbe & Catwalk</h2>
       <h3>Performance:</h3>
       <p>
@@ -1074,29 +1205,37 @@ export default function YumeKai2025() {
         >
           Korriban
         </StyledLink>
-        .<br />
-        <br />
-        1.Platz: Lara als Sister Lidwin von Baldur&apos;s Gate 3<br />
-        2.Platz: Duo bestehend aus{" "}
-        <StyledLink
-          href="https://www.instagram.com/tiefseemonster.krake/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Krake und Tiger
-        </StyledLink>{" "}
-        als Aonung und Tsireya von Avatar
-        <br />
-        3.Platz:{" "}
-        <StyledLink
-          href="https://www.instagram.com/fenriscosplay/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Fenriscosplay{" "}
-        </StyledLink>
-        als Valkyre aus Black Desert
+        .
       </p>
+      <RankList>
+        <li>
+          <RankBadge $place={1}>1</RankBadge>
+          Lara als Sister Lidwin von Baldur&apos;s Gate 3
+        </li>
+        <li>
+          <RankBadge $place={2}>2</RankBadge>
+          Duo bestehend aus{" "}
+          <StyledLink
+            href="https://www.instagram.com/tiefseemonster.krake/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Krake und Tiger
+          </StyledLink>{" "}
+          als Aonung und Tsireya von Avatar
+        </li>
+        <li>
+          <RankBadge $place={3}>3</RankBadge>
+          <StyledLink
+            href="https://www.instagram.com/fenriscosplay/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Fenriscosplay{" "}
+          </StyledLink>
+          als Valkyre aus Black Desert
+        </li>
+      </RankList>
       {/*<ContentWrapper>
         <ContentContainer src={GrafImage} alt="Bild von dem Cosplay Performance Wettbewerb" />
       </ContentWrapper>*/}
@@ -1109,7 +1248,7 @@ export default function YumeKai2025() {
       </p>
       <ImageCarousel visibleCount={5.5} duration={2.5} images={catwalkImages} />
 
-      <Spacer id="danksagung" />
+      <SectionDivider id="danksagung" />
       <h2>Danksagung</h2>
       <p>
         Ein riesiges Dankeschön an alle, die die YumeKai 2025 zu einem unvergesslichen Erlebnis
@@ -1139,6 +1278,7 @@ export default function YumeKai2025() {
         Dank euch allen war die YumeKai 2025 ein Erfolg! Wir freuen uns schon auf das nächste Jahr
         und können es kaum erwarten, euch alle wiederzusehen!
       </p>
+      </PageBody>
     </>
   );
 }
