@@ -94,10 +94,8 @@ export default function Slide3() {
             </div>
           </ImageContainer>
           <p>
-            Hallo, wir sind Yumeko und Hiru, das bezaubernde Maskottchen der YumeKai mit ihrer
-            Begleitung! Falls du neugierig darauf bist, uns besser kennenzulernen, laden wir dich
-            herzlich dazu ein, unser ConHon-Eintrag zu lesen und mit uns in die Welt der YumeKai
-            einzutauchen.
+            Hallo, wir sind Yumeko und Hiru, die Maskottchen der YumeKai! Lernt uns über unseren
+            ConHon-Eintrag näher kennen.
           </p>
           <StyledLinkAsButton href="/maskottchen">mehr infos über uns</StyledLinkAsButton>
         </Content>
