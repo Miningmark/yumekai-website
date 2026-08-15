@@ -1294,7 +1294,11 @@ export default function YumeKai2026() {
             alt="Nevada – Illustration Workshop"
             link="https://www.instagram.com/nevada.art.shop/"
           />
-          <ContentContainer src={AkunyaahWorkshopBild} alt="Akunyaah Workshop" />
+          <ContentContainer
+            src={AkunyaahWorkshopBild}
+            alt="Akunyaah Workshop"
+            link="https://www.instagram.com/akunyaah/"
+          />
           <ContentContainer
             src={KermiWorkshopBild}
             alt="Kermi – Einstieg ins Cosplay Crafting"
@@ -1315,9 +1319,21 @@ export default function YumeKai2026() {
             alt="Cosplay Safety 101"
             link="https://www.instagram.com/scarlettsirene2/"
           />
-          <ContentContainer src={HokushinBild} alt="Hokushin – Samurai Vorführung" />
-          <ContentContainer src={NGEItashaWorkshopBild} alt="N.G.E.-Itasha Workshop" />
-          <ContentContainer src={HarukyuWorkshopBild} alt="Ars Metamorphosis - Wigs & Makeup" />
+          <ContentContainer
+            src={HokushinBild}
+            alt="Hokushin - Samurai Vorführung"
+            link="https://www.instagram.com/hokushinittoryu"
+          />
+          <ContentContainer
+            src={NGEItashaWorkshopBild}
+            alt="N.G.E.-Itasha Workshop"
+            link="https://www.instagram.com/n.g.e._itasha"
+          />
+          <ContentContainer
+            src={HarukyuWorkshopBild}
+            alt="Ars Metamorphosis - Wigs & Makeup"
+            link="https://www.instagram.com/nekodanshi.de/"
+          />
           <ContentContainer src={TanzkursBild} alt="Tanzkurs" />
         </ContentWrapper>
 
