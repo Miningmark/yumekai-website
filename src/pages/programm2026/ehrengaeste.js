@@ -57,7 +57,7 @@ export default function Ehrengaeste() {
               Deutschland – nicht verpassen!
             </p>
           }
-          instaLink="https://www.instagram.com/yuri_hirano_official/"
+          instaLink="https://www.instagram.com/yurimaruchan___/"
           instaLinkText="Yuri Hirano"
           maxWidth={550}
         />
@@ -99,7 +99,7 @@ export default function Ehrengaeste() {
               2024 &amp; 2025 und die erste japanische Sängerin beim Dreamlight Anime Concert 2025.
             </p>
           }
-          instaLink="https://www.instagram.com/nilo_music_official/"
+          instaLink="https://www.instagram.com/nilo_citypop.bossa/"
           instaLinkText="NILO"
           maxWidth={550}
         />
@@ -182,6 +182,8 @@ export default function Ehrengaeste() {
               Romantik und Comedy!
             </p>
           }
+          instaLink="https://www.instagram.com/showgruppe.lucky.13/"
+          instaLinkText="Lucky 13"
           maxWidth={550}
         />
 

@@ -1210,30 +1210,34 @@ export default function YumeKai2025() {
       <RankList>
         <li>
           <RankBadge $place={1}>1</RankBadge>
-          Lara als Sister Lidwin von Baldur&apos;s Gate 3
+          <span>Lara als Sister Lidwin von Baldur&apos;s Gate 3</span>
         </li>
         <li>
           <RankBadge $place={2}>2</RankBadge>
-          Duo bestehend aus{" "}
-          <StyledLink
-            href="https://www.instagram.com/tiefseemonster.krake/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Krake und Tiger
-          </StyledLink>{" "}
-          als Aonung und Tsireya von Avatar
+          <span>
+            Duo bestehend aus{" "}
+            <StyledLink
+              href="https://www.instagram.com/tiefseemonster.krake/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Krake und Tiger
+            </StyledLink>{" "}
+            als Aonung und Tsireya von Avatar
+          </span>
         </li>
         <li>
           <RankBadge $place={3}>3</RankBadge>
-          <StyledLink
-            href="https://www.instagram.com/fenriscosplay/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Fenriscosplay{" "}
-          </StyledLink>
-          als Valkyre aus Black Desert
+          <span>
+            <StyledLink
+              href="https://www.instagram.com/fenriscosplay/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Fenriscosplay
+            </StyledLink>{" "}
+            als Valkyre aus Black Desert
+          </span>
         </li>
       </RankList>
       {/*<ContentWrapper>

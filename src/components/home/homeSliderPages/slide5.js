@@ -142,7 +142,7 @@ export default function Slide5() {
         <Column>
           <Headline>Rückblick: YumeKai 2026</Headline>
           <Description>
-            Showacts, Cosplay, Kunst und unvergessliche Momente – wirf einen Blick zurück auf ein
+            Showacts, Cosplay, Kunst und unvergessliche Momente, wirf einen Blick zurück auf ein
             wundervolles Convention-Wochenende.
           </Description>
           <MobileGallery>

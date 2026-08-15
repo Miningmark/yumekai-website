@@ -867,7 +867,12 @@ export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
   return (
     <FigureContainer>
       <ImageFrame>
-        <Image src={src} alt={`Bild von ${alt}`} style={{ width: "100%", height: "auto" }} priority />
+        <Image
+          src={src}
+          alt={`Bild von ${alt}`}
+          style={{ width: "100%", height: "auto" }}
+          priority
+        />
       </ImageFrame>
       <figcaption>{caption}</figcaption>
       {!link ? (
@@ -890,684 +895,707 @@ export default function YumeKai2026() {
         path="/review/yumekai-2026"
       />
       <PageBody>
-      <HeroSection>
-        <HeroBadge>09.–10. Mai 2026 · Stadthalle Memmingen</HeroBadge>
-        <h1>Rückblick YumeKai 2026</h1>
+        <HeroSection>
+          <HeroBadge>09.–10. Mai 2026 · Stadthalle Memmingen</HeroBadge>
+          <h1>Rückblick YumeKai 2026</h1>
+          <p>
+            Am 09. und 10. Mai fand in diesem Jahr unsere dritte YumeKai statt. Hier könnt ihr die
+            schönsten Momente der Convention noch einmal Revue passieren lassen und gemeinsam in
+            Erinnerungen schwelgen. Vielleicht entdeckt ihr euch oder eure Freunde ja sogar auf dem
+            einen oder anderen Bild.
+          </p>
+        </HeroSection>
+
         <p>
-          Am 09. und 10. Mai fand in diesem Jahr unsere dritte YumeKai statt. Hier könnt ihr die
-          schönsten Momente der Convention noch einmal Revue passieren lassen und gemeinsam in
-          Erinnerungen schwelgen. Vielleicht entdeckt ihr euch oder eure Freunde ja sogar auf dem
-          einen oder anderen Bild.
+          Außerdem könnt ihr einen Blick in unser{" "}
+          <StyledLink href="/downloads/YumeKai_2026_Programmheft.pdf" target="_blank">
+            Programmheft
+          </StyledLink>{" "}
+          werfen und mehr über unsere zahlreichen Partner, Sponsoren, Händler, Künstler, Aussteller
+          sowie die vielfältigen Programmpunkte erfahren.{" "}
         </p>
-      </HeroSection>
 
-      <p>
-        Außerdem könnt ihr einen Blick in unser{" "}
-        <StyledLink href="/downloads/YumeKai_2026_Programmheft.pdf" target="_blank">
-          Programmheft
-        </StyledLink>{" "}
-        werfen und mehr über unsere zahlreichen Partner, Sponsoren, Händler, Künstler, Aussteller
-        sowie die vielfältigen Programmpunkte erfahren.{" "}
-      </p>
+        <TocNav>
+          <TocLink href="#showacts">Showacts &amp; Ehrengäste</TocLink>
+          <TocLink href="#cosplayer">Cosplayer</TocLink>
+          <TocLink href="#aussteller">Aussteller</TocLink>
+          <TocLink href="#haendler">Händler</TocLink>
+          <TocLink href="#kuenstleratelier">Künstleratelier</TocLink>
+          <TocLink href="#autoren">Autoren</TocLink>
+          <TocLink href="#workshops">Workshops</TocLink>
+          <TocLink href="#essen">Essen</TocLink>
+          <TocLink href="#gaming">Spiele, Gaming, Karaoke</TocLink>
+          <TocLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</TocLink>
+          <TocLink href="#zeichenwettbewerb">Zeichen Wettbewerb</TocLink>
+          <TocLink href="#cosplayball">Cosplay Ball</TocLink>
+          <TocLink href="#danksagung">Danksagung</TocLink>
+        </TocNav>
 
-      <TocNav>
-        <TocLink href="#showacts">Showacts &amp; Ehrengäste</TocLink>
-        <TocLink href="#cosplayer">Cosplayer</TocLink>
-        <TocLink href="#aussteller">Aussteller</TocLink>
-        <TocLink href="#haendler">Händler</TocLink>
-        <TocLink href="#kuenstleratelier">Künstleratelier</TocLink>
-        <TocLink href="#autoren">Autoren</TocLink>
-        <TocLink href="#workshops">Workshops</TocLink>
-        <TocLink href="#essen">Essen</TocLink>
-        <TocLink href="#gaming">Spiele, Gaming, Karaoke</TocLink>
-        <TocLink href="#cosplay-wettbewerbe">Cosplay Wettbewerbe</TocLink>
-        <TocLink href="#zeichenwettbewerb">Zeichen Wettbewerb</TocLink>
-        <TocLink href="#cosplayball">Cosplay Ball</TocLink>
-        <TocLink href="#danksagung">Danksagung</TocLink>
-      </TocNav>
-
-      <SectionDivider id="showacts" />
-      <h2>Showacts &amp; Ehrengäste</h2>
-      <p>
-        Auch in diesem Jahr hatten wir ein ausgewogenes Bühnenprogramm mit alten Bekannten und neuen
-        Gesichtern bieten.
-        <br />
-        MION hatte bereits im letzten Jahr so viel Spaß bei uns, dass sie dieses Jahr direkt ihre
-        Kollegin Yurimaru mitgebracht hat. Für Yurimaru war es dabei etwas ganz Besonderes: Sie
-        feierte bei uns ihren ersten Auftritt in Deutschland! Ihr konntet die beiden sowohl solo als
-        auch gemeinsam auf der Bühne erleben. Bei so viel Idol-Power durfte natürlich auch Stellaria
-        nicht fehlen. Mit ihrem Programm &bdquo;Palette of Dreams&ldquo; brachten sie die Bühne zum
-        Strahlen und standen sogar gemeinsam mit MION und Yurimaru auf der Bühne. <br />
-        Zum ersten Mal mit dabei war außerdem NILO, die mit ihrer Liebe zu japanischem City Pop und
-        Anime-Songs ordentlich Schwung auf die Bühne brachte. Ebenfalls wieder dabei war Lyria, eine
-        Idol- VTuberin mit geballter Stimmenpower. Sie hatte eine bunte Mischung aus beliebten
-        Anime- und Videogame-Songs im Gepäck und sorgte damit für ordentlich Stimmung. <br /> Zum
-        zweiten Mal durften wir auch Cellotic Duets bei uns begrüßen. Sie präsentierten
-        instrumentale Soundtrack-Musik aus Filmen, Serien und Games verschiedenster Genres. Ihre
-        Musik konntet ihr sowohl beim Ball am Samstagabend als auch bei einem regulären Konzert
-        genießen. Für die Disco- Hälfte des Balls war außerdem wieder DJ Steve Heng mit dabei. Er
-        vereinte Anime-Openings, kreative Mashups und Geek-Electro-Techno zu einer ganz besonderen
-        Mischung. <br />
-        Zum ersten Mal durften wir auch Lucky 13, eine Theater-Showgruppe, bei uns begrüßen. Sie
-        führten ihr Stück &bdquo;A Midsummer Night&apos;s Dream!!! On Ice – A Case Study of
-        Shakespeare&ldquo; auf. Darin kombinierten sie eine Vielzahl verschiedener Anime auf
-        kreative und humorvolle Weise und begeisterten damit das Publikum. <br />
-        Bei unseren Synchronsprecherinnen gab es geballte Frauenpower: Wir durften Nicolle Gonsior
-        und Marie-Jeanne Widera bei uns begrüßen, die den Charakteren Yamato und Flambé ihre Stimmen
-        leihen. Gemeinsam mit PinkStarke standen die beiden für ein Q&A auf der Bühne und
-        beantworteten eure Fragen. Anschließend konntet ihr sie auch an ihrem Stand besuchen und
-        euch ein Autogramm sichern.
-      </p>
-      <ContentWrapper>
-        <ContentContainer
-          src={YuriHiranoBild}
-          alt="Yuri Hirano"
-          link="https://www.instagram.com/yuri_hirano_official/"
-        />
-        <ContentContainer
-          src={MionBild}
-          alt="MION"
-          link="https://www.instagram.com/mion_official/"
-        />
-        <ContentContainer
-          src={NiloBild}
-          alt="NILO"
-          link="https://www.instagram.com/nilo_music_official/"
-        />
-        <ContentContainer
-          src={StellariaBild}
-          alt="Stellaria"
-          link="https://www.instagram.com/stellaria.idols/"
-        />
-        <ContentContainer src={LyriaBild} alt="Lyria" link="https://www.instagram.com/lyriavt/" />
-        <ContentContainer
-          src={CelloticDuetsBild}
-          alt="Cellotic Duets"
-          link="https://linktr.ee/cellotic"
-        />
-        <ContentContainer src={Lucky13Bild} alt="Lucky 13" />
-        <ContentContainer src={NicolleGonsiorBild} alt="Nicolle Gonsior" />
-        <ContentContainer src={MarieJeanneWideraBild} alt="Marie-Jeanne Widera" />
-        <ContentContainer
-          src={DJSteveHengBild}
-          alt="DJ Steve Heng"
-          link="https://www.instagram.com/breakouttv/"
-        />
-      </ContentWrapper>
-
-      <SectionDivider id="cosplayer" />
-      <h2>Cosplayer</h2>
-      <p>
-        Auch in diesem Jahr durften wir wieder zahlreiche talentierte Cosplayer bei uns begrüßen.
-        Neben neuen Gesichtern wie Xenia, Wolfus, Kermi und dem Cosplay-Duo Nekodanshi durften wir
-        auch bekannte Gäste wie Eralia und Scarlett Sirene erneut bei uns begrüßen. An ihren Ständen
-        in der Stadthalle konntet ihr euch mit ihnen über verschiedene Cosplay-Themen austauschen,
-        Fragen stellen oder gemeinsam Fotos machen. Außerdem unterstützten sie unsere Cosplay
-        Wettbewerbe als Jurymitglieder. In ihren Workshops gaben sie spannende Einblicke in die Welt
-        des Cosplays und teilten ihr Wissen, ihre Erfahrungen sowie viele hilfreiche Tipps und
-        Tricks. Dabei hattet ihr die Gelegenheit, gezielt Fragen zu stellen und euch direkt mit den
-        Cosplayern auszutauschen.
-      </p>
-      <ContentWrapper>
-        <ContentContainer src={XeniaBild} alt="Xenia" link="https://www.instagram.com/xenia.cos/" />
-        <ContentContainer
-          src={WolfusBild}
-          alt="Wolfus"
-          link="https://www.instagram.com/wolfus.cos/"
-        />
-        <ContentContainer
-          src={ScarlettBild}
-          alt="Scarlett Sirene"
-          link="https://www.instagram.com/scarlett.sirene/"
-        />
-        <ContentContainer src={KermiBild} alt="Kermi" link="https://www.instagram.com/kermi.cos/" />
-        <ContentContainer
-          src={EraliasBild}
-          alt="Eralia"
-          link="https://www.instagram.com/eralia_iwahana/"
-        />
-        <ContentContainer
-          src={NekodanshiBild}
-          alt="Nekodanshi"
-          link="https://www.instagram.com/nekodanshi.de/"
-        />
-      </ContentWrapper>
-
-      <SectionDivider id="aussteller" />
-      <h2>Aussteller</h2>
-      <p>
-        Auch in diesem Jahr waren wieder zahlreiche Aussteller mit den unterschiedlichsten
-        Themengebieten auf der YumeKai vertreten. An ihren Ständen konntet ihr mehr über ihre
-        Projekte, Vereine und Angebote erfahren sowie mit ihnen ins Gespräch kommen.
-        <br />
-        <br />
-        Darüber hinaus boten viele Aussteller spannende Workshops und informative Vorträge an, bei
-        denen ihr noch tiefer in die jeweiligen Themen eintauchen und Neues entdecken konntet.
-      </p>
-      <ContentWrapper>
-        <ContentContainer src={SciFiNarischeBild} alt="SciFi-Narische" />
-        <ContentContainer src={ToweldayBild} alt="Towelday Austria" />
-        <ContentContainer src={CosplayUnionBild} alt="Cosplay-Union-Germany" />
-        <ContentContainer src={ConUtopischBild} alt="ConUtopisch Events" />
-        <ContentContainer src={NGEItashaBild} alt="N.G.E.-Itasha e.V." />
-        <ContentContainer src={NuclearBastardsBild} alt="Nuclear Bastards" />
-        <ContentContainer src={HanaSpringBild} alt="Hana &amp; Spring" />
-        <ContentContainer src={HokushinBild} alt="Hokushin Ittō-ryū" />
-        <ContentContainer src={CosplayAlpinBild} alt="Cosplay Alpin" />
-        <ContentContainer src={Regiment405thBild} alt="405th European Regiment" />
-        <ContentContainer src={CoHeKiBild} alt="CoHeKi e.V." />
-        <ContentContainer src={CCDBild} alt="Comic Con Dornbirn" />
-      </ContentWrapper>
-
-      <SectionDivider id="haendler" />
-      <h2>Händler</h2>
-      <p>
-        Was wäre eine Convention ohne ihre Händler? Auch in diesem Jahr wartete wieder eine große
-        Auswahl an Verkaufsständen auf euch. Von Mangas und Merchandise über Schmuck und asiatische
-        Snacks bis hin zu einzigartigen handgefertigten Produkten gab es jede Menge zu entdecken.
-        Dies war natürlich auch die perfekte Gelegenheit, dass ein oder andere neue Lieblingsstück
-        mit nach Hause zu nehmen.
-      </p>
-      <ContentWrapper>
-        <ContentContainer src={ColorfulMindBild} alt="Colorful Mind Tattoo-Atelier" />
-        <ContentContainer src={EuphonyBild} alt="Euphony GmbH" />
-        <ContentContainer src={OtakuArtBild} alt="Otaku Art" />
-        <ContentContainer src={SquiggzBild} alt="Squiggz" />
-        <ContentContainer src={HeldenschmiedeBild} alt="Heldenschmiede" />
-        <ContentContainer src={OtakuwonderlandBild} alt="Otakuwonderland" />
-        <ContentContainer src={BavarianWoodfoxBild} alt="BavarianWoodfox" />
-        <ContentContainer src={AnimiBild} alt="Animi" />
-        <ContentContainer src={TenityDesignBild} alt="Tenity Design" />
-        <ContentContainer src={ShigaFoodBild} alt="Shiga Food GmbH" />
-        <ContentContainer src={AkumuBild} alt="Akumu" />
-      </ContentWrapper>
-
-      <SectionDivider id="kuenstleratelier" />
-      <h2>Künstleratelier</h2>
-      <p>
-        Eine Artist Alley gehört mittlerweile zu fast jeder Anime-Convention und bei uns gab es in
-        diesem Jahr sogar gleich zwei! Eine befand sich in dem Hauptgebäude, der Stadthalle und eine
-        im Maximilian Kolbe-Haus. Hier konntet ihr bei den Artists durchschauen, verschiedenste
-        Kunstgegenstände entdecken, euch in Gespräche vertiefen und viel neues entdecken. Einige
-        Künstler haben ihr Wissen und ihre Expertise auch in Workshops mit euch geteilt und dort
-        nochmal spezifischere Fragen beantwortet.
-      </p>
-      <ContentWrapper>
-        <ContentContainer
-          src={ImgMinervasOwls}
-          alt="MinervasOwls"
-          link="https://www.instagram.com/minervasowls/"
-        />
-        <ContentContainer
-          src={ImgYunuyei}
-          alt="Yunuyei"
-          link="https://www.instagram.com/yunuyei/"
-        />
-        <ContentContainer
-          src={ImgSteamSpirits}
-          alt="SteamSpirits"
-          link="https://www.instagram.com/steamspirits/"
-        />
-        <ContentContainer
-          src={ImgYeikoArt}
-          alt="Yeiko Art"
-          link="https://www.instagram.com/yeiko_art/"
-        />
-        <ContentContainer
-          src={ImgEmytsuu}
-          alt="Emytsuu"
-          link="https://www.instagram.com/emytsuu/"
-        />
-        <ContentContainer
-          src={ImgAliceMySecret}
-          alt="Alice my Secret"
-          link="https://www.instagram.com/alicemysecret/"
-        />
-        <ContentContainer
-          src={ImgMyuchiisu}
-          alt="Myuchiisu"
-          link="https://www.instagram.com/myuchiisu/"
-        />
-        <ContentContainer
-          src={ImgArtOfTheValley}
-          alt="Art of the Valley"
-          link="https://www.instagram.com/art.of.the.valley/"
-        />
-        <ContentContainer
-          src={ImgKirianYume}
-          alt="Kirian Yume"
-          link="https://www.instagram.com/kirianyume/"
-        />
-        <ContentContainer
-          src={ImgAnimalixu}
-          alt="Animalixu"
-          link="https://www.instagram.com/animalixu/"
-        />
-        <ContentContainer
-          src={ImgKitsuKami}
-          alt="Kitsu Kami"
-          link="https://www.instagram.com/kitsu_kami/"
-        />
-        <ContentContainer
-          src={ImgAnaratwice}
-          alt="Anaratwice"
-          link="https://www.instagram.com/anaratwice/"
-        />
-        <ContentContainer
-          src={ImgGlueblade}
-          alt="Glueblade"
-          link="https://www.instagram.com/glueblade/"
-        />
-        <ContentContainer
-          src={ImgNevadaArtShop}
-          alt="Nevada Art Shop"
-          link="https://www.instagram.com/nevada.art.shop/"
-        />
-        <ContentContainer
-          src={ImgAkunyaah}
-          alt="Akunyaah"
-          link="https://www.instagram.com/akunyaah/"
-        />
-        <ContentContainer
-          src={ImgChristalShadow}
-          alt="Christal Shadow"
-          link="https://www.instagram.com/christal.shad0w0/"
-        />
-        <ContentContainer
-          src={ImgJustDesign}
-          alt="Just Design Creation"
-          link="https://www.instagram.com/just_design_creation/"
-        />
-        <ContentContainer
-          src={ImgJeyCreates}
-          alt="Jey.Creates"
-          link="https://www.instagram.com/jey.creates/"
-        />
-        <ContentContainer
-          src={ImgFylyDraws}
-          alt="Fyly Draws"
-          link="https://www.instagram.com/fyly_draws/"
-        />
-        <ContentContainer
-          src={ImgMissMalevolent}
-          alt="Miss_Malevolent_"
-          link="https://www.instagram.com/miss_malevolent_/"
-        />
-        <ContentContainer
-          src={ImgStarsAndTrinkets}
-          alt="Stars and Trinkets"
-          link="https://www.instagram.com/starsandtrinketsshop/"
-        />
-        <ContentContainer
-          src={ImgColortoglas}
-          alt="Colortoglas"
-          link="https://www.instagram.com/colortoglas/"
-        />
-        <ContentContainer
-          src={ImgSaseiArt}
-          alt="Sasei Art"
-          link="https://www.instagram.com/sasei.art/"
-        />
-        <ContentContainer
-          src={ImgCelezius}
-          alt="Celezius"
-          link="https://www.instagram.com/celezius/"
-        />
-        <ContentContainer
-          src={ImgTrashelsArt}
-          alt="TrashelsArt"
-          link="https://www.instagram.com/trashels_drawing/"
-        />
-        <ContentContainer
-          src={ImgMikasMoonbrew}
-          alt="Mikas Moonbrew"
-          link="https://www.instagram.com/mikasmoonbrew/"
-        />
-      </ContentWrapper>
-
-      <SectionDivider id="autoren" />
-      <h2>Autoren</h2>
-      <p>
-        Auch in diesem Jahr durften unsere Autoren auf der YumeKai natürlich nicht fehlen. An ihren
-        Ständen konntet ihr in ihre Bücher hineinschnuppern, mehr über ihre Geschichten erfahren und
-        ihnen eure Fragen stellen. Außerdem bot sich die Gelegenheit mehr über den kreativen
-        Entstehungsprozess ihrer Werke zu erfahren.
-      </p>
-      <ContentWrapper>
-        <ContentContainer
-          src={ImgUlfFildebrandt}
-          alt="Ulf Fildebrandt"
-          link="https://www.instagram.com/ulffildebrandt/"
-        />
-        <ContentContainer
-          src={ImgNaomiHuber}
-          alt="Naomi Huber – Ashturia"
-          link="https://www.instagram.com/naomihuber_/"
-        />
-        <ContentContainer
-          src={ImgDelphoxsart}
-          alt="DelphoxDX"
-          link="https://www.instagram.com/delphoxdx/"
-        />
-      </ContentWrapper>
-
-      <SectionDivider id="workshops" />
-      <h2>Workshops</h2>
-      <p>
-        Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene
-        Themenbereiche wurden hier dieses Jahr präsentiert, sei es Cosplay, Itashas, Miniaturen
-        bemalen, kreative Selbstständigkeit oder auch tanzen. Hier gab es wirklich zu allen Themen
-        etwas.
-      </p>
-      <ContentWrapper>
-        <ContentContainer
-          src={StellariaBild}
-          alt="Stellaria – Japanische Idol-Kultur"
-          link="https://www.instagram.com/stellaria.idols/"
-        />
-        <ContentContainer
-          src={StellariaDanceWorkshopBild}
-          alt="Stellaria – Random Play Dance"
-          link="https://www.instagram.com/stellaria.idols/"
-        />
-        <ContentContainer
-          src={YunuyeiBild}
-          alt="Yunuyei – Kreativ Selbstständig"
-          link="https://www.instagram.com/yunuyei/"
-        />
-        <ContentContainer
-          src={NevadaBild}
-          alt="Nevada – Illustration Workshop"
-          link="https://www.instagram.com/nevada.art.shop/"
-        />
-        <ContentContainer src={AkunyaahWorkshopBild} alt="Akunyaah Workshop" />
-        <ContentContainer
-          src={KermiWorkshopBild}
-          alt="Kermi – Einstieg ins Cosplay Crafting"
-          link="https://www.instagram.com/kermi.cos/"
-        />
-        <ContentContainer
-          src={WolfusWorkshopBild}
-          alt="Wolfus – Performance Workshop"
-          link="https://www.instagram.com/wolfus.cos/"
-        />
-        <ContentContainer
-          src={EraliaWorkshopBild}
-          alt="Eralia Workshop"
-          link="https://www.instagram.com/eralia_iwahana/"
-        />
-        <ContentContainer
-          src={ScarlettWorkshopBild}
-          alt="Cosplay Safety 101"
-          link="https://www.instagram.com/scarlett_cos/"
-        />
-        <ContentContainer src={HokushinBild} alt="Hokushin – Samurai Vorführung" />
-        <ContentContainer src={NGEItashaWorkshopBild} alt="N.G.E.-Itasha Workshop" />
-        <ContentContainer src={HarukyuWorkshopBild} alt="Ars Metamorphosis - Wigs & Makeup" />
-        <ContentContainer src={TanzkursBild} alt="Tanzkurs" />
-      </ContentWrapper>
-
-      <SectionDivider id="essen" />
-      <h2>Essen</h2>
-      <p>
-        Auch für Essen war gesorgt, entweder etwas deftiges beim Becher Bistro oder beim Gasthof
-        Bräuhaus Lepple oder für die süße Entspannung zwischendurch sorgte das Maid Cafe
-        DreamGarden.
-      </p>
-      <ContentWrapper>
-        <ContentContainer src={BecherBistroBild} alt="Becher Bistro" />
-        <ContentContainer src={DreamgardenBild} alt="Maid-Café DreamGarden" />
-        <ContentContainer src={BrauhausLeppleBild} alt="Gasthof Bräuhaus Lepple" />
-      </ContentWrapper>
-
-      <SectionDivider id="gaming" />
-      <h2>Spiele, Gaming, Karaoke</h2>
-      <p>
-        Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern der
-        Heldenschmiede und dem Squiggz ein hervorragendes Angebot. Hier konnten nicht nur
-        verschiedenste Spiele gekauft werden, sondern auch Demospiele getestet werden! Für alle Fans
-        von TCG gab es auch Turniere zum Mitspielen. Wer mit Brettspielen, Kartenspielen oder
-        Tabletop nichts anfangen konnte war bei unsererm Gamingbereich gut aufgehoben. Hier gab es
-        die verschiedensten Konsolen und Spiele zum Testen. Auch dieses Jahr war unser Karaoke Raum
-        wieder am Start, hier konntet ihr über das gesamte Wochenende singen. Am Samstagabend gab es
-        dort den zweiten Karavision Song Contest auf der YumeKai!
-      </p>
-
-      <SectionDivider id="cosplay-wettbewerbe" />
-      <h2>Cosplay Wettbewerbe</h2>
-      <h3>Performance:</h3>
-      <p>
-        Bei unserem Performance Wettbewerb hatte jeder Teilnehmer bis zu 4 Minuten auf der Bühne
-        Zeit, sich mit einer kurzen Darbietung auf der Bühne zu präsentieren. All unsere Teilnehmer
-        haben hier die Herzen der Zuschauer durch ihre Performances erobert, sodass es unserer Jury
-        nicht einfach viel sich zu entscheiden.
-        <br />
-      </p>
-      <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
-
-      <RankList>
-        <li>
-          <RankBadge $place={1}>1</RankBadge>
-          <StyledLink
-            href="https://www.instagram.com/tinyfufu/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Tinyfufu
-          </StyledLink>{" "}
-          als Miorine Rembran (Mobile Suit Gundam: The Witch from Mercury)
-        </li>
-        <li>
-          <RankBadge $place={2}>2</RankBadge>
-          Lia von{" "}
-          <StyledLink
-            href="https://www.instagram.com/imoneecosplay/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Imonee Cosplay
-          </StyledLink>{" "}
-          als Minto Aizawa (Tokyo Mew Mew (Remake))
-        </li>
-        <li>
-          <RankBadge $place={3}>3</RankBadge>
-          <StyledLink
-            href="https://www.instagram.com/palelittledragon/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Palelittledragon
-          </StyledLink>{" "}
-          als Uraume (Jujutsu Kaisen)
-        </li>
-      </RankList>
-
-      <h3>Crafting:</h3>
-
-      <p>
-        Unserem Crafting Wettbewerb ging dieses Jahr in die zweite Runde. Hier wurden nur die
-        Cosplays, Wigs, Accessoires und Make-Up der Teilnehmenden Bewertet. Der kurze Catwalk auf
-        der Bühne wurde nicht in die Bewertung aufgenommen, sodass es wirklich nur um die Crafting
-        Techniken und die Fähigkeiten der Teilnehmer ging.
-        <br />
-      </p>
-      <Image
-        src={crafting1}
-        alt="Crafting Wettbewerb"
-        sizes="(max-width: 600px) 90vw, 300px"
-        style={{
-          display: "block",
-          width: "60%",
-          height: "auto",
-          margin: "0 auto",
-          borderRadius: "10px",
-        }}
-      />
-
-      <RankList>
-        <li>
-          <RankBadge $place={1}>1</RankBadge>
-          <StyledLink
-            href="https://www.instagram.com/serinua_cosplay/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Serinua_cosplay
-          </StyledLink>{" "}
-          als Tragosso
-        </li>
-        <li>
-          <RankBadge $place={2}>2</RankBadge>
-          <StyledLink href="" target="_blank" rel="noopener noreferrer">
-            Jul
-          </StyledLink>{" "}
-          als Fern (Frieren: Beyond Journey&apos;s End)
-        </li>
-        <li>
-          <RankBadge $place={3}>3</RankBadge>
-          <StyledLink
-            href="https://www.instagram.com/sovncosplay/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Sovncosplay
-          </StyledLink>{" "}
-          als Silverwind Nargacuga Rüstung (Monster Hunter)
-        </li>
-      </RankList>
-
-      <SectionDivider id="zeichenwettbewerb" />
-      <h2>Zeichen Wettbewerb</h2>
-      <p>
-        Wieder mit dabei war auch unser Zeichenwettbewerb, hier konnten im Vorhinein Bilder zum
-        Themenbereich &bdquo;Yumeko Worldwide&ldquo; eingereicht werden. Diese wurden von unserer
-        talentierten Jury, welche aus{" "}
-        <StyledLink href="https://www.instagram.com/wynrayzero/" target="_blank">
-          wynrayzero
-        </StyledLink>{" "}
-        (Schöpfer von unserem Maskottchen Hiru), Matina (Teil unserer Teamleitung) und{" "}
-        <StyledLink href="https://bsky.app/profile/papaapplepie.bsky.social" target="_blank">
-          Papa_ApplePie
-        </StyledLink>{" "}
-        bestand, bewertet. Am Sonntagabend wurden die Gewinner und alle Teilnehmerbilder dann auf
-        der großen Bühne gezeigt.
-      </p>
-
-      <ImageCarousel visibleCount={5.5} duration={2.5} images={zeichenwettbewerbImages} />
-
-      <AwardList>
-        <li>
-          <AwardTag $bg="#e9300b">Beste Kreativität</AwardTag>
-          <strong>QueerBunny (Connor)</strong> – Yumeko als Wolpertinger
-        </li>
-        <li>
-          <AwardTag $bg="#ffb01e" $fg="#2b2a2c">
-            Beste Qualität
-          </AwardTag>
-          <strong>Lelo</strong> – Anno 1500 – Memminger Yumeko
-        </li>
-        <li>
-          <AwardTag $bg="#388e3c">Beste Technik</AwardTag>
-          <strong>evelusik</strong> – Tanz der Heimat
-        </li>
-        <li>
-          <AwardTag $bg="#3b82f6">Jury Favorit / 1. Platz</AwardTag>
-          <strong>lauraskketches</strong> – Ein Lebkuchenherz für Yumeko 💗
-        </li>
-      </AwardList>
-
-      <SectionDivider id="cosplayball" />
-      <h2>Cosplayball</h2>
-      <p>
-        Auch in diesem Jahr fand zum zweiten Mal unser Cosplay-Ball statt. Für die passende
-        musikalische Atmosphäre sorgte das Cellotic Duets des Cellotic Soundtrack Ensembles. Mit
-        gefühlvollen und zugleich tanzbaren Cover-Versionen bekannter Anime-, Gaming- und
-        Serien-Soundtracks begleiteten sie euch durch den Abend und schafften eine einzigartige
-        Stimmung. Im Anschluss an den Ball ging der Abend nahtlos in eine Disco über. Hier legte DJ
-        Steve Heng (@breakouttv) die Musik auf. Mit seiner einzigartigen Mischung aus Clubsound und
-        Anime- Popkultur kreiert er energiegeladene Sets.
-      </p>
-      <ImageCarousel visibleCount={5.5} duration={2.5} images={cosplayballImages} />
-
-      <SectionDivider id="danksagung" />
-      <h2>Danksagung</h2>
-      <p>
-        Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden Programm.
-        Deshalb möchten wir an dieser Stelle ein riesiges Dankeschön aussprechen an alle
-        Unterstützer!
-      </p>
-      <p>
-        Unser besonderer Dank gilt unseren fantastischen YumeKai-Helfern! Ohne eure Arbeit, euer
-        Engagement und eure Begeisterung wäre die YumeKai nicht das, was sie ist. Ihr seid das Herz
-        unserer Veranstaltung und wir sind unendlich dankbar für eure Unterstützung!
-      </p>
-      <p>
-        Ein großes Dankeschön geht auch an alle Händler, Autoren und Künstler, die mit ihren
-        einzigartigen Angeboten und kreativen Arbeiten für ein unvergessliches Einkaufserlebnis und
-        Erinnerungsstücke gesorgt haben.
-      </p>
-      <p>
-        Unsere Workshopleiter verdienen ebenfalls Anerkennung – ihr habt euer Wissen über Cosplay,
-        Kunst, Japan und vieles mehr geteilt und unseren Besuchern wertvolle Einblicke ermöglicht.
-        Ein ebenso herzliches Dankeschön geht an alle Aussteller, die mit ihren interaktiven oder
-        informativen Ständen zur Vielfalt der YumeKai beigetragen haben.
-      </p>
-      <p>
-        Auf unserer Bühne haben uns viele talentierte Showacts mit Gesang, Tanz, Musik und
-        beeindruckenden Performances begeistert. Ihr habt die YumeKai mit euren Auftritten zu etwas
-        ganz Besonderem gemacht! Ein großes Dankeschön geht auch an unsere Fotografen, die all die
-        magischen Momente für die Ewigkeit festgehalten haben.
-      </p>
-      <p>
-        Und schließlich möchten wir uns bei euch, unseren Besuchern, bedanken! Ohne euch gäbe es
-        keine YumeKai. Eure Begeisterung, eure Kreativität und euer Engagement machen unsere
-        Veranstaltung zu einem einzigartigen Ort.
-      </p>
-      <p>
-        Ein ganz besonderes Dankeschön geht noch an alle Unterstützer unseres Crowdfundings, durch
-        eure Hilfe konnten wir auch diese YumeKai wieder zu einer fantastischen Convention machen!
-      </p>
-      <ThanksBox>
+        <SectionDivider id="showacts" />
+        <h2>Showacts &amp; Ehrengäste</h2>
         <p>
-          Danke für ein wundervolles Wochenende und für all die besonderen Momente, die wir
-          gemeinsam erleben durften.
+          Auch in diesem Jahr hatten wir ein ausgewogenes Bühnenprogramm mit alten Bekannten und
+          neuen Gesichtern bieten.
           <br />
-          Wir freuen uns schon auf die nächste YumeKai mit euch!
+          MION hatte bereits im letzten Jahr so viel Spaß bei uns, dass sie dieses Jahr direkt ihre
+          Kollegin Yurimaru mitgebracht hat. Für Yurimaru war es dabei etwas ganz Besonderes: Sie
+          feierte bei uns ihren ersten Auftritt in Deutschland! Ihr konntet die beiden sowohl solo
+          als auch gemeinsam auf der Bühne erleben. Bei so viel Idol-Power durfte natürlich auch
+          Stellaria nicht fehlen. Mit ihrem Programm &bdquo;Palette of Dreams&ldquo; brachten sie
+          die Bühne zum Strahlen und standen sogar gemeinsam mit MION und Yurimaru auf der Bühne.{" "}
           <br />
-          Euer YumeKai-Team
+          Zum ersten Mal mit dabei war außerdem NILO, die mit ihrer Liebe zu japanischem City Pop
+          und Anime-Songs ordentlich Schwung auf die Bühne brachte. Ebenfalls wieder dabei war
+          Lyria, eine Idol- VTuberin mit geballter Stimmenpower. Sie hatte eine bunte Mischung aus
+          beliebten Anime- und Videogame-Songs im Gepäck und sorgte damit für ordentlich Stimmung.{" "}
+          <br /> Zum zweiten Mal durften wir auch Cellotic Duets bei uns begrüßen. Sie präsentierten
+          instrumentale Soundtrack-Musik aus Filmen, Serien und Games verschiedenster Genres. Ihre
+          Musik konntet ihr sowohl beim Ball am Samstagabend als auch bei einem regulären Konzert
+          genießen. Für die Disco- Hälfte des Balls war außerdem wieder DJ Steve Heng mit dabei. Er
+          vereinte Anime-Openings, kreative Mashups und Geek-Electro-Techno zu einer ganz besonderen
+          Mischung. <br />
+          Zum ersten Mal durften wir auch Lucky 13, eine Theater-Showgruppe, bei uns begrüßen. Sie
+          führten ihr Stück &bdquo;A Midsummer Night&apos;s Dream!!! On Ice – A Case Study of
+          Shakespeare&ldquo; auf. Darin kombinierten sie eine Vielzahl verschiedener Anime auf
+          kreative und humorvolle Weise und begeisterten damit das Publikum. <br />
+          Bei unseren Synchronsprecherinnen gab es geballte Frauenpower: Wir durften Nicolle Gonsior
+          und Marie-Jeanne Widera bei uns begrüßen, die den Charakteren Yamato und Flambé aus One
+          Piece ihre Stimmen leihen. Gemeinsam mit PinkStarke standen die beiden für ein Q&A auf der
+          Bühne und beantworteten eure Fragen. Anschließend konntet ihr sie auch an ihrem Stand
+          besuchen und euch ein Autogramm sichern.
         </p>
-      </ThanksBox>
+        <ContentWrapper>
+          <ContentContainer
+            src={YuriHiranoBild}
+            alt="Yuri Hirano"
+            link="https://www.instagram.com/yurimaruchan___/"
+          />
+          <ContentContainer
+            src={MionBild}
+            alt="MION"
+            link="https://www.instagram.com/mion_official/"
+          />
+          <ContentContainer
+            src={DJSteveHengBild}
+            alt="DJ Steve Heng"
+            link="https://www.instagram.com/breakouttv/"
+          />
+          <ContentContainer
+            src={StellariaBild}
+            alt="Stellaria"
+            link="https://www.instagram.com/stellaria.idols/"
+          />
+          <ContentContainer src={LyriaBild} alt="Lyria" link="https://www.instagram.com/lyriavt/" />
+          <ContentContainer
+            src={CelloticDuetsBild}
+            alt="Cellotic Duets"
+            link="https://linktr.ee/cellotic"
+          />
+          <ContentContainer
+            src={Lucky13Bild}
+            alt="Lucky 13"
+            link="https://www.instagram.com/showgruppe.lucky.13/"
+          />
+          <ContentContainer src={NicolleGonsiorBild} alt="Nicolle Gonsior" />
+          <ContentContainer src={MarieJeanneWideraBild} alt="Marie-Jeanne Widera" />
+          <ContentContainer
+            src={NiloBild}
+            alt="NILO"
+            link="https://www.instagram.com/nilo_citypop.bossa/"
+          />
+        </ContentWrapper>
 
-      <h3>Crowdfunding</h3>
-      <p>
-        Ein besonderer Dank geht an alle Unterstützer:innen unseres Crowdfundings, die die YumeKai
-        2026 mit möglich gemacht haben:
-      </p>
-      <SupporterList>
-        <li>Kirawitha</li>
-        <li>Naomi Huber</li>
-        <li>Stefanie</li>
-        <li>Claudia</li>
-        <li>kindsoul.new</li>
-        <li>AnnaLeiBrandt</li>
-        <li>Joey Jäger</li>
-        <li>Kio derSchwabenotter</li>
-        <li>Synchronevents.de</li>
-        <li>Shinoa Aizawa</li>
-        <li>DelphoxsArt</li>
-        <li>Manuel Beringer</li>
-        <li>Sara Hetges</li>
-        <li>Felix Wagner</li>
-        <li>Sandra Wimmer</li>
-        <li>Lordzwiebelback</li>
-        <li>Karokitty</li>
-        <li>Yulj</li>
-        <li>StrifeAlone</li>
-        <li>AkioSensei</li>
-        <li>Lukas</li>
-        <li>Filum Sensei</li>
-        <li>TOWELDAY Austria</li>
-      </SupporterList>
+        <SectionDivider id="cosplayer" />
+        <h2>Cosplayer</h2>
+        <p>
+          Auch in diesem Jahr durften wir wieder zahlreiche talentierte Cosplayer bei uns begrüßen.
+          Neben neuen Gesichtern wie Xenia, Wolfus, Kermi und dem Cosplay-Duo Nekodanshi durften wir
+          auch bekannte Gäste wie Eralia und Scarlett Sirene erneut bei uns begrüßen. An ihren
+          Ständen in der Stadthalle konntet ihr euch mit ihnen über verschiedene Cosplay-Themen
+          austauschen, Fragen stellen oder gemeinsam Fotos machen. Außerdem unterstützten sie unsere
+          Cosplay Wettbewerbe als Jurymitglieder. In ihren Workshops gaben sie spannende Einblicke
+          in die Welt des Cosplays und teilten ihr Wissen, ihre Erfahrungen sowie viele hilfreiche
+          Tipps und Tricks. Dabei hattet ihr die Gelegenheit, gezielt Fragen zu stellen und euch
+          direkt mit den Cosplayern auszutauschen.
+        </p>
+        <ContentWrapper>
+          <ContentContainer
+            src={XeniaBild}
+            alt="Xenia"
+            link="https://www.instagram.com/xenia_7567/"
+          />
+          <ContentContainer
+            src={WolfusBild}
+            alt="Wolfus"
+            link="https://www.instagram.com/wolfus.cosplay/"
+          />
+          <ContentContainer
+            src={ScarlettBild}
+            alt="Scarlett Sirene"
+            link="https://www.instagram.com/scarlettsirene2/"
+          />
+          <ContentContainer
+            src={KermiBild}
+            alt="Kermi"
+            link="https://www.instagram.com/kermi_cosplay/"
+          />
+          <ContentContainer
+            src={EraliasBild}
+            alt="Eralia"
+            link="https://www.instagram.com/eralia_iwahana/"
+          />
+          <ContentContainer
+            src={NekodanshiBild}
+            alt="Nekodanshi"
+            link="https://www.instagram.com/nekodanshi.de/"
+          />
+        </ContentWrapper>
+
+        <SectionDivider id="aussteller" />
+        <h2>Aussteller</h2>
+        <p>
+          Auch in diesem Jahr waren wieder zahlreiche Aussteller mit den unterschiedlichsten
+          Themengebieten auf der YumeKai vertreten. An ihren Ständen konntet ihr mehr über ihre
+          Projekte, Vereine und Angebote erfahren sowie mit ihnen ins Gespräch kommen.
+          <br />
+          <br />
+          Darüber hinaus boten viele Aussteller spannende Workshops und informative Vorträge an, bei
+          denen ihr noch tiefer in die jeweiligen Themen eintauchen und Neues entdecken konntet.
+        </p>
+        <ContentWrapper>
+          <ContentContainer src={SciFiNarischeBild} alt="SciFi-Narische" />
+          <ContentContainer src={ToweldayBild} alt="Towelday Austria" />
+          <ContentContainer src={CosplayUnionBild} alt="Cosplay-Union-Germany" />
+          <ContentContainer src={ConUtopischBild} alt="ConUtopisch Events" />
+          <ContentContainer src={NGEItashaBild} alt="N.G.E.-Itasha e.V." />
+          <ContentContainer src={NuclearBastardsBild} alt="Nuclear Bastards" />
+          <ContentContainer src={HanaSpringBild} alt="Hana &amp; Spring" />
+          <ContentContainer src={HokushinBild} alt="Hokushin Ittō-ryū" />
+          <ContentContainer src={CosplayAlpinBild} alt="Cosplay Alpin" />
+          <ContentContainer src={Regiment405thBild} alt="405th European Regiment" />
+          <ContentContainer src={CoHeKiBild} alt="CoHeKi e.V." />
+          <ContentContainer src={CCDBild} alt="Comic Con Dornbirn" />
+        </ContentWrapper>
+
+        <SectionDivider id="haendler" />
+        <h2>Händler</h2>
+        <p>
+          Was wäre eine Convention ohne ihre Händler? Auch in diesem Jahr wartete wieder eine große
+          Auswahl an Verkaufsständen auf euch. Von Mangas und Merchandise über Schmuck und
+          asiatische Snacks bis hin zu einzigartigen handgefertigten Produkten gab es jede Menge zu
+          entdecken. Dies war natürlich auch die perfekte Gelegenheit, dass ein oder andere neue
+          Lieblingsstück mit nach Hause zu nehmen.
+        </p>
+        <ContentWrapper>
+          <ContentContainer src={ColorfulMindBild} alt="Colorful Mind Tattoo-Atelier" />
+          <ContentContainer src={EuphonyBild} alt="Euphony GmbH" />
+          <ContentContainer src={OtakuArtBild} alt="Otaku Art" />
+          <ContentContainer src={SquiggzBild} alt="Squiggz" />
+          <ContentContainer src={HeldenschmiedeBild} alt="Heldenschmiede" />
+          <ContentContainer src={OtakuwonderlandBild} alt="Otakuwonderland" />
+          <ContentContainer src={BavarianWoodfoxBild} alt="BavarianWoodfox" />
+          <ContentContainer src={AnimiBild} alt="Animi" />
+          <ContentContainer src={TenityDesignBild} alt="Tenity Design" />
+          <ContentContainer src={ShigaFoodBild} alt="Shiga Food GmbH" />
+          <ContentContainer src={AkumuBild} alt="Akumu" />
+        </ContentWrapper>
+
+        <SectionDivider id="kuenstleratelier" />
+        <h2>Künstleratelier</h2>
+        <p>
+          Eine Artist Alley gehört mittlerweile zu fast jeder Anime-Convention und bei uns gab es in
+          diesem Jahr sogar gleich zwei! Eine befand sich in dem Hauptgebäude, der Stadthalle und
+          eine im Maximilian Kolbe-Haus. Hier konntet ihr bei den Artists durchschauen,
+          verschiedenste Kunstgegenstände entdecken, euch in Gespräche vertiefen und viel neues
+          entdecken. Einige Künstler haben ihr Wissen und ihre Expertise auch in Workshops mit euch
+          geteilt und dort nochmal spezifischere Fragen beantwortet.
+        </p>
+        <ContentWrapper>
+          <ContentContainer
+            src={ImgMinervasOwls}
+            alt="MinervasOwls"
+            link="https://www.instagram.com/minervasowls/"
+          />
+          <ContentContainer
+            src={ImgYunuyei}
+            alt="Yunuyei"
+            link="https://www.instagram.com/yunuyei/"
+          />
+          <ContentContainer
+            src={ImgSteamSpirits}
+            alt="SteamSpirits"
+            link="https://www.instagram.com/steamspirits/"
+          />
+          <ContentContainer
+            src={ImgYeikoArt}
+            alt="Yeiko Art"
+            link="https://www.instagram.com/yeiko_art/"
+          />
+          <ContentContainer
+            src={ImgEmytsuu}
+            alt="Emytsuu"
+            link="https://www.instagram.com/emytsuu/"
+          />
+          <ContentContainer
+            src={ImgAliceMySecret}
+            alt="Alice my Secret"
+            link="https://www.instagram.com/alicemysecret/"
+          />
+          <ContentContainer
+            src={ImgMyuchiisu}
+            alt="Myuchiisu"
+            link="https://www.instagram.com/myuchiisu/"
+          />
+          <ContentContainer
+            src={ImgArtOfTheValley}
+            alt="Art of the Valley"
+            link="https://www.instagram.com/art.of.the.valley/"
+          />
+          <ContentContainer
+            src={ImgKirianYume}
+            alt="Kirian Yume"
+            link="https://www.instagram.com/kirianyume/"
+          />
+          <ContentContainer
+            src={ImgAnimalixu}
+            alt="Animalixu"
+            link="https://www.instagram.com/animalixu/"
+          />
+          <ContentContainer
+            src={ImgKitsuKami}
+            alt="Kitsu Kami"
+            link="https://www.instagram.com/kitsu_kami/"
+          />
+          <ContentContainer
+            src={ImgAnaratwice}
+            alt="Anaratwice"
+            link="https://www.instagram.com/anaratwice/"
+          />
+          <ContentContainer src={ImgGlueblade} alt="Glueblade" link="https://cara.app/glueblade" />
+          <ContentContainer
+            src={ImgNevadaArtShop}
+            alt="Nevada Art Shop"
+            link="https://www.instagram.com/nevada.art.shop/"
+          />
+          <ContentContainer
+            src={ImgAkunyaah}
+            alt="Akunyaah"
+            link="https://www.instagram.com/akunyaah/"
+          />
+          <ContentContainer
+            src={ImgChristalShadow}
+            alt="Christal Shadow"
+            link="https://www.instagram.com/christal.shadow/"
+          />
+          <ContentContainer
+            src={ImgJustDesign}
+            alt="Just Design Creation"
+            link="https://www.instagram.com/just_design_creation/"
+          />
+          <ContentContainer
+            src={ImgJeyCreates}
+            alt="Jey.Creates"
+            link="https://www.instagram.com/jey.creates/"
+          />
+          <ContentContainer
+            src={ImgFylyDraws}
+            alt="Fyly Draws"
+            link="https://www.instagram.com/fyly_draws/"
+          />
+          <ContentContainer
+            src={ImgMissMalevolent}
+            alt="Miss_Malevolent_"
+            link="https://www.instagram.com/miss_malevolent_/"
+          />
+          <ContentContainer
+            src={ImgStarsAndTrinkets}
+            alt="Stars and Trinkets"
+            link="https://www.instagram.com/starsandtrinketsshop/"
+          />
+          <ContentContainer
+            src={ImgColortoglas}
+            alt="Colortoglas"
+            link="https://www.instagram.com/colortoglas/"
+          />
+          <ContentContainer
+            src={ImgSaseiArt}
+            alt="Sasei Art"
+            link="https://www.instagram.com/sasei.art/"
+          />
+          <ContentContainer
+            src={ImgCelezius}
+            alt="Celezius"
+            link="https://www.instagram.com/celezius/"
+          />
+          <ContentContainer
+            src={ImgTrashelsArt}
+            alt="TrashelsArt"
+            link="https://www.instagram.com/trashels_drawing/"
+          />
+          <ContentContainer
+            src={ImgMikasMoonbrew}
+            alt="Mikas Moonbrew"
+            link="https://www.instagram.com/mikasmoonbrew/"
+          />
+        </ContentWrapper>
+
+        <SectionDivider id="autoren" />
+        <h2>Autoren</h2>
+        <p>
+          Auch in diesem Jahr durften unsere Autoren auf der YumeKai natürlich nicht fehlen. An
+          ihren Ständen konntet ihr in ihre Bücher hineinschnuppern, mehr über ihre Geschichten
+          erfahren und ihnen eure Fragen stellen. Außerdem bot sich die Gelegenheit mehr über den
+          kreativen Entstehungsprozess ihrer Werke zu erfahren.
+        </p>
+        <ContentWrapper>
+          <ContentContainer
+            src={ImgUlfFildebrandt}
+            alt="Ulf Fildebrandt"
+            link="https://www.instagram.com/ulffildebrandt/"
+          />
+          <ContentContainer
+            src={ImgNaomiHuber}
+            alt="Naomi Huber – Ashturia"
+            link="https://www.instagram.com/naomihuber_/"
+          />
+          <ContentContainer
+            src={ImgDelphoxsart}
+            alt="DelphoxDX"
+            link="https://www.instagram.com/delphoxsart"
+          />
+        </ContentWrapper>
+
+        <SectionDivider id="workshops" />
+        <h2>Workshops</h2>
+        <p>
+          Auch bei den Workshops gab es dieses Jahr eine Menge zum Erkunden und lernen. Verschiedene
+          Themenbereiche wurden hier dieses Jahr präsentiert, sei es Cosplay, Itashas, Miniaturen
+          bemalen, kreative Selbstständigkeit oder auch tanzen. Hier gab es wirklich zu allen Themen
+          etwas.
+        </p>
+        <ContentWrapper>
+          <ContentContainer
+            src={StellariaBild}
+            alt="Stellaria – Japanische Idol-Kultur"
+            link="https://www.instagram.com/stellaria.idols/"
+          />
+          <ContentContainer
+            src={StellariaDanceWorkshopBild}
+            alt="Stellaria – Random Play Dance"
+            link="https://www.instagram.com/stellaria.idols/"
+          />
+          <ContentContainer
+            src={YunuyeiBild}
+            alt="Yunuyei – Kreativ Selbstständig"
+            link="https://www.instagram.com/yunuyei/"
+          />
+          <ContentContainer
+            src={NevadaBild}
+            alt="Nevada – Illustration Workshop"
+            link="https://www.instagram.com/nevada.art.shop/"
+          />
+          <ContentContainer src={AkunyaahWorkshopBild} alt="Akunyaah Workshop" />
+          <ContentContainer
+            src={KermiWorkshopBild}
+            alt="Kermi – Einstieg ins Cosplay Crafting"
+            link="https://www.instagram.com/kermi_cosplay/"
+          />
+          <ContentContainer
+            src={WolfusWorkshopBild}
+            alt="Wolfus – Performance Workshop"
+            link="https://www.instagram.com/wolfus.cosplay/"
+          />
+          <ContentContainer
+            src={EraliaWorkshopBild}
+            alt="Eralia Workshop"
+            link="https://www.instagram.com/eralia_iwahana/"
+          />
+          <ContentContainer
+            src={ScarlettWorkshopBild}
+            alt="Cosplay Safety 101"
+            link="https://www.instagram.com/scarlettsirene2/"
+          />
+          <ContentContainer src={HokushinBild} alt="Hokushin – Samurai Vorführung" />
+          <ContentContainer src={NGEItashaWorkshopBild} alt="N.G.E.-Itasha Workshop" />
+          <ContentContainer src={HarukyuWorkshopBild} alt="Ars Metamorphosis - Wigs & Makeup" />
+          <ContentContainer src={TanzkursBild} alt="Tanzkurs" />
+        </ContentWrapper>
+
+        <SectionDivider id="essen" />
+        <h2>Essen</h2>
+        <p>
+          Auch für Essen war gesorgt, entweder etwas deftiges beim Becher Bistro oder beim Gasthof
+          Bräuhaus Lepple oder für die süße Entspannung zwischendurch sorgte das Maid Cafe
+          DreamGarden.
+        </p>
+        <ContentWrapper>
+          <ContentContainer src={BecherBistroBild} alt="Becher Bistro" />
+          <ContentContainer src={DreamgardenBild} alt="Maid-Café DreamGarden" />
+          <ContentContainer src={BrauhausLeppleBild} alt="Gasthof Bräuhaus Lepple" />
+        </ContentWrapper>
+
+        <SectionDivider id="gaming" />
+        <h2>Spiele, Gaming, Karaoke</h2>
+        <p>
+          Für das Herz all unserer Brett- und Kartenspielfreunde hatten wir dank unseren Händlern
+          der Heldenschmiede und dem Squiggz ein hervorragendes Angebot. Hier konnten nicht nur
+          verschiedenste Spiele gekauft werden, sondern auch Demospiele getestet werden! Für alle
+          Fans von TCG gab es auch Turniere zum Mitspielen. Wer mit Brettspielen, Kartenspielen oder
+          Tabletop nichts anfangen konnte war bei unsererm Gamingbereich gut aufgehoben. Hier gab es
+          die verschiedensten Konsolen und Spiele zum Testen. Auch dieses Jahr war unser Karaoke
+          Raum wieder am Start, hier konntet ihr über das gesamte Wochenende singen. Am Samstagabend
+          gab es dort den zweiten Karavision Song Contest auf der YumeKai!
+        </p>
+
+        <SectionDivider id="cosplay-wettbewerbe" />
+        <h2>Cosplay Wettbewerbe</h2>
+        <h3>Performance:</h3>
+        <p>
+          Bei unserem Performance Wettbewerb hatte jeder Teilnehmer bis zu 4 Minuten auf der Bühne
+          Zeit, sich mit einer kurzen Darbietung auf der Bühne zu präsentieren. All unsere
+          Teilnehmer haben hier die Herzen der Zuschauer durch ihre Performances erobert, sodass es
+          unserer Jury nicht einfach viel sich zu entscheiden.
+          <br />
+        </p>
+        <ImageCarousel visibleCount={5.5} duration={2.5} images={performanceImages} />
+
+        <RankList>
+          <li>
+            <RankBadge $place={1}>1</RankBadge>
+            <span>
+              <StyledLink
+                href="https://www.instagram.com/tinyfufu/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Tinyfufu
+              </StyledLink>{" "}
+              als Miorine Rembran (Mobile Suit Gundam: The Witch from Mercury)
+            </span>
+          </li>
+          <li>
+            <RankBadge $place={2}>2</RankBadge>
+            <span>
+              Lia von{" "}
+              <StyledLink
+                href="https://www.instagram.com/imoneecosplay/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Imonee Cosplay
+              </StyledLink>{" "}
+              als Minto Aizawa (Tokyo Mew Mew (Remake))
+            </span>
+          </li>
+          <li>
+            <RankBadge $place={3}>3</RankBadge>
+            <span>
+              <StyledLink
+                href="https://www.instagram.com/palelittledragon/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Palelittledragon
+              </StyledLink>{" "}
+              als Uraume (Jujutsu Kaisen)
+            </span>
+          </li>
+        </RankList>
+
+        <h3>Crafting:</h3>
+
+        <p>
+          Unserem Crafting Wettbewerb ging dieses Jahr in die zweite Runde. Hier wurden nur die
+          Cosplays, Wigs, Accessoires und Make-Up der Teilnehmenden Bewertet. Der kurze Catwalk auf
+          der Bühne wurde nicht in die Bewertung aufgenommen, sodass es wirklich nur um die Crafting
+          Techniken und die Fähigkeiten der Teilnehmer ging.
+          <br />
+        </p>
+        <Image
+          src={crafting1}
+          alt="Crafting Wettbewerb"
+          sizes="(max-width: 600px) 90vw, 300px"
+          style={{
+            display: "block",
+            width: "60%",
+            height: "auto",
+            margin: "0 auto",
+            borderRadius: "10px",
+          }}
+        />
+
+        <RankList>
+          <li>
+            <RankBadge $place={1}>1</RankBadge>
+            <span>
+              <StyledLink
+                href="https://www.instagram.com/serinua_cosplay/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Serinua_cosplay
+              </StyledLink>{" "}
+              als Tragosso
+            </span>
+          </li>
+          <li>
+            <RankBadge $place={2}>2</RankBadge>
+            <span>
+              <StyledLink
+                href="https://www.instagram.com/kiiska_jul/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Jul
+              </StyledLink>{" "}
+              als Fern (Frieren: Beyond Journey&apos;s End)
+            </span>
+          </li>
+          <li>
+            <RankBadge $place={3}>3</RankBadge>
+            <span>
+              <StyledLink
+                href="https://www.instagram.com/sovncosplay/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sovncosplay
+              </StyledLink>{" "}
+              als Silverwind Nargacuga Rüstung (Monster Hunter)
+            </span>
+          </li>
+        </RankList>
+
+        <SectionDivider id="zeichenwettbewerb" />
+        <h2>Zeichen Wettbewerb</h2>
+        <p>
+          Wieder mit dabei war auch unser Zeichenwettbewerb, hier konnten im Vorhinein Bilder zum
+          Themenbereich &bdquo;Yumeko Worldwide&ldquo; eingereicht werden. Diese wurden von unserer
+          talentierten Jury, welche aus{" "}
+          <StyledLink href="https://www.instagram.com/wynrayzero/" target="_blank">
+            wynrayzero
+          </StyledLink>{" "}
+          (Schöpfer von unserem Maskottchen Hiru), Matina (Teil unserer Teamleitung) und{" "}
+          <StyledLink href="https://bsky.app/profile/papaapplepie.bsky.social" target="_blank">
+            Papa_ApplePie
+          </StyledLink>{" "}
+          bestand, bewertet. Am Sonntagabend wurden die Gewinner und alle Teilnehmerbilder dann auf
+          der großen Bühne gezeigt.
+        </p>
+
+        <ImageCarousel visibleCount={5.5} duration={2.5} images={zeichenwettbewerbImages} />
+
+        <AwardList>
+          <li>
+            Beste Kreativität:
+            <strong>QueerBunny (Connor)</strong> – Yumeko als Wolpertinger
+          </li>
+          <li>
+            Beste Qualität:
+            <strong>Lelo</strong> – Anno 1500 – Memminger Yumeko
+          </li>
+          <li>
+            Beste Technik:
+            <strong>evelusik</strong> – Tanz der Heimat
+          </li>
+          <li>
+            Jury Favorit:
+            <strong>lauraskketches</strong> – Ein Lebkuchenherz für Yumeko 💗
+          </li>
+        </AwardList>
+
+        <SectionDivider id="cosplayball" />
+        <h2>Cosplayball</h2>
+        <p>
+          Auch in diesem Jahr fand zum zweiten Mal unser Cosplay-Ball statt. Für die passende
+          musikalische Atmosphäre sorgte das Cellotic Duets des Cellotic Soundtrack Ensembles. Mit
+          gefühlvollen und zugleich tanzbaren Cover-Versionen bekannter Anime-, Gaming- und
+          Serien-Soundtracks begleiteten sie euch durch den Abend und schafften eine einzigartige
+          Stimmung. Im Anschluss an den Ball ging der Abend nahtlos in eine Disco über. Hier legte
+          DJ Steve Heng (@breakouttv) die Musik auf. Mit seiner einzigartigen Mischung aus Clubsound
+          und Anime- Popkultur kreiert er energiegeladene Sets.
+        </p>
+        <ImageCarousel visibleCount={5.5} duration={2.5} images={cosplayballImages} />
+
+        <SectionDivider id="danksagung" />
+        <h2>Danksagung</h2>
+        <p>
+          Eine Convention wie die YumeKai lebt von einem abwechslungsreichen und spannenden
+          Programm. Deshalb möchten wir an dieser Stelle ein riesiges Dankeschön aussprechen an alle
+          Unterstützer!
+        </p>
+        <p>
+          Unser besonderer Dank gilt unseren fantastischen YumeKai-Helfern! Ohne eure Arbeit, euer
+          Engagement und eure Begeisterung wäre die YumeKai nicht das, was sie ist. Ihr seid das
+          Herz unserer Veranstaltung und wir sind unendlich dankbar für eure Unterstützung!
+        </p>
+        <p>
+          Ein großes Dankeschön geht auch an alle Händler, Autoren und Künstler, die mit ihren
+          einzigartigen Angeboten und kreativen Arbeiten für ein unvergessliches Einkaufserlebnis
+          und Erinnerungsstücke gesorgt haben.
+        </p>
+        <p>
+          Unsere Workshopleiter verdienen ebenfalls Anerkennung – ihr habt euer Wissen über Cosplay,
+          Kunst, Japan und vieles mehr geteilt und unseren Besuchern wertvolle Einblicke ermöglicht.
+          Ein ebenso herzliches Dankeschön geht an alle Aussteller, die mit ihren interaktiven oder
+          informativen Ständen zur Vielfalt der YumeKai beigetragen haben.
+        </p>
+        <p>
+          Auf unserer Bühne haben uns viele talentierte Showacts mit Gesang, Tanz, Musik und
+          beeindruckenden Performances begeistert. Ihr habt die YumeKai mit euren Auftritten zu
+          etwas ganz Besonderem gemacht! Ein großes Dankeschön geht auch an unsere Fotografen, die
+          all die magischen Momente für die Ewigkeit festgehalten haben.
+        </p>
+        <p>
+          Und schließlich möchten wir uns bei euch, unseren Besuchern, bedanken! Ohne euch gäbe es
+          keine YumeKai. Eure Begeisterung, eure Kreativität und euer Engagement machen unsere
+          Veranstaltung zu einem einzigartigen Ort.
+        </p>
+        <p>
+          Ein ganz besonderes Dankeschön geht noch an alle Unterstützer unseres Crowdfundings, durch
+          eure Hilfe konnten wir auch diese YumeKai wieder zu einer fantastischen Convention machen!
+        </p>
+        <ThanksBox>
+          <p>
+            Danke für ein wundervolles Wochenende und für all die besonderen Momente, die wir
+            gemeinsam erleben durften.
+            <br />
+            Wir freuen uns schon auf die nächste YumeKai mit euch!
+            <br />
+            Euer YumeKai-Team
+          </p>
+        </ThanksBox>
+
+        <h3>Crowdfunding</h3>
+        <p>
+          Ein besonderer Dank geht an alle Unterstützer:innen unseres Crowdfundings, die die YumeKai
+          2026 mit möglich gemacht haben:
+        </p>
+        <SupporterList>
+          <li>Kirawitha</li>
+          <li>Naomi Huber</li>
+          <li>Stefanie</li>
+          <li>Claudia</li>
+          <li>kindsoul.new</li>
+          <li>AnnaLeiBrandt</li>
+          <li>Joey Jäger</li>
+          <li>Kio derSchwabenotter</li>
+          <li>Synchronevents.de</li>
+          <li>Shinoa Aizawa</li>
+          <li>DelphoxsArt</li>
+          <li>Manuel Beringer</li>
+          <li>Sara Hetges</li>
+          <li>Felix Wagner</li>
+          <li>Sandra Wimmer</li>
+          <li>Lordzwiebelback</li>
+          <li>Karokitty</li>
+          <li>Yulj</li>
+          <li>StrifeAlone</li>
+          <li>AkioSensei</li>
+          <li>Lukas</li>
+          <li>Filum Sensei</li>
+          <li>TOWELDAY Austria</li>
+        </SupporterList>
       </PageBody>
     </>
   );

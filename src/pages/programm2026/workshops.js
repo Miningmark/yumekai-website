@@ -155,7 +155,7 @@ export default function Workshops() {
               Cosplay-Projekte zu schaffen.
             </p>
           }
-          instaLink="https://www.instagram.com/kermi.cos/"
+          instaLink="https://www.instagram.com/kermi_cosplay/"
           instaLinkText="Kermi"
           maxWidth={500}
         />
@@ -268,7 +268,7 @@ export default function Workshops() {
               Cosplay nicht nur verantwortungsvoll, sondern auch besonders kreativ sein kann.
             </p>
           }
-          instaLink="https://www.instagram.com/wolfus.cos/"
+          instaLink="https://www.instagram.com/wolfus.cosplay/"
           instaLinkText="Wolfus"
           maxWidth={500}
         />
@@ -303,7 +303,7 @@ export default function Workshops() {
               der Öffentlichkeit.
             </p>
           }
-          instaLink="https://www.instagram.com/scarlett.sirene/"
+          instaLink="https://www.instagram.com/scarlettsirene2/"
           instaLinkText="Scarlett Sirene"
           maxWidth={500}
         />

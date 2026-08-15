@@ -50,7 +50,7 @@ export default function Cosplayer() {
               mein Lieblingsfandom ist.
             </p>
           }
-          instaLink="https://www.instagram.com/xenia.cos/"
+          instaLink="https://www.instagram.com/xenia_7567/"
           instaLinkText="Xenia"
         />
 
@@ -70,7 +70,7 @@ export default function Cosplayer() {
               Körperform, Hautfarbe oder Aussehen.
             </p>
           }
-          instaLink="https://www.instagram.com/wolfus.cos/"
+          instaLink="https://www.instagram.com/wolfus.cosplay/"
           instaLinkText="Wolfus"
         />
 
@@ -89,7 +89,7 @@ export default function Cosplayer() {
               Erfahrungen, um andere in der Community zu unterstützen.
             </p>
           }
-          instaLink="https://www.instagram.com/scarlett.sirene/"
+          instaLink="https://www.instagram.com/scarlettsirene2/"
           instaLinkText="Scarlett Sirene"
         />
 
@@ -106,7 +106,7 @@ export default function Cosplayer() {
               zu halten.
             </p>
           }
-          instaLink="https://www.instagram.com/kermi.cos/"
+          instaLink="https://www.instagram.com/kermi_cosplay/"
           instaLinkText="Kermi"
         />
 
