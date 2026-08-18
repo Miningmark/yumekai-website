@@ -13,7 +13,7 @@ import HeldenschmiedeBild from "/public/assets/images/yumekai2026/Heldenschmiede
 import OtakuwonderlandBild from "/public/assets/images/yumekai2026/Otakuwonderland.png";
 import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.jpg";
 import ColorfulMindBild from "/public/assets/images/yumekai2026/Colorful Mind.png";
-import EuphonyBild from "/public/assets/images/yumekai2026/Euphony GmbH.png";
+import EstaticAnimeBild from "/public/assets/images/yumekai2026/estatic_anime.jpg";
 import AnimiBild from "/public/assets/images/yumekai2026/Animi.png";
 import TenityDesignBild from "/public/assets/images/yumekai2026/Tenity_Design.jpg";
 import ShigaFoodBild from "/public/assets/images/yumekai2026/Shiga Food GmbH.png";
@@ -58,9 +58,9 @@ export default function Haendler() {
         />
 
         <ContentCard
-          title="Euphony GmbH"
-          imageSrc={EuphonyBild}
-          altText="Euphony"
+          title="Estatic-Anime"
+          imageSrc={EstaticAnimeBild}
+          altText="Estatic-Anime"
           text={<p>Euer Händler für Anime-Figuren, Plüschtiere und Cosplay-Schaumstoffwaffen.</p>}
           maxWidth={500}
         />

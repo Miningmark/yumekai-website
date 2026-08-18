@@ -50,7 +50,7 @@ import HeldenschmiedeBild from "/public/assets/images/yumekai2026/Heldenschmiede
 import OtakuwonderlandBild from "/public/assets/images/yumekai2026/Otakuwonderland.png";
 import BavarianWoodfoxBild from "/public/assets/images/yumekai2026/BavarianWoodfox.jpg";
 import ColorfulMindBild from "/public/assets/images/yumekai2026/Colorful Mind.png";
-import EuphonyBild from "/public/assets/images/yumekai2026/Euphony GmbH.png";
+import EstaticAnimeBild from "/public/assets/images/yumekai2026/estatic_anime.jpg";
 import AnimiBild from "/public/assets/images/yumekai2026/Animi.png";
 import TenityDesignBild from "/public/assets/images/yumekai2026/Tenity_Design.jpg";
 import ShigaFoodBild from "/public/assets/images/yumekai2026/Shiga Food GmbH.png";
@@ -636,23 +636,23 @@ const FigureContainer = styled.figure`
   p {
     font-size: 1.3rem;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 12px 0 20px 0;
 
     @media (max-width: 800px) {
       font-size: 1.1rem;
     }
   }
+`;
 
-  a {
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 20px 0;
-    text-decoration: none;
-    color: ${({ theme }) => theme.text};
+const CaptionLink = styled(Link)`
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 12px 0 20px 0;
+  text-decoration: none;
+  color: ${({ theme }) => theme.text};
 
-    @media (max-width: 800px) {
-      font-size: 1.1rem;
-    }
+  @media (max-width: 800px) {
+    font-size: 1.1rem;
   }
 `;
 
@@ -864,23 +864,33 @@ const SupporterList = styled.ul`
 `;
 
 export function ContentContainer({ src, alt = "Bild", caption = "", link }) {
+  const image = (
+    <ImageFrame>
+      <Image
+        src={src}
+        alt={`Bild von ${alt}`}
+        style={{ width: "100%", height: "auto" }}
+        priority
+      />
+    </ImageFrame>
+  );
+
   return (
     <FigureContainer>
-      <ImageFrame>
-        <Image
-          src={src}
-          alt={`Bild von ${alt}`}
-          style={{ width: "100%", height: "auto" }}
-          priority
-        />
-      </ImageFrame>
+      {link ? (
+        <Link href={link} target="_blank" style={{ display: "block", width: "100%" }}>
+          {image}
+        </Link>
+      ) : (
+        image
+      )}
       <figcaption>{caption}</figcaption>
       {!link ? (
         <p>{alt}</p>
       ) : (
-        <Link href={link} target="_blank">
+        <CaptionLink href={link} target="_blank">
           {alt}
-        </Link>
+        </CaptionLink>
       )}
     </FigureContainer>
   );
@@ -1088,7 +1098,7 @@ export default function YumeKai2026() {
         </p>
         <ContentWrapper>
           <ContentContainer src={ColorfulMindBild} alt="Colorful Mind Tattoo-Atelier" />
-          <ContentContainer src={EuphonyBild} alt="Euphony GmbH" />
+          <ContentContainer src={EstaticAnimeBild} alt="Estatic-Anime" />
           <ContentContainer src={OtakuArtBild} alt="Otaku Art" />
           <ContentContainer src={SquiggzBild} alt="Squiggz" />
           <ContentContainer src={HeldenschmiedeBild} alt="Heldenschmiede" />
@@ -1096,7 +1106,7 @@ export default function YumeKai2026() {
           <ContentContainer src={BavarianWoodfoxBild} alt="BavarianWoodfox" />
           <ContentContainer src={AnimiBild} alt="Animi" />
           <ContentContainer src={TenityDesignBild} alt="Tenity Design" />
-          <ContentContainer src={ShigaFoodBild} alt="Shiga Food GmbH" />
+          <ContentContainer src={ShigaFoodBild} alt="Shiga Food" />
           <ContentContainer src={AkumuBild} alt="Akumu" />
         </ContentWrapper>
 
