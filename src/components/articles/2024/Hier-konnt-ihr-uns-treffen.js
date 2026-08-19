@@ -22,6 +22,7 @@ export default function HierKonntIhrUnsTreffen() {
                   <ul>
                     <li>18.09 - 20.09 Gamesvention in Kempten</li>
                     <li>19.09 - 20.09 Mini Con in Rankweil</li>
+                    <li>26.09 Manganacht in Memmingen</li>
                     <li>26.09 - 27.09 Techniktreffen in Speyer</li>
                     <li>28.11 - 29.11 ComicCon in Stuttgart</li>
                   </ul>
