@@ -100,7 +100,7 @@ export default function Projects() {
       */}
       <SEO
         title="YumeKai Convention"
-        description="Die YumeKai: Anime- und Cosplay-Convention in der Stadthalle Memmingen mit Bühnenprogramm, Workshops und Händlern. Nächster Termin: 09.05 - 10.05.2026."
+        description="Die YumeKai: Anime- und Cosplay-Convention in der Stadthalle Memmingen mit Bühnenprogramm, Workshops und Händlern. Nächster Termin: 21.08 - 22.08.2027."
         path="/projects/yumekai"
       />
       <SpacerEmpty />
@@ -141,7 +141,7 @@ export default function Projects() {
                 <ScheduleIcon />
               </ScheduleIconWrapper>
               <p>Wo: ???</p>
-              <p>Wann: ???</p>
+              <p>Wann: 21.08 - 22.08.2027</p>
             </RectangleContainer>
             <MovingContentWrapper content={<YumeKaiLogo />}></MovingContentWrapper>
           </>

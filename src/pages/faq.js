@@ -55,12 +55,12 @@ const categories = [
       },
       {
         title: "Wann ist die YumeKai?",
-        content: "Die YumeKai 2026 findet vom 09.05 bis zum 10.05 in Memmingen statt.",
+        content: "Die nächste YumeKai findet am 21.08.2027 und 22.08.2027 statt.",
       },
       {
         title: "Wo ist die YumeKai?",
         content:
-          "Die YumeKai 2026 wird in der Stadthalle Memmingen und im Maximilian Kolbe Haus stattfinden.",
+          "Der genaue Veranstaltungsort der YumeKai 2027 wird noch bekannt gegeben.",
       },
       {
         title: "Wie komme ich zur YumeKai und wo kann ich parken?",

@@ -12,6 +12,7 @@ import AnkundigungBall from "@/components/articles/2026/AnkundigungBall";
 import CosplayWettbewerbePreise from "@/components/articles/2026/CosplayWettbewerbePreise";
 import Oeffnungszeiten2026 from "@/components/articles/2026/Oeffnungszeiten2026";
 import StellariaPaletteOfDreams from "@/components/articles/2026/StellariaPaletteOfDreams";
+import AnkundigungYumekai2027 from "@/components/articles/2026/AnkundigungYumekai2027";
 import RueckblickYumekai2026 from "@/components/articles/2026/RueckblickYumekai2026";
 import YumeKaiZeichenwettbewerbGewinner26 from "@/components/articles/2026/YumeKai-Zeichenwettbewerb-Gewinner26";
 
@@ -40,6 +41,8 @@ export default function Home() {
         In der Rubrik „Aktuelles“ kannst du erfahren, was gerade bei YumeKai geschieht. Hier
         erwarten dich fortlaufend neue und fesselnde Nachrichten rund um die YumeKai.
       </p>
+      <AnkundigungYumekai2027 />
+      <Spacer />
       <RueckblickYumekai2026 />
       <Spacer />
       <YumeKaiZeichenwettbewerbGewinner26 />

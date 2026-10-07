@@ -8,12 +8,12 @@ import { usePrevNextButtons } from "@/components/elements/ImageCarousel";
 
 //Slides
 import Slide1 from "@/components/home/homeSliderPages/slide1";
-//import Slide2 from "@/components/home/homeSliderPages/slide2";
+import Slide2 from "@/components/home/homeSliderPages/slide2";
 import Slide3 from "@/components/home/homeSliderPages/slide3";
 //import Slide4 from "@/components/home/homeSliderPages/slide4";
 import Slide5 from "@/components/home/homeSliderPages/slide5";
 
-const slideList = [Slide1, Slide3, Slide5];
+const slideList = [Slide1, Slide2, Slide3, Slide5];
 
 const useDotButtons = (emblaApi, onButtonClick) => {
   const [selectedIndex, setSelectedIndex] = useState(0);

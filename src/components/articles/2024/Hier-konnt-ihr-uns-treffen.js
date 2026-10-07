@@ -20,10 +20,8 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h2>Hier könnt ihr uns treffen:</h2>
                   <ul>
-                    <li>18.09 - 20.09 Gamesvention in Kempten</li>
-                    <li>19.09 - 20.09 Mini Con in Rankweil</li>
-                    <li>26.09 Manganacht in Memmingen</li>
-                    <li>26.09 - 27.09 Techniktreffen in Speyer</li>
+                    <li>17.10 KouYouCon in Heilbron</li>
+                    <li>14.11 Frankenmexx in Nürnberg</li>
                     <li>28.11 - 29.11 ComicCon in Stuttgart</li>
                   </ul>
                 </>
@@ -32,9 +30,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h2>Hier waren wir:</h2>
                   <ul>
-                    <li>Cosplay & Game in Bludenz</li>
-                    <li>Yayuco in Dachau</li>
-                    <li>ComicCon in Stuttgart</li>
                     <li>Manganacht in Memmingen</li>
                     <li>ComicCon in Dornbirn</li>
                     <li>Gamesvention in Kempten</li>
@@ -46,6 +41,9 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Gamers Heaven Tirol in Telfs</li>
                     <li>Cosday² in Frankfurt</li>
                     <li>ConUtopisch in Seefeld in Tirol</li>
+                    <li>Gamesvention in Kempten</li>
+                    <li>Mini Con in Rankweil</li>
+                    <li>Manganacht in Memmingen</li>
                   </ul>
                 </>
               }

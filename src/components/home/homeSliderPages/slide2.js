@@ -32,7 +32,7 @@ const Content = styled.div`
 `;
 
 const Headline = styled.p`
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--primary-color);
   font-weight: bold;
   position: absolute;
@@ -42,7 +42,7 @@ const Headline = styled.p`
   text-align: center;
 
   @media (max-width: 800px) {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 `;
 
@@ -52,7 +52,7 @@ export default function Slide2() {
       <Wrapper>
         <Content>
           <Headline>
-            09.05 - 10.05.2026 <br />
+            21.08 - 22.08.2027 <br />
             Memmingen
           </Headline>
         </Content>
