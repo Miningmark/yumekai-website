@@ -20,8 +20,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h2>Hier könnt ihr uns treffen:</h2>
                   <ul>
-                    <li>17.10 KouYouCon in Heilbron</li>
-                    <li>14.11 Frankenmexx in Nürnberg</li>
                     <li>28.11 - 29.11 ComicCon in Stuttgart</li>
                   </ul>
                 </>
@@ -30,9 +28,6 @@ export default function HierKonntIhrUnsTreffen() {
                 <>
                   <h2>Hier waren wir:</h2>
                   <ul>
-                    <li>Manganacht in Memmingen</li>
-                    <li>ComicCon in Dornbirn</li>
-                    <li>Gamesvention in Kempten</li>
                     <li>Mishiro in Augsburg</li>
                     <li>NonkiCon in Speyer</li>
                     <li>Hana & Spring in Königsbrunn</li>
@@ -44,6 +39,8 @@ export default function HierKonntIhrUnsTreffen() {
                     <li>Gamesvention in Kempten</li>
                     <li>Mini Con in Rankweil</li>
                     <li>Manganacht in Memmingen</li>
+                    <li>KouYouCon in Heilbron</li>
+                    <li>Frankenmexx in Nürnberg</li>
                   </ul>
                 </>
               }

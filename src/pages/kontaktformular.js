@@ -166,6 +166,14 @@ export default function Kontaktformular() {
         path="/kontaktformular"
       />
       <h1>Kontaktformular</h1>
+      <p>
+        Du hast eine Frage zur YumeKai egal ob Presse, Händler oder andere Anliegen? Dann schreibe
+        uns eine mail an{" "}
+        <StyledLink href="mailto:info@yumekai.de" target="_blank">
+          info@yumekai.de
+        </StyledLink>
+      </p>
+      {/*
       {!success && (
         <>
           <p>
@@ -281,6 +289,8 @@ export default function Kontaktformular() {
           </ModalOverlay>
         </>
       )}
+
+       */}
     </>
   );
 }
